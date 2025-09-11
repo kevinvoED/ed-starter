@@ -1,30 +1,31 @@
 import {
-  presentationTool,
+  type DocumentLocation,
   defineDocuments,
   defineLocations,
-  type DocumentLocation,
-} from 'sanity/presentation'
+  presentationTool,
+} from 'sanity/presentation';
 
 // URL for preview functionality, defaults to localhost:3000 if not set
-const SANITY_STUDIO_PREVIEW_URL = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'
+const SANITY_STUDIO_PREVIEW_URL =
+  process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000';
 
 // Define the home location for the presentation tool
 const homeLocation = {
   title: 'Home',
   href: '/',
-} satisfies DocumentLocation
+} satisfies DocumentLocation;
 
 // resolveHref() is a convenience function that resolves the URL
 // path for different document types and used in the presentation tool.
 function resolveHref(documentType?: string, slug?: string): string | undefined {
   switch (documentType) {
     case 'post':
-      return slug ? `/posts/${slug}` : undefined
+      return slug ? `/posts/${slug}` : undefined;
     case 'page':
-      return slug ? `/${slug}` : undefined
+      return slug ? `/${slug}` : undefined;
     default:
-      console.warn('Invalid document type:', documentType)
-      return undefined
+      console.warn('Invalid document type:', documentType);
+      return undefined;
   }
 }
 
@@ -93,4 +94,4 @@ export const presentation = presentationTool({
       }),
     },
   },
-})
+});

@@ -1,36 +1,39 @@
-'use client'
+'use client';
 
-import {SanityDocument} from 'next-sanity'
-import {useOptimistic} from 'next-sanity/hooks'
-import Link from 'next/link'
+import Link from 'next/link';
+import { SanityDocument } from 'next-sanity';
+import { useOptimistic } from 'next-sanity/hooks';
 
-import BlockRenderer from '@/app/components/BlockRenderer'
-import {GetPageQueryResult} from '@/sanity.types'
-import {dataAttr} from '@/sanity/lib/utils'
-import {studioUrl} from '@/sanity/lib/api'
+import BlockRenderer from '@/app/components/BlockRenderer';
+import { studioUrl } from '@/sanity/lib/api';
+import { dataAttr } from '@/sanity/lib/utils';
+import { GetPageQueryResult } from '@/sanity.types';
 
 type PageBuilderPageProps = {
-  page: GetPageQueryResult
-}
+  page: GetPageQueryResult;
+};
 
 type PageBuilderSection = {
-  _key: string
-  _type: string
-}
+  _key: string;
+  _type: string;
+};
 
 type PageData = {
-  _id: string
-  _type: string
-  pageBuilder?: PageBuilderSection[]
-}
+  _id: string;
+  _type: string;
+  pageBuilder?: PageBuilderSection[];
+};
 
 /**
  * The PageBuilder component is used to render the blocks from the `pageBuilder` field in the Page type in your Sanity Studio.
  */
 
-function renderSections(pageBuilderSections: PageBuilderSection[], page: GetPageQueryResult) {
+function renderSections(
+  pageBuilderSections: PageBuilderSection[],
+  page: GetPageQueryResult,
+) {
   if (!page) {
-    return null
+    return null;
   }
   return (
     <div
@@ -50,22 +53,24 @@ function renderSections(pageBuilderSections: PageBuilderSection[], page: GetPage
         />
       ))}
     </div>
-  )
+  );
 }
 
 function renderEmptyState(page: GetPageQueryResult) {
   if (!page) {
-    return null
+    return null;
   }
   return (
     <div className="container">
-      <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">
+      <h1 className="font-extrabold text-4xl text-gray-900 tracking-tight sm:text-5xl">
         This page has no content!
       </h1>
-      <p className="mt-2 text-base text-gray-500">Open the page in Sanity Studio to add content.</p>
+      <p className="mt-2 text-base text-gray-500">
+        Open the page in Sanity Studio to add content.
+      </p>
       <div className="mt-10 flex">
         <Link
-          className="rounded-full flex gap-2 mr-6 items-center bg-black hover:bg-brand focus:bg-blue py-3 px-6 text-white transition-colors duration-200"
+          className="mr-6 flex items-center gap-2 rounded-full bg-black px-6 py-3 text-white transition-colors duration-200 hover:bg-brand focus:bg-blue"
           href={`${studioUrl}/structure/intent/edit/template=page;type=page;path=pageBuilder;id=${page._id}`}
           target="_blank"
           rel="noopener noreferrer"
@@ -74,10 +79,10 @@ function renderEmptyState(page: GetPageQueryResult) {
         </Link>
       </div>
     </div>
-  )
+  );
 }
 
-export default function PageBuilder({page}: PageBuilderPageProps) {
+export default function PageBuilder({ page }: PageBuilderPageProps) {
   const pageBuilderSections = useOptimistic<
     PageBuilderSection[] | undefined,
     SanityDocument<PageData>
@@ -87,26 +92,27 @@ export default function PageBuilder({page}: PageBuilderPageProps) {
 
     // If the edit was to a different document, ignore it
     if (action.id !== page?._id) {
-      return currentSections
+      return currentSections;
     }
 
     // If there are sections in the updated document, use them
     if (action.document.pageBuilder) {
       // Reconcile References. https://www.sanity.io/docs/enabling-drag-and-drop#ffe728eea8c1
       return action.document.pageBuilder.map(
-        (section) => currentSections?.find((s) => s._key === section?._key) || section,
-      )
+        (section) =>
+          currentSections?.find((s) => s._key === section?._key) || section,
+      );
     }
 
     // Otherwise keep the current sections
-    return currentSections
-  })
+    return currentSections;
+  });
 
   if (!page) {
-    return renderEmptyState(page)
+    return renderEmptyState(page);
   }
 
   return pageBuilderSections && pageBuilderSections.length > 0
     ? renderSections(pageBuilderSections, page)
-    : renderEmptyState(page)
+    : renderEmptyState(page);
 }

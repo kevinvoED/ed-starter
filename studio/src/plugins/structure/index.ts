@@ -4,12 +4,13 @@
  * Learn more: https://www.sanity.io/docs/structure-builder-introduction
  */
 
-import {CogIcon} from '@sanity/icons'
-import {structureTool} from 'sanity/structure'
-import type {StructureBuilder, StructureResolver} from 'sanity/structure'
-import pluralize from 'pluralize-esm'
+import { CogIcon } from '@sanity/icons';
 
-const DISABLED_TYPES = ['settings', 'assist.instruction.context']
+import pluralize from 'pluralize-esm';
+import type { StructureBuilder, StructureResolver } from 'sanity/structure';
+import { structureTool } from 'sanity/structure';
+
+const DISABLED_TYPES = ['settings', 'assist.instruction.context'];
 
 const structureResolver: StructureResolver = (S: StructureBuilder) =>
   S.list()
@@ -20,15 +21,15 @@ const structureResolver: StructureResolver = (S: StructureBuilder) =>
         .filter((listItem: any) => !DISABLED_TYPES.includes(listItem.getId()))
         // Pluralize the title of each document type.  This is not required but just an option to consider.
         .map((listItem) => {
-          return listItem.title(pluralize(listItem.getTitle() as string))
+          return listItem.title(pluralize(listItem.getTitle() as string));
         }),
       // Settings Singleton in order to view/edit the one particular document for Settings.  Learn more about Singletons: https://www.sanity.io/docs/create-a-link-to-a-single-edit-page-in-your-main-document-type-list
       S.listItem()
         .title('Site Settings')
         .child(S.document().schemaType('settings').documentId('siteSettings'))
         .icon(CogIcon),
-    ])
+    ]);
 
 export const structure = structureTool({
   structure: structureResolver,
-})
+});

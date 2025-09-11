@@ -5,11 +5,11 @@
  * Learn more: https://www.sanity.io/docs/cli
  */
 
-import {defineCliConfig} from 'sanity/cli'
-import {resolve} from 'path'
+import { resolve } from 'path';
+import { defineCliConfig } from 'sanity/cli';
 
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID || '<your project ID>'
-const dataset = process.env.SANITY_STUDIO_DATASET || 'production'
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID || '<your project ID>';
+const dataset = process.env.SANITY_STUDIO_DATASET || 'production';
 
 export default defineCliConfig({
   api: {
@@ -28,4 +28,4 @@ export default defineCliConfig({
       },
     },
   },
-})
+});

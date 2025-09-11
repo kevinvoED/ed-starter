@@ -1,15 +1,14 @@
 import Link from 'next/link'
-
-import {sanityFetch} from '@/sanity/lib/live'
-import {morePostsQuery, allPostsQuery} from '@/sanity/lib/queries'
-import {Post as PostType, AllPostsQueryResult} from '@/sanity.types'
-import DateComponent from '@/app/components/Date'
-import OnBoarding from '@/app/components/Onboarding'
-import Avatar from '@/app/components/Avatar'
 import {createDataAttribute} from 'next-sanity'
 
+import DateComponent from '@/app/components/Date'
+import OnBoarding from '@/app/components/Onboarding'
+import {sanityFetch} from '@/sanity/lib/live'
+import {allPostsQuery, morePostsQuery} from '@/sanity/lib/queries'
+import {type AllPostsQueryResult, type Post as PostType} from '@/sanity.types'
+
 const Post = ({post}: {post: AllPostsQueryResult[number]}) => {
-  const {_id, title, slug, excerpt, date, author} = post
+  const {_id, title, slug, excerpt, date} = post
 
   const attr = createDataAttribute({
     id: _id,
@@ -21,23 +20,18 @@ const Post = ({post}: {post: AllPostsQueryResult[number]}) => {
     <article
       data-sanity={attr()}
       key={_id}
-      className="border border-gray-200 rounded-sm p-6 bg-gray-50 flex flex-col justify-between transition-colors hover:bg-white relative"
+      className="relative flex flex-col justify-between rounded-sm border border-gray-200 bg-gray-50 p-6 transition-colors hover:bg-white"
     >
-      <Link className="hover:text-brand underline transition-colors" href={`/posts/${slug}`}>
+      <Link className="underline transition-colors hover:text-brand" href={`/posts/${slug}`}>
         <span className="absolute inset-0 z-10" />
       </Link>
       <div>
-        <h3 className="text-2xl font-bold mb-4 leading-tight">{title}</h3>
+        <h3 className="mb-4 font-bold text-2xl leading-tight">{title}</h3>
 
-        <p className="line-clamp-3 text-sm leading-6 text-gray-600 max-w-[70ch]">{excerpt}</p>
+        <p className="line-clamp-3 max-w-[70ch] text-gray-600 text-sm leading-6">{excerpt}</p>
       </div>
-      <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-100">
-        {author && author.firstName && author.lastName && (
-          <div className="flex items-center">
-            <Avatar person={author} small={true} />
-          </div>
-        )}
-        <time className="text-gray-500 text-xs font-mono" dateTime={date}>
+      <div className="mt-6 flex items-center justify-between border-gray-100 border-t pt-4">
+        <time className="font-mono text-gray-500 text-xs" dateTime={date}>
           <DateComponent dateString={date} />
         </time>
       </div>
@@ -56,12 +50,12 @@ const Posts = ({
 }) => (
   <div>
     {heading && (
-      <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+      <h2 className="font-bold text-3xl text-gray-900 tracking-tight sm:text-4xl lg:text-5xl">
         {heading}
       </h2>
     )}
-    {subHeading && <p className="mt-2 text-lg leading-8 text-gray-600">{subHeading}</p>}
-    <div className="pt-6 space-y-6">{children}</div>
+    {subHeading && <p className="mt-2 text-gray-600 text-lg leading-8">{subHeading}</p>}
+    <div className="space-y-6 pt-6">{children}</div>
   </div>
 )
 

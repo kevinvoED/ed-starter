@@ -1,5 +1,6 @@
-import {UserIcon} from '@sanity/icons'
-import {defineField, defineType} from 'sanity'
+import { UserIcon } from '@sanity/icons';
+
+import { defineField, defineType } from 'sanity';
 
 /**
  * Person schema.  Define and edit the fields for the 'person' content type.
@@ -38,10 +39,10 @@ export const person = defineType({
             // Custom validation to ensure alt text is provided if the image is present. https://www.sanity.io/docs/validation
             return rule.custom((alt, context) => {
               if ((context.document?.picture as any)?.asset?._ref && !alt) {
-                return 'Required'
+                return 'Required';
               }
-              return true
-            })
+              return true;
+            });
           },
         }),
       ],
@@ -66,7 +67,7 @@ export const person = defineType({
         title: `${selection.firstName} ${selection.lastName}`,
         subtitle: 'Person',
         media: selection.picture,
-      }
+      };
     },
   },
-})
+});
