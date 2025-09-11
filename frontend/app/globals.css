@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@config "../tailwind.config.ts";
 @plugin "@tailwindcss/typography";
 
 @utility container {
@@ -7,9 +7,8 @@
   padding: 0 2rem;
 }
 
+// TODO: add container, fix colors, fonts, etc.
 @theme {
-  --shadow-layer: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
-
   --color-framework: #000;
   --color-black: #0b0b0b;
   --color-white: #fff;

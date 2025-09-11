@@ -18,7 +18,7 @@ export default async function Page() {
     <>
       <div className="relative">
         <div className="relative bg-[url(/images/tile-1-black.png)] bg-size-[5px]">
-          <div className="absolute top-0 h-full w-full bg-gradient-to-b from-white"></div>
+          <div className="absolute top-0 h-full w-full bg-linear-to-b from-white"></div>
           <div className="container">
             <div className="relative mx-auto flex min-h-[40vh] max-w-2xl flex-col items-center justify-center space-y-6 pt-10 pb-30 lg:max-w-4xl lg:px-12 xl:pt-20">
               <div className="flex flex-col items-center gap-4">

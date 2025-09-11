@@ -29,7 +29,7 @@ export default async function Header() {
                 </Link>
               </li>
 
-              <li className="flex before:block sm:gap-4 sm:before:w-[1px] sm:before:bg-gray-200 md:gap-6">
+              <li className="flex before:block sm:gap-4 sm:before:w-px sm:before:bg-gray-200 md:gap-6">
                 <Link
                   className="flex items-center justify-center gap-4 rounded-full bg-black px-4 py-2 text-white transition-colors duration-200 hover:bg-blue focus:bg-blue sm:px-6 sm:py-3"
                   href="https://github.com/sanity-io/sanity-template-nextjs-clean"
