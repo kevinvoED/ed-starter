@@ -5,7 +5,7 @@ import { visionTool } from '@sanity/vision';
 
 import { presentation } from '@/plugins/presentation';
 import { structure } from '@/plugins/structure';
-import { schemaTypes } from '@/schemaTypes';
+import { schemaTypes } from '@/schemaTypes/schema';
 
 import { defineConfig } from 'sanity';
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash';
