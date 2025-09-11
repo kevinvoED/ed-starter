@@ -6,6 +6,7 @@
  */
 
 import {defineCliConfig} from 'sanity/cli'
+import {resolve} from 'path'
 
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || '<your project ID>'
 const dataset = process.env.SANITY_STUDIO_DATASET || 'production'
@@ -17,4 +18,14 @@ export default defineCliConfig({
   },
   studioHost: process.env.SANITY_STUDIO_STUDIO_HOST || '', // Visit https://www.sanity.io/docs/environment-variables to learn more about using environment variables for local & production.
   autoUpdates: true,
+  vite: {
+    resolve: {
+      alias: {
+        '@': resolve(__dirname, './src'),
+        '@/schemaTypes': resolve(__dirname, './src/schemaTypes'),
+        '@/plugins': resolve(__dirname, './src/plugins'),
+        '@/lib': resolve(__dirname, './src/lib'),
+      },
+    },
+  },
 })
