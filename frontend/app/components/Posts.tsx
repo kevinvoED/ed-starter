@@ -1,20 +1,23 @@
-import Link from 'next/link'
-import {createDataAttribute} from 'next-sanity'
+import Link from 'next/link';
+import { createDataAttribute } from 'next-sanity';
 
-import DateComponent from '@/app/components/Date'
-import OnBoarding from '@/app/components/Onboarding'
-import {sanityFetch} from '@/sanity/lib/live'
-import {allPostsQuery, morePostsQuery} from '@/sanity/lib/queries'
-import {type AllPostsQueryResult, type Post as PostType} from '@/sanity.types'
+import DateComponent from '@/app/components/Date';
+import OnBoarding from '@/app/components/Onboarding';
+import { sanityFetch } from '@/sanity/lib/live';
+import { allPostsQuery, morePostsQuery } from '@/sanity/lib/queries';
+import {
+  type AllPostsQueryResult,
+  type Post as PostType,
+} from '@/sanity.types';
 
-const Post = ({post}: {post: AllPostsQueryResult[number]}) => {
-  const {_id, title, slug, excerpt, date} = post
+const Post = ({ post }: { post: AllPostsQueryResult[number] }) => {
+  const { _id, title, slug, excerpt, date } = post;
 
   const attr = createDataAttribute({
     id: _id,
     type: 'post',
     path: 'title',
-  })
+  });
 
   return (
     <article
@@ -22,13 +25,18 @@ const Post = ({post}: {post: AllPostsQueryResult[number]}) => {
       key={_id}
       className="relative flex flex-col justify-between rounded-sm border border-gray-200 bg-gray-50 p-6 transition-colors hover:bg-white"
     >
-      <Link className="underline transition-colors hover:text-brand" href={`/posts/${slug}`}>
+      <Link
+        className="underline transition-colors hover:text-brand"
+        href={`/posts/${slug}`}
+      >
         <span className="absolute inset-0 z-10" />
       </Link>
       <div>
         <h3 className="mb-4 font-bold text-2xl leading-tight">{title}</h3>
 
-        <p className="line-clamp-3 max-w-[70ch] text-gray-600 text-sm leading-6">{excerpt}</p>
+        <p className="line-clamp-3 max-w-[70ch] text-gray-600 text-sm leading-6">
+          {excerpt}
+        </p>
       </div>
       <div className="mt-6 flex items-center justify-between border-gray-100 border-t pt-4">
         <time className="font-mono text-gray-500 text-xs" dateTime={date}>
@@ -36,17 +44,17 @@ const Post = ({post}: {post: AllPostsQueryResult[number]}) => {
         </time>
       </div>
     </article>
-  )
-}
+  );
+};
 
 const Posts = ({
   children,
   heading,
   subHeading,
 }: {
-  children: React.ReactNode
-  heading?: string
-  subHeading?: string
+  children: React.ReactNode;
+  heading?: string;
+  subHeading?: string;
 }) => (
   <div>
     {heading && (
@@ -54,19 +62,27 @@ const Posts = ({
         {heading}
       </h2>
     )}
-    {subHeading && <p className="mt-2 text-gray-600 text-lg leading-8">{subHeading}</p>}
+    {subHeading && (
+      <p className="mt-2 text-gray-600 text-lg leading-8">{subHeading}</p>
+    )}
     <div className="space-y-6 pt-6">{children}</div>
   </div>
-)
+);
 
-export const MorePosts = async ({skip, limit}: {skip: string; limit: number}) => {
-  const {data} = await sanityFetch({
+export const MorePosts = async ({
+  skip,
+  limit,
+}: {
+  skip: string;
+  limit: number;
+}) => {
+  const { data } = await sanityFetch({
     query: morePostsQuery,
-    params: {skip, limit},
-  })
+    params: { skip, limit },
+  });
 
   if (!data || data.length === 0) {
-    return null
+    return null;
   }
 
   return (
@@ -75,14 +91,14 @@ export const MorePosts = async ({skip, limit}: {skip: string; limit: number}) =>
         <Post key={post._id} post={post} />
       ))}
     </Posts>
-  )
-}
+  );
+};
 
 export const AllPosts = async () => {
-  const {data} = await sanityFetch({query: allPostsQuery})
+  const { data } = await sanityFetch({ query: allPostsQuery });
 
   if (!data || data.length === 0) {
-    return <OnBoarding />
+    return <OnBoarding />;
   }
 
   return (
@@ -94,5 +110,5 @@ export const AllPosts = async () => {
         <Post key={post._id} post={post} />
       ))}
     </Posts>
-  )
-}
+  );
+};

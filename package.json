@@ -18,15 +18,11 @@
     "dev:next": "npm run dev --workspace=frontend",
     "dev:studio": "npm run dev --workspace=studio",
     "format": "biome format --fix && biome check --fix",
-    "import-sample-data": "cd studio && sanity dataset import sample-data.tar.gz --replace",
     "lint": "npm run lint --workspace=frontend",
     "type-check": "npm run type-check --workspaces"
   },
-  "prettier": "@sanity/prettier-config",
   "devDependencies": {
     "@biomejs/biome": "2.2.4",
-    "@sanity/prettier-config": "^2.0.1",
-    "npm-run-all2": "^5.0.2",
-    "prettier": "^3.6.2"
+    "npm-run-all2": "^5.0.2"
   }
 }
