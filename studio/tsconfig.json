@@ -1,16 +1,28 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
+    "esModuleInterop": true,
     "skipLibCheck": true,
+    "target": "es2022",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "jsx": "preserve",
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "Preserve",
-    "moduleDetection": "force",
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "module": "preserve",
+    "noEmit": true,
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/schemaTypes/*": ["src/schemaTypes/*"],
+      "@/plugins/*": ["src/plugins/*"],
+      "@/lib/*": ["src/lib/*"]
+    }
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
