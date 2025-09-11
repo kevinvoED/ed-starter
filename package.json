@@ -1,17 +1,13 @@
 {
   "name": "ed-starter",
-  "description": "Next.js + Sanity: A Powerful Website Starter with Real-time Visual Editing",
+  "description": "Engine Digital - Next.js + Sanity Starter Kit",
   "keywords": [
     "Sanity",
-    "Next.js",
-    "Headless CMS",
-    "Visual Editing",
-    "Live Content API (LCAPI)",
-    "Real-time"
+    "Next.js"
   ],
-  "homepage": "https://github.com/sanity-io/sanity-template-nextjs-clean#readme",
+  "homepage": "",
   "bugs": {
-    "url": "https://github.com/sanity-io/sanity-template-nextjs-clean/issues"
+    "url": ""
   },
   "workspaces": [
     "studio",
