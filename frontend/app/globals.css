@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @config "../tailwind.config.ts";
 @plugin "@tailwindcss/typography";
+@plugin "tailwindcss-animate";
+
 
 @utility container {
   margin: 0 auto;
