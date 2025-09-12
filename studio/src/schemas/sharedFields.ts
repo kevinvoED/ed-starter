@@ -1,12 +1,14 @@
-/* 
-  * This file contains commonly used primitive schemas to be used in other larger schemas
-  * It helps avoid repeating the same fields and makes your schemas more readable
-  * If there is a type that is being used multiple times, consider creating a shared schema for it here
-  * Make sure to check validation and descriptions should always end with a period.
-  * Please keep this file organized and well documented
-*/
+/*
+ * This file contains commonly used primitive schemas to be used in other larger schemas
+ * It helps avoid repeating the same fields and makes your schemas more readable
+ * If there is a type that is being used multiple times, consider creating a shared schema for it here
+ * Make sure to check validation and descriptions should always end with a period.
+ * Please keep this file organized and well documented
+ */
 
-import { defineField } from "sanity"
+import { relationTypes } from '@/schemas/moduleTypes';
+
+import { defineField } from 'sanity';
 
 export const title = defineField({
   name: 'title',
@@ -19,7 +21,8 @@ export const title = defineField({
 export const description = defineField({
   name: 'description',
   title: 'Description',
-  description: 'Supplementary text that provides additional context or information.',
+  description:
+    'Supplementary text that provides additional context or information.',
   type: 'text',
   rows: 3,
 });
@@ -44,3 +47,11 @@ export const seo = defineField({
   group: 'seo',
 });
 
+// Internal CTA link that references only internal pages
+export const internalLink = defineField({
+  name: 'internalLink',
+  title: 'Internal Link',
+  description: 'Select an entity that you want to create a link to',
+  type: 'reference',
+  to: relationTypes,
+});

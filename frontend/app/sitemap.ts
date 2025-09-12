@@ -1,4 +1,4 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
 import { headers } from 'next/headers';
 
 import { sanityFetch } from '@/sanity/lib/live';

@@ -8,7 +8,7 @@ import {
   useIsPresentationTool,
 } from 'next-sanity/hooks';
 
-import { disableDraftMode } from '@/app/actions';
+import { disableDraftMode } from '@/lib/actions/actions';
 
 import { toast } from 'sonner';
 

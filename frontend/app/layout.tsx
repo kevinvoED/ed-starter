@@ -8,12 +8,12 @@ import { toPlainText, VisualEditing } from 'next-sanity';
 import DraftModeToast from '@/app/components/DraftModeToast';
 import Footer from '@/app/components/Footer';
 import Header from '@/app/components/Header';
+import { handleError } from '@/lib/utils/handle-error';
 import * as demo from '@/sanity/lib/demo';
 import { SanityLive, sanityFetch } from '@/sanity/lib/live';
 import { settingsQuery } from '@/sanity/lib/queries';
 import { resolveOpenGraphImage } from '@/sanity/lib/utils';
 
-import { handleError } from './client-utils';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Toaster } from 'sonner';
 

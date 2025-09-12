@@ -107,3 +107,9 @@ You have the freedom to deploy your Next.js app to your hosting provider of choi
 - [Next.js documentation](https://nextjs.org/docs)
 - [Join the Sanity Community](https://slack.sanity.io)
 - [Learn Sanity](https://www.sanity.io/learn)
+
+## TODO 
+
+- [ ] Update existing placeholder plop file templates 
+- [ ] Revisit usage of carets in package.json files
+- [ ] 
