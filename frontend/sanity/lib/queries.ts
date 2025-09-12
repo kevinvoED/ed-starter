@@ -35,7 +35,7 @@ export const getPageQuery = defineQuery(`
     slug,
     heading,
     subheading,
-    "pageBuilder": pageBuilder[]{
+    "modules": modules[]{
       ...,
       _type == "callToAction" => {
         ${linkFields},

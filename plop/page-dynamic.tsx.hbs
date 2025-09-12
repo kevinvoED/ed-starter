@@ -1,0 +1,42 @@
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+
+import {
+  ENTRIES_TO_GENERATE,
+  get{{ pascalCase name}}BySlug, // Update imports based on correct functions
+  get{{ pascalCase name}}s,
+} from '@/app/(site)/api';
+import generateBasicMetadata from '@utility/generate-basic-metadata';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const page = await get{{ pascalCase name }}BySlug(params);
+
+  if (!page) return notFound();
+
+  return generateBasicMetadata(page);
+}
+export async function generateStaticParams() {
+  const pages = await get{{ pascalCase name }}s({ limit: ENTRIES_TO_GENERATE });
+
+  return pages
+    .filter((page) => page.slug !== null)
+    .map((page) => ({
+      slug: page.slug?.current,
+    }));
+}
+
+export default function Page({ params }: { params: { slug: string } }) {
+  const page = await get{{ pascalCase name }}BySlug(params);
+
+  return (
+    <main className="">
+      <div className="container">
+        <h1>{page?.title}</h1>
+      </div>
+    </main>
+  );
+}

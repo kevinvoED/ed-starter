@@ -1,6 +1,6 @@
 import { DocumentIcon } from '@sanity/icons';
 
-import { description, seo, slug, title } from '@/schemaTypes/sharedFields'
+import { description, seo, slug, title } from '@/schemas/sharedFields';
 
 import { defineField, defineType } from 'sanity';
 
@@ -27,8 +27,8 @@ export const page = defineType({
       group: 'content',
     }),
     defineField({
-      name: 'pageBuilder',
-      title: 'Page builder',
+      name: 'modules',
+      title: 'modules',
       type: 'array',
       of: [{ type: 'callToAction' }, { type: 'infoSection' }],
       options: {

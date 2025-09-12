@@ -1,0 +1,10 @@
+import type { GetPageQueryResult } from '@/sanity.types';
+
+type {{ pascalCase name }}Props = Extract<
+  NonNullable<NonNullable<GetPageQueryResult>['modules']>[number],
+  { _type: '{{ kebabCase name }}' }
+>;
+
+export const {{ pascalCase name }} = ({ title }: {{ pascalCase name }}Props) => {
+  return <section className="">{{ pascalCase name }}</section>;
+};

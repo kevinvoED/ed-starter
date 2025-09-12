@@ -21,7 +21,7 @@ type PageBuilderSection = {
 type PageData = {
   _id: string;
   _type: string;
-  pageBuilder?: PageBuilderSection[];
+  modules?: PageBuilderSection[];
 };
 
 /**
@@ -86,7 +86,7 @@ export default function PageBuilder({ page }: PageBuilderPageProps) {
   const pageBuilderSections = useOptimistic<
     PageBuilderSection[] | undefined,
     SanityDocument<PageData>
-  >(page?.pageBuilder || [], (currentSections, action) => {
+  >(page?.modules || [], (currentSections, action) => {
     // The action contains updated document data from Sanity
     // when someone makes an edit in the Studio
 
@@ -96,9 +96,9 @@ export default function PageBuilder({ page }: PageBuilderPageProps) {
     }
 
     // If there are sections in the updated document, use them
-    if (action.document.pageBuilder) {
+    if (action.document.modules) {
       // Reconcile References. https://www.sanity.io/docs/enabling-drag-and-drop#ffe728eea8c1
-      return action.document.pageBuilder.map(
+      return action.document.modules.map(
         (section) =>
           currentSections?.find((s) => s._key === section?._key) || section,
       );

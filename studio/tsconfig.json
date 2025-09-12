@@ -19,7 +19,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@/schemaTypes/*": ["src/schemaTypes/*"],
+      "@/schemas/*": ["src/schemas/*"],
       "@/plugins/*": ["src/plugins/*"],
       "@/lib/*": ["src/lib/*"]
     }

@@ -19,10 +19,13 @@
     "dev:studio": "npm run dev --workspace=studio",
     "format": "biome format --fix && biome check --fix",
     "lint": "npm run lint --workspace=frontend",
-    "type-check": "npm run type-check --workspaces"
+    "type-check": "npm run type-check --workspaces",
+    "plop": "npx plop"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.4",
-    "npm-run-all2": "^5.0.2"
-  }
+    "npm-run-all2": "^5.0.2",
+    "plop": "^4.0.2"
+  },
+  "packageManager": "pnpm@8.6.3+sha512.d18e277ae8072091046bccbca0931f77dc3080791cd6122ae890bf504125d8af76b37fb33da287dba9fbbb6da6ebb13e314e9fa4a464c7effe3d8599cebe7243"
 }

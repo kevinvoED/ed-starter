@@ -1,0 +1,34 @@
+import { defineField, defineType } from 'sanity';
+import { EditIcon } from '@sanity/icons';
+
+import { title, seo } from '@/schema/sharedFields';
+
+// NOTE - if you have fields that should be excluded from stega encoding make sure to add to sanity/lib/client.ts excluded fields check
+// typically it will be fields with options that are used for toggling logic in a component and not used as content
+const {{camelCase name}} = defineType({
+  name: '{{camelCase name}}',
+  title: '{{pascalCase name}}s',
+  type: 'document',
+  icon: EditIcon,
+  groups: [
+    { name: 'content', title: 'Content', default: true },
+    { name: 'seo', title: 'SEO' },
+  ],
+  fields: [
+    defineField({
+      ...title,
+      group: 'content',
+    }),
+    defineField({
+      ...seo,
+      group: 'seo',
+    }),
+  ],
+  preview: {
+    select: {
+      title: 'title',
+    },
+  },
+});
+
+export default {{camelCase name}};

@@ -42,7 +42,7 @@ export default function BlockRenderer({
         data-sanity={dataAttr({
           id: pageId,
           type: pageType,
-          path: `pageBuilder[_key=="${block._key}"]`,
+          path: `modules[_key=="${block._key}"]`,
         }).toString()}
       >
         {React.createElement(Blocks[block._type], {

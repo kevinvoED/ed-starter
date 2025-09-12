@@ -22,7 +22,7 @@ export default defineCliConfig({
     resolve: {
       alias: {
         '@': resolve(__dirname, './src'),
-        '@/schemaTypes': resolve(__dirname, './src/schemaTypes'),
+        '@/schemas': resolve(__dirname, './src/schemas'),
         '@/plugins': resolve(__dirname, './src/plugins'),
         '@/lib': resolve(__dirname, './src/lib'),
       },
