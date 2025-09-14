@@ -7,7 +7,7 @@ import { handleResolveCta } from '@/sanity/lib/utils';
 import type { Cta as CtaType } from '@/sanity.types';
 
 const ButtonVariants = cva(
-  'group relative inline-flex max-w-fit shrink-0 items-center justify-center overflow-hidden whitespace-nowrap rounded-sm outline-none transition-colors duration-300 ease-in-out focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-orange-500 has-[>svg]:gap-2 [&_svg]:size-4',
+  'group underline-none relative inline-flex max-w-fit shrink-0 items-center justify-center overflow-hidden whitespace-nowrap rounded-sm outline-none transition-colors duration-300 ease-in-out focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-orange-500 has-[>svg]:gap-2 [&_svg]:size-4',
   {
     variants: {
       variant: {

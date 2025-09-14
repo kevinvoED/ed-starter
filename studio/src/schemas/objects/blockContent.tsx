@@ -1,9 +1,15 @@
-import { defineArrayMember, defineField, defineType } from 'sanity';
+import { LinkIcon } from '@sanity/icons';
+
+import { cta } from '@/schemas/objects/cta';
+
+import { defineArrayMember, defineType } from 'sanity';
 
 /**
- * This is the schema definition for the rich text fields used for
- * for this blog studio. When you import it in schemas.js it can be
- * reused in other parts of the studio with:
+ * This schema is responsible for all block content within PortableText.
+ * Note that schemas inside 'annotations' are only applied when the user highlights any text within PortableText,
+ * while schemas defined separately using their own `defineArrayMember` are individiual imported modules
+ *
+ * This schema can be imported and used in other existing schemas by adding:
  *  {
  *    name: 'someName',
  *    title: 'Some title',
@@ -18,80 +24,53 @@ export const blockContent = defineType({
   type: 'array',
   of: [
     defineArrayMember({
+      title: 'Block',
       type: 'block',
       marks: {
         annotations: [
           {
             name: 'link',
             type: 'object',
-            title: 'Link',
+            title: 'External link',
             fields: [
-              defineField({
-                name: 'type',
-                title: 'Link Type',
-                type: 'string',
-                initialValue: 'href',
-                options: {
-                  list: [
-                    { title: 'URL', value: 'href' },
-                    { title: 'Page', value: 'page' },
-                    { title: 'Post', value: 'post' },
-                  ],
-                  layout: 'radio',
-                },
-              }),
-              defineField({
+              {
                 name: 'href',
-                title: 'URL',
                 type: 'url',
-                hidden: ({ parent }) =>
-                  parent?.type !== 'href' && parent?.type != null,
-                validation: (Rule) =>
-                  Rule.custom((value, context: any) => {
-                    if (context.parent?.type === 'href' && !value) {
-                      return 'URL is required when Link Type is URL';
-                    }
-                    return true;
-                  }),
-              }),
-              defineField({
-                name: 'page',
-                title: 'Page',
-                type: 'reference',
-                to: [{ type: 'page' }],
-                hidden: ({ parent }) => parent?.type !== 'page',
-                validation: (Rule) =>
-                  Rule.custom((value, context: any) => {
-                    if (context.parent?.type === 'page' && !value) {
-                      return 'Page reference is required when Link Type is Page';
-                    }
-                    return true;
-                  }),
-              }),
-              defineField({
-                name: 'post',
-                title: 'Post',
-                type: 'reference',
-                to: [{ type: 'post' }],
-                hidden: ({ parent }) => parent?.type !== 'post',
-                validation: (Rule) =>
-                  Rule.custom((value, context: any) => {
-                    if (context.parent?.type === 'post' && !value) {
-                      return 'Post reference is required when Link Type is Post';
-                    }
-                    return true;
-                  }),
-              }),
-              defineField({
-                name: 'openInNewTab',
+                title: 'URL',
+              },
+              {
                 title: 'Open in new tab',
+                name: 'blank',
+                description: 'Read https://css-tricks.com/use-target_blank/',
                 type: 'boolean',
-                initialValue: false,
-              }),
+              },
+            ],
+          },
+          // Add this internal link annotation
+          {
+            name: 'internalLink',
+            type: 'object',
+            title: 'Internal link',
+            fields: [
+              {
+                name: 'reference',
+                type: 'reference',
+                title: 'Reference',
+                to: [
+                  { type: 'post' },
+                  { type: 'page' },
+                  // Add other document types you want to link to
+                ],
+              },
             ],
           },
         ],
       },
+    }),
+    defineArrayMember({
+      name: 'cta',
+      title: 'CTA',
+      type: 'cta',
     }),
   ],
 });

@@ -23,10 +23,10 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   page,
   post,
   person,
-  // Objects
-  blockContent,
+  // Objects (order matters for references)
+  cta, // Move this before blockContent
   seo,
   infoSection,
   callToAction,
-  cta,
+  blockContent, // This references cta, so cta must come first
 ];

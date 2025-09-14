@@ -24,6 +24,15 @@ export default function CustomPortableText({
   value: PortableTextBlock[];
 }) {
   const components: PortableTextComponents = {
+    types: {
+      cta: ({ value: cta }) => {
+        return (
+          <Button cta={cta} className="not-prose">
+            {cta?.label}
+          </Button>
+        );
+      },
+    },
     block: {
       h1: ({ children, value }) => (
         // Add an anchor to the h1
@@ -79,8 +88,21 @@ export default function CustomPortableText({
       },
     },
     marks: {
-      cta: ({ children, value: cta }) => {
-        return <Button cta={cta}>{children}</Button>;
+      internalLink: ({ value, children }) => {
+        const { slug = {} } = value;
+        const href = `/${slug.current}`;
+        return <a href={href}>{children}</a>;
+      },
+      link: ({ value, children }) => {
+        // Read https://css-tricks.com/use-target_blank/
+        const { blank, href } = value;
+        return blank ? (
+          <a href={href} target="_blank" rel="noopener">
+            {children}
+          </a>
+        ) : (
+          <a href={href}>{children}</a>
+        );
       },
     },
   };

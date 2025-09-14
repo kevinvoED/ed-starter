@@ -15,9 +15,13 @@ const postFields = /* groq */ `
 
 const ctaReference = /* groq */ `
   _type == "cta" => {
+    ...,
     "page": page->slug.current,
     "post": post->slug.current,
-    "label": label
+    type,
+    label,
+    href,
+    openInNewTab
   }
 `;
 
@@ -25,6 +29,22 @@ const ctaFields = /* groq */ `
   cta {
     ...,
     ${ctaReference}
+  }
+`;
+
+export const portableTextFields = /* groq */ `
+  _type == "blockContent" => {
+    _type,
+    _key,
+    body[]{
+      ...,
+      markDefs[]{
+        ...,
+        _type == "internalLink" => {
+          "slug": @.reference->slug
+        }
+      }
+    }
   }
 `;
 
@@ -41,6 +61,7 @@ export const getPageQuery = defineQuery(`
       _type == "callToAction" => {
         _key,
         ${ctaFields},
+        ${portableTextFields}
       },
       _type == "infoSection" => {
         _key,
@@ -49,7 +70,11 @@ export const getPageQuery = defineQuery(`
           markDefs[]{
             ...,
             ${ctaReference}
-          }
+          },
+          ${ctaReference},
+          _type == "internalLink" => {
+        "slug": @.reference->slug
+      }
         }
       },
     },
@@ -79,12 +104,15 @@ export const morePostsQuery = defineQuery(`
 export const postQuery = defineQuery(`
   *[_type == "post" && slug.current == $slug] [0] {
     content[]{
-    ...,
-    markDefs[]{
       ...,
-      ${ctaReference}
-    }
-  },
+      markDefs[]{
+        ...,
+        _type == "internalLink" => {
+          "slug": @.reference->slug
+        },
+        ${ctaReference}
+      }
+    },
     ${postFields}
   }
 `);

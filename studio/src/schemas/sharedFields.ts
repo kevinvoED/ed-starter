@@ -56,3 +56,12 @@ export const internalLink = defineField({
   type: 'reference',
   to: relationTypes,
 });
+
+// Internal CTA link that references only internal pages
+export const portableText = defineField({
+  name: 'portableText',
+  title: 'Portable Text',
+  description:
+    'This is a Rich Text content editor. You can also add individual components or highlight text to create inline links.',
+  type: 'blockContent',
+});
