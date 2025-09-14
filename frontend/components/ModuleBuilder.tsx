@@ -21,13 +21,14 @@ export const ModuleBuilder = ({
 
   if (typeof Blocks[blockType] !== 'undefined') {
     const Component = Blocks[blockType];
-    const props = { key: block._key, block };
+    const { _type, _key, ...blockProps } = block;
+    const props = { key: _key, ...blockProps };
 
     return (
-      <div key={block._key} data-module={block._type}>
+      <section key={_key} data-module={_type}>
         {/* @ts-expect-error - figure out how to type this properly */}
         {createElement(Component, props)}
-      </div>
+      </section>
     );
   }
 

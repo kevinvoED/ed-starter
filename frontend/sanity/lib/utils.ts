@@ -2,7 +2,7 @@ import { getImageDimensions } from '@sanity/asset-utils';
 import createImageUrlBuilder from '@sanity/image-url';
 
 import { dataset, projectId } from '@/sanity/lib/api';
-import type { Link } from '@/sanity.types';
+import type { Cta } from '@/sanity.types';
 
 const imageBuilder = createImageUrlBuilder({
   projectId: projectId || '',
@@ -81,27 +81,27 @@ export function resolveOpenGraphImage(
 }
 
 // Depending on the type of link, we need to fetch the corresponding page, post, or URL.  Otherwise return null.
-export function linkResolver(link: Link | undefined) {
-  if (!link) {
+export function handleResolveCta(cta: Cta | undefined) {
+  if (!cta) {
     return null;
   }
 
   // If linkType is not set but href is, lets set linkType to "href".  This comes into play when pasting links into the portable text editor because a link type is not assumed.
-  if (!link.linkType && link.href) {
-    link.linkType = 'href';
+  if (!cta.type && cta.href) {
+    cta.type = 'href';
   }
 
-  switch (link.linkType) {
+  switch (cta.type) {
     case 'href':
-      return link.href || null;
+      return cta.href || null;
     case 'page':
-      if (link?.page && typeof link.page === 'string') {
-        return `/${link.page}`;
+      if (cta?.page && typeof cta.page === 'string') {
+        return `/${cta.page}`;
       }
       break;
     case 'post':
-      if (link?.post && typeof link.post === 'string') {
-        return `/posts/${link.post}`;
+      if (cta?.post && typeof cta.post === 'string') {
+        return `/posts/${cta.post}`;
       }
       break;
     default:

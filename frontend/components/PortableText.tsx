@@ -79,8 +79,8 @@ export default function CustomPortableText({
       },
     },
     marks: {
-      link: ({ children, value: link }) => {
-        return <Button link={link}>{children}</Button>;
+      cta: ({ children, value: cta }) => {
+        return <Button cta={cta}>{children}</Button>;
       },
     },
   };

@@ -27,7 +27,7 @@ export const blockContent = defineType({
             title: 'Link',
             fields: [
               defineField({
-                name: 'linkType',
+                name: 'type',
                 title: 'Link Type',
                 type: 'string',
                 initialValue: 'href',
@@ -45,10 +45,10 @@ export const blockContent = defineType({
                 title: 'URL',
                 type: 'url',
                 hidden: ({ parent }) =>
-                  parent?.linkType !== 'href' && parent?.linkType != null,
+                  parent?.type !== 'href' && parent?.type != null,
                 validation: (Rule) =>
                   Rule.custom((value, context: any) => {
-                    if (context.parent?.linkType === 'href' && !value) {
+                    if (context.parent?.type === 'href' && !value) {
                       return 'URL is required when Link Type is URL';
                     }
                     return true;
@@ -59,10 +59,10 @@ export const blockContent = defineType({
                 title: 'Page',
                 type: 'reference',
                 to: [{ type: 'page' }],
-                hidden: ({ parent }) => parent?.linkType !== 'page',
+                hidden: ({ parent }) => parent?.type !== 'page',
                 validation: (Rule) =>
                   Rule.custom((value, context: any) => {
-                    if (context.parent?.linkType === 'page' && !value) {
+                    if (context.parent?.type === 'page' && !value) {
                       return 'Page reference is required when Link Type is Page';
                     }
                     return true;
@@ -73,10 +73,10 @@ export const blockContent = defineType({
                 title: 'Post',
                 type: 'reference',
                 to: [{ type: 'post' }],
-                hidden: ({ parent }) => parent?.linkType !== 'post',
+                hidden: ({ parent }) => parent?.type !== 'post',
                 validation: (Rule) =>
                   Rule.custom((value, context: any) => {
-                    if (context.parent?.linkType === 'post' && !value) {
+                    if (context.parent?.type === 'post' && !value) {
                       return 'Post reference is required when Link Type is Post';
                     }
                     return true;

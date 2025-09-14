@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 import { ArrowRightIcon } from '@/components/Icons/ArrowRightIcon';
 import { cn } from '@/lib/utils/cn';
-import { linkResolver } from '@/sanity/lib/utils';
-import type { Link as LinkType } from '@/sanity.types';
+import { handleResolveCta } from '@/sanity/lib/utils';
+import type { Cta as CtaType } from '@/sanity.types';
 
 const ButtonVariants = cva(
   'group relative inline-flex max-w-fit shrink-0 items-center justify-center overflow-hidden whitespace-nowrap rounded-sm outline-none transition-colors duration-300 ease-in-out focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-orange-500 has-[>svg]:gap-2 [&_svg]:size-4',
@@ -45,14 +45,14 @@ const ButtonVariants = cva(
 );
 
 type ButtonProps = {
-  link: LinkType | undefined;
+  cta: CtaType | undefined;
   children: React.ReactNode;
   className?: string;
   hasArrow?: boolean;
 } & VariantProps<typeof ButtonVariants>;
 
 export const Button = ({
-  link,
+  cta,
   children,
   className,
   variant,
@@ -60,16 +60,16 @@ export const Button = ({
   disabled,
   hasArrow = false,
 }: ButtonProps) => {
-  const resolvedLink = linkResolver(link);
-  const isNewTab = link?.openInNewTab;
+  const resolvedUrl = handleResolveCta(cta);
+  const isNewTab = cta?.openInNewTab;
 
-  if (typeof resolvedLink === 'string') {
+  if (typeof resolvedUrl === 'string') {
     return (
       <Link
         tabIndex={disabled ? -1 : 0}
-        href={resolvedLink}
-        target={link?.openInNewTab ? '_blank' : undefined}
-        rel={link?.openInNewTab ? 'noopener noreferrer' : undefined}
+        href={resolvedUrl}
+        target={cta?.openInNewTab ? '_blank' : undefined}
+        rel={cta?.openInNewTab ? 'noopener noreferrer' : undefined}
         className={cn(
           ButtonVariants({ variant: variant, size, disabled, className }),
         )}

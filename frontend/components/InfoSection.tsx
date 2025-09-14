@@ -3,30 +3,23 @@ import { type PortableTextBlock } from 'next-sanity';
 import PortableText from '@/components/PortableText';
 import type { InfoSection } from '@/sanity.types';
 
-type InfoProps = {
-  block: InfoSection;
-};
-
-export default function CTA({ block }: InfoProps) {
+export default function CTA({ heading, subheading, content }: InfoSection) {
   return (
     <section className="container my-12">
       <div className="max-w-3xl">
-        {block?.heading && (
+        {heading && (
           <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl">
-            {block.heading}
+            {heading}
           </h2>
         )}
-        {block?.subheading && (
+        {subheading && (
           <span className="mt-4 mb-8 block font-light text-gray-900/70 text-lg uppercase">
-            {block.subheading}
+            {subheading}
           </span>
         )}
         <div className="mt-4">
-          {block?.content?.length && (
-            <PortableText
-              className=""
-              value={block.content as PortableTextBlock[]}
-            />
+          {content?.length && (
+            <PortableText className="" value={content as PortableTextBlock[]} />
           )}
         </div>
       </div>

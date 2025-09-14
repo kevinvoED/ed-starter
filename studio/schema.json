@@ -33,11 +33,11 @@
           },
           "optional": true
         },
-        "link": {
+        "cta": {
           "type": "objectAttribute",
           "value": {
             "type": "inline",
-            "name": "link"
+            "name": "cta"
           },
           "optional": true
         }
@@ -45,7 +45,7 @@
     }
   },
   {
-    "name": "link",
+    "name": "cta",
     "type": "type",
     "value": {
       "type": "object",
@@ -54,21 +54,21 @@
           "type": "objectAttribute",
           "value": {
             "type": "string",
-            "value": "link"
+            "value": "cta"
           }
         },
-        "linkType": {
+        "type": {
           "type": "objectAttribute",
           "value": {
             "type": "union",
             "of": [
               {
                 "type": "string",
-                "value": "href"
+                "value": "page"
               },
               {
                 "type": "string",
-                "value": "page"
+                "value": "href"
               },
               {
                 "type": "string",
@@ -77,6 +77,13 @@
             ]
           },
           "optional": true
+        },
+        "label": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": false
         },
         "href": {
           "type": "objectAttribute",
@@ -301,7 +308,7 @@
                     "of": {
                       "type": "object",
                       "attributes": {
-                        "linkType": {
+                        "type": {
                           "type": "objectAttribute",
                           "value": {
                             "type": "union",
@@ -572,7 +579,7 @@
               "of": {
                 "type": "object",
                 "attributes": {
-                  "linkType": {
+                  "type": {
                     "type": "objectAttribute",
                     "value": {
                       "type": "union",

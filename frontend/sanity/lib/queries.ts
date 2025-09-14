@@ -13,18 +13,19 @@ const postFields = /* groq */ `
   "author": author->{firstName, lastName, picture},
 `;
 
-const linkReference = /* groq */ `
-  _type == "link" => {
+const ctaReference = /* groq */ `
+  _type == "cta" => {
     "page": page->slug.current,
-    "post": post->slug.current
+    "post": post->slug.current,
+    "label": label
   }
 `;
 
-const linkFields = /* groq */ `
-  link {
-      ...,
-      ${linkReference}
-      }
+const ctaFields = /* groq */ `
+  cta {
+    ...,
+    ${ctaReference}
+  }
 `;
 
 export const getPageQuery = defineQuery(`
@@ -39,7 +40,7 @@ export const getPageQuery = defineQuery(`
       ...,
       _type == "callToAction" => {
         _key,
-        ${linkFields},
+        ${ctaFields},
       },
       _type == "infoSection" => {
         _key,
@@ -47,7 +48,7 @@ export const getPageQuery = defineQuery(`
           ...,
           markDefs[]{
             ...,
-            ${linkReference}
+            ${ctaReference}
           }
         }
       },
@@ -81,7 +82,7 @@ export const postQuery = defineQuery(`
     ...,
     markDefs[]{
       ...,
-      ${linkReference}
+      ${ctaReference}
     }
   },
     ${postFields}
