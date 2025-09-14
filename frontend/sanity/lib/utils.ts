@@ -1,6 +1,7 @@
 import { getImageDimensions } from '@sanity/asset-utils';
 import createImageUrlBuilder from '@sanity/image-url';
 
+import type { SanityImageType } from '@/lib/utils/type';
 import { dataset, projectId } from '@/sanity/lib/api';
 import type { Cta } from '@/sanity.types';
 
@@ -8,30 +9,6 @@ const imageBuilder = createImageUrlBuilder({
   projectId: projectId || '',
   dataset: dataset || '',
 });
-
-type SanityImageType = {
-  asset?: {
-    _ref: string;
-    _type: 'reference';
-    _weak?: boolean;
-  };
-  crop?: {
-    _type: 'sanity.imageCrop';
-    top: number;
-    bottom: number;
-    left: number;
-    right: number;
-  };
-  hotspot?: {
-    _type: 'sanity.imageHotspot';
-    x: number;
-    y: number;
-    height: number;
-    width: number;
-  };
-  alt?: string;
-  _type: 'image';
-};
 
 export const urlForImage = (source: SanityImageType) => {
   // Ensure that source image contains a valid reference

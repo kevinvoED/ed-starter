@@ -2,7 +2,7 @@ import type { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
 import { type PortableTextBlock } from 'next-sanity';
 
-import CoverImage from '@/components/CoverImage';
+import { SanityImage } from '@/components/Image/SanityImage';
 import PortableText from '@/components/PortableText';
 import type { ImageType } from '@/lib/utils/type';
 import { sanityFetch } from '@/sanity/lib/live';
@@ -83,7 +83,7 @@ export default async function PostPage(props: Props) {
             <article className="grid max-w-4xl gap-6">
               <div className="">
                 {post?.coverImage && (
-                  <CoverImage image={post.coverImage} priority />
+                  <SanityImage image={post.coverImage} priority />
                 )}
               </div>
               {post.content?.length && (
