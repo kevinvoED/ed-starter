@@ -122,10 +122,6 @@
               {
                 "group": ["@/utility/*"],
                 "message": "prefer @utility/* to @/utility/*"
-              },
-              {
-                "group": ["@/components/*"],
-                "message": "prefer @components/* to @/components/*"
               }
             ]
           }
