@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { type PortableTextBlock } from 'next-sanity';
 
 import { SanityImage } from '@/components/Image/SanityImage';
-import PortableText from '@/components/PortableText';
+import PortableText from '@/components/PortableText/PortableText';
 import type { ImageType } from '@/lib/utils/type';
 import { sanityFetch } from '@/sanity/lib/live';
 import { postPagesSlugs, postQuery } from '@/sanity/lib/queries';

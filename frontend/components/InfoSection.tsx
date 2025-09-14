@@ -1,6 +1,6 @@
 import { type PortableTextBlock } from 'next-sanity';
 
-import PortableText from '@/components/PortableText';
+import { PortableText } from '@/components/PortableText/PortableText';
 import type { InfoSection } from '@/sanity.types';
 
 export default function CTA({ heading, subheading, content }: InfoSection) {
