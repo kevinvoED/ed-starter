@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 
-import ResolvedLink from '@/app/components/ResolvedLink';
+import { Button } from '@/components/Button/Button';
+import { ArrowRightIcon } from '@/components/Icons/ArrowRightIcon';
 import type { CallToAction } from '@/sanity.types';
 
 type CtaProps = {
@@ -20,13 +21,16 @@ export default function CTA({ block }: CtaProps) {
           </div>
 
           <Suspense fallback={null}>
-            <div className="flex items-center gap-x-6 lg:mt-0 lg:shrink-0">
-              <ResolvedLink
-                link={block.link}
-                className="mr-6 flex items-center gap-2 rounded-full bg-black px-6 py-3 text-white transition-colors duration-200 hover:bg-blue focus:bg-blue"
-              >
+            <div className="flex max-w-fit flex-col gap-6 lg:mt-0 lg:shrink-0">
+              <Button link={block.link}>{block.buttonText}</Button>
+
+              <Button link={block.link} variant="tertiary" hasArrow>
                 {block.buttonText}
-              </ResolvedLink>
+              </Button>
+
+              <Button link={block.link} variant="icon" size="icon">
+                <ArrowRightIcon />
+              </Button>
             </div>
           </Suspense>
         </div>

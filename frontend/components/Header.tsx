@@ -9,7 +9,7 @@ export default async function Header() {
   });
 
   return (
-    <header className="fixed inset-0 z-50 flex h-24 items-center bg-white/80 backdrop-blur-lg">
+    <header className="fixed inset-0 z-50 flex h-24 items-center backdrop-blur-lg">
       <div className="container px-2 py-6 sm:px-6">
         <div className="flex items-center justify-between gap-5">
           <Link className="flex items-center gap-2" href="/">

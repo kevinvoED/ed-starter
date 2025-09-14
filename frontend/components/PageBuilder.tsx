@@ -4,7 +4,7 @@ import Link from 'next/link';
 import type { SanityDocument } from 'next-sanity';
 import { useOptimistic } from 'next-sanity/hooks';
 
-import BlockRenderer from '@/app/components/BlockRenderer';
+import { ModuleBuilder } from '@/components/ModuleBuilder';
 import { studioUrl } from '@/sanity/lib/api';
 import type { GetPageQueryResult } from '@/sanity.types';
 
@@ -23,10 +23,6 @@ type PageData = {
   modules?: PageBuilderSection[];
 };
 
-/**
- * The PageBuilder component is used to render the blocks from the `pageBuilder` field in the Page type in your Sanity Studio.
- */
-
 function renderSections(
   pageBuilderSections: PageBuilderSection[],
   page: GetPageQueryResult,
@@ -36,14 +32,8 @@ function renderSections(
   }
   return (
     <>
-      {pageBuilderSections.map((block: any, index: number) => (
-        <BlockRenderer
-          key={block._key}
-          index={index}
-          block={block}
-          pageId={page._id}
-          pageType={page._type}
-        />
+      {pageBuilderSections.map((block) => (
+        <ModuleBuilder key={block._key} block={block} />
       ))}
     </>
   );
@@ -53,6 +43,7 @@ function renderEmptyState(page: GetPageQueryResult) {
   if (!page) {
     return null;
   }
+
   return (
     <div className="container">
       <h1 className="font-extrabold text-4xl text-gray-900 tracking-tight sm:text-5xl">
@@ -75,13 +66,13 @@ function renderEmptyState(page: GetPageQueryResult) {
   );
 }
 
+// This component is responsible for rendering the blocks from the `pageBuilder` field in the Page type in your Sanity Studio.
 export default function PageBuilder({ page }: PageBuilderPageProps) {
   const pageBuilderSections = useOptimistic<
     PageBuilderSection[] | undefined,
     SanityDocument<PageData>
   >(page?.modules || [], (currentSections, action) => {
-    // The action contains updated document data from Sanity
-    // when someone makes an edit in the Studio
+    // The action contains updated document data from Sanity when someone makes an edit in the Studio
 
     // If the edit was to a different document, ignore it
     if (action.id !== page?._id) {

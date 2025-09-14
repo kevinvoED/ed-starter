@@ -14,7 +14,7 @@ import {
   type PortableTextComponents,
 } from 'next-sanity';
 
-import ResolvedLink from '@/app/components/ResolvedLink';
+import { Button } from '@/components/Button/Button';
 
 export default function CustomPortableText({
   className,
@@ -80,7 +80,7 @@ export default function CustomPortableText({
     },
     marks: {
       link: ({ children, value: link }) => {
-        return <ResolvedLink link={link}>{children}</ResolvedLink>;
+        return <Button link={link}>{children}</Button>;
       },
     },
   };

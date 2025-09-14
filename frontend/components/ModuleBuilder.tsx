@@ -1,39 +1,37 @@
-import React from 'react';
+import { createElement } from 'react';
 
-import Cta from '@/app/components/Cta';
-import Info from '@/app/components/InfoSection';
+import Cta from '@/components/Cta';
+import Info from '@/components/InfoSection';
 
-type BlockProps = {
-  index: number;
-  block: {
-    _type: string;
-    _key: string;
-  };
-  pageId: string;
-  pageType: string;
-};
-
+// Add new modules to the `Blocks` object where the KEY is the name of the schema and the VALUE is the imported component
 const Blocks = {
   callToAction: Cta,
   infoSection: Info,
 } as const;
 
-export default function BlockRenderer({ block, index }: BlockProps) {
+export const ModuleBuilder = ({
+  block,
+}: {
+  block: {
+    _type: string;
+    _key: string;
+  };
+}) => {
   const blockType = block._type as keyof typeof Blocks;
 
   if (typeof Blocks[blockType] !== 'undefined') {
     const Component = Blocks[blockType];
-    const props = { key: block._key, block, index };
+    const props = { key: block._key, block };
 
     return (
       <div key={block._key} data-module={block._type}>
         {/* @ts-expect-error - figure out how to type this properly */}
-        {React.createElement(Component, props)}
+        {createElement(Component, props)}
       </div>
     );
   }
 
-  return React.createElement(
+  return createElement(
     () => (
       <div className="w-full rounded bg-gray-100 p-20 text-center text-gray-500">
         This block either does not exist or is not supported yet.
@@ -41,4 +39,4 @@ export default function BlockRenderer({ block, index }: BlockProps) {
     ),
     { key: block._key },
   );
-}
+};

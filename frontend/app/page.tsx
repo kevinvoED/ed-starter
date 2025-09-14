@@ -17,7 +17,7 @@ export default async function Page() {
           <div className="container">
             <div className="relative mx-auto flex min-h-[40vh] max-w-2xl flex-col items-center justify-center space-y-6 pt-10 pb-30 lg:max-w-4xl lg:px-12 xl:pt-20">
               <div className="flex flex-col items-center gap-4">
-                <div className="prose bg-white px-3 py-1 font-mono text-md uppercase italic leading-6">
+                <div className="prose px-3 py-1 font-mono text-md uppercase italic leading-6">
                   A starter template for
                 </div>
                 <h1 className="font-bold text-5xl text-black tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl">
