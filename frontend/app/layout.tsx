@@ -5,8 +5,8 @@ import { Inter } from 'next/font/google';
 import { draftMode } from 'next/headers';
 import { toPlainText, VisualEditing } from 'next-sanity';
 
-import DraftModeToast from '@/components/DraftModeToast';
 import Header from '@/components/Header';
+import DraftModeToast from '@/components/Sanity/DraftModeToast';
 import { handleError } from '@/lib/utils/handle-error';
 import type { ImageType } from '@/lib/utils/type';
 import * as demo from '@/sanity/lib/demo';
