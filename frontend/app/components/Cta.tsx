@@ -1,11 +1,10 @@
 import { Suspense } from 'react';
 
 import ResolvedLink from '@/app/components/ResolvedLink';
-import { CallToAction } from '@/sanity.types';
+import type { CallToAction } from '@/sanity.types';
 
 type CtaProps = {
   block: CallToAction;
-  index: number;
 };
 
 export default function CTA({ block }: CtaProps) {

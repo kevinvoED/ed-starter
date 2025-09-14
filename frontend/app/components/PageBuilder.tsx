@@ -1,13 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { SanityDocument } from 'next-sanity';
+import type { SanityDocument } from 'next-sanity';
 import { useOptimistic } from 'next-sanity/hooks';
 
 import BlockRenderer from '@/app/components/BlockRenderer';
 import { studioUrl } from '@/sanity/lib/api';
-import { dataAttr } from '@/sanity/lib/utils';
-import { GetPageQueryResult } from '@/sanity.types';
+import type { GetPageQueryResult } from '@/sanity.types';
 
 type PageBuilderPageProps = {
   page: GetPageQueryResult;
@@ -36,13 +35,7 @@ function renderSections(
     return null;
   }
   return (
-    <div
-      data-sanity={dataAttr({
-        id: page._id,
-        type: page._type,
-        path: `pageBuilder`,
-      }).toString()}
-    >
+    <>
       {pageBuilderSections.map((block: any, index: number) => (
         <BlockRenderer
           key={block._key}
@@ -52,7 +45,7 @@ function renderSections(
           pageType={page._type}
         />
       ))}
-    </div>
+    </>
   );
 }
 

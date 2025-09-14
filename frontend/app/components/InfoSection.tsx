@@ -1,16 +1,15 @@
 import { type PortableTextBlock } from 'next-sanity';
 
 import PortableText from '@/app/components/PortableText';
-import { InfoSection } from '@/sanity.types';
+import type { InfoSection } from '@/sanity.types';
 
 type InfoProps = {
   block: InfoSection;
-  index: number;
 };
 
 export default function CTA({ block }: InfoProps) {
   return (
-    <div className="container my-12">
+    <section className="container my-12">
       <div className="max-w-3xl">
         {block?.heading && (
           <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl">
@@ -31,6 +30,6 @@ export default function CTA({ block }: InfoProps) {
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -28,11 +28,23 @@ export const page = defineType({
     }),
     defineField({
       name: 'modules',
-      title: 'modules',
+      title: 'Module Builder',
+      description:
+        'Select from a list of modules to build out your page. Order is respected.',
       type: 'array',
       of: [{ type: 'callToAction' }, { type: 'infoSection' }],
       options: {
         insertMenu: {
+          groups: [
+            {
+              name: 'red',
+              of: ['callToAction'],
+            },
+            {
+              name: 'blue',
+              of: ['infoSection'],
+            },
+          ],
           views: [
             {
               name: 'grid',

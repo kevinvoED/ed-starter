@@ -1,11 +1,6 @@
-import { Suspense } from 'react';
-
 import { PortableText } from '@portabletext/react';
 import Link from 'next/link';
 
-import GetStartedCode from '@/app/components/GetStartedCode';
-import { AllPosts } from '@/app/components/Posts';
-import SideBySideIcons from '@/app/components/SideBySideIcons';
 import { sanityFetch } from '@/sanity/lib/live';
 import { settingsQuery } from '@/sanity/lib/queries';
 
@@ -45,14 +40,12 @@ export default async function Page() {
           </div>
         </div>
         <div className="flex flex-col items-center">
-          <SideBySideIcons />
           <div className="container relative mx-auto flex max-w-2xl flex-col items-center space-y-6 pt-10 pb-20 lg:max-w-4xl lg:px-12">
             <div className="prose sm:prose-lg md:prose-xl xl:prose-2xl text-center font-light prose-a:text-gray-700 text-gray-700">
               {settings?.description && (
                 <PortableText value={settings.description} />
               )}
               <div className="flex flex-col items-center gap-4">
-                <GetStartedCode />
                 <Link
                   href="https://www.sanity.io/docs"
                   className="inline-flex text-brand text-xs underline hover:text-gray-900 md:text-sm"
@@ -76,9 +69,7 @@ export default async function Page() {
       </div>
       <div className="border-gray-100 border-t bg-gray-50">
         <div className="container">
-          <aside className="py-12 sm:py-20">
-            <Suspense>{await AllPosts()}</Suspense>
-          </aside>
+          <aside className="py-12 sm:py-20">more posts here</aside>
         </div>
       </div>
     </>

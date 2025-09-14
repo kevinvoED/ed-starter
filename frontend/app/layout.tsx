@@ -6,9 +6,9 @@ import { draftMode } from 'next/headers';
 import { toPlainText, VisualEditing } from 'next-sanity';
 
 import DraftModeToast from '@/app/components/DraftModeToast';
-import Footer from '@/app/components/Footer';
 import Header from '@/app/components/Header';
 import { handleError } from '@/lib/utils/handle-error';
+import type { ImageType } from '@/lib/utils/type';
 import * as demo from '@/sanity/lib/demo';
 import { SanityLive, sanityFetch } from '@/sanity/lib/live';
 import { settingsQuery } from '@/sanity/lib/queries';
@@ -30,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = settings?.title || demo.title;
   const description = settings?.description || demo.description;
 
-  const ogImage = resolveOpenGraphImage(settings?.ogImage);
+  const ogImage = resolveOpenGraphImage(settings?.ogImage as ImageType);
   let metadataBase: URL | undefined = undefined;
   try {
     metadataBase = settings?.ogImage?.metadataBase
@@ -82,7 +82,6 @@ export default async function RootLayout({
           <SanityLive onError={handleError} />
           <Header />
           <main className="">{children}</main>
-          <Footer />
         </section>
         <SpeedInsights />
       </body>

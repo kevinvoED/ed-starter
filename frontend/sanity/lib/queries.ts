@@ -38,9 +38,11 @@ export const getPageQuery = defineQuery(`
     "modules": modules[]{
       ...,
       _type == "callToAction" => {
+        _key,
         ${linkFields},
       },
       _type == "infoSection" => {
+        _key,
         content[]{
           ...,
           markDefs[]{

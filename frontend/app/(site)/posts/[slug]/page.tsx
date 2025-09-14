@@ -1,12 +1,10 @@
-import { Suspense } from 'react';
-
 import type { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
 import { type PortableTextBlock } from 'next-sanity';
 
 import CoverImage from '@/app/components/CoverImage';
 import PortableText from '@/app/components/PortableText';
-import { MorePosts } from '@/app/components/Posts';
+import type { ImageType } from '@/lib/utils/type';
 import { sanityFetch } from '@/sanity/lib/live';
 import { postPagesSlugs, postQuery } from '@/sanity/lib/queries';
 import { resolveOpenGraphImage } from '@/sanity/lib/utils';
@@ -45,7 +43,7 @@ export async function generateMetadata(
     stega: false,
   });
   const previousImages = (await parent).openGraph?.images || [];
-  const ogImage = resolveOpenGraphImage(post?.coverImage);
+  const ogImage = resolveOpenGraphImage(post?.coverImage as ImageType);
 
   return {
     authors:
@@ -100,9 +98,7 @@ export default async function PostPage(props: Props) {
       </div>
       <div className="border-gray-100 border-t bg-gray-50">
         <div className="container grid gap-12 py-12 lg:py-24">
-          <aside>
-            <Suspense>{await MorePosts({ skip: post._id, limit: 2 })}</Suspense>
-          </aside>
+          <aside>Posts here</aside>
         </div>
       </div>
     </>

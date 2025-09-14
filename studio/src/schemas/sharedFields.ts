@@ -32,7 +32,8 @@ export const slug = defineField({
   name: 'slug',
   title: 'Page Slug',
   type: 'slug',
-  description: "Generate a unique ID used for this page's slug.",
+  description:
+    'Generate a unique ID to be used as the slug or route for this page.',
   options: {
     source: 'title',
     maxLength: 96,
