@@ -60,9 +60,7 @@ export const Button = ({
   disabled,
   hasArrow = false,
 }: ButtonProps) => {
-  // resolveLink() is used to determine the type of link and return the appropriate URL.
   const resolvedLink = linkResolver(link);
-
   const isNewTab = link?.openInNewTab;
 
   if (typeof resolvedLink === 'string') {
