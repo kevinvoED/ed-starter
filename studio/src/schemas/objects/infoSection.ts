@@ -1,5 +1,7 @@
 import { TextIcon } from '@sanity/icons';
 
+import { portableText } from '@/schemas/sharedFields';
+
 import { defineField, defineType } from 'sanity';
 
 export const infoSection = defineType({
@@ -19,9 +21,7 @@ export const infoSection = defineType({
       type: 'string',
     }),
     defineField({
-      name: 'content',
-      title: 'Content',
-      type: 'blockContent',
+      ...portableText,
     }),
   ],
   preview: {

@@ -33,7 +33,7 @@ const ctaFields = /* groq */ `
 `;
 
 export const portableTextFields = /* groq */ `
-  _type == "blockContent" => {
+  _type == "portableText" => {
     _type,
     _key,
     body[]{

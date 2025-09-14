@@ -1,9 +1,9 @@
 import { person } from '@/schemas/documents/person';
 import { post } from '@/schemas/documents/post';
-import { blockContent } from '@/schemas/objects/blockContent';
 import { callToAction } from '@/schemas/objects/callToAction';
 import { cta } from '@/schemas/objects/cta';
 import { infoSection } from '@/schemas/objects/infoSection';
+import { portableText } from '@/schemas/objects/portableText';
 import { seo } from '@/schemas/objects/seo';
 import { page } from '@/schemas/page';
 import { settings } from '@/schemas/singletons/settings';
@@ -24,9 +24,9 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   post,
   person,
   // Objects (order matters for references)
-  cta, // Move this before blockContent
+  cta, // Move this before portable-text
   seo,
   infoSection,
   callToAction,
-  blockContent, // This references cta, so cta must come first
+  portableText, // This references cta, so cta must come first
 ];
