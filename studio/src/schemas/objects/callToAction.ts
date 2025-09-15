@@ -1,5 +1,7 @@
 import { BulbOutlineIcon } from '@sanity/icons';
 
+import { portableTextPlain } from '@/schemas/sharedFields';
+
 import { defineField, defineType } from 'sanity';
 
 /**
@@ -33,6 +35,9 @@ export const callToAction = defineType({
       name: 'cta',
       title: 'Button Link',
       type: 'cta',
+    }),
+    defineField({
+      ...portableTextPlain,
     }),
   ],
   preview: {

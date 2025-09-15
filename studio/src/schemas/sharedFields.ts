@@ -6,6 +6,8 @@
  * Please keep this file organized and well documented
  */
 
+import { ArrowTopRightIcon, ImageIcon, LinkIcon } from '@sanity/icons';
+
 import { relationTypes } from '@/schemas/moduleTypes';
 
 import { defineField } from 'sanity';
@@ -27,7 +29,7 @@ export const description = defineField({
   rows: 3,
 });
 
-// Requires a title to be on the entity as well. A unique ID to reference this entity.
+// Requires a `title` to be on the entity as well. A unique ID to reference this entity.
 export const slug = defineField({
   name: 'slug',
   title: 'Page Slug',
@@ -41,6 +43,16 @@ export const slug = defineField({
   validation: (Rule) => Rule.required(),
 });
 
+// First use the regular slug field to set the slug, then swap to this readOnly version.
+export const slugReadOnly = defineField({
+  name: 'slug',
+  title: 'Page Slug',
+  type: 'slug',
+  description: 'This is a read-only field and cannot be edited.',
+  readOnly: true,
+  validation: (Rule) => Rule.required(),
+});
+
 export const seo = defineField({
   name: 'seo',
   title: 'SEO',
@@ -48,20 +60,97 @@ export const seo = defineField({
   group: 'seo',
 });
 
-// Internal CTA link that references only internal pages
-export const internalLink = defineField({
-  name: 'internalLink',
-  title: 'Internal Link',
-  description: 'Select an entity that you want to create a link to',
-  type: 'reference',
-  to: relationTypes,
-});
-
-// Internal CTA link that references only internal pages
 export const portableText = defineField({
   name: 'content',
   title: 'Portable Text',
-  description:
-    'This is a Rich Text content editor. You can also add individual components or highlight text to create inline links.',
   type: 'portableText',
+});
+
+export const portableTextPlain = defineField({
+  name: 'content',
+  title: 'Portable Text',
+  type: 'portableTextPlain',
+});
+
+// Only used in PortableText
+export const externalLink = {
+  name: 'link',
+  type: 'object',
+  title: 'External link',
+  icon: ArrowTopRightIcon,
+  fields: [
+    {
+      name: 'href',
+      type: 'url',
+      title: 'URL',
+    },
+    {
+      title: 'Open in new tab',
+      name: 'blank',
+      type: 'boolean',
+    },
+  ],
+};
+
+// Only used in PortableText
+export const internalLink = {
+  name: 'internalLink',
+  type: 'object',
+  title: 'Internal link',
+  icon: LinkIcon,
+  fields: [
+    {
+      name: 'reference',
+      type: 'reference',
+      title: 'Reference',
+      to: [{ type: 'post' }, { type: 'page' }],
+    },
+  ],
+};
+
+export const image = defineField({
+  name: 'image',
+  title: 'Image',
+  type: 'image',
+  icon: ImageIcon,
+  options: {
+    hotspot: true,
+  },
+  fields: [
+    {
+      name: 'alt',
+      type: 'string',
+      title: 'Alternative Text',
+      description:
+        'Descriptive text of the image primarily for accessibility and SEO reasons.',
+    },
+  ],
+  validation: (Rule) => Rule.required(),
+});
+
+export const images = defineField({
+  name: 'images',
+  title: 'Images',
+  type: 'array',
+  of: [image],
+});
+
+export const logo = defineField({
+  ...image,
+  name: 'logo',
+  title: 'Logo',
+  description: 'Select or upload an SVG logo.',
+  options: {
+    accept: 'image/svg+xml',
+  },
+});
+
+export const file = defineField({
+  name: 'file',
+  title: 'File',
+  type: 'file',
+  description: 'Accepts PDF, JPG, PNG, or MP4 file types.',
+  options: {
+    accept: 'application/pdf, image/png, image/jpeg, image/jpg, video/mp4',
+  },
 });

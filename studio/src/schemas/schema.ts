@@ -4,6 +4,7 @@ import { callToAction } from '@/schemas/objects/callToAction';
 import { cta } from '@/schemas/objects/cta';
 import { infoSection } from '@/schemas/objects/infoSection';
 import { portableText } from '@/schemas/objects/portableText';
+import { portableTextPlain } from '@/schemas/objects/portableTextPlain';
 import { seo } from '@/schemas/objects/seo';
 import { page } from '@/schemas/page';
 import { settings } from '@/schemas/singletons/settings';
@@ -29,4 +30,5 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   infoSection,
   callToAction,
   portableText, // This references cta, so cta must come first
+  portableTextPlain,
 ];

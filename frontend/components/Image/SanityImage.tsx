@@ -5,26 +5,39 @@ import {
 import { stegaClean } from '@sanity/client/stega';
 import { Image } from 'next-sanity/image';
 
+import { cn } from '@/lib/utils/cn';
 import type { SanityImageType } from '@/lib/utils/type';
 import { urlForImage } from '@/sanity/lib/utils';
 
-interface CoverImageProps {
+type CoverImageProps = {
   image: SanityImageType;
+  sizes?: string;
   priority?: boolean;
-}
+  quality?: number;
+  className?: string;
+};
 
-export const SanityImage = (props: CoverImageProps) => {
-  const { image: source, priority } = props;
-  const image = source?.asset?._ref ? (
+export const SanityImage = ({
+  image,
+  sizes,
+  quality,
+  priority = false,
+  className,
+}: CoverImageProps) => {
+  if (!image || !image.asset?._ref) {
+    return null;
+  }
+
+  return (
     <Image
-      className="object-cover"
-      width={getImageDimensions(source as SanityImageSource).width}
-      height={getImageDimensions(source as SanityImageSource).height}
-      alt={stegaClean(source?.alt) || ''}
-      src={urlForImage(source)?.url() as string}
+      className={cn('object-cover', className)}
+      width={getImageDimensions(image as SanityImageSource).width}
+      height={getImageDimensions(image as SanityImageSource).height}
+      alt={stegaClean(image?.alt) || ''}
+      src={urlForImage(image)?.url() as string}
       priority={priority}
+      quality={quality || 75}
+      sizes={sizes || ''}
     />
-  ) : null;
-
-  return <div className="relative">{image}</div>;
+  );
 };

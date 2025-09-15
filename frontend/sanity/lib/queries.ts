@@ -2,6 +2,22 @@ import { defineQuery } from 'next-sanity';
 
 export const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
 
+export const imageQuery = `
+  ...,
+  asset->{
+    _id,
+    url,
+    mimeType,
+    metadata {
+      lqip,
+      dimensions {
+        width,
+        height
+      }
+    }
+  }
+`;
+
 const postFields = /* groq */ `
   _id,
   "status": select(_originalId in path("drafts.**") => "draft", "published"),

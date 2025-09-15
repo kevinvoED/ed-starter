@@ -1,9 +1,16 @@
 import { type PortableTextBlock } from 'next-sanity';
 
+import { SanityImage } from '@/components/Image/SanityImage';
 import { PortableText } from '@/components/PortableText/PortableText';
 import type { InfoSection } from '@/sanity.types';
 
-export default function CTA({ heading, subheading, content }: InfoSection) {
+export default function CTA({
+  heading,
+  subheading,
+  content,
+  image,
+  images,
+}: InfoSection) {
   return (
     <section className="container my-12">
       <div className="max-w-3xl">
@@ -22,6 +29,9 @@ export default function CTA({ heading, subheading, content }: InfoSection) {
             <PortableText className="" value={content as PortableTextBlock[]} />
           )}
         </div>
+        {image && <SanityImage image={image} className="" />}
+        {images &&
+          images.map((image) => <SanityImage key={image._key} image={image} />)}
       </div>
     </section>
   );
