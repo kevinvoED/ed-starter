@@ -1,11 +1,6 @@
 {
   "name": "studio",
   "version": "1.0.0",
-  "private": true,
-  "keywords": [
-    "sanity"
-  ],
-  "license": "UNLICENSED",
   "main": "package.json",
   "scripts": {
     "prebuild": "npm run typegen",

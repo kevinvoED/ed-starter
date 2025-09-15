@@ -1,14 +1,6 @@
 {
   "name": "ed-starter",
-  "description": "Engine Digital - Next.js + Sanity Starter Kit",
-  "keywords": [
-    "Sanity",
-    "Next.js"
-  ],
-  "homepage": "",
-  "bugs": {
-    "url": ""
-  },
+  "version": "1.0.0",
   "workspaces": [
     "studio",
     "frontend"
@@ -17,7 +9,7 @@
     "dev": "npm-run-all --parallel --print-label dev:*",
     "dev:next": "npm run dev --workspace=frontend",
     "dev:studio": "npm run dev --workspace=studio",
-    "typegen": "npm-run-all --parallel --print-label typegen:*",
+    "typegen": "npm-run-all --serial --print-label typegen:studio typegen:next",
     "typegen:next": "npm run typegen --workspace=frontend",
     "typegen:studio": "npm run typegen --workspace=studio",
     "format": "biome format --fix && biome check --fix",
@@ -29,6 +21,5 @@
     "@biomejs/biome": "2.2.4",
     "npm-run-all2": "^5.0.2",
     "plop": "^4.0.2"
-  },
-  "packageManager": "pnpm@8.6.3+sha512.d18e277ae8072091046bccbca0931f77dc3080791cd6122ae890bf504125d8af76b37fb33da287dba9fbbb6da6ebb13e314e9fa4a464c7effe3d8599cebe7243"
+  }
 }
