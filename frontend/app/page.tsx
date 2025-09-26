@@ -2,7 +2,7 @@ import { PortableText } from '@portabletext/react';
 import Link from 'next/link';
 
 import { sanityFetch } from '@/sanity/lib/live';
-import { settingsQuery } from '@/sanity/lib/queries';
+import { settingsQuery } from '@/sanity/queries/queries';
 
 export default async function Page() {
   const { data: settings } = await sanityFetch({

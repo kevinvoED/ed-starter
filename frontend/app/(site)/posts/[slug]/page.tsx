@@ -6,8 +6,8 @@ import { SanityImage } from '@/components/Image/SanityImage';
 import PortableText from '@/components/PortableText/PortableText';
 import type { ImageType } from '@/lib/utils/type';
 import { sanityFetch } from '@/sanity/lib/live';
-import { postPagesSlugs, postQuery } from '@/sanity/lib/queries';
 import { resolveOpenGraphImage } from '@/sanity/lib/utils';
+import { postPagesSlugs, postQuery } from '@/sanity/queries/queries';
 
 type Props = {
   params: Promise<{ slug: string }>;

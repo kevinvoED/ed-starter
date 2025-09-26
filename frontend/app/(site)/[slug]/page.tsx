@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 import PageBuilderPage from '@/components/PageBuilder';
 import { sanityFetch } from '@/sanity/lib/live';
-import { getPageQuery, pagesSlugs } from '@/sanity/lib/queries';
+import { getPageQuery, pagesSlugs } from '@/sanity/queries/queries';
 import type { GetPageQueryResult } from '@/sanity.types';
 
 type Props = {

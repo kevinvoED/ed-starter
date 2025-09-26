@@ -7,14 +7,12 @@ export const client = createClient({
   dataset,
   apiVersion,
   useCdn: true,
-  perspective: "published",
+  perspective: 'published',
   stega: {
     studioUrl: studioUrl,
     filter: (props) => {
       // Disable stega for specific field names that commonly need cleaning
-      const fieldsToDisableStega = [
-        "populateThisListHere",
-      ];
+      const fieldsToDisableStega = ['populateThisListHere'];
       if (fieldsToDisableStega.includes(props.sourcePath.at(-1) as string)) {
         return false;
       }

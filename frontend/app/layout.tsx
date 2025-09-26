@@ -9,10 +9,9 @@ import Header from '@/components/Header';
 import DraftModeToast from '@/components/Sanity/DraftModeToast';
 import { handleError } from '@/lib/utils/handle-error';
 import type { ImageType } from '@/lib/utils/type';
-import * as demo from '@/sanity/lib/demo';
 import { SanityLive, sanityFetch } from '@/sanity/lib/live';
-import { settingsQuery } from '@/sanity/lib/queries';
 import { resolveOpenGraphImage } from '@/sanity/lib/utils';
+import { settingsQuery } from '@/sanity/queries/queries';
 
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Toaster } from 'sonner';
@@ -27,8 +26,8 @@ export async function generateMetadata(): Promise<Metadata> {
     // Metadata should never contain stega
     stega: false,
   });
-  const title = settings?.title || demo.title;
-  const description = settings?.description || demo.description;
+  const title = settings?.title || '';
+  const description = settings?.description || '';
 
   const ogImage = resolveOpenGraphImage(settings?.ogImage as ImageType);
   let metadataBase: URL | undefined = undefined;
