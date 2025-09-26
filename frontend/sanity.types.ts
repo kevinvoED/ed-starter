@@ -13,6 +13,33 @@
  */
 
 // Source: schema.json
+export type Rewrite = {
+  _type: "rewrite";
+  source: string;
+  url: string;
+};
+
+export type Redirect = {
+  _type: "redirect";
+  source: string;
+  destination: string;
+  redirectType: "permanent" | "temporary";
+};
+
+export type Configuration = {
+  _id: string;
+  _type: "configuration";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  redirects?: Array<{
+    _key: string;
+  } & Redirect>;
+  rewrites?: Array<{
+    _key: string;
+  } & Rewrite>;
+};
+
 export type PortableTextPlain = Array<{
   children?: Array<{
     marks?: Array<string>;
@@ -540,7 +567,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = PortableTextPlain | PortableText | CallToAction | InfoSection | Cta | Settings | Page | Seo | Post | Person | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | MediaTag | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Rewrite | Redirect | Configuration | PortableTextPlain | PortableText | CallToAction | InfoSection | Cta | Settings | Page | Seo | Post | Person | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | MediaTag | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
