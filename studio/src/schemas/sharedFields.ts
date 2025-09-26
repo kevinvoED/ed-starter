@@ -121,8 +121,7 @@ export const image = defineField({
       name: 'alt',
       type: 'string',
       title: 'Alternative Text',
-      description:
-        'Descriptive text of the image primarily for accessibility and SEO reasons.',
+      description: 'Descriptive text for accessibility and SEO.',
     },
   ],
   validation: (Rule) => Rule.required(),
