@@ -1,10 +1,30 @@
-import type { GetPageQueryResult } from '@/sanity.types';
+import { Button } from "@/components/Button/Button";
+import { SanityImage } from "@/components/Image/SanityImage";
+import type { {{ pascalCase name }} as {{ pascalCase name }}Props } from "@/sanity.types";
 
-type {{ pascalCase name }}Props = Extract<
-  NonNullable<NonNullable<GetPageQueryResult>['modules']>[number],
-  { _type: '{{ kebabCase name }}' }
->;
+export const {{ pascalCase name }} = ({
+  title,
+  description,
+  image,
+  cta
+}: {{ pascalCase name }}Props) => {
+  return (
+    <div className="relative overflow-hiddenpy-12 lg:py-25">
+      <div className="grid-custom container gap-y-6">
+        <h2 className="col-span-full lg:col-span-5">{title}</h2>
+        
+        <p className="col-span-full lg:col-span-5 lg:col-start-1">
+          {description}
+        </p>
 
-export const {{ pascalCase name }} = ({ title }: {{ pascalCase name }}Props) => {
-  return <section className="">{{ pascalCase name }}</section>;
+        <div className="col-span-full lg:col-span-5 lg:col-start-1">
+          {image && <SanityImage image={image} sizes="100vw" />}
+        </div>
+
+        <div className="col-span-full lg:col-span-5 lg:col-start-1">
+          {cta?.label && <Button cta={cta}>{cta.label}</Button>}
+        </div>
+      </div>
+    </div>
+  );
 };

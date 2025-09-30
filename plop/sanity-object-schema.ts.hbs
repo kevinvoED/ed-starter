@@ -1,6 +1,6 @@
 import { ComponentIcon } from '@sanity/icons';
 
-import { description, image, title } from '@/schemas/sharedFields';
+import { cta, description, image, title } from '@/schemas/sharedFields';
 
 import { defineField, defineType } from 'sanity';
 
@@ -20,6 +20,9 @@ export const {{camelCase name}} = defineType({
     }),
     defineField({
       ...image,
+    }),
+    defineField({
+      ...cta,
     }),
   ],
   preview: {
