@@ -1,10 +1,10 @@
-import type { Metadata } from 'next';
-import Head from 'next/head';
+import type { Metadata } from "next";
+import Head from "next/head";
 
-import PageBuilderPage from '@/components/PageBuilder';
-import { sanityFetch } from '@/sanity/lib/live';
-import { getPageQuery, pagesSlugs } from '@/sanity/queries/queries';
-import type { GetPageQueryResult } from '@/sanity.types';
+import PageBuilderPage from "@/components/PageBuilder";
+import { sanityFetch } from "@/sanity/lib/live";
+import { getPageQuery, pagesSlugs } from "@/sanity/queries/queries";
+import type { GetPageQueryResult } from "@/sanity.types";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -18,7 +18,7 @@ export async function generateStaticParams() {
   const { data } = await sanityFetch({
     query: pagesSlugs,
     // // Use the published perspective in generateStaticParams
-    perspective: 'published',
+    perspective: "published",
     stega: false,
   });
   return data;
@@ -38,8 +38,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   });
 
   return {
-    title: page?.name,
-    description: page?.heading,
+    title: page?.title,
+    description: page?.description,
   } satisfies Metadata;
 }
 

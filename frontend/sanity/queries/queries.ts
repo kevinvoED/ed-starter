@@ -12,8 +12,6 @@ import { defineQuery } from 'next-sanity';
  * And consider creating your own shared fragments in `sharedFields.ts` if you find yourself repeating fields
  */
 
-export const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
-
 const postFields = /* groq */ `
   _id,
   "status": select(_originalId in path("drafts.**") => "draft", "published"),
@@ -93,16 +91,22 @@ export const getPageQuery = defineQuery(`
   *[_type == 'page' && slug.current == $slug][0]{
     _id,
     _type,
-    name,
+    title,
     slug,
-    heading,
-    subheading,
+    description,
     "modules": modules[]{
       ...,
       ${heroPrimaryQuery}
     },
   }
 `);
+
+export const settingsQuery = defineQuery(`*[_type == 'settings'][0]{
+  title,
+  description,
+  socialMedia,
+  ogImage,
+}`);
 
 export const sitemapData = defineQuery(`
   *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {

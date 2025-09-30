@@ -1,13 +1,13 @@
-import type { Metadata, ResolvingMetadata } from 'next';
-import { notFound } from 'next/navigation';
-import { type PortableTextBlock } from 'next-sanity';
+import type { Metadata, ResolvingMetadata } from "next";
+import { notFound } from "next/navigation";
+import { type PortableTextBlock } from "next-sanity";
 
-import { SanityImage } from '@/components/Image/SanityImage';
-import PortableText from '@/components/PortableText/PortableText';
-import type { ImageType } from '@/lib/utils/type';
-import { sanityFetch } from '@/sanity/lib/live';
-import { resolveOpenGraphImage } from '@/sanity/lib/utils';
-import { postPagesSlugs, postQuery } from '@/sanity/queries/queries';
+import { SanityImage } from "@/components/Image/SanityImage";
+import { PortableText } from "@/components/PortableText/PortableText";
+import type { ImageType } from "@/lib/utils/type";
+import { sanityFetch } from "@/sanity/lib/live";
+import { resolveOpenGraphImage } from "@/sanity/lib/utils";
+import { postPagesSlugs, postQuery } from "@/sanity/queries/queries";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -21,7 +21,7 @@ export async function generateStaticParams() {
   const { data } = await sanityFetch({
     query: postPagesSlugs,
     // Use the published perspective in generateStaticParams
-    perspective: 'published',
+    perspective: "published",
     stega: false,
   });
   return data;
@@ -33,7 +33,7 @@ export async function generateStaticParams() {
  */
 export async function generateMetadata(
   props: Props,
-  parent: ResolvingMetadata,
+  parent: ResolvingMetadata
 ): Promise<Metadata> {
   const params = await props.params;
   const { data: post } = await sanityFetch({

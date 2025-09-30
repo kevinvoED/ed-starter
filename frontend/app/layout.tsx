@@ -1,20 +1,20 @@
-import './globals.css';
+import "./globals.css";
 
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import { draftMode } from 'next/headers';
-import { toPlainText, VisualEditing } from 'next-sanity';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { draftMode } from "next/headers";
+import { toPlainText, VisualEditing } from "next-sanity";
 
-import Header from '@/components/Header';
-import DraftModeToast from '@/components/Sanity/DraftModeToast';
-import { handleError } from '@/lib/utils/handle-error';
-import type { ImageType } from '@/lib/utils/type';
-import { SanityLive, sanityFetch } from '@/sanity/lib/live';
-import { resolveOpenGraphImage } from '@/sanity/lib/utils';
-import { settingsQuery } from '@/sanity/queries/queries';
+import Header from "@/components/Header";
+import DraftModeToast from "@/components/Sanity/DraftModeToast";
+import { handleError } from "@/lib/utils/handle-error";
+import type { ImageType } from "@/lib/utils/type";
+import { SanityLive, sanityFetch } from "@/sanity/lib/live";
+import { resolveOpenGraphImage } from "@/sanity/lib/utils";
+import { settingsQuery } from "@/sanity/queries/queries";
 
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import { Toaster } from 'sonner';
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Toaster } from "sonner";
 
 /**
  * Generate metadata for the page.
@@ -23,11 +23,10 @@ import { Toaster } from 'sonner';
 export async function generateMetadata(): Promise<Metadata> {
   const { data: settings } = await sanityFetch({
     query: settingsQuery,
-    // Metadata should never contain stega
     stega: false,
   });
-  const title = settings?.title || '';
-  const description = settings?.description || '';
+  const title = settings?.title || "";
+  const description = settings?.description || "";
 
   const ogImage = resolveOpenGraphImage(settings?.ogImage as ImageType);
   let metadataBase: URL | undefined = undefined;
@@ -35,9 +34,7 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase = settings?.ogImage?.metadataBase
       ? new URL(settings.ogImage.metadataBase)
       : undefined;
-  } catch {
-    // ignore
-  }
+  } catch {}
   return {
     metadataBase,
     title: {
@@ -52,9 +49,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const inter = Inter({
-  variable: '--font-inter',
-  subsets: ['latin'],
-  display: 'swap',
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export default async function RootLayout({
@@ -73,11 +70,9 @@ export default async function RootLayout({
           {isDraftMode && (
             <>
               <DraftModeToast />
-              {/*  Enable Visual Editing, only to be rendered when Draft Mode is enabled */}
               <VisualEditing />
             </>
           )}
-          {/* The <SanityLive> component is responsible for making all sanityFetch calls in your application live, so should always be rendered. */}
           <SanityLive onError={handleError} />
           <Header />
           <main className="">{children}</main>
