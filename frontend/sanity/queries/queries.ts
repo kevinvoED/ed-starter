@@ -1,7 +1,5 @@
 import { defineQuery } from 'next-sanity';
 
-export const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
-
 /*
  * This file contains all GROQ queries for fetching data from existing Sanity schemas
  * After creating a new query, run `npm run typegen` to generate the types for the query
@@ -13,6 +11,8 @@ export const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
  * Remember to make good use of shared fragments in /frontend/sanity/queries/sharedFields.ts
  * And consider creating your own shared fragments in `sharedFields.ts` if you find yourself repeating fields
  */
+
+export const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
 
 const postFields = /* groq */ `
   _id,
@@ -57,6 +57,31 @@ export const portableTextFields = /* groq */ `
         }
       }
     }
+  },
+`;
+
+export const callToActionQuery = /* groq */ `
+  _type == "callToAction" => {
+    _key,
+    ${ctaFields},
+    ${portableTextFields}
+  }
+`;
+
+export const infoSectionQuery = /* groq */ `
+  _type == "infoSection" => {
+    _key,
+    content[]{
+      ...,
+      markDefs[]{
+        ...,
+        ${ctaReference}
+      },
+      ${ctaReference},
+      _type == "internalLink" => {
+        "slug": @.reference->slug
+      }
+    }
   }
 `;
 
@@ -70,25 +95,8 @@ export const getPageQuery = defineQuery(`
     subheading,
     "modules": modules[]{
       ...,
-      _type == "callToAction" => {
-        _key,
-        ${ctaFields},
-        ${portableTextFields}
-      },
-      _type == "infoSection" => {
-        _key,
-        content[]{
-          ...,
-          markDefs[]{
-            ...,
-            ${ctaReference}
-          },
-          ${ctaReference},
-          _type == "internalLink" => {
-        "slug": @.reference->slug
-      }
-        }
-      },
+      ${callToActionQuery},
+      ${infoSectionQuery},
     },
   }
 `);
