@@ -1,8 +1,8 @@
-import { Suspense } from 'react';
+import { Suspense } from "react";
 
-import { Button } from '@/components/Button/Button';
-import { ArrowRightIcon } from '@/components/Icons/ArrowRightIcon';
-import type { CallToAction } from '@/sanity.types';
+import { Button } from "@/components/Button/Button";
+import { ArrowRightIcon } from "@/components/Icons/ArrowRightIcon";
+import type { CallToAction } from "@/sanity.types";
 
 export default function CTA({ heading, text, cta }: CallToAction) {
   return (

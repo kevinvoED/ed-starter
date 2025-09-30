@@ -14,6 +14,7 @@ import { page } from '@/schemas/page';
 import { settings } from '@/schemas/objects/settings';
 
 import type { SchemaTypeDefinition } from 'sanity';
+import { heroPrimary } from '@/schemas/modules/heroPrimary';
 
 /*
  * Export an array of all the schema types.
@@ -38,4 +39,6 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   configuration,
   redirect,
   rewrite,
+  // Modules
+  heroPrimary,
 ];

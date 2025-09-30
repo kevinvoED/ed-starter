@@ -153,3 +153,18 @@ export const file = defineField({
     accept: 'application/pdf, image/png, image/jpeg, image/jpg, video/mp4',
   },
 });
+
+export const cta = defineField({
+  name: 'cta',
+  title: 'CTA Button',
+  type: 'cta',
+});
+
+export const ctas = defineField({
+  name: 'ctas',
+  title: 'CTA Buttons',
+  description: 'Max 2 CTAs.',
+  type: 'array',
+  of: [cta],
+  validation: (Rule) => Rule.max(2),
+});

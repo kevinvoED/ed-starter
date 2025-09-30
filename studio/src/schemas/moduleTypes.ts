@@ -12,6 +12,7 @@ export const relationTypes: ModuleTypes[] = [{ type: 'page' }];
 export const moduleTypes: ModuleTypes[] = [
   { type: 'callToAction' },
   { type: 'infoSection' },
+  { type: 'heroPrimary' },
 ];
 
 // Create a separate list of modules if you require a specific subset of modules below

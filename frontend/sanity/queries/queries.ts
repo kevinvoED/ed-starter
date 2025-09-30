@@ -44,6 +44,13 @@ const ctaFields = /* groq */ `
   }
 `;
 
+const ctasFields = /* groq */ `
+  ctas[] {
+    ...,
+    ${ctaReference}
+  }
+`;
+
 export const portableTextFields = /* groq */ `
   _type == "portableText" => {
     _type,
@@ -85,6 +92,16 @@ export const infoSectionQuery = /* groq */ `
   }
 `;
 
+export const heroPrimaryQuery = /* groq */ `
+  _type == "heroPrimary" => {
+    _key,
+    title,
+    description,
+    image,
+    ${ctasFields},
+  }
+`;
+
 export const getPageQuery = defineQuery(`
   *[_type == 'page' && slug.current == $slug][0]{
     _id,
@@ -97,6 +114,7 @@ export const getPageQuery = defineQuery(`
       ...,
       ${callToActionQuery},
       ${infoSectionQuery},
+      ${heroPrimaryQuery}
     },
   }
 `);
