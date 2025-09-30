@@ -108,8 +108,33 @@ You have the freedom to deploy your Next.js app to your hosting provider of choi
 - [Join the Sanity Community](https://slack.sanity.io)
 - [Learn Sanity](https://www.sanity.io/learn)
 
+## Frequently Asked Questions
+
+### How can I add a new module to Sanity Studio?
+1. Create a new terminal and run the command below.
+
+```shell
+npm run plop
+```
+
+2. Select the `New module` option, name your module, and it will generate a Sanity schema file for you in `studio/src/schemas/modules/your-new-schema.ts` and a new component file in `frontend/components/YourNewComponent/YourNewcomponent.tsx`.
+
+3. Add your new schema to `schema.ts`, `page.ts`, and `moduleTypes` in `studio/src/schemas`. Don't forget to add any accompanying Sanity preview images for your module to `studio/src/static/previews`.
+
+4. Create a new GROQ query for your Sanity schema in `frontend/sanity/queries/queries.ts`. Make good use of commonly used fields from `sharedFields.ts`.
+
+5. Note that if your schema and query are not used within the module builder, then you can create a fetch query for your data in `fetch.ts` so you can use it in your components directly.
+
+6. Add your new schema and component to `ModuleBuilder.tsx`.
+
+7. Create a new terminal and run `npm run typegen` to generate your types. 
+
+8. Your module now appears in Sanity Studio within any module builder.
+
 ## TODO 
 
-- [ ] Update existing placeholder plop file templates 
-- [ ] Revisit usage of carets in package.json files
-- [ ] 
+- [ ] Add tests. Vitest? Jest? React Testing Library? 
+- [ ] Add any missing essential packages? estoolkit? 
+- [ ] Update sharedFields.ts
+- [ ] Update README
+
