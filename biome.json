@@ -136,7 +136,7 @@
         "noConsole": {
           "level": "error",
           "options": {
-            "allow": ["error", "info", "warn", "assert", "trace"]
+            "allow": ["error", "info", "warn", "assert", "trace", "log"]
           }
         },
         "noControlCharactersInRegex": "error",
