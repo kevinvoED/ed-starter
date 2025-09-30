@@ -37,7 +37,7 @@ const ctaReference = /* groq */ `
   }
 `;
 
-const ctaFields = /* groq */ `
+const _ctaFields = /* groq */ `
   cta {
     ...,
     ${ctaReference}
@@ -78,21 +78,6 @@ export const portableTextPlainFields = /* groq */ `
   }
 `;
 
-export const callToActionQuery = /* groq */ `
-  _type == "callToAction" => {
-    _key,
-    ${ctaFields},
-    ${portableTextPlainFields}
-  }
-`;
-
-export const infoSectionQuery = /* groq */ `
-  _type == "infoSection" => {
-    _key,
-    ${portableTextFields}
-  }
-`;
-
 export const heroPrimaryQuery = /* groq */ `
   _type == "heroPrimary" => {
     _key,
@@ -114,8 +99,6 @@ export const getPageQuery = defineQuery(`
     subheading,
     "modules": modules[]{
       ...,
-      ${callToActionQuery},
-      ${infoSectionQuery},
       ${heroPrimaryQuery}
     },
   }

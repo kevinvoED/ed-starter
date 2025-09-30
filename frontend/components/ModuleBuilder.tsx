@@ -1,13 +1,9 @@
 import { createElement } from "react";
 
-import Cta from "@/components/Cta";
 import { HeroPrimary } from "@/components/HeroPrimary/HeroPrimary";
-import Info from "@/components/InfoSection";
 
 // Add new modules to the `Blocks` object where the KEY is the name of the schema and the VALUE is the imported component
 const Blocks = {
-  callToAction: Cta,
-  infoSection: Info,
   heroPrimary: HeroPrimary,
 } as const;
 

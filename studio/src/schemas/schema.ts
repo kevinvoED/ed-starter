@@ -1,12 +1,10 @@
 // biome-ignore assist/source/organizeImports: keep order
 import { person } from '@/schemas/documents/person';
 import { post } from '@/schemas/documents/post';
-import { callToAction } from '@/schemas/objects/callToAction';
 import { configuration } from '@/schemas/objects/configuration';
 import { redirect } from '@/schemas/objects/redirect';
 import { rewrite } from '@/schemas/objects/rewrite';
 import { cta } from '@/schemas/objects/cta';
-import { infoSection } from '@/schemas/objects/infoSection';
 import { portableText } from '@/schemas/objects/portableText';
 import { portableTextPlain } from '@/schemas/objects/portableTextPlain';
 import { seo } from '@/schemas/objects/seo';
@@ -29,11 +27,9 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   page,
   post,
   person,
-  // Objects (order matters for both linear or cicrcular references)
+  // Objects (order matters for both linear and circular references)
   cta,
   seo,
-  infoSection,
-  callToAction,
   portableText,
   portableTextPlain,
   configuration,

@@ -167,49 +167,6 @@ export type PortableText = Array<{
   _key: string;
 } & Cta>;
 
-export type CallToAction = {
-  _type: "callToAction";
-  heading: string;
-  text?: string;
-  buttonText?: string;
-  cta?: Cta;
-  content?: PortableTextPlain;
-};
-
-export type InfoSection = {
-  _type: "infoSection";
-  heading?: string;
-  subheading?: string;
-  content?: PortableText;
-  image: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
-  images?: Array<{
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  }>;
-};
-
 export type Cta = {
   _type: "cta";
   type?: "page" | "href" | "post";
@@ -240,10 +197,6 @@ export type Page = {
   slug: Slug;
   description?: string;
   modules?: Array<{
-    _key: string;
-  } & CallToAction | {
-    _key: string;
-  } & InfoSection | {
     _key: string;
   } & HeroPrimary>;
   seo?: Seo;
@@ -615,7 +568,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = HeroPrimary | Rewrite | Redirect | Configuration | PortableTextPlain | PortableText | CallToAction | InfoSection | Cta | Page | Seo | Post | Person | Settings | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | MediaTag | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = HeroPrimary | Rewrite | Redirect | Configuration | PortableTextPlain | PortableText | Cta | Page | Seo | Post | Person | Settings | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | MediaTag | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/queries/queries.ts
 // Variable: settingsQuery
@@ -662,7 +615,7 @@ export type SettingsQueryResult = {
   };
 } | null;
 // Variable: getPageQuery
-// Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    heading,    subheading,    "modules": modules[]{      ...,        _type == "callToAction" => {    _key,      cta {    ...,      _type == "cta" => {    ...,    "page": page->slug.current,    "post": post->slug.current,    type,    label,    href,    openInNewTab  }  },      content[]{    ...,    markDefs[]{      ...,        _type == "internalLink" => {    "slug": @.reference->slug.current,  }    }  }  },        _type == "infoSection" => {    _key,      content[]{    ...,    markDefs[]{      ...,        _type == "internalLink" => {    "slug": @.reference->slug.current,  }    },      _type == "cta" => {    ...,    "page": page->slug.current,    "post": post->slug.current,    type,    label,    href,    openInNewTab  },  }  },        _type == "heroPrimary" => {    _key,    title,    description,    image,      ctas[] {    ...,      _type == "cta" => {    ...,    "page": page->slug.current,    "post": post->slug.current,    type,    label,    href,    openInNewTab  }  },      content[]{    ...,    markDefs[]{      ...,        _type == "internalLink" => {    "slug": @.reference->slug.current,  }    },      _type == "cta" => {    ...,    "page": page->slug.current,    "post": post->slug.current,    type,    label,    href,    openInNewTab  },  },  }    },  }
+// Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    _type,    name,    slug,    heading,    subheading,    "modules": modules[]{      ...,        _type == "heroPrimary" => {    _key,    title,    description,    image,      ctas[] {    ...,      _type == "cta" => {    ...,    "page": page->slug.current,    "post": post->slug.current,    type,    label,    href,    openInNewTab  }  },      content[]{    ...,    markDefs[]{      ...,        _type == "internalLink" => {    "slug": @.reference->slug.current,  }    },      _type == "cta" => {    ...,    "page": page->slug.current,    "post": post->slug.current,    type,    label,    href,    openInNewTab  },  },  }    },  }
 export type GetPageQueryResult = {
   _id: string;
   _type: "page";
@@ -671,55 +624,6 @@ export type GetPageQueryResult = {
   heading: null;
   subheading: null;
   modules: Array<{
-    _key: string;
-    _type: "callToAction";
-    heading: string;
-    text?: string;
-    buttonText?: string;
-    cta: {
-      _type: "cta";
-      type: "href" | "page" | "post" | null;
-      label: string;
-      href: string | null;
-      page: string | null;
-      post: string | null;
-      openInNewTab: boolean | null;
-    } | null;
-    content: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: "bullet" | "number";
-      markDefs: Array<{
-        reference?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "page";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "post";
-        };
-        _type: "internalLink";
-        _key: string;
-        slug: string | null;
-      } | {
-        href?: string;
-        blank?: boolean;
-        _type: "link";
-        _key: string;
-      }> | null;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }> | null;
-  } | {
     _key: string;
     _type: "heroPrimary";
     title: string;
@@ -791,82 +695,6 @@ export type GetPageQueryResult = {
       openInNewTab: boolean | null;
       markDefs: null;
     }> | null;
-  } | {
-    _key: string;
-    _type: "infoSection";
-    heading?: string;
-    subheading?: string;
-    content: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "h1" | "h2" | "h3" | "h4" | "normal";
-      listItem?: "bullet" | "number";
-      markDefs: Array<{
-        reference?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "page";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "post";
-        };
-        _type: "internalLink";
-        _key: string;
-        slug: string | null;
-      } | {
-        href?: string;
-        blank?: boolean;
-        _type: "link";
-        _key: string;
-      }> | null;
-      level?: number;
-      _type: "block";
-      _key: string;
-    } | {
-      _key: string;
-      _type: "cta";
-      type: "href" | "page" | "post" | null;
-      label: string;
-      href: string | null;
-      page: string | null;
-      post: string | null;
-      openInNewTab: boolean | null;
-      markDefs: null;
-    }> | null;
-    image: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      alt?: string;
-      _type: "image";
-    };
-    images?: Array<{
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      alt?: string;
-      _type: "image";
-      _key: string;
-    }>;
   }> | null;
 } | null;
 // Variable: sitemapData
@@ -1070,7 +898,7 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"settings\"][0]": SettingsQueryResult;
-    "\n  *[_type == 'page' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    \"modules\": modules[]{\n      ...,\n      \n  _type == \"callToAction\" => {\n    _key,\n    \n  cta {\n    ...,\n    \n  _type == \"cta\" => {\n    ...,\n    \"page\": page->slug.current,\n    \"post\": post->slug.current,\n    type,\n    label,\n    href,\n    openInNewTab\n  }\n\n  }\n,\n    \n  content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == \"internalLink\" => {\n    \"slug\": @.reference->slug.current,\n  }\n\n    }\n  }\n\n  }\n,\n      \n  _type == \"infoSection\" => {\n    _key,\n    \n  content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == \"internalLink\" => {\n    \"slug\": @.reference->slug.current,\n  }\n\n    },\n    \n  _type == \"cta\" => {\n    ...,\n    \"page\": page->slug.current,\n    \"post\": post->slug.current,\n    type,\n    label,\n    href,\n    openInNewTab\n  }\n,\n  }\n\n  }\n,\n      \n  _type == \"heroPrimary\" => {\n    _key,\n    title,\n    description,\n    image,\n    \n  ctas[] {\n    ...,\n    \n  _type == \"cta\" => {\n    ...,\n    \"page\": page->slug.current,\n    \"post\": post->slug.current,\n    type,\n    label,\n    href,\n    openInNewTab\n  }\n\n  }\n,\n    \n  content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == \"internalLink\" => {\n    \"slug\": @.reference->slug.current,\n  }\n\n    },\n    \n  _type == \"cta\" => {\n    ...,\n    \"page\": page->slug.current,\n    \"post\": post->slug.current,\n    type,\n    label,\n    href,\n    openInNewTab\n  }\n,\n  }\n,\n  }\n\n    },\n  }\n": GetPageQueryResult;
+    "\n  *[_type == 'page' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    \"modules\": modules[]{\n      ...,\n      \n  _type == \"heroPrimary\" => {\n    _key,\n    title,\n    description,\n    image,\n    \n  ctas[] {\n    ...,\n    \n  _type == \"cta\" => {\n    ...,\n    \"page\": page->slug.current,\n    \"post\": post->slug.current,\n    type,\n    label,\n    href,\n    openInNewTab\n  }\n\n  }\n,\n    \n  content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == \"internalLink\" => {\n    \"slug\": @.reference->slug.current,\n  }\n\n    },\n    \n  _type == \"cta\" => {\n    ...,\n    \"page\": page->slug.current,\n    \"post\": post->slug.current,\n    type,\n    label,\n    href,\n    openInNewTab\n  }\n,\n  }\n,\n  }\n\n    },\n  }\n": GetPageQueryResult;
     "\n  *[_type == \"page\" || _type == \"post\" && defined(slug.current)] | order(_type asc) {\n    \"slug\": slug.current,\n    _type,\n    _updatedAt,\n  }\n": SitemapDataResult;
     "\n  *[_type == \"post\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": AllPostsQueryResult;
     "\n  *[_type == \"post\" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": MorePostsQueryResult;

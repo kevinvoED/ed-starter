@@ -33,21 +33,13 @@ export const page = defineType({
       description:
         'Select from a list of modules to build out your page. Order is respected.',
       type: 'array',
-      of: [
-        { type: 'callToAction' },
-        { type: 'infoSection' },
-        { type: 'heroPrimary' },
-      ],
+      of: [{ type: 'heroPrimary' }],
       options: {
         insertMenu: {
           groups: [
             {
               name: 'red',
-              of: ['callToAction', 'infoSection', 'heroPrimary'],
-            },
-            {
-              name: 'blue',
-              of: ['infoSection'],
+              of: ['heroPrimary'],
             },
           ],
           views: [
