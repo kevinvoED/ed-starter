@@ -8,14 +8,16 @@ export default function (
   /** @type {import('plop').NodePlopAPI} */
   plop,
 ) {
-  // Generating a new component
-  plop.setGenerator('create-component', {
-    description: 'Generate a component template file to `frontend/components`.',
+  // Generating a new module
+  plop.setGenerator('New module', {
+    description:
+      'Generate a new Sanity schema + Frontend component file for this new module.',
     prompts: [
       {
         type: 'input',
         name: 'name',
-        message: 'Generate component',
+        message:
+          'What is the name of the module? Spaces included (e.g. "Hero Primary"):',
         validate(answer) {
           // Ban words if they include 'component' or 'module'
           const bannedWords = ['component', 'module'].some((word) =>
@@ -78,63 +80,28 @@ export default function (
         },
       },
     ],
-    actions: [
-      {
-        type: 'add',
-        path: 'frontend/components/{{pascalCase name}}/{{pascalCase name}}.tsx',
-        templateFile: 'plop/component.tsx.hbs',
-      },
-      {
-        type: 'add',
-        path: 'studio/src/schemas/modules/{{camelCase name}}.ts',
-        templateFile: 'plop/sanity-object-schema.ts.hbs',
-      },
-    ],
-  });
-
-  // Generating a new page
-  plop.setGenerator('create-page', {
-    description: 'Generate a page template file to `frontend/app/(site)`.',
-    prompts: [
-      {
-        type: 'input',
-        name: 'name',
-        message: 'Generate page name',
-      },
-      {
-        type: 'list',
-        name: 'routing',
-        message: 'Is your route dynamic?',
-        choices: [
-          { name: 'Dynamic - use [slug] route', value: 'dynamic' },
-          { name: 'Normal - use named route', value: 'normal' },
-        ],
-      },
-    ],
-    actions: (data) => {
-      if (data.routing === 'normal') {
-        return [
-          {
-            type: 'add',
-            path: 'frontend/app/(site)/{{dashCase name}}/page.tsx',
-            templateFile: 'plop/page.tsx.hbs',
-          },
-        ];
-      }
-
+    actions: function () {
       return [
+        "DON'T FORGET: Add your new schema to `studio/src/schemas/schema.ts`",
+        "DON'T FORGET: Add your new component to `frontend/components/ModuleBuilder.tsx`",
+        "DON'T FORGET: Create a new query in `frontend/sanity/queries/queries.ts`",
         {
           type: 'add',
-          path: 'frontend/app/(site)/{{dashCase name}}/[slug]/page.tsx',
-          templateFile: 'plop/page-dynamic.tsx.hbs',
+          path: 'frontend/components/{{pascalCase name}}/{{pascalCase name}}.tsx',
+          templateFile: 'plop/component.tsx.hbs',
+        },
+        {
+          type: 'add',
+          path: 'studio/src/schemas/modules/{{camelCase name}}.ts',
+          templateFile: 'plop/sanity-object-schema.ts.hbs',
         },
       ];
     },
   });
 
   // Generating a Sanity schema
-  plop.setGenerator('create-schema', {
-    description: 'Generate a Sanity schema file to `/studio/src`',
+  plop.setGenerator('New schema ', {
+    description: 'Generate only a new Sanity schema file.',
     prompts: [
       {
         type: 'input',
@@ -203,7 +170,7 @@ export default function (
       {
         type: 'list',
         name: 'type',
-        message: 'Is this a page, document, or an object?',
+        message: 'Is this a module, object, document, or page?',
         choices: [
           {
             name: 'Module',
@@ -228,6 +195,7 @@ export default function (
     actions: (data) => {
       if (data.type === 'module') {
         return [
+          "DON'T FORGET: Add your new schema to `studio/src/schemas/schema.ts`",
           {
             type: 'add',
             path: 'studio/src/schemas/{{type}}s/{{camelCase name}}.ts',
@@ -238,6 +206,7 @@ export default function (
 
       if (data.type === 'page') {
         return [
+          "DON'T FORGET: Add your new schema to `studio/src/schemas/schema.ts`",
           {
             type: 'add',
             path: 'studio/src/schemas/{{type}}s/{{camelCase name}}.ts',
@@ -248,6 +217,7 @@ export default function (
 
       if (data.type === 'document') {
         return [
+          "DON'T FORGET: Add your new schema to `studio/src/schemas/schema.ts`",
           {
             type: 'add',
             path: 'studio/src/schemas/{{type}}s/{{camelCase name}}.ts',
@@ -258,6 +228,7 @@ export default function (
 
       if (data.type === 'object') {
         return [
+          "DON'T FORGET: Add your new schema to `studio/src/schemas/schema.ts`",
           {
             type: 'add',
             path: 'studio/src/schemas/{{type}}s/{{camelCase name}}.ts',
@@ -267,6 +238,7 @@ export default function (
       }
 
       return [
+        "DON'T FORGET: Add your new schema to `studio/src/schemas/schema.ts`",
         {
           type: 'add',
           path: 'studio/src/schemas/{{camelCase name}}.ts',
