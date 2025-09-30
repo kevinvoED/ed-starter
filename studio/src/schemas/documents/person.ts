@@ -2,11 +2,6 @@ import { UserIcon } from '@sanity/icons';
 
 import { defineField, defineType } from 'sanity';
 
-/**
- * Person schema.  Define and edit the fields for the 'person' content type.
- * Learn more: https://www.sanity.io/docs/schema-types
- */
-
 export const person = defineType({
   name: 'person',
   title: 'Person',

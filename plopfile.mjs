@@ -81,8 +81,13 @@ export default function (
     actions: [
       {
         type: 'add',
-        path: 'frontend/components/{{pascalCase name}}/index.tsx',
+        path: 'frontend/components/{{pascalCase name}}/{{pascalCase name}}.tsx',
         templateFile: 'plop/component.tsx.hbs',
+      },
+      {
+        type: 'add',
+        path: 'studio/src/schemas/modules/{{camelCase name}}.ts',
+        templateFile: 'plop/sanity-object-schema.ts.hbs',
       },
     ],
   });
@@ -127,7 +132,7 @@ export default function (
     },
   });
 
-  // Generatin a Sanity schema
+  // Generating a Sanity schema
   plop.setGenerator('create-schema', {
     description: 'Generate a Sanity schema file to `/studio/src`',
     prompts: [
@@ -201,27 +206,41 @@ export default function (
         message: 'Is this a page, document, or an object?',
         choices: [
           {
-            name: 'Page',
-            value: 'page',
+            name: 'Module',
+            value: 'module',
+          },
+          {
+            name: 'Object',
+            value: 'object',
           },
           {
             name: 'Document',
             value: 'document',
           },
           {
-            name: 'Object',
-            value: 'object',
+            name: 'Page',
+            value: 'page',
           },
         ],
       },
     ],
 
     actions: (data) => {
+      if (data.type === 'module') {
+        return [
+          {
+            type: 'add',
+            path: 'studio/src/schemas/{{type}}s/{{camelCase name}}.ts',
+            templateFile: 'plop/sanity-object-schema.ts.hbs',
+          },
+        ];
+      }
+
       if (data.type === 'page') {
         return [
           {
             type: 'add',
-            path: 'studio/src/schemas/{{type}}s/{{kebabCase name}}.ts',
+            path: 'studio/src/schemas/{{type}}s/{{camelCase name}}.ts',
             templateFile: 'plop/sanity-{{type}}-schema.ts.hbs',
           },
         ];
@@ -231,7 +250,7 @@ export default function (
         return [
           {
             type: 'add',
-            path: 'studio/src/schemas/{{type}}s/{{kebabCase name}}.ts',
+            path: 'studio/src/schemas/{{type}}s/{{camelCase name}}.ts',
             templateFile: 'plop/sanity-{{type}}-schema.ts.hbs',
           },
         ];
@@ -241,7 +260,7 @@ export default function (
         return [
           {
             type: 'add',
-            path: 'studio/src/schemas/{{type}}s/{{kebabCase name}}.ts',
+            path: 'studio/src/schemas/{{type}}s/{{camelCase name}}.ts',
             templateFile: 'plop/sanity-{{type}}-schema.ts.hbs',
           },
         ];
@@ -250,7 +269,7 @@ export default function (
       return [
         {
           type: 'add',
-          path: 'studio/src/schemas/{{kebabCase name}}.ts',
+          path: 'studio/src/schemas/{{camelCase name}}.ts',
           templateFile: 'plop/sanity-object-schema.ts.hbs',
         },
       ];

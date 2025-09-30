@@ -1,25 +1,37 @@
-import { defineType } from 'sanity';
-import { EditIcon } from '@sanity/icons';
-import { title } from '@/schema/sharedFields';
+import { ComponentIcon } from '@sanity/icons';
 
-// NOTE - if you have fields that should be excluded from stega encoding make sure to add to sanity/lib/client.ts excluded fields check
-// typically it will be fields with options that are used for toggling logic in a component and not used as content
-const {{camelCase name}} = defineType({
+import { description, image, title } from '@/schemas/sharedFields';
+
+import { defineField, defineType } from 'sanity';
+
+// Remember to change the icon to suit your new schema
+
+export const {{camelCase name}} = defineType({
   name: '{{camelCase name}}',
-  title: '{{pascalCase name}}',
+  title: '{{titleCase name}}',
   type: 'object',
-  icon: EditIcon,
-  fields: [title],
-    preview: {
+  icon: ComponentIcon,
+  fields: [
+    defineField({
+      ...title,
+    }),
+    defineField({
+      ...description,
+    }),
+    defineField({
+      ...image,
+    }),
+  ],
+  preview: {
     select: {
-    title: 'title',
+      title: 'title',
     },
     prepare({ title }) {
-    return {
-    title: title || 'No title',
-      subtitle: '{{name}}',
+      return {
+        title: '{{titleCase name}}',
+        subtitle: title || 'No title provided',
       };
     },
   },
 });
-export default {{camelCase name}};
+
