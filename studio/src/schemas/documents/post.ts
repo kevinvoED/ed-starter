@@ -1,4 +1,5 @@
 import { DocumentTextIcon } from '@sanity/icons';
+import { orderRankField } from '@sanity/orderable-document-list';
 
 import { format, parseISO } from 'date-fns';
 import { defineField, defineType } from 'sanity';
@@ -83,6 +84,7 @@ export const post = defineType({
       type: 'reference',
       to: [{ type: 'person' }],
     }),
+    orderRankField({ type: 'post', newItemPosition: 'before' }),
   ],
   // List preview configuration. https://www.sanity.io/docs/previews-list-views
   preview: {

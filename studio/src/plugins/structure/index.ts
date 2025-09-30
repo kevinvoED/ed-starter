@@ -4,26 +4,37 @@
  * Learn more: https://www.sanity.io/docs/structure-builder-introduction
  */
 
-import { CogIcon, EarthGlobeIcon, RedoIcon } from '@sanity/icons';
+import {
+  DocumentsIcon,
+  DocumentTextIcon,
+  EarthGlobeIcon,
+  RedoIcon,
+} from '@sanity/icons';
+import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list';
 
-import pluralize from 'pluralize-esm';
+import { defaultDocumentNode } from '@/plugins/structure/defaultDocumentNode';
+
 import type { StructureBuilder, StructureResolver } from 'sanity/structure';
 import { structureTool } from 'sanity/structure';
 
-const DISABLED_TYPES = ['settings', 'assist.instruction.context'];
-
-const structureResolver: StructureResolver = (S: StructureBuilder) =>
+const structureResolver: StructureResolver = (S: StructureBuilder, context) =>
   S.list()
     .title('Website Content')
-
     .items([
-      ...S.documentTypeListItems()
-        .filter(
-          (listItem) => !DISABLED_TYPES.includes(listItem.getId() as string),
-        )
-        .map((listItem) => {
-          return listItem.title(pluralize(listItem.getTitle() as string));
-        }),
+      orderableDocumentListDeskItem({
+        type: 'page',
+        title: 'Pages',
+        icon: DocumentsIcon,
+        S,
+        context,
+      }),
+      orderableDocumentListDeskItem({
+        type: 'post',
+        title: 'Posts',
+        icon: DocumentsIcon,
+        S,
+        context,
+      }),
       S.divider().title('Settings'),
       S.listItem()
         .title('Redirects & Rewrites')
@@ -35,14 +46,9 @@ const structureResolver: StructureResolver = (S: StructureBuilder) =>
         .title('Global Information')
         .child(S.document().schemaType('settings').documentId('siteSettings'))
         .icon(EarthGlobeIcon),
-      // Example of a folder
-      // S.listItem().title('Configuration').child(
-      //   S.list().title('Configuration').items([
-      //     // Add your configuration items here
-      //   ]),
-      // ),
     ]);
 
 export const structure = structureTool({
+  defaultDocumentNode,
   structure: structureResolver,
 });

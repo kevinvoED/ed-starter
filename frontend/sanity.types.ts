@@ -188,6 +188,7 @@ export type Page = {
     _key: string;
   } & InfoSection>;
   seo?: Seo;
+  orderRank?: string;
 };
 
 export type Seo = {
@@ -556,7 +557,7 @@ export type SanityAssetSourceData = {
 
 export type AllSanitySchemaTypes = Rewrite | Redirect | Configuration | PortableTextPlain | PortableText | CallToAction | InfoSection | Cta | Page | Seo | Post | Person | Settings | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | MediaTag | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
-// Source: ./sanity/lib/queries.ts
+// Source: ./sanity/queries/queries.ts
 // Variable: settingsQuery
 // Query: *[_type == "settings"][0]
 export type SettingsQueryResult = {
@@ -898,11 +899,6 @@ export type PagesSlugsResult = Array<{
   slug: string;
 }>;
 
-// Source: ./sanity/queries/index.ts
-// Variable: testQuery
-// Query: *[_type == "test"] {    ...,  }
-export type TestQueryResult = Array<never>;
-
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
@@ -915,6 +911,5 @@ declare module "@sanity/client" {
     "\n  *[_type == \"post\" && slug.current == $slug] [0] {\n    content[]{\n      ...,\n      markDefs[]{\n        ...,\n        _type == \"internalLink\" => {\n          \"slug\": @.reference->slug\n        },\n        \n  _type == \"cta\" => {\n    ...,\n    \"page\": page->slug.current,\n    \"post\": post->slug.current,\n    type,\n    label,\n    href,\n    openInNewTab\n  }\n\n      }\n    },\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": PostQueryResult;
     "\n  *[_type == \"post\" && defined(slug.current)]\n  {\"slug\": slug.current}\n": PostPagesSlugsResult;
     "\n  *[_type == \"page\" && defined(slug.current)]\n  {\"slug\": slug.current}\n": PagesSlugsResult;
-    "\n  *[_type == \"test\"] {\n    ...,\n  }\n": TestQueryResult;
   }
 }

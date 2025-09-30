@@ -1,4 +1,5 @@
 import { DocumentIcon } from '@sanity/icons';
+import { orderRankField } from '@sanity/orderable-document-list';
 
 import { description, seo, slug, title } from '@/schemas/sharedFields';
 
@@ -59,5 +60,6 @@ export const page = defineType({
     defineField({
       ...seo,
     }),
+    orderRankField({ type: 'page', newItemPosition: 'before' }),
   ],
 });
