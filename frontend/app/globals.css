@@ -3,12 +3,6 @@
 @plugin "@tailwindcss/typography";
 @plugin "tailwindcss-animate";
 
-
-@utility container {
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
  /* TODO: add container, fix colors, fonts, etc. */
 @theme {
   --color-framework: #000;
@@ -34,3 +28,20 @@
 
   --default-transition-duration: 250ms;
 }
+
+@utility container {
+  @apply mx-auto w-full max-w-none px-6 xl:max-w-[1512px] xl:px-12;
+}
+
+@utility grid-custom{
+  @apply grid gap-x-6 grid-cols-5 lg:grid-cols-12;
+}
+
+@utility grid-custom-md{
+  @apply grid gap-x-6 grid-cols-5 md:grid-cols-12;
+}
+
+@utility grid-custom-xl{
+  @apply grid gap-x-6 grid-cols-5 xl:grid-cols-12;
+}
+
