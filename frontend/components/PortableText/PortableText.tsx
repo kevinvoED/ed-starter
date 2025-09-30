@@ -12,9 +12,9 @@ import {
   type PortableTextBlock,
   type PortableTextComponents,
   PortableText as SanityPortableText,
-} from 'next-sanity';
+} from "next-sanity";
 
-import { Button } from '@/components/Button/Button';
+import { Button } from "@/components/Button/Button";
 
 export const PortableText = ({
   className,
@@ -41,7 +41,7 @@ export const PortableText = ({
     marks: {
       internalLink: ({ value, children }) => {
         const { slug = {} } = value;
-        const href = `/${slug.current}`;
+        const href = `/${slug}`;
         return <a href={href}>{children}</a>;
       },
       link: ({ value, children }) => {
@@ -58,7 +58,7 @@ export const PortableText = ({
   };
 
   return (
-    <div className={['prose', className].filter(Boolean).join(' ')}>
+    <div className={["prose", className].filter(Boolean).join(" ")}>
       <SanityPortableText components={components} value={value} />
     </div>
   );

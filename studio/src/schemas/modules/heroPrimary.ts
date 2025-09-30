@@ -1,6 +1,14 @@
 import { DashboardIcon } from '@sanity/icons';
 
-import { cta, ctas, description, image, title } from '@/schemas/sharedFields';
+import {
+  cta,
+  ctas,
+  description,
+  image,
+  portableText,
+  portableTextPlain,
+  title,
+} from '@/schemas/sharedFields';
 
 import { defineField, defineType } from 'sanity';
 
@@ -21,6 +29,9 @@ export const heroPrimary = defineType({
     }),
     defineField({
       ...ctas,
+    }),
+    defineField({
+      ...portableText,
     }),
   ],
   preview: {

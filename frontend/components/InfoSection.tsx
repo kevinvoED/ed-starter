@@ -1,8 +1,8 @@
-import { type PortableTextBlock } from 'next-sanity';
+import { type PortableTextBlock } from "next-sanity";
 
-import { SanityImage } from '@/components/Image/SanityImage';
-import { PortableText } from '@/components/PortableText/PortableText';
-import type { InfoSection } from '@/sanity.types';
+import { SanityImage } from "@/components/Image/SanityImage";
+import { PortableText } from "@/components/PortableText/PortableText";
+import type { InfoSection } from "@/sanity.types";
 
 export default function CTA({
   heading,
@@ -11,6 +11,7 @@ export default function CTA({
   image,
   images,
 }: InfoSection) {
+  console.log(content);
   return (
     <section className="container my-12">
       <div className="max-w-3xl">

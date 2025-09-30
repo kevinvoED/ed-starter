@@ -1,10 +1,13 @@
 import { Suspense } from "react";
 
+import { PortableText, type PortableTextBlock } from "next-sanity";
+
 import { Button } from "@/components/Button/Button";
 import { ArrowRightIcon } from "@/components/Icons/ArrowRightIcon";
 import type { CallToAction } from "@/sanity.types";
 
-export default function CTA({ heading, text, cta }: CallToAction) {
+export default function CTA({ heading, text, cta, content }: CallToAction) {
+  console.log(content);
   return (
     <div className="container my-12">
       <div className="max-w-3xl rounded-2xl border border-gray-100 bg-gray-50">
@@ -30,9 +33,13 @@ export default function CTA({ heading, text, cta }: CallToAction) {
                 </Button>
               )}
 
-              <Button cta={cta} variant="icon" size="icon">
+              <Button cta={cta} variant="icon" hasArrow={false} size="icon">
                 <ArrowRightIcon />
               </Button>
+
+              {content?.length && (
+                <PortableText value={content as PortableTextBlock[]} />
+              )}
             </div>
           </Suspense>
         </div>

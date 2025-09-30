@@ -1,5 +1,8 @@
+import type { PortableTextBlock } from "next-sanity";
+
 import { Button } from "@/components/Button/Button";
 import { SanityImage } from "@/components/Image/SanityImage";
+import { PortableText } from "@/components/PortableText/PortableText";
 import type { HeroPrimary as HeroPrimaryProps } from "@/sanity.types";
 
 export const HeroPrimary = ({
@@ -7,6 +10,7 @@ export const HeroPrimary = ({
   description,
   image,
   ctas,
+  content,
 }: HeroPrimaryProps) => {
   return (
     <div className="relative overflow-hidden py-12 lg:py-25">
@@ -27,6 +31,10 @@ export const HeroPrimary = ({
               {cta.label}
             </Button>
           ))}
+        </div>
+
+        <div className="col-span-full space-x-2 lg:col-span-5 lg:col-start-1">
+          {content && <PortableText value={content as PortableTextBlock[]} />}
         </div>
       </div>
     </div>

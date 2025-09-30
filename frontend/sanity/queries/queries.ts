@@ -51,44 +51,45 @@ const ctasFields = /* groq */ `
   }
 `;
 
+const internalLinkFields = /* groq */ `
+  _type == "internalLink" => {
+    "slug": @.reference->slug.current,
+  }
+`;
+
 export const portableTextFields = /* groq */ `
-  _type == "portableText" => {
-    _type,
-    _key,
-    body[]{
+  content[]{
+    ...,
+    markDefs[]{
       ...,
-      markDefs[]{
-        ...,
-        _type == "internalLink" => {
-          "slug": @.reference->slug
-        }
-      }
+      ${internalLinkFields}
+    },
+    ${ctaReference},
+  }
+`;
+
+export const portableTextPlainFields = /* groq */ `
+  content[]{
+    ...,
+    markDefs[]{
+      ...,
+      ${internalLinkFields}
     }
-  },
+  }
 `;
 
 export const callToActionQuery = /* groq */ `
   _type == "callToAction" => {
     _key,
     ${ctaFields},
-    ${portableTextFields}
+    ${portableTextPlainFields}
   }
 `;
 
 export const infoSectionQuery = /* groq */ `
   _type == "infoSection" => {
     _key,
-    content[]{
-      ...,
-      markDefs[]{
-        ...,
-        ${ctaReference}
-      },
-      ${ctaReference},
-      _type == "internalLink" => {
-        "slug": @.reference->slug
-      }
-    }
+    ${portableTextFields}
   }
 `;
 
@@ -99,6 +100,7 @@ export const heroPrimaryQuery = /* groq */ `
     description,
     image,
     ${ctasFields},
+    ${portableTextFields},
   }
 `;
 
@@ -146,7 +148,7 @@ export const postQuery = defineQuery(`
       markDefs[]{
         ...,
         _type == "internalLink" => {
-          "slug": @.reference->slug
+          "slug": @.reference->slug.current
         },
         ${ctaReference}
       }
