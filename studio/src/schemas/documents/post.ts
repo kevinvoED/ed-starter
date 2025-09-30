@@ -4,11 +4,6 @@ import { orderRankField } from '@sanity/orderable-document-list';
 import { format, parseISO } from 'date-fns';
 import { defineField, defineType } from 'sanity';
 
-/**
- * Post schema.  Define and edit the fields for the 'post' content type.
- * Learn more: https://www.sanity.io/docs/schema-types
- */
-
 export const post = defineType({
   name: 'post',
   title: 'Post',
@@ -62,7 +57,16 @@ export const post = defineType({
           validation: (rule) => {
             // Custom validation to ensure alt text is provided if the image is present. https://www.sanity.io/docs/validation
             return rule.custom((alt, context) => {
-              if ((context.document?.coverImage as any)?.asset?._ref && !alt) {
+              const coverImage = context?.document?.coverImage as
+                | { asset?: { _ref?: string } }
+                | undefined;
+              if (
+                coverImage &&
+                typeof coverImage === 'object' &&
+                coverImage.asset &&
+                typeof coverImage.asset._ref === 'string' &&
+                !alt
+              ) {
                 return 'Required';
               }
               return true;
@@ -86,7 +90,6 @@ export const post = defineType({
     }),
     orderRankField({ type: 'post', newItemPosition: 'before' }),
   ],
-  // List preview configuration. https://www.sanity.io/docs/previews-list-views
   preview: {
     select: {
       title: 'title',

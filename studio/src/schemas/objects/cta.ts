@@ -36,7 +36,6 @@ export const cta = defineType({
       type: 'url',
       hidden: ({ parent }) => parent?.type !== 'href',
       validation: (Rule) =>
-        // Custom validation to ensure URL is provided if the link type is 'href'
         Rule.custom((value, context) => {
           const parent = context.parent as { type?: string };
           if (parent?.type === 'href' && !value) {
@@ -52,7 +51,6 @@ export const cta = defineType({
       to: [{ type: 'page' }],
       hidden: ({ parent }) => parent?.type !== 'page',
       validation: (Rule) =>
-        // Custom validation to ensure page reference is provided if the link type is 'page'
         Rule.custom((value, context) => {
           const parent = context.parent as { type?: string };
           if (parent?.type === 'page' && !value) {
@@ -68,7 +66,6 @@ export const cta = defineType({
       to: [{ type: 'post' }],
       hidden: ({ parent }) => parent?.type !== 'post',
       validation: (Rule) =>
-        // Custom validation to ensure post reference is provided if the link type is 'post'
         Rule.custom((value, context) => {
           const parent = context.parent as { type?: string };
           if (parent?.type === 'post' && !value) {

@@ -4,12 +4,7 @@
  * Learn more: https://www.sanity.io/docs/structure-builder-introduction
  */
 
-import {
-  DocumentsIcon,
-  DocumentTextIcon,
-  EarthGlobeIcon,
-  RedoIcon,
-} from '@sanity/icons';
+import { DocumentsIcon, EarthGlobeIcon, RedoIcon } from '@sanity/icons';
 import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list';
 
 import { defaultDocumentNode } from '@/plugins/structure/defaultDocumentNode';
