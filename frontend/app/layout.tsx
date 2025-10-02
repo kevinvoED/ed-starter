@@ -62,10 +62,9 @@ export default async function RootLayout({
   const { isEnabled: isDraftMode } = await draftMode();
 
   return (
-    <html lang="en" className={`${inter.variable} `}>
+    <html lang="en" className={`${inter.variable}`}>
       <body>
         <section className="min-h-screen pt-24">
-          {/* The <Toaster> component is responsible for rendering toast notifications used in /app/client-utils.ts and /app/components/DraftModeToast.tsx */}
           <Toaster />
           {isDraftMode && (
             <>
@@ -75,7 +74,7 @@ export default async function RootLayout({
           )}
           <SanityLive onError={handleError} />
           <Header />
-          <main className="">{children}</main>
+          <main>{children}</main>
         </section>
         <SpeedInsights />
       </body>

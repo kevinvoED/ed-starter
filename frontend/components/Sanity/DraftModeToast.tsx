@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { useEffect, useTransition } from 'react';
+import { useEffect, useTransition } from "react";
 
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import {
   useDraftModeEnvironment,
   useIsPresentationTool,
-} from 'next-sanity/hooks';
+} from "next-sanity/hooks";
 
-import { disableDraftMode } from '@/lib/actions/actions';
+import { disableDraftMode } from "@/lib/actions/actions";
 
-import { toast } from 'sonner';
+import { toast } from "sonner";
 
 export default function DraftModeToast() {
   const isPresentationTool = useIsPresentationTool();
@@ -20,17 +20,15 @@ export default function DraftModeToast() {
 
   useEffect(() => {
     if (isPresentationTool === false) {
-      /**
-       * We delay the toast in case we're inside Presentation Tool
-       */
-      const toastId = toast('Draft Mode Enabled', {
+      // We delay the toast in case we're inside Presentation Tool
+      const toastId = toast("Draft Mode Enabled", {
         description:
-          env === 'live'
-            ? 'Content is live, refreshing automatically'
-            : 'Refresh manually to see changes',
+          env === "live"
+            ? "Content is live, refreshing automatically"
+            : "Refresh manually to see changes",
         duration: Infinity,
         action: {
-          label: 'Disable',
+          label: "Disable",
           onClick: async () => {
             await disableDraftMode();
             startTransition(() => {
@@ -47,7 +45,7 @@ export default function DraftModeToast() {
 
   useEffect(() => {
     if (pending) {
-      const toastId = toast.loading('Disabling draft mode...');
+      const toastId = toast.loading("Disabling draft mode...");
       return () => {
         toast.dismiss(toastId);
       };

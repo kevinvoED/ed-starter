@@ -20,7 +20,6 @@ type Props = {
 export async function generateStaticParams() {
   const { data } = await sanityFetch({
     query: postPagesSlugs,
-    // Use the published perspective in generateStaticParams
     perspective: "published",
     stega: false,
   });
@@ -39,7 +38,6 @@ export async function generateMetadata(
   const { data: post } = await sanityFetch({
     query: postQuery,
     params,
-    // Metadata should never contain stega
     stega: false,
   });
   const previousImages = (await parent).openGraph?.images || [];
