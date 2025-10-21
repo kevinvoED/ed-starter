@@ -13,19 +13,19 @@ const animationConfig = {
 		to: { opacity: 1 },
 	},
 	fadeInUp: {
-		from: { opacity: 0, y: 30 },
+		from: { opacity: 0, y: 25 },
 		to: { opacity: 1, y: 0 },
 	},
 	fadeInDown: {
-		from: { opacity: 0, y: -30 },
+		from: { opacity: 0, y: -25 },
 		to: { opacity: 1, y: 0 },
 	},
 	fadeInLeft: {
-		from: { opacity: 0, x: -30 },
+		from: { opacity: 0, x: -25 },
 		to: { opacity: 1, x: 0 },
 	},
 	fadeInRight: {
-		from: { opacity: 0, x: 30 },
+		from: { opacity: 0, x: 25 },
 		to: { opacity: 1, x: 0 },
 	},
 };
@@ -62,10 +62,8 @@ export const Transition = ({
 	useGSAP(() => {
 		if (!ref.current) return;
 
-		// Set initial state
 		gsap.set(ref.current, config.from);
 
-		// Create the animation with ScrollTrigger
 		gsap.to(ref.current, {
 			...config.to,
 			duration: Number(duration),

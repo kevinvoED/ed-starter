@@ -8,7 +8,7 @@ import { stegaClean } from "@sanity/client/stega";
 import { cn } from "@/lib/utils/cn";
 import { urlForImage } from "@/sanity/lib/utils";
 
-type CoverImageProps = {
+type SanityImageProps = {
 	image: SanityImageType;
 	sizes?: string;
 	priority?: boolean;
@@ -22,7 +22,7 @@ export const SanityImage = ({
 	quality,
 	priority = false,
 	className,
-}: CoverImageProps) => {
+}: SanityImageProps) => {
 	if (!image || !image.asset?._ref) {
 		return null;
 	}
