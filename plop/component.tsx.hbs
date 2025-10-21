@@ -1,6 +1,6 @@
 import type { {{ pascalCase name }} as {{ pascalCase name }}Props } from "@/sanity.types";
 import { Button } from "@/components/Button/Button";
-import { SanityImage } from "@/components/Image/SanityImage";
+import { SanityImage } from "@/components/Sanity/SanityImage";
 
 export const {{ pascalCase name }} = ({
   title,
@@ -9,7 +9,7 @@ export const {{ pascalCase name }} = ({
   cta
 }: {{ pascalCase name }}Props) => {
   return (
-    <div className="relative overflow-hiddenpy-12 lg:py-25">
+    <div className="relative overflow-hidden py-12 lg:py-25">
       <div className="grid-custom container gap-y-6">
         <h2 className="col-span-full lg:col-span-5">{title}</h2>
         

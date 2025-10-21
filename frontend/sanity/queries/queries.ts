@@ -23,7 +23,7 @@ const postFields = /* groq */ `
   "author": author->{firstName, lastName, picture},
 `;
 
-const ctaReference = /* groq */ `
+const ctaFields = /* groq */ `
   _type == "cta" => {
     ...,
     "page": page->slug.current,
@@ -35,17 +35,10 @@ const ctaReference = /* groq */ `
   }
 `;
 
-const _ctaFields = /* groq */ `
-  cta {
-    ...,
-    ${ctaReference}
-  }
-`;
-
 const ctasFields = /* groq */ `
   ctas[] {
     ...,
-    ${ctaReference}
+    ${ctaFields}
   }
 `;
 
@@ -62,7 +55,7 @@ export const portableTextFields = /* groq */ `
       ...,
       ${internalLinkFields}
     },
-    ${ctaReference},
+    ${ctaFields},
   }
 `;
 
@@ -101,6 +94,14 @@ export const getPageQuery = defineQuery(`
   }
 `);
 
+export const navigationQuery = defineQuery(`*[_type == 'navigation'][0]{
+  _key,
+  title,
+  description,
+  image,
+  ${ctaFields},
+}`);
+
 export const settingsQuery = defineQuery(`*[_type == 'settings'][0]{
   title,
   description,
@@ -137,7 +138,7 @@ export const postQuery = defineQuery(`
         _type == "internalLink" => {
           "slug": @.reference->slug.current
         },
-        ${ctaReference}
+        ${ctaFields}
       }
     },
     ${postFields}

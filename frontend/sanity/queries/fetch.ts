@@ -4,15 +4,17 @@
  *
  * Please keep this file organized and well documented
  * You can also pass additional options to the sanityFetch function here, such as `params`, `perspective` and `stega`
+ * It can be invoked on the frontend, primarily by pages, e.g. `const data = await getNavigation();`
  */
 
-// import type { TestQueryResult } from "@/sanity.types";
-// import { sanityFetch } from "@/sanity/lib/live";
+import type { NavigationQueryResult } from "@/sanity.types";
+import { sanityFetch } from "@/sanity/lib/live";
+import { navigationQuery } from "@/sanity/queries/queries";
 
-// export const fetchTestQuery =
-//   async (): Promise<TestQueryResult> => {
-//     const { data } = await sanityFetch({
-//       query: testQuery,
-//     });
-//     return data;
-//   };
+export const getNavigation = async (): Promise<NavigationQueryResult> => {
+	const { data } = await sanityFetch({
+		query: navigationQuery,
+	});
+
+	return data;
+};

@@ -50,9 +50,5 @@ export default async function Page(props: Props) {
 		return <div className="py-40">Yo</div>;
 	}
 
-	return (
-		<div>
-			<PageBuilderPage page={page as GetPageQueryResult} />
-		</div>
-	);
+	return <PageBuilderPage page={page as GetPageQueryResult} />;
 }

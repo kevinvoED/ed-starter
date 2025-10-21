@@ -5,7 +5,12 @@
  */
 
 import type { StructureBuilder, StructureResolver } from "sanity/structure";
-import { DocumentsIcon, EarthGlobeIcon, RedoIcon } from "@sanity/icons";
+import {
+	DocumentsIcon,
+	EarthGlobeIcon,
+	MenuIcon,
+	RedoIcon,
+} from "@sanity/icons";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import { defaultDocumentNode } from "@/plugins/defaultDocumentNode";
 import { structureTool } from "sanity/structure";
@@ -28,6 +33,11 @@ const structureResolver: StructureResolver = (S: StructureBuilder, context) =>
 				S,
 				context,
 			}),
+			S.divider().title("Navigation"),
+			S.listItem()
+				.title("Navbar")
+				.child(S.document().schemaType("navigation").documentId("navigation"))
+				.icon(MenuIcon),
 			S.divider().title("Settings"),
 			S.listItem()
 				.title("Redirects & Rewrites")

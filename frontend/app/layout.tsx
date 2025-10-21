@@ -3,7 +3,6 @@ import type { SanityImageType } from "@/lib/utils/type";
 import { Inter } from "next/font/google";
 import { draftMode } from "next/headers";
 import { VisualEditing } from "next-sanity";
-import { Header } from "@/components/Header";
 import { DraftModeToast } from "@/components/Sanity/DraftModeToast";
 import { handleError } from "@/lib/utils/handle-error";
 import { SanityLive, sanityFetch } from "@/sanity/lib/live";
@@ -12,6 +11,8 @@ import { settingsQuery } from "@/sanity/queries/queries";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "sonner";
 import "./globals.css";
+import { Navigation } from "@/components/Navigation/Navigation";
+import { getNavigation } from "@/sanity/queries/fetch";
 
 /**
  * Generate metadata for the page.
@@ -50,22 +51,21 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }) {
 	const { isEnabled: isDraftMode } = await draftMode();
+	const data = await getNavigation();
 
 	return (
 		<html lang="en" className={`${inter.variable}`}>
 			<body>
-				<section className="min-h-screen pt-24">
-					<Toaster />
-					{isDraftMode && (
-						<>
-							<DraftModeToast />
-							<VisualEditing />
-						</>
-					)}
-					<SanityLive onError={handleError} />
-					<Header />
-					<main>{children}</main>
-				</section>
+				<Toaster />
+				{isDraftMode && (
+					<>
+						<DraftModeToast />
+						<VisualEditing />
+					</>
+				)}
+				<SanityLive onError={handleError} />
+				<Navigation data={data} />
+				<main>{children}</main>
 				<SpeedInsights />
 			</body>
 		</html>

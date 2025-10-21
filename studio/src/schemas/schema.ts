@@ -13,6 +13,7 @@ import { settings } from "@/schemas/objects/settings";
 
 import type { SchemaTypeDefinition } from "sanity";
 import { heroPrimary } from "@/schemas/modules/heroPrimary";
+import { navigation } from "@/schemas/documents/navigation";
 
 /*
  * Export an array of all the schema types.
@@ -27,6 +28,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
 	page,
 	post,
 	person,
+	navigation,
 	// Objects (order matters for both linear and circular references)
 	cta,
 	seo,

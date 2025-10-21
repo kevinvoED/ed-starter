@@ -167,6 +167,30 @@ export type PortableText = Array<{
   _key: string;
 } & Cta>;
 
+export type Navigation = {
+  _id: string;
+  _type: "navigation";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  description?: string;
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  cta?: Cta;
+};
+
 export type Cta = {
   _type: "cta";
   type?: "page" | "href" | "post";
@@ -193,8 +217,8 @@ export type Page = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title: string;
   slug: Slug;
+  title: string;
   description?: string;
   modules?: Array<{
     _key: string;
@@ -568,7 +592,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = HeroPrimary | Rewrite | Redirect | Configuration | PortableTextPlain | PortableText | Cta | Page | Seo | Post | Person | Settings | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | MediaTag | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = HeroPrimary | Rewrite | Redirect | Configuration | PortableTextPlain | PortableText | Navigation | Cta | Page | Seo | Post | Person | Settings | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | MediaTag | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/queries/queries.ts
 // Variable: getPageQuery
@@ -652,6 +676,26 @@ export type GetPageQueryResult = {
       markDefs: null;
     }> | null;
   }> | null;
+} | null;
+// Variable: navigationQuery
+// Query: *[_type == 'navigation'][0]{  _key,  title,  description,  image,    _type == "cta" => {    ...,    "page": page->slug.current,    "post": post->slug.current,    type,    label,    href,    openInNewTab  },}
+export type NavigationQueryResult = {
+  _key: null;
+  title: string;
+  description: string | null;
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
 } | null;
 // Variable: settingsQuery
 // Query: *[_type == 'settings'][0]{  title,  description,  socialMedia,  ogImage,}
@@ -892,6 +936,7 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n  *[_type == 'page' && slug.current == $slug][0]{\n    _id,\n    _type,\n    title,\n    slug,\n    description,\n    \"modules\": modules[]{\n      ...,\n      \n  _type == \"heroPrimary\" => {\n    _key,\n    title,\n    description,\n    image,\n    \n  ctas[] {\n    ...,\n    \n  _type == \"cta\" => {\n    ...,\n    \"page\": page->slug.current,\n    \"post\": post->slug.current,\n    type,\n    label,\n    href,\n    openInNewTab\n  }\n\n  }\n,\n    \n  content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == \"internalLink\" => {\n    \"slug\": @.reference->slug.current,\n  }\n\n    },\n    \n  _type == \"cta\" => {\n    ...,\n    \"page\": page->slug.current,\n    \"post\": post->slug.current,\n    type,\n    label,\n    href,\n    openInNewTab\n  }\n,\n  }\n,\n  }\n\n    },\n  }\n": GetPageQueryResult;
+    "*[_type == 'navigation'][0]{\n  _key,\n  title,\n  description,\n  image,\n  \n  _type == \"cta\" => {\n    ...,\n    \"page\": page->slug.current,\n    \"post\": post->slug.current,\n    type,\n    label,\n    href,\n    openInNewTab\n  }\n,\n}": NavigationQueryResult;
     "*[_type == 'settings'][0]{\n  title,\n  description,\n  socialMedia,\n  ogImage,\n}": SettingsQueryResult;
     "\n  *[_type == \"page\" || _type == \"post\" && defined(slug.current)] | order(_type asc) {\n    \"slug\": slug.current,\n    _type,\n    _updatedAt,\n  }\n": SitemapDataResult;
     "\n  *[_type == \"post\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": AllPostsQueryResult;

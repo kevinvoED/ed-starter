@@ -67,30 +67,28 @@ export default async function PostPage(props: Props) {
 
 	return (
 		<>
-			<div className="">
-				<div className="container my-12 grid gap-12 lg:my-24">
-					<div>
-						<div className="mb-6 grid gap-6 border-gray-100 border-b pb-6">
-							<div className="flex max-w-3xl flex-col gap-6">
-								<h2 className="font-bold text-4xl text-gray-900 tracking-tight sm:text-5xl lg:text-7xl">
-									{post.title}
-								</h2>
-							</div>
+			<div className="container my-12 grid gap-12 lg:my-24">
+				<div>
+					<div className="mb-6 grid gap-6 border-gray-100 border-b pb-6">
+						<div className="flex max-w-3xl flex-col gap-6">
+							<h2 className="font-bold text-4xl text-gray-900 tracking-tight sm:text-5xl lg:text-7xl">
+								{post.title}
+							</h2>
 						</div>
-						<article className="grid max-w-4xl gap-6">
-							<div className="">
-								{post?.coverImage && (
-									<SanityImage image={post.coverImage} priority />
-								)}
-							</div>
-							{post.content?.length && (
-								<PortableText
-									className="max-w-2xl"
-									value={post.content as PortableTextBlock[]}
-								/>
-							)}
-						</article>
 					</div>
+					<article className="grid max-w-4xl gap-6">
+						<div className="">
+							{post?.coverImage && (
+								<SanityImage image={post.coverImage} priority />
+							)}
+						</div>
+						{post.content?.length && (
+							<PortableText
+								className="max-w-2xl"
+								value={post.content as PortableTextBlock[]}
+							/>
+						)}
+					</article>
 				</div>
 			</div>
 			<div className="border-gray-100 border-t bg-gray-50">
