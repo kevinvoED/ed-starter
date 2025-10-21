@@ -48,7 +48,7 @@
 							],
 							["!@/styles/**", ":ALIAS:", "@/**"],
 							["@/components/**", "@components/**", "radix-ui/**"],
-							["@utility/**", "./**"]
+							["@utility/**", "./**", "./globals.css"]
 						]
 					}
 				}
@@ -73,7 +73,19 @@
 					},
 					"style": {
 						"noNonNullAssertion": "off",
-						"useConst": "error"
+						"useConst": "error",
+						"noNegationElse": "error",
+						"noNestedTernary": "error",
+						"noUselessElse": "error",
+						"noYodaExpression": "error",
+						"noSubstr": "error",
+						"noUnusedTemplateLiteral": "error",
+						"useConsistentArrayType": {
+							"options": {
+								"syntax": "shorthand"
+							}
+						},
+						"useCollapsedElseIf": "error"
 					},
 					"suspicious": {
 						"noEmptyBlockStatements": "off",
@@ -99,6 +111,45 @@
 				"rules": {
 					"suspicious": {
 						"noUnknownAtRules": "off"
+					}
+				}
+			}
+		},
+		{
+			"includes": [
+				"frontend/components/**/*.ts",
+				"frontend/components/**/*.tsx",
+				"frontend/components/**/*.js",
+				"frontend/components/**/*.jsx"
+			],
+			"linter": {
+				"rules": {
+					"style": {
+						"useFilenamingConvention": {
+							"level": "error",
+							"options": {
+								"strictCase": true,
+								"requireAscii": true,
+								"filenameCases": ["PascalCase"]
+							}
+						}
+					}
+				}
+			}
+		},
+		{
+			"includes": ["studio/src/schemas/**/*.ts"],
+			"linter": {
+				"rules": {
+					"style": {
+						"useFilenamingConvention": {
+							"level": "error",
+							"options": {
+								"strictCase": true,
+								"requireAscii": true,
+								"filenameCases": ["camelCase"]
+							}
+						}
 					}
 				}
 			}

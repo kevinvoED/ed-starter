@@ -26,7 +26,13 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (
 							switch (doc._type) {
 								case "page": {
 									const slug = doc.slug?.current;
-									path = slug === "index" ? "/" : slug ? `/${slug}` : "/";
+									if (slug === "index") {
+										path = "/";
+									} else if (slug) {
+										path = `/${slug}`;
+									} else {
+										path = "/";
+									}
 									break;
 								}
 								case "post":

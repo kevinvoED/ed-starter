@@ -1,10 +1,8 @@
-import "./globals.css";
-
 import type { Metadata } from "next";
-import type { ImageType } from "@/lib/utils/type";
+import type { SanityImageType } from "@/lib/utils/type";
 import { Inter } from "next/font/google";
 import { draftMode } from "next/headers";
-import { toPlainText, VisualEditing } from "next-sanity";
+import { VisualEditing } from "next-sanity";
 import Header from "@/components/Header";
 import DraftModeToast from "@/components/Sanity/DraftModeToast";
 import { handleError } from "@/lib/utils/handle-error";
@@ -13,6 +11,7 @@ import { resolveOpenGraphImage } from "@/sanity/lib/utils";
 import { settingsQuery } from "@/sanity/queries/queries";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "sonner";
+import "./globals.css";
 
 /**
  * Generate metadata for the page.
@@ -25,21 +24,14 @@ export async function generateMetadata(): Promise<Metadata> {
 	});
 	const title = settings?.title || "";
 	const description = settings?.description || "";
+	const ogImage = resolveOpenGraphImage(settings?.ogImage as SanityImageType);
 
-	const ogImage = resolveOpenGraphImage(settings?.ogImage as ImageType);
-	let metadataBase: URL | undefined;
-	try {
-		metadataBase = settings?.ogImage?.metadataBase
-			? new URL(settings.ogImage.metadataBase)
-			: undefined;
-	} catch {}
 	return {
-		metadataBase,
 		title: {
 			template: `%s | ${title}`,
 			default: title,
 		},
-		description: toPlainText(description),
+		description: description,
 		openGraph: {
 			images: ogImage ? [ogImage] : [],
 		},

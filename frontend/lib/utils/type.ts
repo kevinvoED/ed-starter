@@ -1,13 +1,13 @@
-import type { GetPageQueryResult, Post } from "@/sanity.types";
+import type {
+	internalGroqTypeReferenceTo,
+	Post,
+	SanityImageCrop,
+	SanityImageHotspot,
+} from "@/sanity.types";
 
 export type ImageType = Extract<
 	NonNullable<NonNullable<Post>["coverImage"]>,
 	{ _type: "image" }
->;
-
-export type ModuleType = Extract<
-	NonNullable<NonNullable<GetPageQueryResult>["modules"]>[number],
-	{ _type: "" }
 >;
 
 export type SanityImageType = {
@@ -15,21 +15,11 @@ export type SanityImageType = {
 		_ref: string;
 		_type: "reference";
 		_weak?: boolean;
+		[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 	};
-	crop?: {
-		_type: "sanity.imageCrop";
-		top: number;
-		bottom: number;
-		left: number;
-		right: number;
-	};
-	hotspot?: {
-		_type: "sanity.imageHotspot";
-		x: number;
-		y: number;
-		height: number;
-		width: number;
-	};
+	media?: unknown;
+	hotspot?: SanityImageHotspot;
+	crop?: SanityImageCrop;
 	alt?: string;
 	_type: "image";
 };
