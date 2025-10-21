@@ -12,6 +12,8 @@
 		"typegen": "npm-run-all --serial --print-label typegen:studio typegen:next",
 		"typegen:next": "npm run typegen --workspace=frontend",
 		"typegen:studio": "npm run typegen --workspace=studio",
+		"build": "npm-run-all --serial --print-label format typegen build:frontend",
+		"build:frontend": "npm run build --workspace=frontend",
 		"format": "biome format --fix && biome check --fix",
 		"lint": "npm run lint --workspace=frontend",
 		"type-check": "npm run type-check --workspaces",
