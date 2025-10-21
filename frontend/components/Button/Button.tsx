@@ -44,10 +44,12 @@ const ButtonVariants = cva(
 );
 
 type ButtonProps = {
-	cta: CtaType | undefined;
+	cta?: CtaType | undefined;
 	children: React.ReactNode;
 	className?: string;
 	hasArrow?: boolean;
+	href?: string;
+	openInNewTab?: boolean;
 } & VariantProps<typeof ButtonVariants>;
 
 export const Button = ({
@@ -57,12 +59,34 @@ export const Button = ({
 	variant,
 	size,
 	disabled,
+	href,
+	openInNewTab = false,
 	hasArrow = true,
 }: ButtonProps) => {
-	const resolvedUrl = handleResolveCta(cta);
+	const resolvedUrl = cta && handleResolveCta(cta);
 	const isNewTab = cta?.openInNewTab;
 
-	if (typeof resolvedUrl === "string") {
+	// If an explicit href prop is provided, override the Button with that url
+	if (href && !cta) {
+		return (
+			<Link
+				tabIndex={disabled ? -1 : 0}
+				href={href}
+				target={openInNewTab ? "_blank" : undefined}
+				rel={openInNewTab ? "noopener noreferrer" : undefined}
+				className={cn(
+					ButtonVariants({ variant: variant, size, disabled, className }),
+				)}
+			>
+				{children}
+				{hasArrow && !openInNewTab && <ArrowRightIcon />}
+				{hasArrow && openInNewTab && <ArrowRightIcon className="-rotate-45" />}
+			</Link>
+		);
+	}
+
+	// Otherwise, if the cta is valid, render the button using the cta
+	if (cta && !href && typeof resolvedUrl === "string") {
 		return (
 			<Link
 				tabIndex={disabled ? -1 : 0}

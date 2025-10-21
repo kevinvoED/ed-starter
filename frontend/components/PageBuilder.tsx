@@ -2,8 +2,8 @@
 
 import type { SanityDocument } from "next-sanity";
 import type { GetPageQueryResult } from "@/sanity.types";
-import Link from "next/link";
 import { useOptimistic } from "next-sanity/hooks";
+import { Button } from "@/components/Button/Button";
 import { ModuleBuilder } from "@/components/ModuleBuilder";
 import { studioUrl } from "@/sanity/lib/api";
 
@@ -44,22 +44,21 @@ function renderEmptyState(page: GetPageQueryResult) {
 	}
 
 	return (
-		<div className="container">
-			<h1 className="font-extrabold text-4xl text-gray-900 tracking-tight sm:text-5xl">
-				This page has no content!
-			</h1>
-			<p className="mt-2 text-base text-gray-500">
-				Open the page in Sanity Studio to add content.
-			</p>
-			<div className="mt-10 flex">
-				<Link
-					className="mr-6 flex items-center gap-2 rounded-full bg-black px-6 py-3 text-white transition-colors duration-200 hover:bg-brand focus:bg-blue"
+		<div className="container space-y-6 mt-12">
+			<div className="space-y-2 text-center">
+				<h2 className="type-sans-5640">Oops, there is nothing here yet!</h2>
+				<p className="type-sans-1440 text-gray-500">
+					Click the button below to start adding content.
+				</p>
+			</div>
+
+			<div className="flex justify-center">
+				<Button
 					href={`${studioUrl}/structure/intent/edit/template=page;type=page;path=pageBuilder;id=${page._id}`}
-					target="_blank"
-					rel="noopener noreferrer"
+					openInNewTab={true}
 				>
-					Add content to this page
-				</Link>
+					Open in Sanity Studio
+				</Button>
 			</div>
 		</div>
 	);

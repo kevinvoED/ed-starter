@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import type { GetPageQueryResult } from "@/sanity.types";
-import Head from "next/head";
 import PageBuilderPage from "@/components/PageBuilder";
 import { sanityFetch } from "@/sanity/lib/live";
 import { getPageQuery, pagesSlugs } from "@/sanity/queries/queries";
@@ -46,29 +45,13 @@ export default async function Page(props: Props) {
 		sanityFetch({ query: getPageQuery, params }),
 	]);
 
+	// TODO: render 404 notFound() instead
 	if (!page?._id) {
 		return <div className="py-40">Yo</div>;
 	}
 
 	return (
-		<div className="my-12 lg:my-24">
-			<Head>
-				<title>{page.title}</title>
-			</Head>
-			<div className="">
-				<div className="container">
-					<div className="border-gray-100 border-b pb-6">
-						<div className="max-w-3xl">
-							<h2 className="font-bold text-4xl text-gray-900 tracking-tight sm:text-5xl lg:text-7xl">
-								{page.title}
-							</h2>
-							<p className="mt-4 font-light text-base text-gray-600 uppercase leading-relaxed lg:text-lg">
-								{page.description}
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
+		<div>
 			<PageBuilderPage page={page as GetPageQueryResult} />
 		</div>
 	);

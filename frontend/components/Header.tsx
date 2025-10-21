@@ -2,7 +2,7 @@ import Link from "next/link";
 import { sanityFetch } from "@/sanity/lib/live";
 import { settingsQuery } from "@/sanity/queries/queries";
 
-export default async function Header() {
+export const Header = async () => {
 	const { data: settings } = await sanityFetch({
 		query: settingsQuery,
 	});
@@ -50,4 +50,4 @@ export default async function Header() {
 			</div>
 		</header>
 	);
-}
+};

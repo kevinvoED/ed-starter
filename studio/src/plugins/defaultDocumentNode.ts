@@ -37,11 +37,11 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (
 								}
 								case "post":
 									path = doc.slug?.current
-										? `/blog/${doc.slug.current}`
-										: "/blog";
+										? `/posts/${doc.slug.current}`
+										: "/posts";
 									break;
 								case "post-index":
-									path = "/blog";
+									path = "/posts";
 									break;
 								default:
 									path = "/";

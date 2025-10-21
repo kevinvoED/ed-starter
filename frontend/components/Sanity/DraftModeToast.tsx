@@ -9,7 +9,7 @@ import {
 import { disableDraftMode } from "@/lib/actions/actions";
 import { toast } from "sonner";
 
-export default function DraftModeToast() {
+export const DraftModeToast = () => {
 	const isPresentationTool = useIsPresentationTool();
 	const env = useDraftModeEnvironment();
 	const router = useRouter();
@@ -50,4 +50,4 @@ export default function DraftModeToast() {
 	}, [pending]);
 
 	return null;
-}
+};

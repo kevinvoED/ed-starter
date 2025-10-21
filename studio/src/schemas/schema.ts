@@ -8,7 +8,7 @@ import { cta } from "@/schemas/objects/cta";
 import { portableText } from "@/schemas/objects/portableText";
 import { portableTextPlain } from "@/schemas/objects/portableTextPlain";
 import { seo } from "@/schemas/objects/seo";
-import { page } from "@/schemas/page";
+import { page } from "@/schemas/pages/page";
 import { settings } from "@/schemas/objects/settings";
 
 import type { SchemaTypeDefinition } from "sanity";

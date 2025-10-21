@@ -1,5 +1,6 @@
 import { DocumentIcon } from "@sanity/icons";
 import { orderRankField } from "@sanity/orderable-document-list";
+import { moduleGroups, moduleTypes } from "@/schemas/moduleTypes";
 import { description, seo, slug, title } from "@/schemas/sharedFields";
 import { defineField, defineType } from "sanity";
 
@@ -14,11 +15,11 @@ export const page = defineType({
 	],
 	fields: [
 		defineField({
-			...title,
+			...slug,
 			group: "content",
 		}),
 		defineField({
-			...slug,
+			...title,
 			group: "content",
 		}),
 		defineField({
@@ -31,15 +32,10 @@ export const page = defineType({
 			description:
 				"Select from a list of modules to build out your page. Order is respected.",
 			type: "array",
-			of: [{ type: "heroPrimary" }],
+			of: moduleTypes,
 			options: {
 				insertMenu: {
-					groups: [
-						{
-							name: "red",
-							of: ["heroPrimary"],
-						},
-					],
+					groups: moduleGroups,
 					views: [
 						{
 							name: "grid",
