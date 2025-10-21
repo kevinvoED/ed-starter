@@ -15,6 +15,27 @@ import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import { defaultDocumentNode } from "@/plugins/defaultDocumentNode";
 import { structureTool } from "sanity/structure";
 
+const navigationItems = [
+	{
+		title: "Navigation",
+		schemaType: "navigation",
+		icon: MenuIcon,
+	},
+];
+
+const settingsItems = [
+	{
+		title: "Redirects & Rewrites",
+		schemaType: "configuration",
+		icon: RedoIcon,
+	},
+	{
+		title: "Global Informations",
+		schemaType: "settings",
+		icon: EarthGlobeIcon,
+	},
+];
+
 const structureResolver: StructureResolver = (S: StructureBuilder, context) =>
 	S.list()
 		.title("Website Content")
@@ -34,21 +55,19 @@ const structureResolver: StructureResolver = (S: StructureBuilder, context) =>
 				context,
 			}),
 			S.divider().title("Navigation"),
-			S.listItem()
-				.title("Navbar")
-				.child(S.document().schemaType("navigation").documentId("navigation"))
-				.icon(MenuIcon),
+			...navigationItems.map(({ title, icon, schemaType }) =>
+				S.listItem()
+					.title(title)
+					.icon(icon)
+					.child(S.document().schemaType(schemaType).documentId(schemaType)),
+			),
 			S.divider().title("Settings"),
-			S.listItem()
-				.title("Redirects & Rewrites")
-				.child(
-					S.document().schemaType("configuration").documentId("configuration"),
-				)
-				.icon(RedoIcon),
-			S.listItem()
-				.title("Global Information")
-				.child(S.document().schemaType("settings").documentId("siteSettings"))
-				.icon(EarthGlobeIcon),
+			...settingsItems.map(({ title, icon, schemaType }) =>
+				S.listItem()
+					.title(title)
+					.icon(icon)
+					.child(S.document().schemaType(schemaType).documentId(schemaType)),
+			),
 		]);
 
 export const structure = structureTool({
