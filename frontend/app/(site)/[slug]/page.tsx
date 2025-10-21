@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
+import type { GetPageQueryResult } from "@/sanity.types";
 import Head from "next/head";
-
 import PageBuilderPage from "@/components/PageBuilder";
 import { sanityFetch } from "@/sanity/lib/live";
 import { getPageQuery, pagesSlugs } from "@/sanity/queries/queries";
-import type { GetPageQueryResult } from "@/sanity.types";
 
 type Props = {
-  params: Promise<{ slug: string }>;
+	params: Promise<{ slug: string }>;
 };
 
 /**
@@ -15,12 +14,12 @@ type Props = {
  * Learn more: https://nextjs.org/docs/app/api-reference/functions/generate-static-params
  */
 export async function generateStaticParams() {
-  const { data } = await sanityFetch({
-    query: pagesSlugs,
-    perspective: "published",
-    stega: false,
-  });
-  return data;
+	const { data } = await sanityFetch({
+		query: pagesSlugs,
+		perspective: "published",
+		stega: false,
+	});
+	return data;
 }
 
 /**
@@ -28,49 +27,49 @@ export async function generateStaticParams() {
  * Learn more: https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
  */
 export async function generateMetadata(props: Props): Promise<Metadata> {
-  const params = await props.params;
-  const { data: page } = await sanityFetch({
-    query: getPageQuery,
-    params,
-    stega: false,
-  });
+	const params = await props.params;
+	const { data: page } = await sanityFetch({
+		query: getPageQuery,
+		params,
+		stega: false,
+	});
 
-  return {
-    title: page?.title,
-    description: page?.description,
-  } satisfies Metadata;
+	return {
+		title: page?.title,
+		description: page?.description,
+	} satisfies Metadata;
 }
 
 export default async function Page(props: Props) {
-  const params = await props.params;
-  const [{ data: page }] = await Promise.all([
-    sanityFetch({ query: getPageQuery, params }),
-  ]);
+	const params = await props.params;
+	const [{ data: page }] = await Promise.all([
+		sanityFetch({ query: getPageQuery, params }),
+	]);
 
-  if (!page?._id) {
-    return <div className="py-40">Yo</div>;
-  }
+	if (!page?._id) {
+		return <div className="py-40">Yo</div>;
+	}
 
-  return (
-    <div className="my-12 lg:my-24">
-      <Head>
-        <title>{page.heading}</title>
-      </Head>
-      <div className="">
-        <div className="container">
-          <div className="border-gray-100 border-b pb-6">
-            <div className="max-w-3xl">
-              <h2 className="font-bold text-4xl text-gray-900 tracking-tight sm:text-5xl lg:text-7xl">
-                {page.heading}
-              </h2>
-              <p className="mt-4 font-light text-base text-gray-600 uppercase leading-relaxed lg:text-lg">
-                {page.subheading}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <PageBuilderPage page={page as GetPageQueryResult} />
-    </div>
-  );
+	return (
+		<div className="my-12 lg:my-24">
+			<Head>
+				<title>{page.heading}</title>
+			</Head>
+			<div className="">
+				<div className="container">
+					<div className="border-gray-100 border-b pb-6">
+						<div className="max-w-3xl">
+							<h2 className="font-bold text-4xl text-gray-900 tracking-tight sm:text-5xl lg:text-7xl">
+								{page.heading}
+							</h2>
+							<p className="mt-4 font-light text-base text-gray-600 uppercase leading-relaxed lg:text-lg">
+								{page.subheading}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<PageBuilderPage page={page as GetPageQueryResult} />
+		</div>
+	);
 }

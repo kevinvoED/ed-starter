@@ -6,8 +6,8 @@
  * You can also pass additional options to the sanityFetch function here, such as `params`, `perspective` and `stega`
  */
 
-import { sanityFetch } from '@/sanity/lib/live';
-import type { TestQueryResult } from '@/sanity.types';
+// import type { TestQueryResult } from "@/sanity.types";
+// import { sanityFetch } from "@/sanity/lib/live";
 
 // export const fetchTestQuery =
 //   async (): Promise<TestQueryResult> => {

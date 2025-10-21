@@ -1,18 +1,16 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
+import type { ImageType } from "@/lib/utils/type";
 import { Inter } from "next/font/google";
 import { draftMode } from "next/headers";
 import { toPlainText, VisualEditing } from "next-sanity";
-
 import Header from "@/components/Header";
 import DraftModeToast from "@/components/Sanity/DraftModeToast";
 import { handleError } from "@/lib/utils/handle-error";
-import type { ImageType } from "@/lib/utils/type";
 import { SanityLive, sanityFetch } from "@/sanity/lib/live";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
 import { settingsQuery } from "@/sanity/queries/queries";
-
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "sonner";
 
@@ -21,63 +19,63 @@ import { Toaster } from "sonner";
  * Learn more: https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
  */
 export async function generateMetadata(): Promise<Metadata> {
-  const { data: settings } = await sanityFetch({
-    query: settingsQuery,
-    stega: false,
-  });
-  const title = settings?.title || "";
-  const description = settings?.description || "";
+	const { data: settings } = await sanityFetch({
+		query: settingsQuery,
+		stega: false,
+	});
+	const title = settings?.title || "";
+	const description = settings?.description || "";
 
-  const ogImage = resolveOpenGraphImage(settings?.ogImage as ImageType);
-  let metadataBase: URL | undefined = undefined;
-  try {
-    metadataBase = settings?.ogImage?.metadataBase
-      ? new URL(settings.ogImage.metadataBase)
-      : undefined;
-  } catch {}
-  return {
-    metadataBase,
-    title: {
-      template: `%s | ${title}`,
-      default: title,
-    },
-    description: toPlainText(description),
-    openGraph: {
-      images: ogImage ? [ogImage] : [],
-    },
-  };
+	const ogImage = resolveOpenGraphImage(settings?.ogImage as ImageType);
+	let metadataBase: URL | undefined;
+	try {
+		metadataBase = settings?.ogImage?.metadataBase
+			? new URL(settings.ogImage.metadataBase)
+			: undefined;
+	} catch {}
+	return {
+		metadataBase,
+		title: {
+			template: `%s | ${title}`,
+			default: title,
+		},
+		description: toPlainText(description),
+		openGraph: {
+			images: ogImage ? [ogImage] : [],
+		},
+	};
 }
 
 const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
+	variable: "--font-inter",
+	subsets: ["latin"],
+	display: "swap",
 });
 
 export default async function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  const { isEnabled: isDraftMode } = await draftMode();
+	const { isEnabled: isDraftMode } = await draftMode();
 
-  return (
-    <html lang="en" className={`${inter.variable}`}>
-      <body>
-        <section className="min-h-screen pt-24">
-          <Toaster />
-          {isDraftMode && (
-            <>
-              <DraftModeToast />
-              <VisualEditing />
-            </>
-          )}
-          <SanityLive onError={handleError} />
-          <Header />
-          <main>{children}</main>
-        </section>
-        <SpeedInsights />
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en" className={`${inter.variable}`}>
+			<body>
+				<section className="min-h-screen pt-24">
+					<Toaster />
+					{isDraftMode && (
+						<>
+							<DraftModeToast />
+							<VisualEditing />
+						</>
+					)}
+					<SanityLive onError={handleError} />
+					<Header />
+					<main>{children}</main>
+				</section>
+				<SpeedInsights />
+			</body>
+		</html>
+	);
 }

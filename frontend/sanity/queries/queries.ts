@@ -1,4 +1,4 @@
-import { defineQuery } from 'next-sanity';
+import { defineQuery } from "next-sanity";
 
 /*
  * This file contains all GROQ queries for fetching data from existing Sanity schemas

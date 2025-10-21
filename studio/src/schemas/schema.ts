@@ -1,18 +1,18 @@
 // biome-ignore assist/source/organizeImports: keep order
-import { person } from '@/schemas/documents/person';
-import { post } from '@/schemas/documents/post';
-import { configuration } from '@/schemas/objects/configuration';
-import { redirect } from '@/schemas/objects/redirect';
-import { rewrite } from '@/schemas/objects/rewrite';
-import { cta } from '@/schemas/objects/cta';
-import { portableText } from '@/schemas/objects/portableText';
-import { portableTextPlain } from '@/schemas/objects/portableTextPlain';
-import { seo } from '@/schemas/objects/seo';
-import { page } from '@/schemas/page';
-import { settings } from '@/schemas/objects/settings';
+import { person } from "@/schemas/documents/person";
+import { post } from "@/schemas/documents/post";
+import { configuration } from "@/schemas/objects/configuration";
+import { redirect } from "@/schemas/objects/redirect";
+import { rewrite } from "@/schemas/objects/rewrite";
+import { cta } from "@/schemas/objects/cta";
+import { portableText } from "@/schemas/objects/portableText";
+import { portableTextPlain } from "@/schemas/objects/portableTextPlain";
+import { seo } from "@/schemas/objects/seo";
+import { page } from "@/schemas/page";
+import { settings } from "@/schemas/objects/settings";
 
-import type { SchemaTypeDefinition } from 'sanity';
-import { heroPrimary } from '@/schemas/modules/heroPrimary';
+import type { SchemaTypeDefinition } from "sanity";
+import { heroPrimary } from "@/schemas/modules/heroPrimary";
 
 /*
  * Export an array of all the schema types.
@@ -21,20 +21,20 @@ import { heroPrimary } from '@/schemas/modules/heroPrimary';
  */
 
 export const schemaTypes: SchemaTypeDefinition[] = [
-  // Singletons
-  settings,
-  // Documents
-  page,
-  post,
-  person,
-  // Objects (order matters for both linear and circular references)
-  cta,
-  seo,
-  portableText,
-  portableTextPlain,
-  configuration,
-  redirect,
-  rewrite,
-  // Modules
-  heroPrimary,
+	// Singletons
+	settings,
+	// Documents
+	page,
+	post,
+	person,
+	// Objects (order matters for both linear and circular references)
+	cta,
+	seo,
+	portableText,
+	portableTextPlain,
+	configuration,
+	redirect,
+	rewrite,
+	// Modules
+	heroPrimary,
 ];

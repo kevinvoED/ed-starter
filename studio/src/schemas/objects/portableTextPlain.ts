@@ -1,6 +1,5 @@
-import { externalLink, internalLink } from '@/schemas/sharedFields';
-
-import { defineArrayMember, defineType } from 'sanity';
+import { externalLink, internalLink } from "@/schemas/sharedFields";
+import { defineArrayMember, defineType } from "sanity";
 /**
  *  This schema is responsible for all block content within PortableText.
  *  Note that schemas inside 'annotations' are only applied when the user highlights any text within PortableText,
@@ -16,25 +15,25 @@ import { defineArrayMember, defineType } from 'sanity';
  *
  */
 export const portableTextPlain = defineType({
-  title: 'Portable Text',
-  name: 'portableTextPlain',
-  type: 'array',
-  of: [
-    defineArrayMember({
-      title: 'Block',
-      type: 'block',
-      styles: [{ title: 'Normal', value: 'normal' }],
-      lists: [
-        { title: 'Bullet', value: 'bullet' },
-        { title: 'Number', value: 'number' },
-      ],
-      marks: {
-        decorators: [
-          { title: 'Strong', value: 'strong' },
-          { title: 'Emphasis', value: 'em' },
-        ],
-        annotations: [internalLink, externalLink],
-      },
-    }),
-  ],
+	title: "Portable Text",
+	name: "portableTextPlain",
+	type: "array",
+	of: [
+		defineArrayMember({
+			title: "Block",
+			type: "block",
+			styles: [{ title: "Normal", value: "normal" }],
+			lists: [
+				{ title: "Bullet", value: "bullet" },
+				{ title: "Number", value: "number" },
+			],
+			marks: {
+				decorators: [
+					{ title: "Strong", value: "strong" },
+					{ title: "Emphasis", value: "em" },
+				],
+				annotations: [internalLink, externalLink],
+			},
+		}),
+	],
 });
