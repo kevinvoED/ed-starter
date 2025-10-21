@@ -1,15 +1,13 @@
-import { ComponentIcon } from '@sanity/icons';
-
-import { cta, description, image, title } from '@/schemas/sharedFields';
-
-import { defineField, defineType } from 'sanity';
+import { ComponentIcon } from "@sanity/icons";
+import { cta, description, image, title } from "@/schemas/sharedFields";
+import { defineField, defineType } from "sanity";
 
 // Remember to change the icon to suit your new schema
 
 export const {{camelCase name}} = defineType({
-  name: '{{camelCase name}}',
-  title: '{{titleCase name}}',
-  type: 'object',
+  name: "{{camelCase name}}",
+  title: "{{titleCase name}}",
+  type: "object",
   icon: ComponentIcon,
   fields: [
     defineField({
@@ -27,12 +25,12 @@ export const {{camelCase name}} = defineType({
   ],
   preview: {
     select: {
-      title: 'title',
+      title: "title",
     },
     prepare({ title }) {
       return {
-        title: '{{titleCase name}}',
-        subtitle: title || 'No title provided',
+        title: "{{titleCase name}}",
+        subtitle: title || "No title provided",
       };
     },
   },

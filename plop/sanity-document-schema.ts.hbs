@@ -1,46 +1,44 @@
-import { ComponentIcon } from '@sanity/icons';
-
-import { description, image, seo, title } from '@/schemas/sharedFields';
-
-import { defineField, defineType } from 'sanity';
+import { ComponentIcon } from "@sanity/icons";
+import { description, image, seo, title } from "@/schemas/sharedFields";
+import { defineField, defineType } from "sanity";
 
 // Remember to change the icon to suit your new schema
 
 export const {{camelCase name}} = defineType({
-  name: '{{camelCase name}}',
-  title: '{{titleCase name}}',
-  type: 'object',
+  name: "{{camelCase name}}",
+  title: "{{titleCase name}}",
+  type: "object",
   icon: ComponentIcon,
   groups: [
-    { name: 'content', title: 'Content', default: true },
-    { name: 'seo', title: 'SEO' },
+    { name: "content", title: "Content", default: true },
+    { name: "seo", title: "SEO" },
   ],
   fields: [
     defineField({
       ...title,
-      group: 'content',
+      group: "content",
     }),
     defineField({
       ...description,
-      group: 'content',
+      group: "content",
     }),
     defineField({
       ...image,
-      group: 'content',
+      group: "content",
     }),
     defineField({
       ...seo,
-      group: 'seo',
+      group: "seo",
     }),
   ],
   preview: {
     select: {
-      title: 'title',
+      title: "title",
     },
     prepare({ title }) {
       return {
-        title: '{{titleCase name}}',
-        subtitle: title || 'No title provided',
+        title: "{{titleCase name}}",
+        subtitle: title || "No title provided",
       };
     },
   },
