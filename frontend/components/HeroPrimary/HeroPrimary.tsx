@@ -1,9 +1,8 @@
-import type { PortableTextBlock } from "next-sanity";
-
-import { Button } from "@/components/Button/Button";
-import { SanityImage } from "@/components/Image/SanityImage";
-import { PortableText } from "@/components/PortableText/PortableText";
-import type { HeroPrimary as HeroPrimaryProps } from "@/sanity.types";
+import type { PortableTextBlock } from 'next-sanity';
+import { Button } from '@/components/Button/Button';
+import { SanityImage } from '@/components/Image/SanityImage';
+import { PortableText } from '@/components/PortableText/PortableText';
+import type { HeroPrimary as HeroPrimaryProps } from '@/sanity.types';
 
 export const HeroPrimary = ({
   title,
@@ -33,9 +32,11 @@ export const HeroPrimary = ({
           ))}
         </div>
 
-        <div className="col-span-full space-x-2 lg:col-span-5 lg:col-start-1">
-          {content && <PortableText value={content as PortableTextBlock[]} />}
-        </div>
+        {content && (
+          <div className="col-span-full space-x-2 lg:col-span-5 lg:col-start-1">
+            <PortableText value={content as PortableTextBlock[]} />
+          </div>
+        )}
       </div>
     </div>
   );

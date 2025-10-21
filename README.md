@@ -137,4 +137,10 @@ npm run plop
 - [ ] Add any missing essential packages? estoolkit? 
 - [ ] Update sharedFields.ts
 - [ ] Update README
+- [ ] Add manifest icons to /public
+- [ ] Add favicon.ico, apple-icon.png, robots.ts, json-ld.ts, and sitemap.ts
+- [ ] Add 404 not-found.tsx file
+- [ ] Add estoolkit, and common react hooks like useNavHeight, useBannerHeight, useScreensize 
+- [ ] Find an alternative to determining if the current viewport is a mobile device viewport or not
+- [ ] Add google fonts or custom fonts support
 
