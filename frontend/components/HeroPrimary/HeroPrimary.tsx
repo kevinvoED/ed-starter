@@ -1,8 +1,8 @@
 import type { PortableTextBlock } from "next-sanity";
 import type { HeroPrimary as HeroPrimaryProps } from "@/sanity.types";
 import { Button } from "@/components/Button/Button";
-import { SanityImage } from "@/components/Image/SanityImage";
-import { PortableText } from "@/components/PortableText/PortableText";
+import { PortableText } from "@/components/Sanity/PortableText";
+import { SanityImage } from "@/components/Sanity/SanityImage";
 
 export const HeroPrimary = ({
 	title,
