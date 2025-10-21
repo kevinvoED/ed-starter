@@ -80,6 +80,13 @@ export const heroPrimaryQuery = /* groq */ `
   }
 `;
 
+export const modulesQuery = /* groq */ `
+  "modules": modules[]{
+    ...,
+    ${heroPrimaryQuery}
+  },
+`;
+
 export const getPageQuery = defineQuery(`
   *[_type == 'page' && slug.current == $slug][0]{
     _id,
@@ -87,10 +94,18 @@ export const getPageQuery = defineQuery(`
     title,
     slug,
     description,
-    "modules": modules[]{
-      ...,
-      ${heroPrimaryQuery}
-    },
+    ${modulesQuery}
+  }
+`);
+
+export const homepageQuery = defineQuery(`
+  *[_type == 'page' && slug.current == "/"][0]{
+    _id,
+    _type,
+    title,
+    slug,
+    description,
+    ${modulesQuery}
   }
 `);
 

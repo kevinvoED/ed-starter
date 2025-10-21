@@ -7,13 +7,41 @@
  * It can be invoked on the frontend, primarily by pages, e.g. `const data = await getNavigation();`
  */
 
-import type { NavigationQueryResult } from "@/sanity.types";
+import type {
+	GetPageQueryResult,
+	HomepageQueryResult,
+	NavigationQueryResult,
+} from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/live";
-import { navigationQuery } from "@/sanity/queries/queries";
+import {
+	getPageQuery,
+	homepageQuery,
+	navigationQuery,
+} from "@/sanity/queries/queries";
 
 export const getNavigation = async (): Promise<NavigationQueryResult> => {
 	const { data } = await sanityFetch({
 		query: navigationQuery,
+	});
+
+	return data;
+};
+
+export const getPageBySlug = async (params: {
+	slug: string;
+}): Promise<GetPageQueryResult> => {
+	const { data } = await sanityFetch({
+		query: getPageQuery,
+		params,
+		stega: false,
+	});
+
+	return data;
+};
+
+export const getHomepage = async (): Promise<HomepageQueryResult> => {
+	const { data } = await sanityFetch({
+		query: homepageQuery,
 	});
 
 	return data;

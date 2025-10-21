@@ -1,17 +1,15 @@
 import type { Metadata } from "next";
 import type { GetPageQueryResult } from "@/sanity.types";
-import PageBuilderPage from "@/components/PageBuilder";
+import { notFound } from "next/navigation";
+import { PageBuilder } from "@/components/PageBuilder";
 import { sanityFetch } from "@/sanity/lib/live";
-import { getPageQuery, pagesSlugs } from "@/sanity/queries/queries";
+import { getPageBySlug } from "@/sanity/queries/fetch";
+import { pagesSlugs } from "@/sanity/queries/queries";
 
 type Props = {
 	params: Promise<{ slug: string }>;
 };
 
-/**
- * Generate the static params for the page.
- * Learn more: https://nextjs.org/docs/app/api-reference/functions/generate-static-params
- */
 export async function generateStaticParams() {
 	const { data } = await sanityFetch({
 		query: pagesSlugs,
@@ -21,34 +19,23 @@ export async function generateStaticParams() {
 	return data;
 }
 
-/**
- * Generate metadata for the page.
- * Learn more: https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
- */
 export async function generateMetadata(props: Props): Promise<Metadata> {
 	const params = await props.params;
-	const { data: page } = await sanityFetch({
-		query: getPageQuery,
-		params,
-		stega: false,
-	});
+	const page = await getPageBySlug(params);
 
 	return {
 		title: page?.title,
 		description: page?.description,
-	} satisfies Metadata;
+	};
 }
 
 export default async function Page(props: Props) {
 	const params = await props.params;
-	const [{ data: page }] = await Promise.all([
-		sanityFetch({ query: getPageQuery, params }),
-	]);
+	const page = await getPageBySlug(params);
 
-	// TODO: render 404 notFound() instead
 	if (!page?._id) {
-		return <div className="py-40">Yo</div>;
+		return notFound();
 	}
 
-	return <PageBuilderPage page={page as GetPageQueryResult} />;
+	return <PageBuilder page={page as GetPageQueryResult} />;
 }

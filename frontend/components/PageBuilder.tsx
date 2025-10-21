@@ -7,7 +7,7 @@ import { Button } from "@/components/Button/Button";
 import { ModuleBuilder } from "@/components/ModuleBuilder";
 import { studioUrl } from "@/sanity/lib/api";
 
-type PageBuilderPageProps = {
+type PageBuilderProps = {
 	page: GetPageQueryResult;
 };
 
@@ -44,7 +44,7 @@ function renderEmptyState(page: GetPageQueryResult) {
 	}
 
 	return (
-		<div className="container space-y-6 mt-12">
+		<div className="container space-y-6 mt-1">
 			<div className="space-y-2 text-center">
 				<h2 className="type-sans-5640">Oops, there is nothing here yet!</h2>
 				<p className="type-sans-1440 text-gray-500">
@@ -65,7 +65,7 @@ function renderEmptyState(page: GetPageQueryResult) {
 }
 
 // This component is responsible for rendering the blocks from the `pageBuilder` field in the Page type in your Sanity Studio.
-export default function PageBuilder({ page }: PageBuilderPageProps) {
+export const PageBuilder = ({ page }: PageBuilderProps) => {
 	const pageBuilderSections = useOptimistic<
 		PageBuilderSection[] | undefined,
 		SanityDocument<PageData>
@@ -97,4 +97,4 @@ export default function PageBuilder({ page }: PageBuilderPageProps) {
 	return pageBuilderSections && pageBuilderSections.length > 0
 		? renderSections(pageBuilderSections, page)
 		: renderEmptyState(page);
-}
+};
