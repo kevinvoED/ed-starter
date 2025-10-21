@@ -11,7 +11,7 @@
 			"**",
 			"!.sanity",
 			"!**/schema.json",
-			"!**/sanity/types.ts",
+			"!**/sanity.types.ts",
 			"!**/sanity-typegen.json"
 		]
 	},
