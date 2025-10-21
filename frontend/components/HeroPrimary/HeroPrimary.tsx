@@ -3,6 +3,7 @@ import type { HeroPrimary as HeroPrimaryProps } from "@/sanity.types";
 import { Button } from "@/components/Button/Button";
 import { PortableText } from "@/components/Sanity/PortableText";
 import { SanityImage } from "@/components/Sanity/SanityImage";
+import { Transition } from "@/components/Transition/Transition";
 
 export const HeroPrimary = ({
 	title,
@@ -14,28 +15,41 @@ export const HeroPrimary = ({
 	return (
 		<div className="relative overflow-hidden py-12 lg:py-25">
 			<div className="grid-custom container gap-y-6">
-				<h2 className="col-span-full lg:col-span-5">{title}</h2>
+				<Transition className="col-span-full lg:col-span-5">
+					<h2>{title}</h2>
+				</Transition>
 
-				<p className="col-span-full lg:col-span-5 lg:col-start-1">
-					{description}
-				</p>
+				<Transition
+					delay={0.5}
+					className="col-span-full lg:col-span-5 lg:col-start-1"
+				>
+					<p>{description}</p>
+				</Transition>
 
-				<div className="col-span-full lg:col-span-5 lg:col-start-1">
-					{image && <SanityImage image={image} sizes="100vw" />}
-				</div>
+				<Transition
+					delay={1}
+					className="col-span-full lg:col-span-5 lg:col-start-1"
+				>
+					<div>{image && <SanityImage image={image} sizes="100vw" />}</div>
+				</Transition>
 
 				<div className="col-span-full space-x-2 lg:col-span-5 lg:col-start-1">
-					{ctas?.map((cta) => (
-						<Button key={cta._key} cta={cta}>
-							{cta.label}
-						</Button>
-					))}
+					<div className="flex gap-2">
+						{ctas?.map((cta, index) => (
+							<Transition delay={1.2 + index * 0.25} key={cta._key}>
+								<Button cta={cta}>{cta.label}</Button>
+							</Transition>
+						))}
+					</div>
 				</div>
 
 				{content && (
-					<div className="col-span-full space-x-2 lg:col-span-5 lg:col-start-1">
+					<Transition
+						delay={1.5}
+						className="col-span-full space-x-2 lg:col-span-5 lg:col-start-1"
+					>
 						<PortableText value={content as PortableTextBlock[]} />
-					</div>
+					</Transition>
 				)}
 			</div>
 		</div>
