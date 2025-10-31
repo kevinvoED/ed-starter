@@ -5,6 +5,28 @@ import { ArrowRightIcon } from "@/components/Icons/ArrowRightIcon";
 import { cn } from "@/lib/utils/cn";
 import { handleResolveCta } from "@/sanity/lib/utils";
 
+/**
+ * Example usage
+ * --------------------------------------------------------------
+ * Default button:
+ * <Button cta={cta}>{cta?.label}</Button>
+ * --------------------------------------------------------------
+ * Button with a href override prop:
+ * <Button href="https://www.google.com">{cta?.label}</Button>
+ * --------------------------------------------------------------
+ * Button with a custom variant or size:
+ * <Button variant="secondary" size="lg" cta={cta}>{cta?.label}</Button>
+ * --------------------------------------------------------------
+ * Button as an icon:
+ * <Button variant="icon" size="icon">{icon}</Button>
+ * --------------------------------------------------------------
+ * Button with a disabled state:
+ * <Button disabled>{cta?.label}</Button>
+ * --------------------------------------------------------------
+ * Button with no arrow:
+ * <Button cta={cta} hasArrow={false} openInNewTab={true}>{cta?.label}</Button>
+ */
+
 const ButtonVariants = cva(
 	"group underline-none relative inline-flex max-w-fit shrink-0 items-center justify-center overflow-hidden whitespace-nowrap rounded-sm outline-none transition-colors duration-300 ease-in-out focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-orange-500 has-[>svg]:gap-2 [&_svg]:size-4",
 	{
