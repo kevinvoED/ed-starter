@@ -5,6 +5,31 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+/**
+ * EXAMPLE USAGE
+ * --------------------------------------------------------------
+ * Default Transition:
+ * <Transition>
+ *   <Component>Children</Component>
+ * </Transition>
+ * --------------------------------------------------------------
+ * Transition with a custom animation:
+ * <Transition animation="fadeInDown">
+ *   <Component>Children</Component>
+ * </Transition>
+ * --------------------------------------------------------------
+ * Transition with a custom duration, delay, and ease:
+ * <Transition duration={1.5} delay={0.5} ease="power1.inOut">
+ *   <Component>Children</Component>
+ * </Transition>
+ * --------------------------------------------------------------
+ * Transition that triggers on every mount instead of just once:
+ * <Transition triggerOnce={false}>
+ *   <Component>Children</Component>
+ * </Transition>
+ * --------------------------------------------------------------
+ */
+
 gsap.registerPlugin(ScrollTrigger);
 
 const animationConfig = {

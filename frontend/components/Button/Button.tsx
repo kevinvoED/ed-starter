@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils/cn";
 import { handleResolveCta } from "@/sanity/lib/utils";
 
 /**
- * Example usage
+ * EXAMPLE USAGE
  * --------------------------------------------------------------
  * Default button:
  * <Button cta={cta}>{cta?.label}</Button>
