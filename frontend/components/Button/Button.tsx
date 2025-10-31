@@ -66,7 +66,7 @@ export const Button = ({
 	const resolvedUrl = cta && handleResolveCta(cta);
 	const isNewTab = cta?.openInNewTab;
 
-	// If an explicit href prop is provided, override the Button with that url
+	// If a href prop is explicitlyprovided, override the Button with that href prop
 	if (href && !cta) {
 		return (
 			<Link
@@ -85,7 +85,7 @@ export const Button = ({
 		);
 	}
 
-	// Otherwise, if the cta is valid, render the button using the cta
+	// Otherwise, render the button using the cta provided in Sanity Studio
 	if (cta && !href && typeof resolvedUrl === "string") {
 		return (
 			<Link
