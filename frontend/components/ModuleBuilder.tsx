@@ -1,4 +1,4 @@
-import { createElement } from "react";
+import { type ComponentProps, createElement } from "react";
 import { HeroPrimary } from "@/components/HeroPrimary/HeroPrimary";
 
 // Add new modules to the `Blocks` object where the KEY is the name of the schema and the VALUE is the imported component
@@ -23,8 +23,10 @@ export const ModuleBuilder = ({
 
 		return (
 			<section key={_key} data-module={_type}>
-				{/* @ts-expect-error - figure out how to type this properly */}
-				{createElement(Component, props)}
+				{createElement(
+					Component,
+					props as unknown as ComponentProps<typeof Component>,
+				)}
 			</section>
 		);
 	}
