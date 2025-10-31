@@ -1,15 +1,10 @@
 # ED Next.js Starter Kit 2025
 
-This is a starter kit template that includes a [Next.js](https://nextjs.org/) app paired with [Sanity Studio](https://www.sanity.io/) for content and data management.  
-
-
-## Tech Stack 
-
-- Next.js
-- Sanity (Studio, Media, Presentation, Vision)
-- Tailwind 4.0 
-- GSAP
-- Biome
+- [Next.js](https://nextjs.org)
+- [Sanity](https://www.sanity.io/)
+- [Tailwind](https://tailwindcss.com/)
+- [Biome](https://biomejs.dev/)
+- [GSAP](https://gsap.com/)
 
 ## Getting Started
 
@@ -134,9 +129,7 @@ npm run plop
 ## TODO 
 
 - [ ] Add tests. Vitest? Jest? React Testing Library? 
-- [ ] Add any missing essential packages? estoolkit? 
 - [ ] Update sharedFields.ts
-- [ ] Update README
 - [ ] Add manifest icons to /public
 - [ ] Add favicon.ico, apple-icon.png, robots.ts, json-ld.ts, and sitemap.ts
 - [ ] Add 404 not-found.tsx file
