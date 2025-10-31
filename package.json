@@ -15,7 +15,6 @@
 		"build": "npm-run-all --serial --print-label format typegen build:frontend",
 		"build:frontend": "npm run build --workspace=frontend",
 		"format": "biome format --fix && biome check --fix",
-		"lint": "npm run lint --workspace=frontend",
 		"type-check": "npm run type-check --workspaces",
 		"plop": "npx plop"
 	},
