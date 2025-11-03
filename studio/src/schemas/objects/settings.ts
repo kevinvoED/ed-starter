@@ -9,6 +9,12 @@ export const settings = defineType({
 	icon: EarthGlobeIcon,
 	fields: [
 		defineField({
+			...image,
+			title: "Organization Logo",
+			description: "The main logo of your organization.",
+			validation: (Rule) => Rule.required(),
+		}),
+		defineField({
 			...title,
 			title: "Organization Name",
 			description:
