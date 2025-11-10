@@ -19,7 +19,7 @@
 		"plop": "npx plop"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.2.4",
+		"@biomejs/biome": "^2.3.4",
 		"npm-run-all2": "^5.0.2",
 		"plop": "^4.0.2"
 	}
