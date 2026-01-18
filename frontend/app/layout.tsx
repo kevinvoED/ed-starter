@@ -19,55 +19,55 @@ import { getNavigation } from "@/sanity/queries/fetch";
  * Learn more: https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
  */
 export async function generateMetadata(): Promise<Metadata> {
-	const { data: settings } = await sanityFetch({
-		query: settingsQuery,
-		stega: false,
-	});
-	const title = settings?.title || "";
-	const description = settings?.description || "";
-	const ogImage = resolveOpenGraphImage(settings?.ogImage as SanityImageType);
+  const { data: settings } = await sanityFetch({
+    query: settingsQuery,
+    stega: false,
+  });
+  const title = settings?.title || "";
+  const description = settings?.description || "";
+  const ogImage = resolveOpenGraphImage(settings?.ogImage as SanityImageType);
 
-	return {
-		title: {
-			template: `%s | ${title}`,
-			default: title,
-		},
-		description: description,
-		openGraph: {
-			images: ogImage ? [ogImage] : [],
-		},
-	};
+  return {
+    title: {
+      template: `%s | ${title}`,
+      default: title,
+    },
+    description: description,
+    openGraph: {
+      images: ogImage ? [ogImage] : [],
+    },
+  };
 }
 
 const inter = Inter({
-	variable: "--font-inter",
-	subsets: ["latin"],
-	display: "swap",
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export default async function RootLayout({
-	children,
+  children,
 }: {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-	const { isEnabled: isDraftMode } = await draftMode();
-	const data = await getNavigation();
+  const { isEnabled: isDraftMode } = await draftMode();
+  const data = await getNavigation();
 
-	return (
-		<html lang="en" className={`${inter.variable}`}>
-			<body>
-				<Toaster />
-				{isDraftMode && (
-					<>
-						<DraftModeToast />
-						<VisualEditing />
-					</>
-				)}
-				<SanityLive onError={handleError} />
-				<Navigation data={data} />
-				<main>{children}</main>
-				<SpeedInsights />
-			</body>
-		</html>
-	);
+  return (
+    <html lang="en" className={`${inter.variable}`}>
+      <body>
+        <Toaster />
+        {isDraftMode && (
+          <>
+            <DraftModeToast />
+            <VisualEditing />
+          </>
+        )}
+        <SanityLive onError={handleError} />
+        <Navigation data={data} />
+        <main>{children}</main>
+        <SpeedInsights />
+      </body>
+    </html>
+  );
 }

@@ -15,25 +15,25 @@ import { defineArrayMember, defineType } from "sanity";
  *
  */
 export const portableTextPlain = defineType({
-	title: "Portable Text",
-	name: "portableTextPlain",
-	type: "array",
-	of: [
-		defineArrayMember({
-			title: "Block",
-			type: "block",
-			styles: [{ title: "Normal", value: "normal" }],
-			lists: [
-				{ title: "Bullet", value: "bullet" },
-				{ title: "Number", value: "number" },
-			],
-			marks: {
-				decorators: [
-					{ title: "Strong", value: "strong" },
-					{ title: "Emphasis", value: "em" },
-				],
-				annotations: [internalLink, externalLink],
-			},
-		}),
-	],
+  title: "Portable Text",
+  name: "portableTextPlain",
+  type: "array",
+  of: [
+    defineArrayMember({
+      title: "Block",
+      type: "block",
+      styles: [{ title: "Normal", value: "normal" }],
+      lists: [
+        { title: "Bullet", value: "bullet" },
+        { title: "Number", value: "number" },
+      ],
+      marks: {
+        decorators: [
+          { title: "Strong", value: "strong" },
+          { title: "Emphasis", value: "em" },
+        ],
+        annotations: [internalLink, externalLink],
+      },
+    }),
+  ],
 });

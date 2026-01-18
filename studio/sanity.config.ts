@@ -13,18 +13,18 @@ const projectId = process.env.SANITY_STUDIO_PROJECT_ID || "your-projectID";
 const dataset = process.env.SANITY_STUDIO_DATASET || "production";
 
 export default defineConfig({
-	title: "ED Starter Kit",
-	projectId,
-	dataset,
-	plugins: [
-		structure,
-		media(),
-		presentation,
-		unsplashImageAsset(),
-		assist(),
-		visionTool(),
-	],
-	schema: {
-		types: schemaTypes,
-	},
+  title: "ED Starter Kit",
+  projectId,
+  dataset,
+  plugins: [
+    structure,
+    media(),
+    presentation,
+    unsplashImageAsset(),
+    assist(),
+    visionTool(),
+  ],
+  schema: {
+    types: schemaTypes,
+  },
 });

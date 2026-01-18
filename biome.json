@@ -1,158 +1,173 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.3.4/schema.json",
-	"vcs": {
-		"enabled": true,
-		"clientKind": "git",
-		"useIgnoreFile": true
-	},
-	"files": {
-		"ignoreUnknown": false,
-		"includes": [
-			"**",
-			"!.sanity",
-			"!**/schema.json",
-			"!**/sanity.types.ts",
-			"!**/sanity-typegen.json"
-		]
-	},
-	"formatter": {
-		"enabled": true,
-		"useEditorconfig": true,
-		"formatWithErrors": true
-	},
-	"linter": {
-		"enabled": true,
-		"rules": {
-			"recommended": true
-		}
-	},
-	"assist": {
-		"actions": {
-			"source": {
-				"organizeImports": {
-					"level": "on",
-					"options": {
-						"groups": [
-							{ "type": true, "source": ["**"] },
-							["react", "react*", "*react", "*/react"],
-							["@next", "@next/**", "next", "next/**", "next-*", "next-*/**"],
-							[
-								"@sanity/**",
-								"class-variance-authority",
-								"clean-react-props",
-								"gsap",
-								"@gsap/**",
-								"lodash-es",
-								"es-toolkit",
-								"nuqs"
-							],
-							["!@/styles/**", ":ALIAS:", "@/**"],
-							["@/components/**", "@components/**", "radix-ui/**"],
-							["@utility/**", "./**", "./globals.css"]
-						]
-					}
-				}
-			}
-		}
-	},
-	"overrides": [
-		{
-			"includes": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.mjs", "**/*.cjs"],
-			"linter": {
-				"rules": {
-					"correctness": {
-						"noUndeclaredVariables": "off",
-						"noUnusedVariables": "error",
-						"noConstAssign": "off",
-						"noGlobalObjectCalls": "off",
-						"noInvalidConstructorSuper": "off",
-						"noSetterReturn": "off",
-						"noUnreachable": "off",
-						"noUnreachableSuper": "off",
-						"noInvalidBuiltinInstantiation": "off"
-					},
-					"style": {
-						"noNonNullAssertion": "off",
-						"useConst": "error",
-						"noNegationElse": "error",
-						"noNestedTernary": "error",
-						"noUselessElse": "error",
-						"noYodaExpression": "error",
-						"noSubstr": "error",
-						"noUnusedTemplateLiteral": "error",
-						"useConsistentArrayType": {
-							"options": {
-								"syntax": "shorthand"
-							}
-						},
-						"useCollapsedElseIf": "error"
-					},
-					"suspicious": {
-						"noEmptyBlockStatements": "off",
-						"noDuplicateClassMembers": "off",
-						"noDuplicateObjectKeys": "off",
-						"noDuplicateParameters": "off",
-						"noFunctionAssign": "off",
-						"noImportAssign": "off",
-						"noRedeclare": "off",
-						"noUnsafeNegation": "off",
-						"useGetterReturn": "off",
-						"noVar": "error"
-					},
-					"complexity": {
-						"noArguments": "error"
-					}
-				}
-			}
-		},
-		{
-			"includes": ["frontend/app/globals.css"],
-			"linter": {
-				"rules": {
-					"suspicious": {
-						"noUnknownAtRules": "off"
-					}
-				}
-			}
-		},
-		{
-			"includes": [
-				"frontend/components/**/*.ts",
-				"frontend/components/**/*.tsx",
-				"frontend/components/**/*.js",
-				"frontend/components/**/*.jsx"
-			],
-			"linter": {
-				"rules": {
-					"style": {
-						"useFilenamingConvention": {
-							"level": "error",
-							"options": {
-								"strictCase": true,
-								"requireAscii": true,
-								"filenameCases": ["PascalCase"]
-							}
-						}
-					}
-				}
-			}
-		},
-		{
-			"includes": ["studio/src/schemas/**/*.ts"],
-			"linter": {
-				"rules": {
-					"style": {
-						"useFilenamingConvention": {
-							"level": "error",
-							"options": {
-								"strictCase": true,
-								"requireAscii": true,
-								"filenameCases": ["camelCase"]
-							}
-						}
-					}
-				}
-			}
-		}
-	]
+  "$schema": "https://biomejs.dev/schemas/2.3.5/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
+  "files": {
+    "ignoreUnknown": false,
+    "includes": [
+      "frontend/**",
+      "studio/**",
+      "!**/node_modules",
+      "!**/dist",
+      "!**/build",
+      "!**/.sanity",
+      "!frontend/sanity.types.ts",
+      "!studio/schema.json",
+      "!studio/tsconfig.tsbuildinfo"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "useEditorconfig": true,
+    "formatWithErrors": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 80,
+    "attributePosition": "auto",
+    "bracketSpacing": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
+    }
+  },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              { "type": true, "source": ["**"] },
+              ["react", "react*", "*react", "*/react"],
+              ["@next", "@next/**", "next", "next/**", "next-*", "next-*/**"],
+              [
+                "@sanity/**",
+                "class-variance-authority",
+                "clean-react-props",
+                "gsap",
+                "@gsap/**",
+                "lodash-es",
+                "es-toolkit",
+                "nuqs"
+              ],
+              ["!@/styles/**", ":ALIAS:", "@/**"],
+              ["@/components/**", "@components/**", "radix-ui/**"],
+              ["@utility/**", "./**", "./globals.css"]
+            ]
+          }
+        }
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.mjs", "**/*.cjs"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUndeclaredVariables": "off",
+            "noUnusedVariables": "error",
+            "noConstAssign": "off",
+            "noGlobalObjectCalls": "off",
+            "noInvalidConstructorSuper": "off",
+            "noSetterReturn": "off",
+            "noUnreachable": "off",
+            "noUnreachableSuper": "off",
+            "noInvalidBuiltinInstantiation": "off"
+          },
+          "style": {
+            "noNonNullAssertion": "off",
+            "useConst": "error",
+            "noNegationElse": "error",
+            "noNestedTernary": "error",
+            "noUselessElse": "error",
+            "noYodaExpression": "error",
+            "noSubstr": "error",
+            "noUnusedTemplateLiteral": "error",
+            "useConsistentArrayType": {
+              "options": {
+                "syntax": "shorthand"
+              }
+            },
+            "useCollapsedElseIf": "error"
+          },
+          "suspicious": {
+            "noEmptyBlockStatements": "off",
+            "noDuplicateClassMembers": "off",
+            "noDuplicateObjectKeys": "off",
+            "noDuplicateParameters": "off",
+            "noFunctionAssign": "off",
+            "noImportAssign": "off",
+            "noRedeclare": "off",
+            "noUnsafeNegation": "off",
+            "useGetterReturn": "off",
+            "noVar": "error"
+          },
+          "complexity": {
+            "noArguments": "error"
+          },
+          "nursery": {
+            "useSortedClasses": {
+              "level": "info",
+              "fix": "unsafe",
+              "options": {
+                "attributes": ["className", "tw", "classList"],
+                "functions": ["clsx", "cva", "tw", "tw.*"]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "frontend/components/**/*.ts",
+        "frontend/components/**/*.tsx",
+        "frontend/components/**/*.js",
+        "frontend/components/**/*.jsx"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "useFilenamingConvention": {
+              "level": "error",
+              "options": {
+                "strictCase": true,
+                "requireAscii": true,
+                "filenameCases": ["PascalCase"]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "includes": ["studio/src/schemas/**/*.ts"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useFilenamingConvention": {
+              "level": "error",
+              "options": {
+                "strictCase": true,
+                "requireAscii": true,
+                "filenameCases": ["camelCase"]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
 }

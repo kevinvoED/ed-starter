@@ -1,42 +1,42 @@
 import type { SanityImageType } from "@/lib/utils/type";
 import { Image } from "next-sanity/image";
 import {
-	getImageDimensions,
-	type SanityImageSource,
+  getImageDimensions,
+  type SanityImageSource,
 } from "@sanity/asset-utils";
 import { stegaClean } from "@sanity/client/stega";
 import { cn } from "@/lib/utils/cn";
 import { urlForImage } from "@/sanity/lib/utils";
 
 type SanityImageProps = {
-	image: SanityImageType;
-	sizes?: string;
-	priority?: boolean;
-	quality?: number;
-	className?: string;
+  image: SanityImageType;
+  sizes?: string;
+  priority?: boolean;
+  quality?: number;
+  className?: string;
 };
 
 export const SanityImage = ({
-	image,
-	sizes,
-	quality,
-	priority = false,
-	className,
+  image,
+  sizes,
+  quality,
+  priority = false,
+  className,
 }: SanityImageProps) => {
-	if (!image || !image.asset?._ref) {
-		return null;
-	}
+  if (!image || !image.asset?._ref) {
+    return null;
+  }
 
-	return (
-		<Image
-			className={cn("object-cover", className)}
-			width={getImageDimensions(image as SanityImageSource).width}
-			height={getImageDimensions(image as SanityImageSource).height}
-			alt={stegaClean(image?.alt) || ""}
-			src={urlForImage(image)?.url() as string}
-			priority={priority}
-			quality={quality || 75}
-			sizes={sizes || ""}
-		/>
-	);
+  return (
+    <Image
+      className={cn("object-cover", className)}
+      width={getImageDimensions(image as SanityImageSource).width}
+      height={getImageDimensions(image as SanityImageSource).height}
+      alt={stegaClean(image?.alt) || ""}
+      src={urlForImage(image)?.url() as string}
+      priority={priority}
+      quality={quality || 75}
+      sizes={sizes || ""}
+    />
+  );
 };

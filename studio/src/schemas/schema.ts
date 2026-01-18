@@ -22,21 +22,21 @@ import { navigation } from "@/schemas/documents/navigation";
  */
 
 export const schemaTypes: SchemaTypeDefinition[] = [
-	// Singletons
-	settings,
-	// Documents
-	page,
-	post,
-	person,
-	navigation,
-	// Objects (order matters for both linear and circular references)
-	cta,
-	seo,
-	portableText,
-	portableTextPlain,
-	configuration,
-	redirect,
-	rewrite,
-	// Modules
-	heroPrimary,
+  // Singletons
+  settings,
+  // Documents
+  page,
+  post,
+  person,
+  navigation,
+  // Objects (order matters for both linear and circular references)
+  cta,
+  seo,
+  portableText,
+  portableTextPlain,
+  configuration,
+  redirect,
+  rewrite,
+  // Modules
+  heroPrimary,
 ];

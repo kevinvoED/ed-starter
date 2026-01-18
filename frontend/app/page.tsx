@@ -5,20 +5,20 @@ import { PageBuilder } from "@/components/PageBuilder";
 import { getHomepage } from "@/sanity/queries/fetch";
 
 export async function generateMetadata(): Promise<Metadata> {
-	const page = await getHomepage();
+  const page = await getHomepage();
 
-	return {
-		title: page?.title,
-		description: page?.description,
-	};
+  return {
+    title: page?.title,
+    description: page?.description,
+  };
 }
 
 export default async function Page() {
-	const page = await getHomepage();
+  const page = await getHomepage();
 
-	if (!page?._id) {
-		return notFound();
-	}
+  if (!page?._id) {
+    return notFound();
+  }
 
-	return <PageBuilder page={page as GetPageQueryResult} />;
+  return <PageBuilder page={page as GetPageQueryResult} />;
 }

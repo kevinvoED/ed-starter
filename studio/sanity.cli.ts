@@ -12,20 +12,20 @@ const projectId = process.env.SANITY_STUDIO_PROJECT_ID || "<your project ID>";
 const dataset = process.env.SANITY_STUDIO_DATASET || "production";
 
 export default defineCliConfig({
-	api: {
-		projectId,
-		dataset,
-	},
-	studioHost: process.env.SANITY_STUDIO_STUDIO_HOST || "",
-	autoUpdates: true,
-	vite: {
-		resolve: {
-			alias: {
-				"@": resolve(__dirname, "./src"),
-				"@/schemas": resolve(__dirname, "./src/schemas"),
-				"@/plugins": resolve(__dirname, "./src/plugins"),
-				"@/lib": resolve(__dirname, "./src/lib"),
-			},
-		},
-	},
+  api: {
+    projectId,
+    dataset,
+  },
+  studioHost: process.env.SANITY_STUDIO_STUDIO_HOST || "",
+  autoUpdates: true,
+  vite: {
+    resolve: {
+      alias: {
+        "@": resolve(__dirname, "./src"),
+        "@/schemas": resolve(__dirname, "./src/schemas"),
+        "@/plugins": resolve(__dirname, "./src/plugins"),
+        "@/lib": resolve(__dirname, "./src/lib"),
+      },
+    },
+  },
 });
