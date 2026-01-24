@@ -3,6 +3,7 @@ packages:
   - frontend
 
 onlyBuiltDependencies:
+  - '@swc/core'
   - esbuild
   - sharp
   - unrs-resolver

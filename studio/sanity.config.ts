@@ -16,88 +16,88 @@ import { resolvePresentation } from "@/lib/presentation";
 import { structure } from "@/lib/structure";
 import { schema } from "@/schemas/schema";
 import { guideTool } from "@/tools/guide";
-import { VIEWABLE_TYPES, type ViewableTypes } from "../frontend/lib/utils";
 import { OpenDocumentUrlAction } from "./actions";
+import { VIEWABLE_TYPES, type ViewableTypes } from "../frontend/lib/utils";
 
 // Define the actions that should be available for singleton documents
 const singletonActions = new Set([
-	"publish",
-	"discardChanges",
-	"restore",
-	"unpublish",
+  "publish",
+  "discardChanges",
+  "restore",
+  "unpublish",
 ]);
 
 // Define the singleton document types
 const singletonTypes = new Set([
-	"post-index",
-	"case-study-index",
-	"events-index",
-	"platform-index",
-	"navbar",
-	"footer",
-	"configuration",
-	"organization",
+  "post-index",
+  "case-study-index",
+  "events-index",
+  "platform-index",
+  "navbar",
+  "footer",
+  "configuration",
+  "organization",
 ]);
 
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID || "b9pzoci3";
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID || "00t2z2kg";
 const dataset = process.env.SANITY_STUDIO_DATASET || "development";
 const apiVersion = process.env.SANITY_STUDIO_API_VERSION || "2025-07-04";
 
 const SANITY_STUDIO_PREVIEW_URL =
-	process.env.SANITY_STUDIO_PREVIEW_URL || "http://localhost:3000";
+  process.env.SANITY_STUDIO_PREVIEW_URL || "http://localhost:3000";
 
 export default defineConfig({
-	title: `ED Starter (${dataset})`,
-	projectId,
-	dataset,
-	// Add and edit the content schema in the './sanity/schema' folder
-	schema: {
-		types: schema.types,
-		// Filter out singleton types from the global "New document" menu options
-		templates: (templates) =>
-			templates.filter(({ schemaType }) => !singletonTypes.has(schemaType)),
-	},
-	document: {
-		// For singleton types, filter out actions that are not explicitly included
-		// in the `singletonActions` list defined above
-		actions: (previousActions, { schemaType }) => {
-			const myActions = previousActions;
+  title: `ED Starter (${dataset})`,
+  projectId,
+  dataset,
+  // Add and edit the content schema in the './sanity/schema' folder
+  schema: {
+    types: schema.types,
+    // Filter out singleton types from the global "New document" menu options
+    templates: (templates) =>
+      templates.filter(({ schemaType }) => !singletonTypes.has(schemaType)),
+  },
+  document: {
+    // For singleton types, filter out actions that are not explicitly included
+    // in the `singletonActions` list defined above
+    actions: (previousActions, { schemaType }) => {
+      const myActions = previousActions;
 
-			if (VIEWABLE_TYPES.has(schemaType as ViewableTypes)) {
-				myActions.push(OpenDocumentUrlAction);
-			}
+      if (VIEWABLE_TYPES.has(schemaType as ViewableTypes)) {
+        myActions.push(OpenDocumentUrlAction);
+      }
 
-			return singletonTypes.has(schemaType)
-				? myActions.filter(
-						({ action }) => action && singletonActions.has(action),
-					)
-				: myActions;
-		},
-		// Disable comments as the popover for adding comments conflicts with PortableText annotations
-		comments: {
-			enabled: false,
-		},
-	},
-	tools: [guideTool()],
-	plugins: [
-		structureTool({ structure, defaultDocumentNode }),
-		presentationTool({
-			previewUrl: {
-				origin: SANITY_STUDIO_PREVIEW_URL,
-				draftMode: {
-					enable: "/api/draft-mode/enable",
-				},
-			},
-			resolve: resolvePresentation,
-		}),
-		visionTool({ defaultApiVersion: apiVersion }),
-		codeInput(),
-		media(),
-		table(),
-		dashboardTool({
-			widgets: [vercelWidget()],
-			name: "deployment",
-			title: "Deployment",
-		}),
-	],
+      return singletonTypes.has(schemaType)
+        ? myActions.filter(
+            ({ action }) => action && singletonActions.has(action),
+          )
+        : myActions;
+    },
+    // Disable comments as the popover for adding comments conflicts with PortableText annotations
+    comments: {
+      enabled: false,
+    },
+  },
+  tools: [guideTool()],
+  plugins: [
+    structureTool({ structure, defaultDocumentNode }),
+    presentationTool({
+      previewUrl: {
+        origin: SANITY_STUDIO_PREVIEW_URL,
+        draftMode: {
+          enable: "/api/draft-mode/enable",
+        },
+      },
+      resolve: resolvePresentation,
+    }),
+    visionTool({ defaultApiVersion: apiVersion }),
+    codeInput(),
+    media(),
+    table(),
+    dashboardTool({
+      widgets: [vercelWidget()],
+      name: "deployment",
+      title: "Deployment",
+    }),
+  ],
 });

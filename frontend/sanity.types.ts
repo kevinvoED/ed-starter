@@ -13,133 +13,222 @@
  */
 
 // Source: schema.json
-export type HeroPrimary = {
-  _type: "hero-primary";
-  eyebrow?: string;
-  title: string;
-  links?: Array<{
-    _key: string;
-  } & Link>;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
+export type Meta = {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+  image?: MetaImage;
 };
 
-export type PortableText = Array<{
-  children?: Array<{
-    marks?: Array<string>;
-    text?: string;
-    _type: "span";
-    _key: string;
-  }>;
-  style?: "normal" | "h1" | "h2" | "h3" | "h4";
-  listItem?: "bullet" | "number";
-  markDefs?: Array<{
-    isExternal?: boolean;
-    internalLink?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "page";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "event";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "events-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-child";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "solutions-child";
-    };
-    href?: string;
-    openInNewTab?: boolean;
-    _type: "link";
-    _key: string;
-  } | {
-    backgroundColor?: "white" | "black" | "neon" | "gunmetal" | "ash" | "charcoal" | "silver" | "alabaster" | "platinum" | "porcelain";
-    textColor?: "white" | "black" | "neon" | "gunmetal" | "ash" | "charcoal" | "silver" | "alabaster" | "platinum" | "porcelain";
-    _type: "highlight";
-    _key: string;
-  }>;
-  level?: number;
-  _type: "block";
-  _key: string;
-} | {
-  asset?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-  };
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type MetaImage = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "image.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type Image1 = {
+  asset?: SanityImageAssetReference;
   media?: unknown;
   hotspot?: SanityImageHotspot;
   crop?: SanityImageCrop;
   alt?: string;
   _type: "image";
-  _key: string;
-} | {
-  videoId?: string;
-  _type: "youtube";
-  _key: string;
-} | {
-  _key: string;
-} & Link>;
+};
+
+export type Logo = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "logo.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  alt?: string;
+  _type: "image";
+};
+
+export type HeroPrimary = {
+  _type: "hero-primary";
+  eyebrow?: string;
+  title: string;
+  links?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
+  image?: Image1;
+};
+
+export type PageReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "page";
+};
+
+export type PostReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "post";
+};
+
+export type PostIndexReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "post-index";
+};
+
+export type CaseStudyReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "case-study";
+};
+
+export type CaseStudyIndexReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "case-study-index";
+};
+
+export type ResourceReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "resource";
+};
+
+export type ResourceIndexReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "resource-index";
+};
+
+export type EventReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "event";
+};
+
+export type EventsIndexReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "events-index";
+};
+
+export type PlatformIndexReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "platform-index";
+};
+
+export type PlatformChildReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "platform-child";
+};
+
+export type SolutionsChildReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "solutions-child";
+};
+
+export type PortableText = Array<
+  | {
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal" | "h1" | "h2" | "h3" | "h4";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<
+        | {
+            isExternal?: boolean;
+            internalLink?:
+              | PageReference
+              | PostReference
+              | PostIndexReference
+              | CaseStudyReference
+              | CaseStudyIndexReference
+              | ResourceReference
+              | ResourceIndexReference
+              | EventReference
+              | EventsIndexReference
+              | PlatformIndexReference
+              | PlatformChildReference
+              | SolutionsChildReference;
+            href?: string;
+            openInNewTab?: boolean;
+            _type: "link";
+            _key: string;
+          }
+        | {
+            backgroundColor?:
+              | "white"
+              | "black"
+              | "neon"
+              | "gunmetal"
+              | "ash"
+              | "charcoal"
+              | "silver"
+              | "alabaster"
+              | "platinum"
+              | "porcelain";
+            textColor?:
+              | "white"
+              | "black"
+              | "neon"
+              | "gunmetal"
+              | "ash"
+              | "charcoal"
+              | "silver"
+              | "alabaster"
+              | "platinum"
+              | "porcelain";
+            _type: "highlight";
+            _key: string;
+          }
+      >;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }
+  | {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+      _key: string;
+    }
+  | {
+      videoId?: string;
+      _type: "youtube";
+      _key: string;
+    }
+  | ({
+      _key: string;
+    } & Link)
+>;
 
 export type Rewrite = {
   _type: "rewrite";
@@ -158,67 +247,19 @@ export type Link = {
   _type: "link";
   isExternal?: boolean;
   title: string;
-  internalLink?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "case-study";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "case-study-index";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "event";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "events-index";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "page";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "platform-child";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "platform-index";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "post";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "post-index";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "resource";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "resource-index";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "solutions-child";
-  };
+  internalLink?:
+    | CaseStudyReference
+    | CaseStudyIndexReference
+    | EventReference
+    | EventsIndexReference
+    | PageReference
+    | PlatformChildReference
+    | PlatformIndexReference
+    | PostReference
+    | PostIndexReference
+    | ResourceReference
+    | ResourceIndexReference
+    | SolutionsChildReference;
   href?: string;
   openInNewTab?: boolean;
 };
@@ -231,19 +272,7 @@ export type ResourceTopic = {
   _rev: string;
   title: string;
   slug: Slug;
-  logo?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
+  logo?: Logo;
   orderRank?: string;
 };
 
@@ -255,19 +284,7 @@ export type ResourceCategory = {
   _rev: string;
   title: string;
   slug: Slug;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
+  image?: Image1;
 };
 
 export type CaseStudyCategory = {
@@ -302,9 +319,11 @@ export type Staff = {
     _type: "block";
     _key: string;
   }>;
-  links?: Array<{
-    _key: string;
-  } & Link>;
+  links?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
   orderRank?: string;
 };
 
@@ -314,12 +333,16 @@ export type Configuration = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  redirects?: Array<{
-    _key: string;
-  } & Redirect>;
-  rewrites?: Array<{
-    _key: string;
-  } & Rewrite>;
+  redirects?: Array<
+    {
+      _key: string;
+    } & Redirect
+  >;
+  rewrites?: Array<
+    {
+      _key: string;
+    } & Rewrite
+  >;
 };
 
 export type Organization = {
@@ -332,12 +355,7 @@ export type Organization = {
     name: string;
     description?: string;
     logo?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
+      asset?: SanityImageAssetReference;
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
@@ -349,12 +367,7 @@ export type Organization = {
     contactEmail?: string;
     headquarters?: string;
     image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
+      asset?: SanityImageAssetReference;
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
@@ -393,14 +406,18 @@ export type Footer = {
   mainLinks?: Array<{
     title: string;
     hasIndexPage: boolean;
-    indexPageLink?: Array<{
-      _key: string;
-    } & Link>;
+    indexPageLink?: Array<
+      {
+        _key: string;
+      } & Link
+    >;
     subCategories?: Array<{
       title: string;
-      link: Array<{
-        _key: string;
-      } & Link>;
+      link: Array<
+        {
+          _key: string;
+        } & Link
+      >;
       _type: "subCategory";
       _key: string;
     }>;
@@ -408,12 +425,7 @@ export type Footer = {
     _key: string;
   }>;
   smallLogo?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -421,27 +433,28 @@ export type Footer = {
     _type: "image";
   };
   largeLogo?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
   };
-  actionLinks?: Array<{
-    _key: string;
-  } & Link>;
-  socialMediaLinks?: Array<{
-    _key: string;
-  } & Link>;
-  bottomLinks?: Array<{
-    _key: string;
-  } & Link>;
+  actionLinks?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
+  socialMediaLinks?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
+  bottomLinks?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
 };
 
 export type Navbar = {
@@ -450,70 +463,68 @@ export type Navbar = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  logo?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
-  links?: Array<{
-    _key: string;
-  } & Link | {
-    title: string;
-    group?: Array<{
-      title: string;
-      description?: Array<{
-        children?: Array<{
-          marks?: Array<string>;
-          text?: string;
-          _type: "span";
-          _key: string;
-        }>;
-        style?: "normal";
-        listItem?: never;
-        markDefs?: null;
-        level?: number;
-        _type: "block";
+  logo?: Logo;
+  links?: Array<
+    | ({
         _key: string;
-      }>;
-      link?: Link;
-      _type: "card";
-      _key: string;
-    } | {
-      title: string;
-      links?: Array<{
+      } & Link)
+    | {
+        title: string;
+        group?: Array<
+          | {
+              title: string;
+              description?: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs?: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+              link?: Link;
+              _type: "card";
+              _key: string;
+            }
+          | {
+              title: string;
+              links?: Array<
+                {
+                  _key: string;
+                } & Link
+              >;
+              _type: "link-group";
+              _key: string;
+            }
+          | {
+              resources?: Array<
+                {
+                  _key: string;
+                } & PostReference
+              >;
+              _type: "resources";
+              _key: string;
+            }
+        >;
+        _type: "group";
         _key: string;
-      } & Link>;
-      _type: "link-group";
-      _key: string;
-    } | {
-      resources?: Array<{
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
+      }
+    | {
+        type?: "dot" | "space";
+        _type: "divider";
         _key: string;
-        [internalGroqTypeReferenceTo]?: "post";
-      }>;
-      _type: "resources";
+      }
+  >;
+  ctaLinks?: Array<
+    {
       _key: string;
-    }>;
-    _type: "group";
-    _key: string;
-  } | {
-    type?: "dot" | "space";
-    _type: "divider";
-    _key: string;
-  }>;
-  ctaLinks?: Array<{
-    _key: string;
-  } & Link>;
+    } & Link
+  >;
 };
 
 export type PostIndex = {
@@ -525,32 +536,27 @@ export type PostIndex = {
   slug: Slug;
   title: string;
   description?: string;
-  featuredPost?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "post";
-  };
-  blocks?: Array<{
-    _key: string;
-  } & HeroPrimary>;
-  meta?: {
-    title?: string;
-    description?: string;
-    noindex?: boolean;
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  };
+  featuredPost?: PostReference;
+  blocks?: Array<
+    {
+      _key: string;
+    } & HeroPrimary
+  >;
+  meta?: Meta;
+};
+
+export type ResourceTopicReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "resource-topic";
+};
+
+export type AuthorReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "author";
 };
 
 export type Post = {
@@ -571,8 +577,28 @@ export type Post = {
     style?: "normal";
     listItem?: never;
     markDefs?: Array<{
-      backgroundColor?: "white" | "black" | "neon" | "gunmetal" | "ash" | "charcoal" | "silver" | "alabaster" | "platinum" | "porcelain";
-      textColor?: "white" | "black" | "neon" | "gunmetal" | "ash" | "charcoal" | "silver" | "alabaster" | "platinum" | "porcelain";
+      backgroundColor?:
+        | "white"
+        | "black"
+        | "neon"
+        | "gunmetal"
+        | "ash"
+        | "charcoal"
+        | "silver"
+        | "alabaster"
+        | "platinum"
+        | "porcelain";
+      textColor?:
+        | "white"
+        | "black"
+        | "neon"
+        | "gunmetal"
+        | "ash"
+        | "charcoal"
+        | "silver"
+        | "alabaster"
+        | "platinum"
+        | "porcelain";
       _type: "highlight";
       _key: string;
     }>;
@@ -581,57 +607,40 @@ export type Post = {
     _key: string;
   }>;
   slug: Slug;
-  topics?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "resource-topic";
-  }>;
-  link?: Array<{
-    _key: string;
-  } & Link>;
+  topics?: Array<
+    {
+      _key: string;
+    } & ResourceTopicReference
+  >;
+  link?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
   description?: string;
   image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
   };
-  author?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "author";
-  };
+  author?: AuthorReference;
   content?: PortableText;
-  blocks?: Array<{
-    _key: string;
-  } & HeroPrimary>;
-  meta?: {
-    title?: string;
-    description?: string;
-    noindex?: boolean;
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  };
+  blocks?: Array<
+    {
+      _key: string;
+    } & HeroPrimary
+  >;
+  meta?: Meta;
+};
+
+export type CaseStudyCategoryReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "case-study-category";
 };
 
 export type CaseStudy = {
@@ -652,8 +661,28 @@ export type CaseStudy = {
     style?: "normal";
     listItem?: never;
     markDefs?: Array<{
-      backgroundColor?: "white" | "black" | "neon" | "gunmetal" | "ash" | "charcoal" | "silver" | "alabaster" | "platinum" | "porcelain";
-      textColor?: "white" | "black" | "neon" | "gunmetal" | "ash" | "charcoal" | "silver" | "alabaster" | "platinum" | "porcelain";
+      backgroundColor?:
+        | "white"
+        | "black"
+        | "neon"
+        | "gunmetal"
+        | "ash"
+        | "charcoal"
+        | "silver"
+        | "alabaster"
+        | "platinum"
+        | "porcelain";
+      textColor?:
+        | "white"
+        | "black"
+        | "neon"
+        | "gunmetal"
+        | "ash"
+        | "charcoal"
+        | "silver"
+        | "alabaster"
+        | "platinum"
+        | "porcelain";
       _type: "highlight";
       _key: string;
     }>;
@@ -662,64 +691,45 @@ export type CaseStudy = {
     _key: string;
   }>;
   slug: Slug;
-  topics?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "resource-topic";
-  }>;
-  categories?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "case-study-category";
-  }>;
-  link?: Array<{
-    _key: string;
-  } & Link>;
+  topics?: Array<
+    {
+      _key: string;
+    } & ResourceTopicReference
+  >;
+  categories?: Array<
+    {
+      _key: string;
+    } & CaseStudyCategoryReference
+  >;
+  link?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
   description?: string;
   image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
   };
-  author?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "author";
-  };
+  author?: AuthorReference;
   content?: PortableText;
-  blocks?: Array<{
-    _key: string;
-  } & HeroPrimary>;
-  meta?: {
-    title?: string;
-    description?: string;
-    noindex?: boolean;
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  };
+  blocks?: Array<
+    {
+      _key: string;
+    } & HeroPrimary
+  >;
+  meta?: Meta;
+};
+
+export type ResourceCategoryReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "resource-category";
 };
 
 export type Resource = {
@@ -740,8 +750,28 @@ export type Resource = {
     style?: "normal";
     listItem?: never;
     markDefs?: Array<{
-      backgroundColor?: "white" | "black" | "neon" | "gunmetal" | "ash" | "charcoal" | "silver" | "alabaster" | "platinum" | "porcelain";
-      textColor?: "white" | "black" | "neon" | "gunmetal" | "ash" | "charcoal" | "silver" | "alabaster" | "platinum" | "porcelain";
+      backgroundColor?:
+        | "white"
+        | "black"
+        | "neon"
+        | "gunmetal"
+        | "ash"
+        | "charcoal"
+        | "silver"
+        | "alabaster"
+        | "platinum"
+        | "porcelain";
+      textColor?:
+        | "white"
+        | "black"
+        | "neon"
+        | "gunmetal"
+        | "ash"
+        | "charcoal"
+        | "silver"
+        | "alabaster"
+        | "platinum"
+        | "porcelain";
       _type: "highlight";
       _key: string;
     }>;
@@ -750,69 +780,45 @@ export type Resource = {
     _key: string;
   }>;
   slug: Slug;
-  topics?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "resource-topic";
-  }>;
-  categories?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "resource-category";
-  }>;
+  topics?: Array<
+    {
+      _key: string;
+    } & ResourceTopicReference
+  >;
+  categories?: Array<
+    {
+      _key: string;
+    } & ResourceCategoryReference
+  >;
   description?: string;
-  link?: Array<{
-    _key: string;
-  } & Link>;
-  links?: Array<{
-    _key: string;
-  } & Link>;
+  link?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
+  links?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
   image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
   };
-  author?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "author";
-  };
+  author?: AuthorReference;
   isGated: boolean;
   content?: PortableText;
   formId?: string;
-  blocks?: Array<{
-    _key: string;
-  } & HeroPrimary>;
-  meta?: {
-    title?: string;
-    description?: string;
-    noindex?: boolean;
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  };
+  blocks?: Array<
+    {
+      _key: string;
+    } & HeroPrimary
+  >;
+  meta?: Meta;
 };
 
 export type Event = {
@@ -824,9 +830,11 @@ export type Event = {
   createdAt?: CreatedAt;
   publishedDate?: string;
   type: "conference" | "webinar";
-  eventLink?: Array<{
-    _key: string;
-  } & Link>;
+  eventLink?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
   location?: string;
   startDate: string;
   endDate: string;
@@ -840,8 +848,28 @@ export type Event = {
     style?: "normal";
     listItem?: never;
     markDefs?: Array<{
-      backgroundColor?: "white" | "black" | "neon" | "gunmetal" | "ash" | "charcoal" | "silver" | "alabaster" | "platinum" | "porcelain";
-      textColor?: "white" | "black" | "neon" | "gunmetal" | "ash" | "charcoal" | "silver" | "alabaster" | "platinum" | "porcelain";
+      backgroundColor?:
+        | "white"
+        | "black"
+        | "neon"
+        | "gunmetal"
+        | "ash"
+        | "charcoal"
+        | "silver"
+        | "alabaster"
+        | "platinum"
+        | "porcelain";
+      textColor?:
+        | "white"
+        | "black"
+        | "neon"
+        | "gunmetal"
+        | "ash"
+        | "charcoal"
+        | "silver"
+        | "alabaster"
+        | "platinum"
+        | "porcelain";
       _type: "highlight";
       _key: string;
     }>;
@@ -850,62 +878,40 @@ export type Event = {
     _key: string;
   }>;
   slug: Slug;
-  topics?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "resource-topic";
-  }>;
+  topics?: Array<
+    {
+      _key: string;
+    } & ResourceTopicReference
+  >;
   description?: string;
-  link?: Array<{
-    _key: string;
-  } & Link>;
-  links?: Array<{
-    _key: string;
-  } & Link>;
+  link?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
+  links?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
   image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
   };
-  author?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "author";
-  };
+  author?: AuthorReference;
   isGated: boolean;
   content?: PortableText;
   formId?: string;
-  blocks?: Array<{
-    _key: string;
-  } & HeroPrimary>;
-  meta?: {
-    title?: string;
-    description?: string;
-    noindex?: boolean;
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  };
+  blocks?: Array<
+    {
+      _key: string;
+    } & HeroPrimary
+  >;
+  meta?: Meta;
 };
 
 export type SolutionsChild = {
@@ -916,26 +922,12 @@ export type SolutionsChild = {
   _rev: string;
   title: string;
   slug: Slug;
-  blocks?: Array<{
-    _key: string;
-  } & HeroPrimary>;
-  meta?: {
-    title?: string;
-    description?: string;
-    noindex?: boolean;
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  };
+  blocks?: Array<
+    {
+      _key: string;
+    } & HeroPrimary
+  >;
+  meta?: Meta;
   orderRank?: string;
 };
 
@@ -953,26 +945,12 @@ export type PlatformChild = {
   _rev: string;
   title: string;
   slug: Slug;
-  blocks?: Array<{
-    _key: string;
-  } & HeroPrimary>;
-  meta?: {
-    title?: string;
-    description?: string;
-    noindex?: boolean;
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  };
+  blocks?: Array<
+    {
+      _key: string;
+    } & HeroPrimary
+  >;
+  meta?: Meta;
   orderRank?: string;
 };
 
@@ -984,26 +962,12 @@ export type PlatformIndex = {
   _rev: string;
   title: string;
   slug: Slug;
-  blocks?: Array<{
-    _key: string;
-  } & HeroPrimary>;
-  meta?: {
-    title?: string;
-    description?: string;
-    noindex?: boolean;
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  };
+  blocks?: Array<
+    {
+      _key: string;
+    } & HeroPrimary
+  >;
+  meta?: Meta;
   orderRank?: string;
 };
 
@@ -1016,32 +980,13 @@ export type EventsIndex = {
   slug: Slug;
   title: string;
   description?: string;
-  featuredPost?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "event";
-  };
-  blocks?: Array<{
-    _key: string;
-  } & HeroPrimary>;
-  meta?: {
-    title?: string;
-    description?: string;
-    noindex?: boolean;
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  };
+  featuredPost?: EventReference;
+  blocks?: Array<
+    {
+      _key: string;
+    } & HeroPrimary
+  >;
+  meta?: Meta;
 };
 
 export type CreatedAt = {
@@ -1058,26 +1003,12 @@ export type ResourceIndex = {
   slug: Slug;
   title: string;
   description?: string;
-  blocks?: Array<{
-    _key: string;
-  } & HeroPrimary>;
-  meta?: {
-    title?: string;
-    description?: string;
-    noindex?: boolean;
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  };
+  blocks?: Array<
+    {
+      _key: string;
+    } & HeroPrimary
+  >;
+  meta?: Meta;
 };
 
 export type CaseStudyIndex = {
@@ -1089,32 +1020,13 @@ export type CaseStudyIndex = {
   slug: Slug;
   title: string;
   description?: string;
-  featuredPost?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "case-study";
-  };
-  blocks?: Array<{
-    _key: string;
-  } & HeroPrimary>;
-  meta?: {
-    title?: string;
-    description?: string;
-    noindex?: boolean;
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  };
+  featuredPost?: CaseStudyReference;
+  blocks?: Array<
+    {
+      _key: string;
+    } & HeroPrimary
+  >;
+  meta?: Meta;
 };
 
 export type Author = {
@@ -1138,22 +1050,12 @@ export type Author = {
     _type: "block";
     _key: string;
   }>;
-  links?: Array<{
-    _key: string;
-  } & Link>;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
+  links?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
+  image?: Image1;
   orderRank?: string;
 };
 
@@ -1165,34 +1067,22 @@ export type Page = {
   _rev: string;
   title: string;
   slug: Slug;
-  blocks?: Array<{
-    _key: string;
-  } & HeroPrimary>;
-  meta?: {
-    title?: string;
-    description?: string;
-    noindex?: boolean;
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  };
+  blocks?: Array<
+    {
+      _key: string;
+    } & HeroPrimary
+  >;
+  meta?: Meta;
   orderRank?: string;
 };
 
 export type Table = {
   _type: "table";
-  rows?: Array<{
-    _key: string;
-  } & TableRow>;
+  rows?: Array<
+    {
+      _key: string;
+    } & TableRow
+  >;
 };
 
 export type TableRow = {
@@ -1250,6 +1140,7 @@ export type SanityImageMetadata = {
   palette?: SanityImagePalette;
   lqip?: string;
   blurHash?: string;
+  thumbHash?: string;
   hasAlpha?: boolean;
   isOpaque?: boolean;
 };
@@ -1313,15 +1204,88 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = HeroPrimary | PortableText | Rewrite | Redirect | Link | ResourceTopic | ResourceCategory | CaseStudyCategory | Staff | Configuration | Organization | SanityImageCrop | SanityImageHotspot | Footer | Navbar | PostIndex | Post | CaseStudy | Resource | Event | SolutionsChild | Slug | PlatformChild | PlatformIndex | EventsIndex | CreatedAt | ResourceIndex | CaseStudyIndex | Author | Page | Table | TableRow | MediaTag | Code | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes =
+  | Meta
+  | SanityImageAssetReference
+  | MetaImage
+  | Image1
+  | Logo
+  | HeroPrimary
+  | PageReference
+  | PostReference
+  | PostIndexReference
+  | CaseStudyReference
+  | CaseStudyIndexReference
+  | ResourceReference
+  | ResourceIndexReference
+  | EventReference
+  | EventsIndexReference
+  | PlatformIndexReference
+  | PlatformChildReference
+  | SolutionsChildReference
+  | PortableText
+  | Rewrite
+  | Redirect
+  | Link
+  | ResourceTopic
+  | ResourceCategory
+  | CaseStudyCategory
+  | Staff
+  | Configuration
+  | Organization
+  | SanityImageCrop
+  | SanityImageHotspot
+  | Footer
+  | Navbar
+  | PostIndex
+  | ResourceTopicReference
+  | AuthorReference
+  | Post
+  | CaseStudyCategoryReference
+  | CaseStudy
+  | ResourceCategoryReference
+  | Resource
+  | Event
+  | SolutionsChild
+  | Slug
+  | PlatformChild
+  | PlatformIndex
+  | EventsIndex
+  | CreatedAt
+  | ResourceIndex
+  | CaseStudyIndex
+  | Author
+  | Page
+  | Table
+  | TableRow
+  | MediaTag
+  | Code
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityImageMetadata
+  | SanityFileAsset
+  | SanityAssetSourceData
+  | SanityImageAsset
+  | Geopoint;
+
 export declare const internalGroqTypeReferenceTo: unique symbol;
+
+type ArrayOf<T> = Array<
+  T & {
+    _key: string;
+  }
+>;
+
 // Source: ../frontend/sanity/queries/documents/author.ts
 // Variable: authorFragment
 // Query: author->{  _id,  name,  content[]{      ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },  },    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }}
 export type AuthorFragmentResult = never;
+
+// Source: ../frontend/sanity/queries/documents/author.ts
 // Variable: AUTHOR_QUERY
 // Query: *[_type == "author" && slug.current == $slug][0]{  name,    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },  content[]{      ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },  },}
-export type AUTHOR_QUERYResult = {
+export type AUTHOR_QUERY_RESULT = {
   name: string;
   image: {
     asset: {
@@ -1357,14 +1321,16 @@ export type AUTHOR_QUERYResult = {
     _key: string;
   }> | null;
 } | null;
+
+// Source: ../frontend/sanity/queries/documents/author.ts
 // Variable: AUTHOR_SLUGS_QUERY
 // Query: *[_type == "author" && defined(slug)]{slug}
-export type AUTHOR_SLUGS_QUERYResult = Array<never>;
+export type AUTHOR_SLUGS_QUERY_RESULT = Array<never>;
 
 // Source: ../frontend/sanity/queries/documents/footer.ts
 // Variable: FOOTER_QUERY
 // Query: *[_type == "footer"]{    _key,    _type,    smallLogo{      ...,      asset->{        _id,        url,        mimeType,        metadata {          lqip,          dimensions {            width,            height          }        }      }    },    largeLogo{      ...,      asset->{        _id,        url,        mimeType,        metadata {          lqip,          dimensions {            width,            height          }        }      }    },    actionLinks[]{        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    },    socialMediaLinks[]{        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    },    mainLinks[]{      _key,      title,      hasIndexPage,      indexPageLink[]{          _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )      },      subCategories[]{        _key,        title,          link[]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  }      }    },    bottomLinks[]{      _key,        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    },  }
-export type FOOTER_QUERYResult = Array<{
+export type FOOTER_QUERY_RESULT = Array<{
   _key: null;
   _type: "footer";
   smallLogo: {
@@ -1410,68 +1376,28 @@ export type FOOTER_QUERYResult = Array<{
     _key: string;
     isExternal?: boolean;
     title: string;
-    internalLink?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "event";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "events-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "page";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-child";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "solutions-child";
-    };
-    href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+    internalLink?:
+      | CaseStudyIndexReference
+      | CaseStudyReference
+      | EventReference
+      | EventsIndexReference
+      | PageReference
+      | PlatformChildReference
+      | PlatformIndexReference
+      | PostIndexReference
+      | PostReference
+      | ResourceIndexReference
+      | ResourceReference
+      | SolutionsChildReference;
+    href:
+      | string
+      | "/"
+      | "/blog"
+      | "/case-studies"
+      | "/events"
+      | "/platform"
+      | "/resources"
+      | null;
     openInNewTab?: boolean;
   }> | null;
   socialMediaLinks: Array<{
@@ -1479,68 +1405,28 @@ export type FOOTER_QUERYResult = Array<{
     _key: string;
     isExternal?: boolean;
     title: string;
-    internalLink?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "event";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "events-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "page";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-child";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "solutions-child";
-    };
-    href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+    internalLink?:
+      | CaseStudyIndexReference
+      | CaseStudyReference
+      | EventReference
+      | EventsIndexReference
+      | PageReference
+      | PlatformChildReference
+      | PlatformIndexReference
+      | PostIndexReference
+      | PostReference
+      | ResourceIndexReference
+      | ResourceReference
+      | SolutionsChildReference;
+    href:
+      | string
+      | "/"
+      | "/blog"
+      | "/case-studies"
+      | "/events"
+      | "/platform"
+      | "/resources"
+      | null;
     openInNewTab?: boolean;
   }> | null;
   mainLinks: Array<{
@@ -1552,68 +1438,28 @@ export type FOOTER_QUERYResult = Array<{
       _key: string;
       isExternal?: boolean;
       title: string;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+      internalLink?:
+        | CaseStudyIndexReference
+        | CaseStudyReference
+        | EventReference
+        | EventsIndexReference
+        | PageReference
+        | PlatformChildReference
+        | PlatformIndexReference
+        | PostIndexReference
+        | PostReference
+        | ResourceIndexReference
+        | ResourceReference
+        | SolutionsChildReference;
+      href:
+        | string
+        | "/"
+        | "/blog"
+        | "/case-studies"
+        | "/events"
+        | "/platform"
+        | "/resources"
+        | null;
       openInNewTab?: boolean;
     }> | null;
     subCategories: Array<{
@@ -1624,68 +1470,28 @@ export type FOOTER_QUERYResult = Array<{
         _key: string;
         isExternal?: boolean;
         title: string;
-        internalLink?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "case-study-index";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "case-study";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "event";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "events-index";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "page";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "platform-child";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "platform-index";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "post-index";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "post";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "resource-index";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "resource";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "solutions-child";
-        };
-        href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+        internalLink?:
+          | CaseStudyIndexReference
+          | CaseStudyReference
+          | EventReference
+          | EventsIndexReference
+          | PageReference
+          | PlatformChildReference
+          | PlatformIndexReference
+          | PostIndexReference
+          | PostReference
+          | ResourceIndexReference
+          | ResourceReference
+          | SolutionsChildReference;
+        href:
+          | string
+          | "/"
+          | "/blog"
+          | "/case-studies"
+          | "/events"
+          | "/platform"
+          | "/resources"
+          | null;
         openInNewTab?: boolean;
       }>;
     }> | null;
@@ -1695,68 +1501,28 @@ export type FOOTER_QUERYResult = Array<{
     _type: "link";
     isExternal?: boolean;
     title: string;
-    internalLink?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "event";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "events-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "page";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-child";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "solutions-child";
-    };
-    href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+    internalLink?:
+      | CaseStudyIndexReference
+      | CaseStudyReference
+      | EventReference
+      | EventsIndexReference
+      | PageReference
+      | PlatformChildReference
+      | PlatformIndexReference
+      | PostIndexReference
+      | PostReference
+      | ResourceIndexReference
+      | ResourceReference
+      | SolutionsChildReference;
+    href:
+      | string
+      | "/"
+      | "/blog"
+      | "/case-studies"
+      | "/events"
+      | "/platform"
+      | "/resources"
+      | null;
     openInNewTab?: boolean;
   }> | null;
 }>;
@@ -1764,7 +1530,7 @@ export type FOOTER_QUERYResult = Array<{
 // Source: ../frontend/sanity/queries/documents/navbar.ts
 // Variable: NAVBAR_QUERY
 // Query: *[_type == "navbar"]{    _type,      logo{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },    links[]{      _type,      _key,      _type == "link" => {          _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )      },      _type == "group" => {        title,        group[]{          _type,          _key,          _type == "card" => {            title,            description[]{                ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },            },            link{                _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )            }          },          _type == "link-group" => {            title,              links[]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  }          },          _type == "resources" => {            resources[]->{              "_type": "resource",              _key,              title,              slug,              "href": select(                _type == "post" => "/blog/" + slug.current,              ),                image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }            }          }        }      },      _type == "divider" => {        type,      }    },    ctaLinks[]{        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  }
-export type NAVBAR_QUERYResult = Array<{
+export type NAVBAR_QUERY_RESULT = Array<{
   _type: "navbar";
   logo: {
     asset: {
@@ -1779,364 +1545,232 @@ export type NAVBAR_QUERYResult = Array<{
         } | null;
       } | null;
     } | null;
-    media?: unknown;
+    media?: unknown; // Unable to locate the referenced type "logo.media" in schema
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
   } | null;
-  links: Array<{
-    _type: "divider";
-    _key: string;
-    type: "dot" | "space" | null;
-  } | {
-    _type: "group";
-    _key: string;
-    title: string;
-    group: Array<{
-      _type: "card";
-      _key: string;
-      title: string;
-      description: Array<{
-        children?: Array<{
-          marks?: Array<string>;
-          text?: string;
-          _type: "span";
-          _key: string;
-        }>;
-        style?: "normal";
-        listItem?: never;
-        markDefs: null;
-        level?: number;
-        _type: "block";
+  links: Array<
+    | {
+        _type: "divider";
         _key: string;
-      }> | null;
-      link: {
-        _type: "link";
-        _key: null;
-        isExternal?: boolean;
-        title: string;
-        internalLink?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "case-study-index";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "case-study";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "event";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "events-index";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "page";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "platform-child";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "platform-index";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "post-index";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "post";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "resource-index";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "resource";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "solutions-child";
-        };
-        href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
-        openInNewTab?: boolean;
-      } | null;
-    } | {
-      _type: "link-group";
-      _key: string;
-      title: string;
-      links: Array<{
-        _type: "link";
+        type: "dot" | "space" | null;
+      }
+    | {
+        _type: "group";
         _key: string;
-        isExternal?: boolean;
         title: string;
-        internalLink?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "case-study-index";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "case-study";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "event";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "events-index";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "page";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "platform-child";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "platform-index";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "post-index";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "post";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "resource-index";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "resource";
-        } | {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "solutions-child";
-        };
-        href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
-        openInNewTab?: boolean;
-      }> | null;
-    } | {
-      _type: "resources";
-      _key: string;
-      resources: Array<{
-        _type: "resource";
-        _key: null;
-        title: Array<{
-          children?: Array<{
-            marks?: Array<string>;
-            text?: string;
-            _type: "span";
-            _key: string;
-          }>;
-          style?: "normal";
-          listItem?: never;
-          markDefs?: Array<{
-            backgroundColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-            textColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-            _type: "highlight";
-            _key: string;
-          }>;
-          level?: number;
-          _type: "block";
-          _key: string;
-        }>;
-        slug: Slug;
-        href: string;
-        image: {
-          asset: {
-            _id: string;
-            url: string | null;
-            mimeType: string | null;
-            metadata: {
-              lqip: string | null;
-              dimensions: {
-                width: number;
-                height: number;
+        group: Array<
+          | {
+              _type: "card";
+              _key: string;
+              title: string;
+              description: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }> | null;
+              link: {
+                _type: "link";
+                _key: null;
+                isExternal?: boolean;
+                title: string;
+                internalLink?:
+                  | CaseStudyIndexReference
+                  | CaseStudyReference
+                  | EventReference
+                  | EventsIndexReference
+                  | PageReference
+                  | PlatformChildReference
+                  | PlatformIndexReference
+                  | PostIndexReference
+                  | PostReference
+                  | ResourceIndexReference
+                  | ResourceReference
+                  | SolutionsChildReference;
+                href:
+                  | string
+                  | "/"
+                  | "/blog"
+                  | "/case-studies"
+                  | "/events"
+                  | "/platform"
+                  | "/resources"
+                  | null;
+                openInNewTab?: boolean;
               } | null;
-            } | null;
-          } | null;
-          media?: unknown;
-          hotspot?: SanityImageHotspot;
-          crop?: SanityImageCrop;
-          alt?: string;
-          _type: "image";
-        } | null;
-      }> | null;
-    }> | null;
-  } | {
-    _type: "link";
-    _key: string;
-    isExternal?: boolean;
-    title: string;
-    internalLink?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "event";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "events-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "page";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-child";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "solutions-child";
-    };
-    href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
-    openInNewTab?: boolean;
-  }> | null;
+            }
+          | {
+              _type: "link-group";
+              _key: string;
+              title: string;
+              links: Array<{
+                _type: "link";
+                _key: string;
+                isExternal?: boolean;
+                title: string;
+                internalLink?:
+                  | CaseStudyIndexReference
+                  | CaseStudyReference
+                  | EventReference
+                  | EventsIndexReference
+                  | PageReference
+                  | PlatformChildReference
+                  | PlatformIndexReference
+                  | PostIndexReference
+                  | PostReference
+                  | ResourceIndexReference
+                  | ResourceReference
+                  | SolutionsChildReference;
+                href:
+                  | string
+                  | "/"
+                  | "/blog"
+                  | "/case-studies"
+                  | "/events"
+                  | "/platform"
+                  | "/resources"
+                  | null;
+                openInNewTab?: boolean;
+              }> | null;
+            }
+          | {
+              _type: "resources";
+              _key: string;
+              resources: Array<{
+                _type: "resource";
+                _key: null;
+                title: Array<{
+                  children?: Array<{
+                    marks?: Array<string>;
+                    text?: string;
+                    _type: "span";
+                    _key: string;
+                  }>;
+                  style?: "normal";
+                  listItem?: never;
+                  markDefs?: Array<{
+                    backgroundColor?:
+                      | "alabaster"
+                      | "ash"
+                      | "black"
+                      | "charcoal"
+                      | "gunmetal"
+                      | "neon"
+                      | "platinum"
+                      | "porcelain"
+                      | "silver"
+                      | "white";
+                    textColor?:
+                      | "alabaster"
+                      | "ash"
+                      | "black"
+                      | "charcoal"
+                      | "gunmetal"
+                      | "neon"
+                      | "platinum"
+                      | "porcelain"
+                      | "silver"
+                      | "white";
+                    _type: "highlight";
+                    _key: string;
+                  }>;
+                  level?: number;
+                  _type: "block";
+                  _key: string;
+                }>;
+                slug: Slug;
+                href: string;
+                image: {
+                  asset: {
+                    _id: string;
+                    url: string | null;
+                    mimeType: string | null;
+                    metadata: {
+                      lqip: string | null;
+                      dimensions: {
+                        width: number;
+                        height: number;
+                      } | null;
+                    } | null;
+                  } | null;
+                  media?: unknown;
+                  hotspot?: SanityImageHotspot;
+                  crop?: SanityImageCrop;
+                  alt?: string;
+                  _type: "image";
+                } | null;
+              }> | null;
+            }
+        > | null;
+      }
+    | {
+        _type: "link";
+        _key: string;
+        isExternal?: boolean;
+        title: string;
+        internalLink?:
+          | CaseStudyIndexReference
+          | CaseStudyReference
+          | EventReference
+          | EventsIndexReference
+          | PageReference
+          | PlatformChildReference
+          | PlatformIndexReference
+          | PostIndexReference
+          | PostReference
+          | ResourceIndexReference
+          | ResourceReference
+          | SolutionsChildReference;
+        href:
+          | string
+          | "/"
+          | "/blog"
+          | "/case-studies"
+          | "/events"
+          | "/platform"
+          | "/resources"
+          | null;
+        openInNewTab?: boolean;
+      }
+  > | null;
   ctaLinks: Array<{
     _type: "link";
     _key: string;
     isExternal?: boolean;
     title: string;
-    internalLink?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "event";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "events-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "page";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-child";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "solutions-child";
-    };
-    href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+    internalLink?:
+      | CaseStudyIndexReference
+      | CaseStudyReference
+      | EventReference
+      | EventsIndexReference
+      | PageReference
+      | PlatformChildReference
+      | PlatformIndexReference
+      | PostIndexReference
+      | PostReference
+      | ResourceIndexReference
+      | ResourceReference
+      | SolutionsChildReference;
+    href:
+      | string
+      | "/"
+      | "/blog"
+      | "/case-studies"
+      | "/events"
+      | "/platform"
+      | "/resources"
+      | null;
     openInNewTab?: boolean;
   }> | null;
 }>;
@@ -2145,12 +1779,16 @@ export type NAVBAR_QUERYResult = Array<{
 // Variable: topicsFragment
 // Query: topics[]->{  _id,  title,  slug,    logo{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }}
 export type TopicsFragmentResult = never;
+
+// Source: ../frontend/sanity/queries/page.ts
 // Variable: categoriesFragment
 // Query: categories[]->{  _id,  title,    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },  slug}
 export type CategoriesFragmentResult = never;
+
+// Source: ../frontend/sanity/queries/page.ts
 // Variable: RESOURCE_CATEGORY_COUNT_QUERY
 // Query: {  "totalPostCount": count(*[_type == $type]),  "currentCategoryPostCount": count(*[_type == $type && ($category == null || $category in categories[]->slug.current) && ($topic == null || $topic in topics[]->slug.current)]),  "categories": *[    _type == select(      $type == "case-study" => "case-study-category",      "resource-category"    ) &&    count(*[_type == $type && ^._id in categories[]._ref]) > 0  ] | order(title asc) {    _id,    title,    slug,    "count": count(*[_type == $type && ^._id in categories[]._ref  && ($topic == null || $topic in topics[]->slug.current)])  }}
-export type RESOURCE_CATEGORY_COUNT_QUERYResult = {
+export type RESOURCE_CATEGORY_COUNT_QUERY_RESULT = {
   totalPostCount: number;
   currentCategoryPostCount: number;
   categories: Array<{
@@ -2160,9 +1798,11 @@ export type RESOURCE_CATEGORY_COUNT_QUERYResult = {
     count: number;
   }>;
 };
+
+// Source: ../frontend/sanity/queries/page.ts
 // Variable: RESOURCE_TOPICS_COUNT_QUERY
 // Query: {  "totalTopicCount": count(*[_type == $type]),  "currentTopicPostCount": count(*[_type == $type && ($topic == null || $topic in topics[]->slug.current) && ($category == null || $category in categories[]->slug.current)]),"topics": *[  _type == "resource-topic" &&  count(*[_type == $type && ^._id in topics[]._ref]) > 0] | order(title asc) {  _id,  title,  slug,    logo{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },  "count": count(*[_type == $type && ^._id in topics[]._ref && ($category == null || $category in categories[]->slug.current)])}}
-export type RESOURCE_TOPICS_COUNT_QUERYResult = {
+export type RESOURCE_TOPICS_COUNT_QUERY_RESULT = {
   totalTopicCount: number;
   currentTopicPostCount: number;
   topics: Array<{
@@ -2182,7 +1822,7 @@ export type RESOURCE_TOPICS_COUNT_QUERYResult = {
           } | null;
         } | null;
       } | null;
-      media?: unknown;
+      media?: unknown; // Unable to locate the referenced type "logo.media" in schema
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
       alt?: string;
@@ -2191,9 +1831,11 @@ export type RESOURCE_TOPICS_COUNT_QUERYResult = {
     count: number;
   }>;
 };
+
+// Source: ../frontend/sanity/queries/page.ts
 // Variable: PAGE_QUERY
 // Query: *[_type == "page" && slug.current == $slug][0]{    _type,    blocks[]{          _type == "hero-primary" => {    _type,    _key,    title,      links[]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }  },    },      meta{    // use the title assigned in meta or the parent document title    "title": coalesce(title, select(^.title[0]._type == "block" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "post" => "/blog/" + ^.slug.current,      ^._type == "post-index" => "/blog",      ^._type == "case-study" => "/case-studies/" + ^.slug.current,      ^._type == "case-study-index" => "/case-studies",      ^._type == "resource" => "/resources/" + ^.slug.current,      ^._type == "resource-index" => "/resources",      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      ^._type == "solutions-child" => "/solutions/" + ^.slug.current,      ^._type == "event" => "/events/" + ^.slug.current,      ^._type == "events-index" => "/events",      "/" + ^.slug.current    ),    // the dimensions are the recommended meta image size    "image": coalesce(      // use the image directly assigned in meta      image.asset->url + "?w=1200&h=630&fit=max",      // use the image directly on this document      ^.image.asset->url + "?w=1200&h=630&fit=max",      // find and use the first hero image      select(^.blocks[0]._type match "hero*" => ^.blocks[0].image.asset->url + "?w=1200&h=630&fit=max", null),      // find and use the organization image      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  }  }
-export type PAGE_QUERYResult = {
+export type PAGE_QUERY_RESULT = {
   _type: "page";
   blocks: Array<{
     _type: "hero-primary";
@@ -2204,68 +1846,28 @@ export type PAGE_QUERYResult = {
       _key: string;
       isExternal?: boolean;
       title: string;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+      internalLink?:
+        | CaseStudyIndexReference
+        | CaseStudyReference
+        | EventReference
+        | EventsIndexReference
+        | PageReference
+        | PlatformChildReference
+        | PlatformIndexReference
+        | PostIndexReference
+        | PostReference
+        | ResourceIndexReference
+        | ResourceReference
+        | SolutionsChildReference;
+      href:
+        | string
+        | "/"
+        | "/blog"
+        | "/case-studies"
+        | "/events"
+        | "/platform"
+        | "/resources"
+        | null;
       openInNewTab?: boolean;
     }> | null;
     image: {
@@ -2296,14 +1898,18 @@ export type PAGE_QUERYResult = {
     image: string | null;
   } | null;
 } | null;
+
+// Source: ../frontend/sanity/queries/page.ts
 // Variable: PAGES_SLUGS_QUERY
 // Query: *[_type == $pageType && defined(slug)]{slug}
-export type PAGES_SLUGS_QUERYResult = Array<{
+export type PAGES_SLUGS_QUERY_RESULT = Array<{
   slug: Slug;
 }>;
+
+// Source: ../frontend/sanity/queries/page.ts
 // Variable: ORGANIZATION_QUERY
 // Query: *[_type == "organization"][0]{    organization {      ...,        logo{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }    }  }
-export type ORGANIZATION_QUERYResult = {
+export type ORGANIZATION_QUERY_RESULT = {
   organization: {
     name: string;
     description?: string;
@@ -2331,12 +1937,7 @@ export type ORGANIZATION_QUERYResult = {
     contactEmail?: string;
     headquarters?: string;
     image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
+      asset?: SanityImageAssetReference;
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
@@ -2349,9 +1950,11 @@ export type ORGANIZATION_QUERYResult = {
     }>;
   } | null;
 } | null;
+
+// Source: ../frontend/sanity/queries/page.ts
 // Variable: BLOG_QUERY
 // Query: *[_type == "post-index"][0]{    _id,    _type,    title,    description,    slug,      meta{    // use the title assigned in meta or the parent document title    "title": coalesce(title, select(^.title[0]._type == "block" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "post" => "/blog/" + ^.slug.current,      ^._type == "post-index" => "/blog",      ^._type == "case-study" => "/case-studies/" + ^.slug.current,      ^._type == "case-study-index" => "/case-studies",      ^._type == "resource" => "/resources/" + ^.slug.current,      ^._type == "resource-index" => "/resources",      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      ^._type == "solutions-child" => "/solutions/" + ^.slug.current,      ^._type == "event" => "/events/" + ^.slug.current,      ^._type == "events-index" => "/events",      "/" + ^.slug.current    ),    // the dimensions are the recommended meta image size    "image": coalesce(      // use the image directly assigned in meta      image.asset->url + "?w=1200&h=630&fit=max",      // use the image directly on this document      ^.image.asset->url + "?w=1200&h=630&fit=max",      // find and use the first hero image      select(^.blocks[0]._type match "hero*" => ^.blocks[0].image.asset->url + "?w=1200&h=630&fit=max", null),      // find and use the organization image      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },    blocks[]{          _type == "hero-primary" => {    _type,    _key,    title,      links[]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }  },    },    featuredPost->{      _id,      _type,      _createdAt,      slug,      title[]{          ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },      },      description,      publishedDate,        image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },      author->{  _id,  name,  content[]{      ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },  },    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }},      topics[]->{  _id,  title,  slug,    logo{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }},      categories[]->{  _id,  title,    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },  slug},      "link":   link[0]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  }    },    "posts": *[_type == "post" && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {      _id,      _type,      _createdAt,      title[]{          ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },      },      slug,      description,      publishedDate,      "link":   link[0]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },        image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },      author->{  _id,  name,  content[]{      ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },  },    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }},      categories[]->{  _id,  title,    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },  slug},      topics[]->{  _id,  title,  slug,    logo{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }},    }  }
-export type BLOG_QUERYResult = {
+export type BLOG_QUERY_RESULT = {
   _id: string;
   _type: "post-index";
   title: string;
@@ -2373,68 +1976,28 @@ export type BLOG_QUERYResult = {
       _key: string;
       isExternal?: boolean;
       title: string;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+      internalLink?:
+        | CaseStudyIndexReference
+        | CaseStudyReference
+        | EventReference
+        | EventsIndexReference
+        | PageReference
+        | PlatformChildReference
+        | PlatformIndexReference
+        | PostIndexReference
+        | PostReference
+        | ResourceIndexReference
+        | ResourceReference
+        | SolutionsChildReference;
+      href:
+        | string
+        | "/"
+        | "/blog"
+        | "/case-studies"
+        | "/events"
+        | "/platform"
+        | "/resources"
+        | null;
       openInNewTab?: boolean;
     }> | null;
     image: {
@@ -2472,8 +2035,28 @@ export type BLOG_QUERYResult = {
       style?: "normal";
       listItem?: never;
       markDefs: Array<{
-        backgroundColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-        textColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
+        backgroundColor?:
+          | "alabaster"
+          | "ash"
+          | "black"
+          | "charcoal"
+          | "gunmetal"
+          | "neon"
+          | "platinum"
+          | "porcelain"
+          | "silver"
+          | "white";
+        textColor?:
+          | "alabaster"
+          | "ash"
+          | "black"
+          | "charcoal"
+          | "gunmetal"
+          | "neon"
+          | "platinum"
+          | "porcelain"
+          | "silver"
+          | "white";
         _type: "highlight";
         _key: string;
       }> | null;
@@ -2556,7 +2139,7 @@ export type BLOG_QUERYResult = {
             } | null;
           } | null;
         } | null;
-        media?: unknown;
+        media?: unknown; // Unable to locate the referenced type "logo.media" in schema
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         alt?: string;
@@ -2569,68 +2152,28 @@ export type BLOG_QUERYResult = {
       _key: string;
       isExternal?: boolean;
       title: string;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+      internalLink?:
+        | CaseStudyIndexReference
+        | CaseStudyReference
+        | EventReference
+        | EventsIndexReference
+        | PageReference
+        | PlatformChildReference
+        | PlatformIndexReference
+        | PostIndexReference
+        | PostReference
+        | ResourceIndexReference
+        | ResourceReference
+        | SolutionsChildReference;
+      href:
+        | string
+        | "/"
+        | "/blog"
+        | "/case-studies"
+        | "/events"
+        | "/platform"
+        | "/resources"
+        | null;
       openInNewTab?: boolean;
     } | null;
   } | null;
@@ -2648,8 +2191,28 @@ export type BLOG_QUERYResult = {
       style?: "normal";
       listItem?: never;
       markDefs: Array<{
-        backgroundColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-        textColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
+        backgroundColor?:
+          | "alabaster"
+          | "ash"
+          | "black"
+          | "charcoal"
+          | "gunmetal"
+          | "neon"
+          | "platinum"
+          | "porcelain"
+          | "silver"
+          | "white";
+        textColor?:
+          | "alabaster"
+          | "ash"
+          | "black"
+          | "charcoal"
+          | "gunmetal"
+          | "neon"
+          | "platinum"
+          | "porcelain"
+          | "silver"
+          | "white";
         _type: "highlight";
         _key: string;
       }> | null;
@@ -2665,68 +2228,28 @@ export type BLOG_QUERYResult = {
       _key: string;
       isExternal?: boolean;
       title: string;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+      internalLink?:
+        | CaseStudyIndexReference
+        | CaseStudyReference
+        | EventReference
+        | EventsIndexReference
+        | PageReference
+        | PlatformChildReference
+        | PlatformIndexReference
+        | PostIndexReference
+        | PostReference
+        | ResourceIndexReference
+        | ResourceReference
+        | SolutionsChildReference;
+      href:
+        | string
+        | "/"
+        | "/blog"
+        | "/case-studies"
+        | "/events"
+        | "/platform"
+        | "/resources"
+        | null;
       openInNewTab?: boolean;
     } | null;
     image: {
@@ -2803,7 +2326,7 @@ export type BLOG_QUERYResult = {
             } | null;
           } | null;
         } | null;
-        media?: unknown;
+        media?: unknown; // Unable to locate the referenced type "logo.media" in schema
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         alt?: string;
@@ -2812,9 +2335,11 @@ export type BLOG_QUERYResult = {
     }> | null;
   }>;
 } | null;
+
+// Source: ../frontend/sanity/queries/page.ts
 // Variable: BLOG_SLUG_QUERY
 // Query: *[_type == "post" && slug.current == $slug][0]{    _id,    _createdAt,    _type,    slug,    title[]{        ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },    },    description,    publishedDate,    content[]{        ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "image" => {      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },  _type == "promo-card" => {    title,    description,      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },    "link":   link[0]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  }  },  _type == "listDriver" => {    title,    items[]{      _key,      eyebrow,      "link":   link[0]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  }    }  },  _type == "quote" => {    title[]{        ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },    },    author,  },  _type == "portable-text-accordion" => {    ...,    faqs[]{      _key,      title,      content[]{        ...,          markDefs[]{            ...,            _type == "link" => {                _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )            }          },          image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },      },    },      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },  },    },    author->{  _id,  name,  content[]{      ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },  },    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }},    topics[]->{  _id,  title,  slug,    logo{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }},    categories[]->{  _id,  title,    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },  slug},      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },      meta{    // use the title assigned in meta or the parent document title    "title": coalesce(title, select(^.title[0]._type == "block" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "post" => "/blog/" + ^.slug.current,      ^._type == "post-index" => "/blog",      ^._type == "case-study" => "/case-studies/" + ^.slug.current,      ^._type == "case-study-index" => "/case-studies",      ^._type == "resource" => "/resources/" + ^.slug.current,      ^._type == "resource-index" => "/resources",      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      ^._type == "solutions-child" => "/solutions/" + ^.slug.current,      ^._type == "event" => "/events/" + ^.slug.current,      ^._type == "events-index" => "/events",      "/" + ^.slug.current    ),    // the dimensions are the recommended meta image size    "image": coalesce(      // use the image directly assigned in meta      image.asset->url + "?w=1200&h=630&fit=max",      // use the image directly on this document      ^.image.asset->url + "?w=1200&h=630&fit=max",      // find and use the first hero image      select(^.blocks[0]._type match "hero*" => ^.blocks[0].image.asset->url + "?w=1200&h=630&fit=max", null),      // find and use the organization image      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },    blocks[]{          _type == "hero-primary" => {    _type,    _key,    title,      links[]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }  },    },    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 ),  }
-export type BLOG_SLUG_QUERYResult = {
+export type BLOG_SLUG_QUERY_RESULT = {
   _id: string;
   _createdAt: string;
   _type: "post";
@@ -2829,8 +2354,28 @@ export type BLOG_SLUG_QUERYResult = {
     style?: "normal";
     listItem?: never;
     markDefs: Array<{
-      backgroundColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-      textColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
+      backgroundColor?:
+        | "alabaster"
+        | "ash"
+        | "black"
+        | "charcoal"
+        | "gunmetal"
+        | "neon"
+        | "platinum"
+        | "porcelain"
+        | "silver"
+        | "white";
+      textColor?:
+        | "alabaster"
+        | "ash"
+        | "black"
+        | "charcoal"
+        | "gunmetal"
+        | "neon"
+        | "platinum"
+        | "porcelain"
+        | "silver"
+        | "white";
       _type: "highlight";
       _key: string;
     }> | null;
@@ -2840,181 +2385,124 @@ export type BLOG_SLUG_QUERYResult = {
   }>;
   description: string | null;
   publishedDate: string | null;
-  content: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "h1" | "h2" | "h3" | "h4" | "normal";
-    listItem?: "bullet" | "number";
-    markDefs: Array<{
-      backgroundColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-      textColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-      _type: "highlight";
-      _key: string;
-    } | {
-      isExternal?: boolean;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
-      openInNewTab?: boolean;
-      _type: "link";
-      _key: string;
-    }> | null;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-    markDefs: null;
-    image: null;
-  } | {
-    _key: string;
-    _type: "link";
-    isExternal?: boolean;
-    title: string;
-    internalLink?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "event";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "events-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "page";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-child";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "solutions-child";
-    };
-    href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
-    openInNewTab?: boolean;
-    markDefs: null;
-  } | {
-    videoId?: string;
-    _type: "youtube";
-    _key: string;
-    markDefs: null;
-  }> | null;
+  content: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "h1" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<
+          | {
+              backgroundColor?:
+                | "alabaster"
+                | "ash"
+                | "black"
+                | "charcoal"
+                | "gunmetal"
+                | "neon"
+                | "platinum"
+                | "porcelain"
+                | "silver"
+                | "white";
+              textColor?:
+                | "alabaster"
+                | "ash"
+                | "black"
+                | "charcoal"
+                | "gunmetal"
+                | "neon"
+                | "platinum"
+                | "porcelain"
+                | "silver"
+                | "white";
+              _type: "highlight";
+              _key: string;
+            }
+          | {
+              isExternal?: boolean;
+              internalLink?:
+                | CaseStudyIndexReference
+                | CaseStudyReference
+                | EventReference
+                | EventsIndexReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference
+                | PostIndexReference
+                | PostReference
+                | ResourceIndexReference
+                | ResourceReference
+                | SolutionsChildReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/events"
+                | "/platform"
+                | "/resources"
+                | null;
+              openInNewTab?: boolean;
+              _type: "link";
+              _key: string;
+            }
+        > | null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+        markDefs: null;
+        image: null;
+      }
+    | {
+        _key: string;
+        _type: "link";
+        isExternal?: boolean;
+        title: string;
+        internalLink?:
+          | CaseStudyIndexReference
+          | CaseStudyReference
+          | EventReference
+          | EventsIndexReference
+          | PageReference
+          | PlatformChildReference
+          | PlatformIndexReference
+          | PostIndexReference
+          | PostReference
+          | ResourceIndexReference
+          | ResourceReference
+          | SolutionsChildReference;
+        href:
+          | string
+          | "/"
+          | "/blog"
+          | "/case-studies"
+          | "/events"
+          | "/platform"
+          | "/resources"
+          | null;
+        openInNewTab?: boolean;
+        markDefs: null;
+      }
+    | {
+        videoId?: string;
+        _type: "youtube";
+        _key: string;
+        markDefs: null;
+      }
+  > | null;
   author: {
     _id: string;
     name: string;
@@ -3069,7 +2557,7 @@ export type BLOG_SLUG_QUERYResult = {
           } | null;
         } | null;
       } | null;
-      media?: unknown;
+      media?: unknown; // Unable to locate the referenced type "logo.media" in schema
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
       alt?: string;
@@ -3097,25 +2585,47 @@ export type BLOG_SLUG_QUERYResult = {
     _type: "image";
   } | null;
   meta: {
-    title: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        backgroundColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-        textColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-        _type: "highlight";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }> | string;
+    title:
+      | Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: never;
+          markDefs?: Array<{
+            backgroundColor?:
+              | "alabaster"
+              | "ash"
+              | "black"
+              | "charcoal"
+              | "gunmetal"
+              | "neon"
+              | "platinum"
+              | "porcelain"
+              | "silver"
+              | "white";
+            textColor?:
+              | "alabaster"
+              | "ash"
+              | "black"
+              | "charcoal"
+              | "gunmetal"
+              | "neon"
+              | "platinum"
+              | "porcelain"
+              | "silver"
+              | "white";
+            _type: "highlight";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>
+      | string;
     description: string | null;
     noindex: boolean | null;
     relativeUrl: string | "/";
@@ -3130,68 +2640,28 @@ export type BLOG_SLUG_QUERYResult = {
       _key: string;
       isExternal?: boolean;
       title: string;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+      internalLink?:
+        | CaseStudyIndexReference
+        | CaseStudyReference
+        | EventReference
+        | EventsIndexReference
+        | PageReference
+        | PlatformChildReference
+        | PlatformIndexReference
+        | PostIndexReference
+        | PostReference
+        | ResourceIndexReference
+        | ResourceReference
+        | SolutionsChildReference;
+      href:
+        | string
+        | "/"
+        | "/blog"
+        | "/case-studies"
+        | "/events"
+        | "/platform"
+        | "/resources"
+        | null;
       openInNewTab?: boolean;
     }> | null;
     image: {
@@ -3216,14 +2686,18 @@ export type BLOG_SLUG_QUERYResult = {
   }> | null;
   estimatedReadingTime: number;
 } | null;
+
+// Source: ../frontend/sanity/queries/page.ts
 // Variable: BLOG_SLUGS_QUERY
 // Query: *[_type == "post" && defined(slug)]{slug}
-export type BLOG_SLUGS_QUERYResult = Array<{
+export type BLOG_SLUGS_QUERY_RESULT = Array<{
   slug: Slug;
 }>;
+
+// Source: ../frontend/sanity/queries/page.ts
 // Variable: CASE_STUDIES_QUERY
 // Query: *[_type == "case-study-index"][0]{    _id,    _type,    title,    description,    slug,      meta{    // use the title assigned in meta or the parent document title    "title": coalesce(title, select(^.title[0]._type == "block" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "post" => "/blog/" + ^.slug.current,      ^._type == "post-index" => "/blog",      ^._type == "case-study" => "/case-studies/" + ^.slug.current,      ^._type == "case-study-index" => "/case-studies",      ^._type == "resource" => "/resources/" + ^.slug.current,      ^._type == "resource-index" => "/resources",      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      ^._type == "solutions-child" => "/solutions/" + ^.slug.current,      ^._type == "event" => "/events/" + ^.slug.current,      ^._type == "events-index" => "/events",      "/" + ^.slug.current    ),    // the dimensions are the recommended meta image size    "image": coalesce(      // use the image directly assigned in meta      image.asset->url + "?w=1200&h=630&fit=max",      // use the image directly on this document      ^.image.asset->url + "?w=1200&h=630&fit=max",      // find and use the first hero image      select(^.blocks[0]._type match "hero*" => ^.blocks[0].image.asset->url + "?w=1200&h=630&fit=max", null),      // find and use the organization image      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },    blocks[]{          _type == "hero-primary" => {    _type,    _key,    title,      links[]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }  },    },    featuredPost->{      _id,      _type,      _createdAt,      slug,      title[]{          ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },      },      description,      publishedDate,        image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },      author->{  _id,  name,  content[]{      ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },  },    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }},      categories[]->{  _id,  title,    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },  slug},      topics[]->{  _id,  title,  slug,    logo{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }},      "link":   link[0]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  }    },      "posts": *[_type == "case-study" && ($category == null || $category in categories[]->slug.current) && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {      _id,      _type,      _createdAt,      slug,      title[]{          ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },      },      description,      publishedDate,      "link":   link[0]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },        image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },      author->{  _id,  name,  content[]{      ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },  },    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }},      categories[]->{  _id,  title,    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },  slug},      topics[]->{  _id,  title,  slug,    logo{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }},    }  }
-export type CASE_STUDIES_QUERYResult = {
+export type CASE_STUDIES_QUERY_RESULT = {
   _id: string;
   _type: "case-study-index";
   title: string;
@@ -3245,68 +2719,28 @@ export type CASE_STUDIES_QUERYResult = {
       _key: string;
       isExternal?: boolean;
       title: string;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+      internalLink?:
+        | CaseStudyIndexReference
+        | CaseStudyReference
+        | EventReference
+        | EventsIndexReference
+        | PageReference
+        | PlatformChildReference
+        | PlatformIndexReference
+        | PostIndexReference
+        | PostReference
+        | ResourceIndexReference
+        | ResourceReference
+        | SolutionsChildReference;
+      href:
+        | string
+        | "/"
+        | "/blog"
+        | "/case-studies"
+        | "/events"
+        | "/platform"
+        | "/resources"
+        | null;
       openInNewTab?: boolean;
     }> | null;
     image: {
@@ -3344,8 +2778,28 @@ export type CASE_STUDIES_QUERYResult = {
       style?: "normal";
       listItem?: never;
       markDefs: Array<{
-        backgroundColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-        textColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
+        backgroundColor?:
+          | "alabaster"
+          | "ash"
+          | "black"
+          | "charcoal"
+          | "gunmetal"
+          | "neon"
+          | "platinum"
+          | "porcelain"
+          | "silver"
+          | "white";
+        textColor?:
+          | "alabaster"
+          | "ash"
+          | "black"
+          | "charcoal"
+          | "gunmetal"
+          | "neon"
+          | "platinum"
+          | "porcelain"
+          | "silver"
+          | "white";
         _type: "highlight";
         _key: string;
       }> | null;
@@ -3434,7 +2888,7 @@ export type CASE_STUDIES_QUERYResult = {
             } | null;
           } | null;
         } | null;
-        media?: unknown;
+        media?: unknown; // Unable to locate the referenced type "logo.media" in schema
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         alt?: string;
@@ -3446,68 +2900,28 @@ export type CASE_STUDIES_QUERYResult = {
       _key: string;
       isExternal?: boolean;
       title: string;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+      internalLink?:
+        | CaseStudyIndexReference
+        | CaseStudyReference
+        | EventReference
+        | EventsIndexReference
+        | PageReference
+        | PlatformChildReference
+        | PlatformIndexReference
+        | PostIndexReference
+        | PostReference
+        | ResourceIndexReference
+        | ResourceReference
+        | SolutionsChildReference;
+      href:
+        | string
+        | "/"
+        | "/blog"
+        | "/case-studies"
+        | "/events"
+        | "/platform"
+        | "/resources"
+        | null;
       openInNewTab?: boolean;
     } | null;
   } | null;
@@ -3526,8 +2940,28 @@ export type CASE_STUDIES_QUERYResult = {
       style?: "normal";
       listItem?: never;
       markDefs: Array<{
-        backgroundColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-        textColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
+        backgroundColor?:
+          | "alabaster"
+          | "ash"
+          | "black"
+          | "charcoal"
+          | "gunmetal"
+          | "neon"
+          | "platinum"
+          | "porcelain"
+          | "silver"
+          | "white";
+        textColor?:
+          | "alabaster"
+          | "ash"
+          | "black"
+          | "charcoal"
+          | "gunmetal"
+          | "neon"
+          | "platinum"
+          | "porcelain"
+          | "silver"
+          | "white";
         _type: "highlight";
         _key: string;
       }> | null;
@@ -3542,68 +2976,28 @@ export type CASE_STUDIES_QUERYResult = {
       _key: string;
       isExternal?: boolean;
       title: string;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+      internalLink?:
+        | CaseStudyIndexReference
+        | CaseStudyReference
+        | EventReference
+        | EventsIndexReference
+        | PageReference
+        | PlatformChildReference
+        | PlatformIndexReference
+        | PostIndexReference
+        | PostReference
+        | ResourceIndexReference
+        | ResourceReference
+        | SolutionsChildReference;
+      href:
+        | string
+        | "/"
+        | "/blog"
+        | "/case-studies"
+        | "/events"
+        | "/platform"
+        | "/resources"
+        | null;
       openInNewTab?: boolean;
     } | null;
     image: {
@@ -3685,7 +3079,7 @@ export type CASE_STUDIES_QUERYResult = {
             } | null;
           } | null;
         } | null;
-        media?: unknown;
+        media?: unknown; // Unable to locate the referenced type "logo.media" in schema
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         alt?: string;
@@ -3694,9 +3088,11 @@ export type CASE_STUDIES_QUERYResult = {
     }> | null;
   }>;
 } | null;
+
+// Source: ../frontend/sanity/queries/page.ts
 // Variable: CASE_STUDIES_SLUG_QUERY
 // Query: *[_type == "case-study" && slug.current == $slug][0]{    _id,    _createdAt,    _type,    slug,    title[]{          ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },      },    description,    publishedDate,    content[]{        ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "image" => {      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },  _type == "promo-card" => {    title,    description,      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },    "link":   link[0]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  }  },  _type == "listDriver" => {    title,    items[]{      _key,      eyebrow,      "link":   link[0]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  }    }  },  _type == "quote" => {    title[]{        ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },    },    author,  },  _type == "portable-text-accordion" => {    ...,    faqs[]{      _key,      title,      content[]{        ...,          markDefs[]{            ...,            _type == "link" => {                _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )            }          },          image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },      },    },      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },  },    },    author->{  _id,  name,  content[]{      ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },  },    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }},      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },      meta{    // use the title assigned in meta or the parent document title    "title": coalesce(title, select(^.title[0]._type == "block" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "post" => "/blog/" + ^.slug.current,      ^._type == "post-index" => "/blog",      ^._type == "case-study" => "/case-studies/" + ^.slug.current,      ^._type == "case-study-index" => "/case-studies",      ^._type == "resource" => "/resources/" + ^.slug.current,      ^._type == "resource-index" => "/resources",      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      ^._type == "solutions-child" => "/solutions/" + ^.slug.current,      ^._type == "event" => "/events/" + ^.slug.current,      ^._type == "events-index" => "/events",      "/" + ^.slug.current    ),    // the dimensions are the recommended meta image size    "image": coalesce(      // use the image directly assigned in meta      image.asset->url + "?w=1200&h=630&fit=max",      // use the image directly on this document      ^.image.asset->url + "?w=1200&h=630&fit=max",      // find and use the first hero image      select(^.blocks[0]._type match "hero*" => ^.blocks[0].image.asset->url + "?w=1200&h=630&fit=max", null),      // find and use the organization image      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },    blocks[]{          _type == "hero-primary" => {    _type,    _key,    title,      links[]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }  },    },    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 ),  }
-export type CASE_STUDIES_SLUG_QUERYResult = {
+export type CASE_STUDIES_SLUG_QUERY_RESULT = {
   _id: string;
   _createdAt: string;
   _type: "case-study";
@@ -3711,8 +3107,28 @@ export type CASE_STUDIES_SLUG_QUERYResult = {
     style?: "normal";
     listItem?: never;
     markDefs: Array<{
-      backgroundColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-      textColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
+      backgroundColor?:
+        | "alabaster"
+        | "ash"
+        | "black"
+        | "charcoal"
+        | "gunmetal"
+        | "neon"
+        | "platinum"
+        | "porcelain"
+        | "silver"
+        | "white";
+      textColor?:
+        | "alabaster"
+        | "ash"
+        | "black"
+        | "charcoal"
+        | "gunmetal"
+        | "neon"
+        | "platinum"
+        | "porcelain"
+        | "silver"
+        | "white";
       _type: "highlight";
       _key: string;
     }> | null;
@@ -3722,181 +3138,124 @@ export type CASE_STUDIES_SLUG_QUERYResult = {
   }>;
   description: string | null;
   publishedDate: string | null;
-  content: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "h1" | "h2" | "h3" | "h4" | "normal";
-    listItem?: "bullet" | "number";
-    markDefs: Array<{
-      backgroundColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-      textColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-      _type: "highlight";
-      _key: string;
-    } | {
-      isExternal?: boolean;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
-      openInNewTab?: boolean;
-      _type: "link";
-      _key: string;
-    }> | null;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-    markDefs: null;
-    image: null;
-  } | {
-    _key: string;
-    _type: "link";
-    isExternal?: boolean;
-    title: string;
-    internalLink?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "event";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "events-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "page";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-child";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "solutions-child";
-    };
-    href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
-    openInNewTab?: boolean;
-    markDefs: null;
-  } | {
-    videoId?: string;
-    _type: "youtube";
-    _key: string;
-    markDefs: null;
-  }> | null;
+  content: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "h1" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<
+          | {
+              backgroundColor?:
+                | "alabaster"
+                | "ash"
+                | "black"
+                | "charcoal"
+                | "gunmetal"
+                | "neon"
+                | "platinum"
+                | "porcelain"
+                | "silver"
+                | "white";
+              textColor?:
+                | "alabaster"
+                | "ash"
+                | "black"
+                | "charcoal"
+                | "gunmetal"
+                | "neon"
+                | "platinum"
+                | "porcelain"
+                | "silver"
+                | "white";
+              _type: "highlight";
+              _key: string;
+            }
+          | {
+              isExternal?: boolean;
+              internalLink?:
+                | CaseStudyIndexReference
+                | CaseStudyReference
+                | EventReference
+                | EventsIndexReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference
+                | PostIndexReference
+                | PostReference
+                | ResourceIndexReference
+                | ResourceReference
+                | SolutionsChildReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/events"
+                | "/platform"
+                | "/resources"
+                | null;
+              openInNewTab?: boolean;
+              _type: "link";
+              _key: string;
+            }
+        > | null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+        markDefs: null;
+        image: null;
+      }
+    | {
+        _key: string;
+        _type: "link";
+        isExternal?: boolean;
+        title: string;
+        internalLink?:
+          | CaseStudyIndexReference
+          | CaseStudyReference
+          | EventReference
+          | EventsIndexReference
+          | PageReference
+          | PlatformChildReference
+          | PlatformIndexReference
+          | PostIndexReference
+          | PostReference
+          | ResourceIndexReference
+          | ResourceReference
+          | SolutionsChildReference;
+        href:
+          | string
+          | "/"
+          | "/blog"
+          | "/case-studies"
+          | "/events"
+          | "/platform"
+          | "/resources"
+          | null;
+        openInNewTab?: boolean;
+        markDefs: null;
+      }
+    | {
+        videoId?: string;
+        _type: "youtube";
+        _key: string;
+        markDefs: null;
+      }
+  > | null;
   author: {
     _id: string;
     name: string;
@@ -3954,25 +3313,47 @@ export type CASE_STUDIES_SLUG_QUERYResult = {
     _type: "image";
   } | null;
   meta: {
-    title: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        backgroundColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-        textColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-        _type: "highlight";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }> | string;
+    title:
+      | Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: never;
+          markDefs?: Array<{
+            backgroundColor?:
+              | "alabaster"
+              | "ash"
+              | "black"
+              | "charcoal"
+              | "gunmetal"
+              | "neon"
+              | "platinum"
+              | "porcelain"
+              | "silver"
+              | "white";
+            textColor?:
+              | "alabaster"
+              | "ash"
+              | "black"
+              | "charcoal"
+              | "gunmetal"
+              | "neon"
+              | "platinum"
+              | "porcelain"
+              | "silver"
+              | "white";
+            _type: "highlight";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>
+      | string;
     description: string | null;
     noindex: boolean | null;
     relativeUrl: string | "/";
@@ -3987,68 +3368,28 @@ export type CASE_STUDIES_SLUG_QUERYResult = {
       _key: string;
       isExternal?: boolean;
       title: string;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+      internalLink?:
+        | CaseStudyIndexReference
+        | CaseStudyReference
+        | EventReference
+        | EventsIndexReference
+        | PageReference
+        | PlatformChildReference
+        | PlatformIndexReference
+        | PostIndexReference
+        | PostReference
+        | ResourceIndexReference
+        | ResourceReference
+        | SolutionsChildReference;
+      href:
+        | string
+        | "/"
+        | "/blog"
+        | "/case-studies"
+        | "/events"
+        | "/platform"
+        | "/resources"
+        | null;
       openInNewTab?: boolean;
     }> | null;
     image: {
@@ -4073,14 +3414,18 @@ export type CASE_STUDIES_SLUG_QUERYResult = {
   }> | null;
   estimatedReadingTime: number;
 } | null;
+
+// Source: ../frontend/sanity/queries/page.ts
 // Variable: CASE_STUDIES_SLUGS_QUERY
 // Query: *[_type == "case-study" && defined(slug)]{slug}
-export type CASE_STUDIES_SLUGS_QUERYResult = Array<{
+export type CASE_STUDIES_SLUGS_QUERY_RESULT = Array<{
   slug: Slug;
 }>;
+
+// Source: ../frontend/sanity/queries/page.ts
 // Variable: RESOURCE_QUERY
 // Query: *[_type == "resource-index"][0]{    _id,    _type,    title,    description,    slug,      meta{    // use the title assigned in meta or the parent document title    "title": coalesce(title, select(^.title[0]._type == "block" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "post" => "/blog/" + ^.slug.current,      ^._type == "post-index" => "/blog",      ^._type == "case-study" => "/case-studies/" + ^.slug.current,      ^._type == "case-study-index" => "/case-studies",      ^._type == "resource" => "/resources/" + ^.slug.current,      ^._type == "resource-index" => "/resources",      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      ^._type == "solutions-child" => "/solutions/" + ^.slug.current,      ^._type == "event" => "/events/" + ^.slug.current,      ^._type == "events-index" => "/events",      "/" + ^.slug.current    ),    // the dimensions are the recommended meta image size    "image": coalesce(      // use the image directly assigned in meta      image.asset->url + "?w=1200&h=630&fit=max",      // use the image directly on this document      ^.image.asset->url + "?w=1200&h=630&fit=max",      // find and use the first hero image      select(^.blocks[0]._type match "hero*" => ^.blocks[0].image.asset->url + "?w=1200&h=630&fit=max", null),      // find and use the organization image      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },    blocks[]{          _type == "hero-primary" => {    _type,    _key,    title,      links[]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }  },    },    "posts": *[_type == "resource" && ($category == null || $category in categories[]->slug.current) && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {      _id,      _type,      _createdAt,      slug,      title[]{          ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },      },      description,      publishedDate,      "link":   link[0]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },        image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },      author->{  _id,  name,  content[]{      ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },  },    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }},      categories[]->{  _id,  title,    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },  slug},      topics[]->{  _id,  title,  slug,    logo{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }},    }  }
-export type RESOURCE_QUERYResult = {
+export type RESOURCE_QUERY_RESULT = {
   _id: string;
   _type: "resource-index";
   title: string;
@@ -4102,68 +3447,28 @@ export type RESOURCE_QUERYResult = {
       _key: string;
       isExternal?: boolean;
       title: string;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+      internalLink?:
+        | CaseStudyIndexReference
+        | CaseStudyReference
+        | EventReference
+        | EventsIndexReference
+        | PageReference
+        | PlatformChildReference
+        | PlatformIndexReference
+        | PostIndexReference
+        | PostReference
+        | ResourceIndexReference
+        | ResourceReference
+        | SolutionsChildReference;
+      href:
+        | string
+        | "/"
+        | "/blog"
+        | "/case-studies"
+        | "/events"
+        | "/platform"
+        | "/resources"
+        | null;
       openInNewTab?: boolean;
     }> | null;
     image: {
@@ -4201,8 +3506,28 @@ export type RESOURCE_QUERYResult = {
       style?: "normal";
       listItem?: never;
       markDefs: Array<{
-        backgroundColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-        textColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
+        backgroundColor?:
+          | "alabaster"
+          | "ash"
+          | "black"
+          | "charcoal"
+          | "gunmetal"
+          | "neon"
+          | "platinum"
+          | "porcelain"
+          | "silver"
+          | "white";
+        textColor?:
+          | "alabaster"
+          | "ash"
+          | "black"
+          | "charcoal"
+          | "gunmetal"
+          | "neon"
+          | "platinum"
+          | "porcelain"
+          | "silver"
+          | "white";
         _type: "highlight";
         _key: string;
       }> | null;
@@ -4217,68 +3542,28 @@ export type RESOURCE_QUERYResult = {
       _key: string;
       isExternal?: boolean;
       title: string;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+      internalLink?:
+        | CaseStudyIndexReference
+        | CaseStudyReference
+        | EventReference
+        | EventsIndexReference
+        | PageReference
+        | PlatformChildReference
+        | PlatformIndexReference
+        | PostIndexReference
+        | PostReference
+        | ResourceIndexReference
+        | ResourceReference
+        | SolutionsChildReference;
+      href:
+        | string
+        | "/"
+        | "/blog"
+        | "/case-studies"
+        | "/events"
+        | "/platform"
+        | "/resources"
+        | null;
       openInNewTab?: boolean;
     } | null;
     image: {
@@ -4378,7 +3663,7 @@ export type RESOURCE_QUERYResult = {
             } | null;
           } | null;
         } | null;
-        media?: unknown;
+        media?: unknown; // Unable to locate the referenced type "logo.media" in schema
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         alt?: string;
@@ -4387,9 +3672,11 @@ export type RESOURCE_QUERYResult = {
     }> | null;
   }>;
 } | null;
+
+// Source: ../frontend/sanity/queries/page.ts
 // Variable: RESOURCE_SLUG_QUERY
 // Query: *[_type == "resource" && slug.current == $slug][0]{    _id,    _createdAt,    slug,    _type,    isGated,    formId,    description,    title[]{        ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },    },      links[]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },    publishedDate,    content[]{        ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "image" => {      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },  _type == "promo-card" => {    title,    description,      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },    "link":   link[0]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  }  },  _type == "listDriver" => {    title,    items[]{      _key,      eyebrow,      "link":   link[0]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  }    }  },  _type == "quote" => {    title[]{        ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },    },    author,  },  _type == "portable-text-accordion" => {    ...,    faqs[]{      _key,      title,      content[]{        ...,          markDefs[]{            ...,            _type == "link" => {                _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )            }          },          image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },      },    },      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },  },    },    author->{  _id,  name,  content[]{      ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },  },    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }},      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },      meta{    // use the title assigned in meta or the parent document title    "title": coalesce(title, select(^.title[0]._type == "block" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "post" => "/blog/" + ^.slug.current,      ^._type == "post-index" => "/blog",      ^._type == "case-study" => "/case-studies/" + ^.slug.current,      ^._type == "case-study-index" => "/case-studies",      ^._type == "resource" => "/resources/" + ^.slug.current,      ^._type == "resource-index" => "/resources",      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      ^._type == "solutions-child" => "/solutions/" + ^.slug.current,      ^._type == "event" => "/events/" + ^.slug.current,      ^._type == "events-index" => "/events",      "/" + ^.slug.current    ),    // the dimensions are the recommended meta image size    "image": coalesce(      // use the image directly assigned in meta      image.asset->url + "?w=1200&h=630&fit=max",      // use the image directly on this document      ^.image.asset->url + "?w=1200&h=630&fit=max",      // find and use the first hero image      select(^.blocks[0]._type match "hero*" => ^.blocks[0].image.asset->url + "?w=1200&h=630&fit=max", null),      // find and use the organization image      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },    blocks[]{          _type == "hero-primary" => {    _type,    _key,    title,      links[]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }  },    },    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 ),  }
-export type RESOURCE_SLUG_QUERYResult = {
+export type RESOURCE_SLUG_QUERY_RESULT = {
   _id: string;
   _createdAt: string;
   slug: Slug;
@@ -4407,8 +3694,28 @@ export type RESOURCE_SLUG_QUERYResult = {
     style?: "normal";
     listItem?: never;
     markDefs: Array<{
-      backgroundColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-      textColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
+      backgroundColor?:
+        | "alabaster"
+        | "ash"
+        | "black"
+        | "charcoal"
+        | "gunmetal"
+        | "neon"
+        | "platinum"
+        | "porcelain"
+        | "silver"
+        | "white";
+      textColor?:
+        | "alabaster"
+        | "ash"
+        | "black"
+        | "charcoal"
+        | "gunmetal"
+        | "neon"
+        | "platinum"
+        | "porcelain"
+        | "silver"
+        | "white";
       _type: "highlight";
       _key: string;
     }> | null;
@@ -4421,246 +3728,149 @@ export type RESOURCE_SLUG_QUERYResult = {
     _key: string;
     isExternal?: boolean;
     title: string;
-    internalLink?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "event";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "events-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "page";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-child";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "solutions-child";
-    };
-    href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+    internalLink?:
+      | CaseStudyIndexReference
+      | CaseStudyReference
+      | EventReference
+      | EventsIndexReference
+      | PageReference
+      | PlatformChildReference
+      | PlatformIndexReference
+      | PostIndexReference
+      | PostReference
+      | ResourceIndexReference
+      | ResourceReference
+      | SolutionsChildReference;
+    href:
+      | string
+      | "/"
+      | "/blog"
+      | "/case-studies"
+      | "/events"
+      | "/platform"
+      | "/resources"
+      | null;
     openInNewTab?: boolean;
   }> | null;
   publishedDate: string | null;
-  content: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "h1" | "h2" | "h3" | "h4" | "normal";
-    listItem?: "bullet" | "number";
-    markDefs: Array<{
-      backgroundColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-      textColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-      _type: "highlight";
-      _key: string;
-    } | {
-      isExternal?: boolean;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
-      openInNewTab?: boolean;
-      _type: "link";
-      _key: string;
-    }> | null;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-    markDefs: null;
-    image: null;
-  } | {
-    _key: string;
-    _type: "link";
-    isExternal?: boolean;
-    title: string;
-    internalLink?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "event";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "events-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "page";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-child";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "solutions-child";
-    };
-    href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
-    openInNewTab?: boolean;
-    markDefs: null;
-  } | {
-    videoId?: string;
-    _type: "youtube";
-    _key: string;
-    markDefs: null;
-  }> | null;
+  content: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "h1" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<
+          | {
+              backgroundColor?:
+                | "alabaster"
+                | "ash"
+                | "black"
+                | "charcoal"
+                | "gunmetal"
+                | "neon"
+                | "platinum"
+                | "porcelain"
+                | "silver"
+                | "white";
+              textColor?:
+                | "alabaster"
+                | "ash"
+                | "black"
+                | "charcoal"
+                | "gunmetal"
+                | "neon"
+                | "platinum"
+                | "porcelain"
+                | "silver"
+                | "white";
+              _type: "highlight";
+              _key: string;
+            }
+          | {
+              isExternal?: boolean;
+              internalLink?:
+                | CaseStudyIndexReference
+                | CaseStudyReference
+                | EventReference
+                | EventsIndexReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference
+                | PostIndexReference
+                | PostReference
+                | ResourceIndexReference
+                | ResourceReference
+                | SolutionsChildReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/events"
+                | "/platform"
+                | "/resources"
+                | null;
+              openInNewTab?: boolean;
+              _type: "link";
+              _key: string;
+            }
+        > | null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+        markDefs: null;
+        image: null;
+      }
+    | {
+        _key: string;
+        _type: "link";
+        isExternal?: boolean;
+        title: string;
+        internalLink?:
+          | CaseStudyIndexReference
+          | CaseStudyReference
+          | EventReference
+          | EventsIndexReference
+          | PageReference
+          | PlatformChildReference
+          | PlatformIndexReference
+          | PostIndexReference
+          | PostReference
+          | ResourceIndexReference
+          | ResourceReference
+          | SolutionsChildReference;
+        href:
+          | string
+          | "/"
+          | "/blog"
+          | "/case-studies"
+          | "/events"
+          | "/platform"
+          | "/resources"
+          | null;
+        openInNewTab?: boolean;
+        markDefs: null;
+      }
+    | {
+        videoId?: string;
+        _type: "youtube";
+        _key: string;
+        markDefs: null;
+      }
+  > | null;
   author: {
     _id: string;
     name: string;
@@ -4718,25 +3928,47 @@ export type RESOURCE_SLUG_QUERYResult = {
     _type: "image";
   } | null;
   meta: {
-    title: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        backgroundColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-        textColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-        _type: "highlight";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }> | string;
+    title:
+      | Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: never;
+          markDefs?: Array<{
+            backgroundColor?:
+              | "alabaster"
+              | "ash"
+              | "black"
+              | "charcoal"
+              | "gunmetal"
+              | "neon"
+              | "platinum"
+              | "porcelain"
+              | "silver"
+              | "white";
+            textColor?:
+              | "alabaster"
+              | "ash"
+              | "black"
+              | "charcoal"
+              | "gunmetal"
+              | "neon"
+              | "platinum"
+              | "porcelain"
+              | "silver"
+              | "white";
+            _type: "highlight";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>
+      | string;
     description: string | null;
     noindex: boolean | null;
     relativeUrl: string | "/";
@@ -4751,68 +3983,28 @@ export type RESOURCE_SLUG_QUERYResult = {
       _key: string;
       isExternal?: boolean;
       title: string;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+      internalLink?:
+        | CaseStudyIndexReference
+        | CaseStudyReference
+        | EventReference
+        | EventsIndexReference
+        | PageReference
+        | PlatformChildReference
+        | PlatformIndexReference
+        | PostIndexReference
+        | PostReference
+        | ResourceIndexReference
+        | ResourceReference
+        | SolutionsChildReference;
+      href:
+        | string
+        | "/"
+        | "/blog"
+        | "/case-studies"
+        | "/events"
+        | "/platform"
+        | "/resources"
+        | null;
       openInNewTab?: boolean;
     }> | null;
     image: {
@@ -4837,14 +4029,18 @@ export type RESOURCE_SLUG_QUERYResult = {
   }> | null;
   estimatedReadingTime: number;
 } | null;
+
+// Source: ../frontend/sanity/queries/page.ts
 // Variable: RESOURCE_SLUGS_QUERY
 // Query: *[_type == "resource" && defined(slug)]{slug}
-export type RESOURCE_SLUGS_QUERYResult = Array<{
+export type RESOURCE_SLUGS_QUERY_RESULT = Array<{
   slug: Slug;
 }>;
+
+// Source: ../frontend/sanity/queries/page.ts
 // Variable: EVENTS_QUERY
 // Query: *[_type == "events-index"][0]{    _id,    _type,    title[]{        ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },    },    description,    slug,    "eventLink":   link[0]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },    "link":   link[0]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },    location,    type,    startDate,    endDate,      meta{    // use the title assigned in meta or the parent document title    "title": coalesce(title, select(^.title[0]._type == "block" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "post" => "/blog/" + ^.slug.current,      ^._type == "post-index" => "/blog",      ^._type == "case-study" => "/case-studies/" + ^.slug.current,      ^._type == "case-study-index" => "/case-studies",      ^._type == "resource" => "/resources/" + ^.slug.current,      ^._type == "resource-index" => "/resources",      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      ^._type == "solutions-child" => "/solutions/" + ^.slug.current,      ^._type == "event" => "/events/" + ^.slug.current,      ^._type == "events-index" => "/events",      "/" + ^.slug.current    ),    // the dimensions are the recommended meta image size    "image": coalesce(      // use the image directly assigned in meta      image.asset->url + "?w=1200&h=630&fit=max",      // use the image directly on this document      ^.image.asset->url + "?w=1200&h=630&fit=max",      // find and use the first hero image      select(^.blocks[0]._type match "hero*" => ^.blocks[0].image.asset->url + "?w=1200&h=630&fit=max", null),      // find and use the organization image      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },    blocks[]{          _type == "hero-primary" => {    _type,    _key,    title,      links[]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }  },    },    featuredPost->{      _id,      _type,      _createdAt,      slug,      title[]{          ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },      },      description,      publishedDate,        image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },      author->{  _id,  name,  content[]{      ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },  },    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }},      topics[]->{  _id,  title,  slug,    logo{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }},      categories[]->{  _id,  title,    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },  slug},      "link":   link[0]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  }    },    "posts": *[_type == "event" && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {      _id,      _type,      _createdAt,      title[]{          ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },      },      slug,      description,      publishedDate,      "link":   link[0]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },        image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },      author->{  _id,  name,  content[]{      ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },  },    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }},      categories[]->{  _id,  title,    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },  slug},      topics[]->{  _id,  title,  slug,    logo{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }},    }  }
-export type EVENTS_QUERYResult = {
+export type EVENTS_QUERY_RESULT = {
   _id: string;
   _type: "events-index";
   title: null;
@@ -4872,68 +4068,28 @@ export type EVENTS_QUERYResult = {
       _key: string;
       isExternal?: boolean;
       title: string;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+      internalLink?:
+        | CaseStudyIndexReference
+        | CaseStudyReference
+        | EventReference
+        | EventsIndexReference
+        | PageReference
+        | PlatformChildReference
+        | PlatformIndexReference
+        | PostIndexReference
+        | PostReference
+        | ResourceIndexReference
+        | ResourceReference
+        | SolutionsChildReference;
+      href:
+        | string
+        | "/"
+        | "/blog"
+        | "/case-studies"
+        | "/events"
+        | "/platform"
+        | "/resources"
+        | null;
       openInNewTab?: boolean;
     }> | null;
     image: {
@@ -4971,8 +4127,28 @@ export type EVENTS_QUERYResult = {
       style?: "normal";
       listItem?: never;
       markDefs: Array<{
-        backgroundColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-        textColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
+        backgroundColor?:
+          | "alabaster"
+          | "ash"
+          | "black"
+          | "charcoal"
+          | "gunmetal"
+          | "neon"
+          | "platinum"
+          | "porcelain"
+          | "silver"
+          | "white";
+        textColor?:
+          | "alabaster"
+          | "ash"
+          | "black"
+          | "charcoal"
+          | "gunmetal"
+          | "neon"
+          | "platinum"
+          | "porcelain"
+          | "silver"
+          | "white";
         _type: "highlight";
         _key: string;
       }> | null;
@@ -5055,7 +4231,7 @@ export type EVENTS_QUERYResult = {
             } | null;
           } | null;
         } | null;
-        media?: unknown;
+        media?: unknown; // Unable to locate the referenced type "logo.media" in schema
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         alt?: string;
@@ -5068,68 +4244,28 @@ export type EVENTS_QUERYResult = {
       _key: string;
       isExternal?: boolean;
       title: string;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+      internalLink?:
+        | CaseStudyIndexReference
+        | CaseStudyReference
+        | EventReference
+        | EventsIndexReference
+        | PageReference
+        | PlatformChildReference
+        | PlatformIndexReference
+        | PostIndexReference
+        | PostReference
+        | ResourceIndexReference
+        | ResourceReference
+        | SolutionsChildReference;
+      href:
+        | string
+        | "/"
+        | "/blog"
+        | "/case-studies"
+        | "/events"
+        | "/platform"
+        | "/resources"
+        | null;
       openInNewTab?: boolean;
     } | null;
   } | null;
@@ -5147,8 +4283,28 @@ export type EVENTS_QUERYResult = {
       style?: "normal";
       listItem?: never;
       markDefs: Array<{
-        backgroundColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-        textColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
+        backgroundColor?:
+          | "alabaster"
+          | "ash"
+          | "black"
+          | "charcoal"
+          | "gunmetal"
+          | "neon"
+          | "platinum"
+          | "porcelain"
+          | "silver"
+          | "white";
+        textColor?:
+          | "alabaster"
+          | "ash"
+          | "black"
+          | "charcoal"
+          | "gunmetal"
+          | "neon"
+          | "platinum"
+          | "porcelain"
+          | "silver"
+          | "white";
         _type: "highlight";
         _key: string;
       }> | null;
@@ -5164,68 +4320,28 @@ export type EVENTS_QUERYResult = {
       _key: string;
       isExternal?: boolean;
       title: string;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+      internalLink?:
+        | CaseStudyIndexReference
+        | CaseStudyReference
+        | EventReference
+        | EventsIndexReference
+        | PageReference
+        | PlatformChildReference
+        | PlatformIndexReference
+        | PostIndexReference
+        | PostReference
+        | ResourceIndexReference
+        | ResourceReference
+        | SolutionsChildReference;
+      href:
+        | string
+        | "/"
+        | "/blog"
+        | "/case-studies"
+        | "/events"
+        | "/platform"
+        | "/resources"
+        | null;
       openInNewTab?: boolean;
     } | null;
     image: {
@@ -5302,7 +4418,7 @@ export type EVENTS_QUERYResult = {
             } | null;
           } | null;
         } | null;
-        media?: unknown;
+        media?: unknown; // Unable to locate the referenced type "logo.media" in schema
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         alt?: string;
@@ -5311,9 +4427,11 @@ export type EVENTS_QUERYResult = {
     }> | null;
   }>;
 } | null;
+
+// Source: ../frontend/sanity/queries/page.ts
 // Variable: EVENTS_SLUG_QUERY
 // Query: *[_type == "event" && slug.current == $slug][0]{    _id,    _createdAt,    slug,    _type,    isGated,    formId,    description,    "eventLink":   link[0]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },    "link":   link[0]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },    location,    type,    startDate,    endDate,    title[]{        ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },    },      links[]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },    publishedDate,    content[]{        ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "image" => {      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },  _type == "promo-card" => {    title,    description,      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },    "link":   link[0]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  }  },  _type == "listDriver" => {    title,    items[]{      _key,      eyebrow,      "link":   link[0]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  }    }  },  _type == "quote" => {    title[]{        ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },    },    author,  },  _type == "portable-text-accordion" => {    ...,    faqs[]{      _key,      title,      content[]{        ...,          markDefs[]{            ...,            _type == "link" => {                _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )            }          },          image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },      },    },      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },  },    },    author->{  _id,  name,  content[]{      ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },  },    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }},      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },      meta{    // use the title assigned in meta or the parent document title    "title": coalesce(title, select(^.title[0]._type == "block" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "post" => "/blog/" + ^.slug.current,      ^._type == "post-index" => "/blog",      ^._type == "case-study" => "/case-studies/" + ^.slug.current,      ^._type == "case-study-index" => "/case-studies",      ^._type == "resource" => "/resources/" + ^.slug.current,      ^._type == "resource-index" => "/resources",      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      ^._type == "solutions-child" => "/solutions/" + ^.slug.current,      ^._type == "event" => "/events/" + ^.slug.current,      ^._type == "events-index" => "/events",      "/" + ^.slug.current    ),    // the dimensions are the recommended meta image size    "image": coalesce(      // use the image directly assigned in meta      image.asset->url + "?w=1200&h=630&fit=max",      // use the image directly on this document      ^.image.asset->url + "?w=1200&h=630&fit=max",      // find and use the first hero image      select(^.blocks[0]._type match "hero*" => ^.blocks[0].image.asset->url + "?w=1200&h=630&fit=max", null),      // find and use the organization image      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },    blocks[]{          _type == "hero-primary" => {    _type,    _key,    title,      links[]{      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },      image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  }  },    },    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 ),  }
-export type EVENTS_SLUG_QUERYResult = {
+export type EVENTS_SLUG_QUERY_RESULT = {
   _id: string;
   _createdAt: string;
   slug: Slug;
@@ -5326,68 +4444,28 @@ export type EVENTS_SLUG_QUERYResult = {
     _key: string;
     isExternal?: boolean;
     title: string;
-    internalLink?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "event";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "events-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "page";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-child";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "solutions-child";
-    };
-    href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+    internalLink?:
+      | CaseStudyIndexReference
+      | CaseStudyReference
+      | EventReference
+      | EventsIndexReference
+      | PageReference
+      | PlatformChildReference
+      | PlatformIndexReference
+      | PostIndexReference
+      | PostReference
+      | ResourceIndexReference
+      | ResourceReference
+      | SolutionsChildReference;
+    href:
+      | string
+      | "/"
+      | "/blog"
+      | "/case-studies"
+      | "/events"
+      | "/platform"
+      | "/resources"
+      | null;
     openInNewTab?: boolean;
   } | null;
   link: {
@@ -5395,68 +4473,28 @@ export type EVENTS_SLUG_QUERYResult = {
     _key: string;
     isExternal?: boolean;
     title: string;
-    internalLink?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "event";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "events-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "page";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-child";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "solutions-child";
-    };
-    href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+    internalLink?:
+      | CaseStudyIndexReference
+      | CaseStudyReference
+      | EventReference
+      | EventsIndexReference
+      | PageReference
+      | PlatformChildReference
+      | PlatformIndexReference
+      | PostIndexReference
+      | PostReference
+      | ResourceIndexReference
+      | ResourceReference
+      | SolutionsChildReference;
+    href:
+      | string
+      | "/"
+      | "/blog"
+      | "/case-studies"
+      | "/events"
+      | "/platform"
+      | "/resources"
+      | null;
     openInNewTab?: boolean;
   } | null;
   location: string | null;
@@ -5473,8 +4511,28 @@ export type EVENTS_SLUG_QUERYResult = {
     style?: "normal";
     listItem?: never;
     markDefs: Array<{
-      backgroundColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-      textColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
+      backgroundColor?:
+        | "alabaster"
+        | "ash"
+        | "black"
+        | "charcoal"
+        | "gunmetal"
+        | "neon"
+        | "platinum"
+        | "porcelain"
+        | "silver"
+        | "white";
+      textColor?:
+        | "alabaster"
+        | "ash"
+        | "black"
+        | "charcoal"
+        | "gunmetal"
+        | "neon"
+        | "platinum"
+        | "porcelain"
+        | "silver"
+        | "white";
       _type: "highlight";
       _key: string;
     }> | null;
@@ -5487,246 +4545,149 @@ export type EVENTS_SLUG_QUERYResult = {
     _key: string;
     isExternal?: boolean;
     title: string;
-    internalLink?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "event";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "events-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "page";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-child";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "solutions-child";
-    };
-    href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+    internalLink?:
+      | CaseStudyIndexReference
+      | CaseStudyReference
+      | EventReference
+      | EventsIndexReference
+      | PageReference
+      | PlatformChildReference
+      | PlatformIndexReference
+      | PostIndexReference
+      | PostReference
+      | ResourceIndexReference
+      | ResourceReference
+      | SolutionsChildReference;
+    href:
+      | string
+      | "/"
+      | "/blog"
+      | "/case-studies"
+      | "/events"
+      | "/platform"
+      | "/resources"
+      | null;
     openInNewTab?: boolean;
   }> | null;
   publishedDate: string | null;
-  content: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "h1" | "h2" | "h3" | "h4" | "normal";
-    listItem?: "bullet" | "number";
-    markDefs: Array<{
-      backgroundColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-      textColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-      _type: "highlight";
-      _key: string;
-    } | {
-      isExternal?: boolean;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
-      openInNewTab?: boolean;
-      _type: "link";
-      _key: string;
-    }> | null;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-    markDefs: null;
-    image: null;
-  } | {
-    _key: string;
-    _type: "link";
-    isExternal?: boolean;
-    title: string;
-    internalLink?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "case-study";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "event";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "events-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "page";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-child";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "platform-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "post";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource-index";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "resource";
-    } | {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "solutions-child";
-    };
-    href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
-    openInNewTab?: boolean;
-    markDefs: null;
-  } | {
-    videoId?: string;
-    _type: "youtube";
-    _key: string;
-    markDefs: null;
-  }> | null;
+  content: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "h1" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<
+          | {
+              backgroundColor?:
+                | "alabaster"
+                | "ash"
+                | "black"
+                | "charcoal"
+                | "gunmetal"
+                | "neon"
+                | "platinum"
+                | "porcelain"
+                | "silver"
+                | "white";
+              textColor?:
+                | "alabaster"
+                | "ash"
+                | "black"
+                | "charcoal"
+                | "gunmetal"
+                | "neon"
+                | "platinum"
+                | "porcelain"
+                | "silver"
+                | "white";
+              _type: "highlight";
+              _key: string;
+            }
+          | {
+              isExternal?: boolean;
+              internalLink?:
+                | CaseStudyIndexReference
+                | CaseStudyReference
+                | EventReference
+                | EventsIndexReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference
+                | PostIndexReference
+                | PostReference
+                | ResourceIndexReference
+                | ResourceReference
+                | SolutionsChildReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/events"
+                | "/platform"
+                | "/resources"
+                | null;
+              openInNewTab?: boolean;
+              _type: "link";
+              _key: string;
+            }
+        > | null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+        markDefs: null;
+        image: null;
+      }
+    | {
+        _key: string;
+        _type: "link";
+        isExternal?: boolean;
+        title: string;
+        internalLink?:
+          | CaseStudyIndexReference
+          | CaseStudyReference
+          | EventReference
+          | EventsIndexReference
+          | PageReference
+          | PlatformChildReference
+          | PlatformIndexReference
+          | PostIndexReference
+          | PostReference
+          | ResourceIndexReference
+          | ResourceReference
+          | SolutionsChildReference;
+        href:
+          | string
+          | "/"
+          | "/blog"
+          | "/case-studies"
+          | "/events"
+          | "/platform"
+          | "/resources"
+          | null;
+        openInNewTab?: boolean;
+        markDefs: null;
+      }
+    | {
+        videoId?: string;
+        _type: "youtube";
+        _key: string;
+        markDefs: null;
+      }
+  > | null;
   author: {
     _id: string;
     name: string;
@@ -5784,25 +4745,47 @@ export type EVENTS_SLUG_QUERYResult = {
     _type: "image";
   } | null;
   meta: {
-    title: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        backgroundColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-        textColor?: "alabaster" | "ash" | "black" | "charcoal" | "gunmetal" | "neon" | "platinum" | "porcelain" | "silver" | "white";
-        _type: "highlight";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }> | string;
+    title:
+      | Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: never;
+          markDefs?: Array<{
+            backgroundColor?:
+              | "alabaster"
+              | "ash"
+              | "black"
+              | "charcoal"
+              | "gunmetal"
+              | "neon"
+              | "platinum"
+              | "porcelain"
+              | "silver"
+              | "white";
+            textColor?:
+              | "alabaster"
+              | "ash"
+              | "black"
+              | "charcoal"
+              | "gunmetal"
+              | "neon"
+              | "platinum"
+              | "porcelain"
+              | "silver"
+              | "white";
+            _type: "highlight";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>
+      | string;
     description: string | null;
     noindex: boolean | null;
     relativeUrl: string | "/";
@@ -5817,68 +4800,28 @@ export type EVENTS_SLUG_QUERYResult = {
       _key: string;
       isExternal?: boolean;
       title: string;
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "case-study";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "event";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "events-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-child";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "platform-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource-index";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resource";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "solutions-child";
-      };
-      href: string | "/" | "/blog" | "/case-studies" | "/events" | "/platform" | "/resources" | null;
+      internalLink?:
+        | CaseStudyIndexReference
+        | CaseStudyReference
+        | EventReference
+        | EventsIndexReference
+        | PageReference
+        | PlatformChildReference
+        | PlatformIndexReference
+        | PostIndexReference
+        | PostReference
+        | ResourceIndexReference
+        | ResourceReference
+        | SolutionsChildReference;
+      href:
+        | string
+        | "/"
+        | "/blog"
+        | "/case-studies"
+        | "/events"
+        | "/platform"
+        | "/resources"
+        | null;
       openInNewTab?: boolean;
     }> | null;
     image: {
@@ -5903,9 +4846,11 @@ export type EVENTS_SLUG_QUERYResult = {
   }> | null;
   estimatedReadingTime: number;
 } | null;
+
+// Source: ../frontend/sanity/queries/page.ts
 // Variable: EVENTS_SLUGS_QUERY
 // Query: *[_type == "event" && defined(slug)]{slug}
-export type EVENTS_SLUGS_QUERYResult = Array<{
+export type EVENTS_SLUGS_QUERY_RESULT = Array<{
   slug: Slug;
 }>;
 
@@ -5913,29 +4858,29 @@ export type EVENTS_SLUGS_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n}": AuthorFragmentResult;
-    "*[_type == \"author\" && slug.current == $slug][0]{\n  name,\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n}": AUTHOR_QUERYResult;
-    "*[_type == \"author\" && defined(slug)]{slug}": AUTHOR_SLUGS_QUERYResult;
-    "\n  *[_type == \"footer\"]{\n    _key,\n    _type,\n    smallLogo{\n      ...,\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      }\n    },\n    largeLogo{\n      ...,\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      }\n    },\n    actionLinks[]{\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    },\n    socialMediaLinks[]{\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    },\n    mainLinks[]{\n      _key,\n      title,\n      hasIndexPage,\n      indexPageLink[]{\n        \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n      },\n      subCategories[]{\n        _key,\n        title,\n        \n  link[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n\n      }\n    },\n    bottomLinks[]{\n      _key,\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    },\n  }\n": FOOTER_QUERYResult;
-    "\n  *[_type == \"navbar\"]{\n    _type,\n    \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n    links[]{\n      _type,\n      _key,\n      _type == \"link\" => {\n        \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n      },\n      _type == \"group\" => {\n        title,\n        group[]{\n          _type,\n          _key,\n          _type == \"card\" => {\n            title,\n            description[]{\n              \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n            },\n            link{\n              \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n            }\n          },\n          _type == \"link-group\" => {\n            title,\n            \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n\n          },\n          _type == \"resources\" => {\n            resources[]->{\n              \"_type\": \"resource\",\n              _key,\n              title,\n              slug,\n              \"href\": select(\n                _type == \"post\" => \"/blog/\" + slug.current,\n              ),\n              \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n            }\n          }\n        }\n      },\n      _type == \"divider\" => {\n        type,\n      }\n    },\n    ctaLinks[]{\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  }\n": NAVBAR_QUERYResult;
+    'author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n}': AuthorFragmentResult;
+    '*[_type == "author" && slug.current == $slug][0]{\n  name,\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n}': AUTHOR_QUERY_RESULT;
+    '*[_type == "author" && defined(slug)]{slug}': AUTHOR_SLUGS_QUERY_RESULT;
+    '\n  *[_type == "footer"]{\n    _key,\n    _type,\n    smallLogo{\n      ...,\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      }\n    },\n    largeLogo{\n      ...,\n      asset->{\n        _id,\n        url,\n        mimeType,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height\n          }\n        }\n      }\n    },\n    actionLinks[]{\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    },\n    socialMediaLinks[]{\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    },\n    mainLinks[]{\n      _key,\n      title,\n      hasIndexPage,\n      indexPageLink[]{\n        \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n      },\n      subCategories[]{\n        _key,\n        title,\n        \n  link[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n\n      }\n    },\n    bottomLinks[]{\n      _key,\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    },\n  }\n': FOOTER_QUERY_RESULT;
+    '\n  *[_type == "navbar"]{\n    _type,\n    \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n    links[]{\n      _type,\n      _key,\n      _type == "link" => {\n        \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n      },\n      _type == "group" => {\n        title,\n        group[]{\n          _type,\n          _key,\n          _type == "card" => {\n            title,\n            description[]{\n              \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n            },\n            link{\n              \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n            }\n          },\n          _type == "link-group" => {\n            title,\n            \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n\n          },\n          _type == "resources" => {\n            resources[]->{\n              "_type": "resource",\n              _key,\n              title,\n              slug,\n              "href": select(\n                _type == "post" => "/blog/" + slug.current,\n              ),\n              \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n            }\n          }\n        }\n      },\n      _type == "divider" => {\n        type,\n      }\n    },\n    ctaLinks[]{\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  }\n': NAVBAR_QUERY_RESULT;
     "topics[]->{\n  _id,\n  title,\n  slug,\n  \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n}": TopicsFragmentResult;
     "categories[]->{\n  _id,\n  title,\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  slug\n}": CategoriesFragmentResult;
-    "\n{\n  \"totalPostCount\": count(*[_type == $type]),\n  \"currentCategoryPostCount\": count(*[_type == $type && ($category == null || $category in categories[]->slug.current) && ($topic == null || $topic in topics[]->slug.current)]),\n  \"categories\": *[\n    _type == select(\n      $type == \"case-study\" => \"case-study-category\",\n      \"resource-category\"\n    ) &&\n    count(*[_type == $type && ^._id in categories[]._ref]) > 0\n  ] | order(title asc) {\n    _id,\n    title,\n    slug,\n    \"count\": count(*[_type == $type && ^._id in categories[]._ref  && ($topic == null || $topic in topics[]->slug.current)])\n  }\n}\n": RESOURCE_CATEGORY_COUNT_QUERYResult;
-    "\n{\n  \"totalTopicCount\": count(*[_type == $type]),\n  \"currentTopicPostCount\": count(*[_type == $type && ($topic == null || $topic in topics[]->slug.current) && ($category == null || $category in categories[]->slug.current)]),\n\"topics\": *[\n  _type == \"resource-topic\" &&\n  count(*[_type == $type && ^._id in topics[]._ref]) > 0\n] | order(title asc) {\n  _id,\n  title,\n  slug,\n  \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  \"count\": count(*[_type == $type && ^._id in topics[]._ref && ($category == null || $category in categories[]->slug.current)])\n}\n}\n": RESOURCE_TOPICS_COUNT_QUERYResult;
-    "\n  *[_type == \"page\" && slug.current == $slug][0]{\n    _type,\n    blocks[]{\n      \n  \n  _type == \"hero-primary\" => {\n    _type,\n    _key,\n    title,\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  }\n,\n\n    },\n    \n  meta{\n    // use the title assigned in meta or the parent document title\n    \"title\": coalesce(title, select(^.title[0]._type == \"block\" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    \"relativeUrl\": select(\n      ^.slug.current == \"index\" => \"/\",\n      ^._type == \"post\" => \"/blog/\" + ^.slug.current,\n      ^._type == \"post-index\" => \"/blog\",\n      ^._type == \"case-study\" => \"/case-studies/\" + ^.slug.current,\n      ^._type == \"case-study-index\" => \"/case-studies\",\n      ^._type == \"resource\" => \"/resources/\" + ^.slug.current,\n      ^._type == \"resource-index\" => \"/resources\",\n      ^._type == \"platform-index\" => \"/platform\",\n      ^._type == \"platform-child\" => \"/platform/\" + ^.slug.current,\n      ^._type == \"solutions-child\" => \"/solutions/\" + ^.slug.current,\n      ^._type == \"event\" => \"/events/\" + ^.slug.current,\n      ^._type == \"events-index\" => \"/events\",\n      \"/\" + ^.slug.current\n    ),\n    // the dimensions are the recommended meta image size\n    \"image\": coalesce(\n      // use the image directly assigned in meta\n      image.asset->url + \"?w=1200&h=630&fit=max\",\n      // use the image directly on this document\n      ^.image.asset->url + \"?w=1200&h=630&fit=max\",\n      // find and use the first hero image\n      select(^.blocks[0]._type match \"hero*\" => ^.blocks[0].image.asset->url + \"?w=1200&h=630&fit=max\", null),\n      // find and use the organization image\n      *[_type == \"organization\"][0].organization.image.asset->url + \"?w=1200&h=630&fit=max\"\n    )\n  }\n\n  }\n": PAGE_QUERYResult;
-    "*[_type == $pageType && defined(slug)]{slug}": PAGES_SLUGS_QUERYResult;
-    "\n  *[_type == \"organization\"][0]{\n    organization {\n      ...,\n      \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n    }\n  }\n": ORGANIZATION_QUERYResult;
-    "\n  *[_type == \"post-index\"][0]{\n    _id,\n    _type,\n    title,\n    description,\n    slug,\n    \n  meta{\n    // use the title assigned in meta or the parent document title\n    \"title\": coalesce(title, select(^.title[0]._type == \"block\" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    \"relativeUrl\": select(\n      ^.slug.current == \"index\" => \"/\",\n      ^._type == \"post\" => \"/blog/\" + ^.slug.current,\n      ^._type == \"post-index\" => \"/blog\",\n      ^._type == \"case-study\" => \"/case-studies/\" + ^.slug.current,\n      ^._type == \"case-study-index\" => \"/case-studies\",\n      ^._type == \"resource\" => \"/resources/\" + ^.slug.current,\n      ^._type == \"resource-index\" => \"/resources\",\n      ^._type == \"platform-index\" => \"/platform\",\n      ^._type == \"platform-child\" => \"/platform/\" + ^.slug.current,\n      ^._type == \"solutions-child\" => \"/solutions/\" + ^.slug.current,\n      ^._type == \"event\" => \"/events/\" + ^.slug.current,\n      ^._type == \"events-index\" => \"/events\",\n      \"/\" + ^.slug.current\n    ),\n    // the dimensions are the recommended meta image size\n    \"image\": coalesce(\n      // use the image directly assigned in meta\n      image.asset->url + \"?w=1200&h=630&fit=max\",\n      // use the image directly on this document\n      ^.image.asset->url + \"?w=1200&h=630&fit=max\",\n      // find and use the first hero image\n      select(^.blocks[0]._type match \"hero*\" => ^.blocks[0].image.asset->url + \"?w=1200&h=630&fit=max\", null),\n      // find and use the organization image\n      *[_type == \"organization\"][0].organization.image.asset->url + \"?w=1200&h=630&fit=max\"\n    )\n  }\n,\n    blocks[]{\n      \n  \n  _type == \"hero-primary\" => {\n    _type,\n    _key,\n    title,\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  }\n,\n\n    },\n    featuredPost->{\n      _id,\n      _type,\n      _createdAt,\n      slug,\n      title[]{\n        \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n      },\n      description,\n      publishedDate,\n      \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n      topics[]->{\n  _id,\n  title,\n  slug,\n  \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n      categories[]->{\n  _id,\n  title,\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  slug\n},\n      \"link\": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n\n    },\n    \"posts\": *[_type == \"post\" && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {\n      _id,\n      _type,\n      _createdAt,\n      title[]{\n        \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n      },\n      slug,\n      description,\n      publishedDate,\n      \"link\": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n      \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n      categories[]->{\n  _id,\n  title,\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  slug\n},\n      topics[]->{\n  _id,\n  title,\n  slug,\n  \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n    }\n  }\n": BLOG_QUERYResult;
-    "\n  *[_type == \"post\" && slug.current == $slug][0]{\n    _id,\n    _createdAt,\n    _type,\n    slug,\n    title[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n    },\n    description,\n    publishedDate,\n    content[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"image\" => {\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n  _type == \"promo-card\" => {\n    title,\n    description,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n    \"link\": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n\n  },\n  _type == \"listDriver\" => {\n    title,\n    items[]{\n      _key,\n      eyebrow,\n      \"link\": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n\n    }\n  },\n  _type == \"quote\" => {\n    title[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n    },\n    author,\n  },\n  _type == \"portable-text-accordion\" => {\n    ...,\n    faqs[]{\n      _key,\n      title,\n      content[]{\n        ...,\n          markDefs[]{\n            ...,\n            _type == \"link\" => {\n              \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n            }\n          },\n        \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      },\n    },\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  }\n,\n    },\n    author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n    topics[]->{\n  _id,\n  title,\n  slug,\n  \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n    categories[]->{\n  _id,\n  title,\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  slug\n},\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n    \n  meta{\n    // use the title assigned in meta or the parent document title\n    \"title\": coalesce(title, select(^.title[0]._type == \"block\" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    \"relativeUrl\": select(\n      ^.slug.current == \"index\" => \"/\",\n      ^._type == \"post\" => \"/blog/\" + ^.slug.current,\n      ^._type == \"post-index\" => \"/blog\",\n      ^._type == \"case-study\" => \"/case-studies/\" + ^.slug.current,\n      ^._type == \"case-study-index\" => \"/case-studies\",\n      ^._type == \"resource\" => \"/resources/\" + ^.slug.current,\n      ^._type == \"resource-index\" => \"/resources\",\n      ^._type == \"platform-index\" => \"/platform\",\n      ^._type == \"platform-child\" => \"/platform/\" + ^.slug.current,\n      ^._type == \"solutions-child\" => \"/solutions/\" + ^.slug.current,\n      ^._type == \"event\" => \"/events/\" + ^.slug.current,\n      ^._type == \"events-index\" => \"/events\",\n      \"/\" + ^.slug.current\n    ),\n    // the dimensions are the recommended meta image size\n    \"image\": coalesce(\n      // use the image directly assigned in meta\n      image.asset->url + \"?w=1200&h=630&fit=max\",\n      // use the image directly on this document\n      ^.image.asset->url + \"?w=1200&h=630&fit=max\",\n      // find and use the first hero image\n      select(^.blocks[0]._type match \"hero*\" => ^.blocks[0].image.asset->url + \"?w=1200&h=630&fit=max\", null),\n      // find and use the organization image\n      *[_type == \"organization\"][0].organization.image.asset->url + \"?w=1200&h=630&fit=max\"\n    )\n  }\n,\n    blocks[]{\n      \n  \n  _type == \"hero-primary\" => {\n    _type,\n    _key,\n    title,\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  }\n,\n\n    },\n    \"estimatedReadingTime\": round(length(pt::text(content)) / 5 / 180 ),\n  }\n": BLOG_SLUG_QUERYResult;
-    "*[_type == \"post\" && defined(slug)]{slug}": BLOG_SLUGS_QUERYResult;
-    "\n  *[_type == \"case-study-index\"][0]{\n    _id,\n    _type,\n    title,\n    description,\n    slug,\n    \n  meta{\n    // use the title assigned in meta or the parent document title\n    \"title\": coalesce(title, select(^.title[0]._type == \"block\" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    \"relativeUrl\": select(\n      ^.slug.current == \"index\" => \"/\",\n      ^._type == \"post\" => \"/blog/\" + ^.slug.current,\n      ^._type == \"post-index\" => \"/blog\",\n      ^._type == \"case-study\" => \"/case-studies/\" + ^.slug.current,\n      ^._type == \"case-study-index\" => \"/case-studies\",\n      ^._type == \"resource\" => \"/resources/\" + ^.slug.current,\n      ^._type == \"resource-index\" => \"/resources\",\n      ^._type == \"platform-index\" => \"/platform\",\n      ^._type == \"platform-child\" => \"/platform/\" + ^.slug.current,\n      ^._type == \"solutions-child\" => \"/solutions/\" + ^.slug.current,\n      ^._type == \"event\" => \"/events/\" + ^.slug.current,\n      ^._type == \"events-index\" => \"/events\",\n      \"/\" + ^.slug.current\n    ),\n    // the dimensions are the recommended meta image size\n    \"image\": coalesce(\n      // use the image directly assigned in meta\n      image.asset->url + \"?w=1200&h=630&fit=max\",\n      // use the image directly on this document\n      ^.image.asset->url + \"?w=1200&h=630&fit=max\",\n      // find and use the first hero image\n      select(^.blocks[0]._type match \"hero*\" => ^.blocks[0].image.asset->url + \"?w=1200&h=630&fit=max\", null),\n      // find and use the organization image\n      *[_type == \"organization\"][0].organization.image.asset->url + \"?w=1200&h=630&fit=max\"\n    )\n  }\n,\n    blocks[]{\n      \n  \n  _type == \"hero-primary\" => {\n    _type,\n    _key,\n    title,\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  }\n,\n\n    },\n    featuredPost->{\n      _id,\n      _type,\n      _createdAt,\n      slug,\n      title[]{\n        \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n      },\n      description,\n      publishedDate,\n      \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n      categories[]->{\n  _id,\n  title,\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  slug\n},\n      topics[]->{\n  _id,\n  title,\n  slug,\n  \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n      \"link\": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n\n    },\n      \"posts\": *[_type == \"case-study\" && ($category == null || $category in categories[]->slug.current) && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {\n      _id,\n      _type,\n      _createdAt,\n      slug,\n      title[]{\n        \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n      },\n      description,\n      publishedDate,\n      \"link\": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n      \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n      categories[]->{\n  _id,\n  title,\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  slug\n},\n      topics[]->{\n  _id,\n  title,\n  slug,\n  \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n    }\n  }\n": CASE_STUDIES_QUERYResult;
-    "\n  *[_type == \"case-study\" && slug.current == $slug][0]{\n    _id,\n    _createdAt,\n    _type,\n    slug,\n    title[]{\n        \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n      },\n    description,\n    publishedDate,\n    content[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"image\" => {\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n  _type == \"promo-card\" => {\n    title,\n    description,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n    \"link\": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n\n  },\n  _type == \"listDriver\" => {\n    title,\n    items[]{\n      _key,\n      eyebrow,\n      \"link\": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n\n    }\n  },\n  _type == \"quote\" => {\n    title[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n    },\n    author,\n  },\n  _type == \"portable-text-accordion\" => {\n    ...,\n    faqs[]{\n      _key,\n      title,\n      content[]{\n        ...,\n          markDefs[]{\n            ...,\n            _type == \"link\" => {\n              \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n            }\n          },\n        \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      },\n    },\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  }\n,\n    },\n    author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n    \n  meta{\n    // use the title assigned in meta or the parent document title\n    \"title\": coalesce(title, select(^.title[0]._type == \"block\" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    \"relativeUrl\": select(\n      ^.slug.current == \"index\" => \"/\",\n      ^._type == \"post\" => \"/blog/\" + ^.slug.current,\n      ^._type == \"post-index\" => \"/blog\",\n      ^._type == \"case-study\" => \"/case-studies/\" + ^.slug.current,\n      ^._type == \"case-study-index\" => \"/case-studies\",\n      ^._type == \"resource\" => \"/resources/\" + ^.slug.current,\n      ^._type == \"resource-index\" => \"/resources\",\n      ^._type == \"platform-index\" => \"/platform\",\n      ^._type == \"platform-child\" => \"/platform/\" + ^.slug.current,\n      ^._type == \"solutions-child\" => \"/solutions/\" + ^.slug.current,\n      ^._type == \"event\" => \"/events/\" + ^.slug.current,\n      ^._type == \"events-index\" => \"/events\",\n      \"/\" + ^.slug.current\n    ),\n    // the dimensions are the recommended meta image size\n    \"image\": coalesce(\n      // use the image directly assigned in meta\n      image.asset->url + \"?w=1200&h=630&fit=max\",\n      // use the image directly on this document\n      ^.image.asset->url + \"?w=1200&h=630&fit=max\",\n      // find and use the first hero image\n      select(^.blocks[0]._type match \"hero*\" => ^.blocks[0].image.asset->url + \"?w=1200&h=630&fit=max\", null),\n      // find and use the organization image\n      *[_type == \"organization\"][0].organization.image.asset->url + \"?w=1200&h=630&fit=max\"\n    )\n  }\n,\n    blocks[]{\n      \n  \n  _type == \"hero-primary\" => {\n    _type,\n    _key,\n    title,\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  }\n,\n\n    },\n    \"estimatedReadingTime\": round(length(pt::text(content)) / 5 / 180 ),\n  }\n": CASE_STUDIES_SLUG_QUERYResult;
-    "*[_type == \"case-study\" && defined(slug)]{slug}": CASE_STUDIES_SLUGS_QUERYResult;
-    "\n  *[_type == \"resource-index\"][0]{\n    _id,\n    _type,\n    title,\n    description,\n    slug,\n    \n  meta{\n    // use the title assigned in meta or the parent document title\n    \"title\": coalesce(title, select(^.title[0]._type == \"block\" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    \"relativeUrl\": select(\n      ^.slug.current == \"index\" => \"/\",\n      ^._type == \"post\" => \"/blog/\" + ^.slug.current,\n      ^._type == \"post-index\" => \"/blog\",\n      ^._type == \"case-study\" => \"/case-studies/\" + ^.slug.current,\n      ^._type == \"case-study-index\" => \"/case-studies\",\n      ^._type == \"resource\" => \"/resources/\" + ^.slug.current,\n      ^._type == \"resource-index\" => \"/resources\",\n      ^._type == \"platform-index\" => \"/platform\",\n      ^._type == \"platform-child\" => \"/platform/\" + ^.slug.current,\n      ^._type == \"solutions-child\" => \"/solutions/\" + ^.slug.current,\n      ^._type == \"event\" => \"/events/\" + ^.slug.current,\n      ^._type == \"events-index\" => \"/events\",\n      \"/\" + ^.slug.current\n    ),\n    // the dimensions are the recommended meta image size\n    \"image\": coalesce(\n      // use the image directly assigned in meta\n      image.asset->url + \"?w=1200&h=630&fit=max\",\n      // use the image directly on this document\n      ^.image.asset->url + \"?w=1200&h=630&fit=max\",\n      // find and use the first hero image\n      select(^.blocks[0]._type match \"hero*\" => ^.blocks[0].image.asset->url + \"?w=1200&h=630&fit=max\", null),\n      // find and use the organization image\n      *[_type == \"organization\"][0].organization.image.asset->url + \"?w=1200&h=630&fit=max\"\n    )\n  }\n,\n    blocks[]{\n      \n  \n  _type == \"hero-primary\" => {\n    _type,\n    _key,\n    title,\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  }\n,\n\n    },\n    \"posts\": *[_type == \"resource\" && ($category == null || $category in categories[]->slug.current) && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {\n      _id,\n      _type,\n      _createdAt,\n      slug,\n      title[]{\n        \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n      },\n      description,\n      publishedDate,\n      \"link\": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n      \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n      categories[]->{\n  _id,\n  title,\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  slug\n},\n      topics[]->{\n  _id,\n  title,\n  slug,\n  \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n    }\n  }\n": RESOURCE_QUERYResult;
-    "\n  *[_type == \"resource\" && slug.current == $slug][0]{\n    _id,\n    _createdAt,\n    slug,\n    _type,\n    isGated,\n    formId,\n    description,\n    title[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n    },\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    publishedDate,\n    content[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"image\" => {\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n  _type == \"promo-card\" => {\n    title,\n    description,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n    \"link\": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n\n  },\n  _type == \"listDriver\" => {\n    title,\n    items[]{\n      _key,\n      eyebrow,\n      \"link\": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n\n    }\n  },\n  _type == \"quote\" => {\n    title[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n    },\n    author,\n  },\n  _type == \"portable-text-accordion\" => {\n    ...,\n    faqs[]{\n      _key,\n      title,\n      content[]{\n        ...,\n          markDefs[]{\n            ...,\n            _type == \"link\" => {\n              \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n            }\n          },\n        \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      },\n    },\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  }\n,\n    },\n    author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n    \n  meta{\n    // use the title assigned in meta or the parent document title\n    \"title\": coalesce(title, select(^.title[0]._type == \"block\" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    \"relativeUrl\": select(\n      ^.slug.current == \"index\" => \"/\",\n      ^._type == \"post\" => \"/blog/\" + ^.slug.current,\n      ^._type == \"post-index\" => \"/blog\",\n      ^._type == \"case-study\" => \"/case-studies/\" + ^.slug.current,\n      ^._type == \"case-study-index\" => \"/case-studies\",\n      ^._type == \"resource\" => \"/resources/\" + ^.slug.current,\n      ^._type == \"resource-index\" => \"/resources\",\n      ^._type == \"platform-index\" => \"/platform\",\n      ^._type == \"platform-child\" => \"/platform/\" + ^.slug.current,\n      ^._type == \"solutions-child\" => \"/solutions/\" + ^.slug.current,\n      ^._type == \"event\" => \"/events/\" + ^.slug.current,\n      ^._type == \"events-index\" => \"/events\",\n      \"/\" + ^.slug.current\n    ),\n    // the dimensions are the recommended meta image size\n    \"image\": coalesce(\n      // use the image directly assigned in meta\n      image.asset->url + \"?w=1200&h=630&fit=max\",\n      // use the image directly on this document\n      ^.image.asset->url + \"?w=1200&h=630&fit=max\",\n      // find and use the first hero image\n      select(^.blocks[0]._type match \"hero*\" => ^.blocks[0].image.asset->url + \"?w=1200&h=630&fit=max\", null),\n      // find and use the organization image\n      *[_type == \"organization\"][0].organization.image.asset->url + \"?w=1200&h=630&fit=max\"\n    )\n  }\n,\n    blocks[]{\n      \n  \n  _type == \"hero-primary\" => {\n    _type,\n    _key,\n    title,\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  }\n,\n\n    },\n    \"estimatedReadingTime\": round(length(pt::text(content)) / 5 / 180 ),\n  }\n": RESOURCE_SLUG_QUERYResult;
-    "*[_type == \"resource\" && defined(slug)]{slug}": RESOURCE_SLUGS_QUERYResult;
-    "\n  *[_type == \"events-index\"][0]{\n    _id,\n    _type,\n    title[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n    },\n    description,\n    slug,\n    \"eventLink\": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    \"link\": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    location,\n    type,\n    startDate,\n    endDate,\n    \n  meta{\n    // use the title assigned in meta or the parent document title\n    \"title\": coalesce(title, select(^.title[0]._type == \"block\" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    \"relativeUrl\": select(\n      ^.slug.current == \"index\" => \"/\",\n      ^._type == \"post\" => \"/blog/\" + ^.slug.current,\n      ^._type == \"post-index\" => \"/blog\",\n      ^._type == \"case-study\" => \"/case-studies/\" + ^.slug.current,\n      ^._type == \"case-study-index\" => \"/case-studies\",\n      ^._type == \"resource\" => \"/resources/\" + ^.slug.current,\n      ^._type == \"resource-index\" => \"/resources\",\n      ^._type == \"platform-index\" => \"/platform\",\n      ^._type == \"platform-child\" => \"/platform/\" + ^.slug.current,\n      ^._type == \"solutions-child\" => \"/solutions/\" + ^.slug.current,\n      ^._type == \"event\" => \"/events/\" + ^.slug.current,\n      ^._type == \"events-index\" => \"/events\",\n      \"/\" + ^.slug.current\n    ),\n    // the dimensions are the recommended meta image size\n    \"image\": coalesce(\n      // use the image directly assigned in meta\n      image.asset->url + \"?w=1200&h=630&fit=max\",\n      // use the image directly on this document\n      ^.image.asset->url + \"?w=1200&h=630&fit=max\",\n      // find and use the first hero image\n      select(^.blocks[0]._type match \"hero*\" => ^.blocks[0].image.asset->url + \"?w=1200&h=630&fit=max\", null),\n      // find and use the organization image\n      *[_type == \"organization\"][0].organization.image.asset->url + \"?w=1200&h=630&fit=max\"\n    )\n  }\n,\n    blocks[]{\n      \n  \n  _type == \"hero-primary\" => {\n    _type,\n    _key,\n    title,\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  }\n,\n\n    },\n    featuredPost->{\n      _id,\n      _type,\n      _createdAt,\n      slug,\n      title[]{\n        \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n      },\n      description,\n      publishedDate,\n      \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n      topics[]->{\n  _id,\n  title,\n  slug,\n  \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n      categories[]->{\n  _id,\n  title,\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  slug\n},\n      \"link\": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n\n    },\n    \"posts\": *[_type == \"event\" && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {\n      _id,\n      _type,\n      _createdAt,\n      title[]{\n        \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n      },\n      slug,\n      description,\n      publishedDate,\n      \"link\": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n      \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n      categories[]->{\n  _id,\n  title,\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  slug\n},\n      topics[]->{\n  _id,\n  title,\n  slug,\n  \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n    }\n  }\n": EVENTS_QUERYResult;
-    "\n  *[_type == \"event\" && slug.current == $slug][0]{\n    _id,\n    _createdAt,\n    slug,\n    _type,\n    isGated,\n    formId,\n    description,\n    \"eventLink\": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    \"link\": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    location,\n    type,\n    startDate,\n    endDate,\n    title[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n    },\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    publishedDate,\n    content[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"image\" => {\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n  _type == \"promo-card\" => {\n    title,\n    description,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n    \"link\": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n\n  },\n  _type == \"listDriver\" => {\n    title,\n    items[]{\n      _key,\n      eyebrow,\n      \"link\": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n\n    }\n  },\n  _type == \"quote\" => {\n    title[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n    },\n    author,\n  },\n  _type == \"portable-text-accordion\" => {\n    ...,\n    faqs[]{\n      _key,\n      title,\n      content[]{\n        ...,\n          markDefs[]{\n            ...,\n            _type == \"link\" => {\n              \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n            }\n          },\n        \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      },\n    },\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  }\n,\n    },\n    author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"link\" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == \"link\" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n    \n  meta{\n    // use the title assigned in meta or the parent document title\n    \"title\": coalesce(title, select(^.title[0]._type == \"block\" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    \"relativeUrl\": select(\n      ^.slug.current == \"index\" => \"/\",\n      ^._type == \"post\" => \"/blog/\" + ^.slug.current,\n      ^._type == \"post-index\" => \"/blog\",\n      ^._type == \"case-study\" => \"/case-studies/\" + ^.slug.current,\n      ^._type == \"case-study-index\" => \"/case-studies\",\n      ^._type == \"resource\" => \"/resources/\" + ^.slug.current,\n      ^._type == \"resource-index\" => \"/resources\",\n      ^._type == \"platform-index\" => \"/platform\",\n      ^._type == \"platform-child\" => \"/platform/\" + ^.slug.current,\n      ^._type == \"solutions-child\" => \"/solutions/\" + ^.slug.current,\n      ^._type == \"event\" => \"/events/\" + ^.slug.current,\n      ^._type == \"events-index\" => \"/events\",\n      \"/\" + ^.slug.current\n    ),\n    // the dimensions are the recommended meta image size\n    \"image\": coalesce(\n      // use the image directly assigned in meta\n      image.asset->url + \"?w=1200&h=630&fit=max\",\n      // use the image directly on this document\n      ^.image.asset->url + \"?w=1200&h=630&fit=max\",\n      // find and use the first hero image\n      select(^.blocks[0]._type match \"hero*\" => ^.blocks[0].image.asset->url + \"?w=1200&h=630&fit=max\", null),\n      // find and use the organization image\n      *[_type == \"organization\"][0].organization.image.asset->url + \"?w=1200&h=630&fit=max\"\n    )\n  }\n,\n    blocks[]{\n      \n  \n  _type == \"hero-primary\" => {\n    _type,\n    _key,\n    title,\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  \"href\": select(\n    isExternal => href,\n    @.internalLink->slug.current == \"index\" => \"/\",\n    @.internalLink->_type == \"post\" => \"/blog/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"post-index\" => \"/blog\",\n    @.internalLink->_type == \"case-study\" => \"/case-studies/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"case-study-index\" => \"/case-studies\",\n    @.internalLink->_type == \"resource\" => \"/resources/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"resource-index\" => \"/resources\",\n    @.internalLink->_type == \"platform-index\" => \"/platform\",\n    @.internalLink->_type == \"platform-child\" => \"/platform/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"solutions-child\" => \"/solutions/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"event\" => \"/events/\" + @.internalLink->slug.current,\n    @.internalLink->_type == \"events-index\" => \"/events\",\n    \"/\" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  }\n,\n\n    },\n    \"estimatedReadingTime\": round(length(pt::text(content)) / 5 / 180 ),\n  }\n": EVENTS_SLUG_QUERYResult;
-    "*[_type == \"event\" && defined(slug)]{slug}": EVENTS_SLUGS_QUERYResult;
+    '\n{\n  "totalPostCount": count(*[_type == $type]),\n  "currentCategoryPostCount": count(*[_type == $type && ($category == null || $category in categories[]->slug.current) && ($topic == null || $topic in topics[]->slug.current)]),\n  "categories": *[\n    _type == select(\n      $type == "case-study" => "case-study-category",\n      "resource-category"\n    ) &&\n    count(*[_type == $type && ^._id in categories[]._ref]) > 0\n  ] | order(title asc) {\n    _id,\n    title,\n    slug,\n    "count": count(*[_type == $type && ^._id in categories[]._ref  && ($topic == null || $topic in topics[]->slug.current)])\n  }\n}\n': RESOURCE_CATEGORY_COUNT_QUERY_RESULT;
+    '\n{\n  "totalTopicCount": count(*[_type == $type]),\n  "currentTopicPostCount": count(*[_type == $type && ($topic == null || $topic in topics[]->slug.current) && ($category == null || $category in categories[]->slug.current)]),\n"topics": *[\n  _type == "resource-topic" &&\n  count(*[_type == $type && ^._id in topics[]._ref]) > 0\n] | order(title asc) {\n  _id,\n  title,\n  slug,\n  \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  "count": count(*[_type == $type && ^._id in topics[]._ref && ($category == null || $category in categories[]->slug.current)])\n}\n}\n': RESOURCE_TOPICS_COUNT_QUERY_RESULT;
+    '\n  *[_type == "page" && slug.current == $slug][0]{\n    _type,\n    blocks[]{\n      \n  \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    title,\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  }\n,\n\n    },\n    \n  meta{\n    // use the title assigned in meta or the parent document title\n    "title": coalesce(title, select(^.title[0]._type == "block" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "post" => "/blog/" + ^.slug.current,\n      ^._type == "post-index" => "/blog",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "case-study-index" => "/case-studies",\n      ^._type == "resource" => "/resources/" + ^.slug.current,\n      ^._type == "resource-index" => "/resources",\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      ^._type == "solutions-child" => "/solutions/" + ^.slug.current,\n      ^._type == "event" => "/events/" + ^.slug.current,\n      ^._type == "events-index" => "/events",\n      "/" + ^.slug.current\n    ),\n    // the dimensions are the recommended meta image size\n    "image": coalesce(\n      // use the image directly assigned in meta\n      image.asset->url + "?w=1200&h=630&fit=max",\n      // use the image directly on this document\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      // find and use the first hero image\n      select(^.blocks[0]._type match "hero*" => ^.blocks[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      // find and use the organization image\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n\n  }\n': PAGE_QUERY_RESULT;
+    "*[_type == $pageType && defined(slug)]{slug}": PAGES_SLUGS_QUERY_RESULT;
+    '\n  *[_type == "organization"][0]{\n    organization {\n      ...,\n      \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n    }\n  }\n': ORGANIZATION_QUERY_RESULT;
+    '\n  *[_type == "post-index"][0]{\n    _id,\n    _type,\n    title,\n    description,\n    slug,\n    \n  meta{\n    // use the title assigned in meta or the parent document title\n    "title": coalesce(title, select(^.title[0]._type == "block" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "post" => "/blog/" + ^.slug.current,\n      ^._type == "post-index" => "/blog",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "case-study-index" => "/case-studies",\n      ^._type == "resource" => "/resources/" + ^.slug.current,\n      ^._type == "resource-index" => "/resources",\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      ^._type == "solutions-child" => "/solutions/" + ^.slug.current,\n      ^._type == "event" => "/events/" + ^.slug.current,\n      ^._type == "events-index" => "/events",\n      "/" + ^.slug.current\n    ),\n    // the dimensions are the recommended meta image size\n    "image": coalesce(\n      // use the image directly assigned in meta\n      image.asset->url + "?w=1200&h=630&fit=max",\n      // use the image directly on this document\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      // find and use the first hero image\n      select(^.blocks[0]._type match "hero*" => ^.blocks[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      // find and use the organization image\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    blocks[]{\n      \n  \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    title,\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  }\n,\n\n    },\n    featuredPost->{\n      _id,\n      _type,\n      _createdAt,\n      slug,\n      title[]{\n        \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n      },\n      description,\n      publishedDate,\n      \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n      topics[]->{\n  _id,\n  title,\n  slug,\n  \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n      categories[]->{\n  _id,\n  title,\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  slug\n},\n      "link": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n\n    },\n    "posts": *[_type == "post" && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {\n      _id,\n      _type,\n      _createdAt,\n      title[]{\n        \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n      },\n      slug,\n      description,\n      publishedDate,\n      "link": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n      \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n      categories[]->{\n  _id,\n  title,\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  slug\n},\n      topics[]->{\n  _id,\n  title,\n  slug,\n  \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n    }\n  }\n': BLOG_QUERY_RESULT;
+    '\n  *[_type == "post" && slug.current == $slug][0]{\n    _id,\n    _createdAt,\n    _type,\n    slug,\n    title[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n    },\n    description,\n    publishedDate,\n    content[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "image" => {\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n  _type == "promo-card" => {\n    title,\n    description,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n    "link": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n\n  },\n  _type == "listDriver" => {\n    title,\n    items[]{\n      _key,\n      eyebrow,\n      "link": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n\n    }\n  },\n  _type == "quote" => {\n    title[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n    },\n    author,\n  },\n  _type == "portable-text-accordion" => {\n    ...,\n    faqs[]{\n      _key,\n      title,\n      content[]{\n        ...,\n          markDefs[]{\n            ...,\n            _type == "link" => {\n              \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n            }\n          },\n        \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      },\n    },\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  }\n,\n    },\n    author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n    topics[]->{\n  _id,\n  title,\n  slug,\n  \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n    categories[]->{\n  _id,\n  title,\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  slug\n},\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n    \n  meta{\n    // use the title assigned in meta or the parent document title\n    "title": coalesce(title, select(^.title[0]._type == "block" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "post" => "/blog/" + ^.slug.current,\n      ^._type == "post-index" => "/blog",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "case-study-index" => "/case-studies",\n      ^._type == "resource" => "/resources/" + ^.slug.current,\n      ^._type == "resource-index" => "/resources",\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      ^._type == "solutions-child" => "/solutions/" + ^.slug.current,\n      ^._type == "event" => "/events/" + ^.slug.current,\n      ^._type == "events-index" => "/events",\n      "/" + ^.slug.current\n    ),\n    // the dimensions are the recommended meta image size\n    "image": coalesce(\n      // use the image directly assigned in meta\n      image.asset->url + "?w=1200&h=630&fit=max",\n      // use the image directly on this document\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      // find and use the first hero image\n      select(^.blocks[0]._type match "hero*" => ^.blocks[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      // find and use the organization image\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    blocks[]{\n      \n  \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    title,\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  }\n,\n\n    },\n    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 ),\n  }\n': BLOG_SLUG_QUERY_RESULT;
+    '*[_type == "post" && defined(slug)]{slug}': BLOG_SLUGS_QUERY_RESULT;
+    '\n  *[_type == "case-study-index"][0]{\n    _id,\n    _type,\n    title,\n    description,\n    slug,\n    \n  meta{\n    // use the title assigned in meta or the parent document title\n    "title": coalesce(title, select(^.title[0]._type == "block" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "post" => "/blog/" + ^.slug.current,\n      ^._type == "post-index" => "/blog",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "case-study-index" => "/case-studies",\n      ^._type == "resource" => "/resources/" + ^.slug.current,\n      ^._type == "resource-index" => "/resources",\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      ^._type == "solutions-child" => "/solutions/" + ^.slug.current,\n      ^._type == "event" => "/events/" + ^.slug.current,\n      ^._type == "events-index" => "/events",\n      "/" + ^.slug.current\n    ),\n    // the dimensions are the recommended meta image size\n    "image": coalesce(\n      // use the image directly assigned in meta\n      image.asset->url + "?w=1200&h=630&fit=max",\n      // use the image directly on this document\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      // find and use the first hero image\n      select(^.blocks[0]._type match "hero*" => ^.blocks[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      // find and use the organization image\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    blocks[]{\n      \n  \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    title,\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  }\n,\n\n    },\n    featuredPost->{\n      _id,\n      _type,\n      _createdAt,\n      slug,\n      title[]{\n        \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n      },\n      description,\n      publishedDate,\n      \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n      categories[]->{\n  _id,\n  title,\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  slug\n},\n      topics[]->{\n  _id,\n  title,\n  slug,\n  \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n      "link": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n\n    },\n      "posts": *[_type == "case-study" && ($category == null || $category in categories[]->slug.current) && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {\n      _id,\n      _type,\n      _createdAt,\n      slug,\n      title[]{\n        \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n      },\n      description,\n      publishedDate,\n      "link": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n      \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n      categories[]->{\n  _id,\n  title,\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  slug\n},\n      topics[]->{\n  _id,\n  title,\n  slug,\n  \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n    }\n  }\n': CASE_STUDIES_QUERY_RESULT;
+    '\n  *[_type == "case-study" && slug.current == $slug][0]{\n    _id,\n    _createdAt,\n    _type,\n    slug,\n    title[]{\n        \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n      },\n    description,\n    publishedDate,\n    content[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "image" => {\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n  _type == "promo-card" => {\n    title,\n    description,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n    "link": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n\n  },\n  _type == "listDriver" => {\n    title,\n    items[]{\n      _key,\n      eyebrow,\n      "link": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n\n    }\n  },\n  _type == "quote" => {\n    title[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n    },\n    author,\n  },\n  _type == "portable-text-accordion" => {\n    ...,\n    faqs[]{\n      _key,\n      title,\n      content[]{\n        ...,\n          markDefs[]{\n            ...,\n            _type == "link" => {\n              \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n            }\n          },\n        \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      },\n    },\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  }\n,\n    },\n    author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n    \n  meta{\n    // use the title assigned in meta or the parent document title\n    "title": coalesce(title, select(^.title[0]._type == "block" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "post" => "/blog/" + ^.slug.current,\n      ^._type == "post-index" => "/blog",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "case-study-index" => "/case-studies",\n      ^._type == "resource" => "/resources/" + ^.slug.current,\n      ^._type == "resource-index" => "/resources",\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      ^._type == "solutions-child" => "/solutions/" + ^.slug.current,\n      ^._type == "event" => "/events/" + ^.slug.current,\n      ^._type == "events-index" => "/events",\n      "/" + ^.slug.current\n    ),\n    // the dimensions are the recommended meta image size\n    "image": coalesce(\n      // use the image directly assigned in meta\n      image.asset->url + "?w=1200&h=630&fit=max",\n      // use the image directly on this document\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      // find and use the first hero image\n      select(^.blocks[0]._type match "hero*" => ^.blocks[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      // find and use the organization image\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    blocks[]{\n      \n  \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    title,\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  }\n,\n\n    },\n    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 ),\n  }\n': CASE_STUDIES_SLUG_QUERY_RESULT;
+    '*[_type == "case-study" && defined(slug)]{slug}': CASE_STUDIES_SLUGS_QUERY_RESULT;
+    '\n  *[_type == "resource-index"][0]{\n    _id,\n    _type,\n    title,\n    description,\n    slug,\n    \n  meta{\n    // use the title assigned in meta or the parent document title\n    "title": coalesce(title, select(^.title[0]._type == "block" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "post" => "/blog/" + ^.slug.current,\n      ^._type == "post-index" => "/blog",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "case-study-index" => "/case-studies",\n      ^._type == "resource" => "/resources/" + ^.slug.current,\n      ^._type == "resource-index" => "/resources",\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      ^._type == "solutions-child" => "/solutions/" + ^.slug.current,\n      ^._type == "event" => "/events/" + ^.slug.current,\n      ^._type == "events-index" => "/events",\n      "/" + ^.slug.current\n    ),\n    // the dimensions are the recommended meta image size\n    "image": coalesce(\n      // use the image directly assigned in meta\n      image.asset->url + "?w=1200&h=630&fit=max",\n      // use the image directly on this document\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      // find and use the first hero image\n      select(^.blocks[0]._type match "hero*" => ^.blocks[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      // find and use the organization image\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    blocks[]{\n      \n  \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    title,\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  }\n,\n\n    },\n    "posts": *[_type == "resource" && ($category == null || $category in categories[]->slug.current) && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {\n      _id,\n      _type,\n      _createdAt,\n      slug,\n      title[]{\n        \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n      },\n      description,\n      publishedDate,\n      "link": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n      \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n      categories[]->{\n  _id,\n  title,\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  slug\n},\n      topics[]->{\n  _id,\n  title,\n  slug,\n  \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n    }\n  }\n': RESOURCE_QUERY_RESULT;
+    '\n  *[_type == "resource" && slug.current == $slug][0]{\n    _id,\n    _createdAt,\n    slug,\n    _type,\n    isGated,\n    formId,\n    description,\n    title[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n    },\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    publishedDate,\n    content[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "image" => {\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n  _type == "promo-card" => {\n    title,\n    description,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n    "link": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n\n  },\n  _type == "listDriver" => {\n    title,\n    items[]{\n      _key,\n      eyebrow,\n      "link": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n\n    }\n  },\n  _type == "quote" => {\n    title[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n    },\n    author,\n  },\n  _type == "portable-text-accordion" => {\n    ...,\n    faqs[]{\n      _key,\n      title,\n      content[]{\n        ...,\n          markDefs[]{\n            ...,\n            _type == "link" => {\n              \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n            }\n          },\n        \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      },\n    },\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  }\n,\n    },\n    author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n    \n  meta{\n    // use the title assigned in meta or the parent document title\n    "title": coalesce(title, select(^.title[0]._type == "block" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "post" => "/blog/" + ^.slug.current,\n      ^._type == "post-index" => "/blog",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "case-study-index" => "/case-studies",\n      ^._type == "resource" => "/resources/" + ^.slug.current,\n      ^._type == "resource-index" => "/resources",\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      ^._type == "solutions-child" => "/solutions/" + ^.slug.current,\n      ^._type == "event" => "/events/" + ^.slug.current,\n      ^._type == "events-index" => "/events",\n      "/" + ^.slug.current\n    ),\n    // the dimensions are the recommended meta image size\n    "image": coalesce(\n      // use the image directly assigned in meta\n      image.asset->url + "?w=1200&h=630&fit=max",\n      // use the image directly on this document\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      // find and use the first hero image\n      select(^.blocks[0]._type match "hero*" => ^.blocks[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      // find and use the organization image\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    blocks[]{\n      \n  \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    title,\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  }\n,\n\n    },\n    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 ),\n  }\n': RESOURCE_SLUG_QUERY_RESULT;
+    '*[_type == "resource" && defined(slug)]{slug}': RESOURCE_SLUGS_QUERY_RESULT;
+    '\n  *[_type == "events-index"][0]{\n    _id,\n    _type,\n    title[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n    },\n    description,\n    slug,\n    "eventLink": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    "link": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    location,\n    type,\n    startDate,\n    endDate,\n    \n  meta{\n    // use the title assigned in meta or the parent document title\n    "title": coalesce(title, select(^.title[0]._type == "block" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "post" => "/blog/" + ^.slug.current,\n      ^._type == "post-index" => "/blog",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "case-study-index" => "/case-studies",\n      ^._type == "resource" => "/resources/" + ^.slug.current,\n      ^._type == "resource-index" => "/resources",\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      ^._type == "solutions-child" => "/solutions/" + ^.slug.current,\n      ^._type == "event" => "/events/" + ^.slug.current,\n      ^._type == "events-index" => "/events",\n      "/" + ^.slug.current\n    ),\n    // the dimensions are the recommended meta image size\n    "image": coalesce(\n      // use the image directly assigned in meta\n      image.asset->url + "?w=1200&h=630&fit=max",\n      // use the image directly on this document\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      // find and use the first hero image\n      select(^.blocks[0]._type match "hero*" => ^.blocks[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      // find and use the organization image\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    blocks[]{\n      \n  \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    title,\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  }\n,\n\n    },\n    featuredPost->{\n      _id,\n      _type,\n      _createdAt,\n      slug,\n      title[]{\n        \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n      },\n      description,\n      publishedDate,\n      \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n      topics[]->{\n  _id,\n  title,\n  slug,\n  \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n      categories[]->{\n  _id,\n  title,\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  slug\n},\n      "link": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n\n    },\n    "posts": *[_type == "event" && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {\n      _id,\n      _type,\n      _createdAt,\n      title[]{\n        \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n      },\n      slug,\n      description,\n      publishedDate,\n      "link": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n      \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n      categories[]->{\n  _id,\n  title,\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  slug\n},\n      topics[]->{\n  _id,\n  title,\n  slug,\n  \n  logo{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n    }\n  }\n': EVENTS_QUERY_RESULT;
+    '\n  *[_type == "event" && slug.current == $slug][0]{\n    _id,\n    _createdAt,\n    slug,\n    _type,\n    isGated,\n    formId,\n    description,\n    "eventLink": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    "link": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    location,\n    type,\n    startDate,\n    endDate,\n    title[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n    },\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    publishedDate,\n    content[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "image" => {\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n  _type == "promo-card" => {\n    title,\n    description,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n    "link": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n\n  },\n  _type == "listDriver" => {\n    title,\n    items[]{\n      _key,\n      eyebrow,\n      "link": \n  link[0]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n\n    }\n  },\n  _type == "quote" => {\n    title[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n    },\n    author,\n  },\n  _type == "portable-text-accordion" => {\n    ...,\n    faqs[]{\n      _key,\n      title,\n      content[]{\n        ...,\n          markDefs[]{\n            ...,\n            _type == "link" => {\n              \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n            }\n          },\n        \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n      },\n    },\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n  }\n,\n    },\n    author->{\n  _id,\n  name,\n  content[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n    }\n  },\n  _type == "link" => {\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  },\n\n  },\n  \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n},\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n,\n    \n  meta{\n    // use the title assigned in meta or the parent document title\n    "title": coalesce(title, select(^.title[0]._type == "block" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "post" => "/blog/" + ^.slug.current,\n      ^._type == "post-index" => "/blog",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "case-study-index" => "/case-studies",\n      ^._type == "resource" => "/resources/" + ^.slug.current,\n      ^._type == "resource-index" => "/resources",\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      ^._type == "solutions-child" => "/solutions/" + ^.slug.current,\n      ^._type == "event" => "/events/" + ^.slug.current,\n      ^._type == "events-index" => "/events",\n      "/" + ^.slug.current\n    ),\n    // the dimensions are the recommended meta image size\n    "image": coalesce(\n      // use the image directly assigned in meta\n      image.asset->url + "?w=1200&h=630&fit=max",\n      // use the image directly on this document\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      // find and use the first hero image\n      select(^.blocks[0]._type match "hero*" => ^.blocks[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      // find and use the organization image\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    blocks[]{\n      \n  \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    title,\n    \n  links[]{\n    \n  _type,\n  _key,\n  ...,\n  \n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-study-index" => "/case-studies",\n    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,\n    @.internalLink->_type == "resource-index" => "/resources",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,\n    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,\n    @.internalLink->_type == "events-index" => "/events",\n    "/" + @.internalLink->slug.current\n  )\n\n\n  }\n,\n    \n  image{\n    ...,\n    asset->{\n      _id,\n      url,\n      mimeType,\n      metadata {\n        lqip,\n        dimensions {\n          width,\n          height\n        }\n      }\n    }\n  }\n\n  }\n,\n\n    },\n    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 ),\n  }\n': EVENTS_SLUG_QUERY_RESULT;
+    '*[_type == "event" && defined(slug)]{slug}': EVENTS_SLUGS_QUERY_RESULT;
   }
 }
