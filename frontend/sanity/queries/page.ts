@@ -1,12 +1,6 @@
 // Query imports must be relative
 import { groq } from "next-sanity";
 import { authorFragment } from "./documents/author";
-import { card2UpQuery } from "./modules/card/card-2-up";
-import { card3UpQuery } from "./modules/card/card-3-up";
-import { cardCollapsibleQuery } from "./modules/card/card-collapsible";
-import { cardGridMarqueeQuery } from "./modules/card/card-grid-marquee";
-import { cardListQuery } from "./modules/card/card-list";
-import { cardPricingQuery } from "./modules/card/card-pricing";
 import { driverCtaQuery } from "./modules/driver/driver-cta";
 import { driverListQuery } from "./modules/driver/driver-list";
 import { heroPrimaryQuery } from "./modules/hero/hero-primary";
@@ -60,7 +54,6 @@ const blocksQuery = groq`
   ${textQuoteQuery},
   ${listIconScrollQuery},
   ${listImageScrollQuery},
-  ${cardGridMarqueeQuery},
   ${textCta2ColQuery},
   ${patternQuery},
   ${driverCtaQuery},
@@ -68,18 +61,13 @@ const blocksQuery = groq`
   ${listMetricQuery},
   ${listAccordionQuery},
   ${listMultiAccordionQuery},
-  ${card3UpQuery},
-  ${cardCollapsibleQuery},
-  ${cardListQuery},
   ${listCta3UpQuery},
-  ${cardPricingQuery},
   ${listGridLogoQuery},
   ${tableComparisonQuery},
   ${tableLogoQuery},
   ${tableMultiCtaQuery},
   ${marqueeQuery},
   ${listTextQuery},
-  ${card2UpQuery},
   ${imageTextTimelineQuery},
   ${infographicModelQuery},
   ${imageTextTabQuery},

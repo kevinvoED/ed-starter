@@ -29,12 +29,6 @@ import rewrite from "@/schemas/objects/rewrite";
 // Modules
 import event from "@/schemas/documents/event";
 import resourceTopic from "@/schemas/documents/resource-topic";
-import card2Up from "@/schemas/modules/card/card-2-up";
-import card3Up from "@/schemas/modules/card/card-3-up";
-import cardCollapsible from "@/schemas/modules/card/card-collapsible";
-import cardGridMarquee from "@/schemas/modules/card/card-grid-marquee";
-import cardList from "@/schemas/modules/card/card-list";
-import cardPricing from "@/schemas/modules/card/card-pricing";
 import driverCta from "@/schemas/modules/driver/driver-cta";
 import driverList from "@/schemas/modules/driver/driver-list";
 import heroPrimary from "@/schemas/modules/hero/hero-primary";
@@ -112,11 +106,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     fullImage,
     text2Col,
     listIconScroll,
-    cardGridMarquee,
-    card3Up,
-    cardCollapsible,
-    cardList,
-    cardPricing,
     textCta2Col,
     pattern,
     driverCta,
@@ -133,7 +122,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     tableLogo,
     marquee,
     listText,
-    card2Up,
     fullVideo,
     imageTextTimeline,
     infographicModel,

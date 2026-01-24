@@ -1,11 +1,5 @@
 import type { ComponentProps } from "react";
 import type { PAGE_QUERYResult } from "@/sanity.types";
-import { Card2Up } from "@/components/Card/Card2Up";
-import { Card3Up } from "@/components/Card/Card3Up";
-import { CardCollapsible } from "@/components/Card/CardCollapsible/CardCollapsible";
-import { CardGridMarquee } from "@/components/Card/CardGridMarquee";
-import { CardList } from "@/components/Card/CardList";
-import { CardPricing } from "@/components/Card/CardPricing";
 import { DriverCta } from "@/components/Driver/DriverCta";
 import { DriverList } from "@/components/Driver/DriverList";
 import { HeroPrimary } from "@/components/Hero/HeroPrimary";
@@ -64,7 +58,6 @@ const componentMap: {
   "list-icon-scroll": ListIconScroll,
   "list-image-scroll": ListImageScroll,
   "list-metric": ListMetric,
-  "card-grid-marquee": CardGridMarquee,
   "text-cta-2-col": TextCta2Col,
   pattern: Pattern,
   "portable-text-content-highlight": PortableTextHighlightModule,
@@ -73,12 +66,7 @@ const componentMap: {
   "list-accordion": ListAccordion,
   "text-quote": TextQuote,
   "list-multi-accordion": ListMultiAccordion,
-  "card-3-up": Card3Up,
-  "card-2-up": Card2Up,
-  "card-collapsible": CardCollapsible,
-  "card-list": CardList,
   "list-cta-3-up": ListCta3Up,
-  "card-pricing": CardPricing,
   "list-grid-logo": ListGridLogo,
   "table-comparison": TableComparison,
   "table-logo": TableLogo,
