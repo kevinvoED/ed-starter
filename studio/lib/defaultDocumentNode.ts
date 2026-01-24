@@ -1,8 +1,6 @@
 import type { DefaultDocumentNodeResolver } from "sanity/structure";
 import { Iframe } from "sanity-plugin-iframe-pane";
-
-const SANITY_STUDIO_PREVIEW_URL =
-  process.env.SANITY_STUDIO_PREVIEW_URL || "http://localhost:3000";
+import { SANITY_STUDIO_PREVIEW_URL } from "@/lib/env";
 
 // Specify document types that should have preview panes
 const previewSchemaTypes = [

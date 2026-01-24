@@ -12,6 +12,12 @@ import { structureTool } from "sanity/structure";
 import { vercelWidget } from "sanity-plugin-dashboard-widget-vercel";
 import { media } from "sanity-plugin-media";
 import { defaultDocumentNode } from "@/lib/defaultDocumentNode";
+import {
+  SANITY_STUDIO_API_VERSION,
+  SANITY_STUDIO_DATASET,
+  SANITY_STUDIO_PREVIEW_URL,
+  SANITY_STUDIO_PROJECT_ID,
+} from "@/lib/env";
 import { resolvePresentation } from "@/lib/presentation";
 import { structure } from "@/lib/structure";
 import { schema } from "@/schemas/schema";
@@ -39,17 +45,10 @@ const singletonTypes = new Set([
   "organization",
 ]);
 
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID || "00t2z2kg";
-const dataset = process.env.SANITY_STUDIO_DATASET || "development";
-const apiVersion = process.env.SANITY_STUDIO_API_VERSION || "2025-07-04";
-
-const SANITY_STUDIO_PREVIEW_URL =
-  process.env.SANITY_STUDIO_PREVIEW_URL || "http://localhost:3000";
-
 export default defineConfig({
-  title: `ED Starter (${dataset})`,
-  projectId,
-  dataset,
+  title: `ED Starter (${SANITY_STUDIO_DATASET})`,
+  projectId: SANITY_STUDIO_PROJECT_ID,
+  dataset: SANITY_STUDIO_DATASET,
   // Add and edit the content schema in the './sanity/schema' folder
   schema: {
     types: schema.types,
@@ -90,7 +89,7 @@ export default defineConfig({
       },
       resolve: resolvePresentation,
     }),
-    visionTool({ defaultApiVersion: apiVersion }),
+    visionTool({ defaultApiVersion: SANITY_STUDIO_API_VERSION }),
     codeInput(),
     media(),
     table(),

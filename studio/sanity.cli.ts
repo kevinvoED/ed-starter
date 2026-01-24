@@ -3,15 +3,16 @@
  * Go to https://www.sanity.io/docs/cli to learn more.
  **/
 import { defineCliConfig } from "sanity/cli";
+import {
+  SANITY_STUDIO_DATASET,
+  SANITY_STUDIO_HOSTNAME,
+  SANITY_STUDIO_PROJECT_ID,
+} from "./lib/env";
 import { resolve } from "node:path";
 
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID;
-const dataset = process.env.SANITY_STUDIO_DATASET;
-const sanityStudioHostname = process.env.SANITY_STUDIO_HOSTNAME;
-
 export default defineCliConfig({
-  api: { projectId, dataset },
-  studioHost: sanityStudioHostname,
+  api: { projectId: SANITY_STUDIO_PROJECT_ID, dataset: SANITY_STUDIO_DATASET },
+  studioHost: SANITY_STUDIO_HOSTNAME,
   typegen: {
     path: "../frontend/sanity/queries/**/*.{ts,tsx,js,jsx}",
     schema: "schema.json",
