@@ -5,7 +5,7 @@
   "homepage": "https://enginedigital.com",
   "private": true,
   "scripts": {
-    "dev": "sanity dev",
+    "dev": "NODE_NO_WARNINGS=1 sanity dev",
     "start": "sanity start",
     "build": "sanity build",
     "deploy": "sanity deploy",

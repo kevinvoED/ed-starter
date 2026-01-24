@@ -1,6 +1,6 @@
 import type {
-  EVENTS_SLUG_QUERYResult,
-  RESOURCE_SLUG_QUERYResult,
+  EVENTS_SLUG_QUERY_RESULT,
+  RESOURCE_SLUG_QUERY_RESULT,
 } from "@/sanity.types";
 import { Button, type ResolvedLinkType } from "@/components/Button/Button";
 import { Eyebrow } from "@/components/Eyebrow/Eyebrow";
@@ -9,7 +9,7 @@ import { PortableTextFragment } from "@/components/PortableText/PortableText";
 import { cn } from "@/lib/utils";
 
 type HeroGatedProps = NonNullable<
-  NonNullable<RESOURCE_SLUG_QUERYResult | EVENTS_SLUG_QUERYResult>
+  NonNullable<RESOURCE_SLUG_QUERY_RESULT | EVENTS_SLUG_QUERY_RESULT>
 > & {
   className?: string;
   eyebrow?: string;

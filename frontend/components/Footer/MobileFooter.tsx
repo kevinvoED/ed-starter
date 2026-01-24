@@ -1,6 +1,6 @@
-import type { FOOTER_QUERYResult } from "@/sanity.types";
+import type { FOOTER_QUERY_RESULT } from "@/sanity.types";
 
-export const MobileFooter = ({ data }: { data: FOOTER_QUERYResult }) => {
+export const MobileFooter = ({ data }: { data: FOOTER_QUERY_RESULT }) => {
   if (!data) {
     return null;
   }

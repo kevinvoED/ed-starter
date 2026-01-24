@@ -1,7 +1,7 @@
 import type { JSONLDScriptProps } from "@/components/Metadata/Jsonld";
 import type {
-  EVENTS_SLUG_QUERYResult,
-  ORGANIZATION_QUERYResult,
+  EVENTS_SLUG_QUERY_RESULT,
+  ORGANIZATION_QUERY_RESULT,
 } from "@/sanity.types";
 import type { ViewableTypes } from "./utils";
 import { generatePageMetadata } from "./metadata";
@@ -33,7 +33,7 @@ const getAdditionalData = (
   const results: Record<string, unknown> = {};
 
   if (type === "event") {
-    const doc = document as NonNullable<EVENTS_SLUG_QUERYResult>;
+    const doc = document as NonNullable<EVENTS_SLUG_QUERY_RESULT>;
     results.url = doc.eventLink?.href || `${SITE_URL}${doc.meta?.relativeUrl}`;
     results.eventStatus = "https://schema.org/EventScheduled";
     results.eventAttendanceMode =
@@ -96,7 +96,7 @@ export default function generateJsonldMetadata(
 }
 
 export function generateOrganizationSchema(
-  organization: ORGANIZATION_QUERYResult,
+  organization: ORGANIZATION_QUERY_RESULT,
 ) {
   if (!organization) return null;
   if (!organization.organization) return null;

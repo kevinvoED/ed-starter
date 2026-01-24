@@ -1,25 +1,25 @@
 import type {
-  AUTHOR_QUERYResult,
-  AUTHOR_SLUGS_QUERYResult,
-  BLOG_QUERYResult,
-  BLOG_SLUG_QUERYResult,
-  BLOG_SLUGS_QUERYResult,
-  CASE_STUDIES_QUERYResult,
-  CASE_STUDIES_SLUG_QUERYResult,
-  CASE_STUDIES_SLUGS_QUERYResult,
-  EVENTS_QUERYResult,
-  EVENTS_SLUG_QUERYResult,
-  EVENTS_SLUGS_QUERYResult,
-  FOOTER_QUERYResult,
-  NAVBAR_QUERYResult,
-  ORGANIZATION_QUERYResult,
-  PAGE_QUERYResult,
-  PAGES_SLUGS_QUERYResult,
-  RESOURCE_CATEGORY_COUNT_QUERYResult,
-  RESOURCE_QUERYResult,
-  RESOURCE_SLUG_QUERYResult,
-  RESOURCE_SLUGS_QUERYResult,
-  RESOURCE_TOPICS_COUNT_QUERYResult,
+  AUTHOR_QUERY_RESULT,
+  AUTHOR_SLUGS_QUERY_RESULT,
+  BLOG_QUERY_RESULT,
+  BLOG_SLUG_QUERY_RESULT,
+  BLOG_SLUGS_QUERY_RESULT,
+  CASE_STUDIES_QUERY_RESULT,
+  CASE_STUDIES_SLUG_QUERY_RESULT,
+  CASE_STUDIES_SLUGS_QUERY_RESULT,
+  EVENTS_QUERY_RESULT,
+  EVENTS_SLUG_QUERY_RESULT,
+  EVENTS_SLUGS_QUERY_RESULT,
+  FOOTER_QUERY_RESULT,
+  NAVBAR_QUERY_RESULT,
+  ORGANIZATION_QUERY_RESULT,
+  PAGE_QUERY_RESULT,
+  PAGES_SLUGS_QUERY_RESULT,
+  RESOURCE_CATEGORY_COUNT_QUERY_RESULT,
+  RESOURCE_QUERY_RESULT,
+  RESOURCE_SLUG_QUERY_RESULT,
+  RESOURCE_SLUGS_QUERY_RESULT,
+  RESOURCE_TOPICS_COUNT_QUERY_RESULT,
 } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/live";
 import { FOOTER_QUERY } from "@/sanity/queries/documents/footer";
@@ -47,31 +47,31 @@ import { AUTHOR_QUERY, AUTHOR_SLUGS_QUERY } from "../queries/documents/author";
 
 // Types
 type BlockType = NonNullable<
-  NonNullable<PAGE_QUERYResult>["blocks"]
+  NonNullable<PAGE_QUERY_RESULT>["blocks"]
 >[number]["_type"];
 
 export type BlockProps<T extends BlockType = BlockType> = Extract<
-  NonNullable<NonNullable<PAGE_QUERYResult>["blocks"]>[number],
+  NonNullable<NonNullable<PAGE_QUERY_RESULT>["blocks"]>[number],
   { _type: T }
 >;
 
 // Global Items
 export const fetchSanityOrganization =
-  async (): Promise<ORGANIZATION_QUERYResult> => {
+  async (): Promise<ORGANIZATION_QUERY_RESULT> => {
     const { data } = await sanityFetch({
       query: ORGANIZATION_QUERY,
     });
     return data;
   };
 
-export const fetchSanityNavbar = async (): Promise<NAVBAR_QUERYResult> => {
+export const fetchSanityNavbar = async (): Promise<NAVBAR_QUERY_RESULT> => {
   const { data } = await sanityFetch({
     query: NAVBAR_QUERY,
   });
   return data;
 };
 
-export const fetchSanityFooter = async (): Promise<FOOTER_QUERYResult> => {
+export const fetchSanityFooter = async (): Promise<FOOTER_QUERY_RESULT> => {
   const { data } = await sanityFetch({
     query: FOOTER_QUERY,
   });
@@ -85,7 +85,7 @@ export const fetchSanityPageBySlug = async ({
 }: {
   pageType: string;
   slug: string;
-}): Promise<PAGE_QUERYResult> => {
+}): Promise<PAGE_QUERY_RESULT> => {
   const { data } = await sanityFetch({
     query: PAGE_TYPE_QUERY,
     params: { pageType, slug },
@@ -98,7 +98,7 @@ export const fetchSanityPagesStaticParams = async ({
   pageType,
 }: {
   pageType: string;
-}): Promise<PAGES_SLUGS_QUERYResult> => {
+}): Promise<PAGES_SLUGS_QUERY_RESULT> => {
   const { data } = await sanityFetch({
     query: PAGES_SLUGS_QUERY,
     params: { pageType },
@@ -114,7 +114,7 @@ export const fetchSanityAuthorBySlug = async ({
   slug,
 }: {
   slug: string;
-}): Promise<AUTHOR_QUERYResult> => {
+}): Promise<AUTHOR_QUERY_RESULT> => {
   const { data } = await sanityFetch({
     query: AUTHOR_QUERY,
     params: { slug, offset: 0, end: 0 },
@@ -130,7 +130,7 @@ export const fetchSanityAuthorWithResources = async ({
   slug: string;
   page?: number;
   limit: number;
-}): Promise<AUTHOR_QUERYResult> => {
+}): Promise<AUTHOR_QUERY_RESULT> => {
   const offset = page && limit ? (page - 1) * limit : 0;
   const end = offset + limit;
 
@@ -142,7 +142,7 @@ export const fetchSanityAuthorWithResources = async ({
 };
 
 export const fetchSanityAuthorsStaticParams =
-  async (): Promise<AUTHOR_SLUGS_QUERYResult> => {
+  async (): Promise<AUTHOR_SLUGS_QUERY_RESULT> => {
     const { data } = await sanityFetch({
       query: AUTHOR_SLUGS_QUERY,
       perspective: "published",
@@ -162,7 +162,7 @@ export const fetchSanityBlogIndexPage = async ({
   page?: number;
   limit: number;
   topic?: string;
-}): Promise<BLOG_QUERYResult> => {
+}): Promise<BLOG_QUERY_RESULT> => {
   const offset = page && limit ? (page - 1) * limit : 0;
   const end = offset + limit - 1;
 
@@ -183,7 +183,7 @@ export const fetchSanityBlogSlugPage = async ({
   slug,
 }: {
   slug: string;
-}): Promise<BLOG_SLUG_QUERYResult> => {
+}): Promise<BLOG_SLUG_QUERY_RESULT> => {
   const { data } = await sanityFetch({
     query: BLOG_SLUG_QUERY,
     params: { slug },
@@ -193,7 +193,7 @@ export const fetchSanityBlogSlugPage = async ({
 };
 
 export const fetchSanityBlogSlugsStaticParams =
-  async (): Promise<BLOG_SLUGS_QUERYResult> => {
+  async (): Promise<BLOG_SLUGS_QUERY_RESULT> => {
     const { data } = await sanityFetch({
       query: BLOG_SLUGS_QUERY,
       perspective: "published",
@@ -213,7 +213,7 @@ export const fetchSanityCaseStudiesIndexPage = async ({
   page?: number;
   limit: number;
   topic?: string;
-}): Promise<CASE_STUDIES_QUERYResult> => {
+}): Promise<CASE_STUDIES_QUERY_RESULT> => {
   const offset = page && limit ? (page - 1) * limit : 0;
   const end = offset + limit - 1;
 
@@ -234,7 +234,7 @@ export const fetchSanityCaseStudiesSlugPage = async ({
   slug,
 }: {
   slug: string;
-}): Promise<CASE_STUDIES_SLUG_QUERYResult> => {
+}): Promise<CASE_STUDIES_SLUG_QUERY_RESULT> => {
   const { data } = await sanityFetch({
     query: CASE_STUDIES_SLUG_QUERY,
     params: { slug },
@@ -244,7 +244,7 @@ export const fetchSanityCaseStudiesSlugPage = async ({
 };
 
 export const fetchSanityCaseStudiesSlugsStaticParams =
-  async (): Promise<CASE_STUDIES_SLUGS_QUERYResult> => {
+  async (): Promise<CASE_STUDIES_SLUGS_QUERY_RESULT> => {
     const { data } = await sanityFetch({
       query: CASE_STUDIES_SLUGS_QUERY,
       perspective: "published",
@@ -261,7 +261,7 @@ export const fetchSanityResourceCategoryCount = async ({
   category?: string;
   topic?: string;
   type: "post" | "case-study" | "resource";
-}): Promise<RESOURCE_CATEGORY_COUNT_QUERYResult> => {
+}): Promise<RESOURCE_CATEGORY_COUNT_QUERY_RESULT> => {
   const { data } = await sanityFetch({
     query: RESOURCE_CATEGORY_COUNT_QUERY,
     params: { category: category ?? null, topic: topic ?? null, type: type },
@@ -277,7 +277,7 @@ export const fetchSanityResourceTopicsCount = async ({
   type?: string;
   topic?: string;
   category?: string;
-}): Promise<RESOURCE_TOPICS_COUNT_QUERYResult> => {
+}): Promise<RESOURCE_TOPICS_COUNT_QUERY_RESULT> => {
   const { data } = await sanityFetch({
     query: RESOURCE_TOPICS_COUNT_QUERY,
     params: { type: type, topic: topic ?? null, category: category ?? null },
@@ -296,7 +296,7 @@ export const fetchSanityResourceIndexPage = async ({
   page?: number;
   limit: number;
   topic?: string;
-}): Promise<RESOURCE_QUERYResult> => {
+}): Promise<RESOURCE_QUERY_RESULT> => {
   const offset = page && limit ? (page - 1) * limit : 0;
   const end = offset + limit - 1;
 
@@ -317,7 +317,7 @@ export const fetchSanityResourceSlugPage = async ({
   slug,
 }: {
   slug: string;
-}): Promise<RESOURCE_SLUG_QUERYResult> => {
+}): Promise<RESOURCE_SLUG_QUERY_RESULT> => {
   const { data } = await sanityFetch({
     query: RESOURCE_SLUG_QUERY,
     params: { slug },
@@ -327,7 +327,7 @@ export const fetchSanityResourceSlugPage = async ({
 };
 
 export const fetchSanityResourceSlugsStaticParams =
-  async (): Promise<RESOURCE_SLUGS_QUERYResult> => {
+  async (): Promise<RESOURCE_SLUGS_QUERY_RESULT> => {
     const { data } = await sanityFetch({
       query: RESOURCE_SLUGS_QUERY,
       perspective: "published",
@@ -348,7 +348,7 @@ export const fetchSanityEventsIndexPage = async ({
   page?: number;
   limit: number;
   topic?: string;
-}): Promise<EVENTS_QUERYResult> => {
+}): Promise<EVENTS_QUERY_RESULT> => {
   const offset = page && limit ? (page - 1) * limit : 0;
   const end = offset + limit - 1;
 
@@ -369,7 +369,7 @@ export const fetchSanityEventsSlugPage = async ({
   slug,
 }: {
   slug: string;
-}): Promise<EVENTS_SLUG_QUERYResult> => {
+}): Promise<EVENTS_SLUG_QUERY_RESULT> => {
   const { data } = await sanityFetch({
     query: EVENTS_SLUG_QUERY,
     params: { slug },
@@ -379,7 +379,7 @@ export const fetchSanityEventsSlugPage = async ({
 };
 
 export const fetchSanityEventsSlugsStaticParams =
-  async (): Promise<EVENTS_SLUGS_QUERYResult> => {
+  async (): Promise<EVENTS_SLUGS_QUERY_RESULT> => {
     const { data } = await sanityFetch({
       query: EVENTS_SLUGS_QUERY,
       perspective: "published",

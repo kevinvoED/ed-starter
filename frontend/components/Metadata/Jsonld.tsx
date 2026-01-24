@@ -1,14 +1,14 @@
 import type {
-  BLOG_QUERYResult,
-  BLOG_SLUG_QUERYResult,
-  CASE_STUDIES_QUERYResult,
-  CASE_STUDIES_SLUG_QUERYResult,
-  EVENTS_QUERYResult,
-  EVENTS_SLUG_QUERYResult,
-  ORGANIZATION_QUERYResult,
-  PAGE_QUERYResult,
-  RESOURCE_QUERYResult,
-  RESOURCE_SLUG_QUERYResult,
+  BLOG_QUERY_RESULT,
+  BLOG_SLUG_QUERY_RESULT,
+  CASE_STUDIES_QUERY_RESULT,
+  CASE_STUDIES_SLUG_QUERY_RESULT,
+  EVENTS_QUERY_RESULT,
+  EVENTS_SLUG_QUERY_RESULT,
+  ORGANIZATION_QUERY_RESULT,
+  PAGE_QUERY_RESULT,
+  RESOURCE_QUERY_RESULT,
+  RESOURCE_SLUG_QUERY_RESULT,
 } from "@/sanity.types";
 import generateJsonldMetadata, {
   generateOrganizationSchema,
@@ -16,15 +16,15 @@ import generateJsonldMetadata, {
 
 export type JSONLDScriptProps = {
   document: NonNullable<
-    | PAGE_QUERYResult
-    | BLOG_QUERYResult
-    | BLOG_SLUG_QUERYResult
-    | CASE_STUDIES_QUERYResult
-    | CASE_STUDIES_SLUG_QUERYResult
-    | EVENTS_QUERYResult
-    | EVENTS_SLUG_QUERYResult
-    | RESOURCE_QUERYResult
-    | RESOURCE_SLUG_QUERYResult
+    | PAGE_QUERY_RESULT
+    | BLOG_QUERY_RESULT
+    | BLOG_SLUG_QUERY_RESULT
+    | CASE_STUDIES_QUERY_RESULT
+    | CASE_STUDIES_SLUG_QUERY_RESULT
+    | EVENTS_QUERY_RESULT
+    | EVENTS_SLUG_QUERY_RESULT
+    | RESOURCE_QUERY_RESULT
+    | RESOURCE_SLUG_QUERY_RESULT
   >;
 };
 
@@ -50,7 +50,7 @@ export default JSONLDScript;
 
 export const OrganizationJSONLDScript: React.FC<
   {
-    organization: ORGANIZATION_QUERYResult;
+    organization: ORGANIZATION_QUERY_RESULT;
   } & React.HTMLAttributes<HTMLScriptElement>
 > = ({ organization, ...rest }) => {
   const jsonLd = generateOrganizationSchema(organization);

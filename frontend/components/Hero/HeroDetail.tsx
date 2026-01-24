@@ -1,8 +1,8 @@
 import type {
-  BLOG_SLUG_QUERYResult,
-  CASE_STUDIES_SLUG_QUERYResult,
-  EVENTS_SLUG_QUERYResult,
-  RESOURCE_SLUG_QUERYResult,
+  BLOG_SLUG_QUERY_RESULT,
+  CASE_STUDIES_SLUG_QUERY_RESULT,
+  EVENTS_SLUG_QUERY_RESULT,
+  RESOURCE_SLUG_QUERY_RESULT,
 } from "@/sanity.types";
 import { Button, type ResolvedLinkType } from "@/components/Button/Button";
 import { CopyLinkButton } from "@/components/Button/CopyLink";
@@ -16,10 +16,10 @@ import { cn } from "@/lib/utils";
 
 type HeroDetailProps = NonNullable<
   NonNullable<
-    | BLOG_SLUG_QUERYResult
-    | CASE_STUDIES_SLUG_QUERYResult
-    | RESOURCE_SLUG_QUERYResult
-    | EVENTS_SLUG_QUERYResult
+    | BLOG_SLUG_QUERY_RESULT
+    | CASE_STUDIES_SLUG_QUERY_RESULT
+    | RESOURCE_SLUG_QUERY_RESULT
+    | EVENTS_SLUG_QUERY_RESULT
   >
 > & {
   className?: string;

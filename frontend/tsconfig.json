@@ -8,6 +8,7 @@
     "noEmit": true,
     "moduleResolution": "bundler",
     "module": "esnext",
+    "allowSyntheticDefaultImports": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,

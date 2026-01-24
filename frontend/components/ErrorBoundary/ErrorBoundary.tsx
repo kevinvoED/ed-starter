@@ -2,7 +2,7 @@
 
 import type { ErrorInfo } from "react";
 import type { ErrorBoundaryProps, FallbackProps } from "react-error-boundary";
-import type { PAGE_QUERYResult } from "@/sanity.types";
+import type { PAGE_QUERY_RESULT } from "@/sanity.types";
 import { ErrorBoundary } from "react-error-boundary";
 import { Button } from "@/components/Button/Button";
 
@@ -10,7 +10,7 @@ const logError = (error: unknown, info: ErrorInfo) => {
   console.error({ error, info });
 };
 
-type BlocksType = NonNullable<NonNullable<PAGE_QUERYResult>["blocks"]>;
+type BlocksType = NonNullable<NonNullable<PAGE_QUERY_RESULT>["blocks"]>;
 
 const getErrorMessage = (error: unknown): string => {
   return error instanceof Error ? error.message : "An unknown error occurred";
