@@ -3,7 +3,7 @@
 import type { Tool } from "sanity";
 import { BookIcon } from "@sanity/icons";
 import { Card, Grid } from "@sanity/ui";
-import Guide from "@/guide";
+import Guide from "@/components/guide";
 
 export const guideTool = () => {
   return {

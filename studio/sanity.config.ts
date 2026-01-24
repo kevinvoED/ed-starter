@@ -9,56 +9,39 @@ import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { presentationTool } from "sanity/presentation";
 import { structureTool } from "sanity/structure";
-import { vercelWidget } from "sanity-plugin-dashboard-widget-vercel";
 import { media } from "sanity-plugin-media";
+import {
+  SINGLETON_DOCUMENT_ACTIONS,
+  SINGLETON_DOCUMENT_TYPES,
+} from "@/lib/consts";
 import { defaultDocumentNode } from "@/lib/defaultDocumentNode";
+import { deploymentOptions } from "@/lib/deployment";
 import {
   SANITY_STUDIO_API_VERSION,
   SANITY_STUDIO_DATASET,
-  SANITY_STUDIO_PREVIEW_URL,
   SANITY_STUDIO_PROJECT_ID,
 } from "@/lib/env";
-import { resolvePresentation } from "@/lib/presentation";
+import { guideTool } from "@/lib/guideTool";
+import { presentationOptions } from "@/lib/presentation";
 import { structure } from "@/lib/structure";
 import { schema } from "@/schemas/schema";
-import { guideTool } from "@/tools/guide";
 import { OpenDocumentUrlAction } from "./actions";
 import { VIEWABLE_TYPES, type ViewableTypes } from "../frontend/lib/utils";
-
-// Define the actions that should be available for singleton documents
-const singletonActions = new Set([
-  "publish",
-  "discardChanges",
-  "restore",
-  "unpublish",
-]);
-
-// Define the singleton document types
-const singletonTypes = new Set([
-  "post-index",
-  "case-study-index",
-  "events-index",
-  "platform-index",
-  "navbar",
-  "footer",
-  "configuration",
-  "organization",
-]);
 
 export default defineConfig({
   title: `ED Starter (${SANITY_STUDIO_DATASET})`,
   projectId: SANITY_STUDIO_PROJECT_ID,
   dataset: SANITY_STUDIO_DATASET,
-  // Add and edit the content schema in the './sanity/schema' folder
   schema: {
     types: schema.types,
     // Filter out singleton types from the global "New document" menu options
     templates: (templates) =>
-      templates.filter(({ schemaType }) => !singletonTypes.has(schemaType)),
+      templates.filter(
+        ({ schemaType }) => !SINGLETON_DOCUMENT_TYPES.has(schemaType),
+      ),
   },
   document: {
-    // For singleton types, filter out actions that are not explicitly included
-    // in the `singletonActions` list defined above
+    // Filter out actions that are not explicitly included in `SINGLETON_DOCUMENT_ACTIONS`
     actions: (previousActions, { schemaType }) => {
       const myActions = previousActions;
 
@@ -66,13 +49,12 @@ export default defineConfig({
         myActions.push(OpenDocumentUrlAction);
       }
 
-      return singletonTypes.has(schemaType)
+      return SINGLETON_DOCUMENT_TYPES.has(schemaType)
         ? myActions.filter(
-            ({ action }) => action && singletonActions.has(action),
+            ({ action }) => action && SINGLETON_DOCUMENT_ACTIONS.has(action),
           )
         : myActions;
     },
-    // Disable comments as the popover for adding comments conflicts with PortableText annotations
     comments: {
       enabled: false,
     },
@@ -80,23 +62,11 @@ export default defineConfig({
   tools: [guideTool()],
   plugins: [
     structureTool({ structure, defaultDocumentNode }),
-    presentationTool({
-      previewUrl: {
-        origin: SANITY_STUDIO_PREVIEW_URL,
-        draftMode: {
-          enable: "/api/draft-mode/enable",
-        },
-      },
-      resolve: resolvePresentation,
-    }),
+    presentationTool(presentationOptions),
     visionTool({ defaultApiVersion: SANITY_STUDIO_API_VERSION }),
     codeInput(),
     media(),
     table(),
-    dashboardTool({
-      widgets: [vercelWidget()],
-      name: "deployment",
-      title: "Deployment",
-    }),
+    dashboardTool(deploymentOptions),
   ],
 });

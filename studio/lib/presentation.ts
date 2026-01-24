@@ -3,10 +3,11 @@ import {
   defineLocations,
   type PresentationPluginOptions,
 } from "sanity/presentation";
+import { SANITY_STUDIO_PREVIEW_URL } from "@/lib/env";
 
-export const resolvePresentation: PresentationPluginOptions["resolve"] = {
+// TODO: refactor to programatically use RELATION_SCHEMA_TYPES instead
+const resolvePresentation: PresentationPluginOptions["resolve"] = {
   locations: {
-    // Add more locations for other post types
     post: defineLocations({
       select: {
         title: "title",
@@ -19,16 +20,25 @@ export const resolvePresentation: PresentationPluginOptions["resolve"] = {
             href: `/blog/${doc?.slug}`,
           },
           { title: "Blog", href: "/blog" },
-          { title: "Case Studies", href: "/case-studies" },
-          { title: "Resources", href: "/resources" },
           {
             title: doc?.title || "Untitled",
             href: `/case-studies/${doc?.slug}`,
           },
+          { title: "Case Studies", href: "/case-studies" },
           {
             title: doc?.title || "Untitled",
             href: `/resources/${doc?.slug}`,
           },
+          { title: "Resources", href: "/resources" },
+          {
+            title: doc?.title || "Untitled",
+            href: `/resources/${doc?.slug}`,
+          },
+          {
+            title: doc?.title || "Untitled",
+            href: `/events/${doc?.slug}`,
+          },
+          { title: "Events", href: "/events" },
         ],
       }),
     }),
@@ -42,6 +52,7 @@ export const resolvePresentation: PresentationPluginOptions["resolve"] = {
       route: "/:slug",
       filter: `_type == 'page' && slug.current == $slug`,
     },
+
     {
       route: "/blog/:slug",
       filter: `_type == 'post' && slug.current == $slug`,
@@ -59,4 +70,14 @@ export const resolvePresentation: PresentationPluginOptions["resolve"] = {
       filter: `_type == 'resource' && slug.current == $slug`,
     },
   ]),
+};
+
+export const presentationOptions: PresentationPluginOptions = {
+  previewUrl: {
+    origin: SANITY_STUDIO_PREVIEW_URL,
+    draftMode: {
+      enable: "/api/draft-mode/enable",
+    },
+  },
+  resolve: resolvePresentation,
 };

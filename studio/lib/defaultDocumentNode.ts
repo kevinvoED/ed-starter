@@ -1,29 +1,20 @@
 import type { DefaultDocumentNodeResolver } from "sanity/structure";
 import { Iframe } from "sanity-plugin-iframe-pane";
+import { RELATION_SCHEMA_TYPES } from "@/lib/consts";
 import { SANITY_STUDIO_PREVIEW_URL } from "@/lib/env";
 
-// Specify document types that should have preview panes
-const previewSchemaTypes = [
-  "page",
-  "platform-index",
-  "platform-child",
-  "solutions-child",
-  "post-index",
-  "post",
-  "resource-index",
-  "resource",
-  "events-index",
-  "event",
-  "case-study-index",
-  "case-study",
-];
+type PreviewDocumentType = { _type: string; slug: { current: string } };
 
 export const defaultDocumentNode: DefaultDocumentNodeResolver = (
   S,
   { schemaType },
 ) => {
-  // Add previews for specified schema types
-  if (previewSchemaTypes.includes(schemaType)) {
+  const RELATION_SCHEMA = RELATION_SCHEMA_TYPES.find(
+    (r) => r.schemaType === schemaType,
+  );
+
+  // Add preview panes for schemas defined in RELATION_SCHEMA_TYPES
+  if (RELATION_SCHEMA) {
     return S.document().views([
       S.view.form(),
       S.view
@@ -32,71 +23,25 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (
         .options({
           url: {
             origin: SANITY_STUDIO_PREVIEW_URL,
-            preview: (doc: { _type: string; slug: { current: string } }) => {
-              let path = "/";
+            preview: ({ _type, slug }: PreviewDocumentType) => {
+              let path = RELATION_SCHEMA.route;
 
-              switch (doc._type) {
-                case "page": {
-                  const slug = doc.slug?.current;
-                  if (slug === "index") {
-                    path = "/";
-                  } else if (slug) {
-                    path = `/${slug}`;
-                  } else {
-                    path = "/";
-                  }
-                  break;
-                }
-                case "post":
-                  path = doc.slug?.current
-                    ? `/blog/${doc.slug.current}`
-                    : "/blog";
-                  break;
-                case "post-index":
-                  path = "/blog";
-                  break;
-                case "case-study":
-                  path = doc.slug?.current
-                    ? `/case-studies/${doc.slug.current}`
-                    : "/case-studies";
-                  break;
-                case "case-study-index":
-                  path = "/case-studies";
-                  break;
-                case "platform-index":
-                  path = "/platform";
-                  break;
-                case "platform-child":
-                  path = doc.slug?.current
-                    ? `/platform/${doc.slug.current}`
-                    : "/platform";
-                  break;
-                case "resource-index":
-                  path = "/resources";
-                  break;
-                case "resource":
-                  path = doc.slug?.current
-                    ? `/resources/${doc.slug.current}`
-                    : "/resources";
-                  break;
-                case "solutions-child":
-                  path = doc.slug?.current
-                    ? `/solutions/${doc.slug.current}`
-                    : "/solutions";
-                  break;
-                case "event":
-                  path = doc.slug?.current
-                    ? `/events/${doc.slug.current}`
-                    : "/events";
-                  break;
-                case "events-index":
-                  path = "/events";
-                  break;
-                default:
+              const isIndexPage =
+                RELATION_SCHEMA?.schemaType.includes("index") &&
+                !RELATION_SCHEMA?.route.endsWith("/");
+
+              if (_type === "page") {
+                if (slug?.current === "index") {
                   path = "/";
+                } else if (slug?.current) {
+                  path = `/${slug.current}`;
+                } else {
+                  path = "/";
+                }
+              } else if (!isIndexPage && slug?.current) {
+                path = `${RELATION_SCHEMA.route}${slug.current}`;
               }
 
-              // Add iframe parameter to distinguish from presentation mode
               return `${path}?iframe=true`;
             },
             draftMode: "/api/draft-mode/enable",
@@ -109,6 +54,5 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (
     ]);
   }
 
-  // Return default views for other document types
   return S.document().views([S.view.form()]);
 };
