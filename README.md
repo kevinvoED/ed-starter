@@ -1,140 +1,293 @@
-# ED Next.js Starter Kit 2025
+# Spur
+[![Next.js][next-js]][next-js-url] [![Sanity][sanity]][sanity-url] [![React][react]][react-url] [![Tailwind][tailwind]][tailwind-url]
 
-- [Next.js](https://nextjs.org)
-- [Sanity](https://www.sanity.io/)
-- [Tailwind](https://tailwindcss.com/)
-- [Biome](https://biomejs.dev/)
-- [GSAP](https://gsap.com/)
+[react-url]: https://reactjs.org/
+[next-js-url]: https://nextjs.org/
+[tailwind-url]: https://tailwindcss.com/
+[sanity-url]: https://www.sanity.io/
+[react]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[next-js]: https://img.shields.io/badge/Next.js-20232A?style=for-the-badge&logo=Next.js
+[tailwind]: https://img.shields.io/badge/Tailwind_CSS-20232A?style=for-the-badge&logo=tailwindcss&logoColor=319795
+[sanity]: https://img.shields.io/badge/Sanity-20232A?style=for-the-badge&logo=sanity&logoColor=F97316
 
-## Getting Started
+## Pre-requisites
+- **Node.js**: Version specified in `.nvmrc` (use `nvm use`)
+- **pnpm**: `~10.19.0` (installed automatically via `packageManager` field)
 
-### Prerequisites
+> If you are having trouble with `corepack` not being able to install `pnpm`, try clearing the cache with `corepack cache clean`
 
-#### 1. Install Node.js
 
-Download and install Node.js (version 22 or later) from [nodejs.org](https://nodejs.org/).
+## Initial Setup
 
-Verify your installation:
-```shell
-node --version
-npm --version
+1. **Set Up ENV**:
+
+```bash
+cp frontend/.env.local.example frontend/.env.local
+cp studio/.env.local.example studio/.env.local
 ```
 
-#### 2. Install Dependencies
+Refer to Keeper to find keys and secrets
 
-Navigate to this project directory and install all dependencies:
+2. **Set Node Version**:
 
-```shell
-npm install
+```bash
+nvm use
 ```
 
-#### 3. Biome in VSCode
+3. **Install Dependencies**:
 
-This project uses Biome for formatting and linting. To configure it properly in VS Code:
+```bash
+pnpm install
+```
 
-1. **Install the Biome extension:**
-   - Open VS Code
-   - Go to Extensions (Ctrl/Cmd + Shift + X)
-   - Search for "Biome" and install the official Biome extension
-
-2. **Configure Biome as your default formatter:**
-   - Open VS Code Settings (Ctrl/Cmd + ,)
-   - Search for "default formatter"
-   - Set "Editor: Default Formatter" to "biomejs.biome"
-
-3. **Enable format on save (recommended):**
-   - In VS Code Settings, search for "format on save"
-   - Check "Editor: Format On Save"
 
 ## Development
 
-#### 1. Run the Development Servers
+Running this command will run frontend and studio in parallel:
 
-Running the following command will launch the local development server alongside Sanity Studio simultaneously.
-
-```shell
-npm run dev
+```bash
+pnpm dev
 ```
 
-This command runs:
-- Next.js app at [http://localhost:3000](http://localhost:3000)
-- Sanity Studio at [http://localhost:3333/structure](http://localhost:3333/structure)
+This starts:
 
-#### 2. Access the Applications
+- **Frontend**: `http://localhost:3000` (Next.js)
+- **Studio**: `http://localhost:3333` (Sanity Studio)
 
-- **Next.js App:** Open [http://localhost:3000](http://localhost:3000) in your browser
-- **Sanity Studio:** Open [http://localhost:3333/structure](http://localhost:3333/structure) in your browser
+## Project Structure
 
-You'll need to sign in to Sanity Studio using the same service (Google, GitHub, or email) that you used when setting up your Sanity project.
-
-## Available Scripts
-
-- `npm run dev` - Start both development servers
-- `npm run lint` - Run ESLint on the frontend
-- `npm run type-check` - Run TypeScript type checking
-- `npm run format` - Format code with Prettier
-- `npm run import-sample-data` - Import sample data to Sanity
-
-### Deploying your application
-
-#### 1. Deploy Sanity Studio
-
-Your Next.js frontend (`/frontend`) and Sanity Studio (`/studio`) are still only running on your local computer. It's time to deploy and get it into the hands of other content editors.
-
-Back in your Studio directory (`/studio`), run the following command to deploy your Sanity Studio.
-
-```shell
-npx sanity deploy
+```
+spur-us/
+├── frontend/          # Next.js Frontend
+│   ├── app
+│   ├── components
+│   ├── lib
+│   └── sanity
+│   └── package.json
+├── studio/            # Sanity Studio
+│   ├── lib
+│   ├── schemas
+│   └── package.json
+├── package.json       # Root workspace config
+└── pnpm-workspace.yaml
 ```
 
-#### 2. Deploy Next.js app to Vercel
+## Naming Conventions
 
-You have the freedom to deploy your Next.js app to your hosting provider of choice. With Vercel and GitHub being a popular choice, we'll cover the basics of that approach.
+- `/frontend/components`: `PascalCase`
+  - ✅ `Author.tsx`
+  - ✅ `HeroPrimary.tsx`
+  - ✅ `CardGrid.tsx`
+  - ❌ `blog-category.tsx`
+  - ❌ `blogCategory.tsx`
 
-1. Create a GitHub repository from this project. [Learn more](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github).
-2. Create a new Vercel project and connect it to your Github repository.
-3. Set the `Root Directory` to your Next.js app.
-4. Configure your Environment Variables.
+- `studio/schemas` & `frontend/sanity/queries`: `kebab-case`
+  - ✅ `author.ts`
+  - ✅ `hero-primary.ts`
+  - ✅ `card-grid.ts`
+  - ❌ `BlogCategory.ts`
+  - ❌ `blogCategory.ts`
 
-## Resources
+>Note that Biome.js will warn you during the linting process if a file does not match properly.
 
-- [Sanity documentation](https://www.sanity.io/docs)
-- [Next.js documentation](https://nextjs.org/docs)
-- [Join the Sanity Community](https://slack.sanity.io)
-- [Learn Sanity](https://www.sanity.io/learn)
+## Commands
 
-## Frequently Asked Questions
+> Commands ran from the root of the project, in a terminal:
 
-### How can I add a new module to Sanity Studio?
-1. Create a new terminal and run the command below.
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `pnpm install`             | Installs dependencies                            |
+| `pnpm run dev`             | Starts local dev and local Sanity studio servers in parallel|
+| `pnpm run dev:next`        | Starts local dev server at localhost:3000|
+| `pnpm run dev:studio`      | Starts Sanity Studio server at localhost:3333    |
+| `pnpm run typegen`         | Autogenerates types using Sanity TypeGen         |
+| `pnpm run typecheck`       | TypeScript type checking                         |
+| `pnpm run format`          | Formats and lints code with Biome                |
 
-```shell
-npm run plop
+## PortableText
+
+### PortableText
+
+There are two different `PortableText` types used in this project:
+
+`PortableText`: primarily used for long-form article content with access to all rich text features and embedded components.
+
+```typescript
+// studio/schemas/modules/documents/post.ts
+
+// Usage in a schema
+...,
+defineField({
+  ...portableText,
+  group: "content",
+})
+
+// GROQ querying the schema; note by default the 'name' is 'content'
+...
+content[]{
+  ${portableTextFragment}
+}
+
+// In your component, remember to import our custom PortableText
+import { PortableText } from "@/components/PortableText/PortableText";
+...
+<h1><PortableText value={content}/></h1>
+
+//You can also pass in a mode for light or dark depending on the background of the module and you can't control the text for whatever reason
+<PortableText
+  value={content}
+  mode="light" // or "dark"
+/>
+
+// You can also pass in a style (article, module, or fragment) which applies different styling or outputs a different HTML tag. By default, it's set to 'module' which outputs a <p> tag without any spacing.
+<PortableText
+  value={content}
+  mode="module" // "article" / "fragment"
+/>
+```
+### PortableTextPlain
+`PortableTextPlain`: primarily used for text fields within modules
+
+```typescript
+// There are pre-defined common usages for 'PortableTextPlain' in 'sharedFields.ts'
+defineField({
+  ...ptTitle,
+})
+
+// Example: Creating custom portable-text-plain field
+import { portableTextPlain } from "@/schemas/objects/portable-text-plain";
+
+defineField(
+  portableTextPlain({
+    name: "title", // defaults to 'content' unless specified
+    title: "Title",
+    enableLink: true,
+    enableBold: true,
+  })
+)
+
+// You can enable any combination of flags, by default they are all false except for validation.
+defineField(
+  portableTextPlain({
+    name: "richContent",
+    title: "Rich Content",
+    description: "Full featured text editor for module content.",
+    enableTypeStyle: true,
+    enableBold: true,
+    enableItalic: true,
+    enableBulletList: true,
+    enableNumberList: true,
+    enableHighlight: true,
+    enableLink: true,
+  })
+)
+
+// Sometimes your schema field might be too long in comparison to the text content that will be inside it. This happens mainly with titles as they do not contain very many characters. You can enable 'oneLine' to turn the field into only one line. Note that this inherently disables line breaks.
+defineField(
+  portableTextPlain({
+    name: "quote",
+    title: "Quote",
+    oneLine: true,
+  })
+)
+```
+## Tips & Tricks
+
+### How do I create a new Sanity schema and component?
+1. Create your schema inside `/studio/schemas` in the appropriate folder
+2. Add your schema to `/studio/schema.ts`
+3. Add your schema to `/studio/moduleTypes.ts`
+4. Add your schema image preview to `/studio/schemas/previews`
+5. Create a query for your schema at `/frontend/sanity/queries`
+6. Add that query to `/frontend/sanity/queries/page.ts`
+7. Create your component in `/frontend/components`
+8. Add your component and schema to `/frontend/components/ModuleBuilder.tsx`
+9. Make good use of `sharedFields.ts` for schemas and the `shared` fragments for queries
+
+### Creating field previews
+
+1. Install `imagemagick` with `brew install imagemagick`
+2. Check it installed the convert tool with `magick --help` and it should return a path
+3. Export the frame of the component (use JPG)
+4. Extract the JPG
+5. Crop and resize to `536x336`
+
+```bash
+# resizes within 536x336 pixels while maintaining aspect ratio, then crops it to 536x336 from the top
+magick "~/Downloads/exported-component-frame-from-figma.jpg" -resize 536x336^ -gravity North -extent 536x336 -quality 95 "studio/schemas/previews/component-name-output.jpg"
 ```
 
-2. Select the `New module` option, name your module, and it will generate a Sanity schema file for you in `studio/src/schemas/modules/your-new-schema.ts` and a new component file in `frontend/components/YourNewComponent/YourNewcomponent.tsx`.
+### Using BlockProps is a type-safe way of typing your components
 
-3. Add your new schema to `schema.ts`, `page.ts`, and `moduleTypes` in `studio/src/schemas`. Don't forget to add any accompanying Sanity preview images for your module to `studio/src/static/previews`.
+```typescript
+import type { BlockProps } from "@/sanity/lib/fetch";
 
-4. Create a new GROQ query for your Sanity schema in `frontend/sanity/queries/queries.ts`. Make good use of commonly used fields from `sharedFields.ts`.
+// replace hero-primary with any schema name
+type HeroPrimaryProps = BlockProps<"hero-primary">;
 
-5. Note that if your schema and query are not used within the module builder, then you can create a fetch query for your data in `fetch.ts` so you can use it in your components directly.
+// and you'll be able to access all props with intellisense
+export const HeroPrimary = ({ title, content }: HeroPrimaryProps) => { ...
+```
 
-6. Add your new schema and component to `ModuleBuilder.tsx`.
+### Use function return types for prop types
 
-7. Create a new terminal and run `npm run typegen` to generate your types. 
+```typescript
+interface Props {
+  // now, any changes to the `fetchSanityFooter` function will be caught here!
+  footer: Awaited<ReturnType<typeof fetchSanityFooter>>;
+  class?: ClassValue[];
+}
 
-8. Your module now appears in Sanity Studio within any module builder.
+// or, create a type that can wrap this up for you
+export type FetchedSanityFooter = Awaited<ReturnType<typeof fetchSanityFooter>>;
+```
 
-## TODO 
+### Your components do not need to start with a section tag
 
-- [ ] Add tests. Vitest? Jest? React Testing Library? 
-- [ ] Update sharedFields.ts
-- [ ] Add manifest icons to /public
-- [ ] Add favicon.ico, apple-icon.png, robots.ts, json-ld.ts, and sitemap.ts
-- [ ] Add 404 not-found.tsx file
-- [ ] Add estoolkit, and common react hooks like useNavHeight, useBannerHeight, useScreensize 
-- [ ] Find an alternative to determining if the current viewport is a mobile device viewport or not
-- [ ] Add google fonts or custom fonts support
-- [ ] Update terminology inside fetch.ts and queries.ts
+```typescript
 
+// All modules are already pre-wrapped with a <section> tag in ModuleBuilder.tsx
+return (
+          <section key={_key} data-module={_type}>
+            <Component>...</Component>
+```
+
+### Each component does not need to initialize ScrollTrigger
+
+```typescript
+
+// We already register ScrollTrigger in ScrollTrigger.tsx which lives in our root layout
+
+// ScrollTrigger.tsx
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(GSAPScrollTrigger, SplitText);
+  GSAPScrollTrigger.clearScrollMemory("manual");
+}
+
+// You do have to import ScrollTrigger if you plan on using its methods though
+
+// MyComponent.tsx
+import { ScrollTrigger } from "gsap/all";
+```
+
+### Properly typing Radix components
+
+While using RadixUI components, you may notice a TypeScript error regarding props passed in or errors complaining about there being no children prop. ForwardRefExoticComponent no longer accepts 'children' prop in React 18.2+ and TypeScript 5.x+. We can instead extend each component in `globals.d.ts`.
+
+![alt text](https://github.com/spurintel/spur-us/blob/main/frontend/public/images/readme-globals.png "Image")
+
+```typescript
+declare module "@radix-ui/react-accordion" {
+  export interface AccordionSingleProps extends PropsWithChildren {
+    className?: string;
+  }
+  ...
+}
+```
+
+
+
+## Bug Bounty
+> List of outstanding bugs that need fixing; the prize for clearing one of the bounties is the self-satisfaction of getting this list one step closer to its complete and utter demise.
+
+- absolute imports don't work inside `/sanity/queries` and is presumably conflicting with Sanity TypeGen somehow

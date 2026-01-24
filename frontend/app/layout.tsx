@@ -1,72 +1,39 @@
-import type { Metadata } from "next";
-import type { SanityImageType } from "@/lib/utils/type";
-import { Inter } from "next/font/google";
-import { draftMode } from "next/headers";
-import { VisualEditing } from "next-sanity";
-import { DraftModeToast } from "@/components/Sanity/DraftModeToast";
-import { handleError } from "@/lib/utils/handle-error";
-import { SanityLive, sanityFetch } from "@/sanity/lib/live";
-import { resolveOpenGraphImage } from "@/sanity/lib/utils";
-import { settingsQuery } from "@/sanity/queries/queries";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Toaster } from "sonner";
+import { GoogleTagManager } from "@next/third-parties/google";
+import { Lenis } from "@/components/GSAP/Lenis";
+import { GSAPRuntime } from "@/components/GSAP/Runtime";
+import { fontBody, fontHeading, fontMono } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 import "./globals.css";
-import { Navigation } from "@/components/Navigation/Navigation";
-import { getNavigation } from "@/sanity/queries/fetch";
+import { ScrollRestoration } from "@/components/GSAP/ScrollRestoration";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
-/**
- * Generate metadata for the page.
- * Learn more: https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
- */
-export async function generateMetadata(): Promise<Metadata> {
-  const { data: settings } = await sanityFetch({
-    query: settingsQuery,
-    stega: false,
-  });
-  const title = settings?.title || "";
-  const description = settings?.description || "";
-  const ogImage = resolveOpenGraphImage(settings?.ogImage as SanityImageType);
+const isProduction = process.env.NEXT_PUBLIC_SITE_ENV === "production";
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID!;
 
-  return {
-    title: {
-      template: `%s | ${title}`,
-      default: title,
-    },
-    description: description,
-    openGraph: {
-      images: ogImage ? [ogImage] : [],
-    },
-  };
-}
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { isEnabled: isDraftMode } = await draftMode();
-  const data = await getNavigation();
-
   return (
-    <html lang="en" className={`${inter.variable}`}>
-      <body>
-        <Toaster />
-        {isDraftMode && (
-          <>
-            <DraftModeToast />
-            <VisualEditing />
-          </>
+    <html lang="en" suppressHydrationWarning>
+      <link rel="icon" href="/favicon.ico" />
+      {isProduction && GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
+      <body
+        className={cn(
+          "type-body-1640 min-h-screen bg-platinum text-black antialiased",
+          fontBody.variable,
+          fontHeading.variable,
+          fontMono.variable,
         )}
-        <SanityLive onError={handleError} />
-        <Navigation data={data} />
-        <main>{children}</main>
-        <SpeedInsights />
+      >
+        <NuqsAdapter>
+          <Lenis>
+            {children}
+            <GSAPRuntime />
+            <ScrollRestoration />
+          </Lenis>
+        </NuqsAdapter>
       </body>
     </html>
   );

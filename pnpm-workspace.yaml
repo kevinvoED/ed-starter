@@ -1,0 +1,8 @@
+packages:
+  - studio
+  - frontend
+
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+  - unrs-resolver

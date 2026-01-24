@@ -1,17 +1,28 @@
 import { createClient } from "next-sanity";
-import { apiVersion, dataset, projectId, studioUrl } from "@/sanity/lib/api";
+import { apiVersion, dataset, projectId, useCdn } from "./env";
 
 export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true,
+  useCdn,
   perspective: "published",
   stega: {
-    studioUrl: studioUrl,
+    studioUrl: process.env.NEXT_PUBLIC_STUDIO_URL,
     filter: (props) => {
       // Disable stega for specific field names that commonly need cleaning
-      const fieldsToDisableStega = ["populateThisListHere"];
+      const fieldsToDisableStega = [
+        "title",
+        "description",
+        "content",
+        "eyebrow",
+        "label",
+        "quote",
+        "author",
+        "codeBlock",
+        "text", // Add this to disable stega in PortableText text nodes
+        "children", // Add this to disable stega in PortableText children arrays
+      ];
       if (fieldsToDisableStega.includes(props.sourcePath.at(-1) as string)) {
         return false;
       }

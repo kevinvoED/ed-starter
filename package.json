@@ -1,26 +1,20 @@
 {
-	"name": "ed-starter",
+	"name": "ED-Starter",
 	"version": "1.0.0",
-	"workspaces": [
-		"studio",
-		"frontend"
-	],
+	"description": "ED-Starter: Next.js & Sanity",
+	"homepage": "https://enginedigital.com",
+	"private": true,
 	"scripts": {
-		"dev": "npm-run-all --parallel --print-label dev:*",
-		"dev:next": "npm run dev --workspace=frontend",
-		"dev:studio": "npm run dev --workspace=studio",
-		"typegen": "npm-run-all --serial --print-label typegen:studio typegen:next",
-		"typegen:next": "npm run typegen --workspace=frontend",
-		"typegen:studio": "npm run typegen --workspace=studio",
-		"build": "npm-run-all --serial --print-label format typegen build:frontend",
-		"build:frontend": "npm run build --workspace=frontend",
-		"format": "biome format --fix && biome check --fix",
-		"type-check": "npm run type-check --workspaces",
-		"plop": "npx plop"
+		"build": "cd frontend && pnpm run build",
+		"dev": "pnpm --parallel -r run dev",
+		"dev:next": "pnpm run dev --workspace=frontend",
+		"dev:studio": "pnpm run dev --workspace=studio",
+		"typegen": "cd studio && pnpm typegen",
+		"typecheck": "cd frontend && pnpm typecheck",
+		"format": "biome format --fix && biome check --fix"
 	},
+	"packageManager": "pnpm@10.19.0",
 	"devDependencies": {
-		"@biomejs/biome": "^2.3.5",
-		"npm-run-all2": "^5.0.2",
-		"plop": "^4.0.2"
+		"@biomejs/biome": "^2.3.12"
 	}
 }

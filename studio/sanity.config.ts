@@ -1,30 +1,103 @@
-// Learn more: https://www.sanity.io/docs/configuration
+"use client";
 
-import { assist } from "@sanity/assist";
+// This configuration is used to for the Sanity Studio that's mounted on the `/app/studio/[[...tool]]/page.tsx` route
+
+import { codeInput } from "@sanity/code-input";
+import { dashboardTool } from "@sanity/dashboard";
+import { table } from "@sanity/table";
 import { visionTool } from "@sanity/vision";
-import { presentation } from "@/plugins/presentation";
-import { structure } from "@/plugins/structure";
-import { schemaTypes } from "@/schemas/schema";
 import { defineConfig } from "sanity";
-import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
+import { presentationTool } from "sanity/presentation";
+import { structureTool } from "sanity/structure";
+import { vercelWidget } from "sanity-plugin-dashboard-widget-vercel";
 import { media } from "sanity-plugin-media";
+import { defaultDocumentNode } from "@/lib/defaultDocumentNode";
+import { resolvePresentation } from "@/lib/presentation";
+import { structure } from "@/lib/structure";
+import { schema } from "@/schemas/schema";
+import { guideTool } from "@/tools/guide";
+import { VIEWABLE_TYPES, type ViewableTypes } from "../frontend/lib/utils";
+import { OpenDocumentUrlAction } from "./actions";
 
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID || "your-projectID";
-const dataset = process.env.SANITY_STUDIO_DATASET || "production";
+// Define the actions that should be available for singleton documents
+const singletonActions = new Set([
+	"publish",
+	"discardChanges",
+	"restore",
+	"unpublish",
+]);
+
+// Define the singleton document types
+const singletonTypes = new Set([
+	"post-index",
+	"case-study-index",
+	"events-index",
+	"platform-index",
+	"navbar",
+	"footer",
+	"configuration",
+	"organization",
+]);
+
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID || "b9pzoci3";
+const dataset = process.env.SANITY_STUDIO_DATASET || "development";
+const apiVersion = process.env.SANITY_STUDIO_API_VERSION || "2025-07-04";
+
+const SANITY_STUDIO_PREVIEW_URL =
+	process.env.SANITY_STUDIO_PREVIEW_URL || "http://localhost:3000";
 
 export default defineConfig({
-  title: "ED Starter Kit",
-  projectId,
-  dataset,
-  plugins: [
-    structure,
-    media(),
-    presentation,
-    unsplashImageAsset(),
-    assist(),
-    visionTool(),
-  ],
-  schema: {
-    types: schemaTypes,
-  },
+	title: `ED Starter (${dataset})`,
+	projectId,
+	dataset,
+	// Add and edit the content schema in the './sanity/schema' folder
+	schema: {
+		types: schema.types,
+		// Filter out singleton types from the global "New document" menu options
+		templates: (templates) =>
+			templates.filter(({ schemaType }) => !singletonTypes.has(schemaType)),
+	},
+	document: {
+		// For singleton types, filter out actions that are not explicitly included
+		// in the `singletonActions` list defined above
+		actions: (previousActions, { schemaType }) => {
+			const myActions = previousActions;
+
+			if (VIEWABLE_TYPES.has(schemaType as ViewableTypes)) {
+				myActions.push(OpenDocumentUrlAction);
+			}
+
+			return singletonTypes.has(schemaType)
+				? myActions.filter(
+						({ action }) => action && singletonActions.has(action),
+					)
+				: myActions;
+		},
+		// Disable comments as the popover for adding comments conflicts with PortableText annotations
+		comments: {
+			enabled: false,
+		},
+	},
+	tools: [guideTool()],
+	plugins: [
+		structureTool({ structure, defaultDocumentNode }),
+		presentationTool({
+			previewUrl: {
+				origin: SANITY_STUDIO_PREVIEW_URL,
+				draftMode: {
+					enable: "/api/draft-mode/enable",
+				},
+			},
+			resolve: resolvePresentation,
+		}),
+		visionTool({ defaultApiVersion: apiVersion }),
+		codeInput(),
+		media(),
+		table(),
+		dashboardTool({
+			widgets: [vercelWidget()],
+			name: "deployment",
+			title: "Deployment",
+		}),
+	],
 });

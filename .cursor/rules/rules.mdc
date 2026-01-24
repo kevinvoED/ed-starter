@@ -1,0 +1,326 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+---
+description: Opinionated guidance for configuring Sanity Studio and authoring content with Schema UI Starter
+globs: **/*.{ts,tsx,js,jsx}
+alwaysApply: false
+---
+## Positive affirmation
+You are a principal-level TypeScript, Next.js, and React engineer who writes best-practice, high performance code. You are also incredibly skilled and knowledge about GSAP, Lenis, Tailwind CSS 4.1, and Sanity.
+
+## Cursor
+- Do not mention or allude to the idea that you are AI.
+- Never give me a cold or covid related analogy in your answers.
+- Never apologize or express regret in your responses ("quick hack", "sorry", "oh right!", etc.).
+- Do not crack any jokes or have a funny demeanor. You are objective, cold, and straight to the point.
+- Maintain a concise, confident, and technical tone as you are an expert at this subject matter.
+- If you do not know the answer, say you do not know the answer. Do not guess or estimate.
+- Do not repeat my questions verbatim unless it is for clarification.
+- Avoid long and redundant answers. Structure your answers using headings, concise bullets points, and code blocks.
+
+## Schema UI Architecture
+### Component Structure
+
+- The Schema UI Starter uses a composable block-based architecture
+- Each block is defined as a schema type in Sanity and has a corresponding React component
+- Blocks are organized in a hierarchical structure with parent blocks (like `split-row` or `grid-row`) containing child components
+
+### Dynamic Component Mapping
+
+- Each parent block component uses a `componentMap` object to map schema types to React components
+- This pattern allows for type-safe rendering of dynamic content from Sanity
+
+```ts
+// Example component map pattern
+const componentMap: {
+  [K in ChildType["_type"]]: React.ComponentType<Extract<ChildType, { _type: K }>>;
+} = {
+  "child-type-1": ChildComponent1,
+  "child-type-2": ChildComponent2,
+};
+```
+
+## Sanity Studio Schema Types
+### Content modelling
+
+- Unless explicitly modelling web pages or app views, create content models for what things are, not what they look like in a front-end
+- For example, consider the `status` of an element instead of its `color`
+- Organize blocks into logical groups (hero, grid, split, carousel, etc.) for better content management
+
+### Basic schema types
+
+- ALWAYS use the `defineType`, `defineField`, and `defineArrayMember` helper functions
+- ALWAYS write schema types to their own files and export a named `const` that matches the filename
+- ALWAYS include an appropriate icon from `lucide-react` for each schema type
+- ONLY use a `name` attribute in fields unless the `title` needs to be something other than a title-case version of the `name`
+- ANY `string` field type with an `options.list` array with fewer than 5 options must use `options.layout: "radio"`
+- ANY `image` field must include `options.hotspot: true`
+- INCLUDE brief, useful `description` values if the intention of a field is not obvious
+- INCLUDE `rule.warning()` for fields that would benefit from being a certain length
+- INCLUDE brief, useful validation errors in `rule.required().error('<Message>')` that signal why the field must be correct before publishing is allowed
+- AVOID `boolean` fields, write a `string` field with an `options.list` configuration
+- NEVER write single `reference` type fields, always write an `array` of references
+- CONSIDER the order of fields, from most important and relevant first, to least often used last
+- CONSIDER re-using commonly used schemas from sharedFields.ts like `title` and `description`
+
+```ts
+// studio/schemas/modules/card/card-grid.ts
+
+import { DashboardIcon } from "@sanity/icons";
+import { defineArrayMember, defineField, defineType } from "sanity";
+import {
+  description,
+  eyebrow,
+  image,
+  links,
+  portableTextPlain,
+  title,
+} from "@/schemas/sharedFields";
+
+export default defineType({
+  name: "card-grid",
+  title: "CardGrid",
+  type: "object",
+  icon: DashboardIcon,
+  fields: [
+    eyebrow,
+    title,
+    portableTextPlain,
+    image,
+    defineField({ ...links, validation: (Rule) => Rule }),
+    defineField({
+      name: "cards",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "object",
+          fields: [
+            defineField({ ...title }),
+            defineField({ ...description }),
+            defineField({ ...image }),
+          ],
+        }),
+      ],
+    }),
+  ],
+  preview: {
+    select: {
+      title: "title",
+    },
+    prepare({ title }) {
+      return {
+        title: "Card Grid",
+        subtitle: title,
+      };
+    },
+  },
+});
+
+```
+
+### Parent-Child Block Structure
+
+- Parent blocks (like `split-row` or `grid-row`) should contain an array field for child components
+- Child components should be defined as separate schema types
+- Use `validation: (rule) => rule.max(n)` to limit the number of child components when appropriate
+- Use `options.insertMenu` to organize child components into logical groups with preview images
+
+```ts
+// Example parent block with child components
+defineField({
+  name: "splitColumns",
+  type: "array",
+  of: [
+    { type: "split-content" },
+    { type: "split-cards-list" },
+    { type: "split-image" },
+    { type: "split-info-list" },
+  ],
+  validation: (rule) => rule.max(2),
+  options: {
+    insertMenu: {
+      views: [
+        {
+          name: "grid",
+          previewImageUrl: (block) => `/sanity/preview/${block}.jpg`,
+        },
+        { name: "list" },
+      ],
+    },
+  },
+})
+```
+
+### React Component Implementation
+
+- Create a corresponding React component for each schema type
+- Always import the type `BlockProps` from `@/sanity/lib/fetch` to extract its schemea props
+- Always consider re-using shared components like the `Button` or `PortableText`
+
+```tsx
+// Example React component for a parent block
+// frontend/components/Component/Component.tsx
+import type { BlockProps } from "@/sanity/lib/fetch";
+import { Button } from "@/components/Button/Button";
+import { TextReveal } from "@/components/GSAP/TextReveal";
+import { Transition } from "@/components/GSAP/Transition";
+import { SanityImage } from "@/components/Media/SanityImage";
+import { PortableText } from "@/components/PortableText/PortableText";
+
+type HeroPrimaryProps = BlockProps<"hero-primary">;
+
+export const HeroPrimary = ({
+  title,
+  links,
+  image,
+  content,
+}: HeroPrimaryProps) => {
+  return (
+    <div className="grid-custom overflow-hidden bg-white px-5 lg:p-6">
+      <TextReveal className="col-span-full">
+        <h2 className="type-heading-6430 lg:type-heading-12030">
+          Lorem ipsum dolor sit amet.
+        </h2>
+      </TextReveal>
+
+      <div className="col-span-full flex flex-wrap gap-8">
+        {links?.map((item, index) => (
+          <Transition
+            key={item._key}
+            delay={0.75 + index * 0.25}
+            className="col-span-full"
+          >
+            <Button
+              link={item}
+              size="none"
+            >
+              {item.title}
+            </Button>
+          </Transition>
+        ))}
+      </div>
+
+      {image && (
+        <Transition delay={1} className="col-span-2 lg:col-span-4">
+          <SanityImage
+            image={image}
+            className="max-h-80 w-full object-cover object-left"
+          />
+        </Transition>
+      )}
+
+      {content && (
+        <Transition className="col-span-full row-start-6 lg:col-span-4">
+          <PortableText value={content} />
+        </Transition>
+      )}
+    </div>
+  );
+};
+```
+### Decorating schema types
+
+Every `document` and `object` schema type should:
+
+- Have an `icon` property from `lucide-react`
+- Have a customized `preview` property that shows rich contextual details about the document
+- Use `groups` when the schema type has more than a few fields to collate related fields and only show the most important group by default. These `groups` should use the icon property as well.
+- Use `fieldsets` with `options: {columns: 2}` if related fields could be grouped visually together, such as `startDate` and `endDate`
+
+## Writing GROQ queries
+- ALWAYS use SCREAMING_SNAKE_CASE for variable names, for example POSTS_QUERY
+- ALWAYS write queries to their own variables, never as a parameter in a function
+- ALWAYS import the `groq` function from `next-sanity` or `sanity` to tag query strings
+- ALWAYS write every required attribute in a projection when writing a query
+- ALWAYS put each segment of a filter, and each attribute on its own line
+- ALWAYS use parameters for variables in a query
+- NEVER insert dynamic values using string interpolation
+- USE modular query composition by creating separate query fragments for each block type
+- ANNOTATE query fragments with `@sanity-typegen-ignore` when needed to prevent type generation issues
+- ORGANIZE query files to mirror the schema structure (e.g., queries/hero/hero-1.ts matches schemas/blocks/hero/hero-1.ts)
+- INCLUDE asset metadata in image queries to enable responsive images and optimizations
+
+### Query Composition Pattern
+
+For parent-child block structures, create separate query fragments for each component type:
+
+```ts
+// frontend/sanity/queries/split/split-row.ts
+import { groq } from "next-sanity";
+import { splitContentQuery } from "@/split-content";
+import { splitCardsListQuery } from "@/split-cards-list";
+import { splitImageQuery } from "@/split-image";
+import { splitInfoListQuery } from "@/split-info-list";
+
+// @sanity-typegen-ignore
+export const splitRowQuery = groq`
+  _type == "split-row" => {
+    _type,
+    _key,
+    padding,
+    colorVariant,
+    noGap,
+    splitColumns[]{
+      ${splitContentQuery},
+      ${splitCardsListQuery},
+      ${splitImageQuery},
+      ${splitInfoListQuery},
+    },
+  }
+`;
+```
+
+### Main Page Query Pattern
+
+Compose the main page query from individual block query fragments:
+
+```ts
+// frontend/sanity/queries/page.ts
+import { groq } from "next-sanity";
+import { hero1Query } from "@/hero/hero-1";
+import { hero2Query } from "@/hero/hero-2";
+import { splitRowQuery } from "@/split/split-row";
+// ... other imports
+
+export const PAGE_QUERY = groq`
+  *[_type == "page" && slug.current == $slug][0]{
+    blocks[]{
+      ${hero1Query},
+      ${hero2Query},
+      ${splitRowQuery},
+      // ... other block queries
+    },
+    // ... other page fields
+  }
+`;
+```
+
+### Document Query Pattern
+
+For document queries, follow this pattern:
+
+```ts
+// frontend/sanity/queries/post.ts
+import { groq } from "next-sanity";
+
+export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0]{
+  title,
+  slug,
+  // ... other fields
+}`;
+
+export const POSTS_QUERY = groq`*[_type == "post" && defined(slug)] | order(_createdAt desc){
+  // ... fields for list view
+}`;
+
+export const POSTS_SLUGS_QUERY = groq`*[_type == "post" && defined(slug)]{slug}`;
+```
+
+## TypeScript
+
+- ONLY write Types for responses if you cannot generate them with Sanity TypeGen
+- ALWAYS export a schema extraction first from inside of the Studio code-base with `npx sanity@latest typegen generate`
+- ALWAYS move that schema extraction file to the root of a front-end project before running `npx sanity@latest typegen generate`

@@ -1,30 +1,30 @@
 /**
- * Sanity CLI Configuration
- * This file configures the Sanity CLI tool with project-specific settings
- * and customizes the Vite bundler configuration.
- * Learn more: https://www.sanity.io/docs/cli
- */
-
-import { resolve } from "node:path";
+ * This configuration file lets you run `$ sanity [command]` in this folder
+ * Go to https://www.sanity.io/docs/cli to learn more.
+ **/
 import { defineCliConfig } from "sanity/cli";
+import { resolve } from "node:path";
 
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID || "<your project ID>";
-const dataset = process.env.SANITY_STUDIO_DATASET || "production";
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID;
+const dataset = process.env.SANITY_STUDIO_DATASET;
+const sanityStudioHostname = process.env.SANITY_STUDIO_HOSTNAME;
 
 export default defineCliConfig({
-  api: {
-    projectId,
-    dataset,
+  api: { projectId, dataset },
+  studioHost: sanityStudioHostname,
+  typegen: {
+    path: "../frontend/sanity/queries/**/*.{ts,tsx,js,jsx}",
+    schema: "schema.json",
+    generates: "../frontend/sanity.types.ts",
+    overloadClientMethods: true,
   },
-  studioHost: process.env.SANITY_STUDIO_STUDIO_HOST || "",
-  autoUpdates: true,
   vite: {
     resolve: {
       alias: {
-        "@": resolve(__dirname, "./src"),
-        "@/schemas": resolve(__dirname, "./src/schemas"),
-        "@/plugins": resolve(__dirname, "./src/plugins"),
-        "@/lib": resolve(__dirname, "./src/lib"),
+        "@": resolve(__dirname, "./"),
+        "@/schemas": resolve(__dirname, "./schemas"),
+        "@/plugins": resolve(__dirname, "./plugins"),
+        "@/lib": resolve(__dirname, "./lib"),
       },
     },
   },

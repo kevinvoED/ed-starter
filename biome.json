@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.5/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.3.12/schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",
@@ -8,6 +8,13 @@
   "css": {
     "parser": {
       "tailwindDirectives": true
+    }
+  },
+  "html": {
+    "experimentalFullSupportEnabled": true,
+    "formatter": {
+      "enabled": true,
+      "indentScriptAndStyle": false
     }
   },
   "files": {
@@ -52,18 +59,24 @@
               ["react", "react*", "*react", "*/react"],
               ["@next", "@next/**", "next", "next/**", "next-*", "next-*/**"],
               [
+                "@/sanity/**",
                 "@sanity/**",
+                "sanity",
+                "sanity/**",
+                "sanity-plugin-media",
+                "sanity-plugin-iframe-pane",
+                "sanity-plugin-dashboard-widget-vercel",
                 "class-variance-authority",
                 "clean-react-props",
-                "gsap",
                 "@gsap/**",
+                "gsap",
                 "lodash-es",
                 "es-toolkit",
                 "nuqs"
               ],
               ["!@/styles/**", ":ALIAS:", "@/**"],
               ["@/components/**", "@components/**", "radix-ui/**"],
-              ["@utility/**", "./**", "./globals.css"]
+              ["@utility/**", "./**", "./globals.css", "lucide-react"]
             ]
           }
         }
@@ -81,10 +94,16 @@
             "noConstAssign": "off",
             "noGlobalObjectCalls": "off",
             "noInvalidConstructorSuper": "off",
+            "noUnusedImports": {
+              "level": "warn",
+              "fix": "none"
+            },
             "noSetterReturn": "off",
             "noUnreachable": "off",
             "noUnreachableSuper": "off",
-            "noInvalidBuiltinInstantiation": "off"
+            "noInvalidBuiltinInstantiation": "off",
+            "useParseIntRadix": "off",
+            "useHookAtTopLevel": "off"
           },
           "style": {
             "noNonNullAssertion": "off",
@@ -112,20 +131,34 @@
             "noRedeclare": "off",
             "noUnsafeNegation": "off",
             "useGetterReturn": "off",
-            "noVar": "error"
+            "noVar": "error",
+            "noArrayIndexKey": "off"
           },
           "complexity": {
             "noArguments": "error"
           },
           "nursery": {
             "useSortedClasses": {
-              "level": "info",
+              "level": "warn",
               "fix": "unsafe",
               "options": {
                 "attributes": ["className", "tw", "classList"],
                 "functions": ["clsx", "cva", "tw", "tw.*"]
               }
             }
+          },
+          "security": {
+            "noDangerouslySetInnerHtml": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["frontend/app/globals.css"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noUnknownAtRules": "off"
           }
         }
       }
@@ -165,6 +198,19 @@
                 "filenameCases": ["camelCase"]
               }
             }
+          }
+        }
+      }
+    },
+    {
+      "includes": ["frontend/app/globals.css"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noUnknownAtRules": "off"
+          },
+          "correctness": {
+            "noUnknownFunction": "off"
           }
         }
       }

@@ -1,34 +1,51 @@
 {
-  "name": "studio",
-  "version": "1.0.0",
-  "main": "package.json",
-  "scripts": {
-    "prebuild": "npm run typegen",
-    "dev": "sanity dev",
-    "start": "sanity start",
-    "build": "sanity build",
-    "deploy": "sanity deploy",
-    "typegen": "sanity schema extract --enforce-required-fields",
-    "type-check": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@sanity/assist": "^5.0.0",
-    "@sanity/icons": "^3.7.4",
-    "@sanity/orderable-document-list": "^1.4.0",
-    "@sanity/vision": "^4.5.0",
-    "date-fns": "^4.1.0",
-    "es-toolkit": "^1.41.0",
-    "pluralize-esm": "^9.0.5",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "sanity": "^4.5.0",
-    "sanity-plugin-asset-source-unsplash": "^4.0.1",
-    "sanity-plugin-iframe-pane": "^4.0.0",
-    "sanity-plugin-media": "^4.0.0",
-    "styled-components": "^6.1.19"
-  },
-  "devDependencies": {
-    "@types/react": "^19.1.11",
-    "typescript": "^5.9.2"
-  }
+	"name": "ED",
+	"version": "1.0.0",
+	"description": "ED Sanity Studio",
+	"homepage": "https://enginedigital.com",
+	"private": true,
+	"scripts": {
+		"dev": "sanity dev",
+		"start": "sanity start",
+		"build": "sanity build",
+		"deploy": "sanity deploy",
+		"typegen": "rm -rf schema.json && NODE_NO_WARNINGS=1 sanity schema extract --enforce-required-fields && NODE_NO_WARNINGS=1 sanity typegen generate",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@portabletext/react": "^5.0.0",
+		"@sanity/code-input": "^6.0.3",
+		"@sanity/dashboard": "^5.0.0",
+		"@sanity/icons": "^3.7.4",
+		"@sanity/image-url": "^1.2.0",
+		"@sanity/orderable-document-list": "^1.4.0",
+		"@sanity/preview-url-secret": "^2.1.11",
+		"@sanity/table": "^2.0.0",
+		"@sanity/ui": "^3.1.11",
+		"@sanity/vision": "^4.14.0",
+		"class-variance-authority": "^0.7.1",
+		"clsx": "^2.1.1",
+		"es-toolkit": "^1.41.0",
+		"lucide-react": "^0.525.0",
+		"react": "^19.2.1",
+		"react-dom": "^19.2.1",
+		"react-player": "^3.1.0",
+		"sanity": "^4.20.3",
+		"sanity-plugin-dashboard-widget-vercel": "^3.1.4",
+		"sanity-plugin-iframe-pane": "^4.0.0",
+		"sanity-plugin-media": "^4.0.0",
+		"styled-components": "^6.1.19",
+		"tailwind-merge": "^3.3.1"
+	},
+	"devDependencies": {
+		"@sanity/client": "^7.12.0",
+		"@sanity/eslint-config-studio": "^5.0.2",
+		"@sanity/types": "^4.20.3",
+		"@types/node": "^24.0.10",
+		"@types/react": "^19.2.7",
+		"@types/react-dom": "^19.2.3",
+		"dotenv": "^17.0.1",
+		"eslint": "^9.30.1",
+		"typescript": "^5.8.3"
+	}
 }

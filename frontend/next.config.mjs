@@ -1,11 +1,13 @@
 /** @type {import('next').NextConfig} */
 
-import getRewritesAndRedirects from "./sanity/lib/rewrites-and-redirects.mjs";
+import getRewritesAndRedirects from "./sanity/lib/get-rewrites-and-redirects.mjs";
+import * as path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const nextConfig = {
-  env: {
-    SC_DISABLE_SPEEDY: "false",
-  },
   async redirects() {
     const { redirects: dynamicRedirects } = await getRewritesAndRedirects();
 
@@ -32,6 +34,10 @@ const nextConfig = {
         hostname: "cdn.sanity.io",
       },
     ],
+    qualities: [75, 100],
+  },
+  turbopack: {
+    root: path.join(__dirname, ".."),
   },
 };
 
