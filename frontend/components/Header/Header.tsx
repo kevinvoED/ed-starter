@@ -8,5 +8,5 @@ export default async function Header() {
     return null;
   }
 
-  return <Navbar header={navigationHeader[0]} />;
+  return <Navbar />;
 }

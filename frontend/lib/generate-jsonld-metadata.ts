@@ -1,17 +1,15 @@
 import type { JSONLDScriptProps } from "@/components/Metadata/Jsonld";
-import type { BlockProps } from "@/sanity/lib/fetch";
 import type {
   EVENTS_SLUG_QUERYResult,
   ORGANIZATION_QUERYResult,
 } from "@/sanity.types";
 import type { ViewableTypes } from "./utils";
-import { toPlainText } from "@portabletext/react";
 import { generatePageMetadata } from "./metadata";
 import { get } from "es-toolkit/compat";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 
-type ListAccordionProps = BlockProps<"list-accordion">;
+// type ListAccordionProps = BlockProps<"list-accordion">;
 
 const typeMap = {
   page: "WebPage",
@@ -170,25 +168,25 @@ export function generateOrganizationSchema(
   return schema;
 }
 
-export function generateFaqSchema(items: ListAccordionProps["items"]) {
-  if (!items || items.length === 0) return null;
+// export function generateFaqSchema(items: ListAccordionProps["items"]) {
+//   if (!items || items.length === 0) return null;
 
-  const mainEntity = items
-    .filter((item) => item.title) // Only include items with titles
-    .map((item) => ({
-      "@type": "Question",
-      name: toPlainText(item.title || []),
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: toPlainText(item.description || []),
-      },
-    }));
+//   const mainEntity = items
+//     .filter((item) => item.title) // Only include items with titles
+//     .map((item) => ({
+//       "@type": "Question",
+//       name: toPlainText(item.title || []),
+//       acceptedAnswer: {
+//         "@type": "Answer",
+//         text: toPlainText(item.description || []),
+//       },
+//     }));
 
-  if (mainEntity.length === 0) return null;
+//   if (mainEntity.length === 0) return null;
 
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity,
-  };
-}
+//   return {
+//     "@context": "https://schema.org",
+//     "@type": "FAQPage",
+//     mainEntity,
+//   };
+// }

@@ -1,4 +1,3 @@
-import type { BlockProps } from "@/sanity/lib/fetch";
 import type {
   BLOG_QUERYResult,
   BLOG_SLUG_QUERYResult,
@@ -12,7 +11,6 @@ import type {
   RESOURCE_SLUG_QUERYResult,
 } from "@/sanity.types";
 import generateJsonldMetadata, {
-  generateFaqSchema,
   generateOrganizationSchema,
 } from "@/lib/generate-jsonld-metadata";
 
@@ -30,7 +28,7 @@ export type JSONLDScriptProps = {
   >;
 };
 
-type ListAccordionProps = BlockProps<"list-accordion">;
+// type ListAccordionProps = BlockProps<"list-accordion">;
 
 export const JSONLDScript: React.FC<
   JSONLDScriptProps & React.HTMLAttributes<HTMLScriptElement>
@@ -68,20 +66,20 @@ export const OrganizationJSONLDScript: React.FC<
   );
 };
 
-export const FaqJSONLDScript: React.FC<
-  {
-    items: ListAccordionProps["items"];
-  } & React.HTMLAttributes<HTMLScriptElement>
-> = ({ items, ...rest }) => {
-  const jsonLd = generateFaqSchema(items);
+// export const FaqJSONLDScript: React.FC<
+//   {
+//     items: ListAccordionProps["items"];
+//   } & React.HTMLAttributes<HTMLScriptElement>
+// > = ({ items, ...rest }) => {
+//   const jsonLd = generateFaqSchema(items);
 
-  if (!jsonLd) return null;
+//   if (!jsonLd) return null;
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      {...rest}
-    />
-  );
-};
+//   return (
+//     <script
+//       type="application/ld+json"
+//       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+//       {...rest}
+//     />
+//   );
+// };

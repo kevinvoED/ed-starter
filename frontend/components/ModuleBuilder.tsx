@@ -1,39 +1,7 @@
 import type { ComponentProps } from "react";
 import type { PAGE_QUERYResult } from "@/sanity.types";
-import { DriverCta } from "@/components/Driver/DriverCta";
-import { DriverList } from "@/components/Driver/DriverList";
 import { HeroPrimary } from "@/components/Hero/HeroPrimary";
-import { HeroQuaternary } from "@/components/Hero/HeroQuaternary";
-import { HeroQuinary } from "@/components/Hero/HeroQuinary";
-import { HeroSecondary } from "@/components/Hero/HeroSecondary";
-import { HeroTertiary } from "@/components/Hero/HeroTertiary";
-import { ImageTextTab } from "@/components/ImageText/ImageTextTab/ImageTextTab";
-import { ImageTextTimeline } from "@/components/ImageText/ImageTextTimeline/ImageTextTimeline";
-import { ListAccordion } from "@/components/List/ListAccordion";
-import { ListCta3Up } from "@/components/List/ListCta3Up";
-import { ListGridLogo } from "@/components/List/ListGridLogo";
-import { ListIconScroll } from "@/components/List/ListIconScroll";
-import { ListImageScroll } from "@/components/List/ListImageScroll";
-import { ListMetric } from "@/components/List/ListMetric";
-import { ListMultiAccordion } from "@/components/List/ListMultiAccordion";
-import { ListTeam } from "@/components/List/ListTeam";
-import { ListText } from "@/components/List/ListText";
-import { Marquee } from "@/components/Marquee/Marquee";
-import { FullImage } from "@/components/Media/FullImage";
-import { FullVideo } from "@/components/Media/FullVideo";
-import { Pattern } from "@/components/Media/Pattern";
-import { InfographicModel } from "@/components/Misc/InfographicModel";
-import { TableComparison } from "@/components/Table/TableComparison";
-import { TableDataFeed } from "@/components/Table/TableDataFeed";
-import { TableLogo } from "@/components/Table/TableLogo";
-import { TableMultiCta } from "@/components/Table/TableMultiCta";
-import { Text2Col } from "@/components/Text/Text2Col";
-import { TextCta2Col } from "@/components/Text/TextCta2Col";
-import { TextDial } from "@/components/Text/TextDial";
-import { TextLogo } from "@/components/Text/TextLogo";
-import { TextQuote } from "@/components/Text/TextQuote";
 import { MyBlocksRendererErrorBoundary } from "./ErrorBoundary/ErrorBoundary";
-import { PortableTextHighlightModule } from "./PortableText/PortableTextModule";
 
 export type ModuleBlock = NonNullable<
   NonNullable<PAGE_QUERYResult>["blocks"]
@@ -49,38 +17,6 @@ const componentMap: {
   >;
 } = {
   "hero-primary": HeroPrimary,
-  "hero-secondary": HeroSecondary,
-  "hero-tertiary": HeroTertiary,
-  "hero-quaternary": HeroQuaternary,
-  "hero-quinary": HeroQuinary,
-  "full-image": FullImage,
-  "text-2-col": Text2Col,
-  "list-icon-scroll": ListIconScroll,
-  "list-image-scroll": ListImageScroll,
-  "list-metric": ListMetric,
-  "text-cta-2-col": TextCta2Col,
-  pattern: Pattern,
-  "portable-text-content-highlight": PortableTextHighlightModule,
-  "driver-cta": DriverCta,
-  "driver-list": DriverList,
-  "list-accordion": ListAccordion,
-  "text-quote": TextQuote,
-  "list-multi-accordion": ListMultiAccordion,
-  "list-cta-3-up": ListCta3Up,
-  "list-grid-logo": ListGridLogo,
-  "table-comparison": TableComparison,
-  "table-logo": TableLogo,
-  "table-multi-cta": TableMultiCta,
-  marquee: Marquee,
-  "list-text": ListText,
-  "full-video": FullVideo,
-  "image-text-timeline": ImageTextTimeline,
-  "infographic-model": InfographicModel,
-  "image-text-tab": ImageTextTab,
-  "text-logo": TextLogo,
-  "list-team": ListTeam,
-  "text-dial": TextDial,
-  "table-data-feed": TableDataFeed,
 };
 
 const LocalErrorFallback: React.FC<React.PropsWithChildren> = ({

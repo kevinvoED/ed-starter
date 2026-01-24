@@ -1,39 +1,7 @@
 // Query imports must be relative
 import { groq } from "next-sanity";
 import { authorFragment } from "./documents/author";
-import { driverCtaQuery } from "./modules/driver/driver-cta";
-import { driverListQuery } from "./modules/driver/driver-list";
 import { heroPrimaryQuery } from "./modules/hero/hero-primary";
-import { heroQuaternaryQuery } from "./modules/hero/hero-quaternary";
-import { heroQuinaryQuery } from "./modules/hero/hero-quinary";
-import { heroSecondaryQuery } from "./modules/hero/hero-secondary";
-import { heroTertiaryQuery } from "./modules/hero/hero-tertiary";
-import { imageTextTabQuery } from "./modules/image-text/image-text-tab";
-import { imageTextTimelineQuery } from "./modules/image-text/image-text-timeline";
-import { listAccordionQuery } from "./modules/list/list-accordion";
-import { listCta3UpQuery } from "./modules/list/list-cta-3-up";
-import { listGridLogoQuery } from "./modules/list/list-grid-logo";
-import { listIconScrollQuery } from "./modules/list/list-icon-scroll";
-import { listImageScrollQuery } from "./modules/list/list-image-scroll";
-import { listMetricQuery } from "./modules/list/list-metric";
-import { listMultiAccordionQuery } from "./modules/list/list-multi-accordion";
-import { listTeamQuery } from "./modules/list/list-team";
-import { listTextQuery } from "./modules/list/list-text";
-import { marqueeQuery } from "./modules/marquee/marquee";
-import { fullImageQuery } from "./modules/media/full-image";
-import { fullVideoQuery } from "./modules/media/full-video";
-import { patternQuery } from "./modules/media/pattern";
-import { infographicModelQuery } from "./modules/misc/infographic-model";
-import { tableComparisonQuery } from "./modules/table/table-comparison";
-import { tableDataFeedQuery } from "./modules/table/table-data-feed";
-import { tableLogoQuery } from "./modules/table/table-logo";
-import { tableMultiCtaQuery } from "./modules/table/table-multi-cta";
-import { portableTextContentHighlightQuery } from "./modules/text/portable-text-content-highlight";
-import { text2ColQuery } from "./modules/text/text-2-col";
-import { textCta2ColQuery } from "./modules/text/text-cta-2-col";
-import { textDialQuery } from "./modules/text/text-dial";
-import { textLogoQuery } from "./modules/text/text-logo";
-import { textQuoteQuery } from "./modules/text/text-quote";
 import { imageFragment, logoFragment } from "./shared/image";
 import { linkArrayFragment, linksFragment } from "./shared/link";
 import { metaQuery } from "./shared/meta";
@@ -44,38 +12,6 @@ import { portableTextPlainFragment } from "./shared/portable-text-plain";
 // @sanity-typegen-ignore
 const blocksQuery = groq`
   ${heroPrimaryQuery},
-  ${heroSecondaryQuery},
-  ${heroTertiaryQuery},
-  ${heroQuaternaryQuery},
-  ${heroQuinaryQuery},
-  ${fullImageQuery},
-  ${fullVideoQuery},
-  ${text2ColQuery},
-  ${textQuoteQuery},
-  ${listIconScrollQuery},
-  ${listImageScrollQuery},
-  ${textCta2ColQuery},
-  ${patternQuery},
-  ${driverCtaQuery},
-  ${driverListQuery},
-  ${listMetricQuery},
-  ${listAccordionQuery},
-  ${listMultiAccordionQuery},
-  ${listCta3UpQuery},
-  ${listGridLogoQuery},
-  ${tableComparisonQuery},
-  ${tableLogoQuery},
-  ${tableMultiCtaQuery},
-  ${marqueeQuery},
-  ${listTextQuery},
-  ${imageTextTimelineQuery},
-  ${infographicModelQuery},
-  ${imageTextTabQuery},
-  ${textLogoQuery},
-  ${listTeamQuery},
-  ${textDialQuery},
-  ${portableTextContentHighlightQuery},
-  ${tableDataFeedQuery},
 `;
 
 // TypeGen-only query to generate clean types for all page types

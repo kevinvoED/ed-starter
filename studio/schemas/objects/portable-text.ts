@@ -1,23 +1,7 @@
-import {
-  BlockquoteIcon,
-  HighlightIcon,
-  ImageIcon,
-  LinkIcon,
-  ListIcon,
-  PlayIcon,
-  ThListIcon,
-} from "@sanity/icons";
-import { defineArrayMember, defineField, defineType } from "sanity";
+import { HighlightIcon, LinkIcon, PlayIcon } from "@sanity/icons";
+import { defineArrayMember, defineType } from "sanity";
 import { YouTubePreview } from "@/components/youtube-preview";
 import { colorOptions } from "@/schemas/objects/color-variants";
-import { portableTextPlain } from "@/schemas/objects/portable-text-plain";
-import {
-  description,
-  eyebrow,
-  image,
-  link,
-  title,
-} from "@/schemas/sharedFields";
 // PortableText is the default Rich Text editor with all formatting and special modules baked in
 
 export default defineType({
@@ -166,118 +150,7 @@ export default defineType({
         preview: YouTubePreview,
       },
     }),
-    defineArrayMember({
-      name: "table",
-      type: "table",
-      title: "Table",
-      icon: ThListIcon,
-    }),
-    defineArrayMember({
-      name: "listDriver",
-      type: "object",
-      title: "List Driver",
-      icon: ListIcon,
-      fields: [
-        title,
-        defineField({
-          name: "items",
-          title: "Link Items",
-          type: "array",
-          of: [
-            defineArrayMember({
-              name: "item",
-              title: "Link Item",
-              type: "object",
-              icon: LinkIcon,
-              fields: [eyebrow, link],
-              preview: {
-                select: {
-                  title: "eyebrow",
-                  label: "link.[0].title",
-                },
-                prepare({ title, label }) {
-                  return {
-                    title: label,
-                    subtitle: title,
-                  };
-                },
-              },
-            }),
-          ],
-        }),
-      ],
-      preview: {
-        select: {
-          title: "title",
-        },
-        prepare({ title }) {
-          return {
-            title: "List Driver",
-            subtitle: title,
-          };
-        },
-      },
-    }),
-    defineArrayMember({
-      name: "quote",
-      type: "object",
-      title: "Quote",
-      icon: BlockquoteIcon,
-      fields: [
-        portableTextPlain({
-          name: "title",
-          title: "Quote",
-          description: "The quote text. Do not include quotation marks.",
-        }),
-        {
-          name: "author",
-          title: "Author",
-          type: "string",
-          description: "The author of the quote.",
-          placeholder: "John Doe, Global SaaS Platform",
-          validation: (Rule) => Rule.required(),
-        },
-      ],
-      preview: {
-        select: {
-          title: "title",
-          subtitle: "author",
-        },
-      },
-    }),
-    defineArrayMember({
-      name: "promo-card",
-      type: "object",
-      title: "Promo Card",
-      icon: ImageIcon,
-      fields: [title, description, image, link],
-    }),
-    defineArrayMember({
-      name: "code",
-      type: "code",
-      options: {
-        withFilename: true,
-        language: "typescript",
-        languageAlternatives: [
-          { title: "TypeScript", value: "typescript" },
-          { title: "JavaScript", value: "javascript" },
-          { title: "JSX", value: "jsx" },
-          { title: "TSX", value: "tsx" },
-          { title: "HTML", value: "html" },
-          { title: "CSS", value: "css" },
-          { title: "SCSS", value: "scss" },
-          { title: "JSON", value: "json" },
-          { title: "Python", value: "python" },
-          { title: "PHP", value: "php" },
-          { title: "Ruby", value: "ruby" },
-          { title: "Shell", value: "shell" },
-          { title: "Markdown", value: "markdown" },
-          { title: "YAML", value: "yaml" },
-          { title: "GraphQL", value: "graphql" },
-          { title: "SQL", value: "sql" },
-        ],
-      },
-    }),
+
     defineArrayMember({
       title: "CTA Button",
       icon: LinkIcon,

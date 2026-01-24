@@ -6,13 +6,8 @@ import { useMemo } from "react";
 import Link from "next/link";
 import { Dot } from "@/components/Dot/Dot";
 import { SanityImage } from "@/components/Media/SanityImage";
-import { PortableTextCode } from "@/components/PortableText/PortableTextCode";
 import { PortableTextHeading } from "@/components/PortableText/PortableTextHeading";
 import { PortableTextHighlight } from "@/components/PortableText/PortableTextHighlight";
-import { PortableTextListDriver } from "@/components/PortableText/PortableTextListDriver";
-import { PortableTextPromoCard } from "@/components/PortableText/PortableTextPromoCard";
-import { PortableTextQuote } from "@/components/PortableText/PortableTextQuote";
-import { PortableTextTable } from "@/components/PortableText/PortableTextTable";
 import { PortableTextYoutube } from "@/components/PortableText/PortableTextYoutube";
 import { cn } from "@/lib/utils";
 
@@ -37,21 +32,6 @@ const portableTextComponents = (
     },
     youtube: ({ value }) => {
       return <PortableTextYoutube {...value} />;
-    },
-    quote: ({ value }) => {
-      return <PortableTextQuote {...value} />;
-    },
-    "promo-card": ({ value }) => {
-      return <PortableTextPromoCard {...value} />;
-    },
-    listDriver: ({ value }) => {
-      return <PortableTextListDriver {...value} />;
-    },
-    table: ({ value }) => {
-      return <PortableTextTable {...value} />;
-    },
-    code: ({ value }) => {
-      return <PortableTextCode {...value} />;
     },
   },
   block: {
