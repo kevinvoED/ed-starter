@@ -4,7 +4,6 @@ import {
   fetchSanityBlogSlugsStaticParams,
 } from "@/sanity/lib/fetch";
 import { Transition } from "@/components/GSAP/Transition";
-import { HeroDetail } from "@/components/Hero/HeroDetail";
 import JSONLDScript from "@/components/Metadata/Jsonld";
 import { ModuleBuilder } from "@/components/ModuleBuilder";
 import { PortableText } from "@/components/PortableText/PortableText";
@@ -49,8 +48,6 @@ export default async function BlogPostPage(props: {
     <>
       <JSONLDScript document={post} />
       <div className="grid-custom gap-y-20 bg-platinum p-custom pt-10 pb-20 lg:py-35">
-        <HeroDetail eyebrow="Blog" {...post} />
-
         <Transition
           delay={0.3}
           className="col-span-full lg:col-span-8 lg:col-start-3"

@@ -2,28 +2,14 @@ import type { Metadata } from "next";
 import type {
   BLOG_QUERY_RESULT,
   BLOG_SLUG_QUERY_RESULT,
-  CASE_STUDIES_QUERY_RESULT,
-  CASE_STUDIES_SLUG_QUERY_RESULT,
-  EVENTS_QUERY_RESULT,
-  EVENTS_SLUG_QUERY_RESULT,
   PAGE_QUERY_RESULT,
-  RESOURCE_QUERY_RESULT,
-  RESOURCE_SLUG_QUERY_RESULT,
 } from "@/sanity.types";
 
 const isProduction = process.env.NEXT_PUBLIC_SITE_ENV === "production";
 
 export function generatePageMetadata(
   page: NonNullable<
-    | BLOG_QUERY_RESULT
-    | BLOG_SLUG_QUERY_RESULT
-    | PAGE_QUERY_RESULT
-    | CASE_STUDIES_QUERY_RESULT
-    | CASE_STUDIES_SLUG_QUERY_RESULT
-    | EVENTS_QUERY_RESULT
-    | EVENTS_SLUG_QUERY_RESULT
-    | RESOURCE_QUERY_RESULT
-    | RESOURCE_SLUG_QUERY_RESULT
+    BLOG_QUERY_RESULT | BLOG_SLUG_QUERY_RESULT | PAGE_QUERY_RESULT
   >,
 ): Metadata {
   const additionalOpenGraphProperties: Record<
@@ -31,12 +17,12 @@ export function generatePageMetadata(
     Record<string, string>
   > = {};
 
-  if (page._type === "event") {
-    const event = page as NonNullable<EVENTS_SLUG_QUERY_RESULT>;
-    additionalOpenGraphProperties.event = {};
-    additionalOpenGraphProperties.event.start_time = event.startDate;
-    additionalOpenGraphProperties.event.end_time = event.endDate;
-  }
+  // if (page._type === "event") {
+  //   const event = page as NonNullable<EVENTS_SLUG_QUERY_RESULT>;
+  //   additionalOpenGraphProperties.event = {};
+  //   additionalOpenGraphProperties.event.start_time = event.startDate;
+  //   additionalOpenGraphProperties.event.end_time = event.endDate;
+  // }
 
   if (page._type === "post") {
     const post = page as NonNullable<BLOG_SLUG_QUERY_RESULT>;
@@ -46,17 +32,17 @@ export function generatePageMetadata(
       additionalOpenGraphProperties.article.published_time = post.publishedDate;
     }
 
-    if (post.author) {
-      additionalOpenGraphProperties.article.author = post.author.name;
-    }
+    // if (post.author) {
+    //   additionalOpenGraphProperties.article.author = post.author.name;
+    // }
 
-    const tags = Array.from(post.topics || []).concat(post.categories || []);
-    if (tags.length > 0) {
-      additionalOpenGraphProperties.article.tag = tags
-        .map((c) => c.title)
-        .filter(Boolean)
-        .join(",");
-    }
+    // const tags = Array.from(post.topics || []).concat(post.categories || []);
+    // if (tags.length > 0) {
+    //   additionalOpenGraphProperties.article.tag = tags
+    //     .map((c) => c.title)
+    //     .filter(Boolean)
+    //     .join(",");
+    // }
 
     if (post.estimatedReadingTime) {
       // Add estimatedReadingTime as a custom Open Graph property.
