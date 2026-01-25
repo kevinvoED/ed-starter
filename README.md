@@ -151,7 +151,7 @@ import { PortableText } from "@/components/PortableText/PortableText";
 ```typescript
 // There are pre-defined common usages for 'PortableTextPlain' in 'sharedFields.ts'
 defineField({
-  ...ptTitle,
+  ...title,
 })
 
 // Example: Creating custom portable-text-plain field

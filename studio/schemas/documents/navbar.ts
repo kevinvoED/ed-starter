@@ -7,7 +7,7 @@ import {
   PanelRightIcon,
 } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { links, logo, ptDescription, ptTitle } from "@/schemas/sharedFields";
+import { description, link, logo, title } from "@/schemas/sharedFields";
 
 export default defineType({
   name: "navbar",
@@ -17,8 +17,8 @@ export default defineType({
   fields: [
     logo,
     defineField({
-      name: "links",
-      title: "Main Links",
+      name: "link",
+      title: "Main link",
       type: "array",
       of: [
         { type: "link", title: "Standalone Link" },
@@ -27,7 +27,7 @@ export default defineType({
           type: "object",
           icon: PanelRightIcon,
           fields: [
-            ptTitle,
+            title,
             {
               name: "group",
               type: "array",
@@ -37,8 +37,8 @@ export default defineType({
                   type: "object",
                   icon: PanelRightIcon,
                   fields: [
-                    ptTitle,
-                    ptDescription,
+                    title,
+                    description,
                     {
                       type: "link",
                       name: "link",
@@ -51,9 +51,9 @@ export default defineType({
                   type: "object",
                   icon: LinkIcon,
                   fields: [
-                    ptTitle,
+                    title,
                     {
-                      ...links,
+                      ...link,
                       description: "",
                       validation: (Rule) => Rule,
                     },
@@ -126,8 +126,8 @@ export default defineType({
       ],
     }),
     defineField({
-      name: "ctaLinks",
-      title: "CTA Links",
+      name: "ctalink",
+      title: "CTA link",
       type: "array",
       of: [{ type: "link", title: "Standalone CTA Link" }],
     }),

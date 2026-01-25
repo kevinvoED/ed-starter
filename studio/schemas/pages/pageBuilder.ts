@@ -1,7 +1,7 @@
 import { DocumentIcon } from "@sanity/icons";
 import { orderRankField } from "@sanity/orderable-document-list";
 import { defineField, defineType, type SchemaTypeDefinition } from "sanity";
-import { meta, modules, ptTitle, slug } from "@/schemas/sharedFields";
+import { meta, modules, pageTitle, slug } from "@/schemas/sharedFields";
 
 interface PageBuilderOptions {
   name: string;
@@ -50,8 +50,7 @@ export function createPageType({
     ],
     fields: [
       defineField({
-        ...ptTitle,
-        description: "Purely for organizational purposes within Sanity Studio.",
+        ...pageTitle,
         group: "content",
       }),
       defineField({ ...slug, group: "content" }),

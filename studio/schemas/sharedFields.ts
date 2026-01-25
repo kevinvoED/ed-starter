@@ -17,14 +17,21 @@ import { portableTextPlain } from "@/schemas/objects/portable-text-plain";
  * Please keep this file organized and well documented
  */
 
-export const ptTitle = portableTextPlain({
+export const pageTitle = defineField({
+  name: "title",
+  title: "Page Title",
+  type: "string",
+  description: "Purely for organizational purposes within Sanity Studio.",
+});
+
+export const title = portableTextPlain({
   name: "title",
   title: "Title",
   description: "Main title for this section or module.",
   oneLine: true,
 });
 
-export const ptTitleHighlight = portableTextPlain({
+export const titleHighlight = portableTextPlain({
   name: "title",
   title: "Title",
   description: "Main title for this section or module.",
@@ -32,14 +39,14 @@ export const ptTitleHighlight = portableTextPlain({
   enableHighlight: true,
 });
 
-export const ptTitleHighlightLineBreak = portableTextPlain({
+export const titleHighlightLineBreak = portableTextPlain({
   name: "title",
   title: "Title",
   description: "Main title for this section or module.",
   enableHighlight: true,
 });
 
-export const ptTitleHighlightLink = portableTextPlain({
+export const titleHighlightLink = portableTextPlain({
   name: "title",
   title: "Title",
   description: "Main title for this section or module.",
@@ -48,7 +55,7 @@ export const ptTitleHighlightLink = portableTextPlain({
   enableLink: true,
 });
 
-export const ptTitleAll = portableTextPlain({
+export const titleAll = portableTextPlain({
   name: "title",
   title: "Title",
   description: "Main title for this section or module.",
@@ -62,7 +69,7 @@ export const ptTitleAll = portableTextPlain({
   enableTypeStyle: true,
 });
 
-export const ptSubtitle = portableTextPlain({
+export const subtitle = portableTextPlain({
   name: "subtitle",
   title: "Subtitle",
   description: "The subtitle for this section or module.",
@@ -70,17 +77,7 @@ export const ptSubtitle = portableTextPlain({
   validation: false,
 });
 
-// TODO: replace all regular descriptions with ptDescription
-export const description = defineField({
-  name: "description",
-  title: "Description",
-  description:
-    "Supplementary text that provides additional context or information.",
-  type: "text",
-  rows: 6,
-});
-
-export const ptDescription = portableTextPlain({
+export const description = portableTextPlain({
   name: "description",
   title: "Description",
   description:
@@ -88,7 +85,7 @@ export const ptDescription = portableTextPlain({
   validation: false,
 });
 
-export const ptDescriptionLink = portableTextPlain({
+export const descriptionLink = portableTextPlain({
   name: "description",
   title: "Description",
   description:
@@ -128,7 +125,7 @@ export const slugReadOnly = defineField({
 /*
  * Always keep the `link` field as an array.
  * This promotes consistency across the codebase.
- * It's easier to add additional links by overwriting the validation rule in your schema.
+ * It's easier to add additional link by overwriting the validation rule in your schema.
  */
 export const link = defineField({
   name: "link",
@@ -137,15 +134,6 @@ export const link = defineField({
   description: "Optional. Select an internal page or external URL to link to.",
   of: [{ type: "link" }],
   validation: (Rule) => Rule.max(1),
-});
-
-// TODO: replace all links with link
-export const links = defineField({
-  name: "links",
-  type: "array",
-  description: "Optional. Max 2 links.",
-  of: [{ type: "link" }],
-  validation: (Rule) => Rule.max(2),
 });
 
 export const image = defineField({
@@ -278,11 +266,11 @@ export const marquee = defineField({
   type: "array",
   of: [
     {
-      name: "marqueeItem",
+      name: "item",
       title: "Marquee Item",
       type: "object",
       icon: MasterDetailIcon,
-      fields: [ptTitle],
+      fields: [title],
       preview: {
         select: {
           title: "title",

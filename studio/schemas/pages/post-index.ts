@@ -1,11 +1,11 @@
 import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import {
+  description,
   meta,
   modules,
-  ptDescription,
-  ptTitle,
   slug,
+  title,
 } from "@/schemas/sharedFields";
 
 export default defineType({
@@ -30,11 +30,11 @@ export default defineType({
   fields: [
     slug,
     defineField({
-      ...ptTitle,
+      ...title,
       group: "content",
     }),
     defineField({
-      ...ptDescription,
+      ...description,
       group: "content",
     }),
     defineField({

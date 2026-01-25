@@ -40,9 +40,3 @@ export const linkFragment = `
     ${linkFields}
   }
 `;
-
-export const linksFragment = `
-  links[]{
-    ${linkFields}
-  }
-`;

@@ -20,7 +20,7 @@ export const HeroGated = ({
   eyebrow,
   title,
   description,
-  links,
+  link,
 }: HeroGatedProps) => {
   return (
     <header className={cn("grid-custom col-span-full gap-y-0", className)}>
@@ -47,12 +47,12 @@ export const HeroGated = ({
         </Transition>
       )}
 
-      {links && links.length > 0 && (
+      {link && link.length > 0 && (
         <Transition
           delay={0.3}
           className="col-span-full row-start-4 mb-10 grid grid-cols-2 gap-5 sm:flex sm:flex-wrap sm:justify-start lg:col-start-3 lg:gap-x-17"
         >
-          {links.map((link, index) => (
+          {link.map((link, index) => (
             <Button
               key={link._key}
               link={link as ResolvedLinkType}

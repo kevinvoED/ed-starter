@@ -1,13 +1,13 @@
 import { groq } from "next-sanity";
 import { imageFragment, logoFragment } from "../shared/image";
-import { linkFields, linksFragment } from "../shared/link";
+import { linkFields, linkFragment } from "../shared/link";
 import { portableTextPlainFragment } from "../shared/portable-text-plain";
 
 export const NAVBAR_QUERY = groq`
   *[_type == "navbar"]{
     _type,
     ${logoFragment},
-    links[]{
+    link[]{
       _type,
       _key,
       _type == "link" => {
@@ -29,7 +29,7 @@ export const NAVBAR_QUERY = groq`
           },
           _type == "link-group" => {
             title,
-            ${linksFragment}
+            ${linkFragment}
           },
           _type == "resources" => {
             resources[]->{
@@ -49,7 +49,7 @@ export const NAVBAR_QUERY = groq`
         type,
       }
     },
-    ctaLinks[]{
+    ctalink[]{
       ${linkFields}
     }
   }

@@ -1,7 +1,7 @@
 import { LinkIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import { relationTypes } from "@/schemas/moduleTypes";
-import { openInNewTab, ptTitle } from "@/schemas/sharedFields";
+import { openInNewTab, title } from "@/schemas/sharedFields";
 
 export default defineType({
   name: "link",
@@ -16,7 +16,7 @@ export default defineType({
       initialValue: false,
     }),
     defineField({
-      ...ptTitle,
+      ...title,
       title: "Label",
     }),
     defineField({

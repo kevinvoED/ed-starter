@@ -3,15 +3,15 @@ import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import {
   createdAt,
+  description,
   image,
   link,
   meta,
   modules,
   portableText,
-  ptDescription,
-  ptTitleHighlight,
   publishedDate,
   slug,
+  titleHighlight,
 } from "@/schemas/sharedFields";
 import { formatDate } from "../../../frontend/lib/formatDate";
 
@@ -44,7 +44,7 @@ export default defineType({
       group: "settings",
     }),
     defineField({
-      ...ptTitleHighlight,
+      ...titleHighlight,
       group: "content",
     }),
     defineField({
@@ -58,7 +58,7 @@ export default defineType({
       group: "content",
     }),
     defineField({
-      ...ptDescription,
+      ...description,
       group: "content",
     }),
     defineField({

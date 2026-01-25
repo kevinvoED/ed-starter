@@ -1,7 +1,7 @@
 import { Menu } from "lucide-react";
 import { FolderIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { link, logo, ptTitle, toggle } from "@/schemas/sharedFields";
+import { link, logo, title, toggle } from "@/schemas/sharedFields";
 
 export default defineType({
   name: "footer",
@@ -10,10 +10,10 @@ export default defineType({
   icon: Menu,
   fields: [
     defineField({
-      name: "mainLinks",
-      title: "Main Links",
+      name: "mainlink",
+      title: "Main link",
       description:
-        "This is the section that contains all the main links of the website.",
+        "This is the section that contains all the main link of the website.",
       type: "array",
       of: [
         {
@@ -23,9 +23,9 @@ export default defineType({
           icon: FolderIcon,
           fields: [
             {
-              ...ptTitle,
+              ...title,
               title: "Category Title",
-              description: "The title of the category or collection of links.",
+              description: "The title of the category or collection of link.",
             },
             {
               ...toggle,
@@ -65,7 +65,7 @@ export default defineType({
                   icon: FolderIcon,
                   fields: [
                     defineField({
-                      ...ptTitle,
+                      ...title,
                       title: "Sub Category Title",
                     }),
                     defineField({
@@ -108,24 +108,24 @@ export default defineType({
         "Add the large banner text .svg file. This spans the entire width of the website.",
     }),
     defineField({
-      name: "actionLinks",
-      title: "CTA Links",
+      name: "actionlink",
+      title: "CTA link",
       type: "array",
-      description: "Optional. Max 2 links. Add your main CTA links.",
+      description: "Optional. Max 2 link. Add your main CTA link.",
       of: [{ type: "link" }],
       validation: (Rule) => Rule.max(2),
     }),
     defineField({
-      name: "socialMediaLinks",
-      title: "Social Media Links",
+      name: "socialMedialink",
+      title: "Social Media link",
       type: "array",
-      description: "Optional. Add links to your social media platforms.",
+      description: "Optional. Add link to your social media platforms.",
       of: [{ type: "link" }],
       validation: (Rule) => Rule,
     }),
     defineField({
-      name: "bottomLinks",
-      title: "Bottom Links",
+      name: "bottomlink",
+      title: "Bottom link",
       type: "array",
       of: [{ type: "link" }],
     }),

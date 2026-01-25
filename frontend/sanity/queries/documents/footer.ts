@@ -35,13 +35,13 @@ export const FOOTER_QUERY = groq`
         }
       }
     },
-    actionLinks[]{
+    actionlink[]{
       ${linkFields}
     },
-    socialMediaLinks[]{
+    socialMedialink[]{
       ${linkFields}
     },
-    mainLinks[]{
+    mainlink[]{
       _key,
       title,
       hasIndexPage,
@@ -54,7 +54,7 @@ export const FOOTER_QUERY = groq`
         ${linkFragment}
       }
     },
-    bottomLinks[]{
+    bottomlink[]{
       _key,
       ${linkFields}
     },
