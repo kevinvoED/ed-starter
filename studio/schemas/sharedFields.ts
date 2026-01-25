@@ -320,7 +320,7 @@ export const toggle = defineField({
 });
 
 export const modules = defineField({
-  name: "blocks",
+  name: "modules",
   title: "Modules",
   description: "Select from the modules below. Order is obeyed.",
   type: "array",

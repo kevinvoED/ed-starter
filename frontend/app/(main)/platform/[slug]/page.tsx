@@ -54,7 +54,7 @@ export default async function Page(props: {
   return (
     <>
       <JSONLDScript document={page as JSONLDScriptProps["document"]} />
-      <ModuleBuilder blocks={page?.blocks ?? []} />
+      <ModuleBuilder modules={page?.modules ?? []} />
     </>
   );
 }

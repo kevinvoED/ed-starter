@@ -30,7 +30,7 @@ export default async function IndexPage() {
   return (
     <>
       {organization && <OrganizationJSONLDScript organization={organization} />}
-      <ModuleBuilder blocks={page?.blocks ?? []} />
+      <ModuleBuilder modules={page?.modules ?? []} />
     </>
   );
 }

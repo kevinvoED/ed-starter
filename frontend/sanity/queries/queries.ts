@@ -48,7 +48,7 @@ export const ORGANIZATION_QUERY = defineQuery(`
 export const PAGE_QUERY = defineQuery(`
   *[_type == "page" && slug.current == $slug][0]{
     _type,
-    blocks[]{
+    modules[]{
       ${modulesFragment}
     },
     ${metaFragment}
@@ -62,7 +62,7 @@ export const PAGE_SLUG_QUERY = defineQuery(`
     title,
     description,
     slug,
-    blocks[]{
+    modules[]{
       ${modulesFragment}
     },
     ${metaFragment},
@@ -86,7 +86,7 @@ export const BLOG_QUERY = defineQuery(`
     description,
     slug,
     ${metaFragment},
-    blocks[]{
+    modules[]{
       ${modulesFragment}
     },
     featuredPost->{
@@ -134,7 +134,7 @@ export const BLOG_SLUG_QUERY = defineQuery(`
     },
     ${imageFragment},
     ${metaFragment},
-    blocks[]{
+    modules[]{
       ${modulesFragment}
     },
     "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 ),

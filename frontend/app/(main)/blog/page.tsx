@@ -43,7 +43,7 @@ export default async function BlogIndexPage(props: {
   return (
     <>
       <JSONLDScript document={data} />
-      <ModuleBuilder blocks={data?.blocks ?? []} />
+      <ModuleBuilder modules={data?.modules ?? []} />
     </>
   );
 }

@@ -6,7 +6,7 @@ import { get } from "es-toolkit/compat";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 
-// type ListAccordionProps = BlockProps<"list-accordion">;
+// type ListAccordionProps = ModuleProps<"list-accordion">;
 
 const typeMap = {
   page: "WebPage",

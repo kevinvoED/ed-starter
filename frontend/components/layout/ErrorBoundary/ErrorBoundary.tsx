@@ -10,7 +10,7 @@ const logError = (error: unknown, info: ErrorInfo) => {
   console.error({ error, info });
 };
 
-type BlocksType = NonNullable<NonNullable<PAGE_QUERY_RESULT>["blocks"]>;
+type ModulesType = NonNullable<NonNullable<PAGE_QUERY_RESULT>["modules"]>;
 
 const getErrorMessage = (error: unknown): string => {
   return error instanceof Error ? error.message : "An unknown error occurred";
@@ -28,20 +28,20 @@ const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   );
 };
 
-const BlocksErrorFallback = ({
-  block,
+const ModulesErrorFallback = ({
+  module,
   error,
   resetErrorBoundary,
-}: FallbackProps & { block?: BlocksType[number] }) => {
+}: FallbackProps & { module?: ModulesType[number] }) => {
   return (
     <div className="bg-[#993333] p-2 text-white">
       <h2 className="mb-2 font-bold text-xl">
-        Something went wrong{block ? ` in "${block._type}":` : ":"}
+        Something went wrong{module ? ` in "${module._type}":` : ":"}
       </h2>
       <p className="mb-4">
-        {block
+        {module
           ? null
-          : `The block was "undefined". Maybe it was not added to the block component map or is missing in the query? `}
+          : `The module was "undefined". Maybe it was not added to the module component map or is missing in the query? `}
         {getErrorMessage(error)}
       </p>
       <Button variant="primary-white-small" onClick={resetErrorBoundary}>
@@ -71,24 +71,24 @@ export const MyErrorBoundary: React.FC<
   );
 };
 
-const logBlocksError =
-  (block?: BlocksType[number]) => (error: unknown, info: ErrorInfo) => {
-    console.error({ block, error, info });
+const logModulesError =
+  (module?: ModulesType[number]) => (error: unknown, info: ErrorInfo) => {
+    console.error({ module, error, info });
   };
 
-export const MyBlocksRendererErrorBoundary: React.FC<
+export const MyModulesRendererErrorBoundary: React.FC<
   React.PropsWithChildren<
     Omit<
       ErrorBoundaryProps,
       "FallbackComponent" | "onError" | "fallback" | "fallbackRender"
-    > & { block?: BlocksType[number] }
+    > & { module?: ModulesType[number] }
   >
-> = ({ block, children, ...rest }) => {
+> = ({ module, children, ...rest }) => {
   return (
     <ErrorBoundary
       FallbackComponent={undefined}
-      fallbackRender={(props) => BlocksErrorFallback({ block, ...props })}
-      onError={logBlocksError(block)}
+      fallbackRender={(props) => ModulesErrorFallback({ module, ...props })}
+      onError={logModulesError(module)}
       {...rest}
     >
       {children}

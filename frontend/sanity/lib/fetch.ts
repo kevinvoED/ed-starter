@@ -21,12 +21,12 @@ import {
 } from "@/sanity/queries/queries";
 
 // Types
-type BlockType = NonNullable<
-  NonNullable<PAGE_QUERY_RESULT>["blocks"]
+type ModuleType = NonNullable<
+  NonNullable<PAGE_QUERY_RESULT>["modules"]
 >[number]["_type"];
 
-export type BlockProps<T extends BlockType = BlockType> = Extract<
-  NonNullable<NonNullable<PAGE_QUERY_RESULT>["blocks"]>[number],
+export type ModuleProps<T extends ModuleType = ModuleType> = Extract<
+  NonNullable<NonNullable<PAGE_QUERY_RESULT>["modules"]>[number],
   { _type: T }
 >;
 

@@ -1,8 +1,8 @@
-import type { BlockProps } from "@/sanity/lib/fetch";
+import type { ModuleProps } from "@/sanity/lib/fetch";
 import { SanityImage } from "@/components/primitives/Media/SanityImage";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
 
-type HeroPrimaryProps = BlockProps<"hero-primary">;
+type HeroPrimaryProps = ModuleProps<"hero-primary">;
 
 export const HeroPrimary = ({ title, image }: HeroPrimaryProps) => {
   console.log(image);

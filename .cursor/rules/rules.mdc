@@ -157,20 +157,20 @@ defineField({
 ### React Component Implementation
 
 - Create a corresponding React component for each schema type
-- Always import the type `BlockProps` from `@/sanity/lib/fetch` to extract its schemea props
+- Always import the type `ModuleProps` from `@/sanity/lib/fetch` to extract its schemea props
 - Always consider re-using shared components like the `Button` or `PortableText`
 
 ```tsx
 // Example React component for a parent block
 // frontend/components/Component/Component.tsx
-import type { BlockProps } from "@/sanity/lib/fetch";
+import type { ModuleProps } from "@/sanity/lib/fetch";
 import { Button } from "@/components/Button/Button";
 import { TextReveal } from "@/components/GSAP/TextReveal";
 import { Transition } from "@/components/GSAP/Transition";
 import { SanityImage } from "@/components/Media/SanityImage";
 import { PortableText } from "@/components/PortableText/PortableText";
 
-type HeroPrimaryProps = BlockProps<"hero-primary">;
+type HeroPrimaryProps = ModuleProps<"hero-primary">;
 
 export const HeroPrimary = ({
   title,

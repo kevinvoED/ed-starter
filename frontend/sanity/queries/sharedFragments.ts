@@ -95,7 +95,7 @@ export const videoFragment = `
 export const metaFragment = `
     meta{
     // use the title assigned in meta or the parent document title
-    "title": coalesce(title, select(^.title[0]._type == "block" => pt::text(^.title), ^.title)),
+    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),
     description,
     noindex,
     "relativeUrl": select(
@@ -113,7 +113,7 @@ export const metaFragment = `
       // use the image directly on this document
       ^.image.asset->url + "?w=1200&h=630&fit=max",
       // find and use the first hero image
-      select(^.blocks[0]._type match "hero*" => ^.blocks[0].image.asset->url + "?w=1200&h=630&fit=max", null),
+      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),
       // find and use the organization image
       *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"
     )

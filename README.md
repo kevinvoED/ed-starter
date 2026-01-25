@@ -217,13 +217,13 @@ defineField(
 magick "~/Downloads/exported-component-frame-from-figma.jpg" -resize 536x336^ -gravity North -extent 536x336 -quality 95 "studio/schemas/previews/component-name-output.jpg"
 ```
 
-### Using BlockProps is a type-safe way of typing your components
+### Using ModuleProps is a type-safe way of typing your components
 
 ```typescript
-import type { BlockProps } from "@/sanity/lib/fetch";
+import type { ModuleProps } from "@/sanity/lib/fetch";
 
 // replace hero-primary with any schema name
-type HeroPrimaryProps = BlockProps<"hero-primary">;
+type HeroPrimaryProps = ModuleProps<"hero-primary">;
 
 // and you'll be able to access all props with intellisense
 export const HeroPrimary = ({ title, content }: HeroPrimaryProps) => { ...

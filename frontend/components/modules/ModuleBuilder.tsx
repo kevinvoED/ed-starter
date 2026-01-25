@@ -1,14 +1,14 @@
 import type { ComponentProps } from "react";
 import type { PAGE_QUERY_RESULT } from "@/sanity.types";
 import { HeroPrimary } from "@/components/modules/Hero/HeroPrimary";
-import { MyBlocksRendererErrorBoundary } from "../layout/ErrorBoundary/ErrorBoundary";
+import { MyModulesRendererErrorBoundary } from "../layout/ErrorBoundary/ErrorBoundary";
 
 export type ModuleBlock = NonNullable<
-  NonNullable<PAGE_QUERY_RESULT>["blocks"]
+  NonNullable<PAGE_QUERY_RESULT>["modules"]
 >[number];
 
 type ModuleBuilderProps = {
-  blocks: ModuleBlock[];
+  modules: ModuleBlock[];
 };
 
 const componentMap: {
@@ -30,33 +30,33 @@ const LocalErrorFallback: React.FC<React.PropsWithChildren> = ({
   </div>
 );
 
-export const ModuleBuilder = ({ blocks }: ModuleBuilderProps) => {
+export const ModuleBuilder = ({ modules }: ModuleBuilderProps) => {
   return (
     <>
-      {blocks.map((block) => {
-        const blockType = block._type as ModuleBlock["_type"];
+      {modules.map((module) => {
+        const moduleType = module._type as ModuleBlock["_type"];
         const Component =
-          (componentMap[blockType] as React.ComponentType<
+          (componentMap[moduleType] as React.ComponentType<
             Extract<ModuleBlock, { _type: ModuleBlock["_type"] }>
           >) || null;
 
         if (!Component) {
           console.error(
-            `There was no component found for ${blockType || JSON.stringify(block)}`,
+            `There was no component found for ${moduleType || JSON.stringify(module)}`,
           );
           return (
             <LocalErrorFallback>
               There was no component found for{" "}
-              {blockType || JSON.stringify(block)}
+              {moduleType || JSON.stringify(module)}
             </LocalErrorFallback>
           );
         }
 
         return (
-          <section key={block._key + blockType} data-module={blockType}>
-            <MyBlocksRendererErrorBoundary block={block}>
-              <Component {...(block as ComponentProps<typeof Component>)} />
-            </MyBlocksRendererErrorBoundary>
+          <section key={module._key + moduleType} data-module={moduleType}>
+            <MyModulesRendererErrorBoundary module={module}>
+              <Component {...(module as ComponentProps<typeof Component>)} />
+            </MyModulesRendererErrorBoundary>
           </section>
         );
       })}

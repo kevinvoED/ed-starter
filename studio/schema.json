@@ -3152,7 +3152,7 @@
         },
         "optional": true
       },
-      "blocks": {
+      "modules": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
@@ -3623,7 +3623,7 @@
         },
         "optional": true
       },
-      "blocks": {
+      "modules": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
@@ -3705,7 +3705,7 @@
         },
         "optional": false
       },
-      "blocks": {
+      "modules": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
@@ -3824,7 +3824,7 @@
         },
         "optional": false
       },
-      "blocks": {
+      "modules": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
@@ -4129,7 +4129,7 @@
         },
         "optional": false
       },
-      "blocks": {
+      "modules": {
         "type": "objectAttribute",
         "value": {
           "type": "array",

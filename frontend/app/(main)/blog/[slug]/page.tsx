@@ -57,7 +57,7 @@ export default async function BlogPostPage(props: {
           )}
         </Transition>
       </div>
-      <ModuleBuilder blocks={post?.blocks ?? []} />
+      <ModuleBuilder modules={post?.modules ?? []} />
     </>
   );
 }

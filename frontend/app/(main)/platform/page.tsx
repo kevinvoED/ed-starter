@@ -30,7 +30,7 @@ export default async function PlatformIndexPage() {
   return (
     <>
       <JSONLDScript document={page} />
-      <ModuleBuilder blocks={page?.blocks ?? []} />
+      <ModuleBuilder modules={page?.modules ?? []} />
     </>
   );
 }

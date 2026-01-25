@@ -14,7 +14,7 @@ export type JSONLDScriptProps = {
   >;
 };
 
-// type ListAccordionProps = BlockProps<"list-accordion">;
+// type ListAccordionProps = ModuleProps<"list-accordion">;
 
 export const JSONLDScript: React.FC<
   JSONLDScriptProps & React.HTMLAttributes<HTMLScriptElement>
