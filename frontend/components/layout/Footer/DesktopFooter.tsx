@@ -5,5 +5,5 @@ export const DesktopFooter = ({ data }: { data: FOOTER_QUERY_RESULT }) => {
     return null;
   }
 
-  return <footer>Footer</footer>;
+  return <footer className="hidden lg:block">Footer</footer>;
 };

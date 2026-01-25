@@ -5,5 +5,5 @@ export const MobileFooter = ({ data }: { data: FOOTER_QUERY_RESULT }) => {
     return null;
   }
 
-  return <footer>Footer</footer>;
+  return <footer className="lg:hidden">Footer</footer>;
 };
