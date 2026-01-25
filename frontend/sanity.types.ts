@@ -303,7 +303,7 @@ export type Staff = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name: string;
+  name?: string;
   role: string;
   bio?: Array<{
     children?: Array<{
@@ -1035,7 +1035,7 @@ export type Author = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name: string;
+  name?: string;
   content?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -1286,7 +1286,7 @@ export type AuthorFragmentResult = never;
 // Variable: AUTHOR_QUERY
 // Query: *[_type == "author" && slug.current == $slug][0]{  name,    image{    ...,    asset->{      _id,      url,      mimeType,      metadata {        lqip,        dimensions {          width,          height        }      }    }  },  content[]{      ...,  markDefs[]{    ...,    _type == "link" => {        _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      _type,  _key,  ...,    "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "case-study-index" => "/case-studies",    @.internalLink->_type == "resource" => "/resources/" + @.internalLink->slug.current,    @.internalLink->_type == "resource-index" => "/resources",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    @.internalLink->_type == "solutions-child" => "/solutions/" + @.internalLink->slug.current,    @.internalLink->_type == "event" => "/events/" + @.internalLink->slug.current,    @.internalLink->_type == "events-index" => "/events",    "/" + @.internalLink->slug.current  )  },  },}
 export type AUTHOR_QUERY_RESULT = {
-  name: string;
+  name: string | null;
   image: {
     asset: {
       _id: string;
@@ -2087,7 +2087,7 @@ export type BLOG_QUERY_RESULT = {
     } | null;
     author: {
       _id: string;
-      name: string;
+      name: string | null;
       content: Array<{
         children?: Array<{
           marks?: Array<string>;
@@ -2273,7 +2273,7 @@ export type BLOG_QUERY_RESULT = {
     } | null;
     author: {
       _id: string;
-      name: string;
+      name: string | null;
       content: Array<{
         children?: Array<{
           marks?: Array<string>;
@@ -2505,7 +2505,7 @@ export type BLOG_SLUG_QUERY_RESULT = {
   > | null;
   author: {
     _id: string;
-    name: string;
+    name: string | null;
     content: Array<{
       children?: Array<{
         marks?: Array<string>;
@@ -2830,7 +2830,7 @@ export type CASE_STUDIES_QUERY_RESULT = {
     } | null;
     author: {
       _id: string;
-      name: string;
+      name: string | null;
       content: Array<{
         children?: Array<{
           marks?: Array<string>;
@@ -3021,7 +3021,7 @@ export type CASE_STUDIES_QUERY_RESULT = {
     } | null;
     author: {
       _id: string;
-      name: string;
+      name: string | null;
       content: Array<{
         children?: Array<{
           marks?: Array<string>;
@@ -3258,7 +3258,7 @@ export type CASE_STUDIES_SLUG_QUERY_RESULT = {
   > | null;
   author: {
     _id: string;
-    name: string;
+    name: string | null;
     content: Array<{
       children?: Array<{
         marks?: Array<string>;
@@ -3587,7 +3587,7 @@ export type RESOURCE_QUERY_RESULT = {
     } | null;
     author: {
       _id: string;
-      name: string;
+      name: string | null;
       content: Array<{
         children?: Array<{
           marks?: Array<string>;
@@ -3873,7 +3873,7 @@ export type RESOURCE_SLUG_QUERY_RESULT = {
   > | null;
   author: {
     _id: string;
-    name: string;
+    name: string | null;
     content: Array<{
       children?: Array<{
         marks?: Array<string>;
@@ -4179,7 +4179,7 @@ export type EVENTS_QUERY_RESULT = {
     } | null;
     author: {
       _id: string;
-      name: string;
+      name: string | null;
       content: Array<{
         children?: Array<{
           marks?: Array<string>;
@@ -4365,7 +4365,7 @@ export type EVENTS_QUERY_RESULT = {
     } | null;
     author: {
       _id: string;
-      name: string;
+      name: string | null;
       content: Array<{
         children?: Array<{
           marks?: Array<string>;
@@ -4690,7 +4690,7 @@ export type EVENTS_SLUG_QUERY_RESULT = {
   > | null;
   author: {
     _id: string;
-    name: string;
+    name: string | null;
     content: Array<{
       children?: Array<{
         marks?: Array<string>;

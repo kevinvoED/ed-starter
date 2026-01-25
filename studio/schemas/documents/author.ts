@@ -2,7 +2,7 @@ import { UserIcon } from "@sanity/icons";
 import { orderRankField } from "@sanity/orderable-document-list";
 import { defineField, defineType } from "sanity";
 import { portableTextPlain } from "@/schemas/objects/portable-text-plain";
-import { image, links, name } from "@/schemas/sharedFields";
+import { image, links } from "@/schemas/sharedFields";
 
 export default defineType({
   name: "author",
@@ -11,8 +11,9 @@ export default defineType({
   icon: UserIcon,
   fields: [
     defineField({
-      ...name,
-      title: "Full Name",
+      name: "name",
+      title: "Name",
+      type: "string",
       description: "The full name of the author.",
     }),
     portableTextPlain({

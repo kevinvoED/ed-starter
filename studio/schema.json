@@ -1516,7 +1516,7 @@
         "value": {
           "type": "string"
         },
-        "optional": false
+        "optional": true
       },
       "role": {
         "type": "objectAttribute",
@@ -5656,7 +5656,7 @@
         "value": {
           "type": "string"
         },
-        "optional": false
+        "optional": true
       },
       "content": {
         "type": "objectAttribute",

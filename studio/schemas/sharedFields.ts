@@ -16,18 +16,20 @@ import { portableTextPlain } from "@/schemas/objects/portable-text-plain";
  * Please keep this file organized and well documented
  */
 
-export const name = defineField({
-  name: "name",
-  title: "Name",
-  description: "The name of the individual or organization.",
+export const pageTitle = defineField({
+  name: "title",
+  title: "Title",
+  description:
+    "Purely for organization and display purposes in Sanity Studio. This does not affect any modules on this page.",
   type: "string",
   validation: (Rule) => Rule.required(),
 });
 
+// TODO: replace all regular titles with ptTitle
 export const title = defineField({
   name: "title",
   title: "Title",
-  description: "The main title for this section or module.",
+  description: "Main title for this section or module.",
   type: "string",
   validation: (Rule) => Rule.required(),
 });
@@ -35,8 +37,46 @@ export const title = defineField({
 export const ptTitle = portableTextPlain({
   name: "title",
   title: "Title",
-  description: "The main title for this section or module.",
+  description: "Main title for this section or module.",
   oneLine: true,
+});
+
+export const ptTitleHighlight = portableTextPlain({
+  name: "title",
+  title: "Title",
+  description: "Main title for this section or module.",
+  oneLine: true,
+  enableHighlight: true,
+});
+
+export const ptTitleHighlightLineBreak = portableTextPlain({
+  name: "title",
+  title: "Title",
+  description: "Main title for this section or module.",
+  enableHighlight: true,
+});
+
+export const ptTitleHighlightLink = portableTextPlain({
+  name: "title",
+  title: "Title",
+  description: "Main title for this section or module.",
+  oneLine: true,
+  enableHighlight: true,
+  enableLink: true,
+});
+
+export const ptTitleAll = portableTextPlain({
+  name: "title",
+  title: "Title",
+  description: "Main title for this section or module.",
+  oneLine: true,
+  enableHighlight: true,
+  enableLink: true,
+  enableBold: true,
+  enableItalic: true,
+  enableBulletList: true,
+  enableNumberList: true,
+  enableTypeStyle: true,
 });
 
 export const ptSubtitle = portableTextPlain({
@@ -47,21 +87,7 @@ export const ptSubtitle = portableTextPlain({
   validation: false,
 });
 
-export const ptTitleHighlight = portableTextPlain({
-  name: "title",
-  title: "Title",
-  description: "The main title for this section or module.",
-  oneLine: true,
-  enableHighlight: true,
-});
-
-export const ptTitleHighlightLineBreak = portableTextPlain({
-  name: "title",
-  title: "Title",
-  description: "The main title for this section or module.",
-  enableHighlight: true,
-});
-
+// TODO: replace all regular descriptions with ptDescription
 export const description = defineField({
   name: "description",
   title: "Description",
@@ -88,43 +114,24 @@ export const ptDescriptionLink = portableTextPlain({
   validation: false,
 });
 
-export const ptContent = portableTextPlain({
-  name: "content",
-  title: "Content",
-  description: "",
-  validation: false,
-});
-
-export const ptContentHighlight = portableTextPlain({
-  name: "content",
-  title: "Content",
-  description: "",
-  enableHighlight: true,
-  validation: false,
-});
-
 export const eyebrow = defineField({
   name: "eyebrow",
   title: "Eyebrow",
   description: "Short descriptive phrase that usually precedes the title.",
   type: "string",
+  validation: (Rule) =>
+    Rule.max(25).error("Eyebrow must be less than 25 characters."),
 });
 
-// Requires a `title` to be on the entity as well. A unique ID to reference this entity.
 export const slug = defineField({
   name: "slug",
   title: "Page Slug",
   type: "slug",
-  description:
-    "Generate a unique ID to be used as the slug/route for this page.",
-  options: {
-    source: "title",
-    maxLength: 96,
-  },
+  description: "A unique ID to be used as the slug/route for this page.",
   validation: (Rule) => Rule.required(),
 });
 
-// First use the regular slug field to set the slug, then swap to this readOnly version.
+// First use the regular slug field to set the slug, then swap to this readOnly version afterwards.
 export const slugReadOnly = defineField({
   name: "slug",
   title: "Page Slug",
@@ -135,15 +142,21 @@ export const slugReadOnly = defineField({
   validation: (Rule) => Rule.required(),
 });
 
-// Keep as an array even for 1 link for consistency and access to keys for GTM
+/*
+ * Always keep the `link` field as an array.
+ * This promotes consistency across the codebase.
+ * It's easier to add additional links by overwriting the validation rule in your schema.
+ */
 export const link = defineField({
   name: "link",
+  title: "Cta Link",
   type: "array",
-  description: "Optional. Max 1 link.",
+  description: "Optional. Select an internal page or external URL to link to.",
   of: [{ type: "link" }],
   validation: (Rule) => Rule.max(1),
 });
 
+// TODO: replace all links with link
 export const links = defineField({
   name: "links",
   type: "array",
@@ -165,8 +178,11 @@ export const image = defineField({
   fields: [
     {
       name: "alt",
-      type: "string",
       title: "Alternative Text",
+      type: "string",
+      description: "Optional. Used for accessibility and SEO.",
+      validation: (Rule) =>
+        Rule.max(150).error("Alt text must be less than 150 characters."),
     },
   ],
 });
@@ -180,6 +196,16 @@ export const images = defineField({
   icon: ImagesIcon,
 });
 
+export const logo = defineField({
+  ...image,
+  name: "logo",
+  title: "Logo",
+  description: "Select or upload an .svg logo.",
+  options: {
+    accept: "image/svg+xml",
+  },
+});
+
 export const video = defineField({
   name: "video",
   title: "Video",
@@ -189,16 +215,6 @@ export const video = defineField({
   },
   type: "file",
   icon: VideoIcon,
-});
-
-export const logo = defineField({
-  ...image,
-  name: "logo",
-  title: "Logo",
-  description: "Select or upload an SVG logo.",
-  options: {
-    accept: "image/svg+xml",
-  },
 });
 
 export const meta = defineField({
@@ -341,14 +357,5 @@ export const modules = defineField({
         { name: "list" },
       ],
     },
-  },
-});
-
-export const codeSnippet = defineField({
-  name: "codeSnippet",
-  title: "Code Snippet",
-  type: "code",
-  options: {
-    language: "javascript",
   },
 });
