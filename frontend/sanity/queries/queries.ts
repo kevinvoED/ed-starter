@@ -7,7 +7,7 @@ import { defineQuery } from "next-sanity";
 import { HERO_PRIMARY_QUERY } from "./modules/hero/hero-primary";
 import {
   imageFragment,
-  linkArrayFragment,
+  linkFragment,
   logoFragment,
   metaFragment,
   portableTextFragment,
@@ -100,7 +100,7 @@ export const BLOG_QUERY = defineQuery(`
       description,
       publishedDate,
       ${imageFragment},
-      "link": ${linkArrayFragment}
+      ${linkFragment}
     },
     "posts": *[_type == "post" && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {
       _id,
@@ -112,7 +112,7 @@ export const BLOG_QUERY = defineQuery(`
       slug,
       description,
       publishedDate,
-      "link": ${linkArrayFragment},
+      ${linkFragment},
       ${imageFragment},
     }
   }

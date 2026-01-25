@@ -10,7 +10,9 @@ export const urlQuery = `
   )
 `;
 
-export const hrefQuery = `
+export const linkFields = `
+  ...,
+  _key,
   "href": select(
     isExternal => href,
     @.internalLink->slug.current == "index" => "/",
@@ -22,22 +24,19 @@ export const hrefQuery = `
   )
 `;
 
-export const linkFields = `
-  _type,
-  _key,
-  ...,
-  ${hrefQuery}
-`;
-
-export const linkArrayFragment = `
-  link[0]{
-    ${linkFields}
-  }
-`;
-
 export const linkFragment = `
   link[]{
-    ${linkFields}
+    ...,
+    _key,
+    "href": select(
+      isExternal => href,
+      @.internalLink->slug.current == "index" => "/",
+      @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,
+      @.internalLink->_type == "post-index" => "/blog",
+      @.internalLink->_type == "platform-index" => "/platform",
+      @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,
+      "/" + @.internalLink->slug.current
+    )
   }
 `;
 
@@ -151,14 +150,14 @@ export const portableTextFragment = `
     title,
     description,
     ${imageFragment},
-    "link": ${linkArrayFragment}
+    ${linkFragment}
   },
   _type == "listDriver" => {
     title,
     items[]{
       _key,
       eyebrow,
-      "link": ${linkArrayFragment}
+      ${linkFragment}
     }
   },
   _type == "quote" => {

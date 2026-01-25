@@ -1,7 +1,7 @@
 import { LinkIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import { relationTypes } from "@/schemas/moduleTypes";
-import { openInNewTab, title } from "@/schemas/sharedFields";
+import { openInNewTab } from "@/schemas/sharedFields";
 
 export default defineType({
   name: "link",
@@ -16,8 +16,10 @@ export default defineType({
       initialValue: false,
     }),
     defineField({
-      ...title,
+      name: "label",
       title: "Label",
+      type: "string",
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "internalLink",
@@ -29,7 +31,7 @@ export default defineType({
     }),
     defineField({
       name: "href",
-      title: "ExternalURL",
+      title: "External URL",
       description: "Must be a valid URL (http, https, mailto, tel).",
       type: "url",
       hidden: ({ parent }) => !parent?.isExternal,
@@ -45,10 +47,10 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: "title",
+      label: "label",
     },
-    prepare({ title }) {
-      return { title: title };
+    prepare({ label }) {
+      return { title: label, media: LinkIcon };
     },
   },
 });

@@ -7,7 +7,6 @@ export default defineType({
   name: "hero-primary",
   title: "Hero Primary",
   type: "object",
-  icon: DashboardIcon,
   fields: [
     eyebrow,
     titleHighlight,
@@ -25,6 +24,7 @@ export default defineType({
       return {
         title: "Hero Primary",
         subtitle: toPlainText(title),
+        media: DashboardIcon,
       };
     },
   },
