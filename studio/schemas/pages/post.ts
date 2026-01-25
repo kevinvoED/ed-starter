@@ -3,12 +3,12 @@ import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import {
   createdAt,
-  description,
   image,
   link,
   meta,
   modules,
   portableText,
+  ptDescription,
   ptTitleHighlight,
   publishedDate,
   slug,
@@ -58,7 +58,7 @@ export default defineType({
       group: "content",
     }),
     defineField({
-      ...description,
+      ...ptDescription,
       group: "content",
     }),
     defineField({

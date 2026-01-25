@@ -7,7 +7,7 @@ import {
   PanelRightIcon,
 } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { links, logo, ptDescription, title } from "@/schemas/sharedFields";
+import { links, logo, ptDescription, ptTitle } from "@/schemas/sharedFields";
 
 export default defineType({
   name: "navbar",
@@ -27,7 +27,7 @@ export default defineType({
           type: "object",
           icon: PanelRightIcon,
           fields: [
-            title,
+            ptTitle,
             {
               name: "group",
               type: "array",
@@ -37,7 +37,7 @@ export default defineType({
                   type: "object",
                   icon: PanelRightIcon,
                   fields: [
-                    title,
+                    ptTitle,
                     ptDescription,
                     {
                       type: "link",
@@ -51,7 +51,7 @@ export default defineType({
                   type: "object",
                   icon: LinkIcon,
                   fields: [
-                    title,
+                    ptTitle,
                     {
                       ...links,
                       description: "",

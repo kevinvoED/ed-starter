@@ -1,7 +1,7 @@
 import { Menu } from "lucide-react";
 import { FolderIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { link, logo, title, toggle } from "@/schemas/sharedFields";
+import { link, logo, ptTitle, toggle } from "@/schemas/sharedFields";
 
 export default defineType({
   name: "footer",
@@ -23,10 +23,9 @@ export default defineType({
           icon: FolderIcon,
           fields: [
             {
-              ...title,
+              ...ptTitle,
               title: "Category Title",
               description: "The title of the category or collection of links.",
-              placeholder: "e.g. Platform, Solutions, Resources, etc.",
             },
             {
               ...toggle,
@@ -66,10 +65,8 @@ export default defineType({
                   icon: FolderIcon,
                   fields: [
                     defineField({
-                      ...title,
+                      ...ptTitle,
                       title: "Sub Category Title",
-                      placeholder:
-                        "e.g. Detection Capabilities, Use Cases, Overview, etc.",
                     }),
                     defineField({
                       ...link,

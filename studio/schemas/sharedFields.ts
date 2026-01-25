@@ -1,3 +1,4 @@
+import { toPlainText } from "@portabletext/react";
 import {
   ImageIcon,
   ImagesIcon,
@@ -15,24 +16,6 @@ import { portableTextPlain } from "@/schemas/objects/portable-text-plain";
  * Make sure to check validation and descriptions should always end with a period.
  * Please keep this file organized and well documented
  */
-
-export const pageTitle = defineField({
-  name: "title",
-  title: "Title",
-  description:
-    "Purely for organization and display purposes in Sanity Studio. This does not affect any modules on this page.",
-  type: "string",
-  validation: (Rule) => Rule.required(),
-});
-
-// TODO: replace all regular titles with ptTitle
-export const title = defineField({
-  name: "title",
-  title: "Title",
-  description: "Main title for this section or module.",
-  type: "string",
-  validation: (Rule) => Rule.required(),
-});
 
 export const ptTitle = portableTextPlain({
   name: "title",
@@ -299,7 +282,15 @@ export const marquee = defineField({
       title: "Marquee Item",
       type: "object",
       icon: MasterDetailIcon,
-      fields: [title],
+      fields: [ptTitle],
+      preview: {
+        select: {
+          title: "title",
+        },
+        prepare({ title }) {
+          return { title: toPlainText(title) };
+        },
+      },
     },
   ],
 });

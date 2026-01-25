@@ -47,8 +47,21 @@ export type Image1 = {
 export type HeroPrimary = {
   _type: "hero-primary";
   eyebrow?: string;
-  title: string;
-  links?: Array<
+  title: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  link?: Array<
     {
       _key: string;
     } & Link
@@ -181,7 +194,20 @@ export type Redirect = {
 export type Link = {
   _type: "link";
   isExternal?: boolean;
-  title: string;
+  title: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
   internalLink?:
     | PageReference
     | PlatformChildReference
@@ -269,7 +295,20 @@ export type Footer = {
   _updatedAt: string;
   _rev: string;
   mainLinks?: Array<{
-    title: string;
+    title: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: never;
+      markDefs?: null;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
     hasIndexPage: boolean;
     indexPageLink?: Array<
       {
@@ -277,7 +316,20 @@ export type Footer = {
       } & Link
     >;
     subCategories?: Array<{
-      title: string;
+      title: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal";
+        listItem?: never;
+        markDefs?: null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }>;
       link: Array<
         {
           _key: string;
@@ -341,10 +393,36 @@ export type Navbar = {
         _key: string;
       } & Link)
     | {
-        title: string;
+        title: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: never;
+          markDefs?: null;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
         group?: Array<
           | {
-              title: string;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs?: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
               description?: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -364,7 +442,20 @@ export type Navbar = {
               _key: string;
             }
           | {
-              title: string;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs?: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
               links?: Array<
                 {
                   _key: string;
@@ -406,8 +497,34 @@ export type PostIndex = {
   _updatedAt: string;
   _rev: string;
   slug: Slug;
-  title: string;
-  description?: string;
+  title: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  description?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
   featuredPost?: PostReference;
   blocks?: Array<
     {
@@ -477,7 +594,20 @@ export type Post = {
       _key: string;
     } & Link
   >;
-  description?: string;
+  description?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
   image?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -502,7 +632,20 @@ export type PlatformChild = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title: string;
+  title: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
   slug: Slug;
   blocks?: Array<
     {
@@ -525,7 +668,20 @@ export type PlatformIndex = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title: string;
+  title: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
   slug: Slug;
   blocks?: Array<
     {
@@ -557,7 +713,7 @@ export type Author = {
     _type: "block";
     _key: string;
   }>;
-  links?: Array<
+  link?: Array<
     {
       _key: string;
     } & Link
@@ -577,7 +733,20 @@ export type Page = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title: string;
+  title: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
   slug: Slug;
   blocks?: Array<
     {
@@ -815,7 +984,20 @@ export type FOOTER_QUERY_RESULT = Array<{
     _type: "link";
     _key: string;
     isExternal?: boolean;
-    title: string;
+    title: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: never;
+      markDefs?: null;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
     internalLink?:
       | PageReference
       | PlatformChildReference
@@ -829,7 +1011,20 @@ export type FOOTER_QUERY_RESULT = Array<{
     _type: "link";
     _key: string;
     isExternal?: boolean;
-    title: string;
+    title: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: never;
+      markDefs?: null;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
     internalLink?:
       | PageReference
       | PlatformChildReference
@@ -841,13 +1036,39 @@ export type FOOTER_QUERY_RESULT = Array<{
   }> | null;
   mainLinks: Array<{
     _key: string;
-    title: string;
+    title: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: never;
+      markDefs?: null;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
     hasIndexPage: boolean;
     indexPageLink: Array<{
       _type: "link";
       _key: string;
       isExternal?: boolean;
-      title: string;
+      title: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal";
+        listItem?: never;
+        markDefs?: null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }>;
       internalLink?:
         | PageReference
         | PlatformChildReference
@@ -859,12 +1080,38 @@ export type FOOTER_QUERY_RESULT = Array<{
     }> | null;
     subCategories: Array<{
       _key: string;
-      title: string;
+      title: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal";
+        listItem?: never;
+        markDefs?: null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }>;
       link: Array<{
         _type: "link";
         _key: string;
         isExternal?: boolean;
-        title: string;
+        title: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: never;
+          markDefs?: null;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
         internalLink?:
           | PageReference
           | PlatformChildReference
@@ -880,7 +1127,20 @@ export type FOOTER_QUERY_RESULT = Array<{
     _key: string;
     _type: "link";
     isExternal?: boolean;
-    title: string;
+    title: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: never;
+      markDefs?: null;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
     internalLink?:
       | PageReference
       | PlatformChildReference
@@ -925,12 +1185,38 @@ export type NAVBAR_QUERY_RESULT = Array<{
     | {
         _type: "group";
         _key: string;
-        title: string;
+        title: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: never;
+          markDefs?: null;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
         group: Array<
           | {
               _type: "card";
               _key: string;
-              title: string;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs?: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
               description: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -949,7 +1235,20 @@ export type NAVBAR_QUERY_RESULT = Array<{
                 _type: "link";
                 _key: null;
                 isExternal?: boolean;
-                title: string;
+                title: Array<{
+                  children?: Array<{
+                    marks?: Array<string>;
+                    text?: string;
+                    _type: "span";
+                    _key: string;
+                  }>;
+                  style?: "normal";
+                  listItem?: never;
+                  markDefs?: null;
+                  level?: number;
+                  _type: "block";
+                  _key: string;
+                }>;
                 internalLink?:
                   | PageReference
                   | PlatformChildReference
@@ -963,12 +1262,38 @@ export type NAVBAR_QUERY_RESULT = Array<{
           | {
               _type: "link-group";
               _key: string;
-              title: string;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs?: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
               links: Array<{
                 _type: "link";
                 _key: string;
                 isExternal?: boolean;
-                title: string;
+                title: Array<{
+                  children?: Array<{
+                    marks?: Array<string>;
+                    text?: string;
+                    _type: "span";
+                    _key: string;
+                  }>;
+                  style?: "normal";
+                  listItem?: never;
+                  markDefs?: null;
+                  level?: number;
+                  _type: "block";
+                  _key: string;
+                }>;
                 internalLink?:
                   | PageReference
                   | PlatformChildReference
@@ -1053,7 +1378,20 @@ export type NAVBAR_QUERY_RESULT = Array<{
         _type: "link";
         _key: string;
         isExternal?: boolean;
-        title: string;
+        title: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: never;
+          markDefs?: null;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
         internalLink?:
           | PageReference
           | PlatformChildReference
@@ -1068,7 +1406,20 @@ export type NAVBAR_QUERY_RESULT = Array<{
     _type: "link";
     _key: string;
     isExternal?: boolean;
-    title: string;
+    title: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: never;
+      markDefs?: null;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
     internalLink?:
       | PageReference
       | PlatformChildReference
@@ -1088,21 +1439,21 @@ export type PAGE_QUERY_RESULT = {
   blocks: Array<{
     _type: "hero-primary";
     _key: string;
-    title: string;
-    links: Array<{
-      _type: "link";
+    title: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: never;
+      markDefs?: null;
+      level?: number;
+      _type: "block";
       _key: string;
-      isExternal?: boolean;
-      title: string;
-      internalLink?:
-        | PageReference
-        | PlatformChildReference
-        | PlatformIndexReference
-        | PostIndexReference
-        | PostReference;
-      href: string | "/" | "/blog" | "/platform" | null;
-      openInNewTab?: boolean;
-    }> | null;
+    }>;
+    links: null;
     image: {
       asset: {
         _id: string;
@@ -1124,7 +1475,22 @@ export type PAGE_QUERY_RESULT = {
     } | null;
   }> | null;
   meta: {
-    title: string;
+    title:
+      | Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: never;
+          markDefs?: null;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>
+      | string;
     description: string | null;
     noindex: boolean | null;
     relativeUrl: string | "/";
@@ -1190,11 +1556,52 @@ export type ORGANIZATION_QUERY_RESULT = {
 export type BLOG_QUERY_RESULT = {
   _id: string;
   _type: "post-index";
-  title: string;
-  description: string | null;
+  title: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  description: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
   slug: Slug;
   meta: {
-    title: string;
+    title:
+      | Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: never;
+          markDefs?: null;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>
+      | string;
     description: string | null;
     noindex: boolean | null;
     relativeUrl: "/" | "/blog";
@@ -1203,21 +1610,21 @@ export type BLOG_QUERY_RESULT = {
   blocks: Array<{
     _type: "hero-primary";
     _key: string;
-    title: string;
-    links: Array<{
-      _type: "link";
+    title: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: never;
+      markDefs?: null;
+      level?: number;
+      _type: "block";
       _key: string;
-      isExternal?: boolean;
-      title: string;
-      internalLink?:
-        | PageReference
-        | PlatformChildReference
-        | PlatformIndexReference
-        | PostIndexReference
-        | PostReference;
-      href: string | "/" | "/blog" | "/platform" | null;
-      openInNewTab?: boolean;
-    }> | null;
+    }>;
+    links: null;
     image: {
       asset: {
         _id: string;
@@ -1282,7 +1689,20 @@ export type BLOG_QUERY_RESULT = {
       _type: "block";
       _key: string;
     }>;
-    description: string | null;
+    description: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: never;
+      markDefs?: null;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }> | null;
     publishedDate: string | null;
     image: {
       asset: {
@@ -1307,7 +1727,20 @@ export type BLOG_QUERY_RESULT = {
       _type: "link";
       _key: string;
       isExternal?: boolean;
-      title: string;
+      title: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal";
+        listItem?: never;
+        markDefs?: null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }>;
       internalLink?:
         | PageReference
         | PlatformChildReference
@@ -1362,13 +1795,39 @@ export type BLOG_QUERY_RESULT = {
       _key: string;
     }>;
     slug: Slug;
-    description: string | null;
+    description: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: never;
+      markDefs?: null;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }> | null;
     publishedDate: string | null;
     link: {
       _type: "link";
       _key: string;
       isExternal?: boolean;
-      title: string;
+      title: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal";
+        listItem?: never;
+        markDefs?: null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }>;
       internalLink?:
         | PageReference
         | PlatformChildReference
@@ -1447,7 +1906,20 @@ export type BLOG_SLUG_QUERY_RESULT = {
     _type: "block";
     _key: string;
   }>;
-  description: string | null;
+  description: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
   publishedDate: string | null;
   content: Array<
     | {
@@ -1519,7 +1991,20 @@ export type BLOG_SLUG_QUERY_RESULT = {
         _key: string;
         _type: "link";
         isExternal?: boolean;
-        title: string;
+        title: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: never;
+          markDefs?: null;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
         internalLink?:
           | PageReference
           | PlatformChildReference
@@ -1606,21 +2091,21 @@ export type BLOG_SLUG_QUERY_RESULT = {
   blocks: Array<{
     _type: "hero-primary";
     _key: string;
-    title: string;
-    links: Array<{
-      _type: "link";
+    title: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: never;
+      markDefs?: null;
+      level?: number;
+      _type: "block";
       _key: string;
-      isExternal?: boolean;
-      title: string;
-      internalLink?:
-        | PageReference
-        | PlatformChildReference
-        | PlatformIndexReference
-        | PostIndexReference
-        | PostReference;
-      href: string | "/" | "/blog" | "/platform" | null;
-      openInNewTab?: boolean;
-    }> | null;
+    }>;
+    links: null;
     image: {
       asset: {
         _id: string;

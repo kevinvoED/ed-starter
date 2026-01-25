@@ -1,6 +1,6 @@
 import { DashboardIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { eyebrow, image, links, title } from "@/schemas/sharedFields";
+import { eyebrow, image, link, ptTitle } from "@/schemas/sharedFields";
 
 export default defineType({
   name: "hero-primary",
@@ -9,8 +9,11 @@ export default defineType({
   icon: DashboardIcon,
   fields: [
     eyebrow,
-    title,
-    defineField({ ...links, validation: (Rule) => Rule }),
+    ptTitle,
+    defineField({
+      ...link,
+      validation: (Rule) => Rule.max(2),
+    }),
     image,
   ],
   preview: {
