@@ -51,15 +51,6 @@ export default defineType({
       ...slug,
     }),
     defineField({
-      name: "topics",
-      title: "Topic",
-      description: "Optional. Used to categorize the post for filtering.",
-      type: "array",
-      group: "settings",
-      of: [{ type: "reference", to: { type: "resource-topic" } }],
-      validation: (Rule) => Rule.max(1),
-    }),
-    defineField({
       ...link,
       description:
         "Optional. Used to redirect this to another page instead of its respective Detail page.",

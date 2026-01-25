@@ -7,30 +7,16 @@ export type ViewableTypes =
   | "page"
   | "platform-index"
   | "platform-child"
-  | "solutions-child"
   | "post-index"
-  | "post"
-  | "resource-index"
-  | "resource"
-  | "case-study-index"
-  | "case-study"
-  | "event-index"
-  | "event";
+  | "post";
 
 /** Keep in sync with the linkMapper and link queries */
 export const VIEWABLE_TYPES = new Set<ViewableTypes>([
   "page",
   "platform-index",
   "platform-child",
-  "solutions-child",
   "post-index",
   "post",
-  "resource-index",
-  "resource",
-  "case-study-index",
-  "case-study",
-  "event-index",
-  "event",
 ]);
 
 // recreate frontend/sanity/queries/shared/link.ts hrefQuery
@@ -41,15 +27,8 @@ export const linkMapper = (type: string, slug: Slug) => {
       page: slug.current === "index" ? "" : `/${slug.current}`,
       "platform-index": "/platform",
       "platform-child": `/platform/${slug.current}`,
-      "solutions-child": `/solutions/${slug.current}`,
       "post-index": "/blog",
       post: `/blog/${slug.current}`,
-      "resource-index": "/resources",
-      resource: `/resources/${slug.current}`,
-      "case-study-index": "/case-studies",
-      "case-study": `/case-studies/${slug.current}`,
-      "event-index": "/events",
-      event: `/events/${slug.current}`,
     }[type] || `/${slug.current}`
   );
 };

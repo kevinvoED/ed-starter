@@ -1,13 +1,11 @@
 import type { StructureBuilder, StructureResolver } from "sanity/structure";
 import {
-  BookmarkIcon,
   CogIcon,
   DashboardIcon,
   DocumentsIcon,
   EarthGlobeIcon,
   FolderIcon,
   RedoIcon,
-  UsersIcon,
 } from "@sanity/icons";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import { defaultDocumentNode } from "@/lib/defaultDocumentNode";
@@ -33,53 +31,15 @@ const resourceItems = [
     landingPageSchemaType: "post-index",
     icon: FolderIcon,
   },
-  {
-    title: "Case Studies",
-    itemTitle: "Case Studies Posts",
-    itemSchemaType: "case-study",
-    landingPageTitle: "Case Study Landing",
-    landingPageSchemaType: "case-study-index",
-    categoryTitle: "Case Study Categories",
-    categorySchemaType: "case-study-category",
-    icon: FolderIcon,
-  },
-  {
-    title: "Resources",
-    itemTitle: "Resources Posts",
-    itemSchemaType: "resource",
-    landingPageTitle: "Resource Landing",
-    landingPageSchemaType: "resource-index",
-    categoryTitle: "Resource Categories",
-    categorySchemaType: "resource-category",
-    icon: FolderIcon,
-  },
-  {
-    title: "Events",
-    itemTitle: "Events & Webinars",
-    itemSchemaType: "event",
-    landingPageTitle: "Events & Webinars Landing",
-    landingPageSchemaType: "events-index",
-    icon: FolderIcon,
-  },
 ];
 
-const referenceItems = [
-  {
-    title: "Authors",
-    schemaType: "author",
-    icon: UsersIcon,
-  },
-  {
-    title: "Staff",
-    schemaType: "staff",
-    icon: UsersIcon,
-  },
-  {
-    title: "Resource Topics",
-    schemaType: "resource-topic",
-    icon: BookmarkIcon,
-  },
-];
+// const referenceItems = [
+//   {
+//     title: "Resource Topics",
+//     schemaType: "resource-topic",
+//     icon: BookmarkIcon,
+//   },
+// ];
 
 const globalItems = [
   {
@@ -162,13 +122,13 @@ export const structure: StructureResolver = (S: StructureBuilder, context) =>
                 ]),
             ),
       ),
-      orderableDocumentListDeskItem({
-        type: "solutions-child",
-        title: "Solutions",
-        icon: FolderIcon,
-        S,
-        context,
-      }),
+      // orderableDocumentListDeskItem({
+      //   type: "solutions-child",
+      //   title: "Solutions",
+      //   icon: FolderIcon,
+      //   S,
+      //   context,
+      // }),
       S.divider().title("Resources"),
       ...resourceItems.map(
         ({
@@ -177,8 +137,6 @@ export const structure: StructureResolver = (S: StructureBuilder, context) =>
           itemSchemaType,
           landingPageTitle,
           landingPageSchemaType,
-          categoryTitle,
-          categorySchemaType,
           icon,
         }) =>
           S.listItem()
@@ -214,33 +172,19 @@ export const structure: StructureResolver = (S: StructureBuilder, context) =>
                           { field: "_createdAt", direction: "desc" },
                         ]),
                     ),
-                  ...(categoryTitle && categorySchemaType
-                    ? [
-                        S.listItem()
-                          .title(categoryTitle)
-                          .schemaType(categorySchemaType)
-                          .child(
-                            S.documentTypeList(categorySchemaType)
-                              .title(categoryTitle)
-                              .defaultOrdering([
-                                { field: "title", direction: "asc" },
-                              ]),
-                          ),
-                      ]
-                    : []),
                 ]),
             ),
       ),
-      S.divider().title("References"),
-      ...referenceItems.map(({ title, icon, schemaType }) =>
-        orderableDocumentListDeskItem({
-          type: schemaType,
-          title: title,
-          icon: icon,
-          S,
-          context,
-        }),
-      ),
+      // S.divider().title("References"),
+      // ...referenceItems.map(({ title, icon, schemaType }) =>
+      //   orderableDocumentListDeskItem({
+      //     type: schemaType,
+      //     title: title,
+      //     icon: icon,
+      //     S,
+      //     context,
+      //   }),
+      // ),
       S.divider().title("Global"),
       ...globalItems.map(({ title, icon, schemaType }) =>
         S.listItem()

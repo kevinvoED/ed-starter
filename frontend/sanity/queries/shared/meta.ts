@@ -8,15 +8,8 @@ export const metaQuery = `
       ^.slug.current == "index" => "/",
       ^._type == "post" => "/blog/" + ^.slug.current,
       ^._type == "post-index" => "/blog",
-      ^._type == "case-study" => "/case-studies/" + ^.slug.current,
-      ^._type == "case-study-index" => "/case-studies",
-      ^._type == "resource" => "/resources/" + ^.slug.current,
-      ^._type == "resource-index" => "/resources",
       ^._type == "platform-index" => "/platform",
       ^._type == "platform-child" => "/platform/" + ^.slug.current,
-      ^._type == "solutions-child" => "/solutions/" + ^.slug.current,
-      ^._type == "event" => "/events/" + ^.slug.current,
-      ^._type == "events-index" => "/events",
       "/" + ^.slug.current
     ),
     // the dimensions are the recommended meta image size

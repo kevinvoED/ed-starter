@@ -20,25 +20,6 @@ const resolvePresentation: PresentationPluginOptions["resolve"] = {
             href: `/blog/${doc?.slug}`,
           },
           { title: "Blog", href: "/blog" },
-          {
-            title: doc?.title || "Untitled",
-            href: `/case-studies/${doc?.slug}`,
-          },
-          { title: "Case Studies", href: "/case-studies" },
-          {
-            title: doc?.title || "Untitled",
-            href: `/resources/${doc?.slug}`,
-          },
-          { title: "Resources", href: "/resources" },
-          {
-            title: doc?.title || "Untitled",
-            href: `/resources/${doc?.slug}`,
-          },
-          {
-            title: doc?.title || "Untitled",
-            href: `/events/${doc?.slug}`,
-          },
-          { title: "Events", href: "/events" },
         ],
       }),
     }),
@@ -56,18 +37,6 @@ const resolvePresentation: PresentationPluginOptions["resolve"] = {
     {
       route: "/blog/:slug",
       filter: `_type == 'post' && slug.current == $slug`,
-    },
-    {
-      route: "/case-studies/:slug",
-      filter: `_type == 'case-study' && slug.current == $slug`,
-    },
-    {
-      route: "/events/:slug",
-      filter: `_type == 'event' && slug.current == $slug`,
-    },
-    {
-      route: "/resources/:slug",
-      filter: `_type == 'resource' && slug.current == $slug`,
     },
   ]),
 };

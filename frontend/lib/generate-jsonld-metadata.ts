@@ -1,8 +1,5 @@
 import type { JSONLDScriptProps } from "@/components/Metadata/Jsonld";
-import type {
-  EVENTS_SLUG_QUERY_RESULT,
-  ORGANIZATION_QUERY_RESULT,
-} from "@/sanity.types";
+import type { ORGANIZATION_QUERY_RESULT } from "@/sanity.types";
 import type { ViewableTypes } from "./utils";
 import { generatePageMetadata } from "./metadata";
 import { get } from "es-toolkit/compat";
@@ -13,53 +10,46 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 
 const typeMap = {
   page: "WebPage",
-  "event-index": "WebPage",
-  "solutions-child": "WebPage",
   "platform-index": "WebPage",
   "platform-child": "WebPage",
   "post-index": "WebPage",
-  "case-study-index": "WebPage",
-  "resource-index": "WebPage",
   post: "Article",
-  resource: "Article",
-  "case-study": "Article",
-  event: "Event",
 } as Record<ViewableTypes, "WebPage" | "Article" | "Event">;
 
-const getAdditionalData = (
-  type: ViewableTypes,
-  document: JSONLDScriptProps["document"],
-) => {
-  const results: Record<string, unknown> = {};
+// const getAdditionalData = (
+//   type: ViewableTypes,
+//   document: JSONLDScriptProps["document"],
+// ) => {
+//   const results: Record<string, unknown> = {};
 
-  if (type === "event") {
-    const doc = document as NonNullable<EVENTS_SLUG_QUERY_RESULT>;
-    results.url = doc.eventLink?.href || `${SITE_URL}${doc.meta?.relativeUrl}`;
-    results.eventStatus = "https://schema.org/EventScheduled";
-    results.eventAttendanceMode =
-      doc?.type === "webinar"
-        ? "https://schema.org/OnlineEventAttendanceMode"
-        : "https://schema.org/OfflineEventAttendanceMode";
-    results.location = {
-      "@type": doc.type === "webinar" ? "VirtualLocation" : "Place",
-      name: doc.location,
-      /** @todo bring back map link? */
-      // map: get(doc, "location.googleMapsLink"),
-      // address: {
-      //   "@type": "PostalAddress",
-      //   streetAddress: get(doc, "location.address"),
-      //   addressLocality: get(doc, "location.city"),
-      //   addressRegion: get(doc, "location.state"),
-      //   postalCode: get(doc, "location.zip"),
-      //   addressCountry: "US",
-      // },
-    };
-    results.startDate = doc.startDate;
-    results.endDate = doc.endDate;
-  }
+//   if (type === "event") {
+//     const doc = document as NonNullable<EVENTS_SLUG_QUERY_RESULT>;
+//     results.url = doc.eventLink?.href || `${SITE_URL}${doc.meta?.relativeUrl}`;
+//     results.eventStatus = "https://schema.org/EventScheduled";
+//     results.eventAttendanceMode =
+//       doc?.type === "webinar"
+//         ? "https://schema.org/OnlineEventAttendanceMode"
+//         : "https://schema.org/OfflineEventAttendanceMode";
+//     results.location = {
+//       "@type": doc.type === "webinar" ? "VirtualLocation" : "Place",
+//       name: doc.location,
+//       /** @todo bring back map link? */
+//       // map: get(doc, "location.googleMapsLink"),
+//       // address: {
+//       //   "@type": "PostalAddress",
+//       //   streetAddress: get(doc, "location.address"),
+//       //   addressLocality: get(doc, "location.city"),
+//       //   addressRegion: get(doc, "location.state"),
+//       //   postalCode: get(doc, "location.zip"),
+//       //   addressCountry: "US",
+//       // },
+//     };
+//     results.startDate = doc.startDate;
+//     results.endDate = doc.endDate;
+//   }
 
-  return results;
-};
+//   return results;
+// };
 
 /** @see https://json-ld.org/playground/ */
 /** @see https://search.google.com/test/rich-results */
@@ -91,7 +81,6 @@ export default function generateJsonldMetadata(
           height: get(metadata, "openGraph.images[0].height"),
         }
       : null,
-    ...getAdditionalData(type, document),
   };
 }
 
