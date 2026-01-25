@@ -8,7 +8,7 @@ import {
   RedoIcon,
 } from "@sanity/icons";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
-import { defaultDocumentNode } from "@/lib/defaultDocumentNode";
+import { defaultDocumentNode } from "@/lib/default-document-node";
 
 const parentChildPageItems = [
   {

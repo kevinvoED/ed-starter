@@ -4,7 +4,7 @@ import type { SchemaTypeDefinition } from "sanity";
 import { createdAtType } from "@/components/created-at";
 // Pages
 import page from "@/schemas/pages/page";
-import post from "@/schemas/documents/post";
+import post from "@/schemas/pages/post";
 import postIndex from "@/schemas/pages/post-index";
 import platformChild from "@/schemas/pages/platform-child";
 import platformIndex from "@/schemas/pages/platform-index";

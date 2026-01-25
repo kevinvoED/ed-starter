@@ -14,14 +14,14 @@ import {
   SINGLETON_DOCUMENT_ACTIONS,
   SINGLETON_DOCUMENT_TYPES,
 } from "@/lib/consts";
-import { defaultDocumentNode } from "@/lib/defaultDocumentNode";
+import { defaultDocumentNode } from "@/lib/default-document-node";
 import { deploymentOptions } from "@/lib/deployment";
 import {
   SANITY_STUDIO_API_VERSION,
   SANITY_STUDIO_DATASET,
   SANITY_STUDIO_PROJECT_ID,
 } from "@/lib/env";
-import { guideTool } from "@/lib/guideTool";
+import { guideTool } from "@/lib/guide-tool";
 import { presentationOptions } from "@/lib/presentation";
 import { structure } from "@/lib/structure";
 import { schema } from "@/schemas/schema";
