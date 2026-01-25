@@ -16,7 +16,7 @@ import {
   BLOG_SLUG_QUERY,
   BLOG_SLUGS_QUERY,
   ORGANIZATION_QUERY,
-  PAGE_TYPE_QUERY,
+  PAGE_SLUG_QUERY,
   PAGES_SLUGS_QUERY,
 } from "@/sanity/queries/queries";
 
@@ -62,7 +62,7 @@ export const fetchSanityPageBySlug = async ({
   slug: string;
 }): Promise<PAGE_QUERY_RESULT> => {
   const { data } = await sanityFetch({
-    query: PAGE_TYPE_QUERY,
+    query: PAGE_SLUG_QUERY,
     params: { pageType, slug },
   });
 

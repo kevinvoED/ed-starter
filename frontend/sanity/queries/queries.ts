@@ -5,11 +5,14 @@
 
 import { defineQuery } from "next-sanity";
 import { HERO_PRIMARY_QUERY } from "./modules/hero/hero-primary";
-import { imageFragment, logoFragment } from "./shared/image";
-import { linkArrayFragment } from "./shared/link";
-import { metaQuery } from "./shared/meta";
-import { portableTextFragment } from "./shared/portable-text";
-import { portableTextPlainFragment } from "./shared/portable-text-plain";
+import {
+  imageFragment,
+  linkArrayFragment,
+  logoFragment,
+  metaFragment,
+  portableTextFragment,
+  portableTextPlainFragment,
+} from "./sharedFragments";
 
 /*
  * This `modulesFragment` is used to query for all modules.
@@ -48,12 +51,12 @@ export const PAGE_QUERY = defineQuery(`
     blocks[]{
       ${modulesFragment}
     },
-    ${metaQuery}
+    ${metaFragment}
   }
 `);
 
 // @sanity-typegen-ignore
-export const PAGE_TYPE_QUERY = defineQuery(`
+export const PAGE_SLUG_QUERY = defineQuery(`
   *[_type == $pageType && slug.current == $slug][0]{
     _type,
     title,
@@ -62,7 +65,7 @@ export const PAGE_TYPE_QUERY = defineQuery(`
     blocks[]{
       ${modulesFragment}
     },
-    ${metaQuery},
+    ${metaFragment},
   }
 `);
 
@@ -82,7 +85,7 @@ export const BLOG_QUERY = defineQuery(`
     title,
     description,
     slug,
-    ${metaQuery},
+    ${metaFragment},
     blocks[]{
       ${modulesFragment}
     },
@@ -130,7 +133,7 @@ export const BLOG_SLUG_QUERY = defineQuery(`
       ${portableTextFragment},
     },
     ${imageFragment},
-    ${metaQuery},
+    ${metaFragment},
     blocks[]{
       ${modulesFragment}
     },

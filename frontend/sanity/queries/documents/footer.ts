@@ -1,5 +1,5 @@
 import { defineQuery } from "next-sanity";
-import { linkFields, linkFragment } from "../shared/link";
+import { linkFields, linkFragment } from "../sharedFragments";
 
 export const FOOTER_QUERY = defineQuery(`
   *[_type == "footer"]{

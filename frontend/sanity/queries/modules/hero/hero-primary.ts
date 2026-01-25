@@ -1,6 +1,5 @@
 import { defineQuery } from "next-sanity";
-import { imageFragment } from "../../shared/image";
-import { linkFragment } from "../../shared/link";
+import { imageFragment, linkFragment } from "../../sharedFragments";
 
 // @sanity-typegen-ignore
 export const HERO_PRIMARY_QUERY = defineQuery(`
