@@ -10,6 +10,7 @@ import { defineConfig } from "sanity";
 import { presentationTool } from "sanity/presentation";
 import { structureTool } from "sanity/structure";
 import { media } from "sanity-plugin-media";
+import { simplerColorInputOptions } from "@/lib/color-input";
 import {
   SINGLETON_DOCUMENT_ACTIONS,
   SINGLETON_DOCUMENT_TYPES,
@@ -26,6 +27,7 @@ import { presentationOptions } from "@/lib/presentation";
 import { structure } from "@/lib/structure";
 import { schema } from "@/schemas/schema";
 import { OpenDocumentUrlAction } from "./actions";
+import { simplerColorInput } from "sanity-plugin-simpler-color-input";
 import { VIEWABLE_TYPES, type ViewableTypes } from "../frontend/lib/utils";
 
 export default defineConfig({
@@ -68,5 +70,6 @@ export default defineConfig({
     media(),
     table(),
     dashboardTool(deploymentOptions),
+    simplerColorInput(simplerColorInputOptions),
   ],
 });

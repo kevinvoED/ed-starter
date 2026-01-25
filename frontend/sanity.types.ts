@@ -56,7 +56,14 @@ export type HeroPrimary = {
     }>;
     style?: "normal";
     listItem?: never;
-    markDefs?: null;
+    markDefs?: Array<
+      | ({
+          _key: string;
+        } & TextColor)
+      | ({
+          _key: string;
+        } & HighlightColor)
+    >;
     level?: number;
     _type: "block";
     _key: string;
@@ -128,32 +135,12 @@ export type PortableText = Array<
             _type: "link";
             _key: string;
           }
-        | {
-            backgroundColor?:
-              | "white"
-              | "black"
-              | "neon"
-              | "gunmetal"
-              | "ash"
-              | "charcoal"
-              | "silver"
-              | "alabaster"
-              | "platinum"
-              | "porcelain";
-            textColor?:
-              | "white"
-              | "black"
-              | "neon"
-              | "gunmetal"
-              | "ash"
-              | "charcoal"
-              | "silver"
-              | "alabaster"
-              | "platinum"
-              | "porcelain";
-            _type: "highlight";
+        | ({
             _key: string;
-          }
+          } & TextColor)
+        | ({
+            _key: string;
+          } & HighlightColor)
       >;
       level?: number;
       _type: "block";
@@ -558,32 +545,14 @@ export type Post = {
     }>;
     style?: "normal";
     listItem?: never;
-    markDefs?: Array<{
-      backgroundColor?:
-        | "white"
-        | "black"
-        | "neon"
-        | "gunmetal"
-        | "ash"
-        | "charcoal"
-        | "silver"
-        | "alabaster"
-        | "platinum"
-        | "porcelain";
-      textColor?:
-        | "white"
-        | "black"
-        | "neon"
-        | "gunmetal"
-        | "ash"
-        | "charcoal"
-        | "silver"
-        | "alabaster"
-        | "platinum"
-        | "porcelain";
-      _type: "highlight";
-      _key: string;
-    }>;
+    markDefs?: Array<
+      | ({
+          _key: string;
+        } & TextColor)
+      | ({
+          _key: string;
+        } & HighlightColor)
+    >;
     level?: number;
     _type: "block";
     _key: string;
@@ -716,6 +685,24 @@ export type Page = {
   >;
   meta?: Meta;
   orderRank?: string;
+};
+
+export type HighlightColor = {
+  _type: "highlightColor";
+  label?: string;
+  value?: string;
+};
+
+export type TextColor = {
+  _type: "textColor";
+  label?: string;
+  value?: string;
+};
+
+export type SimplerColor = {
+  _type: "simplerColor";
+  label?: string;
+  value?: string;
 };
 
 export type Table = {
@@ -876,6 +863,9 @@ export type AllSanitySchemaTypes =
   | Author
   | CreatedAt
   | Page
+  | HighlightColor
+  | TextColor
+  | SimplerColor
   | Table
   | TableRow
   | MediaTag
@@ -1280,32 +1270,14 @@ export type NAVBAR_QUERY_RESULT = Array<{
                   }>;
                   style?: "normal";
                   listItem?: never;
-                  markDefs?: Array<{
-                    backgroundColor?:
-                      | "alabaster"
-                      | "ash"
-                      | "black"
-                      | "charcoal"
-                      | "gunmetal"
-                      | "neon"
-                      | "platinum"
-                      | "porcelain"
-                      | "silver"
-                      | "white";
-                    textColor?:
-                      | "alabaster"
-                      | "ash"
-                      | "black"
-                      | "charcoal"
-                      | "gunmetal"
-                      | "neon"
-                      | "platinum"
-                      | "porcelain"
-                      | "silver"
-                      | "white";
-                    _type: "highlight";
-                    _key: string;
-                  }>;
+                  markDefs?: Array<
+                    | ({
+                        _key: string;
+                      } & HighlightColor)
+                    | ({
+                        _key: string;
+                      } & TextColor)
+                  >;
                   level?: number;
                   _type: "block";
                   _key: string;
@@ -1409,7 +1381,14 @@ export type PAGE_QUERY_RESULT = {
       }>;
       style?: "normal";
       listItem?: never;
-      markDefs?: null;
+      markDefs?: Array<
+        | ({
+            _key: string;
+          } & HighlightColor)
+        | ({
+            _key: string;
+          } & TextColor)
+      >;
       level?: number;
       _type: "block";
       _key: string;
@@ -1591,7 +1570,14 @@ export type BLOG_QUERY_RESULT = {
       }>;
       style?: "normal";
       listItem?: never;
-      markDefs?: null;
+      markDefs?: Array<
+        | ({
+            _key: string;
+          } & HighlightColor)
+        | ({
+            _key: string;
+          } & TextColor)
+      >;
       level?: number;
       _type: "block";
       _key: string;
@@ -1657,32 +1643,20 @@ export type BLOG_QUERY_RESULT = {
       }>;
       style?: "normal";
       listItem?: never;
-      markDefs: Array<{
-        backgroundColor?:
-          | "alabaster"
-          | "ash"
-          | "black"
-          | "charcoal"
-          | "gunmetal"
-          | "neon"
-          | "platinum"
-          | "porcelain"
-          | "silver"
-          | "white";
-        textColor?:
-          | "alabaster"
-          | "ash"
-          | "black"
-          | "charcoal"
-          | "gunmetal"
-          | "neon"
-          | "platinum"
-          | "porcelain"
-          | "silver"
-          | "white";
-        _type: "highlight";
-        _key: string;
-      }> | null;
+      markDefs: Array<
+        | {
+            _key: string;
+            _type: "highlightColor";
+            label?: string;
+            value?: string;
+          }
+        | {
+            _key: string;
+            _type: "textColor";
+            label?: string;
+            value?: string;
+          }
+      > | null;
       level?: number;
       _type: "block";
       _key: string;
@@ -1762,32 +1736,20 @@ export type BLOG_QUERY_RESULT = {
       }>;
       style?: "normal";
       listItem?: never;
-      markDefs: Array<{
-        backgroundColor?:
-          | "alabaster"
-          | "ash"
-          | "black"
-          | "charcoal"
-          | "gunmetal"
-          | "neon"
-          | "platinum"
-          | "porcelain"
-          | "silver"
-          | "white";
-        textColor?:
-          | "alabaster"
-          | "ash"
-          | "black"
-          | "charcoal"
-          | "gunmetal"
-          | "neon"
-          | "platinum"
-          | "porcelain"
-          | "silver"
-          | "white";
-        _type: "highlight";
-        _key: string;
-      }> | null;
+      markDefs: Array<
+        | {
+            _key: string;
+            _type: "highlightColor";
+            label?: string;
+            value?: string;
+          }
+        | {
+            _key: string;
+            _type: "textColor";
+            label?: string;
+            value?: string;
+          }
+      > | null;
       level?: number;
       _type: "block";
       _key: string;
@@ -1874,32 +1836,20 @@ export type BLOG_SLUG_QUERY_RESULT = {
     }>;
     style?: "normal";
     listItem?: never;
-    markDefs: Array<{
-      backgroundColor?:
-        | "alabaster"
-        | "ash"
-        | "black"
-        | "charcoal"
-        | "gunmetal"
-        | "neon"
-        | "platinum"
-        | "porcelain"
-        | "silver"
-        | "white";
-      textColor?:
-        | "alabaster"
-        | "ash"
-        | "black"
-        | "charcoal"
-        | "gunmetal"
-        | "neon"
-        | "platinum"
-        | "porcelain"
-        | "silver"
-        | "white";
-      _type: "highlight";
-      _key: string;
-    }> | null;
+    markDefs: Array<
+      | {
+          _key: string;
+          _type: "highlightColor";
+          label?: string;
+          value?: string;
+        }
+      | {
+          _key: string;
+          _type: "textColor";
+          label?: string;
+          value?: string;
+        }
+    > | null;
     level?: number;
     _type: "block";
     _key: string;
@@ -1931,30 +1881,10 @@ export type BLOG_SLUG_QUERY_RESULT = {
         listItem?: "bullet" | "number";
         markDefs: Array<
           | {
-              backgroundColor?:
-                | "alabaster"
-                | "ash"
-                | "black"
-                | "charcoal"
-                | "gunmetal"
-                | "neon"
-                | "platinum"
-                | "porcelain"
-                | "silver"
-                | "white";
-              textColor?:
-                | "alabaster"
-                | "ash"
-                | "black"
-                | "charcoal"
-                | "gunmetal"
-                | "neon"
-                | "platinum"
-                | "porcelain"
-                | "silver"
-                | "white";
-              _type: "highlight";
               _key: string;
+              _type: "highlightColor";
+              label?: string;
+              value?: string;
             }
           | {
               isExternal?: boolean;
@@ -1968,6 +1898,12 @@ export type BLOG_SLUG_QUERY_RESULT = {
               openInNewTab?: boolean;
               _type: "link";
               _key: string;
+            }
+          | {
+              _key: string;
+              _type: "textColor";
+              label?: string;
+              value?: string;
             }
         > | null;
         level?: number;
@@ -2050,32 +1986,14 @@ export type BLOG_SLUG_QUERY_RESULT = {
           }>;
           style?: "normal";
           listItem?: never;
-          markDefs?: Array<{
-            backgroundColor?:
-              | "alabaster"
-              | "ash"
-              | "black"
-              | "charcoal"
-              | "gunmetal"
-              | "neon"
-              | "platinum"
-              | "porcelain"
-              | "silver"
-              | "white";
-            textColor?:
-              | "alabaster"
-              | "ash"
-              | "black"
-              | "charcoal"
-              | "gunmetal"
-              | "neon"
-              | "platinum"
-              | "porcelain"
-              | "silver"
-              | "white";
-            _type: "highlight";
-            _key: string;
-          }>;
+          markDefs?: Array<
+            | ({
+                _key: string;
+              } & HighlightColor)
+            | ({
+                _key: string;
+              } & TextColor)
+          >;
           level?: number;
           _type: "block";
           _key: string;
@@ -2098,7 +2016,14 @@ export type BLOG_SLUG_QUERY_RESULT = {
       }>;
       style?: "normal";
       listItem?: never;
-      markDefs?: null;
+      markDefs?: Array<
+        | ({
+            _key: string;
+          } & HighlightColor)
+        | ({
+            _key: string;
+          } & TextColor)
+      >;
       level?: number;
       _type: "block";
       _key: string;

@@ -1,7 +1,6 @@
-import { HighlightIcon, LinkIcon, PlayIcon } from "@sanity/icons";
+import { LinkIcon, PlayIcon } from "@sanity/icons";
 import { defineArrayMember, defineType } from "sanity";
 import { YouTubePreview } from "@/components/youtube-preview";
-import { colorOptions } from "@/schemas/objects/color-variants";
 // PortableText is the default Rich Text editor with all formatting and special modules baked in
 
 export default defineType({
@@ -75,37 +74,10 @@ export default defineType({
             ],
           },
           {
-            name: "highlight",
-            type: "object",
-            title: "Highlight",
-            options: {
-              modal: {
-                type: "popover",
-                width: "auto",
-              },
-            },
-            icon: HighlightIcon,
-            fields: [
-              {
-                name: "backgroundColor",
-                title: "Change Background Color",
-                type: "string",
-                description:
-                  "Optional. Select the new background highlight color.",
-                options: {
-                  list: colorOptions,
-                },
-              },
-              {
-                name: "textColor",
-                title: "Change Text Color",
-                type: "string",
-                description: "Optional. Select the new text highlight color.",
-                options: {
-                  list: colorOptions,
-                },
-              },
-            ],
+            type: "textColor",
+          },
+          {
+            type: "highlightColor",
           },
         ],
       },

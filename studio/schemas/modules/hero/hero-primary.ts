@@ -1,6 +1,7 @@
+import { toPlainText } from "@portabletext/react";
 import { DashboardIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { eyebrow, image, link, title } from "@/schemas/sharedFields";
+import { eyebrow, image, link, titleHighlight } from "@/schemas/sharedFields";
 
 export default defineType({
   name: "hero-primary",
@@ -9,7 +10,7 @@ export default defineType({
   icon: DashboardIcon,
   fields: [
     eyebrow,
-    title,
+    titleHighlight,
     defineField({
       ...link,
       validation: (Rule) => Rule.max(2),
@@ -23,7 +24,7 @@ export default defineType({
     prepare({ title }) {
       return {
         title: "Hero Primary",
-        subtitle: title,
+        subtitle: toPlainText(title),
       };
     },
   },

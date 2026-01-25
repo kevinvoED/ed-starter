@@ -7,7 +7,6 @@ import Link from "next/link";
 import { Dot } from "@/components/Dot/Dot";
 import { SanityImage } from "@/components/Media/SanityImage";
 import { PortableTextHeading } from "@/components/PortableText/PortableTextHeading";
-import { PortableTextHighlight } from "@/components/PortableText/PortableTextHighlight";
 import { PortableTextYoutube } from "@/components/PortableText/PortableTextYoutube";
 import { cn } from "@/lib/utils";
 
@@ -115,11 +114,12 @@ const portableTextComponents = (
         </Link>
       );
     },
-    highlight: ({ value, children }) => {
-      return (
-        <PortableTextHighlight {...value}>{children}</PortableTextHighlight>
-      );
-    },
+    textColor: ({ children, value }) => (
+      <span style={{ color: value.value }}>{children}</span>
+    ),
+    highlightColor: ({ children, value }) => (
+      <span style={{ background: value.value }}>{children}</span>
+    ),
   },
   list: {
     bullet: ({ children }) => (

@@ -1,4 +1,3 @@
-import { HighlightIcon } from "@sanity/icons";
 import {
   type ArrayRule,
   defineArrayMember,
@@ -6,7 +5,6 @@ import {
   type Rule,
   type ValidationBuilder,
 } from "sanity";
-import { colorOptions } from "@/schemas/objects/color-variants";
 
 interface PortableTextPlainProps {
   name?: string;
@@ -84,38 +82,14 @@ const linkAnnotationField = {
   ],
 };
 
-const highlightAnnotationField = {
-  name: "highlight",
-  type: "object",
-  title: "Highlight",
-  options: {
-    modal: {
-      type: "popover",
-      width: "auto",
-    },
+const highlightAnnotationField = [
+  {
+    type: "textColor",
   },
-  icon: HighlightIcon,
-  fields: [
-    {
-      name: "backgroundColor",
-      title: "Change Background Color",
-      type: "string",
-      description: "Optional. Select the new background highlight color.",
-      options: {
-        list: colorOptions,
-      },
-    },
-    {
-      name: "textColor",
-      title: "Change Text Color",
-      type: "string",
-      description: "Optional. Select the new text highlight color.",
-      options: {
-        list: colorOptions,
-      },
-    },
-  ],
-};
+  {
+    type: "highlightColor",
+  },
+];
 
 export const portableTextPlain = ({
   name = "content",
@@ -172,7 +146,7 @@ export const portableTextPlain = ({
           ],
           annotations: [
             ...(enableLink ? [linkAnnotationField] : []),
-            ...(enableHighlight ? [highlightAnnotationField] : []),
+            ...(enableHighlight ? highlightAnnotationField : []),
           ],
         },
       }),

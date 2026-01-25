@@ -27,3 +27,11 @@ export const SINGLETON_DOCUMENT_TYPES = new Set([
   "post-index",
   "platform-index",
 ]);
+
+export const COLOR_OPTIONS = [
+  { label: "Light", value: "#ffffff" },
+  { label: "Dark", value: "#333333" },
+  { label: "Brand", value: "#ca786d" },
+  { label: "Accent", value: "#626754" },
+  { label: "Custom...", value: "custom" },
+];
