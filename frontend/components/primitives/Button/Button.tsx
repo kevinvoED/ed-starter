@@ -1,9 +1,9 @@
 import type { Link as SanityLink } from "@/sanity.types";
 import Link from "next/link";
 import { cva, type VariantProps } from "class-variance-authority";
-import { Dot } from "@/components/Dot/Dot";
-import { HoverTextScramble } from "@/components/GSAP/HoverTextScramble";
-import { Icon } from "@/components/Icon/Icon";
+import { HoverTextScramble } from "@/components/animations/GSAP/HoverTextScramble";
+import { Dot } from "@/components/primitives/Dot/Dot";
+import { Icon } from "@/components/primitives/Icon/Icon";
 import { cn } from "@/lib/utils";
 
 export type ResolvedLinkType = Omit<SanityLink, "href"> & {

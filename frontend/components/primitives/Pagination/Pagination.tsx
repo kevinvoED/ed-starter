@@ -1,6 +1,6 @@
 import { ChevronLeft, ChevronRight, Ellipsis } from "lucide-react";
-import { Button } from "@/components/Button/Button";
-import { PaginationScrollHandler } from "@/components/Pagination/PaginationScrollHandler";
+import { Button } from "@/components/primitives/Button/Button";
+import { PaginationScrollHandler } from "@/components/primitives/Pagination/PaginationScrollHandler";
 import { cn } from "@/lib/utils";
 
 type PaginationProps = {

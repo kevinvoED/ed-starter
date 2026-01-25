@@ -1,7 +1,7 @@
 import type { ComponentProps } from "react";
 import type { PAGE_QUERY_RESULT } from "@/sanity.types";
-import { HeroPrimary } from "@/components/Hero/HeroPrimary";
-import { MyBlocksRendererErrorBoundary } from "./ErrorBoundary/ErrorBoundary";
+import { HeroPrimary } from "@/components/modules/Hero/HeroPrimary";
+import { MyBlocksRendererErrorBoundary } from "../layout/ErrorBoundary/ErrorBoundary";
 
 export type ModuleBlock = NonNullable<
   NonNullable<PAGE_QUERY_RESULT>["blocks"]

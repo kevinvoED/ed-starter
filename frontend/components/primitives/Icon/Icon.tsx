@@ -1,4 +1,4 @@
-import * as CustomIcons from "@/components/Icon/IconList";
+import * as CustomIcons from "@/components/primitives/Icon/IconList";
 import { cn } from "@/lib/utils";
 
 type IconProps = {

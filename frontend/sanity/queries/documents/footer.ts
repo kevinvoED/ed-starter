@@ -1,7 +1,7 @@
-import { groq } from "next-sanity";
+import { defineQuery } from "next-sanity";
 import { linkFields, linkFragment } from "../shared/link";
 
-export const FOOTER_QUERY = groq`
+export const FOOTER_QUERY = defineQuery(`
   *[_type == "footer"]{
     _key,
     _type,
@@ -59,4 +59,4 @@ export const FOOTER_QUERY = groq`
       ${linkFields}
     },
   }
-`;
+`);

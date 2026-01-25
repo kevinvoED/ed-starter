@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from "class-variance-authority";
-import { Dot } from "@/components/Dot/Dot";
-import { TextScramble } from "@/components/GSAP/TextScramble";
+import { TextScramble } from "@/components/animations/GSAP/TextScramble";
+import { Dot } from "@/components/primitives/Dot/Dot";
 import { cn } from "@/lib/utils";
 
 const EyebrowVariants = cva(

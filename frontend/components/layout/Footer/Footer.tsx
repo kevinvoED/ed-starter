@@ -1,6 +1,6 @@
 import { fetchSanityFooter } from "@/sanity/lib/fetch";
-import { DesktopFooter } from "@/components/Footer/DesktopFooter";
-import { MobileFooter } from "@/components/Footer/MobileFooter";
+import { DesktopFooter } from "@/components/layout/Footer/DesktopFooter";
+import { MobileFooter } from "@/components/layout/Footer/MobileFooter";
 
 export const Footer = async () => {
   const data = await fetchSanityFooter();

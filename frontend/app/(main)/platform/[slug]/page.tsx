@@ -5,8 +5,8 @@ import {
 import notFound from "@/app/not-found";
 import JSONLDScript, {
   type JSONLDScriptProps,
-} from "@/components/Metadata/Jsonld";
-import { ModuleBuilder } from "@/components/ModuleBuilder";
+} from "@/components/miscellaneous/Jsonld";
+import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
 import { generatePageMetadata } from "@/lib/metadata";
 
 export async function generateStaticParams() {

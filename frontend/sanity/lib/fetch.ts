@@ -18,7 +18,7 @@ import {
   ORGANIZATION_QUERY,
   PAGE_TYPE_QUERY,
   PAGES_SLUGS_QUERY,
-} from "@/sanity/queries/page";
+} from "@/sanity/queries/queries";
 
 // Types
 type BlockType = NonNullable<

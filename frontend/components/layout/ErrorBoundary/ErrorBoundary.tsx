@@ -4,7 +4,7 @@ import type { ErrorInfo } from "react";
 import type { ErrorBoundaryProps, FallbackProps } from "react-error-boundary";
 import type { PAGE_QUERY_RESULT } from "@/sanity.types";
 import { ErrorBoundary } from "react-error-boundary";
-import { Button } from "@/components/Button/Button";
+import { Button } from "@/components/primitives/Button/Button";
 
 const logError = (error: unknown, info: ErrorInfo) => {
   console.error({ error, info });

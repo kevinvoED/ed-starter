@@ -12,7 +12,6 @@ export type ResolvedImageType = {
   asset: {
     _id: string;
     url: string | null;
-    mimeType: string | null;
     metadata: {
       lqip: string | null;
       dimensions: {

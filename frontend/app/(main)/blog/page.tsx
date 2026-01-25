@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { fetchSanityBlogIndexPage } from "@/sanity/lib/fetch";
-import JSONLDScript from "@/components/Metadata/Jsonld";
-import { ModuleBuilder } from "@/components/ModuleBuilder";
+import JSONLDScript from "@/components/miscellaneous/Jsonld";
+import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
 import { ITEMS_PER_RESOURCE_PAGE } from "@/lib/consts";
 import { generatePageMetadata } from "@/lib/metadata";
 

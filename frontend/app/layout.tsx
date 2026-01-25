@@ -1,10 +1,10 @@
 import { GoogleTagManager } from "@next/third-parties/google";
-import { Lenis } from "@/components/GSAP/Lenis";
-import { GSAPRuntime } from "@/components/GSAP/Runtime";
+import { Lenis } from "@/components/animations/GSAP/Lenis";
+import { GSAPRuntime } from "@/components/animations/GSAP/Runtime";
 import { fontBody, fontHeading, fontMono } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import "./globals.css";
-import { ScrollRestoration } from "@/components/GSAP/ScrollRestoration";
+import { ScrollRestoration } from "@/components/animations/GSAP/ScrollRestoration";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 const isProduction = process.env.NEXT_PUBLIC_SITE_ENV === "production";

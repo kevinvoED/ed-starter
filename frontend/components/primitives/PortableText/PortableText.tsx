@@ -4,10 +4,10 @@ import {
 } from "@portabletext/react";
 import { useMemo } from "react";
 import Link from "next/link";
-import { Dot } from "@/components/Dot/Dot";
-import { SanityImage } from "@/components/Media/SanityImage";
-import { PortableTextHeading } from "@/components/PortableText/PortableTextHeading";
-import { PortableTextYoutube } from "@/components/PortableText/PortableTextYoutube";
+import { Dot } from "@/components/primitives/Dot/Dot";
+import { SanityImage } from "@/components/primitives/Media/SanityImage";
+import { PortableTextHeading } from "@/components/primitives/PortableText/PortableTextHeading";
+import { PortableTextYoutube } from "@/components/primitives/PortableText/PortableTextYoutube";
 import { cn } from "@/lib/utils";
 
 const portableTextComponents = (

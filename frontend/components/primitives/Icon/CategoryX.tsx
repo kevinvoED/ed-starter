@@ -1,4 +1,4 @@
-import type { CustomIconProps } from "@/components/Icon/IconList";
+import type { CustomIconProps } from "@/components/primitives/Icon/IconList";
 
 export default function CategoryXIcon({
   className,

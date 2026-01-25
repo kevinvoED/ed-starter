@@ -1,9 +1,9 @@
-import { groq } from "next-sanity";
+import { defineQuery } from "next-sanity";
 import { imageFragment } from "../../shared/image";
 import { linkFragment } from "../../shared/link";
 
 // @sanity-typegen-ignore
-export const heroPrimaryQuery = groq`
+export const HERO_PRIMARY_QUERY = defineQuery(`
   _type == "hero-primary" => {
     _type,
     _key,
@@ -11,4 +11,4 @@ export const heroPrimaryQuery = groq`
     ${linkFragment},
     ${imageFragment}
   }
-`;
+`);

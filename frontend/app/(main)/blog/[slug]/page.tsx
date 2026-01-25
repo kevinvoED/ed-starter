@@ -3,10 +3,10 @@ import {
   fetchSanityBlogSlugPage,
   fetchSanityBlogSlugsStaticParams,
 } from "@/sanity/lib/fetch";
-import { Transition } from "@/components/GSAP/Transition";
-import JSONLDScript from "@/components/Metadata/Jsonld";
-import { ModuleBuilder } from "@/components/ModuleBuilder";
-import { PortableText } from "@/components/PortableText/PortableText";
+import { Transition } from "@/components/animations/GSAP/Transition";
+import JSONLDScript from "@/components/miscellaneous/Jsonld";
+import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
+import { PortableText } from "@/components/primitives/PortableText/PortableText";
 import { generatePageMetadata } from "@/lib/metadata";
 
 export async function generateStaticParams() {

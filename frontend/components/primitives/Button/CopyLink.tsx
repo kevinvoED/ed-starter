@@ -2,7 +2,7 @@
 
 import type { Slug } from "@/sanity.types";
 import { useState } from "react";
-import { Button } from "@/components/Button/Button";
+import { Button } from "@/components/primitives/Button/Button";
 import { cn } from "@/lib/utils";
 
 type CopyLinkButtonProps = {
