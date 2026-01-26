@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { fetchSanityPageBySlug } from "@/sanity/lib/fetch";
 import JSONLDScript from "@/components/miscellaneous/Jsonld";
 import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
-import { generatePageMetadata } from "@/lib/metadata";
+import { generatePageMetadata } from "@/lib/site/metadata";
 
 export async function generateMetadata() {
   const page = await fetchSanityPageBySlug({

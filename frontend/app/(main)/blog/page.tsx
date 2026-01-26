@@ -3,7 +3,7 @@ import { fetchSanityBlogIndexPage } from "@/sanity/lib/fetch";
 import JSONLDScript from "@/components/miscellaneous/Jsonld";
 import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
 import { ITEMS_PER_RESOURCE_PAGE } from "@/lib/consts";
-import { generatePageMetadata } from "@/lib/metadata";
+import { generatePageMetadata } from "@/lib/site/metadata";
 
 const _ROUTE = "blog";
 

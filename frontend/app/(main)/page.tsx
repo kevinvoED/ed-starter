@@ -5,7 +5,7 @@ import {
 } from "@/sanity/lib/fetch";
 import { OrganizationJSONLDScript } from "@/components/miscellaneous/Jsonld";
 import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
-import { generatePageMetadata } from "@/lib/metadata";
+import { generatePageMetadata } from "@/lib/site/metadata";
 
 export async function generateMetadata() {
   const page = await fetchSanityPageBySlug({ pageType: "page", slug: "index" });

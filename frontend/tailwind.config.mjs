@@ -1,5 +1,5 @@
-import spacing from "./lib/spacing.mjs";
-import typography from "./lib/typography.mjs";
+import spacing from "./lib/styles/spacing.mjs";
+import typography from "./lib/styles/typography.mjs";
 import plugin from "tailwindcss/plugin";
 
 /** @type {import('tailwindcss').Config} */

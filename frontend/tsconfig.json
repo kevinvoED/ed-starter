@@ -39,8 +39,8 @@
     "sanity/lib/rewrites-and-redirects.mjs",
     "next.config.mjs",
     ".next/dev/types/**/*.ts",
-    "lib/typography.mjs",
-    "lib/spacing.mjs"
+    "lib/styles/typography.mjs",
+    "lib/styles/spacing.mjs"
   ],
   "exclude": ["node_modules"]
 }

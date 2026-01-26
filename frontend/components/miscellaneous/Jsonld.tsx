@@ -6,7 +6,7 @@ import type {
 } from "@/sanity.types";
 import generateJsonldMetadata, {
   generateOrganizationSchema,
-} from "@/lib/generate-jsonld-metadata";
+} from "@/lib/site/generate-jsonld-metadata";
 
 export type JSONLDScriptProps = {
   document: NonNullable<

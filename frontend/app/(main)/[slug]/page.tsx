@@ -5,7 +5,7 @@ import {
 } from "@/sanity/lib/fetch";
 import JSONLDScript from "@/components/miscellaneous/Jsonld";
 import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
-import { generatePageMetadata } from "@/lib/metadata";
+import { generatePageMetadata } from "@/lib/site/metadata";
 
 export async function generateStaticParams() {
   const pages = await fetchSanityPagesStaticParams({ pageType: "page" });
