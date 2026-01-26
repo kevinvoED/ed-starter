@@ -172,7 +172,7 @@ export const PortableText = ({
   return <PortableTextRenderer value={value} components={components} />;
 };
 
-export const PortableTextFragment = ({
+export const ptFragment = ({
   value,
   mode = "light",
   style = "fragment",

@@ -1,9 +1,5 @@
 import { defineQuery } from "next-sanity";
-import {
-  imageFragment,
-  linkFragment,
-  portableTextFragment,
-} from "../../fragments";
+import { imageFragment, linkFragment, ptFragment } from "../../fragments";
 
 // @sanity-typegen-ignore
 export const HERO_PRIMARY_QUERY = defineQuery(`
@@ -14,7 +10,7 @@ export const HERO_PRIMARY_QUERY = defineQuery(`
     ${linkFragment},
     ${imageFragment},
     content[]{
-      ${portableTextFragment}
+      ${ptFragment}
     }
   }
 `);

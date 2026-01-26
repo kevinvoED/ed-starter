@@ -1,6 +1,6 @@
 import { imageFields, linkFields } from "../queries/partials";
 
-/** Used on the sitemap to generate full urls to the content */
+// Used in sitemap.ts to generate full urls to the content
 export const urlQuery = `
   "url": select(
     slug.current == "index" => $baseUrl + "/",
@@ -12,9 +12,15 @@ export const urlQuery = `
   )
 `;
 
+/*
+ * Uses the title assigned in meta or the parent document title
+ * 1200x630 is the recommended meta image size
+ * The image is the first hero image, the organization image, or the image assigned in meta
+ * The relative url is the url of the page without the base url
+ * The image is the image assigned in meta or the first hero image, the organization image, or the image assigned in meta
+ */
 export const metaFragment = `
     meta{
-    // use the title assigned in meta or the parent document title
     "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),
     description,
     noindex,
@@ -26,21 +32,17 @@ export const metaFragment = `
       ^._type == "platform-child" => "/platform/" + ^.slug.current,
       "/" + ^.slug.current
     ),
-    // the dimensions are the recommended meta image size
     "image": coalesce(
-      // use the image directly assigned in meta
       image.asset->url + "?w=1200&h=630&fit=max",
-      // use the image directly on this document
       ^.image.asset->url + "?w=1200&h=630&fit=max",
-      // find and use the first hero image
       select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),
-      // find and use the organization image
       *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"
     )
   }
 `;
 
-export const portableTextPlainFragment = `
+// Used for PortableTextPlain fields
+export const ptPlainFragment = `
   ...,
   markDefs[]{
     ...,
@@ -53,7 +55,8 @@ export const portableTextPlainFragment = `
   }
 `;
 
-export const portableTextFragment = `
+// Used for PortableText fields
+export const ptFragment = `
   ...,
   markDefs[]{
     ...,
@@ -63,16 +66,30 @@ export const portableTextFragment = `
   }
 `;
 
-export const videoFragment = `
-  video{
-   ${imageFields}
-  }
-`;
-
 export const linkFragment = `
   "link": fn::link(link)
 `;
 
 export const imageFragment = `
   "image": fn::img(image)
+`;
+
+export const videoFragment = `
+  video{
+   ${imageFields}
+  }
+`;
+
+export const postFragment = `
+  _id,
+  _type,
+  _createdAt,
+  title[]{
+    ${ptPlainFragment}
+  },
+  slug,
+  description,
+  publishedDate,
+  ${linkFragment},
+  ${imageFragment}
 `;

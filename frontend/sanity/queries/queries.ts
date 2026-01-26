@@ -6,18 +6,13 @@
 import { defineQuery } from "next-sanity";
 import {
   imageFragment,
-  linkFragment,
   metaFragment,
-  portableTextFragment,
-  portableTextPlainFragment,
+  postFragment,
+  ptFragment,
+  ptPlainFragment,
 } from "./fragments";
 import { HERO_PRIMARY_QUERY } from "./modules/hero/hero-primary";
-import {
-  FN_IMAGE_PARTIAL,
-  FN_IMAGES_PARTIAL,
-  FN_LINK_PARTIAL,
-  FN_LOGO_PARTIAL,
-} from "./partials";
+import { FN_COMMON_PARTIALS, FN_LOGO_PARTIAL } from "./partials";
 
 /*
  * This `modulesFragment` is used to query for all modules.
@@ -27,7 +22,9 @@ import {
  */
 // @sanity-typegen-ignore
 export const modulesFragment = defineQuery(`
-  ${HERO_PRIMARY_QUERY},
+  modules[]{
+    ${HERO_PRIMARY_QUERY}
+  }
 `);
 
 /*
@@ -53,35 +50,20 @@ export const ORGANIZATION_QUERY = defineQuery(`
  * ====================================================
  */
 export const PAGE_QUERY = defineQuery(`
-  ${FN_IMAGE_PARTIAL}
-  ${FN_IMAGES_PARTIAL}
-  ${FN_LOGO_PARTIAL}
-  ${FN_LINK_PARTIAL}
+  ${FN_COMMON_PARTIALS}
 
   *[_type == "page" && slug.current == $slug][0]{
-    _type,
-    modules[]{
-      ${modulesFragment}
-    },
+    ${modulesFragment},
     ${metaFragment}
   }
 `);
 
 // @sanity-typegen-ignore
 export const PAGE_SLUG_QUERY = defineQuery(`
-  ${FN_IMAGE_PARTIAL}
-  ${FN_IMAGES_PARTIAL}
-  ${FN_LOGO_PARTIAL}
-  ${FN_LINK_PARTIAL}
+  ${FN_COMMON_PARTIALS}
 
   *[_type == $pageType && slug.current == $slug][0]{
-    _type,
-    title,
-    description,
-    slug,
-    modules[]{
-      ${modulesFragment}
-    },
+    ${modulesFragment},
     ${metaFragment},
   }
 `);
@@ -96,75 +78,49 @@ export const PAGES_SLUGS_QUERY = defineQuery(
  * ====================================================
  */
 export const BLOG_QUERY = defineQuery(`
-  ${FN_IMAGE_PARTIAL}
-  ${FN_IMAGES_PARTIAL}
-  ${FN_LOGO_PARTIAL}
-  ${FN_LINK_PARTIAL}
+  ${FN_COMMON_PARTIALS}
 
   *[_type == "post-index"][0]{
-    _id,
-    _type,
-    title,
-    description,
     slug,
     ${metaFragment},
-    modules[]{
-      ${modulesFragment}
+    ${modulesFragment},
+    title[]{
+      ${ptPlainFragment}
+    },
+    description[]{
+      ${ptPlainFragment}
     },
     featuredPost->{
-      _id,
-      _type,
-      _createdAt,
-      slug,
-      title[]{
-        ${portableTextPlainFragment}
-      },
-      description,
-      publishedDate,
-      ${linkFragment},
-      ${imageFragment},
+      ${postFragment}
     },
     "posts": *[_type == "post" && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {
-      _id,
-      _type,
-      _createdAt,
-      title[]{
-        ${portableTextPlainFragment}
-      },
-      slug,
-      description,
-      publishedDate,
-      ${linkFragment},
-      ${imageFragment},
+      ${postFragment}
     }
   }
 `);
 
 export const BLOG_SLUG_QUERY = defineQuery(`
-  ${FN_IMAGE_PARTIAL}
-  ${FN_IMAGES_PARTIAL}
-  ${FN_LOGO_PARTIAL}
-  ${FN_LINK_PARTIAL}
+  ${FN_COMMON_PARTIALS}
 
   *[_type == "post" && slug.current == $slug][0]{
     _id,
     _createdAt,
     _type,
     slug,
-    title[]{
-      ${portableTextPlainFragment}
-    },
-    description,
     publishedDate,
-    content[]{
-      ${portableTextFragment},
-    },
     ${imageFragment},
     ${metaFragment},
-    modules[]{
-      ${modulesFragment}
-    },
+    ${modulesFragment},
     "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 ),
+    title[]{
+      ${ptPlainFragment}
+    },
+    description[]{
+      ${ptPlainFragment}
+    },
+    content[]{
+      ${ptFragment},
+    },
   }
 `);
 

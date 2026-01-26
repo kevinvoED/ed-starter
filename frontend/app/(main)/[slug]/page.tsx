@@ -47,6 +47,8 @@ export default async function Page(props: {
     notFound();
   }
 
+  console.log(page);
+
   return (
     <>
       <JSONLDScript document={page} />

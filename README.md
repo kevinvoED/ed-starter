@@ -125,7 +125,7 @@ defineField({
 // GROQ querying the schema; note by default the 'name' is 'content'
 ...
 content[]{
-  ${portableTextFragment}
+  ${ptFragment}
 }
 
 // In your component, remember to import our custom PortableText
