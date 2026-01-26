@@ -53,6 +53,7 @@ export const PAGE_QUERY = defineQuery(`
   ${FN_COMMON_PARTIALS}
 
   *[_type == "page" && slug.current == $slug][0]{
+    _type,
     ${modulesFragment},
     ${metaFragment}
   }
@@ -63,6 +64,7 @@ export const PAGE_SLUG_QUERY = defineQuery(`
   ${FN_COMMON_PARTIALS}
 
   *[_type == $pageType && slug.current == $slug][0]{
+    _type,
     ${modulesFragment},
     ${metaFragment},
   }
@@ -81,6 +83,7 @@ export const BLOG_QUERY = defineQuery(`
   ${FN_COMMON_PARTIALS}
 
   *[_type == "post-index"][0]{
+    _type,
     slug,
     ${metaFragment},
     ${modulesFragment},
