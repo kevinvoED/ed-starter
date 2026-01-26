@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { formatDate, formatDateLong } from "@/lib/formatDate";
+import { formatDate, formatDateLong } from "@/lib/date";
 
 export default function PostDate({
   date,
