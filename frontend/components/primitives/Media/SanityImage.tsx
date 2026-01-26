@@ -6,7 +6,7 @@ import type {
 } from "@/sanity.types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 export type ResolvedImageType = {
   asset: {

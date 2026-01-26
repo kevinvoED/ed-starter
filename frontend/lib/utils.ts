@@ -1,6 +1,4 @@
 import type { Slug } from "@/sanity.types";
-import { type ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
 
 export type ViewableTypes =
   | "page"
@@ -31,7 +29,3 @@ export const linkMapper = (type: string, slug: Slug) => {
     }[type] || `/${slug.current}`
   );
 };
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}

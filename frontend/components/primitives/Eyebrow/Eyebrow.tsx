@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { TextScramble } from "@/components/animations/GSAP/TextScramble";
 import { Dot } from "@/components/primitives/Dot/Dot";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 const EyebrowVariants = cva(
   "inline-flex max-w-fit flex-no-wrap items-center justify-center uppercase",

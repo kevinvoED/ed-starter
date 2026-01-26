@@ -8,7 +8,7 @@ import { Dot } from "@/components/primitives/Dot/Dot";
 import { SanityImage } from "@/components/primitives/Media/SanityImage";
 import { PortableTextHeading } from "@/components/primitives/PortableText/PortableTextHeading";
 import { PortableTextYoutube } from "@/components/primitives/PortableText/PortableTextYoutube";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 const portableTextComponents = (
   mode: "light" | "dark" = "light",
