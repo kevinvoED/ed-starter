@@ -5,17 +5,23 @@ import { PortableText } from "@/components/primitives/PortableText/PortableText"
 
 type HeroPrimaryProps = ModuleProps<"hero-primary">;
 
-export const HeroPrimary = ({ title, link, image }: HeroPrimaryProps) => {
-  console.log(link);
+export const HeroPrimary = ({
+  title,
+  link,
+  image,
+  content,
+}: HeroPrimaryProps) => {
+  console.log(image);
   return (
     <div>
       {title && <PortableText value={title} />}
       {image && <SanityImage image={image} />}
       {link?.map((link) => (
-        <Button key={link._key} link={link}>
+        <Button key={link._key} link={link} variant="primary">
           {link.label}
         </Button>
       ))}
+      {content && <PortableText value={content} />}
     </div>
   );
 };

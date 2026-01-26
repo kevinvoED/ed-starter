@@ -1,6 +1,7 @@
-import { LinkIcon, PlayIcon } from "@sanity/icons";
+import { PlayIcon } from "@sanity/icons";
 import { defineArrayMember, defineType } from "sanity";
 import { YouTubePreview } from "@/components/youtube-preview";
+
 // PortableText is the default Rich Text editor with all formatting and special modules baked in
 
 export default defineType({
@@ -114,15 +115,6 @@ export default defineType({
       components: {
         preview: YouTubePreview,
       },
-    }),
-
-    defineArrayMember({
-      title: "CTA Button",
-      icon: LinkIcon,
-      description:
-        "Recommended Button variant: Default, Secondary, Outline Accent, Ghost, and Ghost Dark.",
-      name: "link",
-      type: "link",
     }),
   ],
 });

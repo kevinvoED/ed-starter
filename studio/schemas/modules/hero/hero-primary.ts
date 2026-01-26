@@ -1,7 +1,13 @@
 import { toPlainText } from "@portabletext/react";
 import { DashboardIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { eyebrow, image, link, titleHighlight } from "@/schemas/sharedFields";
+import {
+  eyebrow,
+  image,
+  link,
+  portableText,
+  titleHighlight,
+} from "@/schemas/sharedFields";
 
 export default defineType({
   name: "hero-primary",
@@ -15,6 +21,7 @@ export default defineType({
       validation: (Rule) => Rule.max(2),
     }),
     image,
+    portableText,
   ],
   preview: {
     select: {

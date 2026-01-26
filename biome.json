@@ -178,7 +178,7 @@
               "options": {
                 "strictCase": true,
                 "requireAscii": true,
-                "filenameCases": ["PascalCase"]
+                "filenameCases": ["PascalCase", "kebab-case"]
               }
             }
           }

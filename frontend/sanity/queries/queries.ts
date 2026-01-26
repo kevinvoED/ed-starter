@@ -4,15 +4,20 @@
  */
 
 import { defineQuery } from "next-sanity";
-import { HERO_PRIMARY_QUERY } from "./modules/hero/hero-primary";
 import {
   imageFragment,
   linkFragment,
-  logoFragment,
   metaFragment,
   portableTextFragment,
   portableTextPlainFragment,
-} from "./sharedFragments";
+} from "./fragments";
+import { HERO_PRIMARY_QUERY } from "./modules/hero/hero-primary";
+import {
+  FN_IMAGE_PARTIAL,
+  FN_IMAGES_PARTIAL,
+  FN_LINK_PARTIAL,
+  FN_LOGO_PARTIAL,
+} from "./partials";
 
 /*
  * This `modulesFragment` is used to query for all modules.
@@ -32,10 +37,12 @@ export const modulesFragment = defineQuery(`
  */
 
 export const ORGANIZATION_QUERY = defineQuery(`
+  ${FN_LOGO_PARTIAL}
+
   *[_type == "organization"][0]{
     organization {
       ...,
-      ${logoFragment}
+      "logo": fn::logo(logo),
     }
   }
 `);
@@ -46,6 +53,11 @@ export const ORGANIZATION_QUERY = defineQuery(`
  * ====================================================
  */
 export const PAGE_QUERY = defineQuery(`
+  ${FN_IMAGE_PARTIAL}
+  ${FN_IMAGES_PARTIAL}
+  ${FN_LOGO_PARTIAL}
+  ${FN_LINK_PARTIAL}
+
   *[_type == "page" && slug.current == $slug][0]{
     _type,
     modules[]{
@@ -57,6 +69,11 @@ export const PAGE_QUERY = defineQuery(`
 
 // @sanity-typegen-ignore
 export const PAGE_SLUG_QUERY = defineQuery(`
+  ${FN_IMAGE_PARTIAL}
+  ${FN_IMAGES_PARTIAL}
+  ${FN_LOGO_PARTIAL}
+  ${FN_LINK_PARTIAL}
+
   *[_type == $pageType && slug.current == $slug][0]{
     _type,
     title,
@@ -79,6 +96,11 @@ export const PAGES_SLUGS_QUERY = defineQuery(
  * ====================================================
  */
 export const BLOG_QUERY = defineQuery(`
+  ${FN_IMAGE_PARTIAL}
+  ${FN_IMAGES_PARTIAL}
+  ${FN_LOGO_PARTIAL}
+  ${FN_LINK_PARTIAL}
+
   *[_type == "post-index"][0]{
     _id,
     _type,
@@ -99,8 +121,8 @@ export const BLOG_QUERY = defineQuery(`
       },
       description,
       publishedDate,
+      ${linkFragment},
       ${imageFragment},
-      ${linkFragment}
     },
     "posts": *[_type == "post" && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {
       _id,
@@ -119,6 +141,11 @@ export const BLOG_QUERY = defineQuery(`
 `);
 
 export const BLOG_SLUG_QUERY = defineQuery(`
+  ${FN_IMAGE_PARTIAL}
+  ${FN_IMAGES_PARTIAL}
+  ${FN_LOGO_PARTIAL}
+  ${FN_LINK_PARTIAL}
+
   *[_type == "post" && slug.current == $slug][0]{
     _id,
     _createdAt,
