@@ -2,10 +2,11 @@ import { notFound } from "next/navigation";
 import { fetchSanityBlogIndexPage } from "@/sanity/lib/fetch";
 import JSONLDScript from "@/components/miscellaneous/Jsonld";
 import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
-import { ITEMS_PER_RESOURCE_PAGE } from "@/lib/consts";
 import { generatePageMetadata } from "@/lib/site/metadata";
 
 const _ROUTE = "blog";
+// TODO: change back to 12 when there are enough posts
+export const ITEMS_PER_RESOURCE_PAGE = 3;
 
 export async function generateMetadata() {
   const page = await fetchSanityBlogIndexPage({
