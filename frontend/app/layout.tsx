@@ -1,8 +1,8 @@
 import { GoogleTagManager } from "@next/third-parties/google";
 import { Lenis } from "@/components/animations/GSAP/Lenis";
 import { GSAPRuntime } from "@/components/animations/GSAP/Runtime";
-import { cn } from "@/lib/cn";
 import { fontBody, fontHeading, fontMono } from "@/lib/styles/fonts";
+import { cn } from "@/lib/utils/cn";
 import "./globals.css";
 import { ScrollRestoration } from "@/components/animations/GSAP/ScrollRestoration";
 import { NuqsAdapter } from "nuqs/adapters/next/app";

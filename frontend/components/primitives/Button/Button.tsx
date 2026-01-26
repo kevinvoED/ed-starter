@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { HoverTextScramble } from "@/components/animations/GSAP/HoverTextScramble";
 import { Dot } from "@/components/primitives/Dot/Dot";
 import { Icon } from "@/components/primitives/Icon/Icon";
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/utils/cn";
 
 export type ResolvedLinkType = Omit<SanityLink, "href"> & {
   _key: string;

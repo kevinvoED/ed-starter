@@ -1,5 +1,5 @@
 import * as CustomIcons from "@/components/primitives/Icon/IconList";
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/utils/cn";
 
 type IconProps = {
   className?: string;

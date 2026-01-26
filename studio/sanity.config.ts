@@ -28,7 +28,10 @@ import { structure } from "@/lib/structure";
 import { schema } from "@/schemas/schema";
 import { OpenDocumentUrlAction } from "./actions";
 import { simplerColorInput } from "sanity-plugin-simpler-color-input";
-import { VIEWABLE_TYPES, type ViewableTypes } from "../frontend/lib/utils";
+import {
+  VIEWABLE_TYPES,
+  type ViewableTypes,
+} from "../frontend/lib/utils/url-mapper";
 
 export default defineConfig({
   title: `ED Starter (${SANITY_STUDIO_DATASET})`,

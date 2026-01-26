@@ -1,5 +1,5 @@
 import { YouTubeEmbed } from "@next/third-parties/google";
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/utils/cn";
 
 type PortableTextYoutubeProps = {
   className?: string;

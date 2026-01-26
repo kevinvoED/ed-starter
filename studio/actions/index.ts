@@ -1,7 +1,7 @@
 import type { DocumentActionComponent, Slug } from "sanity";
 import { Link } from "lucide-react";
 import { useToast } from "@sanity/ui";
-import { linkMapper } from "../../frontend/lib/utils";
+import { linkMapper } from "../../frontend/lib/utils/url-mapper";
 
 /**
  * Custom action to open the document's URL in a new browser tab.

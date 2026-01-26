@@ -2,7 +2,7 @@ import type { Link as SanityLink } from "@/sanity.types";
 import Link from "next/link";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Icon } from "@/components/primitives/Icon/Icon";
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/utils/cn";
 
 export type ResolvedLinkType = Omit<SanityLink, "href"> & {
   _key: string;

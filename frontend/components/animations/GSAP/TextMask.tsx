@@ -3,7 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { gsap } from "gsap";
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/utils/cn";
 import { SplitText } from "gsap/all";
 
 type TextMaskProps = {
