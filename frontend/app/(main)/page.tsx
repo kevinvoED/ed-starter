@@ -27,8 +27,6 @@ export default async function IndexPage() {
     notFound();
   }
 
-  console.log(page);
-
   return (
     <>
       {organization && <OrganizationJSONLDScript organization={organization} />}

@@ -1,5 +1,5 @@
 import { ChevronLeft, ChevronRight, Ellipsis } from "lucide-react";
-import { Button } from "@/components/primitives/Button/Button";
+import { Button } from "@/components/primitives/button";
 import { PaginationScrollHandler } from "@/components/primitives/Pagination/PaginationScrollHandler";
 import { cn } from "@/lib/utils/cn";
 
@@ -48,7 +48,7 @@ export const Pagination = ({
       <div className={cn("flex justify-center gap-4", className)}>
         {currentPage > 1 && (
           <Button
-            variant="pagination-chevron"
+            variant="ghost"
             href={createPageUrl(currentPage - 1)}
             hasArrow={false}
             scroll={false}
@@ -64,9 +64,7 @@ export const Pagination = ({
             </div>
           ) : (
             <Button
-              variant={
-                pageNum === currentPage ? "pagination-active" : "pagination"
-              }
+              variant={pageNum === currentPage ? "ghost" : "ghost"}
               key={pageNum}
               href={createPageUrl(pageNum as number)}
               hasArrow={false}
@@ -79,7 +77,7 @@ export const Pagination = ({
 
         {currentPage < totalPages && (
           <Button
-            variant="pagination-chevron"
+            variant="ghost"
             href={createPageUrl(currentPage + 1)}
             hasArrow={false}
             scroll={false}

@@ -4,13 +4,7 @@
  */
 
 import { defineQuery } from "next-sanity";
-import {
-  imageFragment,
-  metaFragment,
-  postFragment,
-  ptFragment,
-  ptPlainFragment,
-} from "./fragments";
+import { imageFragment, metaFragment, postFragment } from "./fragments";
 import { HERO_PRIMARY_QUERY } from "./modules/hero/hero-primary";
 import { FN_COMMON_PARTIALS, FN_LOGO_PARTIAL } from "./partials";
 
@@ -87,12 +81,8 @@ export const BLOG_QUERY = defineQuery(`
     slug,
     ${metaFragment},
     ${modulesFragment},
-    title[]{
-      ${ptPlainFragment}
-    },
-    description[]{
-      ${ptPlainFragment}
-    },
+    "title": fn::ptPlain(title),
+    "description": fn::ptPlain(description),
     featuredPost->{
       ${postFragment}
     },
@@ -115,15 +105,9 @@ export const BLOG_SLUG_QUERY = defineQuery(`
     ${metaFragment},
     ${modulesFragment},
     "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 ),
-    title[]{
-      ${ptPlainFragment}
-    },
-    description[]{
-      ${ptPlainFragment}
-    },
-    content[]{
-      ${ptFragment},
-    },
+    "title": fn::ptPlain(title),
+    "description": fn::ptPlain(description),
+    "content": fn::pt(content),
   }
 `);
 

@@ -4,16 +4,15 @@ import {
 } from "@portabletext/react";
 import { useMemo } from "react";
 import Link from "next/link";
-import { Dot } from "@/components/primitives/Dot/Dot";
 import { SanityImage } from "@/components/primitives/Media/SanityImage";
 import { PortableTextHeading } from "@/components/primitives/PortableText/PortableTextHeading";
 import { PortableTextYoutube } from "@/components/primitives/PortableText/PortableTextYoutube";
 import { cn } from "@/lib/utils/cn";
 
 const portableTextComponents = (
-  mode: "light" | "dark" = "light",
+  _mode: "light" | "dark" = "light",
   style: "module" | "article" | "fragment" = "module",
-  dotSize: "default" | "sm" = "default",
+  _dotSize: "default" | "sm" = "default",
   className?: string,
 ): PortableTextProps["components"] => ({
   types: {
@@ -130,19 +129,7 @@ const portableTextComponents = (
     ),
   },
   listItem: {
-    bullet: ({ children }) => (
-      <li className="relative mb-4">
-        <Dot
-          size={dotSize}
-          color={mode === "light" ? "black" : "neon"}
-          className={cn(
-            "dot absolute -left-4.5",
-            dotSize === "default" ? "top-2" : "top-2.5",
-          )}
-        />
-        {children}
-      </li>
-    ),
+    bullet: ({ children }) => <li className="relative mb-4">{children}</li>,
     number: ({ children }) => <li className="mb-4">{children}</li>,
   },
 });

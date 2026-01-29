@@ -1,4 +1,4 @@
-import { Button } from "@/components/primitives/Button/Button";
+import { Button } from "@/components/primitives/button";
 
 export default async function EDButtonPage() {
   return (

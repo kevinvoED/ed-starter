@@ -11,7 +11,6 @@ export const HeroPrimary = ({
   image,
   content,
 }: HeroPrimaryProps) => {
-  console.log(image);
   return (
     <div>
       {title && <PortableText value={title} />}

@@ -354,29 +354,3 @@ img {
   -o-user-select: none;
   user-select: none;
 }
-
-/* 2-column translation with gap-x-5 */
-@utility indent-text-reveal-2col {
-  /* 100vw - 3rem container padding-x, minus 11 gaps at 1.25rem, divided by 12 columns + 1 gap width of 1.25rem, and times 2 */
-  transform: translateX(
-    calc(((((100vw - 3rem) - (1.25rem * 11)) / 12) + 1.25rem) * 2)
-  );
-}
-
-@utility scrim-to-right-* {
-  @apply content-[""] absolute inset-0 z-10 pointer-events-none;
-  background: linear-gradient(
-    to right,
-    transparent calc(--value(integer) * 1%),
-    var(--color-black)
-  );
-}
-
-@utility scrim-to-bottom-* {
-  @apply content-[""] absolute inset-0 z-10 pointer-events-none;
-  background: linear-gradient(
-    to bottom,
-    transparent calc(--value(integer) * 1%),
-    var(--color-black)
-  );
-}
