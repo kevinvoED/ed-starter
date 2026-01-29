@@ -933,7 +933,7 @@ export type ORGANIZATION_QUERY_RESULT = {
 
 // Source: ../frontend/sanity/queries/queries.ts
 // Variable: PAGE_QUERY
-// Query: fn fn::img($image) = $image {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::imgs($images) = $images[] {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::logo($logo) = $logo {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::link($link) = $link[] {    ...,    _key,    "href": select(      isExternal => href,      @.internalLink->slug.current == "index" => "/",      @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,      @.internalLink->_type == "post-index" => "/blog",      @.internalLink->_type == "platform-index" => "/platform",      @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,      "/" + @.internalLink->slug.current    )  };  *[_type == "page" && slug.current == $slug][0]{    _type,      modules[]{      _type == "hero-primary" => {    _type,    _key,    title,      "link": fn::link(link),      "image": fn::img(image),    content[]{        ...,  markDefs[]{    ...,    _type == "link" => {        ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  }    }  }  },        meta{    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "post" => "/blog/" + ^.slug.current,      ^._type == "post-index" => "/blog",      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      "/" + ^.slug.current    ),    "image": coalesce(      image.asset->url + "?w=1200&h=630&fit=max",      ^.image.asset->url + "?w=1200&h=630&fit=max",      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  }  }
+// Query: fn fn::img($image) = $image {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::imgs($images) = $images[] {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::logo($logo) = $logo {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::link($link) = $link[] {    ...,    _key,    "href": select(      isExternal => href,      @.internalLink->slug.current == "index" => "/",      @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,      @.internalLink->_type == "post-index" => "/blog",      @.internalLink->_type == "platform-index" => "/platform",      @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,      "/" + @.internalLink->slug.current    )  };    fn fn::ptPlain($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "link" => {        ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };    fn fn::pt($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "link" => {        ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };  *[_type == "page" && slug.current == $slug][0]{    _type,      modules[]{      _type == "hero-primary" => {    _type,    _key,    "title": fn::ptPlain(title),      "link": fn::link(link),      "image": fn::img(image),    "content": fn::pt(content),  }  },        meta{    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "post" => "/blog/" + ^.slug.current,      ^._type == "post-index" => "/blog",      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      "/" + ^.slug.current    ),    "image": coalesce(      image.asset->url + "?w=1200&h=630&fit=max",      ^.image.asset->url + "?w=1200&h=630&fit=max",      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  }  }
 export type PAGE_QUERY_RESULT = {
   _type: "page";
   modules: Array<{
@@ -948,14 +948,20 @@ export type PAGE_QUERY_RESULT = {
       }>;
       style?: "normal";
       listItem?: never;
-      markDefs?: Array<
-        | ({
+      markDefs: Array<
+        | {
             _key: string;
-          } & HighlightColor)
-        | ({
+            _type: "highlightColor";
+            label?: string;
+            value?: string;
+          }
+        | {
             _key: string;
-          } & TextColor)
-      >;
+            _type: "textColor";
+            label?: string;
+            value?: string;
+          }
+      > | null;
       level?: number;
       _type: "block";
       _key: string;
@@ -1069,7 +1075,7 @@ export type PAGES_SLUGS_QUERY_RESULT = Array<{
 
 // Source: ../frontend/sanity/queries/queries.ts
 // Variable: BLOG_QUERY
-// Query: fn fn::img($image) = $image {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::imgs($images) = $images[] {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::logo($logo) = $logo {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::link($link) = $link[] {    ...,    _key,    "href": select(      isExternal => href,      @.internalLink->slug.current == "index" => "/",      @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,      @.internalLink->_type == "post-index" => "/blog",      @.internalLink->_type == "platform-index" => "/platform",      @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,      "/" + @.internalLink->slug.current    )  };  *[_type == "post-index"][0]{    _type,    slug,        meta{    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "post" => "/blog/" + ^.slug.current,      ^._type == "post-index" => "/blog",      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      "/" + ^.slug.current    ),    "image": coalesce(      image.asset->url + "?w=1200&h=630&fit=max",      ^.image.asset->url + "?w=1200&h=630&fit=max",      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },      modules[]{      _type == "hero-primary" => {    _type,    _key,    title,      "link": fn::link(link),      "image": fn::img(image),    content[]{        ...,  markDefs[]{    ...,    _type == "link" => {        ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  }    }  }  },    title[]{        ...,  markDefs[]{    ...,    _type == "link" => {        ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )  }    },    description[]{        ...,  markDefs[]{    ...,    _type == "link" => {        ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )  }    },    featuredPost->{        _id,  _type,  _createdAt,  title[]{      ...,  markDefs[]{    ...,    _type == "link" => {        ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )  }  },  slug,  description,  publishedDate,    "link": fn::link(link),    "image": fn::img(image)    },    "posts": *[_type == "post" && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {        _id,  _type,  _createdAt,  title[]{      ...,  markDefs[]{    ...,    _type == "link" => {        ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )  }  },  slug,  description,  publishedDate,    "link": fn::link(link),    "image": fn::img(image)    }  }
+// Query: fn fn::img($image) = $image {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::imgs($images) = $images[] {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::logo($logo) = $logo {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::link($link) = $link[] {    ...,    _key,    "href": select(      isExternal => href,      @.internalLink->slug.current == "index" => "/",      @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,      @.internalLink->_type == "post-index" => "/blog",      @.internalLink->_type == "platform-index" => "/platform",      @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,      "/" + @.internalLink->slug.current    )  };    fn fn::ptPlain($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "link" => {        ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };    fn fn::pt($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "link" => {        ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };  *[_type == "post-index"][0]{    _type,    slug,        meta{    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "post" => "/blog/" + ^.slug.current,      ^._type == "post-index" => "/blog",      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      "/" + ^.slug.current    ),    "image": coalesce(      image.asset->url + "?w=1200&h=630&fit=max",      ^.image.asset->url + "?w=1200&h=630&fit=max",      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },      modules[]{      _type == "hero-primary" => {    _type,    _key,    "title": fn::ptPlain(title),      "link": fn::link(link),      "image": fn::img(image),    "content": fn::pt(content),  }  },    title[]{        fn::ptPlain(content)    },    description[]{        fn::ptPlain(content)    },    featuredPost->{        _id,  _type,  _createdAt,  title[]{      fn::ptPlain(content)  },  slug,  description,  publishedDate,    "link": fn::link(link),    "image": fn::img(image)    },    "posts": *[_type == "post" && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {        _id,  _type,  _createdAt,  title[]{      fn::ptPlain(content)  },  slug,  description,  publishedDate,    "link": fn::link(link),    "image": fn::img(image)    }  }
 export type BLOG_QUERY_RESULT = {
   _type: "post-index";
   slug: Slug;
@@ -1107,14 +1113,20 @@ export type BLOG_QUERY_RESULT = {
       }>;
       style?: "normal";
       listItem?: never;
-      markDefs?: Array<
-        | ({
+      markDefs: Array<
+        | {
             _key: string;
-          } & HighlightColor)
-        | ({
+            _type: "highlightColor";
+            label?: string;
+            value?: string;
+          }
+        | {
             _key: string;
-          } & TextColor)
-      >;
+            _type: "textColor";
+            label?: string;
+            value?: string;
+          }
+      > | null;
       level?: number;
       _type: "block";
       _key: string;
@@ -1211,63 +1223,17 @@ export type BLOG_QUERY_RESULT = {
     > | null;
   }> | null;
   title: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs: null;
-    level?: number;
-    _type: "block";
-    _key: string;
+    content: null;
   }>;
   description: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs: null;
-    level?: number;
-    _type: "block";
-    _key: string;
+    content: null;
   }> | null;
   featuredPost: {
     _id: string;
     _type: "post";
     _createdAt: string;
     title: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs: Array<
-        | {
-            _key: string;
-            _type: "highlightColor";
-            label?: string;
-            value?: string;
-          }
-        | {
-            _key: string;
-            _type: "textColor";
-            label?: string;
-            value?: string;
-          }
-      > | null;
-      level?: number;
-      _type: "block";
-      _key: string;
+      content: null;
     }>;
     slug: Slug;
     description: Array<{
@@ -1323,31 +1289,7 @@ export type BLOG_QUERY_RESULT = {
     _type: "post";
     _createdAt: string;
     title: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs: Array<
-        | {
-            _key: string;
-            _type: "highlightColor";
-            label?: string;
-            value?: string;
-          }
-        | {
-            _key: string;
-            _type: "textColor";
-            label?: string;
-            value?: string;
-          }
-      > | null;
-      level?: number;
-      _type: "block";
-      _key: string;
+      content: null;
     }>;
     slug: Slug;
     description: Array<{
@@ -1402,7 +1344,7 @@ export type BLOG_QUERY_RESULT = {
 
 // Source: ../frontend/sanity/queries/queries.ts
 // Variable: BLOG_SLUG_QUERY
-// Query: fn fn::img($image) = $image {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::imgs($images) = $images[] {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::logo($logo) = $logo {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::link($link) = $link[] {    ...,    _key,    "href": select(      isExternal => href,      @.internalLink->slug.current == "index" => "/",      @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,      @.internalLink->_type == "post-index" => "/blog",      @.internalLink->_type == "platform-index" => "/platform",      @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,      "/" + @.internalLink->slug.current    )  };  *[_type == "post" && slug.current == $slug][0]{    _id,    _createdAt,    _type,    slug,    publishedDate,      "image": fn::img(image),        meta{    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "post" => "/blog/" + ^.slug.current,      ^._type == "post-index" => "/blog",      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      "/" + ^.slug.current    ),    "image": coalesce(      image.asset->url + "?w=1200&h=630&fit=max",      ^.image.asset->url + "?w=1200&h=630&fit=max",      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },      modules[]{      _type == "hero-primary" => {    _type,    _key,    title,      "link": fn::link(link),      "image": fn::img(image),    content[]{        ...,  markDefs[]{    ...,    _type == "link" => {        ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  }    }  }  },    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 ),    title[]{        ...,  markDefs[]{    ...,    _type == "link" => {        ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )  }    },    description[]{        ...,  markDefs[]{    ...,    _type == "link" => {        ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  },  _type == "link" => {      ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )  }    },    content[]{        ...,  markDefs[]{    ...,    _type == "link" => {        ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  },    },  }
+// Query: fn fn::img($image) = $image {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::imgs($images) = $images[] {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::logo($logo) = $logo {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::link($link) = $link[] {    ...,    _key,    "href": select(      isExternal => href,      @.internalLink->slug.current == "index" => "/",      @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,      @.internalLink->_type == "post-index" => "/blog",      @.internalLink->_type == "platform-index" => "/platform",      @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,      "/" + @.internalLink->slug.current    )  };    fn fn::ptPlain($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "link" => {        ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };    fn fn::pt($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "link" => {        ...,  _key,  "href": select(    isExternal => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "post-index" => "/blog",    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };  *[_type == "post" && slug.current == $slug][0]{    _id,    _createdAt,    _type,    slug,    publishedDate,      "image": fn::img(image),        meta{    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "post" => "/blog/" + ^.slug.current,      ^._type == "post-index" => "/blog",      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      "/" + ^.slug.current    ),    "image": coalesce(      image.asset->url + "?w=1200&h=630&fit=max",      ^.image.asset->url + "?w=1200&h=630&fit=max",      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },      modules[]{      _type == "hero-primary" => {    _type,    _key,    "title": fn::ptPlain(title),      "link": fn::link(link),      "image": fn::img(image),    "content": fn::pt(content),  }  },    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 ),    title[]{        fn::ptPlain(content)    },    description[]{        fn::ptPlain(content)    },    content[]{        fn::ptPlain(content),    },  }
 export type BLOG_SLUG_QUERY_RESULT = {
   _id: string;
   _createdAt: string;
@@ -1468,14 +1410,20 @@ export type BLOG_SLUG_QUERY_RESULT = {
       }>;
       style?: "normal";
       listItem?: never;
-      markDefs?: Array<
-        | ({
+      markDefs: Array<
+        | {
             _key: string;
-          } & HighlightColor)
-        | ({
+            _type: "highlightColor";
+            label?: string;
+            value?: string;
+          }
+        | {
             _key: string;
-          } & TextColor)
-      >;
+            _type: "textColor";
+            label?: string;
+            value?: string;
+          }
+      > | null;
       level?: number;
       _type: "block";
       _key: string;
@@ -1573,104 +1521,14 @@ export type BLOG_SLUG_QUERY_RESULT = {
   }> | null;
   estimatedReadingTime: number;
   title: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs: Array<
-      | {
-          _key: string;
-          _type: "highlightColor";
-          label?: string;
-          value?: string;
-        }
-      | {
-          _key: string;
-          _type: "textColor";
-          label?: string;
-          value?: string;
-        }
-    > | null;
-    level?: number;
-    _type: "block";
-    _key: string;
+    content: null;
   }>;
   description: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs: null;
-    level?: number;
-    _type: "block";
-    _key: string;
+    content: null;
   }> | null;
-  content: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>;
-          text?: string;
-          _type: "span";
-          _key: string;
-        }>;
-        style?: "h1" | "h2" | "h3" | "h4" | "normal";
-        listItem?: "bullet" | "number";
-        markDefs: Array<
-          | {
-              _key: string;
-              _type: "highlightColor";
-              label?: string;
-              value?: string;
-            }
-          | {
-              isExternal?: boolean;
-              internalLink?:
-                | PageReference
-                | PlatformChildReference
-                | PlatformIndexReference
-                | PostIndexReference
-                | PostReference;
-              href: string | "/" | "/blog" | "/platform" | null;
-              openInNewTab?: boolean;
-              _type: "link";
-              _key: string;
-            }
-          | {
-              _key: string;
-              _type: "textColor";
-              label?: string;
-              value?: string;
-            }
-        > | null;
-        level?: number;
-        _type: "block";
-        _key: string;
-      }
-    | {
-        asset?: SanityImageAssetReference;
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt?: string;
-        _type: "image";
-        _key: string;
-        markDefs: null;
-      }
-    | {
-        videoId?: string;
-        _type: "youtube";
-        _key: string;
-        markDefs: null;
-      }
-  > | null;
+  content: Array<{
+    content: null;
+  }> | null;
 } | null;
 
 // Source: ../frontend/sanity/queries/queries.ts
@@ -1687,10 +1545,10 @@ declare module "@sanity/client" {
     '\n  *[_type == "footer"]{\n    _key,\n    _type,\n  }\n': FOOTER_QUERY_RESULT;
     '\n  *[_type == "navbar"]{\n    _type,\n  }\n': NAVBAR_QUERY_RESULT;
     '\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n\n  *[_type == "organization"][0]{\n    organization {\n      ...,\n      "logo": fn::logo(logo),\n    }\n  }\n': ORGANIZATION_QUERY_RESULT;
-    '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::link($link) = $link[] {\n    ...,\n    _key,\n    "href": select(\n      isExternal => href,\n      @.internalLink->slug.current == "index" => "/",\n      @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n      @.internalLink->_type == "post-index" => "/blog",\n      @.internalLink->_type == "platform-index" => "/platform",\n      @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n      "/" + @.internalLink->slug.current\n    )\n  };\n\n\n\n  *[_type == "page" && slug.current == $slug][0]{\n    _type,\n    \n  modules[]{\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    title,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n    content[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  }\n\n    }\n  }\n\n  }\n,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "post" => "/blog/" + ^.slug.current,\n      ^._type == "post-index" => "/blog",\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n\n  }\n': PAGE_QUERY_RESULT;
+    '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::link($link) = $link[] {\n    ...,\n    _key,\n    "href": select(\n      isExternal => href,\n      @.internalLink->slug.current == "index" => "/",\n      @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n      @.internalLink->_type == "post-index" => "/blog",\n      @.internalLink->_type == "platform-index" => "/platform",\n      @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n      "/" + @.internalLink->slug.current\n    )\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n\n\n  *[_type == "page" && slug.current == $slug][0]{\n    _type,\n    \n  modules[]{\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    "title": fn::ptPlain(title),\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n    "content": fn::pt(content),\n  }\n\n  }\n,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "post" => "/blog/" + ^.slug.current,\n      ^._type == "post-index" => "/blog",\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n\n  }\n': PAGE_QUERY_RESULT;
     "*[_type == $pageType && defined(slug)]{slug}": PAGES_SLUGS_QUERY_RESULT;
-    '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::link($link) = $link[] {\n    ...,\n    _key,\n    "href": select(\n      isExternal => href,\n      @.internalLink->slug.current == "index" => "/",\n      @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n      @.internalLink->_type == "post-index" => "/blog",\n      @.internalLink->_type == "platform-index" => "/platform",\n      @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n      "/" + @.internalLink->slug.current\n    )\n  };\n\n\n\n  *[_type == "post-index"][0]{\n    _type,\n    slug,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "post" => "/blog/" + ^.slug.current,\n      ^._type == "post-index" => "/blog",\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    \n  modules[]{\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    title,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n    content[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  }\n\n    }\n  }\n\n  }\n,\n    title[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  },\n  _type == "link" => {\n    \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  }\n\n    },\n    description[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  },\n  _type == "link" => {\n    \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  }\n\n    },\n    featuredPost->{\n      \n  _id,\n  _type,\n  _createdAt,\n  title[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  },\n  _type == "link" => {\n    \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  }\n\n  },\n  slug,\n  description,\n  publishedDate,\n  \n  "link": fn::link(link)\n,\n  \n  "image": fn::img(image)\n\n\n    },\n    "posts": *[_type == "post" && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {\n      \n  _id,\n  _type,\n  _createdAt,\n  title[]{\n    \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  },\n  _type == "link" => {\n    \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  }\n\n  },\n  slug,\n  description,\n  publishedDate,\n  \n  "link": fn::link(link)\n,\n  \n  "image": fn::img(image)\n\n\n    }\n  }\n': BLOG_QUERY_RESULT;
-    '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::link($link) = $link[] {\n    ...,\n    _key,\n    "href": select(\n      isExternal => href,\n      @.internalLink->slug.current == "index" => "/",\n      @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n      @.internalLink->_type == "post-index" => "/blog",\n      @.internalLink->_type == "platform-index" => "/platform",\n      @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n      "/" + @.internalLink->slug.current\n    )\n  };\n\n\n\n  *[_type == "post" && slug.current == $slug][0]{\n    _id,\n    _createdAt,\n    _type,\n    slug,\n    publishedDate,\n    \n  "image": fn::img(image)\n,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "post" => "/blog/" + ^.slug.current,\n      ^._type == "post-index" => "/blog",\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    \n  modules[]{\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    title,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n    content[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  }\n\n    }\n  }\n\n  }\n,\n    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 ),\n    title[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  },\n  _type == "link" => {\n    \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  }\n\n    },\n    description[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  },\n  _type == "link" => {\n    \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  }\n\n    },\n    content[]{\n      \n  ...,\n  markDefs[]{\n    ...,\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  }\n,\n    },\n  }\n': BLOG_SLUG_QUERY_RESULT;
+    '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::link($link) = $link[] {\n    ...,\n    _key,\n    "href": select(\n      isExternal => href,\n      @.internalLink->slug.current == "index" => "/",\n      @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n      @.internalLink->_type == "post-index" => "/blog",\n      @.internalLink->_type == "platform-index" => "/platform",\n      @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n      "/" + @.internalLink->slug.current\n    )\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n\n\n  *[_type == "post-index"][0]{\n    _type,\n    slug,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "post" => "/blog/" + ^.slug.current,\n      ^._type == "post-index" => "/blog",\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    \n  modules[]{\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    "title": fn::ptPlain(title),\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n    "content": fn::pt(content),\n  }\n\n  }\n,\n    title[]{\n      \n  fn::ptPlain(content)\n\n    },\n    description[]{\n      \n  fn::ptPlain(content)\n\n    },\n    featuredPost->{\n      \n  _id,\n  _type,\n  _createdAt,\n  title[]{\n    \n  fn::ptPlain(content)\n\n  },\n  slug,\n  description,\n  publishedDate,\n  \n  "link": fn::link(link)\n,\n  \n  "image": fn::img(image)\n\n\n    },\n    "posts": *[_type == "post" && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {\n      \n  _id,\n  _type,\n  _createdAt,\n  title[]{\n    \n  fn::ptPlain(content)\n\n  },\n  slug,\n  description,\n  publishedDate,\n  \n  "link": fn::link(link)\n,\n  \n  "image": fn::img(image)\n\n\n    }\n  }\n': BLOG_QUERY_RESULT;
+    '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::link($link) = $link[] {\n    ...,\n    _key,\n    "href": select(\n      isExternal => href,\n      @.internalLink->slug.current == "index" => "/",\n      @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n      @.internalLink->_type == "post-index" => "/blog",\n      @.internalLink->_type == "platform-index" => "/platform",\n      @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n      "/" + @.internalLink->slug.current\n    )\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    isExternal => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "post-index" => "/blog",\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n\n\n  *[_type == "post" && slug.current == $slug][0]{\n    _id,\n    _createdAt,\n    _type,\n    slug,\n    publishedDate,\n    \n  "image": fn::img(image)\n,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "post" => "/blog/" + ^.slug.current,\n      ^._type == "post-index" => "/blog",\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    \n  modules[]{\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    "title": fn::ptPlain(title),\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n    "content": fn::pt(content),\n  }\n\n  }\n,\n    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 ),\n    title[]{\n      \n  fn::ptPlain(content)\n\n    },\n    description[]{\n      \n  fn::ptPlain(content)\n\n    },\n    content[]{\n      \n  fn::ptPlain(content)\n,\n    },\n  }\n': BLOG_SLUG_QUERY_RESULT;
     '*[_type == "post" && defined(slug)]{slug}': BLOG_SLUGS_QUERY_RESULT;
   }
 }

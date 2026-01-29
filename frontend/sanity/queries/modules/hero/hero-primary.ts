@@ -1,16 +1,14 @@
 import { defineQuery } from "next-sanity";
-import { imageFragment, linkFragment, ptFragment } from "../../fragments";
+import { imageFragment, linkFragment } from "../../fragments";
 
 // @sanity-typegen-ignore
 export const HERO_PRIMARY_QUERY = defineQuery(`
   _type == "hero-primary" => {
     _type,
     _key,
-    title,
+    "title": fn::ptPlain(title),
     ${linkFragment},
     ${imageFragment},
-    content[]{
-      ${ptFragment}
-    }
+    "content": fn::pt(content),
   }
 `);

@@ -61,9 +61,41 @@ export const FN_LINK_PARTIAL = `
   };
 `;
 
+export const FN_PT_PLAIN_PARTIAL = `
+  fn fn::ptPlain($content) = $content[] {
+    ...,
+    markDefs[]{
+      ...,
+      _type == "link" => {
+        ${linkFields}
+      }
+    },
+    _type == "link" => {
+      ${linkFields}
+    }
+  };
+`;
+
+export const FN_PT_PARTIAL = `
+  fn fn::pt($content) = $content[] {
+    ...,
+    markDefs[]{
+      ...,
+      _type == "link" => {
+        ${linkFields}
+      }
+    },
+    _type == "link" => {
+      ${linkFields}
+    }
+  };
+`;
+
 export const FN_COMMON_PARTIALS = `
   ${FN_IMAGE_PARTIAL}
   ${FN_IMAGES_PARTIAL}
   ${FN_LOGO_PARTIAL}
   ${FN_LINK_PARTIAL}
+  ${FN_PT_PLAIN_PARTIAL}
+  ${FN_PT_PARTIAL}
 `;

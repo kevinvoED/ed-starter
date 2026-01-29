@@ -61,6 +61,11 @@ export const fetchSanityPageBySlug = async ({
   pageType: string;
   slug: string;
 }): Promise<PAGE_QUERY_RESULT> => {
+  // console.log(
+  //   "Query size:",
+  //   new TextEncoder().encode(PAGE_SLUG_QUERY).length,
+  //   "bytes",
+  // );
   const { data } = await sanityFetch({
     query: PAGE_SLUG_QUERY,
     params: { pageType, slug },

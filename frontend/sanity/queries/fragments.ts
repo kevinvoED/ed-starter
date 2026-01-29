@@ -1,4 +1,4 @@
-import { imageFields, linkFields } from "../queries/partials";
+import { imageFields } from "../queries/partials";
 
 // Used in sitemap.ts to generate full urls to the content
 export const urlQuery = `
@@ -43,27 +43,12 @@ export const metaFragment = `
 
 // Used for PortableTextPlain fields
 export const ptPlainFragment = `
-  ...,
-  markDefs[]{
-    ...,
-    _type == "link" => {
-      ${linkFields}
-    }
-  },
-  _type == "link" => {
-    ${linkFields}
-  }
+  fn::ptPlain(content)
 `;
 
 // Used for PortableText fields
 export const ptFragment = `
-  ...,
-  markDefs[]{
-    ...,
-    _type == "link" => {
-      ${linkFields}
-    }
-  }
+  fn::ptPlain(content)
 `;
 
 export const linkFragment = `
