@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@config "../tailwind.config.mjs";
+@import "../lib/styles/fluid.css";
 @plugin "tailwindcss-animate";
 
 @theme {
@@ -8,24 +8,16 @@
   --font-body: var(--font-body);
   --font-mono: var(--font-mono);
 
-  --font-weight-slightlybold: 500;
-
-  /* Custom easings */
-  --button-bezier: cubic-bezier(1, 0, 0.01, 1);
-
   /* Custom breakpoints */
   --breakpoint-3xl: 120rem; /* 1920px */
   --breakpoint-4xl: 160rem; /* 2560px */
   --breakpoint-5xl: 240rem; /* 3840px */
 
-  --indent-2col: 16.5vw;
-  --indent-4col: 24.5vw;
-
-  /* Custom dashed border hack */
-  --dashed-border-svg: url("data:image/svg+xml;utf8,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='1' strokeDasharray='7' strokeDashoffset='9' stroke-linecap='square'/%3e%3c/svg%3e");
-
   /* Colors */
   --color-*: initial; /* Remove default color palette */
+  --color-debug-blue: oklch(62.3% 0.214 259.815); /* #2B7FFF */
+  --color-debug-red: oklch(63.7% 0.237 25.331); /* #FB2C36 */
+
   --color-white: oklch(0.9851 0 0); /* #FAFAFA */
   --color-black: oklch(0.1913 0 0); /* #141414 */
   --color-neon: oklch(0.932 0.2277 122.64); /* #CEFF00 */
@@ -37,66 +29,6 @@
   --color-alabaster: oklch(0.8853 0 0); /* #D9D9D9 */
   --color-platinum: oklch(0.9431 0 0); /* #ECECEC */
   --color-porcelain: oklch(0.9674 0.0029 84.56); /* #F5F4F2 */
-
-  /* Animations */
-  --animate-slideDown: slideDown 0.3s ease-in-out;
-  --animate-slideUp: slideUp 0.3s ease-in-out;
-  --animate-fade-up: fadeUp 0.7s ease-in-out forwards;
-  --animate-mobileNavOpen: mobileNavOpen 0.4s cubic-bezier(0.16, 1, 0.3, 1)
-    forwards;
-  --animate-mobileNavClose: mobileNavClose 0.3s cubic-bezier(0.16, 1, 0.3, 1)
-    forwards;
-
-  @keyframes slideDown {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--radix-accordion-content-height);
-    }
-  }
-
-  @keyframes slideUp {
-    from {
-      height: var(--radix-accordion-content-height);
-    }
-    to {
-      height: 0;
-    }
-  }
-
-  @keyframes mobileNavOpen {
-    from {
-      opacity: 0;
-      transform: translateY(-100%);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes mobileNavClose {
-    from {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    to {
-      opacity: 0;
-      transform: translateY(-100%);
-    }
-  }
-
-  @keyframes fadeUp {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 }
 
 /* ------------------------------------------------------------ */
@@ -121,178 +53,6 @@
 
 @utility grid-custom-xl {
   @apply grid grid-cols-4 xl:grid-cols-12 gap-5;
-}
-
-@utility border-dashed-l {
-  position: relative;
-
-  &::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 1px;
-    background-image: linear-gradient(
-      to bottom,
-      var(--color-charcoal) 50%,
-      transparent 50%
-    );
-    background-size: 1px 7px;
-    background-repeat: repeat-y;
-  }
-}
-
-@utility indent-2col {
-  text-indent: var(--indent-2col);
-}
-
-@utility indent-4col {
-  text-indent: var(--indent-4col);
-}
-
-/* ------------------------------------------------------------ */
-/* ------------------- Heading Typography --------------------- */
-/* ------------------------------------------------------------ */
-@utility type-heading-12030 {
-  font: normal normal 300 7.5rem / 1 var(--font-heading);
-  letter-spacing: -7.44px;
-}
-
-@utility type-heading-8030 {
-  font: normal normal 300 5rem / 1 var(--font-heading);
-  letter-spacing: -4.8px;
-}
-
-@utility type-heading-6430 {
-  font: normal normal 300 4rem / 0.95313 var(--font-heading);
-  letter-spacing: -3.328px;
-}
-
-@utility type-heading-4830 {
-  font: normal normal 300 3rem / 1 var(--font-heading);
-  letter-spacing: -2.112px;
-}
-
-@utility type-heading-4030 {
-  font: normal normal 300 2.5rem / 1.04 var(--font-heading);
-  letter-spacing: -1.2px;
-}
-
-@utility type-heading-3240 {
-  font: normal normal 400 2rem / 1.0625 var(--font-heading);
-  letter-spacing: -0.96px;
-}
-
-@utility type-heading-3230 {
-  font: normal normal 300 2rem / 1.0625 var(--font-heading);
-  letter-spacing: -0.96px;
-}
-
-@utility type-heading-2840 {
-  font: normal normal 400 1.75rem / 1.16667 var(--font-heading);
-  letter-spacing: -0.48px;
-}
-
-@utility type-heading-2830 {
-  font: normal normal 300 1.75rem / 1.16667 var(--font-heading);
-  letter-spacing: -0.48px;
-}
-
-@utility type-heading-2440 {
-  font: normal normal 400 1.5rem / 1.16667 var(--font-heading);
-  letter-spacing: -0.48px;
-}
-
-@utility type-heading-2430 {
-  font: normal normal 300 1.5rem / 1.16667 var(--font-heading);
-  letter-spacing: -0.48px;
-}
-
-@utility type-heading-2030 {
-  font: normal normal 300 1.25rem / 1.2 var(--font-heading);
-  letter-spacing: -0.4px;
-}
-
-@utility type-heading-1630 {
-  font: normal normal 300 1rem / 1.16667 var(--font-heading);
-  letter-spacing: -0.16px;
-}
-
-/* ------------------------------------------------------------ */
-/* --------------------- Body Typography ---------------------- */
-/* ------------------------------------------------------------ */
-
-@utility type-body-1660 {
-  font: normal normal 600 1rem / 1.5 var(--font-body);
-  letter-spacing: -0.16px;
-}
-
-@utility type-body-1650 {
-  font: normal normal 500 1rem / 1.5 var(--font-body);
-  letter-spacing: -0.16px;
-}
-
-@utility type-body-1640 {
-  font: normal normal 400 1rem / 1.5 var(--font-body);
-  letter-spacing: -0.16px;
-}
-
-@utility type-body-1450 {
-  font: normal normal 500 0.875rem / 1.42857 var(--font-body);
-  letter-spacing: 0.14px;
-}
-
-@utility type-body-1440 {
-  font: normal normal 400 0.875rem / 1.42857 var(--font-body);
-  letter-spacing: 0.14px;
-}
-
-@utility type-body-1250 {
-  font: normal normal 500 0.75rem / 1.41667 var(--font-body);
-  letter-spacing: 0px;
-}
-
-@utility type-body-1240 {
-  font: normal normal 400 0.75rem / 1.41667 var(--font-body);
-  letter-spacing: 0px;
-}
-
-@utility type-body-1050 {
-  font: normal normal 500 0.625rem / 1.7 var(--font-body);
-  letter-spacing: 0px;
-}
-
-@utility type-body-1040 {
-  font: normal normal 400 0.625rem / 1.5 var(--font-body);
-  letter-spacing: 0px;
-}
-
-/* ------------------------------------------------------------ */
-/* --------------------- Mono Typography ---------------------- */
-/* ------------------------------------------------------------ */
-
-@utility type-mono-1440 {
-  font: normal normal 400 0.875rem / 1.39286 var(--font-mono);
-  letter-spacing: 0.28px;
-}
-
-@utility type-mono-1240 {
-  font: normal normal 400 0.75rem / 1.5 var(--font-mono);
-  letter-spacing: 0px;
-}
-
-@utility type-mono-1040 {
-  font: normal normal 400 0.625rem / 1.5 var(--font-mono);
-  letter-spacing: 0px;
-}
-
-/* ------------------------------------------------------------ */
-/* --------------------- Cdoe Typography ---------------------- */
-/* ------------------------------------------------------------ */
-
-@utility type-code-1240 {
-  font: normal normal 400 0.75rem / 1.125 var(--font-mono);
 }
 
 /* ------------------------------------------------------------ */
@@ -333,11 +93,6 @@ svg.icon {
 
 button {
   cursor: pointer;
-}
-
-b,
-strong {
-  @apply font-slightlybold;
 }
 
 article b,

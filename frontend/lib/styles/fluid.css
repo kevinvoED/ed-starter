@@ -1,0 +1,449 @@
+@layer theme {
+  :root {
+    /* Used for rem/px conversion - TAILWIND DEFAULTS  */
+    --base-font-size: 16;
+    --px-per-tw: 4;
+    --tw-per-rem: 0.25;
+    --to-rem: 1rem;
+    --to-px: 1px;
+
+    /*
+  UPDATE as needed
+  Based on the figma mobile, desktop sizes
+  */
+    --fluid-screen-min: 480;
+    --fluid-screen-max: 1512;
+    /* arbitrary floor values don't want to ever go below */
+    --line-height-floor: 0.9rem;
+    --letter-spacing-floor: -0.25rem;
+
+    /* Calculate slope multiplier: 1 / (max screen size - min screen size) */
+    --fluid-multiplier: calc(
+      1 /
+      (var(--fluid-screen-max) - var(--fluid-screen-min))
+    );
+    /* The Progress: How many pixels we are past the min screen size are we */
+    --v-diff: calc(100vw - (var(--fluid-screen-min) * var(--to-px)));
+    /* The Fluid Progress multiplier */
+    --fluid-progress: calc(var(--v-diff) * var(--fluid-multiplier));
+
+    /*
+  Re-usable font weight vars - create as needed for the typography styles below
+  - just an abstraction of the tailwind vars so we know actual font weight setting in our type- styles
+  */
+    --font-weight-100: var(--font-weight-thin);
+    --font-weight-200: var(--font-weight-extralight);
+    --font-weight-300: var(--font-weight-light);
+    --font-weight-400: var(--font-weight-normal);
+    --font-weight-500: var(--font-weight-medium);
+    --font-weight-600: var(--font-weight-semibold);
+    --font-weight-700: var(--font-weight-bold);
+    --font-weight-800: var(--font-weight-extrabold);
+    --font-weight-900: var(--font-weight-black);
+
+    /*
+  UPDATE as needed
+  Re-usable font size vars (--font-scale-PX) - create as needed for the typography styles below - set to unitless rem values for FF calcs - we convert to actual rem values later
+  */
+    --font-scale-12: calc(var(--tw-per-rem) * 3);
+    --font-scale-16: calc(var(--tw-per-rem) * 4);
+    --font-scale-20: calc(var(--tw-per-rem) * 5);
+    --font-scale-24: calc(var(--tw-per-rem) * 6);
+    --font-scale-28: calc(var(--tw-per-rem) * 7);
+    --font-scale-32: calc(var(--tw-per-rem) * 8);
+    --font-scale-40: calc(var(--tw-per-rem) * 10);
+    --font-scale-48: calc(var(--tw-per-rem) * 12);
+    --font-scale-64: calc(var(--tw-per-rem) * 16);
+    --font-scale-80: calc(var(--tw-per-rem) * 20);
+    --font-scale-96: calc(var(--tw-per-rem) * 24);
+    --font-scale-120: calc(var(--tw-per-rem) * 30);
+  }
+}
+
+@layer utilities {
+  /*
+  usage:
+  <h2 class="ftype type-1640 to-type-3240">Here is some content</h2>
+  mobile size = type-1640
+  desktop size = to-type-3240 (just use max- prefix)
+  */
+  .ftype:is([class*="to-"]) {
+    /*
+    - based on the unitless difference in sizes convert to the pixel equivalent for the fluid size calculation
+    - convert the min size to rems since we pass these through as unitless
+    */
+    --fs-diff-px: calc(
+      (var(--to-font-size) - var(--font-size)) *
+      var(--base-font-size)
+    );
+    --min-font-size: calc(var(--font-size) * var(--to-rem));
+    font-size: max(
+      var(--min-font-size),
+      calc(var(--min-font-size) + var(--fs-diff-px) * var(--fluid-progress))
+    );
+    /*
+    - using an arbitraty floor value so that we never get too tight with line-height and letter-spacing
+    - do we need to clamp and set min and max values that line height and letter spacing should never go beyond.
+    */
+    --lh-diff-px: calc(
+      (var(--to-line-height) - var(--line-height)) *
+      var(--base-font-size)
+    );
+    --min-line-height: calc(var(--line-height) * var(--to-rem));
+    line-height: max(
+      var(--line-height-floor),
+      calc(var(--min-line-height) + var(--lh-diff-px) * var(--fluid-progress))
+    );
+    --ls-diff-px: calc(
+      (var(--to-letter-spacing) - var(--letter-spacing)) *
+      var(--base-font-size)
+    );
+    --min-letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
+    letter-spacing: max(
+      var(--letter-spacing-floor),
+      calc(
+        var(--min-letter-spacing) +
+        var(--ls-diff-px) *
+        var(--fluid-progress)
+      )
+    );
+
+    /* debug vars
+    --debug-progress: var(--fs-diff-px); */
+  }
+}
+
+/*
+  UPDATE as needed
+  custom typography styles - can be used alone or with fluid type as the min font size
+  - extract font size from figma - scale value in px (--font-scale-PX)
+  - extract line-height from figma in px - calc(PX / 16 * var(--to-rem)) we convert to rems
+  - extract letter-spacing from figma in px - calc(PX / 16 * var(--to-rem)) we convert to rems
+  - font-weight and font-family are not fluid - so not exposed as a var
+  */
+@utility type-1640 {
+  --font-size: var(--font-scale-16);
+  --line-height: calc(20 / var(--base-font-size));
+  --letter-spacing: calc(0.75 / var(--base-font-size));
+  font-size: calc(var(--font-size) * var(--to-rem));
+  line-height: calc(var(--line-height) * var(--to-rem));
+  letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
+  font-weight: var(--font-weight-400);
+  font-family: var(--font-body);
+}
+@utility type-2040 {
+  --font-size: var(--font-scale-20);
+  --line-height: calc(28 / var(--base-font-size));
+  --letter-spacing: calc(0.75 / var(--base-font-size));
+  font-size: calc(var(--font-size) * var(--to-rem));
+  line-height: calc(var(--line-height) * var(--to-rem));
+  letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
+  font-weight: var(--font-weight-400);
+  font-family: var(--font-body);
+}
+@utility type-3240 {
+  --font-size: var(--font-scale-32);
+  --line-height: calc(40 / var(--base-font-size));
+  --letter-spacing: calc(0.25 / var(--base-font-size));
+  font-size: calc(var(--font-size) * var(--to-rem));
+  line-height: calc(var(--line-height) * var(--to-rem));
+  letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
+  font-weight: var(--font-weight-400);
+  font-family: var(--font-body);
+}
+@utility type-3260 {
+  --font-size: var(--font-scale-32);
+  --line-height: calc(40 / var(--base-font-size));
+  --letter-spacing: calc(-0.5 / var(--base-font-size));
+  font-size: calc(var(--font-size) * var(--to-rem));
+  line-height: calc(var(--line-height) * var(--to-rem));
+  letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
+  font-weight: var(--font-weight-600);
+  font-family: var(--font-body);
+}
+@utility type-4860 {
+  --font-size: var(--font-scale-48);
+  --line-height: calc(54 / var(--base-font-size));
+  --letter-spacing: calc(-0.5 / var(--base-font-size));
+  font-size: calc(var(--font-size) * var(--to-rem));
+  line-height: calc(var(--line-height) * var(--to-rem));
+  letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
+  font-weight: var(--font-weight-600);
+  font-family: var(--font-body);
+}
+@utility type-9660 {
+  --font-size: var(--font-scale-96);
+  --line-height: calc(100 / var(--base-font-size));
+  --letter-spacing: calc(-0.5 / var(--base-font-size));
+  font-size: calc(var(--font-size) * var(--to-rem));
+  line-height: calc(var(--line-height) * var(--to-rem));
+  letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
+  font-weight: var(--font-weight-600);
+  font-family: var(--font-body);
+}
+
+/*
+    UPDATE as needed
+    "to-" classes only to be used with fluid type as the upper bound font definition
+    - just copy each type class above and prefix the vars with --to
+    - copy above styles and then prompt gemini:
+        "duplicate each of these classes, prefix the class name with .to- prefix the variables with to- and remove all actual properties and remove the @utlity function"
+    */
+@utility to-type-1640 {
+  --to-font-size: var(--font-scale-16);
+  --to-line-height: calc(20 / var(--base-font-size));
+  --to-letter-spacing: calc(0.75 / var(--base-font-size));
+}
+@utility to-type-2040 {
+  --to-font-size: var(--font-scale-20);
+  --to-line-height: calc(28 / var(--base-font-size));
+  --to-letter-spacing: calc(0.75 / var(--base-font-size));
+}
+@utility to-type-3240 {
+  --to-font-size: var(--font-scale-32);
+  --to-line-height: calc(40 / var(--base-font-size));
+  --to-letter-spacing: calc(0.25 / var(--base-font-size));
+}
+@utility to-type-3260 {
+  --to-font-size: var(--font-scale-32);
+  --to-line-height: calc(40 / var(--base-font-size));
+  --to-letter-spacing: calc(-0.5 / var(--base-font-size));
+}
+@utility to-type-4860 {
+  --to-font-size: var(--font-scale-48);
+  --to-line-height: calc(54 / var(--base-font-size));
+  --to-letter-spacing: calc(-0.5 / var(--base-font-size));
+}
+@utility to-type-9660 {
+  --to-font-size: var(--font-scale-96);
+  --to-line-height: calc(100 / var(--base-font-size));
+  --to-letter-spacing: calc(-0.5 / var(--base-font-size));
+}
+
+/*
+Functional Utility Fluid Spacing Classes
+usage:
+<div class="fluid-pt-4/8">Here is some content</div>
+mobile padding = 16px
+desktop padding = 32px
+*/
+/* --- PADDING --- */
+@utility fluid-p-* {
+  --p-diff: calc(
+    (--modifier(integer) * var(--px-per-tw)) -
+    (--value(integer) * var(--px-per-tw))
+  );
+  --p-min-size: calc(var(--spacing) * --value(integer));
+  --p-fluid: calc(var(--p-min-size) + (var(--p-diff) * var(--fluid-progress)));
+  padding: max(var(--p-min-size), var(--p-fluid));
+}
+@utility fluid-pt-* {
+  --pt-diff: calc(
+    (--modifier(integer) * var(--px-per-tw)) -
+    (--value(integer) * var(--px-per-tw))
+  );
+  --pt-min-size: calc(var(--spacing) * --value(integer));
+  --pt-fluid: calc(
+    var(--pt-min-size) +
+    (var(--pt-diff) * var(--fluid-progress))
+  );
+  padding-top: max(var(--pt-min-size), var(--pt-fluid));
+}
+@utility fluid-pb-* {
+  --pb-diff: calc(
+    (--modifier(integer) * var(--px-per-tw)) -
+    (--value(integer) * var(--px-per-tw))
+  );
+  --pb-min-size: calc(var(--spacing) * --value(integer));
+  --pb-fluid: calc(
+    var(--pb-min-size) +
+    (var(--pb-diff) * var(--fluid-progress))
+  );
+  padding-bottom: max(var(--pb-min-size), var(--pb-fluid));
+}
+@utility fluid-pl-* {
+  --pl-diff: calc(
+    (--modifier(integer) * var(--px-per-tw)) -
+    (--value(integer) * var(--px-per-tw))
+  );
+  --pl-min-size: calc(var(--spacing) * --value(integer));
+  --pl-fluid: calc(
+    var(--pl-min-size) +
+    (var(--pl-diff) * var(--fluid-progress))
+  );
+  padding-left: max(var(--pl-min-size), var(--pl-fluid));
+}
+@utility fluid-pr-* {
+  --pr-diff: calc(
+    (--modifier(integer) * var(--px-per-tw)) -
+    (--value(integer) * var(--px-per-tw))
+  );
+  --pr-min-size: calc(var(--spacing) * --value(integer));
+  --pr-fluid: calc(
+    var(--pr-min-size) +
+    (var(--pr-diff) * var(--fluid-progress))
+  );
+  padding-right: max(var(--pr-min-size), var(--pr-fluid));
+}
+@utility fluid-px-* {
+  --px-diff: calc(
+    (--modifier(integer) * var(--px-per-tw)) -
+    (--value(integer) * var(--px-per-tw))
+  );
+  --px-min-size: calc(var(--spacing) * --value(integer));
+  --px-fluid: calc(
+    var(--px-min-size) +
+    (var(--px-diff) * var(--fluid-progress))
+  );
+  padding-left: max(var(--px-min-size), var(--px-fluid));
+  padding-right: max(var(--px-min-size), var(--px-fluid));
+}
+@utility fluid-py-* {
+  --py-diff: calc(
+    (--modifier(integer) * var(--px-per-tw)) -
+    (--value(integer) * var(--px-per-tw))
+  );
+  --py-min-size: calc(var(--spacing) * --value(integer));
+  --py-fluid: calc(
+    var(--py-min-size) +
+    (var(--py-diff) * var(--fluid-progress))
+  );
+  padding-top: max(var(--py-min-size), var(--py-fluid));
+  padding-bottom: max(var(--py-min-size), var(--py-fluid));
+}
+
+/* --- MARGINS --- */
+@utility fluid-m-* {
+  --m-diff: calc(
+    (--modifier(integer) * var(--px-per-tw)) -
+    (--value(integer) * var(--px-per-tw))
+  );
+  --m-min-size: calc(var(--spacing) * --value(integer));
+  --m-fluid: calc(var(--m-min-size) + (var(--m-diff) * var(--fluid-progress)));
+  margin: max(var(--m-min-size), var(--m-fluid));
+}
+@utility fluid-mt-* {
+  --mt-diff: calc(
+    (--modifier(integer) * var(--px-per-tw)) -
+    (--value(integer) * var(--px-per-tw))
+  );
+  --mt-min-size: calc(var(--spacing) * --value(integer));
+  --mt-fluid: calc(
+    var(--mt-min-size) +
+    (var(--mt-diff) * var(--fluid-progress))
+  );
+  margin-top: max(var(--mt-min-size), var(--mt-fluid));
+}
+@utility fluid-mb-* {
+  --mb-diff: calc(
+    (--modifier(integer) * var(--px-per-tw)) -
+    (--value(integer) * var(--px-per-tw))
+  );
+  --mb-min-size: calc(var(--spacing) * --value(integer));
+  --mb-fluid: calc(
+    var(--mb-min-size) +
+    (var(--mb-diff) * var(--fluid-progress))
+  );
+  margin-bottom: max(var(--mb-min-size), var(--mb-fluid));
+}
+@utility fluid-ml-* {
+  --ml-diff: calc(
+    (--modifier(integer) * var(--px-per-tw)) -
+    (--value(integer) * var(--px-per-tw))
+  );
+  --ml-min-size: calc(var(--spacing) * --value(integer));
+  --ml-fluid: calc(
+    var(--ml-min-size) +
+    (var(--ml-diff) * var(--fluid-progress))
+  );
+  margin-left: max(var(--ml-min-size), var(--ml-fluid));
+}
+@utility fluid-mr-* {
+  --mr-diff: calc(
+    (--modifier(integer) * var(--px-per-tw)) -
+    (--value(integer) * var(--px-per-tw))
+  );
+  --mr-min-size: calc(var(--spacing) * --value(integer));
+  --mr-fluid: calc(
+    var(--mr-min-size) +
+    (var(--mr-diff) * var(--fluid-progress))
+  );
+  margin-right: max(var(--mr-min-size), var(--mr-fluid));
+}
+@utility fluid-mx-* {
+  --mx-diff: calc(
+    (--modifier(integer) * var(--px-per-tw)) -
+    (--value(integer) * var(--px-per-tw))
+  );
+  --mx-min-size: calc(var(--spacing) * --value(integer));
+  --mx-fluid: calc(
+    var(--mx-min-size) +
+    (var(--mx-diff) * var(--fluid-progress))
+  );
+  margin-left: max(var(--mx-min-size), var(--mx-fluid));
+  margin-right: max(var(--mx-min-size), var(--mx-fluid));
+}
+@utility fluid-my-* {
+  --my-diff: calc(
+    (--modifier(integer) * var(--px-per-tw)) -
+    (--value(integer) * var(--px-per-tw))
+  );
+  --my-min-size: calc(var(--spacing) * --value(integer));
+  --my-fluid: calc(
+    var(--my-min-size) +
+    (var(--my-diff) * var(--fluid-progress))
+  );
+  margin-top: max(var(--my-min-size), var(--my-fluid));
+  margin-bottom: max(var(--my-min-size), var(--my-fluid));
+}
+
+/* --- GAP --- */
+@utility fluid-gap-* {
+  --g-diff: calc(
+    (--modifier(integer) * var(--px-per-tw)) -
+    (--value(integer) * var(--px-per-tw))
+  );
+  --g-min-size: calc(var(--spacing) * --value(integer));
+  --g-fluid: calc(var(--g-min-size) + (var(--g-diff) * var(--fluid-progress)));
+  gap: max(var(--g-min-size), var(--g-fluid));
+}
+@utility fluid-gap-x-* {
+  --gx-diff: calc(
+    (--modifier(integer) * var(--px-per-tw)) -
+    (--value(integer) * var(--px-per-tw))
+  );
+  --gx-min-size: calc(var(--spacing) * --value(integer));
+  --gx-fluid: calc(
+    var(--gx-min-size) +
+    (var(--gx-diff) * var(--fluid-progress))
+  );
+  column-gap: max(var(--gx-min-size), var(--gx-fluid));
+}
+@utility fluid-gap-y-* {
+  --gy-diff: calc(
+    (--modifier(integer) * var(--px-per-tw)) -
+    (--value(integer) * var(--px-per-tw))
+  );
+  --gy-min-size: calc(var(--spacing) * --value(integer));
+  --gy-fluid: calc(
+    var(--gy-min-size) +
+    (var(--gy-diff) * var(--fluid-progress))
+  );
+  row-gap: max(var(--gy-min-size), var(--gy-fluid));
+}
+
+/*
+  debug class that will show blue boarders for min size and red borders for max size
+  */
+@utility debug {
+  &::before {
+    @apply fixed inset-0 left-1/2 z-99 max-h-full -translate-x-1/2 outline-1 outline-debug-blue;
+    width: calc(var(--fluid-screen-min) * var(--to-px));
+    content: "";
+  }
+  &::after {
+    @apply fixed inset-0 left-1/2 z-99 max-h-full -translate-x-1/2 outline-1 outline-debug-red;
+    width: calc(var(--fluid-screen-max) * var(--to-px));
+    content: "";
+  }
+}

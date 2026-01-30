@@ -12,7 +12,9 @@ export const HeroPrimary = ({
   content,
 }: HeroPrimaryProps) => {
   return (
-    <div>
+    <div className="fluid-py-10/20">
+      <h2 className="ftype type-2040 to-type-3240">Here's some text</h2>
+
       {title && <PortableText value={title} />}
       {image && <SanityImage image={image} />}
 
