@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "../lib/styles/fluid.css";
-@plugin "tailwindcss-animate";
 
 @theme {
   /* Fonts */
