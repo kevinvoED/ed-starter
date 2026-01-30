@@ -4,7 +4,6 @@
     NOTE: removed styles related to images and User-Agent-Stylesheet
 */
 
-
 /* Preferred box-sizing value */
 *,
 *::before,
@@ -129,4 +128,3 @@ a,
 button {
   -webkit-tap-highlight-color: transparent;
 }
-

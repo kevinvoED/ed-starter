@@ -1,23 +1,20 @@
 @layer theme {
   :root {
-    /* Used for rem/px conversion - TAILWIND DEFAULTS  */
-    --base-font-size: 16;
-    --px-per-tw: 4;
-    --tw-per-rem: 0.25;
-    --to-rem: 1rem;
-    --to-px: 1px;
-
-    /*
-  UPDATE as needed
-  Based on the figma mobile, desktop sizes
-  */
+    /* UPDATE as needed - Based on the figma mobile, desktop sizes */
     --fluid-screen-min: 480;
     --fluid-screen-max: 1512;
     /* arbitrary floor values don't want to ever go below */
     --line-height-floor: 0.9rem;
     --letter-spacing-floor: -0.25rem;
 
-    /* Calculate slope multiplier: 1 / (max screen size - min screen size) */
+    /* DO NOT CHANGE - used for rem/px conversion */
+    --base-font-size: 16;
+    --px-per-tw: 4;
+    --tw-per-rem: 0.25;
+    --to-rem: 1rem;
+    --to-px: 1px;
+
+    /* DO NOT CHANGE - calculate slope multiplier: 1 / (max screen size - min screen size) */
     --fluid-multiplier: calc(
       1 /
       (var(--fluid-screen-max) - var(--fluid-screen-min))
