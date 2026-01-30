@@ -125,11 +125,11 @@ export const slugReadOnly = defineField({
 /*
  * Always keep the `link` field as an array.
  * This promotes consistency across the codebase.
- * It's easier to add additional link by overwriting the validation rule in your schema.
+ * It's easier to add an additional link(s) by overwriting the validation rule in your schema.
  */
 export const link = defineField({
   name: "link",
-  title: "Cta Link",
+  title: "Button Link",
   type: "array",
   description: "Optional. Select an internal page or external URL to link to.",
   of: [{ type: "link" }],

@@ -5,20 +5,19 @@ import { relationTypes } from "@/schemas/moduleTypes";
 export default defineType({
   name: "link",
   type: "object",
-  title: "CTA Link",
+  title: "Button Link",
   icon: LinkIcon,
   fields: [
     defineField({
       name: "type",
       title: "Button Type",
       description:
-        "Choose how this link behaves. Internal Links will navigate to pages within the site, External for outside URLs, or Anchor to scroll to a section on the current page.",
+        "Choose how this link behaves. Internal Links will navigate to pages within the site and External for outside URLs.",
       type: "string",
       options: {
         list: [
           { title: "Internal Link", value: "internal" },
           { title: "External URL", value: "external" },
-          { title: "Anchor", value: "anchor" },
         ],
         layout: "radio",
       },
@@ -73,8 +72,7 @@ export default defineType({
       name: "openInNewTab",
       type: "boolean",
       title: "Open in a new tab?",
-      description:
-        "When enabled, the link opens in a new browser tab. Recommended for external links.",
+      description: "When enabled, the link opens in a new browser tab.",
       initialValue: false,
       hidden: ({ parent }) => !["external", "internal"].includes(parent?.type),
     }),
@@ -82,17 +80,12 @@ export default defineType({
       name: "anchorTag",
       type: "string",
       title: "Anchor Target ID",
-      description:
-        "Enter the ID of the page section to scroll to. Do not include the # symbol.",
-      hidden: ({ parent }) => parent?.type !== "anchor",
+      description: "Optional. Enter the ID of the section to scroll to.",
+      hidden: ({ parent }) => parent?.type !== "internal",
       validation: (Rule) =>
-        Rule.custom((value, context) => {
-          const parent = context.parent as { type?: string };
-          if (parent?.type === "anchor" && !value) {
-            return "Anchor ID is required when using anchor link type";
-          }
+        Rule.custom((value) => {
           if (value?.startsWith("#")) {
-            return "Do not include the # symbol in the anchor ID";
+            return "Do not include the # symbol in the Anchor Target ID.";
           }
           return true;
         }),

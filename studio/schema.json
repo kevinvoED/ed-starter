@@ -970,10 +970,6 @@
               {
                 "type": "string",
                 "value": "external"
-              },
-              {
-                "type": "string",
-                "value": "anchor"
               }
             ]
           },

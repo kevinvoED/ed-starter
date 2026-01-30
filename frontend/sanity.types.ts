@@ -178,7 +178,7 @@ export type Redirect = {
 
 export type Link = {
   _type: "link";
-  type: "internal" | "external" | "anchor";
+  type: "internal" | "external";
   label: string;
   internalLink?:
     | PageReference
@@ -970,7 +970,7 @@ export type PAGE_QUERY_RESULT = {
     link: Array<{
       _key: string;
       _type: "link";
-      type: "anchor" | "external" | "internal";
+      type: "external" | "internal";
       label: string;
       internalLink?:
         | PageReference
@@ -1136,7 +1136,7 @@ export type BLOG_QUERY_RESULT = {
     link: Array<{
       _key: string;
       _type: "link";
-      type: "anchor" | "external" | "internal";
+      type: "external" | "internal";
       label: string;
       internalLink?:
         | PageReference
@@ -1279,7 +1279,7 @@ export type BLOG_QUERY_RESULT = {
     link: Array<{
       _key: string;
       _type: "link";
-      type: "anchor" | "external" | "internal";
+      type: "external" | "internal";
       label: string;
       internalLink?:
         | PageReference
@@ -1336,7 +1336,7 @@ export type BLOG_QUERY_RESULT = {
     link: Array<{
       _key: string;
       _type: "link";
-      type: "anchor" | "external" | "internal";
+      type: "external" | "internal";
       label: string;
       internalLink?:
         | PageReference
@@ -1458,7 +1458,7 @@ export type BLOG_SLUG_QUERY_RESULT = {
     link: Array<{
       _key: string;
       _type: "link";
-      type: "anchor" | "external" | "internal";
+      type: "external" | "internal";
       label: string;
       internalLink?:
         | PageReference

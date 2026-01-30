@@ -1,5 +1,5 @@
-import type React from "react";
 import type { SanityLinkType } from "@/lib/utils/types";
+import { type AnchorHTMLAttributes, forwardRef } from "react";
 import Link from "next/link";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Icon } from "@/components/primitives/Icon/Icon";
@@ -11,101 +11,165 @@ export const ButtonVariants = cva(
     variants: {
       variant: {
         primary: "",
-        card: 'whitespace-normal after:absolute after:inset-0 after:z-20 after:content-[""]',
         icon: "bg-transparent",
         ghost: "type-mono-1240",
+      },
+      card: {
+        true: 'whitespace-normal after:absolute after:inset-0 after:z-20 after:content-[""]',
+        false: "",
       },
       width: {
         auto: "w-auto",
         fit: "w-fit",
         full: "w-full",
       },
+      disabled: {
+        true: "pointer-events-none opacity-50",
+        false: "",
+      },
     },
     defaultVariants: {
       variant: "primary",
+      card: false,
       width: "auto",
+      disabled: false,
     },
   },
 );
 
-type ButtonProps = {
-  id?: string;
-  children?: React.ReactNode;
-  className?: string;
+interface ButtonProps
+  extends AnchorHTMLAttributes<HTMLAnchorElement>,
+    VariantProps<typeof ButtonVariants> {
   link?: SanityLinkType;
-  href?: string;
-  disabled?: boolean;
   prefetch?: boolean;
-  openInNewTab?: boolean;
   hasArrow?: boolean;
+  hasDownload?: boolean;
   scroll?: boolean;
-  onClick?: () => void;
-  ref?: React.RefObject<HTMLAnchorElement | null>;
-} & VariantProps<typeof ButtonVariants>;
+  disabled?: boolean;
+  openInNewTab?: boolean;
+}
 
-export const Button = ({
-  id,
-  children,
-  className,
-  link,
-  href,
-  disabled,
-  onClick,
-  ref,
-  variant,
-  width,
-  prefetch = true,
-  hasArrow = true,
-  openInNewTab = false,
-  scroll = true,
-}: ButtonProps) => {
-  if (href || link) {
-    return (
-      <Link
-        id={id}
-        href={link?.href || href || ""}
-        tabIndex={disabled ? -1 : 0}
-        aria-disabled={disabled}
-        target={link?.openInNewTab || openInNewTab ? "_blank" : undefined}
-        rel={
-          link?.openInNewTab || openInNewTab ? "noopener noreferrer" : undefined
-        }
-        scroll={scroll}
-        onClick={onClick}
-        ref={ref}
-        prefetch={prefetch}
-        className={cn(
-          ButtonVariants({ variant, width, className }),
-          disabled && "pointer-events-none opacity-50",
-        )}
-      >
-        <span>{children}</span>
-        {hasArrow && !openInNewTab && <Icon variant="arrow-right" />}
-        {hasArrow && openInNewTab && (
-          <Icon variant="copy" className="-rotate-45" />
-        )}
-      </Link>
-    );
-  }
+export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
+  (
+    {
+      children,
+      className,
+      link,
+      href,
+      disabled,
+      onClick,
+      variant,
+      width,
+      card,
+      prefetch = true,
+      hasArrow = true,
+      hasDownload = false,
+      scroll = true,
+      openInNewTab = false,
+      ...props
+    },
+    ref,
+  ) => {
+    const sanityOpenInNewTab = link?.openInNewTab ?? false;
 
-  return (
-    <Link
-      id={id}
-      href={"/"}
-      tabIndex={disabled ? -1 : 0}
-      aria-disabled={disabled}
-      target={openInNewTab ? "_blank" : undefined}
-      rel={openInNewTab ? "noopener noreferrer" : undefined}
-      scroll={scroll}
-      onClick={onClick}
-      ref={ref}
-      prefetch={prefetch}
-      className={cn(
-        ButtonVariants({ variant, width, className }),
-        disabled && "pointer-events-none opacity-50",
-      )}
-    >
-      {children}
-    </Link>
-  );
-};
+    // If this is a non-Sanity created link, then use the href that was explicitly passed in
+    if (!link?.type && href) {
+      return (
+        <Link
+          {...props}
+          href={href}
+          tabIndex={disabled ? -1 : 0}
+          aria-disabled={disabled}
+          target={openInNewTab ? "_blank" : undefined}
+          rel={openInNewTab ? "noopener noreferrer" : undefined}
+          scroll={scroll}
+          onClick={onClick}
+          ref={ref}
+          prefetch={prefetch}
+          className={cn(
+            ButtonVariants({ variant, width, disabled, card, className }),
+          )}
+        >
+          <span>{children}</span>
+
+          {hasArrow && (
+            <Icon
+              variant="arrow-right"
+              className={`${openInNewTab ? "-rotate-45" : ""}`}
+            />
+          )}
+          {/* Add download case */}
+          {/* {hasDownload && (
+          <Icon
+            variant="download"
+            className={`${openInNewTab ? "-rotate-45" : ""}`}
+          />
+        )} */}
+        </Link>
+      );
+    }
+
+    // Sanity-created button with the INTERNAL link type
+    if (link?.type === "internal") {
+      if (!link?.href) return null;
+      return (
+        <Link
+          {...props}
+          href={`${link.anchorTag ? `${link.href}#${link.anchorTag}` : link.href}`}
+          tabIndex={disabled ? -1 : 0}
+          aria-disabled={disabled}
+          target={sanityOpenInNewTab ? "_blank" : undefined}
+          rel={sanityOpenInNewTab ? "noopener noreferrer" : undefined}
+          scroll={scroll}
+          onClick={onClick}
+          ref={ref}
+          prefetch={prefetch}
+          className={cn(
+            ButtonVariants({ variant, width, disabled, card, className }),
+          )}
+        >
+          <span>{children}</span>
+
+          {hasArrow && (
+            <Icon
+              variant="arrow-right"
+              className={`${openInNewTab ? "-rotate-45" : ""}`}
+            />
+          )}
+          {/* Add download case */}
+          {/* {hasDownload && (
+          <Icon
+            variant="download"
+            className={`${openInNewTab ? "-rotate-45" : ""}`}
+          />
+        )} */}
+        </Link>
+      );
+    }
+
+    // Sanity-created button with the EXTERNAL link type
+    if (link?.type === "external") {
+      if (!link?.href) return null;
+      return (
+        <a
+          href={`${link.href}`}
+          rel="noopener noreferrer"
+          target="_blank"
+          className={cn(
+            ButtonVariants({ variant, width, disabled, card, className }),
+          )}
+        >
+          {children}
+          {hasArrow && (
+            <Icon
+              variant="arrow-right"
+              className={`${openInNewTab ? "-rotate-45" : ""}`}
+            />
+          )}
+        </a>
+      );
+    }
+
+    return null;
+  },
+);

@@ -16,6 +16,14 @@ export const HeroPrimary = ({
     <div>
       {title && <PortableText value={title} />}
       {image && <SanityImage image={image} />}
+      <Button
+        href="https://www.google.com"
+        variant="primary"
+        openInNewTab
+        hasArrow={false}
+      >
+        Google
+      </Button>
       {link?.map((link) => (
         <Button key={link._key} link={link} variant="primary">
           {link.label}
