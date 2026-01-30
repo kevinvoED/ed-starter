@@ -1,26 +1,29 @@
 @import "tailwindcss";
 @import "../lib/styles/fluid.css";
+@import "../lib/styles/reset.css";
 
 @theme {
   /* Fonts */
-  --font-heading: var(--font-heading);
-  --font-body: var(--font-body);
-  --font-mono: var(--font-mono);
+  --font-heading: var(--font-heading); /* Font Name */
+  --font-body: var(--font-body); /* Font Name */
+  --font-mono: var(--font-mono); /* Font Name */
 
   /* Custom breakpoints */
   --breakpoint-3xl: 120rem; /* 1920px */
   --breakpoint-4xl: 160rem; /* 2560px */
   --breakpoint-5xl: 240rem; /* 3840px */
 
-  /* Colors */
+  /* Default colors */
   --color-*: initial; /* Remove default color palette */
   --color-debug-blue: oklch(62.3% 0.214 259.815); /* #2B7FFF */
   --color-debug-red: oklch(63.7% 0.237 25.331); /* #FB2C36 */
 
+  /* Primary colors */
   --color-white: oklch(0.9851 0 0); /* #FAFAFA */
   --color-black: oklch(0.1913 0 0); /* #141414 */
   --color-neon: oklch(0.932 0.2277 122.64); /* #CEFF00 */
 
+  /* Secondary colors */
   --color-gunmetal: oklch(0.3753 0 0); /* #414141 */
   --color-charcoal: oklch(0.4676 0 0); /* #5A5A5A */
   --color-ash: oklch(0.6434 0 0); /* #8D8D8D */
@@ -35,7 +38,7 @@
 /* ------------------------------------------------------------ */
 
 @utility p-custom {
-  @apply px-6;
+  @apply px-5 lg:px-6;
 }
 
 @utility p-custom-md {
@@ -50,9 +53,6 @@
   @apply grid grid-cols-4 md:grid-cols-12 gap-5;
 }
 
-@utility grid-custom-xl {
-  @apply grid grid-cols-4 xl:grid-cols-12 gap-5;
-}
 
 /* ------------------------------------------------------------ */
 /* ------------------------- Globals -------------------------- */
@@ -92,6 +92,10 @@ svg.icon {
 
 button {
   cursor: pointer;
+  /* Fix vertical text centering by trimming font metric space */
+  text-box-trim: both;
+  text-box-edge: cap alphabetic;
+  user-select: none;
 }
 
 article b,
