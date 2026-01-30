@@ -1,5 +1,5 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
-import { Button } from "@/components/primitives/button";
+import { Button } from "@/components/primitives/Button/Button";
 import { SanityImage } from "@/components/primitives/Media/SanityImage";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
 
@@ -11,6 +11,7 @@ export const HeroPrimary = ({
   image,
   content,
 }: HeroPrimaryProps) => {
+  console.log(link);
   return (
     <div>
       {title && <PortableText value={title} />}

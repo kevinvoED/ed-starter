@@ -224,14 +224,6 @@ export const portableText = defineField({
   type: "portable-text",
 });
 
-export const openInNewTab = defineField({
-  name: "openInNewTab",
-  type: "boolean",
-  title: "Open in a new tab?",
-  initialValue: false,
-  hidden: ({ parent }) => !parent?.isExternal,
-});
-
 export const publishedDate = defineField({
   name: "publishedDate",
   title: "Published Date",

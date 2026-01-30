@@ -958,12 +958,26 @@
             "value": "link"
           }
         },
-        "isExternal": {
+        "type": {
           "type": "objectAttribute",
           "value": {
-            "type": "boolean"
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "internal"
+              },
+              {
+                "type": "string",
+                "value": "external"
+              },
+              {
+                "type": "string",
+                "value": "anchor"
+              }
+            ]
           },
-          "optional": true
+          "optional": false
         },
         "label": {
           "type": "objectAttribute",
@@ -1012,6 +1026,13 @@
           "type": "objectAttribute",
           "value": {
             "type": "boolean"
+          },
+          "optional": true
+        },
+        "anchorTag": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
           },
           "optional": true
         }

@@ -15,7 +15,6 @@ export const imageFields = `
 
 export const linkFields = `
   ...,
-  _key,
   "href": select(
     isExternal => href,
     @.internalLink->slug.current == "index" => "/",
@@ -47,17 +46,7 @@ export const FN_LOGO_PARTIAL = `
 
 export const FN_LINK_PARTIAL = `
   fn fn::link($link) = $link[] {
-    ...,
-    _key,
-    "href": select(
-      isExternal => href,
-      @.internalLink->slug.current == "index" => "/",
-      @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,
-      @.internalLink->_type == "post-index" => "/blog",
-      @.internalLink->_type == "platform-index" => "/platform",
-      @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,
-      "/" + @.internalLink->slug.current
-    )
+    ${linkFields}
   };
 `;
 
