@@ -16,8 +16,6 @@ import navbar from "@/schemas/documents/navbar";
 import organization from "@/schemas/documents/organization";
 // Objects
 import link from "@/schemas/objects/link";
-import redirect from "@/schemas/objects/redirect";
-import rewrite from "@/schemas/objects/rewrite";
 // Modules
 import heroPrimary from "@/schemas/modules/hero/hero-primary";
 import portableText from "@/schemas/objects/portable-text";
@@ -40,8 +38,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     post,
     // Objects
     link,
-    redirect,
-    rewrite,
     portableText,
     // Modules
     heroPrimary,

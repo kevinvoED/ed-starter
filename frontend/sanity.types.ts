@@ -163,19 +163,6 @@ export type PortableText = Array<
     }
 >;
 
-export type Rewrite = {
-  _type: "rewrite";
-  source: string;
-  url?: string;
-};
-
-export type Redirect = {
-  _type: "redirect";
-  source: string;
-  destination: string;
-  redirectType: "permanent" | "temporary";
-};
-
 export type Link = {
   _type: "link";
   type: "internal" | "external";
@@ -197,16 +184,19 @@ export type Configuration = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  redirects?: Array<
-    {
-      _key: string;
-    } & Redirect
-  >;
-  rewrites?: Array<
-    {
-      _key: string;
-    } & Rewrite
-  >;
+  redirects?: Array<{
+    source: string;
+    destination: string;
+    redirectType: "permanent" | "temporary";
+    _type: "redirect";
+    _key: string;
+  }>;
+  rewrites?: Array<{
+    source: string;
+    url?: string;
+    _type: "rewrite";
+    _key: string;
+  }>;
 };
 
 export type Organization = {
@@ -831,8 +821,6 @@ export type AllSanitySchemaTypes =
   | PlatformIndexReference
   | PlatformChildReference
   | PortableText
-  | Rewrite
-  | Redirect
   | Link
   | Configuration
   | Organization

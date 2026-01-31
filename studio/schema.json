@@ -869,83 +869,6 @@
     }
   },
   {
-    "name": "rewrite",
-    "type": "type",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "_type": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string",
-            "value": "rewrite"
-          }
-        },
-        "source": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": false
-        },
-        "url": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
-        }
-      }
-    }
-  },
-  {
-    "name": "redirect",
-    "type": "type",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "_type": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string",
-            "value": "redirect"
-          }
-        },
-        "source": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": false
-        },
-        "destination": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": false
-        },
-        "redirectType": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "union",
-            "of": [
-              {
-                "type": "string",
-                "value": "permanent"
-              },
-              {
-                "type": "string",
-                "value": "temporary"
-              }
-            ]
-          },
-          "optional": false
-        }
-      }
-    }
-  },
-  {
     "name": "link",
     "type": "type",
     "value": {
@@ -1077,16 +1000,55 @@
           "of": {
             "type": "object",
             "attributes": {
-              "_key": {
+              "source": {
                 "type": "objectAttribute",
                 "value": {
                   "type": "string"
+                },
+                "optional": false
+              },
+              "destination": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": false
+              },
+              "redirectType": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "union",
+                  "of": [
+                    {
+                      "type": "string",
+                      "value": "permanent"
+                    },
+                    {
+                      "type": "string",
+                      "value": "temporary"
+                    }
+                  ]
+                },
+                "optional": false
+              },
+              "_type": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string",
+                  "value": "redirect"
                 }
               }
             },
             "rest": {
-              "type": "inline",
-              "name": "redirect"
+              "type": "object",
+              "attributes": {
+                "_key": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
             }
           }
         },
@@ -1099,16 +1061,38 @@
           "of": {
             "type": "object",
             "attributes": {
-              "_key": {
+              "source": {
                 "type": "objectAttribute",
                 "value": {
                   "type": "string"
+                },
+                "optional": false
+              },
+              "url": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              },
+              "_type": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string",
+                  "value": "rewrite"
                 }
               }
             },
             "rest": {
-              "type": "inline",
-              "name": "rewrite"
+              "type": "object",
+              "attributes": {
+                "_key": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
             }
           }
         },
