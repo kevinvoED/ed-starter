@@ -5,7 +5,7 @@ import {
 import notFound from "@/app/not-found";
 import JSONLDScript, {
   type JSONLDScriptProps,
-} from "@/components/miscellaneous/Jsonld";
+} from "@/components/layout/JsonLD/Jsonld";
 import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
 import { generatePageMetadata } from "@/lib/site/metadata";
 

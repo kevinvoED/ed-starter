@@ -1,7 +1,7 @@
 import { fetchSanityNavbar } from "@/sanity/lib/fetch";
 import { Navbar } from "./Navbar";
 
-export default async function Header() {
+export const Header = async () => {
   const navigationHeader = await fetchSanityNavbar();
 
   if (!navigationHeader) {
@@ -9,4 +9,4 @@ export default async function Header() {
   }
 
   return <Navbar />;
-}
+};
