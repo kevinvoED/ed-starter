@@ -4,8 +4,8 @@
 // 3. For child-type pages, their route should end with a `/`
 export const RELATION_SCHEMA_TYPES = [
   { schemaType: "page", route: "/" },
-  { schemaType: "post-index", route: "/blog" },
-  { schemaType: "post", route: "/blog/" },
+  { schemaType: "blog-index", route: "/blog" },
+  { schemaType: "blog-post", route: "/blog/" },
   { schemaType: "platform-index", route: "/platform" },
   { schemaType: "platform-child", route: "/platform/" },
 ];
@@ -24,7 +24,7 @@ export const SINGLETON_DOCUMENT_TYPES = new Set([
   "footer",
   "configuration",
   "organization",
-  "post-index",
+  "blog-index",
   "platform-index",
 ]);
 

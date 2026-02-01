@@ -4,10 +4,10 @@ import type { SchemaTypeDefinition } from "sanity";
 import { createdAtType } from "@/components/created-at";
 // Pages
 import page from "@/schemas/pages/page";
-import post from "@/schemas/pages/post";
-import postIndex from "@/schemas/pages/post-index";
-import platformChild from "@/schemas/pages/platform-child";
-import platformIndex from "@/schemas/pages/platform-index";
+import blogPost from "@/schemas/pages/blog/blog-post";
+import blogIndex from "@/schemas/pages/blog/blog-index";
+import platformChild from "@/schemas/pages/platform/platform-child";
+import platformIndex from "@/schemas/pages/platform/platform-index";
 // Documents
 import author from "@/schemas/documents/author";
 import configuration from "@/schemas/documents/configuration";
@@ -26,7 +26,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     createdAtType,
     // Pages
     page,
-    postIndex,
+    blogIndex,
     platformIndex,
     platformChild,
     // Documents
@@ -35,7 +35,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     organization,
     configuration,
     author,
-    post,
+    blogPost,
     // Objects
     link,
     portableText,

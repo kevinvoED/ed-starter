@@ -81,7 +81,7 @@ export const PAGES_SLUGS_QUERY = defineQuery(
 export const BLOG_QUERY = defineQuery(`
   ${GROQ_FUNCTIONS}
 
-  *[_type == "post-index"][0]{
+  *[_type == "blog-index"][0]{
     _type,
     slug,
     ${metaFragment},
@@ -91,7 +91,7 @@ export const BLOG_QUERY = defineQuery(`
     featuredPost->{
       ${postFragment}
     },
-    "posts": *[_type == "post" && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {
+    "posts": *[_type == "blog-post" && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {
       ${postFragment}
     }
   }
@@ -100,7 +100,7 @@ export const BLOG_QUERY = defineQuery(`
 export const BLOG_SLUG_QUERY = defineQuery(`
   ${GROQ_FUNCTIONS}
 
-  *[_type == "post" && slug.current == $slug][0]{
+  *[_type == "blog-post" && slug.current == $slug][0]{
     _id,
     _createdAt,
     _type,

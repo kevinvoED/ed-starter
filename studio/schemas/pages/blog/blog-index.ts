@@ -9,7 +9,7 @@ import {
 } from "@/schemas/sharedFields";
 
 export default defineType({
-  name: "post-index",
+  name: "blog-index",
   title: "Blog Index Page",
   type: "document",
   icon: DocumentIcon,
@@ -44,7 +44,7 @@ export default defineType({
       description:
         "Optional. Select a featured post to be displayed at the very top of the page.",
       group: "content",
-      to: { type: "post" },
+      to: { type: "blog-post" },
     }),
     defineField({
       ...modules,

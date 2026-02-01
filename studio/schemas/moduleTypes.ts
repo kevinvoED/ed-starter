@@ -9,8 +9,8 @@ import { sortBy } from "es-toolkit";
 export const relationTypes = sortBy(
   [
     { type: "page" },
-    { type: "post" },
-    { type: "post-index" },
+    { type: "blog-index" },
+    { type: "blog-post" },
     { type: "platform-index" },
     { type: "platform-child" },
   ],

@@ -67,7 +67,7 @@ export default defineType({
                     defineField({
                       name: "resources",
                       type: "array",
-                      of: [{ type: "reference", to: [{ type: "post" }] }],
+                      of: [{ type: "reference", to: [{ type: "blog-post" }] }],
                       validation: (Rule) => Rule.max(2),
                     }),
                   ],

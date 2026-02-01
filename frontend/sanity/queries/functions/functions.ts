@@ -18,8 +18,8 @@ export const linkFields = `
   "href": select(
     type == "external" => href,
     @.internalLink->slug.current == "index" => "/",
-    @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,
-    @.internalLink->_type == "post-index" => "/blog",
+    @.internalLink->_type == "blog-index" => "/blog",
+    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,
     @.internalLink->_type == "platform-index" => "/platform",
     @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,
     "/" + @.internalLink->slug.current

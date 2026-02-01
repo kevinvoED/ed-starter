@@ -24,7 +24,7 @@ export function generatePageMetadata(
   //   additionalOpenGraphProperties.event.end_time = event.endDate;
   // }
 
-  if (page._type === "post") {
+  if (page._type === "blog-post") {
     const post = page as NonNullable<BLOG_SLUG_QUERY_RESULT>;
     additionalOpenGraphProperties.article = {};
     // Add article-specific Open Graph properties

@@ -13,11 +13,11 @@ import {
   slug,
   titleHighlight,
 } from "@/schemas/sharedFields";
-import { formatDate } from "../../../frontend/lib/utils/date";
+import { formatDate } from "../../../../frontend/lib/utils/date";
 
 export default defineType({
-  name: "post",
-  title: "Post",
+  name: "blog-post",
+  title: "Blog Post",
   type: "document",
   icon: DocumentIcon,
   groups: [

@@ -4,8 +4,8 @@ import { imageFields } from "../functions/functions";
 export const urlQuery = `
   "url": select(
     slug.current == "index" => $baseUrl + "/",
-    _type == "post" => $baseUrl + "/blog/" + slug.current,
-    _type == "post-index" => $baseUrl + "/blog",
+    _type == "blog-index" => $baseUrl + "/blog",
+    _type == "blog-post" => $baseUrl + "/blog/" + slug.current,
     _type == "platform-index" => $baseUrl + "/platform",
     _type == "platform-child" => $baseUrl + "/platform/" + slug.current,
     $baseUrl + "/" + slug.current
@@ -26,8 +26,8 @@ export const metaFragment = `
     noindex,
     "relativeUrl": select(
       ^.slug.current == "index" => "/",
-      ^._type == "post" => "/blog/" + ^.slug.current,
-      ^._type == "post-index" => "/blog",
+      ^._type == "blog-index" => "/blog",
+      ^._type == "blog-post" => "/blog/" + ^.slug.current,
       ^._type == "platform-index" => "/platform",
       ^._type == "platform-child" => "/platform/" + ^.slug.current,
       "/" + ^.slug.current

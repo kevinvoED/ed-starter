@@ -27,9 +27,9 @@ const resourceItems = [
   {
     title: "Blog",
     itemTitle: "Blog Posts",
-    itemSchemaType: "post",
+    itemSchemaType: "blog-post",
     landingPageTitle: "Blog Landing",
-    landingPageSchemaType: "post-index",
+    landingPageSchemaType: "blog-index",
     icon: FolderIcon,
   },
 ];
