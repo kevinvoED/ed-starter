@@ -2,55 +2,45 @@ import {
   type PortableTextProps,
   PortableText as PortableTextRenderer,
 } from "@portabletext/react";
-import { useMemo } from "react";
 import Link from "next/link";
 import { SanityImage } from "@/components/primitives/Image/SanityImage";
 import { PortableTextHeading } from "@/components/primitives/PortableText/PortableTextHeading";
 import { PortableTextYoutube } from "@/components/primitives/PortableText/PortableTextYoutube";
 import { cn } from "@/lib/utils/cn";
 
-// Style prop determines the rendering context:
-// - "article": Used only on resource-type pages for full article content with proper spacing; outputs a <p>tag</p>
-// - "module": Used for paragraph content in blocks and modules; outputs a <p>tag</p>
-// - "fragment": Used for titles and heading elements; outputs a React Fragment
+/*
+ * There are different types of styles associated with PortableText
+ * style = "article" is used for resource-type pages for full article content with proper spacing
+ * style = "module" is used when you want PortableText's <p></p> and <h1></h1> etc tags without bottom-margins
+ * style = "fragment" is used for titles and heading elements; outputs a React Fragment
+ */
+
 export const PortableText = ({
   value,
-  style = "module",
   className,
+  style = "module",
 }: {
   value: PortableTextProps["value"];
-  style?: "article" | "module" | "fragment";
   className?: string;
+  style?: "article" | "module" | "fragment";
 }) => {
-  const components = useMemo(
-    () => portableTextComponents(style, className),
-    [style, className],
-  );
+  const components = portableTextComponents(style, className);
 
   return <PortableTextRenderer value={value} components={components} />;
 };
 
 export const PortableTextFragment = ({
   value,
-  style = "fragment",
   className,
+  style = "fragment",
 }: {
   value: PortableTextProps["value"];
-  style?: "article" | "module" | "fragment";
   className?: string;
+  style?: "article" | "module" | "fragment";
 }) => {
-  const components = useMemo(
-    () => portableTextComponents(style, className),
-    [style, className],
-  );
+  const components = portableTextComponents(style, className);
 
-  return style === "article" ? (
-    <article>
-      <PortableTextRenderer value={value} components={components} />
-    </article>
-  ) : (
-    <PortableTextRenderer value={value} components={components} />
-  );
+  return <PortableTextRenderer value={value} components={components} />;
 };
 
 const portableTextComponents = (
@@ -63,7 +53,7 @@ const portableTextComponents = (
         <figure className="mb-12 max-h-fit">
           <SanityImage
             image={value}
-            className="h-full max-h-[280px] w-full max-w-fit overflow-hidden rounded-lg object-contain object-left lg:max-h-138"
+            className="h-full max-h-70 w-full max-w-fit overflow-hidden rounded-lg object-contain object-left lg:max-h-138"
             sizes="100vw"
             priority={true}
           />
@@ -131,13 +121,6 @@ const portableTextComponents = (
         <PortableTextHeading heading="h6" className="type-heading-3230">
           {children}
         </PortableTextHeading>
-      );
-    },
-    blockquote: ({ children }) => {
-      return (
-        <blockquote className="type-body-1640 mb-12 border-black border-l-4 pl-6 italic">
-          {children}
-        </blockquote>
       );
     },
   },
