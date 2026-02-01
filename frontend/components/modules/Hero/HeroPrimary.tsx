@@ -1,7 +1,10 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
 import { Button } from "@/components/primitives/Button/Button";
 import { SanityImage } from "@/components/primitives/Image/SanityImage";
-import { PortableText } from "@/components/primitives/PortableText/PortableText";
+import {
+  PortableText,
+  PortableTextFragment,
+} from "@/components/primitives/PortableText/PortableText";
 
 type HeroPrimaryProps = ModuleProps<"hero-primary">;
 
@@ -12,10 +15,14 @@ export const HeroPrimary = ({
   content,
 }: HeroPrimaryProps) => {
   return (
-    <div className="fluid-py-10/20">
+    <div className="fluid-py-10/20 p-custom">
       <h2 className="ftype type-2040 to-type-3240">Here's some text</h2>
 
-      {title && <PortableText value={title} />}
+      {title && (
+        <div>
+          <PortableTextFragment value={title} />
+        </div>
+      )}
       {image && <SanityImage image={image} />}
 
       <Button
@@ -33,7 +40,11 @@ export const HeroPrimary = ({
         </Button>
       ))}
 
-      {content && <PortableText value={content} />}
+      {content && (
+        <div className="fluid-py-4/12">
+          <PortableText value={content} style="article" />
+        </div>
+      )}
     </div>
   );
 };

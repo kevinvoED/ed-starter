@@ -9,10 +9,52 @@ import { PortableTextHeading } from "@/components/primitives/PortableText/Portab
 import { PortableTextYoutube } from "@/components/primitives/PortableText/PortableTextYoutube";
 import { cn } from "@/lib/utils/cn";
 
+// Style prop determines the rendering context:
+// - "article": Used only on resource-type pages for full article content with proper spacing; outputs a <p>tag</p>
+// - "module": Used for paragraph content in blocks and modules; outputs a <p>tag</p>
+// - "fragment": Used for titles and heading elements; outputs a React Fragment
+export const PortableText = ({
+  value,
+  style = "module",
+  className,
+}: {
+  value: PortableTextProps["value"];
+  style?: "article" | "module" | "fragment";
+  className?: string;
+}) => {
+  const components = useMemo(
+    () => portableTextComponents(style, className),
+    [style, className],
+  );
+
+  return <PortableTextRenderer value={value} components={components} />;
+};
+
+export const PortableTextFragment = ({
+  value,
+  style = "fragment",
+  className,
+}: {
+  value: PortableTextProps["value"];
+  style?: "article" | "module" | "fragment";
+  className?: string;
+}) => {
+  const components = useMemo(
+    () => portableTextComponents(style, className),
+    [style, className],
+  );
+
+  return style === "article" ? (
+    <article>
+      <PortableTextRenderer value={value} components={components} />
+    </article>
+  ) : (
+    <PortableTextRenderer value={value} components={components} />
+  );
+};
+
 const portableTextComponents = (
-  _mode: "light" | "dark" = "light",
   style: "module" | "article" | "fragment" = "module",
-  _dotSize: "default" | "sm" = "default",
   className?: string,
 ): PortableTextProps["components"] => ({
   types: {
@@ -34,18 +76,17 @@ const portableTextComponents = (
   },
   block: {
     normal: ({ children }) => {
+      /*
+       * If the style is "fragment", return the children as is
+       * Primarily used for titles and descriptions that don't need any styling
+       * Triggered by using the PortableTextFragment component instead of PortableText
+       */
       if (style === "fragment") {
         return <>{children}</>;
       }
 
       return (
-        <p
-          className={cn(
-            "type-body-1440 lg:type-body-1640",
-            style === "article" ? "mb-12" : "",
-            className,
-          )}
-        >
+        <p className={cn("", style === "article" ? "mb-12" : "", className)}>
           {children}
         </p>
       );
@@ -122,66 +163,14 @@ const portableTextComponents = (
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="type-body-1640 mb-12 pl-5">{children}</ul>
+      <ul className="mb-10 list-disc pl-5">{children}</ul>
     ),
     number: ({ children }) => (
-      <ol className="type-body-1640 mb-12 list-decimal pl-5">{children}</ol>
+      <ol className="mb-10 list-decimal pl-5">{children}</ol>
     ),
   },
   listItem: {
-    bullet: ({ children }) => <li className="relative mb-4">{children}</li>,
+    bullet: ({ children }) => <li className="mb-4">{children}</li>,
     number: ({ children }) => <li className="mb-4">{children}</li>,
   },
 });
-
-// Style prop determines the rendering context:
-// - "article": Used only on resource-type pages for full article content with proper spacing; outputs a <p>tag</p>
-// - "module": Used for paragraph content in blocks and modules; outputs a <p>tag</p>
-// - "fragment": Used for titles and heading elements; outputs a React Fragment
-export const PortableText = ({
-  value,
-  mode = "light",
-  style = "module",
-  dotSize = "default",
-  className,
-}: {
-  value: PortableTextProps["value"];
-  mode?: "light" | "dark";
-  style?: "article" | "module" | "fragment";
-  dotSize?: "default" | "sm";
-  className?: string;
-}) => {
-  const components = useMemo(
-    () => portableTextComponents(mode, style, dotSize, className),
-    [mode, style, dotSize, className],
-  );
-
-  return <PortableTextRenderer value={value} components={components} />;
-};
-
-export const ptFragment = ({
-  value,
-  mode = "light",
-  style = "fragment",
-  dotSize = "default",
-  className,
-}: {
-  value: PortableTextProps["value"];
-  mode?: "light" | "dark";
-  style?: "article" | "module" | "fragment";
-  dotSize?: "default" | "sm";
-  className?: string;
-}) => {
-  const components = useMemo(
-    () => portableTextComponents(mode, style, dotSize, className),
-    [mode, style, dotSize, className],
-  );
-
-  return style === "article" ? (
-    <article>
-      <PortableTextRenderer value={value} components={components} />
-    </article>
-  ) : (
-    <PortableTextRenderer value={value} components={components} />
-  );
-};
