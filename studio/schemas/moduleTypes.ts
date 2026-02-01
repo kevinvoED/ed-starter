@@ -11,6 +11,8 @@ export const relationTypes = sortBy(
     { type: "page" },
     { type: "blog-index" },
     { type: "blog-post" },
+    { type: "case-studies-index" },
+    { type: "case-study" },
     { type: "platform-index" },
     { type: "platform-child" },
   ],

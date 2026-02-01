@@ -8,6 +8,8 @@ export const RELATION_SCHEMA_TYPES = [
   { schemaType: "blog-post", route: "/blog/" },
   { schemaType: "platform-index", route: "/platform" },
   { schemaType: "platform-child", route: "/platform/" },
+  { schemaType: "case-studies-index", route: "/case-studies" },
+  { schemaType: "case-study", route: "/case-studies/" },
 ];
 
 // Define the actions that should be available for singleton documents
@@ -25,6 +27,7 @@ export const SINGLETON_DOCUMENT_TYPES = new Set([
   "configuration",
   "organization",
   "blog-index",
+  "case-studies-index",
   "platform-index",
 ]);
 

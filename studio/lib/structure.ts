@@ -32,6 +32,14 @@ const resourceItems = [
     landingPageSchemaType: "blog-index",
     icon: FolderIcon,
   },
+  {
+    title: "Case Studies",
+    itemTitle: "Case Studies",
+    itemSchemaType: "case-study",
+    landingPageTitle: "Case Studies Landing",
+    landingPageSchemaType: "case-studies-index",
+    icon: FolderIcon,
+  },
 ];
 
 const referenceItems = [

@@ -117,5 +117,5 @@ export const BLOG_SLUG_QUERY = defineQuery(`
 `);
 
 export const BLOG_SLUGS_QUERY = defineQuery(
-  `*[_type == "post" && defined(slug)]{slug}`,
+  `*[_type == "blog-post" && defined(slug)]{slug}`,
 );

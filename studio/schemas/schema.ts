@@ -6,6 +6,8 @@ import { createdAtType } from "@/components/created-at";
 import page from "@/schemas/pages/page";
 import blogPost from "@/schemas/pages/blog/blog-post";
 import blogIndex from "@/schemas/pages/blog/blog-index";
+import caseStudiesIndex from "@/schemas/pages/case-studies/case-studies-index";
+import caseStudy from "@/schemas/pages/case-studies/case-study";
 import platformChild from "@/schemas/pages/platform/platform-child";
 import platformIndex from "@/schemas/pages/platform/platform-index";
 // Documents
@@ -27,6 +29,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     // Pages
     page,
     blogIndex,
+    caseStudiesIndex,
     platformIndex,
     platformChild,
     // Documents
@@ -36,6 +39,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     configuration,
     author,
     blogPost,
+    caseStudy,
     // Objects
     link,
     portableText,

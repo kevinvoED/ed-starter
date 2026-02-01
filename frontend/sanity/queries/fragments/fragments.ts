@@ -6,6 +6,8 @@ export const urlQuery = `
     slug.current == "index" => $baseUrl + "/",
     _type == "blog-index" => $baseUrl + "/blog",
     _type == "blog-post" => $baseUrl + "/blog/" + slug.current,
+    _type == "case-studies-index" => $baseUrl + "/case-studies",
+    _type == "case-study" => $baseUrl + "/case-studies/" + slug.current,
     _type == "platform-index" => $baseUrl + "/platform",
     _type == "platform-child" => $baseUrl + "/platform/" + slug.current,
     $baseUrl + "/" + slug.current
@@ -28,6 +30,8 @@ export const metaFragment = `
       ^.slug.current == "index" => "/",
       ^._type == "blog-index" => "/blog",
       ^._type == "blog-post" => "/blog/" + ^.slug.current,
+      ^._type == "case-studies-index" => "/case-studies",
+      ^._type == "case-study" => "/case-studies/" + ^.slug.current,
       ^._type == "platform-index" => "/platform",
       ^._type == "platform-child" => "/platform/" + ^.slug.current,
       "/" + ^.slug.current

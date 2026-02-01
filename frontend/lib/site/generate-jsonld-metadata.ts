@@ -14,6 +14,8 @@ const typeMap = {
   "platform-child": "WebPage",
   "blog-index": "WebPage",
   "blog-post": "Article",
+  "case-studies-index": "WebPage",
+  "case-study": "Article",
 } as Record<ViewableTypes, "WebPage" | "Article" | "Event">;
 
 // const getAdditionalData = (

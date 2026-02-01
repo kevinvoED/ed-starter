@@ -5,7 +5,9 @@ export type ViewableTypes =
   | "platform-index"
   | "platform-child"
   | "blog-index"
-  | "blog-post";
+  | "blog-post"
+  | "case-studies-index"
+  | "case-study";
 
 /** Keep in sync with the linkMapper and link queries */
 export const VIEWABLE_TYPES = new Set<ViewableTypes>([
@@ -14,6 +16,8 @@ export const VIEWABLE_TYPES = new Set<ViewableTypes>([
   "platform-child",
   "blog-index",
   "blog-post",
+  "case-studies-index",
+  "case-study",
 ]);
 
 // recreate frontend/sanity/queries/shared/link.ts hrefQuery
@@ -26,6 +30,8 @@ export const linkMapper = (type: string, slug: Slug) => {
       "platform-child": `/platform/${slug.current}`,
       "blog-index": "/blog",
       "blog-post": `/blog/${slug.current}`,
+      "case-studies-index": "/case-studies",
+      "case-study": `/case-studies/${slug.current}`,
     }[type] || `/${slug.current}`
   );
 };
