@@ -34,8 +34,6 @@ export const JSONLDScript: React.FC<
   );
 };
 
-export default JSONLDScript;
-
 export const OrganizationJSONLDScript: React.FC<
   {
     organization: ORGANIZATION_QUERY_RESULT;

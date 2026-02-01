@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { FETCH_CONTENT_TYPE_INDEX_PAGE_DATA } from "@/sanity/lib/fetch";
 import { Transition } from "@/components/animations/Transition";
-import JSONLDScript from "@/components/layout/JsonLD/Jsonld";
+import { JSONLDScript } from "@/components/layout/JsonLD/Jsonld";
 import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
 import { Button } from "@/components/primitives/Button/Button";
 import { PortableTextFragment } from "@/components/primitives/PortableText/PortableText";

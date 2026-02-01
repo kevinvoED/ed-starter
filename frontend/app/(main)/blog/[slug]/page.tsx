@@ -4,7 +4,7 @@ import {
   FETCH_CONTENT_TYPE_SLUGS_STATIC_PARAMS_DATA,
 } from "@/sanity/lib/fetch";
 import { Transition } from "@/components/animations/Transition";
-import JSONLDScript from "@/components/layout/JsonLD/Jsonld";
+import { JSONLDScript } from "@/components/layout/JsonLD/Jsonld";
 import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
 import { generatePageMetadata } from "@/lib/site/metadata";

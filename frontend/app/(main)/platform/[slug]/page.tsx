@@ -1,11 +1,10 @@
+import type { JSONLDScriptProps } from "@/components/layout/JsonLD/Jsonld";
 import {
   fetchSanityPageBySlug,
   fetchSanityPagesStaticParams,
 } from "@/sanity/lib/fetch";
 import notFound from "@/app/not-found";
-import JSONLDScript, {
-  type JSONLDScriptProps,
-} from "@/components/layout/JsonLD/Jsonld";
+import { JSONLDScript } from "@/components/layout/JsonLD/Jsonld";
 import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
 import { generatePageMetadata } from "@/lib/site/metadata";
 

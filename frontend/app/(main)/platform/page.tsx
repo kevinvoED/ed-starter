@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { fetchSanityPageBySlug } from "@/sanity/lib/fetch";
-import JSONLDScript from "@/components/layout/JsonLD/Jsonld";
+import { JSONLDScript } from "@/components/layout/JsonLD/Jsonld";
 import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
 import { generatePageMetadata } from "@/lib/site/metadata";
 
