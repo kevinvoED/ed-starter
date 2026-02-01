@@ -16,9 +16,6 @@ import { ScrollTrigger as GSAPScrollTrigger, SplitText } from "gsap/all";
 if (typeof window !== "undefined") {
   gsap.registerPlugin(GSAPScrollTrigger, SplitText);
   GSAPScrollTrigger.clearScrollMemory("manual");
-  // GSAPScrollTrigger.defaults({
-  //   markers: process.env.NODE_ENV === "development",
-  // });
 }
 
 export function ScrollTrigger() {

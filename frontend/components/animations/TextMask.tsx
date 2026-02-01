@@ -3,7 +3,6 @@
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { gsap } from "gsap";
-import { cn } from "@/lib/utils/cn";
 import { SplitText } from "gsap/all";
 
 type TextMaskProps = {
@@ -57,11 +56,7 @@ export const TextMask = ({
   }, [duration, delay, stagger, ease, triggerOnce]);
 
   return (
-    <div
-      ref={containerRef}
-      style={{ opacity: 0 }}
-      className={cn("[&_p]:mb-0", className)}
-    >
+    <div ref={containerRef} style={{ opacity: 0 }} className={className}>
       {children}
     </div>
   );

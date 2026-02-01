@@ -3,8 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { gsap } from "gsap";
-import { debounce } from "es-toolkit/function";
-import { ScrambleTextPlugin, ScrollTrigger } from "gsap/all";
+import { ScrambleTextPlugin } from "gsap/all";
 
 type TextScrambleProps = {
   duration?: number;
@@ -14,6 +13,8 @@ type TextScrambleProps = {
   className?: string;
   triggerOnce?: boolean;
   children: React.ReactNode;
+  hover?: boolean;
+  chars?: "upperCase" | "lowerCase" | "upperAndLowerCase" | string;
 };
 
 // GSAP ScrambleTextPlugin: https://gsap.com/docs/v3/Plugins/ScrambleTextPlugin/
@@ -27,47 +28,37 @@ export const TextScramble = ({
   className,
   triggerOnce = true,
   children,
+  chars = "upperCase",
 }: TextScrambleProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Set container to visible or else you'll see a brief flash on page load
-    gsap.set(containerRef.current, { opacity: 1 });
-
-    gsap.to(containerRef.current, {
+    const tween = gsap.to(containerRef.current, {
       ease: ease,
       duration: duration,
       delay: delay,
       stagger: stagger,
       scrambleText: {
         text: "{original}",
-        chars: "upperCase",
-        revealDelay: 0.2,
-        speed: 1,
-      },
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top bottom",
-        toggleActions: triggerOnce
-          ? "play none none none"
-          : "play none none reverse",
+        chars: chars,
       },
     });
 
-    const onResize = debounce(() => {
-      ScrollTrigger.refresh();
-    }, 1500);
+    const element = containerRef.current;
 
-    window.addEventListener("resize", onResize);
-    onResize();
+    if (element) {
+      element.addEventListener("mouseenter", () => tween.restart());
+    }
 
     return () => {
-      window.removeEventListener("resize", onResize);
+      if (element) {
+        element.removeEventListener("mouseenter", () => tween.restart());
+      }
     };
   }, [duration, delay, stagger, ease, triggerOnce]);
 
   return (
-    <div ref={containerRef} style={{ opacity: 0 }} className={className}>
+    <div ref={containerRef} className={className}>
       {children}
     </div>
   );

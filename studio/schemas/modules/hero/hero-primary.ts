@@ -2,6 +2,7 @@ import { toPlainText } from "@portabletext/react";
 import { DashboardIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import {
+  description,
   image,
   link,
   portableText,
@@ -14,6 +15,7 @@ export default defineType({
   type: "object",
   fields: [
     titleHighlight,
+    description,
     defineField({
       ...link,
       validation: (Rule) => Rule.max(2),

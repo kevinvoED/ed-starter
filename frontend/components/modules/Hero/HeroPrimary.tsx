@@ -1,4 +1,8 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
+import { HoverTextScramble } from "@/components/animations/HoverTextScramble";
+import { TextMask } from "@/components/animations/TextMask";
+import { TextScramble } from "@/components/animations/TextScramble";
+import { Transition } from "@/components/animations/Transition";
 import { Button } from "@/components/primitives/Button/Button";
 import { SanityImage } from "@/components/primitives/Image/SanityImage";
 import {
@@ -12,6 +16,7 @@ export const HeroPrimary = ({
   title,
   link,
   image,
+  description,
   content,
 }: HeroPrimaryProps) => {
   return (
@@ -19,9 +24,21 @@ export const HeroPrimary = ({
       <h2 className="ftype type-2040 to-type-3240">Here's some text</h2>
 
       {title && (
-        <div>
+        <Transition>
           <PortableTextFragment value={title} />
-        </div>
+        </Transition>
+      )}
+
+      {description && (
+        <TextMask>
+          <PortableText value={description} />
+        </TextMask>
+      )}
+
+      {description && (
+        <TextScramble>
+          <PortableTextFragment value={title} />
+        </TextScramble>
       )}
       {image && <SanityImage image={image} />}
 

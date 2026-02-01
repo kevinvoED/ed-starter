@@ -5,32 +5,8 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-/**
- * EXAMPLE USAGE
- * --------------------------------------------------------------
- * Default Transition:
- * <Transition>
- *   <Component>Children</Component>
- * </Transition>
- * --------------------------------------------------------------
- * Transition with a custom animation:
- * <Transition animation="fadeInDown">
- *   <Component>Children</Component>
- * </Transition>
- * --------------------------------------------------------------
- * Transition with a custom duration, delay, and ease:
- * <Transition duration={1.5} delay={0.5} ease="power1.inOut">
- *   <Component>Children</Component>
- * </Transition>
- * --------------------------------------------------------------
- * Transition that triggers on every mount instead of just once:
- * <Transition triggerOnce={false}>
- *   <Component>Children</Component>
- * </Transition>
- * --------------------------------------------------------------
- */
-
-gsap.registerPlugin(ScrollTrigger);
+const FADE_SLIDE_DISTANCE = 10;
+const SLIDE_DISTANCE = 100;
 
 const animationConfig = {
   fadeIn: {
@@ -38,40 +14,40 @@ const animationConfig = {
     to: { opacity: 1 },
   },
   fadeInUp: {
-    from: { opacity: 0, y: 10 },
+    from: { opacity: 0, y: FADE_SLIDE_DISTANCE },
     to: { opacity: 1, y: 0 },
   },
   fadeInDown: {
-    from: { opacity: 0, y: -10 },
+    from: { opacity: 0, y: -FADE_SLIDE_DISTANCE },
     to: { opacity: 1, y: 0 },
   },
   fadeInLeft: {
-    from: { opacity: 0, x: -10 },
+    from: { opacity: 0, x: -FADE_SLIDE_DISTANCE },
     to: { opacity: 1, x: 0 },
   },
   fadeInRight: {
-    from: { opacity: 0, x: 10 },
+    from: { opacity: 0, x: FADE_SLIDE_DISTANCE },
     to: { opacity: 1, x: 0 },
   },
   slideUp: {
-    from: { y: 100 },
+    from: { y: SLIDE_DISTANCE },
     to: { y: 0 },
   },
   slideDown: {
-    from: { y: -100 },
+    from: { y: -SLIDE_DISTANCE },
     to: { y: 0 },
   },
   slideLeft: {
-    from: { x: -100 },
+    from: { x: -SLIDE_DISTANCE },
     to: { x: 0 },
   },
   slideRight: {
-    from: { x: 100 },
+    from: { x: SLIDE_DISTANCE },
     to: { x: 0 },
   },
 };
 
-type animationType =
+type AnimationType =
   | "fadeIn"
   | "fadeInUp"
   | "fadeInDown"
@@ -83,7 +59,8 @@ type animationType =
   | "slideRight";
 
 type TransitionProps = {
-  animation?: animationType;
+  slot?: React.ElementType;
+  animation?: AnimationType;
   duration?: number;
   delay?: number;
   ease?: string;
@@ -94,8 +71,9 @@ type TransitionProps = {
 };
 
 export const Transition = ({
+  slot = "div",
   animation = "fadeInUp",
-  duration = 0.75,
+  duration = 0.5,
   delay = 0,
   ease = "power2.inOut",
   className = "",
@@ -103,6 +81,7 @@ export const Transition = ({
   onComplete,
   children,
 }: TransitionProps) => {
+  const Component = slot;
   const ref = useRef<HTMLDivElement>(null);
   const config = animationConfig[animation];
 
@@ -151,7 +130,7 @@ export const Transition = ({
   };
 
   return (
-    <div
+    <Component
       ref={ref}
       className={className}
       style={{
@@ -160,6 +139,6 @@ export const Transition = ({
       }}
     >
       {children}
-    </div>
+    </Component>
   );
 };
