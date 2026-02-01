@@ -4,9 +4,13 @@
  */
 
 import { defineQuery } from "next-sanity";
-import { imageFragment, metaFragment, postFragment } from "./fragments";
+import {
+  imageFragment,
+  metaFragment,
+  postFragment,
+} from "./fragments/fragments";
+import { FN_LOGO, GROQ_FUNCTIONS } from "./functions/functions";
 import { HERO_PRIMARY_QUERY } from "./modules/hero/hero-primary";
-import { FN_COMMON_PARTIALS, FN_LOGO_PARTIAL } from "./partials";
 
 /*
  * This `modulesFragment` is used to query for all modules.
@@ -28,7 +32,7 @@ export const modulesFragment = defineQuery(`
  */
 
 export const ORGANIZATION_QUERY = defineQuery(`
-  ${FN_LOGO_PARTIAL}
+  ${FN_LOGO}
 
   *[_type == "organization"][0]{
     organization {
@@ -44,7 +48,7 @@ export const ORGANIZATION_QUERY = defineQuery(`
  * ====================================================
  */
 export const PAGE_QUERY = defineQuery(`
-  ${FN_COMMON_PARTIALS}
+  ${GROQ_FUNCTIONS}
 
   *[_type == "page" && slug.current == $slug][0]{
     _type,
@@ -55,7 +59,7 @@ export const PAGE_QUERY = defineQuery(`
 
 // @sanity-typegen-ignore
 export const PAGE_SLUG_QUERY = defineQuery(`
-  ${FN_COMMON_PARTIALS}
+  ${GROQ_FUNCTIONS}
 
   *[_type == $pageType && slug.current == $slug][0]{
     _type,
@@ -74,7 +78,7 @@ export const PAGES_SLUGS_QUERY = defineQuery(
  * ====================================================
  */
 export const BLOG_QUERY = defineQuery(`
-  ${FN_COMMON_PARTIALS}
+  ${GROQ_FUNCTIONS}
 
   *[_type == "post-index"][0]{
     _type,
@@ -93,7 +97,7 @@ export const BLOG_QUERY = defineQuery(`
 `);
 
 export const BLOG_SLUG_QUERY = defineQuery(`
-  ${FN_COMMON_PARTIALS}
+  ${GROQ_FUNCTIONS}
 
   *[_type == "post" && slug.current == $slug][0]{
     _id,

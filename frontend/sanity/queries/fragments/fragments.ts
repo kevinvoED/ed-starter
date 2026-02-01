@@ -1,4 +1,4 @@
-import { imageFields } from "../queries/partials";
+import { imageFields } from "../functions/functions";
 
 // Used in sitemap.ts to generate full urls to the content
 export const urlQuery = `

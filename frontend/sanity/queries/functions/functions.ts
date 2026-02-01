@@ -26,31 +26,31 @@ export const linkFields = `
   )
 `;
 
-export const FN_IMAGE_PARTIAL = `
+export const FN_IMAGE = `
   fn fn::img($image) = $image {
     ${imageFields}
   };
 `;
 
-export const FN_IMAGES_PARTIAL = `
+export const FN_IMAGES = `
   fn fn::imgs($images) = $images[] {
     ${imageFields}
   };
 `;
 
-export const FN_LOGO_PARTIAL = `
+export const FN_LOGO = `
   fn fn::logo($logo) = $logo {
     ${imageFields}
   };
 `;
 
-export const FN_LINK_PARTIAL = `
+export const FN_LINK = `
   fn fn::link($link) = $link[] {
     ${linkFields}
   };
 `;
 
-export const FN_PT_PLAIN_PARTIAL = `
+export const FN_PT_PLAIN = `
   fn fn::ptPlain($content) = $content[] {
     ...,
     markDefs[]{
@@ -65,7 +65,7 @@ export const FN_PT_PLAIN_PARTIAL = `
   };
 `;
 
-export const FN_PT_PARTIAL = `
+export const FN_PT = `
   fn fn::pt($content) = $content[] {
     ...,
     markDefs[]{
@@ -80,11 +80,11 @@ export const FN_PT_PARTIAL = `
   };
 `;
 
-export const FN_COMMON_PARTIALS = `
-  ${FN_IMAGE_PARTIAL}
-  ${FN_IMAGES_PARTIAL}
-  ${FN_LOGO_PARTIAL}
-  ${FN_LINK_PARTIAL}
-  ${FN_PT_PLAIN_PARTIAL}
-  ${FN_PT_PARTIAL}
+export const GROQ_FUNCTIONS = `
+  ${FN_IMAGE}
+  ${FN_IMAGES}
+  ${FN_LOGO}
+  ${FN_LINK}
+  ${FN_PT_PLAIN}
+  ${FN_PT}
 `;
