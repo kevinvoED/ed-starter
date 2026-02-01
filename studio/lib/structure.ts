@@ -6,6 +6,7 @@ import {
   EarthGlobeIcon,
   FolderIcon,
   RedoIcon,
+  UserIcon,
 } from "@sanity/icons";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import { defaultDocumentNode } from "@/lib/default-document-node";
@@ -33,13 +34,13 @@ const resourceItems = [
   },
 ];
 
-// const referenceItems = [
-//   {
-//     title: "Resource Topics",
-//     schemaType: "resource-topic",
-//     icon: BookmarkIcon,
-//   },
-// ];
+const referenceItems = [
+  {
+    title: "Authors",
+    schemaType: "author",
+    icon: UserIcon,
+  },
+];
 
 const globalItems = [
   {
@@ -175,16 +176,16 @@ export const structure: StructureResolver = (S: StructureBuilder, context) =>
                 ]),
             ),
       ),
-      // S.divider().title("References"),
-      // ...referenceItems.map(({ title, icon, schemaType }) =>
-      //   orderableDocumentListDeskItem({
-      //     type: schemaType,
-      //     title: title,
-      //     icon: icon,
-      //     S,
-      //     context,
-      //   }),
-      // ),
+      S.divider().title("References"),
+      ...referenceItems.map(({ title, icon, schemaType }) =>
+        orderableDocumentListDeskItem({
+          type: schemaType,
+          title: title,
+          icon: icon,
+          S,
+          context,
+        }),
+      ),
       S.divider().title("Global"),
       ...globalItems.map(({ title, icon, schemaType }) =>
         S.listItem()

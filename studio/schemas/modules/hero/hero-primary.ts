@@ -2,7 +2,6 @@ import { toPlainText } from "@portabletext/react";
 import { DashboardIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import {
-  eyebrow,
   image,
   link,
   portableText,
@@ -14,7 +13,6 @@ export default defineType({
   title: "Hero Primary",
   type: "object",
   fields: [
-    eyebrow,
     titleHighlight,
     defineField({
       ...link,

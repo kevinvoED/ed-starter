@@ -1,7 +1,6 @@
 import { UserIcon } from "@sanity/icons";
 import { orderRankField } from "@sanity/orderable-document-list";
 import { defineField, defineType } from "sanity";
-import { portableTextPlain } from "@/schemas/objects/portable-text-plain";
 import { image, link } from "@/schemas/sharedFields";
 
 export default defineType({
@@ -15,19 +14,27 @@ export default defineType({
       title: "Name",
       type: "string",
       description: "The full name of the author.",
+      validation: (Rule) => Rule.required().max(50),
     }),
-    portableTextPlain({
-      title: "Description",
-      description:
-        "Optional. This is a brief description or bio of the author.",
-      validation: false,
+    defineField({
+      name: "bio",
+      title: "Short Bio",
+      type: "text",
+      description: "A short bio of the author.",
+      rows: 4,
+      validation: (Rule) => Rule.required().max(300),
     }),
     defineField({
       ...link,
       title: "Social Media",
+      description:
+        "Optional. Add links to this author's social media profiles.",
       validation: (Rule) => Rule,
     }),
-    image,
+    defineField({
+      ...image,
+      title: "Avatar Image",
+    }),
     orderRankField({ type: "author" }),
   ],
   preview: {

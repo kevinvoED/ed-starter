@@ -94,15 +94,6 @@ export const descriptionLink = portableTextPlain({
   validation: false,
 });
 
-export const eyebrow = defineField({
-  name: "eyebrow",
-  title: "Eyebrow",
-  description: "Short descriptive phrase that usually precedes the title.",
-  type: "string",
-  validation: (Rule) =>
-    Rule.max(25).error("Eyebrow must be less than 25 characters."),
-});
-
 export const slug = defineField({
   name: "slug",
   title: "Page Slug",

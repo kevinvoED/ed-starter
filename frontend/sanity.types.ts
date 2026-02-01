@@ -35,18 +35,8 @@ export type MetaImage = {
   _type: "image";
 };
 
-export type Image1 = {
-  asset?: SanityImageAssetReference;
-  media?: unknown;
-  hotspot?: SanityImageHotspot;
-  crop?: SanityImageCrop;
-  alt?: string;
-  _type: "image";
-};
-
 export type HeroPrimary = {
   _type: "hero-primary";
-  eyebrow?: string;
   title: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -73,7 +63,14 @@ export type HeroPrimary = {
       _key: string;
     } & Link
   >;
-  image?: Image1;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
   content?: PortableText;
 };
 
@@ -634,27 +631,21 @@ export type Author = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name?: string;
-  content?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs?: null;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
+  name: string;
+  bio: string;
   link?: Array<
     {
       _key: string;
     } & Link
   >;
-  image?: Image1;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
   orderRank?: string;
 };
 
@@ -813,7 +804,6 @@ export type AllSanitySchemaTypes =
   | Meta
   | SanityImageAssetReference
   | MetaImage
-  | Image1
   | HeroPrimary
   | PageReference
   | PostReference
