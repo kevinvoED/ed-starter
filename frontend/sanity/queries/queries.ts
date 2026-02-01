@@ -1,6 +1,7 @@
 /*
  * All imports involving GROQ queries must use relative imports.
  * Absolute imports are currently not supported by Sanity TypeGen and will cause typegen errors.
+ * Add your custom module schema query fragments to the modulesFragment query.
  */
 
 import { defineQuery } from "next-sanity";
@@ -13,11 +14,11 @@ import { FN_LOGO, GROQ_FUNCTIONS } from "./functions/functions";
 import { HERO_PRIMARY_QUERY } from "./modules/hero/hero-primary";
 
 /*
- * This `modulesFragment` is used to query for all modules.
- * This should contain all modules that should be used in the ModuleBuilder.
- * If you have created a new module schema, create a new query fragment for it and add it to the list.
- * Be mindful of duplicate commas between your new fragment and this modulesFragment.
+ * ====================================================
+ * ============= MODULE-BUILDER FRAGMENT ==============
+ * ====================================================
  */
+
 // @sanity-typegen-ignore
 export const modulesFragment = defineQuery(`
   modules[]{

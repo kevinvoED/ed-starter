@@ -65,13 +65,29 @@ export const videoFragment = `
   }
 `;
 
+// ------------------
+// Common Fragments
+// ------------------
+export const titleFragment = `
+  "title": fn::ptPlain(title)
+`;
+
+export const descriptionFragment = `
+  "description": fn::ptPlain(description)
+`;
+
+export const portableTextFragment = `
+  "content": fn::pt(content)
+`;
+
+// ------------------
+// Miscellaneous Fragments
+// ------------------
 export const postFragment = `
   _id,
   _type,
   _createdAt,
-  title[]{
-    ${ptPlainFragment}
-  },
+  ${titleFragment},
   slug,
   description,
   publishedDate,
