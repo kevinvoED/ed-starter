@@ -16,7 +16,7 @@ export const imageFields = `
 export const linkFields = `
   ...,
   "href": select(
-    isExternal => href,
+    type == "external" => href,
     @.internalLink->slug.current == "index" => "/",
     @.internalLink->_type == "post" => "/blog/" + @.internalLink->slug.current,
     @.internalLink->_type == "post-index" => "/blog",

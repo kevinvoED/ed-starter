@@ -2,9 +2,53 @@ import {
   type ArrayRule,
   defineArrayMember,
   defineField,
-  type Rule,
   type ValidationBuilder,
 } from "sanity";
+import {
+  ptAnnotationHighlightFields,
+  ptAnnotationLinkFields,
+  ptDecoratorFields,
+  ptListFields,
+  ptStyleHeadingFields,
+} from "@/schemas/sharedFields";
+
+/*
+ * PortableTextPlain (Rich Text Editor)
+ * @docs: https://www.sanity.io/docs/studio/portable-text-editor-configuration
+ *
+ * There are two different PortableText types used: PortableText and PortableTextPlain.
+ * When using this in a custom schema, make sure to use one from 'sharedFields.ts' instead.
+ * @see: @/schemas/objects/portable-text.ts
+ *
+ * PortableTextPlain does NOT have the entire toolbox of features and sub-modules built in.
+ * This is primarily used to replace traditional text and string fields with a customizable RichText editor.
+ * By default, the 'name' field is set to 'content', although you should override it in your custom schema.
+ * All fields can be overwritten with your own custom values if needed and are all false by default.
+ *
+ *
+ * EXAMPLE USAGE:
+ *
+ * import { portableTextPlain } from "@/schemas/objects/portable-text-plain";
+ *
+ * defineField(
+ *   portableTextPlain({
+ *     name: "title",
+ *     title: "Title",
+ *     description: "Main title for this section or module.",
+ *     enableLink: true,
+ *   })
+ * )
+ *
+ * Alternatively, there are pre-defined common usages of PortableTextPlain in 'sharedFields.ts'
+ *
+ *  EXAMPLE USAGE:
+ *
+ * import { titleHighlight } from "@/schemas/sharedFields";
+ *
+ * defineField({
+ *   ...titleHighlight,
+ * })
+ */
 
 interface PortableTextPlainProps {
   name?: string;
@@ -13,83 +57,12 @@ interface PortableTextPlainProps {
   oneLine?: boolean;
   enableHighlight?: boolean;
   enableLink?: boolean;
-  enableBold?: boolean;
-  enableItalic?: boolean;
-  enableBulletList?: boolean;
-  enableNumberList?: boolean;
+  enableDecorator?: boolean;
+  enableList?: boolean;
   enableTypeStyle?: boolean;
   validation?: boolean | ValidationBuilder<ArrayRule<unknown[]>, unknown[]>;
   hidden?: boolean | ((props: { parent: Record<string, unknown> }) => boolean);
 }
-
-const typeStyleFields = [
-  { title: "Normal", value: "normal" },
-  { title: "H1", value: "h1" },
-  { title: "H2", value: "h2" },
-  { title: "H3", value: "h3" },
-  { title: "H4", value: "h4" },
-];
-const boldDecoratorField = { title: "Bold", value: "strong" };
-const italicDecoratorField = { title: "Italic", value: "em" };
-const bulletListField = { title: "Bullet", value: "bullet" };
-const numberListField = { title: "Number", value: "number" };
-
-const linkAnnotationField = {
-  name: "link",
-  type: "object",
-  title: "Link",
-  fields: [
-    {
-      name: "isExternal",
-      type: "boolean",
-      title: "Is External",
-      initialValue: false,
-    },
-    {
-      name: "internalLink",
-      type: "reference",
-      title: "Internal Link",
-      to: [
-        { type: "page" },
-        { type: "post" },
-        { type: "post-index" },
-        { type: "platform-index" },
-        { type: "platform-child" },
-      ],
-      hidden: ({ parent }: { parent: { isExternal: boolean } }) =>
-        parent?.isExternal,
-    },
-    {
-      name: "href",
-      title: "href",
-      type: "url",
-      hidden: ({ parent }: { parent: { isExternal: boolean } }) =>
-        !parent?.isExternal,
-      validation: (Rule: Rule) =>
-        Rule.uri({
-          allowRelative: true,
-          scheme: ["http", "https", "mailto", "tel"],
-        }),
-    },
-    {
-      name: "openInNewTab",
-      type: "boolean",
-      title: "Open in new tab",
-      initialValue: false,
-      hidden: ({ parent }: { parent: { isExternal: boolean } }) =>
-        !parent?.isExternal,
-    },
-  ],
-};
-
-const highlightAnnotationField = [
-  {
-    type: "textColor",
-  },
-  {
-    type: "highlightColor",
-  },
-];
 
 export const portableTextPlain = ({
   name = "content",
@@ -97,17 +70,13 @@ export const portableTextPlain = ({
   description = "Supplementary text using the Rich Text editor.",
   enableHighlight = false,
   enableLink = false,
-  enableBold = false,
-  enableItalic = false,
-  enableBulletList = false,
-  enableNumberList = false,
+  enableDecorator = false,
+  enableList = false,
   enableTypeStyle = false,
   oneLine = false,
   validation = true,
   hidden = false,
 }: PortableTextPlainProps) => {
-  // Extract the validation logic before the return statement
-  // Then for the validation logic:
   const getValidation = ():
     | ValidationBuilder<ArrayRule<unknown[]>, unknown[]>
     | undefined => {
@@ -134,19 +103,13 @@ export const portableTextPlain = ({
         options: {
           oneLine: oneLine,
         },
-        styles: [...(enableTypeStyle ? typeStyleFields : [])],
-        lists: [
-          ...(enableBulletList ? [bulletListField] : []),
-          ...(enableNumberList ? [numberListField] : []),
-        ],
+        styles: [...(enableTypeStyle ? ptStyleHeadingFields : [])],
+        lists: [...(enableList ? ptListFields : [])],
         marks: {
-          decorators: [
-            ...(enableBold ? [boldDecoratorField] : []),
-            ...(enableItalic ? [italicDecoratorField] : []),
-          ],
+          decorators: [...(enableDecorator ? ptDecoratorFields : [])],
           annotations: [
-            ...(enableLink ? [linkAnnotationField] : []),
-            ...(enableHighlight ? highlightAnnotationField : []),
+            ...(enableLink ? [ptAnnotationLinkFields] : []),
+            ...(enableHighlight ? ptAnnotationHighlightFields : []),
           ],
         },
       }),

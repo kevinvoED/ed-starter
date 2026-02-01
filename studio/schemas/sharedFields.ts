@@ -1,12 +1,10 @@
-import { toPlainText } from "@portabletext/react";
+import { ImageIcon, ImagesIcon, LinkIcon, VideoIcon } from "@sanity/icons";
+import { defineField, type Rule } from "sanity";
 import {
-  ImageIcon,
-  ImagesIcon,
-  MasterDetailIcon,
-  VideoIcon,
-} from "@sanity/icons";
-import { defineField } from "sanity";
-import { moduleBlocks, moduleGroups } from "@/schemas/moduleTypes";
+  moduleBlocks,
+  moduleGroups,
+  relationTypes,
+} from "@/schemas/moduleTypes";
 import { portableTextPlain } from "@/schemas/objects/portable-text-plain";
 
 /*
@@ -17,12 +15,132 @@ import { portableTextPlain } from "@/schemas/objects/portable-text-plain";
  * Please keep this file organized and well documented
  */
 
+// ------------------------------------------------
+// PortableText-related fields (must be at the top)
+// ------------------------------------------------
+export const portableText = defineField({
+  name: "content",
+  title: "Portable Text",
+  type: "portable-text",
+});
+
+export const ptStyleHeadingFields = [
+  { title: "Normal", value: "normal" },
+  { title: "H1", value: "h1" },
+  { title: "H2", value: "h2" },
+  { title: "H3", value: "h3" },
+  { title: "H4", value: "h4" },
+  { title: "H5", value: "h5" },
+  { title: "H6", value: "h6" },
+];
+
+export const ptDecoratorFields = [
+  { title: "Bold", value: "strong" },
+  { title: "Italic", value: "em" },
+];
+
+export const ptListFields = [
+  { title: "Bullet", value: "bullet" },
+  { title: "Number", value: "number" },
+];
+
+export const ptAnnotationLinkFields = {
+  name: "link",
+  type: "object",
+  title: "Button Link",
+  icon: LinkIcon,
+  fields: [
+    {
+      name: "type",
+      title: "Button Type",
+      description:
+        "Choose how this link behaves. Internal Links will navigate to pages within the site and External for outside URLs.",
+      type: "string",
+      options: {
+        list: [
+          { title: "Internal Link", value: "internal" },
+          { title: "External URL", value: "external" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "internal",
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: "internalLink",
+      title: "Internal Link",
+      description:
+        "Link to another page on this site. Select from existing pages or posts.",
+      type: "reference",
+      to: relationTypes,
+      hidden: ({ parent }: { parent: { type?: string } }) =>
+        parent?.type !== "internal",
+    },
+    {
+      name: "href",
+      title: "External URL",
+      description:
+        "Enter a valid external URL to link to (http, https, mailto, tel).",
+      type: "url",
+      hidden: ({ parent }: { parent: { type?: string } }) =>
+        parent?.type !== "external",
+    },
+    {
+      name: "openInNewTab",
+      type: "boolean",
+      title: "Open in a new tab?",
+      description: "When enabled, the link opens in a new browser tab.",
+      initialValue: false,
+      hidden: ({ parent }: { parent: { type?: string | undefined } }) =>
+        !["external", "internal"].includes(parent?.type ?? ""),
+    },
+  ],
+};
+
+export const ptAnnotationHighlightFields = [
+  {
+    type: "textColor",
+    title: "Text Color",
+  },
+  {
+    type: "highlightColor",
+    title: "Highlight Color",
+  },
+];
+
+// ------------------------------------------------
+// ModuleBuilder-related fields
+// ------------------------------------------------
+export const modules = defineField({
+  name: "modules",
+  title: "Modules",
+  description: "Select from the modules below. Order is obeyed.",
+  type: "array",
+  of: moduleBlocks,
+  options: {
+    insertMenu: {
+      groups: moduleGroups,
+      views: [
+        {
+          name: "grid",
+          previewImageUrl: (block) => `/schemas/previews/${block}.jpg`,
+        },
+        { name: "list" },
+      ],
+    },
+  },
+});
+
 export const pageTitle = defineField({
   name: "title",
   title: "Page Title",
   type: "string",
   description: "Purely for organizational purposes within Sanity Studio.",
 });
+
+// ------------------------------------------------
+// PortableText & PortableTextPlain-related fields
+// ------------------------------------------------
 
 export const title = portableTextPlain({
   name: "title",
@@ -62,19 +180,9 @@ export const titleAll = portableTextPlain({
   oneLine: true,
   enableHighlight: true,
   enableLink: true,
-  enableBold: true,
-  enableItalic: true,
-  enableBulletList: true,
-  enableNumberList: true,
+  enableDecorator: true,
+  enableList: true,
   enableTypeStyle: true,
-});
-
-export const subtitle = portableTextPlain({
-  name: "subtitle",
-  title: "Subtitle",
-  description: "The subtitle for this section or module.",
-  oneLine: true,
-  validation: false,
 });
 
 export const description = portableTextPlain({
@@ -93,6 +201,10 @@ export const descriptionLink = portableTextPlain({
   enableLink: true,
   validation: false,
 });
+
+// ------------------------------------------------
+// Slug-related fields
+// ------------------------------------------------
 
 export const slug = defineField({
   name: "slug",
@@ -113,11 +225,9 @@ export const slugReadOnly = defineField({
   validation: (Rule) => Rule.required(),
 });
 
-/*
- * Always keep the `link` field as an array.
- * This promotes consistency across the codebase.
- * It's easier to add an additional link(s) by overwriting the validation rule in your schema.
- */
+// ------------------------------------------------
+// Link-related fields
+// ------------------------------------------------
 export const link = defineField({
   name: "link",
   title: "Button Link",
@@ -127,6 +237,9 @@ export const link = defineField({
   validation: (Rule) => Rule.max(1),
 });
 
+// ------------------------------------------------
+// Image-related fields
+// ------------------------------------------------
 export const image = defineField({
   name: "image",
   title: "Image",
@@ -168,6 +281,9 @@ export const logo = defineField({
   },
 });
 
+// ------------------------------------------------
+// Video-related fields
+// ------------------------------------------------
 export const video = defineField({
   name: "video",
   title: "Video",
@@ -179,6 +295,9 @@ export const video = defineField({
   icon: VideoIcon,
 });
 
+// ------------------------------------------------
+// Metadata & SEO-related fields
+// ------------------------------------------------
 export const meta = defineField({
   name: "meta",
   title: "Metadata & SEO",
@@ -209,12 +328,9 @@ export const meta = defineField({
   ],
 });
 
-export const portableText = defineField({
-  name: "content",
-  title: "Portable Text",
-  type: "portable-text",
-});
-
+// ------------------------------------------------
+// contentType-related fields
+// ------------------------------------------------
 export const publishedDate = defineField({
   name: "publishedDate",
   title: "Published Date",
@@ -242,82 +358,10 @@ export const createdAt = defineField({
   type: "created-at",
 });
 
-export const marquee = defineField({
-  name: "marquee",
-  title: "Marquee",
-  description: "Add text to be displayed in an infinite marquee.",
-  type: "array",
-  of: [
-    {
-      name: "item",
-      title: "Marquee Item",
-      type: "object",
-      icon: MasterDetailIcon,
-      fields: [title],
-      preview: {
-        select: {
-          title: "title",
-        },
-        prepare({ title }) {
-          return { title: toPlainText(title) };
-        },
-      },
-    },
-  ],
-});
-
-export const marqueeImages = defineField({
-  name: "marqueeImages",
-  title: "Marquee",
-  description:
-    "Select or upload multiple images to be displayed in an infinite marquee.",
-  type: "array",
-  of: [
-    {
-      name: "marqueeItem",
-      title: "Marquee Item",
-      type: "object",
-      icon: MasterDetailIcon,
-      fields: [image],
-      preview: {
-        select: {
-          image: "image",
-        },
-        prepare({ image }) {
-          return {
-            title: image?.alt ?? "Image Item",
-            media: image,
-          };
-        },
-      },
-    },
-  ],
-});
-
 export const toggle = defineField({
   name: "toggle",
   title: "Toggle",
   type: "boolean",
   initialValue: false,
   validation: (Rule) => Rule.required(),
-});
-
-export const modules = defineField({
-  name: "modules",
-  title: "Modules",
-  description: "Select from the modules below. Order is obeyed.",
-  type: "array",
-  of: moduleBlocks,
-  options: {
-    insertMenu: {
-      groups: moduleGroups,
-      views: [
-        {
-          name: "grid",
-          previewImageUrl: (block) => `/schemas/previews/${block}.jpg`,
-        },
-        { name: "list" },
-      ],
-    },
-  },
 });
