@@ -9,7 +9,7 @@ import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
 import { generatePageMetadata } from "@/lib/site/metadata";
 
-const CONTENT_TYPE = "blog-index";
+const CONTENT_TYPE = "case-studies-index";
 
 export async function generateStaticParams() {
   const posts = await FETCH_CONTENT_TYPE_SLUGS_STATIC_PARAMS_DATA({
@@ -37,7 +37,7 @@ export async function generateMetadata(props: {
   return generatePageMetadata(post!);
 }
 
-export default async function BlogPostPage(props: {
+export default async function CaseStudiesPostPage(props: {
   params: Promise<{ slug: string }>;
 }) {
   const params = await props.params;

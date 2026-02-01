@@ -4,7 +4,7 @@ import JSONLDScript from "@/components/layout/JsonLD/Jsonld";
 import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
 import { generatePageMetadata } from "@/lib/site/metadata";
 
-const CONTENT_TYPE = "blog-index";
+const CONTENT_TYPE = "case-studies-index";
 
 export async function generateMetadata() {
   const page = await FETCH_CONTENT_TYPE_INDEX_PAGE_DATA({
@@ -41,7 +41,7 @@ export default async function BlogIndexPage(props: {
 
   return (
     <>
-      BLOG PAGE
+      CASE STUDIESPAGE
       <JSONLDScript document={data} />
       <ModuleBuilder modules={data?.modules ?? []} />
     </>

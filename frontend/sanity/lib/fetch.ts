@@ -1,8 +1,8 @@
 import type {
-  BLOG_QUERY_RESULT,
-  BLOG_SLUG_QUERY_RESULT,
-  BLOG_SLUGS_QUERY_RESULT,
   FOOTER_QUERY_RESULT,
+  GET_CONTENT_TYPE_INDEX_QUERY_RESULT,
+  GET_CONTENT_TYPE_SLUG_QUERY_RESULT,
+  GET_CONTENT_TYPE_SLUGS_STATIC_PARAMS_QUERY_RESULT,
   NAVBAR_QUERY_RESULT,
   ORGANIZATION_QUERY_RESULT,
   PAGE_QUERY_RESULT,
@@ -12,9 +12,9 @@ import { sanityFetch } from "@/sanity/lib/live";
 import { FOOTER_QUERY } from "@/sanity/queries/documents/footer";
 import { NAVBAR_QUERY } from "@/sanity/queries/documents/navbar";
 import {
-  BLOG_QUERY,
-  BLOG_SLUG_QUERY,
-  BLOG_SLUGS_QUERY,
+  GET_CONTENT_TYPE_INDEX_QUERY,
+  GET_CONTENT_TYPE_SLUG_QUERY,
+  GET_CONTENT_TYPE_SLUGS_STATIC_PARAMS_QUERY,
   ORGANIZATION_QUERY,
   PAGE_SLUG_QUERY,
   PAGES_SLUGS_QUERY,
@@ -131,24 +131,34 @@ export const fetchSanityPagesStaticParams = async ({
 //     return data;
 //   };
 
-// Blogs
-export const fetchSanityBlogIndexPage = async ({
+/*
+ * ====================================================
+ * =============== CONTENT-TYPE QUERIES ===============
+ * ====================================================
+ */
+
+type ContentType = "blog-index" | "case-studies-index";
+
+export const FETCH_CONTENT_TYPE_INDEX_PAGE_DATA = async ({
+  contentType,
   category,
   page,
-  limit,
+  limit = 12,
   topic,
 }: {
+  contentType: ContentType;
   category?: string;
   page?: number;
-  limit: number;
+  limit?: number;
   topic?: string;
-}): Promise<BLOG_QUERY_RESULT> => {
+}): Promise<GET_CONTENT_TYPE_INDEX_QUERY_RESULT> => {
   const offset = page && limit ? (page - 1) * limit : 0;
   const end = offset + limit - 1;
 
   const { data } = await sanityFetch({
-    query: BLOG_QUERY,
+    query: GET_CONTENT_TYPE_INDEX_QUERY,
     params: {
+      contentType,
       category: category ?? null,
       topic: topic ?? null,
       page,
@@ -159,25 +169,32 @@ export const fetchSanityBlogIndexPage = async ({
   return data;
 };
 
-export const fetchSanityBlogSlugPage = async ({
+export const FETCH_CONTENT_TYPE_SLUG_PAGE_DATA = async ({
+  contentType,
   slug,
 }: {
+  contentType: ContentType;
   slug: string;
-}): Promise<BLOG_SLUG_QUERY_RESULT> => {
+}): Promise<GET_CONTENT_TYPE_SLUG_QUERY_RESULT> => {
   const { data } = await sanityFetch({
-    query: BLOG_SLUG_QUERY,
-    params: { slug },
+    query: GET_CONTENT_TYPE_SLUG_QUERY,
+    params: { contentType, slug },
   });
 
   return data;
 };
 
-export const fetchSanityBlogSlugsStaticParams =
-  async (): Promise<BLOG_SLUGS_QUERY_RESULT> => {
-    const { data } = await sanityFetch({
-      query: BLOG_SLUGS_QUERY,
-      perspective: "published",
-      stega: false,
-    });
-    return data;
-  };
+export const FETCH_CONTENT_TYPE_SLUGS_STATIC_PARAMS_DATA = async ({
+  contentType,
+}: {
+  contentType: ContentType;
+}): Promise<GET_CONTENT_TYPE_SLUGS_STATIC_PARAMS_QUERY_RESULT> => {
+  const { data } = await sanityFetch({
+    query: GET_CONTENT_TYPE_SLUGS_STATIC_PARAMS_QUERY,
+    perspective: "published",
+    stega: false,
+    params: { contentType },
+  });
+
+  return data;
+};

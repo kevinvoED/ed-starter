@@ -6,9 +6,12 @@
 
 import { defineQuery } from "next-sanity";
 import {
+  descriptionFragment,
   imageFragment,
   metaFragment,
+  portableTextFragment,
   postFragment,
+  titleFragment,
 } from "./fragments/fragments";
 import { FN_LOGO, GROQ_FUNCTIONS } from "./functions/functions";
 import { HERO_PRIMARY_QUERY } from "./modules/hero/hero-primary";
@@ -75,47 +78,51 @@ export const PAGES_SLUGS_QUERY = defineQuery(
 
 /*
  * ====================================================
- * =================== BLOG QUERIES ===================
+ * =============== CONTENT-TYPE QUERIES ===============
  * ====================================================
  */
-export const BLOG_QUERY = defineQuery(`
+
+export const GET_CONTENT_TYPE_INDEX_QUERY = defineQuery(`
   ${GROQ_FUNCTIONS}
 
-  *[_type == "blog-index"][0]{
+  *[_type == $contentType][0]{
     _type,
     slug,
+    ${titleFragment},
+    ${descriptionFragment},
     ${metaFragment},
     ${modulesFragment},
-    "title": fn::ptPlain(title),
-    "description": fn::ptPlain(description),
-    featuredPost->{
-      ${postFragment}
-    },
-    "posts": *[_type == "blog-post" && ($topic == null || $topic in topics[]->slug.current)]| order(publishedDate desc, _createdAt desc) [$offset..$end] {
-      ${postFragment}
-    }
+    "posts": *[_type == select(
+      $contentType == "blog-index" => "blog-post",
+      $contentType == "case-studies-index" => "case-study"
+    ) && ($topic == null || $topic in topics[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {
+        ${postFragment}
+      }
   }
 `);
 
-export const BLOG_SLUG_QUERY = defineQuery(`
+export const GET_CONTENT_TYPE_SLUG_QUERY = defineQuery(`
   ${GROQ_FUNCTIONS}
 
-  *[_type == "blog-post" && slug.current == $slug][0]{
+  *[_type == select(
+      $contentType == "blog-index" => "blog-post",
+      $contentType == "case-studies-index" => "case-study"
+    ) && slug.current == $slug][0]{
     _id,
     _createdAt,
     _type,
     slug,
     publishedDate,
-    ${imageFragment},
     ${metaFragment},
     ${modulesFragment},
-    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180 ),
-    "title": fn::ptPlain(title),
-    "description": fn::ptPlain(description),
-    "content": fn::pt(content),
+    ${titleFragment},
+    ${descriptionFragment},
+    ${imageFragment},
+    ${portableTextFragment},
+    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180),
   }
 `);
 
-export const BLOG_SLUGS_QUERY = defineQuery(
-  `*[_type == "blog-post" && defined(slug)]{slug}`,
+export const GET_CONTENT_TYPE_SLUGS_STATIC_PARAMS_QUERY = defineQuery(
+  "*[_type == $contentType && defined(slug)]{slug}",
 );

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type {
-  BLOG_QUERY_RESULT,
-  BLOG_SLUG_QUERY_RESULT,
+  GET_CONTENT_TYPE_INDEX_QUERY_RESULT,
+  GET_CONTENT_TYPE_SLUG_QUERY_RESULT,
   PAGE_QUERY_RESULT,
 } from "@/sanity.types";
 
@@ -9,7 +9,9 @@ const isProduction = process.env.NEXT_PUBLIC_SITE_ENV === "production";
 
 export function generatePageMetadata(
   page: NonNullable<
-    BLOG_QUERY_RESULT | BLOG_SLUG_QUERY_RESULT | PAGE_QUERY_RESULT
+    | PAGE_QUERY_RESULT
+    | GET_CONTENT_TYPE_SLUG_QUERY_RESULT
+    | GET_CONTENT_TYPE_INDEX_QUERY_RESULT
   >,
 ): Metadata {
   const additionalOpenGraphProperties: Record<
@@ -25,7 +27,7 @@ export function generatePageMetadata(
   // }
 
   if (page._type === "blog-post") {
-    const post = page as NonNullable<BLOG_SLUG_QUERY_RESULT>;
+    const post = page as NonNullable<GET_CONTENT_TYPE_SLUG_QUERY_RESULT>;
     additionalOpenGraphProperties.article = {};
     // Add article-specific Open Graph properties
     if (post.publishedDate) {
