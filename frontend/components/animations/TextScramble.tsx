@@ -3,55 +3,72 @@
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { gsap } from "gsap";
-import { ScrambleTextPlugin } from "gsap/all";
+import { ScrambleTextPlugin, ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(ScrambleTextPlugin);
+gsap.registerPlugin(ScrollTrigger);
 
 type TextScrambleProps = {
+  children: React.ReactNode;
+  className?: string;
   duration?: number;
   delay?: number;
   stagger?: number;
   ease?: string;
-  className?: string;
   triggerOnce?: boolean;
-  children: React.ReactNode;
-  hover?: boolean;
-  chars?: "upperCase" | "lowerCase" | "upperAndLowerCase" | string;
+  playOnHover?: boolean;
+  chars?: "upperCase" | "lowerCase" | "upperAndLowerCase";
 };
 
-// GSAP ScrambleTextPlugin: https://gsap.com/docs/v3/Plugins/ScrambleTextPlugin/
-gsap.registerPlugin(ScrambleTextPlugin);
-
 export const TextScramble = ({
+  children,
+  className,
   duration = 1.75,
   delay = 0,
   stagger = 0.05,
   ease = "power4.inOut",
-  className,
   triggerOnce = true,
-  children,
+  playOnHover = false,
   chars = "upperCase",
 }: TextScrambleProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
+    // Scramble text
     const tween = gsap.to(containerRef.current, {
-      ease: ease,
       duration: duration,
       delay: delay,
       stagger: stagger,
+      ease: ease,
+      paused: true,
       scrambleText: {
         text: "{original}",
         chars: chars,
       },
     });
 
+    // When it enters viewport, restart the scramble animation
+    const st = ScrollTrigger.create({
+      trigger: containerRef.current,
+      once: !!triggerOnce,
+      onEnter: () => tween.restart(),
+    });
+
+    // If visible on page load, play the animation
+    if (st.isActive) {
+      tween.play();
+    }
+
     const element = containerRef.current;
 
-    if (element) {
+    if (element && playOnHover) {
+      // Restart scramble animation when user hovers the element
       element.addEventListener("mouseenter", () => tween.restart());
     }
 
     return () => {
-      if (element) {
+      st.kill();
+      if (element && playOnHover) {
         element.removeEventListener("mouseenter", () => tween.restart());
       }
     };

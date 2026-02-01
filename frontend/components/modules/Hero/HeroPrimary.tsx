@@ -1,6 +1,4 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
-import { HoverTextScramble } from "@/components/animations/HoverTextScramble";
-import { TextMask } from "@/components/animations/TextMask";
 import { TextScramble } from "@/components/animations/TextScramble";
 import { Transition } from "@/components/animations/Transition";
 import { Button } from "@/components/primitives/Button/Button";
@@ -30,14 +28,14 @@ export const HeroPrimary = ({
       )}
 
       {description && (
-        <TextMask>
+        <TextScramble chars="lowerCase">
           <PortableText value={description} />
-        </TextMask>
+        </TextScramble>
       )}
 
       {description && (
-        <TextScramble>
-          <PortableTextFragment value={title} />
+        <TextScramble chars="lowerCase">
+          <PortableText value={title} />
         </TextScramble>
       )}
       {image && <SanityImage image={image} />}
@@ -61,6 +59,12 @@ export const HeroPrimary = ({
         <div className="fluid-py-4/12">
           <PortableText value={content} style="article" />
         </div>
+      )}
+
+      {description && (
+        <TextScramble>
+          <PortableTextFragment value={title} />
+        </TextScramble>
       )}
     </div>
   );

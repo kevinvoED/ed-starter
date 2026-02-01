@@ -11,10 +11,10 @@
 import { useLenis } from "lenis/react";
 import { useEffect, useEffectEvent } from "react";
 import gsap from "gsap";
-import { ScrollTrigger as GSAPScrollTrigger, SplitText } from "gsap/all";
+import { ScrollTrigger as GSAPScrollTrigger } from "gsap/all";
 
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(GSAPScrollTrigger, SplitText);
+  gsap.registerPlugin(GSAPScrollTrigger);
   GSAPScrollTrigger.clearScrollMemory("manual");
 }
 
