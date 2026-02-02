@@ -1,9 +1,9 @@
 import { ChevronLeft, ChevronRight, Ellipsis } from "lucide-react";
+import { ContentPaginationScrollHandler } from "@/components/layout/Content/ContentPaginationScrollHandler";
 import { Button } from "@/components/primitives/Button/Button";
-import { PaginationScrollHandler } from "@/components/primitives/Pagination/PaginationScrollHandler";
 import { cn } from "@/lib/utils/cn";
 
-type PaginationProps = {
+type ContentPaginationProps = {
   currentPage: number;
   totalPages: number;
   createPageUrl: (pageNum: number) => string;
@@ -26,26 +26,26 @@ const getVisiblePages = (current: number, total: number) => {
   return [1, "...", current - 1, current, current + 1, "...", total];
 };
 
-export const Pagination = ({
+export const ContentPagination = ({
   currentPage,
   totalPages,
   createPageUrl,
   className,
   scrollTargetId,
   scrollOffset = 175,
-}: PaginationProps) => {
+}: ContentPaginationProps) => {
   if (totalPages <= 1) return null;
 
   return (
     <>
       {scrollTargetId && (
-        <PaginationScrollHandler
+        <ContentPaginationScrollHandler
           scrollTargetId={scrollTargetId}
           scrollOffset={scrollOffset}
         />
       )}
 
-      <div className={cn("flex justify-center gap-4", className)}>
+      <div className={cn("flex gap-4", className)}>
         {currentPage > 1 && (
           <Button
             variant="ghost"

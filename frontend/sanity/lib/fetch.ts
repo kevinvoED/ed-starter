@@ -143,7 +143,7 @@ export const FETCH_CONTENT_TYPE_INDEX_PAGE_DATA = async ({
   contentType,
   category,
   page,
-  limit = 12,
+  limit = 2,
   topic,
 }: {
   contentType: ContentType;
