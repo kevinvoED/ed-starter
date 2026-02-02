@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { FETCH_CONTENT_TYPE_INDEX_PAGE_DATA } from "@/sanity/lib/fetch";
 import { Transition } from "@/components/animations/Transition";
 import { ContentCategoryFilter } from "@/components/layout/Content/ContentCategoryFilter";
+import { ContentTopicFilter } from "@/components/layout/Content/ContentTopicFilter";
 import { JSONLDScript } from "@/components/layout/JsonLD/Jsonld";
 import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
 import { Button } from "@/components/primitives/Button/Button";
@@ -65,6 +66,7 @@ export default async function BlogIndexPage(props: {
         </header>
 
         <ContentCategoryFilter data={data.categoryFilter} />
+        <ContentTopicFilter data={data.topicFilter} />
 
         <ul className="grid-custom">
           {data?.posts?.map((post) => (
@@ -75,6 +77,12 @@ export default async function BlogIndexPage(props: {
                 )}
 
                 {post.category?.map((category) => (
+                  <p key={category._id}>
+                    <PortableTextFragment value={category.title} />
+                  </p>
+                ))}
+
+                {post.contentTopic?.map((category) => (
                   <p key={category._id}>
                     <PortableTextFragment value={category.title} />
                   </p>

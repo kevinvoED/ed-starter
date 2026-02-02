@@ -89,26 +89,6 @@ const selectContentType = `
   )
 `;
 
-export const RESOURCE_CATEGORY_COUNT_QUERY = defineQuery(`
-{
-  "totalPostCount": count(*[_type == $type]),
-  "currentCategoryPostCount": count(*[_type == $type && ($category == null || $category in categories[]->slug.current) && ($topic == null || $topic in topics[]->slug.current)]),
-  "categories": *[
-    _type == select(
-      $type == "case-study" => "case-study-category",
-      $type == "news-article" => "news-category",
-      "resource-category"
-    ) &&
-    count(*[_type == $type && ^._id in categories[]._ref]) > 0
-  ] | order(title asc) {
-    _id,
-    title,
-    slug,
-    "count": count(*[_type == $type && ^._id in categories[]._ref  && ($topic == null || $topic in topics[]->slug.current)])
-  }
-}
-`);
-
 export const GET_CONTENT_TYPE_INDEX_QUERY = defineQuery(`
   ${GROQ_FUNCTIONS}
 
@@ -119,29 +99,30 @@ export const GET_CONTENT_TYPE_INDEX_QUERY = defineQuery(`
     ${descriptionFragment},
     ${metaFragment},
     ${modulesFragment},
+    // Data for filtering by category (ContentCategoryFilter.tsx)
     "categoryFilter": {
       "totalPostCount": count(*[_type == ${selectContentType}]),
-      "currentCategoryPostCount": count(*[_type == ${selectContentType} && ($category == null || $category in category[]->slug.current) && ($topic == null || $topic in topic[]->slug.current)]),
       "categories": *[_type ==  select(
-        $contentType == "blog-index" => "blog-category")] {
-        _id,
-        slug,
-        ${titleFragment},
-        "count": count(*[_type == ${selectContentType} && references(^._id)])
+        $contentType == "blog-index" => "blog-category") && count(*[_type == ${selectContentType} && references(^._id)]) > 0] {
+          _id,
+          slug,
+          ${titleFragment},
+          // Number of posts in this category
+          "count": count(*[_type == ${selectContentType} && references(^._id)])
       },
     },
+    // Data for filtering by topic (ContentTopicFilter.tsx)
     "topicFilter": {
       "totalPostCount": count(*[_type == ${selectContentType}]),
-      "currentTopicPostCount": count(*[_type == ${selectContentType} && ($category == null || $category in category[]->slug.current) && ($topic == null || $topic in topic[]->slug.current)]),
-      "categories": *[_type ==  select(
-        $contentType == "blog-index" => "blog-category")] {
-        _id,
-        slug,
-        ${titleFragment},
-        "count": count(*[_type == ${selectContentType} && references(^._id)])
+      "content-topics": *[_type == "content-topic" &&
+        count(*[_type == ${selectContentType} && references(^._id)]) > 0] {
+          _id,
+          slug,
+          ${titleFragment},
+          "count": count(*[_type == ${selectContentType} && references(^._id)])
       },
     },
-    "posts": *[_type == ${selectContentType} && ($topic == null || $topic in topics[]->slug.current) && ($category == null || $category in category[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {
+    "posts": *[_type == ${selectContentType} && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {
       _id,
       _type,
       _createdAt,
