@@ -51,11 +51,6 @@ const referenceItems = [
     schemaType: "author",
     icon: UserIcon,
   },
-  {
-    title: "Content Topics",
-    schemaType: "content-topic",
-    icon: BookmarkIcon,
-  },
 ];
 
 const globalItems = [
@@ -86,7 +81,7 @@ const administrationItems = [
 
 export const structure: StructureResolver = (S: StructureBuilder, context) =>
   S.list()
-    .title("Content")
+    .title("Pages")
     .items([
       orderableDocumentListDeskItem({
         type: "page",
@@ -146,7 +141,14 @@ export const structure: StructureResolver = (S: StructureBuilder, context) =>
       //   S,
       //   context,
       // }),
-      S.divider().title("Resources"),
+      S.divider().title("Content"),
+      orderableDocumentListDeskItem({
+        type: "content-topic",
+        title: "Content Topics",
+        icon: BookmarkIcon,
+        S,
+        context,
+      }),
       ...resourceItems.map(
         ({
           title,
