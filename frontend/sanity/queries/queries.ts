@@ -84,8 +84,8 @@ export const PAGES_SLUGS_QUERY = defineQuery(
 
 const selectContentType = `
   select(
-        $contentType == "blog-index" => "blog-post",
-        $contentType == "case-studies-index" => "case-study"
+    $contentType == "blog-index" => "blog-post",
+    $contentType == "case-studies-index" => "case-study"
   )
 `;
 
@@ -110,6 +110,7 @@ export const GET_CONTENT_TYPE_INDEX_QUERY = defineQuery(`
           // Number of posts in this category
           "count": count(*[_type == ${selectContentType} && references(^._id)])
       },
+      "currentCategoryPostCount": count(*[_type == ${selectContentType} && ($category == null || $category in category[]->slug.current) && ($topic == null || $topic in contentTopic[]->slug.current)]),
     },
     // Data for filtering by topic (ContentTopicFilter.tsx)
     "topicFilter": {
@@ -121,6 +122,7 @@ export const GET_CONTENT_TYPE_INDEX_QUERY = defineQuery(`
           ${titleFragment},
           "count": count(*[_type == ${selectContentType} && references(^._id)])
       },
+      "currentTopicPostCount": count(*[_type == ${selectContentType} && ($category == null || $category in category[]->slug.current) && ($topic == null || $topic in contentTopic[]->slug.current)]),
     },
     "posts": *[_type == ${selectContentType} && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {
       _id,
