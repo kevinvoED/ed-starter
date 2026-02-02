@@ -1,5 +1,6 @@
 import type { StructureBuilder, StructureResolver } from "sanity/structure";
 import {
+  BookmarkIcon,
   CogIcon,
   DashboardIcon,
   DocumentsIcon,
@@ -30,6 +31,8 @@ const resourceItems = [
     itemSchemaType: "blog-post",
     landingPageTitle: "Blog Landing",
     landingPageSchemaType: "blog-index",
+    categoryTitle: "Blog Categories",
+    categorySchemaType: "blog-category",
     icon: FolderIcon,
   },
   {
@@ -47,6 +50,11 @@ const referenceItems = [
     title: "Authors",
     schemaType: "author",
     icon: UserIcon,
+  },
+  {
+    title: "Content Topics",
+    schemaType: "content-topic",
+    icon: BookmarkIcon,
   },
 ];
 
@@ -146,6 +154,8 @@ export const structure: StructureResolver = (S: StructureBuilder, context) =>
           itemSchemaType,
           landingPageTitle,
           landingPageSchemaType,
+          categoryTitle,
+          categorySchemaType,
           icon,
         }) =>
           S.listItem()
@@ -181,6 +191,20 @@ export const structure: StructureResolver = (S: StructureBuilder, context) =>
                           { field: "_createdAt", direction: "desc" },
                         ]),
                     ),
+                  ...(categoryTitle && categorySchemaType
+                    ? [
+                        S.listItem()
+                          .title(categoryTitle)
+                          .schemaType(categorySchemaType)
+                          .child(
+                            S.documentTypeList(categorySchemaType)
+                              .title(categoryTitle)
+                              .defaultOrdering([
+                                { field: "title", direction: "asc" },
+                              ]),
+                          ),
+                      ]
+                    : []),
                 ]),
             ),
       ),

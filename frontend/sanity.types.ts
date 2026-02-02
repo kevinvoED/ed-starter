@@ -543,6 +543,20 @@ export type BlogIndex = {
   meta?: Meta;
 };
 
+export type BlogCategoryReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "blog-category";
+};
+
+export type ContentTopicReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "content-topic";
+};
+
 export type AuthorReference = {
   _ref: string;
   _type: "reference";
@@ -585,6 +599,8 @@ export type BlogPost = {
       _key: string;
     } & Link
   >;
+  category?: BlogCategoryReference;
+  contentTopic?: ContentTopicReference;
   description?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -696,6 +712,7 @@ export type CaseStudy = {
       _key: string;
     } & Link
   >;
+  contentTopic?: ContentTopicReference;
   description?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -794,6 +811,54 @@ export type Author = {
     alt?: string;
     _type: "image";
   };
+  orderRank?: string;
+};
+
+export type ContentTopic = {
+  _id: string;
+  _type: "content-topic";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  slug: Slug;
+  orderRank?: string;
+};
+
+export type BlogCategory = {
+  _id: string;
+  _type: "blog-category";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  slug: Slug;
   orderRank?: string;
 };
 
@@ -965,6 +1030,8 @@ export type AllSanitySchemaTypes =
   | Navbar
   | Page
   | BlogIndex
+  | BlogCategoryReference
+  | ContentTopicReference
   | AuthorReference
   | BlogPost
   | CaseStudiesIndex
@@ -974,6 +1041,8 @@ export type AllSanitySchemaTypes =
   | Slug
   | CreatedAt
   | Author
+  | ContentTopic
+  | BlogCategory
   | HighlightColor
   | TextColor
   | SimplerColor
@@ -1232,6 +1301,207 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
       _type: "author";
       slug: null;
       title: null;
+      description: null;
+      meta: null;
+      modules: null;
+      posts: Array<
+        | {
+            _id: string;
+            _type: "blog-post";
+            _createdAt: string;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }>;
+            slug: Slug;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs?: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            publishedDate: string | null;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
+          }
+        | {
+            _id: string;
+            _type: "case-study";
+            _createdAt: string;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }>;
+            slug: Slug;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs?: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            publishedDate: string | null;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
+          }
+      >;
+    }
+  | {
+      _type: "blog-category";
+      slug: Slug;
+      title: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal";
+        listItem?: never;
+        markDefs: null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }>;
       description: null;
       meta: null;
       modules: null;
@@ -2980,6 +3250,207 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
       _type: "configuration";
       slug: null;
       title: null;
+      description: null;
+      meta: null;
+      modules: null;
+      posts: Array<
+        | {
+            _id: string;
+            _type: "blog-post";
+            _createdAt: string;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }>;
+            slug: Slug;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs?: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            publishedDate: string | null;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
+          }
+        | {
+            _id: string;
+            _type: "case-study";
+            _createdAt: string;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }>;
+            slug: Slug;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs?: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            publishedDate: string | null;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
+          }
+      >;
+    }
+  | {
+      _type: "content-topic";
+      slug: Slug;
+      title: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal";
+        listItem?: never;
+        markDefs: null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }>;
       description: null;
       meta: null;
       modules: null;

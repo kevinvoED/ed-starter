@@ -16,6 +16,8 @@ import configuration from "@/schemas/documents/configuration";
 import footer from "@/schemas/documents/footer";
 import navbar from "@/schemas/documents/navbar";
 import organization from "@/schemas/documents/organization";
+import blogCategory from "@/schemas/pages/blog/blog-category";
+import contentTopic from "@/schemas/pages/content-topic";
 // Objects
 import link from "@/schemas/objects/link";
 // Modules
@@ -28,8 +30,12 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     createdAtType,
     // Pages
     page,
+    contentTopic,
     blogIndex,
+    blogPost,
+    blogCategory,
     caseStudiesIndex,
+    caseStudy,
     platformIndex,
     platformChild,
     // Documents
@@ -38,8 +44,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     organization,
     configuration,
     author,
-    blogPost,
-    caseStudy,
     // Objects
     link,
     portableText,

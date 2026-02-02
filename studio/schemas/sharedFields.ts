@@ -1,4 +1,6 @@
+import { toPlainText } from "@portabletext/react";
 import { ImageIcon, ImagesIcon, LinkIcon, VideoIcon } from "@sanity/icons";
+import { kebabCase } from "es-toolkit";
 import { defineField, type Rule } from "sanity";
 import {
   moduleBlocks,
@@ -211,6 +213,10 @@ export const slug = defineField({
   title: "Page Slug",
   type: "slug",
   description: "A unique ID to be used as the slug/route for this page.",
+  options: {
+    source: "title",
+    slugify: (input) => kebabCase(toPlainText(input)),
+  },
   validation: (Rule) => Rule.required(),
 });
 

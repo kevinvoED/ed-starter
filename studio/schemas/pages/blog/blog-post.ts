@@ -58,6 +58,22 @@ export default defineType({
       group: "content",
     }),
     defineField({
+      name: "category",
+      title: "Category",
+      type: "reference",
+      description: "Optional. Select a category for the post.",
+      group: "content",
+      to: { type: "blog-category" },
+    }),
+    defineField({
+      name: "contentTopic",
+      title: "Content Topic",
+      type: "reference",
+      description: "Optional. Select a content topic for the post.",
+      group: "content",
+      to: { type: "content-topic" },
+    }),
+    defineField({
       ...description,
       group: "content",
     }),
