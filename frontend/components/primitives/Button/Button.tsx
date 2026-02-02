@@ -49,6 +49,7 @@ interface ButtonProps
   openInNewTab?: boolean;
 }
 
+// TODO: add case where no href no link just output a regular button
 export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
   (
     {

@@ -482,6 +482,30 @@ export type Navbar = {
   >;
 };
 
+export type BlogCategory = {
+  _id: string;
+  _type: "blog-category";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  slug: Slug;
+  orderRank?: string;
+};
+
 export type Page = {
   _id: string;
   _type: "page";
@@ -599,8 +623,16 @@ export type BlogPost = {
       _key: string;
     } & Link
   >;
-  category?: BlogCategoryReference;
-  contentTopic?: ContentTopicReference;
+  category?: Array<
+    {
+      _key: string;
+    } & BlogCategoryReference
+  >;
+  contentTopic?: Array<
+    {
+      _key: string;
+    } & ContentTopicReference
+  >;
   description?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -785,6 +817,30 @@ export type Slug = {
   source?: string;
 };
 
+export type ContentTopic = {
+  _id: string;
+  _type: "content-topic";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  slug: Slug;
+  orderRank?: string;
+};
+
 export type CreatedAt = {
   _type: "created-at";
   placeholder?: string;
@@ -811,54 +867,6 @@ export type Author = {
     alt?: string;
     _type: "image";
   };
-  orderRank?: string;
-};
-
-export type ContentTopic = {
-  _id: string;
-  _type: "content-topic";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs?: null;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-  slug: Slug;
-  orderRank?: string;
-};
-
-export type BlogCategory = {
-  _id: string;
-  _type: "blog-category";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs?: null;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-  slug: Slug;
   orderRank?: string;
 };
 
@@ -1028,6 +1036,7 @@ export type AllSanitySchemaTypes =
   | SanityImageHotspot
   | Footer
   | Navbar
+  | BlogCategory
   | Page
   | BlogIndex
   | BlogCategoryReference
@@ -1039,10 +1048,9 @@ export type AllSanitySchemaTypes =
   | PlatformChild
   | PlatformIndex
   | Slug
+  | ContentTopic
   | CreatedAt
   | Author
-  | ContentTopic
-  | BlogCategory
   | HighlightColor
   | TextColor
   | SimplerColor
@@ -1304,7 +1312,7 @@ export type RESOURCE_CATEGORY_COUNT_QUERY_RESULT = {
 
 // Source: ../frontend/sanity/queries/queries.ts
 // Variable: GET_CONTENT_TYPE_INDEX_QUERY
-// Query: fn fn::img($image) = $image {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::imgs($images) = $images[] {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::logo($logo) = $logo {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::link($link) = $link[] {      ...,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )  };    fn fn::ptPlain($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "link" => {        ...,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };    fn fn::pt($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "link" => {        ...,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };  *[_type == $contentType][0]{    _type,    slug,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),        meta{    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "blog-index" => "/blog",      ^._type == "blog-post" => "/blog/" + ^.slug.current,      ^._type == "case-studies-index" => "/case-studies",      ^._type == "case-study" => "/case-studies/" + ^.slug.current,      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      "/" + ^.slug.current    ),    "image": coalesce(      image.asset->url + "?w=1200&h=630&fit=max",      ^.image.asset->url + "?w=1200&h=630&fit=max",      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },      modules[]{      _type == "hero-primary" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),      "content": fn::pt(content),  }  },    "categoryFilter": {      "totalPostCount": count(*[_type ==   select(        $contentType == "blog-index" => "blog-post",        $contentType == "case-studies-index" => "case-study"  )]),      "currentCategoryPostCount": count(*[_type ==   select(        $contentType == "blog-index" => "blog-post",        $contentType == "case-studies-index" => "case-study"  ) && ($category == null || $category in categories[]->slug.current) && ($topic == null || $topic in topics[]->slug.current)]),      "categories": *[_type ==  select(        $contentType == "blog-index" => "blog-category")] {        _id,        "slug": select(          $contentType == "blog-index" => "/blog/" + slug.current),          "title": fn::ptPlain(title),        "count": count(*[_type == "blog-post" && references(^._id)])      },    },    "posts": *[_type ==   select(        $contentType == "blog-index" => "blog-post",        $contentType == "case-studies-index" => "case-study"  ) && ($topic == null || $topic in topics[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {      _id,      _type,      _createdAt,        "title": fn::ptPlain(title),      slug,      description,      publishedDate,      category->{        _id,        _type,        slug,        title,      },      contentTopic->{        _id,        _type,        slug,        title,      },        "link": fn::link(link),        "image": fn::img(image),    }  }
+// Query: fn fn::img($image) = $image {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::imgs($images) = $images[] {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::logo($logo) = $logo {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::link($link) = $link[] {      ...,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )  };    fn fn::ptPlain($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "link" => {        ...,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };    fn fn::pt($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "link" => {        ...,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };  *[_type == $contentType][0]{    _type,    slug,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),        meta{    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "blog-index" => "/blog",      ^._type == "blog-post" => "/blog/" + ^.slug.current,      ^._type == "case-studies-index" => "/case-studies",      ^._type == "case-study" => "/case-studies/" + ^.slug.current,      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      "/" + ^.slug.current    ),    "image": coalesce(      image.asset->url + "?w=1200&h=630&fit=max",      ^.image.asset->url + "?w=1200&h=630&fit=max",      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },      modules[]{      _type == "hero-primary" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),      "content": fn::pt(content),  }  },    "categoryFilter": {      "totalPostCount": count(*[_type ==   select(        $contentType == "blog-index" => "blog-post",        $contentType == "case-studies-index" => "case-study"  )]),      "currentCategoryPostCount": count(*[_type ==   select(        $contentType == "blog-index" => "blog-post",        $contentType == "case-studies-index" => "case-study"  ) && ($category == null || $category in category[]->slug.current) && ($topic == null || $topic in topic[]->slug.current)]),      "categories": *[_type ==  select(        $contentType == "blog-index" => "blog-category")] {        _id,        slug,          "title": fn::ptPlain(title),        "count": count(*[_type ==   select(        $contentType == "blog-index" => "blog-post",        $contentType == "case-studies-index" => "case-study"  ) && references(^._id)])      },    },    "topicFilter": {      "totalPostCount": count(*[_type ==   select(        $contentType == "blog-index" => "blog-post",        $contentType == "case-studies-index" => "case-study"  )]),      "currentTopicPostCount": count(*[_type ==   select(        $contentType == "blog-index" => "blog-post",        $contentType == "case-studies-index" => "case-study"  ) && ($category == null || $category in category[]->slug.current) && ($topic == null || $topic in topic[]->slug.current)]),      "categories": *[_type ==  select(        $contentType == "blog-index" => "blog-category")] {        _id,        slug,          "title": fn::ptPlain(title),        "count": count(*[_type ==   select(        $contentType == "blog-index" => "blog-post",        $contentType == "case-studies-index" => "case-study"  ) && references(^._id)])      },    },    "posts": *[_type ==   select(        $contentType == "blog-index" => "blog-post",        $contentType == "case-studies-index" => "case-study"  ) && ($topic == null || $topic in topics[]->slug.current) && ($category == null || $category in category[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {      _id,      _type,      _createdAt,      publishedDate,      slug,        "title": fn::ptPlain(title),        "link": fn::link(link),        "image": fn::img(image),        "description": fn::ptPlain(description),      category[]->{        _id,        _type,        slug,          "title": fn::ptPlain(title),      },      contentTopic[]->{        _id,        _type,        slug,          "title": fn::ptPlain(title),      },    }  }
 export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
   | {
       _type: "author";
@@ -1318,7 +1326,30 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         currentCategoryPostCount: number;
         categories: Array<{
           _id: string;
-          slug: string;
+          slug: Slug;
+          title: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?: "normal";
+            listItem?: never;
+            markDefs: null;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }>;
+          count: number;
+        }>;
+      };
+      topicFilter: {
+        totalPostCount: number;
+        currentTopicPostCount: number;
+        categories: Array<{
+          _id: string;
+          slug: Slug;
           title: Array<{
             children?: Array<{
               marks?: Array<string>;
@@ -1341,6 +1372,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _id: string;
             _type: "blog-post";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -1368,7 +1401,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -1378,13 +1451,12 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               }>;
               style?: "normal";
               listItem?: never;
-              markDefs?: null;
+              markDefs: null;
               level?: number;
               _type: "block";
               _key: string;
             }> | null;
-            publishedDate: string | null;
-            category: {
+            category: Array<{
               _id: string;
               _type: "blog-category";
               slug: Slug;
@@ -1397,13 +1469,13 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            contentTopic: {
+            }> | null;
+            contentTopic: Array<{
               _id: string;
               _type: "content-topic";
               slug: Slug;
@@ -1416,58 +1488,19 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            link: Array<{
-              _key: string;
-              _type: "link";
-              type: "external" | "internal";
-              label: string;
-              internalLink?:
-                | BlogIndexReference
-                | BlogPostReference
-                | CaseStudiesIndexReference
-                | CaseStudyReference
-                | PageReference
-                | PlatformChildReference
-                | PlatformIndexReference;
-              href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
-              openInNewTab?: boolean;
-              anchorTag?: string;
             }> | null;
-            image: {
-              asset: {
-                _id: string;
-                url: string | null;
-                metadata: {
-                  lqip: string | null;
-                  dimensions: {
-                    width: number;
-                    height: number;
-                  } | null;
-                } | null;
-              } | null;
-              media?: unknown;
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              alt?: string;
-              _type: "image";
-            } | null;
           }
         | {
             _id: string;
             _type: "case-study";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -1495,42 +1528,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
-            description: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs?: null;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }> | null;
-            publishedDate: string | null;
-            category: null;
-            contentTopic: {
-              _id: string;
-              _type: "content-topic";
-              slug: Slug;
-              title: Array<{
-                children?: Array<{
-                  marks?: Array<string>;
-                  text?: string;
-                  _type: "span";
-                  _key: string;
-                }>;
-                style?: "normal";
-                listItem?: never;
-                markDefs?: null;
-                level?: number;
-                _type: "block";
-                _key: string;
-              }>;
-            } | null;
             link: Array<{
               _key: string;
               _type: "link";
@@ -1572,6 +1569,22 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               alt?: string;
               _type: "image";
             } | null;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            category: null;
+            contentTopic: null;
           }
       >;
     }
@@ -1600,7 +1613,30 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         currentCategoryPostCount: number;
         categories: Array<{
           _id: string;
-          slug: string;
+          slug: Slug;
+          title: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?: "normal";
+            listItem?: never;
+            markDefs: null;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }>;
+          count: number;
+        }>;
+      };
+      topicFilter: {
+        totalPostCount: number;
+        currentTopicPostCount: number;
+        categories: Array<{
+          _id: string;
+          slug: Slug;
           title: Array<{
             children?: Array<{
               marks?: Array<string>;
@@ -1623,6 +1659,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _id: string;
             _type: "blog-post";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -1650,7 +1688,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -1660,13 +1738,12 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               }>;
               style?: "normal";
               listItem?: never;
-              markDefs?: null;
+              markDefs: null;
               level?: number;
               _type: "block";
               _key: string;
             }> | null;
-            publishedDate: string | null;
-            category: {
+            category: Array<{
               _id: string;
               _type: "blog-category";
               slug: Slug;
@@ -1679,13 +1756,13 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            contentTopic: {
+            }> | null;
+            contentTopic: Array<{
               _id: string;
               _type: "content-topic";
               slug: Slug;
@@ -1698,58 +1775,19 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            link: Array<{
-              _key: string;
-              _type: "link";
-              type: "external" | "internal";
-              label: string;
-              internalLink?:
-                | BlogIndexReference
-                | BlogPostReference
-                | CaseStudiesIndexReference
-                | CaseStudyReference
-                | PageReference
-                | PlatformChildReference
-                | PlatformIndexReference;
-              href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
-              openInNewTab?: boolean;
-              anchorTag?: string;
             }> | null;
-            image: {
-              asset: {
-                _id: string;
-                url: string | null;
-                metadata: {
-                  lqip: string | null;
-                  dimensions: {
-                    width: number;
-                    height: number;
-                  } | null;
-                } | null;
-              } | null;
-              media?: unknown;
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              alt?: string;
-              _type: "image";
-            } | null;
           }
         | {
             _id: string;
             _type: "case-study";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -1777,42 +1815,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
-            description: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs?: null;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }> | null;
-            publishedDate: string | null;
-            category: null;
-            contentTopic: {
-              _id: string;
-              _type: "content-topic";
-              slug: Slug;
-              title: Array<{
-                children?: Array<{
-                  marks?: Array<string>;
-                  text?: string;
-                  _type: "span";
-                  _key: string;
-                }>;
-                style?: "normal";
-                listItem?: never;
-                markDefs?: null;
-                level?: number;
-                _type: "block";
-                _key: string;
-              }>;
-            } | null;
             link: Array<{
               _key: string;
               _type: "link";
@@ -1854,6 +1856,22 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               alt?: string;
               _type: "image";
             } | null;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            category: null;
+            contentTopic: null;
           }
       >;
     }
@@ -2061,7 +2079,30 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         currentCategoryPostCount: number;
         categories: Array<{
           _id: string;
-          slug: string;
+          slug: Slug;
+          title: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?: "normal";
+            listItem?: never;
+            markDefs: null;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }>;
+          count: number;
+        }>;
+      };
+      topicFilter: {
+        totalPostCount: number;
+        currentTopicPostCount: number;
+        categories: Array<{
+          _id: string;
+          slug: Slug;
           title: Array<{
             children?: Array<{
               marks?: Array<string>;
@@ -2084,6 +2125,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _id: string;
             _type: "blog-post";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -2111,7 +2154,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -2121,13 +2204,12 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               }>;
               style?: "normal";
               listItem?: never;
-              markDefs?: null;
+              markDefs: null;
               level?: number;
               _type: "block";
               _key: string;
             }> | null;
-            publishedDate: string | null;
-            category: {
+            category: Array<{
               _id: string;
               _type: "blog-category";
               slug: Slug;
@@ -2140,13 +2222,13 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            contentTopic: {
+            }> | null;
+            contentTopic: Array<{
               _id: string;
               _type: "content-topic";
               slug: Slug;
@@ -2159,58 +2241,19 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            link: Array<{
-              _key: string;
-              _type: "link";
-              type: "external" | "internal";
-              label: string;
-              internalLink?:
-                | BlogIndexReference
-                | BlogPostReference
-                | CaseStudiesIndexReference
-                | CaseStudyReference
-                | PageReference
-                | PlatformChildReference
-                | PlatformIndexReference;
-              href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
-              openInNewTab?: boolean;
-              anchorTag?: string;
             }> | null;
-            image: {
-              asset: {
-                _id: string;
-                url: string | null;
-                metadata: {
-                  lqip: string | null;
-                  dimensions: {
-                    width: number;
-                    height: number;
-                  } | null;
-                } | null;
-              } | null;
-              media?: unknown;
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              alt?: string;
-              _type: "image";
-            } | null;
           }
         | {
             _id: string;
             _type: "case-study";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -2238,42 +2281,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
-            description: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs?: null;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }> | null;
-            publishedDate: string | null;
-            category: null;
-            contentTopic: {
-              _id: string;
-              _type: "content-topic";
-              slug: Slug;
-              title: Array<{
-                children?: Array<{
-                  marks?: Array<string>;
-                  text?: string;
-                  _type: "span";
-                  _key: string;
-                }>;
-                style?: "normal";
-                listItem?: never;
-                markDefs?: null;
-                level?: number;
-                _type: "block";
-                _key: string;
-              }>;
-            } | null;
             link: Array<{
               _key: string;
               _type: "link";
@@ -2315,6 +2322,22 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               alt?: string;
               _type: "image";
             } | null;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            category: null;
+            contentTopic: null;
           }
       >;
     }
@@ -2542,7 +2565,30 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         currentCategoryPostCount: number;
         categories: Array<{
           _id: string;
-          slug: string;
+          slug: Slug;
+          title: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?: "normal";
+            listItem?: never;
+            markDefs: null;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }>;
+          count: number;
+        }>;
+      };
+      topicFilter: {
+        totalPostCount: number;
+        currentTopicPostCount: number;
+        categories: Array<{
+          _id: string;
+          slug: Slug;
           title: Array<{
             children?: Array<{
               marks?: Array<string>;
@@ -2565,6 +2611,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _id: string;
             _type: "blog-post";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -2592,7 +2640,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -2602,13 +2690,12 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               }>;
               style?: "normal";
               listItem?: never;
-              markDefs?: null;
+              markDefs: null;
               level?: number;
               _type: "block";
               _key: string;
             }> | null;
-            publishedDate: string | null;
-            category: {
+            category: Array<{
               _id: string;
               _type: "blog-category";
               slug: Slug;
@@ -2621,13 +2708,13 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            contentTopic: {
+            }> | null;
+            contentTopic: Array<{
               _id: string;
               _type: "content-topic";
               slug: Slug;
@@ -2640,58 +2727,19 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            link: Array<{
-              _key: string;
-              _type: "link";
-              type: "external" | "internal";
-              label: string;
-              internalLink?:
-                | BlogIndexReference
-                | BlogPostReference
-                | CaseStudiesIndexReference
-                | CaseStudyReference
-                | PageReference
-                | PlatformChildReference
-                | PlatformIndexReference;
-              href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
-              openInNewTab?: boolean;
-              anchorTag?: string;
             }> | null;
-            image: {
-              asset: {
-                _id: string;
-                url: string | null;
-                metadata: {
-                  lqip: string | null;
-                  dimensions: {
-                    width: number;
-                    height: number;
-                  } | null;
-                } | null;
-              } | null;
-              media?: unknown;
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              alt?: string;
-              _type: "image";
-            } | null;
           }
         | {
             _id: string;
             _type: "case-study";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -2719,42 +2767,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
-            description: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs?: null;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }> | null;
-            publishedDate: string | null;
-            category: null;
-            contentTopic: {
-              _id: string;
-              _type: "content-topic";
-              slug: Slug;
-              title: Array<{
-                children?: Array<{
-                  marks?: Array<string>;
-                  text?: string;
-                  _type: "span";
-                  _key: string;
-                }>;
-                style?: "normal";
-                listItem?: never;
-                markDefs?: null;
-                level?: number;
-                _type: "block";
-                _key: string;
-              }>;
-            } | null;
             link: Array<{
               _key: string;
               _type: "link";
@@ -2796,6 +2808,22 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               alt?: string;
               _type: "image";
             } | null;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            category: null;
+            contentTopic: null;
           }
       >;
     }
@@ -3003,7 +3031,30 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         currentCategoryPostCount: number;
         categories: Array<{
           _id: string;
-          slug: string;
+          slug: Slug;
+          title: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?: "normal";
+            listItem?: never;
+            markDefs: null;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }>;
+          count: number;
+        }>;
+      };
+      topicFilter: {
+        totalPostCount: number;
+        currentTopicPostCount: number;
+        categories: Array<{
+          _id: string;
+          slug: Slug;
           title: Array<{
             children?: Array<{
               marks?: Array<string>;
@@ -3026,6 +3077,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _id: string;
             _type: "blog-post";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -3053,7 +3106,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -3063,13 +3156,12 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               }>;
               style?: "normal";
               listItem?: never;
-              markDefs?: null;
+              markDefs: null;
               level?: number;
               _type: "block";
               _key: string;
             }> | null;
-            publishedDate: string | null;
-            category: {
+            category: Array<{
               _id: string;
               _type: "blog-category";
               slug: Slug;
@@ -3082,13 +3174,13 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            contentTopic: {
+            }> | null;
+            contentTopic: Array<{
               _id: string;
               _type: "content-topic";
               slug: Slug;
@@ -3101,58 +3193,19 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            link: Array<{
-              _key: string;
-              _type: "link";
-              type: "external" | "internal";
-              label: string;
-              internalLink?:
-                | BlogIndexReference
-                | BlogPostReference
-                | CaseStudiesIndexReference
-                | CaseStudyReference
-                | PageReference
-                | PlatformChildReference
-                | PlatformIndexReference;
-              href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
-              openInNewTab?: boolean;
-              anchorTag?: string;
             }> | null;
-            image: {
-              asset: {
-                _id: string;
-                url: string | null;
-                metadata: {
-                  lqip: string | null;
-                  dimensions: {
-                    width: number;
-                    height: number;
-                  } | null;
-                } | null;
-              } | null;
-              media?: unknown;
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              alt?: string;
-              _type: "image";
-            } | null;
           }
         | {
             _id: string;
             _type: "case-study";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -3180,42 +3233,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
-            description: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs?: null;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }> | null;
-            publishedDate: string | null;
-            category: null;
-            contentTopic: {
-              _id: string;
-              _type: "content-topic";
-              slug: Slug;
-              title: Array<{
-                children?: Array<{
-                  marks?: Array<string>;
-                  text?: string;
-                  _type: "span";
-                  _key: string;
-                }>;
-                style?: "normal";
-                listItem?: never;
-                markDefs?: null;
-                level?: number;
-                _type: "block";
-                _key: string;
-              }>;
-            } | null;
             link: Array<{
               _key: string;
               _type: "link";
@@ -3257,6 +3274,22 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               alt?: string;
               _type: "image";
             } | null;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            category: null;
+            contentTopic: null;
           }
       >;
     }
@@ -3484,7 +3517,30 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         currentCategoryPostCount: number;
         categories: Array<{
           _id: string;
-          slug: string;
+          slug: Slug;
+          title: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?: "normal";
+            listItem?: never;
+            markDefs: null;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }>;
+          count: number;
+        }>;
+      };
+      topicFilter: {
+        totalPostCount: number;
+        currentTopicPostCount: number;
+        categories: Array<{
+          _id: string;
+          slug: Slug;
           title: Array<{
             children?: Array<{
               marks?: Array<string>;
@@ -3507,6 +3563,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _id: string;
             _type: "blog-post";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -3534,7 +3592,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -3544,13 +3642,12 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               }>;
               style?: "normal";
               listItem?: never;
-              markDefs?: null;
+              markDefs: null;
               level?: number;
               _type: "block";
               _key: string;
             }> | null;
-            publishedDate: string | null;
-            category: {
+            category: Array<{
               _id: string;
               _type: "blog-category";
               slug: Slug;
@@ -3563,13 +3660,13 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            contentTopic: {
+            }> | null;
+            contentTopic: Array<{
               _id: string;
               _type: "content-topic";
               slug: Slug;
@@ -3582,58 +3679,19 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            link: Array<{
-              _key: string;
-              _type: "link";
-              type: "external" | "internal";
-              label: string;
-              internalLink?:
-                | BlogIndexReference
-                | BlogPostReference
-                | CaseStudiesIndexReference
-                | CaseStudyReference
-                | PageReference
-                | PlatformChildReference
-                | PlatformIndexReference;
-              href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
-              openInNewTab?: boolean;
-              anchorTag?: string;
             }> | null;
-            image: {
-              asset: {
-                _id: string;
-                url: string | null;
-                metadata: {
-                  lqip: string | null;
-                  dimensions: {
-                    width: number;
-                    height: number;
-                  } | null;
-                } | null;
-              } | null;
-              media?: unknown;
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              alt?: string;
-              _type: "image";
-            } | null;
           }
         | {
             _id: string;
             _type: "case-study";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -3661,42 +3719,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
-            description: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs?: null;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }> | null;
-            publishedDate: string | null;
-            category: null;
-            contentTopic: {
-              _id: string;
-              _type: "content-topic";
-              slug: Slug;
-              title: Array<{
-                children?: Array<{
-                  marks?: Array<string>;
-                  text?: string;
-                  _type: "span";
-                  _key: string;
-                }>;
-                style?: "normal";
-                listItem?: never;
-                markDefs?: null;
-                level?: number;
-                _type: "block";
-                _key: string;
-              }>;
-            } | null;
             link: Array<{
               _key: string;
               _type: "link";
@@ -3738,6 +3760,22 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               alt?: string;
               _type: "image";
             } | null;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            category: null;
+            contentTopic: null;
           }
       >;
     }
@@ -3753,7 +3791,30 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         currentCategoryPostCount: number;
         categories: Array<{
           _id: string;
-          slug: string;
+          slug: Slug;
+          title: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?: "normal";
+            listItem?: never;
+            markDefs: null;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }>;
+          count: number;
+        }>;
+      };
+      topicFilter: {
+        totalPostCount: number;
+        currentTopicPostCount: number;
+        categories: Array<{
+          _id: string;
+          slug: Slug;
           title: Array<{
             children?: Array<{
               marks?: Array<string>;
@@ -3776,6 +3837,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _id: string;
             _type: "blog-post";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -3803,7 +3866,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -3813,13 +3916,12 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               }>;
               style?: "normal";
               listItem?: never;
-              markDefs?: null;
+              markDefs: null;
               level?: number;
               _type: "block";
               _key: string;
             }> | null;
-            publishedDate: string | null;
-            category: {
+            category: Array<{
               _id: string;
               _type: "blog-category";
               slug: Slug;
@@ -3832,13 +3934,13 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            contentTopic: {
+            }> | null;
+            contentTopic: Array<{
               _id: string;
               _type: "content-topic";
               slug: Slug;
@@ -3851,58 +3953,19 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            link: Array<{
-              _key: string;
-              _type: "link";
-              type: "external" | "internal";
-              label: string;
-              internalLink?:
-                | BlogIndexReference
-                | BlogPostReference
-                | CaseStudiesIndexReference
-                | CaseStudyReference
-                | PageReference
-                | PlatformChildReference
-                | PlatformIndexReference;
-              href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
-              openInNewTab?: boolean;
-              anchorTag?: string;
             }> | null;
-            image: {
-              asset: {
-                _id: string;
-                url: string | null;
-                metadata: {
-                  lqip: string | null;
-                  dimensions: {
-                    width: number;
-                    height: number;
-                  } | null;
-                } | null;
-              } | null;
-              media?: unknown;
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              alt?: string;
-              _type: "image";
-            } | null;
           }
         | {
             _id: string;
             _type: "case-study";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -3930,42 +3993,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
-            description: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs?: null;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }> | null;
-            publishedDate: string | null;
-            category: null;
-            contentTopic: {
-              _id: string;
-              _type: "content-topic";
-              slug: Slug;
-              title: Array<{
-                children?: Array<{
-                  marks?: Array<string>;
-                  text?: string;
-                  _type: "span";
-                  _key: string;
-                }>;
-                style?: "normal";
-                listItem?: never;
-                markDefs?: null;
-                level?: number;
-                _type: "block";
-                _key: string;
-              }>;
-            } | null;
             link: Array<{
               _key: string;
               _type: "link";
@@ -4007,6 +4034,22 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               alt?: string;
               _type: "image";
             } | null;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            category: null;
+            contentTopic: null;
           }
       >;
     }
@@ -4035,7 +4078,30 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         currentCategoryPostCount: number;
         categories: Array<{
           _id: string;
-          slug: string;
+          slug: Slug;
+          title: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?: "normal";
+            listItem?: never;
+            markDefs: null;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }>;
+          count: number;
+        }>;
+      };
+      topicFilter: {
+        totalPostCount: number;
+        currentTopicPostCount: number;
+        categories: Array<{
+          _id: string;
+          slug: Slug;
           title: Array<{
             children?: Array<{
               marks?: Array<string>;
@@ -4058,6 +4124,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _id: string;
             _type: "blog-post";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -4085,7 +4153,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -4095,13 +4203,12 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               }>;
               style?: "normal";
               listItem?: never;
-              markDefs?: null;
+              markDefs: null;
               level?: number;
               _type: "block";
               _key: string;
             }> | null;
-            publishedDate: string | null;
-            category: {
+            category: Array<{
               _id: string;
               _type: "blog-category";
               slug: Slug;
@@ -4114,13 +4221,13 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            contentTopic: {
+            }> | null;
+            contentTopic: Array<{
               _id: string;
               _type: "content-topic";
               slug: Slug;
@@ -4133,58 +4240,19 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            link: Array<{
-              _key: string;
-              _type: "link";
-              type: "external" | "internal";
-              label: string;
-              internalLink?:
-                | BlogIndexReference
-                | BlogPostReference
-                | CaseStudiesIndexReference
-                | CaseStudyReference
-                | PageReference
-                | PlatformChildReference
-                | PlatformIndexReference;
-              href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
-              openInNewTab?: boolean;
-              anchorTag?: string;
             }> | null;
-            image: {
-              asset: {
-                _id: string;
-                url: string | null;
-                metadata: {
-                  lqip: string | null;
-                  dimensions: {
-                    width: number;
-                    height: number;
-                  } | null;
-                } | null;
-              } | null;
-              media?: unknown;
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              alt?: string;
-              _type: "image";
-            } | null;
           }
         | {
             _id: string;
             _type: "case-study";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -4212,42 +4280,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
-            description: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs?: null;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }> | null;
-            publishedDate: string | null;
-            category: null;
-            contentTopic: {
-              _id: string;
-              _type: "content-topic";
-              slug: Slug;
-              title: Array<{
-                children?: Array<{
-                  marks?: Array<string>;
-                  text?: string;
-                  _type: "span";
-                  _key: string;
-                }>;
-                style?: "normal";
-                listItem?: never;
-                markDefs?: null;
-                level?: number;
-                _type: "block";
-                _key: string;
-              }>;
-            } | null;
             link: Array<{
               _key: string;
               _type: "link";
@@ -4289,6 +4321,22 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               alt?: string;
               _type: "image";
             } | null;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            category: null;
+            contentTopic: null;
           }
       >;
     }
@@ -4304,7 +4352,30 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         currentCategoryPostCount: number;
         categories: Array<{
           _id: string;
-          slug: string;
+          slug: Slug;
+          title: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?: "normal";
+            listItem?: never;
+            markDefs: null;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }>;
+          count: number;
+        }>;
+      };
+      topicFilter: {
+        totalPostCount: number;
+        currentTopicPostCount: number;
+        categories: Array<{
+          _id: string;
+          slug: Slug;
           title: Array<{
             children?: Array<{
               marks?: Array<string>;
@@ -4327,6 +4398,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _id: string;
             _type: "blog-post";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -4354,7 +4427,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -4364,13 +4477,12 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               }>;
               style?: "normal";
               listItem?: never;
-              markDefs?: null;
+              markDefs: null;
               level?: number;
               _type: "block";
               _key: string;
             }> | null;
-            publishedDate: string | null;
-            category: {
+            category: Array<{
               _id: string;
               _type: "blog-category";
               slug: Slug;
@@ -4383,13 +4495,13 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            contentTopic: {
+            }> | null;
+            contentTopic: Array<{
               _id: string;
               _type: "content-topic";
               slug: Slug;
@@ -4402,58 +4514,19 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            link: Array<{
-              _key: string;
-              _type: "link";
-              type: "external" | "internal";
-              label: string;
-              internalLink?:
-                | BlogIndexReference
-                | BlogPostReference
-                | CaseStudiesIndexReference
-                | CaseStudyReference
-                | PageReference
-                | PlatformChildReference
-                | PlatformIndexReference;
-              href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
-              openInNewTab?: boolean;
-              anchorTag?: string;
             }> | null;
-            image: {
-              asset: {
-                _id: string;
-                url: string | null;
-                metadata: {
-                  lqip: string | null;
-                  dimensions: {
-                    width: number;
-                    height: number;
-                  } | null;
-                } | null;
-              } | null;
-              media?: unknown;
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              alt?: string;
-              _type: "image";
-            } | null;
           }
         | {
             _id: string;
             _type: "case-study";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -4481,42 +4554,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
-            description: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs?: null;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }> | null;
-            publishedDate: string | null;
-            category: null;
-            contentTopic: {
-              _id: string;
-              _type: "content-topic";
-              slug: Slug;
-              title: Array<{
-                children?: Array<{
-                  marks?: Array<string>;
-                  text?: string;
-                  _type: "span";
-                  _key: string;
-                }>;
-                style?: "normal";
-                listItem?: never;
-                markDefs?: null;
-                level?: number;
-                _type: "block";
-                _key: string;
-              }>;
-            } | null;
             link: Array<{
               _key: string;
               _type: "link";
@@ -4558,6 +4595,22 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               alt?: string;
               _type: "image";
             } | null;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            category: null;
+            contentTopic: null;
           }
       >;
     }
@@ -4573,7 +4626,30 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         currentCategoryPostCount: number;
         categories: Array<{
           _id: string;
-          slug: string;
+          slug: Slug;
+          title: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?: "normal";
+            listItem?: never;
+            markDefs: null;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }>;
+          count: number;
+        }>;
+      };
+      topicFilter: {
+        totalPostCount: number;
+        currentTopicPostCount: number;
+        categories: Array<{
+          _id: string;
+          slug: Slug;
           title: Array<{
             children?: Array<{
               marks?: Array<string>;
@@ -4596,6 +4672,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _id: string;
             _type: "blog-post";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -4623,7 +4701,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -4633,13 +4751,12 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               }>;
               style?: "normal";
               listItem?: never;
-              markDefs?: null;
+              markDefs: null;
               level?: number;
               _type: "block";
               _key: string;
             }> | null;
-            publishedDate: string | null;
-            category: {
+            category: Array<{
               _id: string;
               _type: "blog-category";
               slug: Slug;
@@ -4652,13 +4769,13 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            contentTopic: {
+            }> | null;
+            contentTopic: Array<{
               _id: string;
               _type: "content-topic";
               slug: Slug;
@@ -4671,58 +4788,19 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            link: Array<{
-              _key: string;
-              _type: "link";
-              type: "external" | "internal";
-              label: string;
-              internalLink?:
-                | BlogIndexReference
-                | BlogPostReference
-                | CaseStudiesIndexReference
-                | CaseStudyReference
-                | PageReference
-                | PlatformChildReference
-                | PlatformIndexReference;
-              href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
-              openInNewTab?: boolean;
-              anchorTag?: string;
             }> | null;
-            image: {
-              asset: {
-                _id: string;
-                url: string | null;
-                metadata: {
-                  lqip: string | null;
-                  dimensions: {
-                    width: number;
-                    height: number;
-                  } | null;
-                } | null;
-              } | null;
-              media?: unknown;
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              alt?: string;
-              _type: "image";
-            } | null;
           }
         | {
             _id: string;
             _type: "case-study";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -4750,42 +4828,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
-            description: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs?: null;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }> | null;
-            publishedDate: string | null;
-            category: null;
-            contentTopic: {
-              _id: string;
-              _type: "content-topic";
-              slug: Slug;
-              title: Array<{
-                children?: Array<{
-                  marks?: Array<string>;
-                  text?: string;
-                  _type: "span";
-                  _key: string;
-                }>;
-                style?: "normal";
-                listItem?: never;
-                markDefs?: null;
-                level?: number;
-                _type: "block";
-                _key: string;
-              }>;
-            } | null;
             link: Array<{
               _key: string;
               _type: "link";
@@ -4827,6 +4869,22 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               alt?: string;
               _type: "image";
             } | null;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            category: null;
+            contentTopic: null;
           }
       >;
     }
@@ -4842,7 +4900,30 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         currentCategoryPostCount: number;
         categories: Array<{
           _id: string;
-          slug: string;
+          slug: Slug;
+          title: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?: "normal";
+            listItem?: never;
+            markDefs: null;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }>;
+          count: number;
+        }>;
+      };
+      topicFilter: {
+        totalPostCount: number;
+        currentTopicPostCount: number;
+        categories: Array<{
+          _id: string;
+          slug: Slug;
           title: Array<{
             children?: Array<{
               marks?: Array<string>;
@@ -4865,6 +4946,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _id: string;
             _type: "blog-post";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -4892,7 +4975,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -4902,13 +5025,12 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               }>;
               style?: "normal";
               listItem?: never;
-              markDefs?: null;
+              markDefs: null;
               level?: number;
               _type: "block";
               _key: string;
             }> | null;
-            publishedDate: string | null;
-            category: {
+            category: Array<{
               _id: string;
               _type: "blog-category";
               slug: Slug;
@@ -4921,13 +5043,13 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            contentTopic: {
+            }> | null;
+            contentTopic: Array<{
               _id: string;
               _type: "content-topic";
               slug: Slug;
@@ -4940,58 +5062,19 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            link: Array<{
-              _key: string;
-              _type: "link";
-              type: "external" | "internal";
-              label: string;
-              internalLink?:
-                | BlogIndexReference
-                | BlogPostReference
-                | CaseStudiesIndexReference
-                | CaseStudyReference
-                | PageReference
-                | PlatformChildReference
-                | PlatformIndexReference;
-              href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
-              openInNewTab?: boolean;
-              anchorTag?: string;
             }> | null;
-            image: {
-              asset: {
-                _id: string;
-                url: string | null;
-                metadata: {
-                  lqip: string | null;
-                  dimensions: {
-                    width: number;
-                    height: number;
-                  } | null;
-                } | null;
-              } | null;
-              media?: unknown;
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              alt?: string;
-              _type: "image";
-            } | null;
           }
         | {
             _id: string;
             _type: "case-study";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -5019,42 +5102,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
-            description: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs?: null;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }> | null;
-            publishedDate: string | null;
-            category: null;
-            contentTopic: {
-              _id: string;
-              _type: "content-topic";
-              slug: Slug;
-              title: Array<{
-                children?: Array<{
-                  marks?: Array<string>;
-                  text?: string;
-                  _type: "span";
-                  _key: string;
-                }>;
-                style?: "normal";
-                listItem?: never;
-                markDefs?: null;
-                level?: number;
-                _type: "block";
-                _key: string;
-              }>;
-            } | null;
             link: Array<{
               _key: string;
               _type: "link";
@@ -5096,6 +5143,22 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               alt?: string;
               _type: "image";
             } | null;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            category: null;
+            contentTopic: null;
           }
       >;
     }
@@ -5111,7 +5174,30 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         currentCategoryPostCount: number;
         categories: Array<{
           _id: string;
-          slug: string;
+          slug: Slug;
+          title: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?: "normal";
+            listItem?: never;
+            markDefs: null;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }>;
+          count: number;
+        }>;
+      };
+      topicFilter: {
+        totalPostCount: number;
+        currentTopicPostCount: number;
+        categories: Array<{
+          _id: string;
+          slug: Slug;
           title: Array<{
             children?: Array<{
               marks?: Array<string>;
@@ -5134,6 +5220,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _id: string;
             _type: "blog-post";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -5161,7 +5249,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -5171,13 +5299,12 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               }>;
               style?: "normal";
               listItem?: never;
-              markDefs?: null;
+              markDefs: null;
               level?: number;
               _type: "block";
               _key: string;
             }> | null;
-            publishedDate: string | null;
-            category: {
+            category: Array<{
               _id: string;
               _type: "blog-category";
               slug: Slug;
@@ -5190,13 +5317,13 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            contentTopic: {
+            }> | null;
+            contentTopic: Array<{
               _id: string;
               _type: "content-topic";
               slug: Slug;
@@ -5209,58 +5336,19 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            link: Array<{
-              _key: string;
-              _type: "link";
-              type: "external" | "internal";
-              label: string;
-              internalLink?:
-                | BlogIndexReference
-                | BlogPostReference
-                | CaseStudiesIndexReference
-                | CaseStudyReference
-                | PageReference
-                | PlatformChildReference
-                | PlatformIndexReference;
-              href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
-              openInNewTab?: boolean;
-              anchorTag?: string;
             }> | null;
-            image: {
-              asset: {
-                _id: string;
-                url: string | null;
-                metadata: {
-                  lqip: string | null;
-                  dimensions: {
-                    width: number;
-                    height: number;
-                  } | null;
-                } | null;
-              } | null;
-              media?: unknown;
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              alt?: string;
-              _type: "image";
-            } | null;
           }
         | {
             _id: string;
             _type: "case-study";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -5288,42 +5376,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
-            description: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs?: null;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }> | null;
-            publishedDate: string | null;
-            category: null;
-            contentTopic: {
-              _id: string;
-              _type: "content-topic";
-              slug: Slug;
-              title: Array<{
-                children?: Array<{
-                  marks?: Array<string>;
-                  text?: string;
-                  _type: "span";
-                  _key: string;
-                }>;
-                style?: "normal";
-                listItem?: never;
-                markDefs?: null;
-                level?: number;
-                _type: "block";
-                _key: string;
-              }>;
-            } | null;
             link: Array<{
               _key: string;
               _type: "link";
@@ -5365,6 +5417,22 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               alt?: string;
               _type: "image";
             } | null;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            category: null;
+            contentTopic: null;
           }
       >;
     }
@@ -5531,7 +5599,30 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         currentCategoryPostCount: number;
         categories: Array<{
           _id: string;
-          slug: string;
+          slug: Slug;
+          title: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?: "normal";
+            listItem?: never;
+            markDefs: null;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }>;
+          count: number;
+        }>;
+      };
+      topicFilter: {
+        totalPostCount: number;
+        currentTopicPostCount: number;
+        categories: Array<{
+          _id: string;
+          slug: Slug;
           title: Array<{
             children?: Array<{
               marks?: Array<string>;
@@ -5554,6 +5645,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _id: string;
             _type: "blog-post";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -5581,7 +5674,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -5591,13 +5724,12 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               }>;
               style?: "normal";
               listItem?: never;
-              markDefs?: null;
+              markDefs: null;
               level?: number;
               _type: "block";
               _key: string;
             }> | null;
-            publishedDate: string | null;
-            category: {
+            category: Array<{
               _id: string;
               _type: "blog-category";
               slug: Slug;
@@ -5610,13 +5742,13 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            contentTopic: {
+            }> | null;
+            contentTopic: Array<{
               _id: string;
               _type: "content-topic";
               slug: Slug;
@@ -5629,58 +5761,19 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            link: Array<{
-              _key: string;
-              _type: "link";
-              type: "external" | "internal";
-              label: string;
-              internalLink?:
-                | BlogIndexReference
-                | BlogPostReference
-                | CaseStudiesIndexReference
-                | CaseStudyReference
-                | PageReference
-                | PlatformChildReference
-                | PlatformIndexReference;
-              href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
-              openInNewTab?: boolean;
-              anchorTag?: string;
             }> | null;
-            image: {
-              asset: {
-                _id: string;
-                url: string | null;
-                metadata: {
-                  lqip: string | null;
-                  dimensions: {
-                    width: number;
-                    height: number;
-                  } | null;
-                } | null;
-              } | null;
-              media?: unknown;
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              alt?: string;
-              _type: "image";
-            } | null;
           }
         | {
             _id: string;
             _type: "case-study";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -5708,42 +5801,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
-            description: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs?: null;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }> | null;
-            publishedDate: string | null;
-            category: null;
-            contentTopic: {
-              _id: string;
-              _type: "content-topic";
-              slug: Slug;
-              title: Array<{
-                children?: Array<{
-                  marks?: Array<string>;
-                  text?: string;
-                  _type: "span";
-                  _key: string;
-                }>;
-                style?: "normal";
-                listItem?: never;
-                markDefs?: null;
-                level?: number;
-                _type: "block";
-                _key: string;
-              }>;
-            } | null;
             link: Array<{
               _key: string;
               _type: "link";
@@ -5785,6 +5842,22 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               alt?: string;
               _type: "image";
             } | null;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            category: null;
+            contentTopic: null;
           }
       >;
     }
@@ -5951,7 +6024,30 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         currentCategoryPostCount: number;
         categories: Array<{
           _id: string;
-          slug: string;
+          slug: Slug;
+          title: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?: "normal";
+            listItem?: never;
+            markDefs: null;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }>;
+          count: number;
+        }>;
+      };
+      topicFilter: {
+        totalPostCount: number;
+        currentTopicPostCount: number;
+        categories: Array<{
+          _id: string;
+          slug: Slug;
           title: Array<{
             children?: Array<{
               marks?: Array<string>;
@@ -5974,6 +6070,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _id: string;
             _type: "blog-post";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -6001,7 +6099,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -6011,13 +6149,12 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               }>;
               style?: "normal";
               listItem?: never;
-              markDefs?: null;
+              markDefs: null;
               level?: number;
               _type: "block";
               _key: string;
             }> | null;
-            publishedDate: string | null;
-            category: {
+            category: Array<{
               _id: string;
               _type: "blog-category";
               slug: Slug;
@@ -6030,13 +6167,13 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            contentTopic: {
+            }> | null;
+            contentTopic: Array<{
               _id: string;
               _type: "content-topic";
               slug: Slug;
@@ -6049,58 +6186,19 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            link: Array<{
-              _key: string;
-              _type: "link";
-              type: "external" | "internal";
-              label: string;
-              internalLink?:
-                | BlogIndexReference
-                | BlogPostReference
-                | CaseStudiesIndexReference
-                | CaseStudyReference
-                | PageReference
-                | PlatformChildReference
-                | PlatformIndexReference;
-              href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
-              openInNewTab?: boolean;
-              anchorTag?: string;
             }> | null;
-            image: {
-              asset: {
-                _id: string;
-                url: string | null;
-                metadata: {
-                  lqip: string | null;
-                  dimensions: {
-                    width: number;
-                    height: number;
-                  } | null;
-                } | null;
-              } | null;
-              media?: unknown;
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              alt?: string;
-              _type: "image";
-            } | null;
           }
         | {
             _id: string;
             _type: "case-study";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -6128,42 +6226,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
-            description: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs?: null;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }> | null;
-            publishedDate: string | null;
-            category: null;
-            contentTopic: {
-              _id: string;
-              _type: "content-topic";
-              slug: Slug;
-              title: Array<{
-                children?: Array<{
-                  marks?: Array<string>;
-                  text?: string;
-                  _type: "span";
-                  _key: string;
-                }>;
-                style?: "normal";
-                listItem?: never;
-                markDefs?: null;
-                level?: number;
-                _type: "block";
-                _key: string;
-              }>;
-            } | null;
             link: Array<{
               _key: string;
               _type: "link";
@@ -6205,6 +6267,22 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               alt?: string;
               _type: "image";
             } | null;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            category: null;
+            contentTopic: null;
           }
       >;
     }
@@ -6371,7 +6449,30 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         currentCategoryPostCount: number;
         categories: Array<{
           _id: string;
-          slug: string;
+          slug: Slug;
+          title: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?: "normal";
+            listItem?: never;
+            markDefs: null;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }>;
+          count: number;
+        }>;
+      };
+      topicFilter: {
+        totalPostCount: number;
+        currentTopicPostCount: number;
+        categories: Array<{
+          _id: string;
+          slug: Slug;
           title: Array<{
             children?: Array<{
               marks?: Array<string>;
@@ -6394,6 +6495,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _id: string;
             _type: "blog-post";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -6421,7 +6524,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -6431,13 +6574,12 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               }>;
               style?: "normal";
               listItem?: never;
-              markDefs?: null;
+              markDefs: null;
               level?: number;
               _type: "block";
               _key: string;
             }> | null;
-            publishedDate: string | null;
-            category: {
+            category: Array<{
               _id: string;
               _type: "blog-category";
               slug: Slug;
@@ -6450,13 +6592,13 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            contentTopic: {
+            }> | null;
+            contentTopic: Array<{
               _id: string;
               _type: "content-topic";
               slug: Slug;
@@ -6469,58 +6611,19 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            link: Array<{
-              _key: string;
-              _type: "link";
-              type: "external" | "internal";
-              label: string;
-              internalLink?:
-                | BlogIndexReference
-                | BlogPostReference
-                | CaseStudiesIndexReference
-                | CaseStudyReference
-                | PageReference
-                | PlatformChildReference
-                | PlatformIndexReference;
-              href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
-              openInNewTab?: boolean;
-              anchorTag?: string;
             }> | null;
-            image: {
-              asset: {
-                _id: string;
-                url: string | null;
-                metadata: {
-                  lqip: string | null;
-                  dimensions: {
-                    width: number;
-                    height: number;
-                  } | null;
-                } | null;
-              } | null;
-              media?: unknown;
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              alt?: string;
-              _type: "image";
-            } | null;
           }
         | {
             _id: string;
             _type: "case-study";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -6548,42 +6651,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
-            description: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs?: null;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }> | null;
-            publishedDate: string | null;
-            category: null;
-            contentTopic: {
-              _id: string;
-              _type: "content-topic";
-              slug: Slug;
-              title: Array<{
-                children?: Array<{
-                  marks?: Array<string>;
-                  text?: string;
-                  _type: "span";
-                  _key: string;
-                }>;
-                style?: "normal";
-                listItem?: never;
-                markDefs?: null;
-                level?: number;
-                _type: "block";
-                _key: string;
-              }>;
-            } | null;
             link: Array<{
               _key: string;
               _type: "link";
@@ -6625,6 +6692,22 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               alt?: string;
               _type: "image";
             } | null;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            category: null;
+            contentTopic: null;
           }
       >;
     }
@@ -6640,7 +6723,30 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         currentCategoryPostCount: number;
         categories: Array<{
           _id: string;
-          slug: string;
+          slug: Slug;
+          title: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?: "normal";
+            listItem?: never;
+            markDefs: null;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }>;
+          count: number;
+        }>;
+      };
+      topicFilter: {
+        totalPostCount: number;
+        currentTopicPostCount: number;
+        categories: Array<{
+          _id: string;
+          slug: Slug;
           title: Array<{
             children?: Array<{
               marks?: Array<string>;
@@ -6663,6 +6769,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _id: string;
             _type: "blog-post";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -6690,7 +6798,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -6700,13 +6848,12 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               }>;
               style?: "normal";
               listItem?: never;
-              markDefs?: null;
+              markDefs: null;
               level?: number;
               _type: "block";
               _key: string;
             }> | null;
-            publishedDate: string | null;
-            category: {
+            category: Array<{
               _id: string;
               _type: "blog-category";
               slug: Slug;
@@ -6719,13 +6866,13 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            contentTopic: {
+            }> | null;
+            contentTopic: Array<{
               _id: string;
               _type: "content-topic";
               slug: Slug;
@@ -6738,58 +6885,19 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            link: Array<{
-              _key: string;
-              _type: "link";
-              type: "external" | "internal";
-              label: string;
-              internalLink?:
-                | BlogIndexReference
-                | BlogPostReference
-                | CaseStudiesIndexReference
-                | CaseStudyReference
-                | PageReference
-                | PlatformChildReference
-                | PlatformIndexReference;
-              href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
-              openInNewTab?: boolean;
-              anchorTag?: string;
             }> | null;
-            image: {
-              asset: {
-                _id: string;
-                url: string | null;
-                metadata: {
-                  lqip: string | null;
-                  dimensions: {
-                    width: number;
-                    height: number;
-                  } | null;
-                } | null;
-              } | null;
-              media?: unknown;
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              alt?: string;
-              _type: "image";
-            } | null;
           }
         | {
             _id: string;
             _type: "case-study";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -6817,42 +6925,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
-            description: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs?: null;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }> | null;
-            publishedDate: string | null;
-            category: null;
-            contentTopic: {
-              _id: string;
-              _type: "content-topic";
-              slug: Slug;
-              title: Array<{
-                children?: Array<{
-                  marks?: Array<string>;
-                  text?: string;
-                  _type: "span";
-                  _key: string;
-                }>;
-                style?: "normal";
-                listItem?: never;
-                markDefs?: null;
-                level?: number;
-                _type: "block";
-                _key: string;
-              }>;
-            } | null;
             link: Array<{
               _key: string;
               _type: "link";
@@ -6894,6 +6966,22 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               alt?: string;
               _type: "image";
             } | null;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            category: null;
+            contentTopic: null;
           }
       >;
     }
@@ -6909,7 +6997,30 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         currentCategoryPostCount: number;
         categories: Array<{
           _id: string;
-          slug: string;
+          slug: Slug;
+          title: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?: "normal";
+            listItem?: never;
+            markDefs: null;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }>;
+          count: number;
+        }>;
+      };
+      topicFilter: {
+        totalPostCount: number;
+        currentTopicPostCount: number;
+        categories: Array<{
+          _id: string;
+          slug: Slug;
           title: Array<{
             children?: Array<{
               marks?: Array<string>;
@@ -6932,6 +7043,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _id: string;
             _type: "blog-post";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -6959,7 +7072,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            image: {
+              asset: {
+                _id: string;
+                url: string | null;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              _type: "image";
+            } | null;
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -6969,13 +7122,12 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               }>;
               style?: "normal";
               listItem?: never;
-              markDefs?: null;
+              markDefs: null;
               level?: number;
               _type: "block";
               _key: string;
             }> | null;
-            publishedDate: string | null;
-            category: {
+            category: Array<{
               _id: string;
               _type: "blog-category";
               slug: Slug;
@@ -6988,13 +7140,13 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            contentTopic: {
+            }> | null;
+            contentTopic: Array<{
               _id: string;
               _type: "content-topic";
               slug: Slug;
@@ -7007,58 +7159,19 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs: null;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-            } | null;
-            link: Array<{
-              _key: string;
-              _type: "link";
-              type: "external" | "internal";
-              label: string;
-              internalLink?:
-                | BlogIndexReference
-                | BlogPostReference
-                | CaseStudiesIndexReference
-                | CaseStudyReference
-                | PageReference
-                | PlatformChildReference
-                | PlatformIndexReference;
-              href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
-              openInNewTab?: boolean;
-              anchorTag?: string;
             }> | null;
-            image: {
-              asset: {
-                _id: string;
-                url: string | null;
-                metadata: {
-                  lqip: string | null;
-                  dimensions: {
-                    width: number;
-                    height: number;
-                  } | null;
-                } | null;
-              } | null;
-              media?: unknown;
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              alt?: string;
-              _type: "image";
-            } | null;
           }
         | {
             _id: string;
             _type: "case-study";
             _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
             title: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -7086,42 +7199,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _type: "block";
               _key: string;
             }>;
-            slug: Slug;
-            description: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs?: null;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }> | null;
-            publishedDate: string | null;
-            category: null;
-            contentTopic: {
-              _id: string;
-              _type: "content-topic";
-              slug: Slug;
-              title: Array<{
-                children?: Array<{
-                  marks?: Array<string>;
-                  text?: string;
-                  _type: "span";
-                  _key: string;
-                }>;
-                style?: "normal";
-                listItem?: never;
-                markDefs?: null;
-                level?: number;
-                _type: "block";
-                _key: string;
-              }>;
-            } | null;
             link: Array<{
               _key: string;
               _type: "link";
@@ -7163,6 +7240,22 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               alt?: string;
               _type: "image";
             } | null;
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            category: null;
+            contentTopic: null;
           }
       >;
     }
@@ -7807,7 +7900,7 @@ declare module "@sanity/client" {
     '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::link($link) = $link[] {\n    \n  ...,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n\n\n  *[_type == "page" && slug.current == $slug][0]{\n    _type,\n    \n  modules[]{\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n    \n  "content": fn::pt(content)\n,\n  }\n\n  }\n,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "blog-index" => "/blog",\n      ^._type == "blog-post" => "/blog/" + ^.slug.current,\n      ^._type == "case-studies-index" => "/case-studies",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n\n  }\n': PAGE_QUERY_RESULT;
     "*[_type == $pageType && defined(slug)]{slug}": PAGES_SLUGS_QUERY_RESULT;
     '\n{\n  "totalPostCount": count(*[_type == $type]),\n  "currentCategoryPostCount": count(*[_type == $type && ($category == null || $category in categories[]->slug.current) && ($topic == null || $topic in topics[]->slug.current)]),\n  "categories": *[\n    _type == select(\n      $type == "case-study" => "case-study-category",\n      $type == "news-article" => "news-category",\n      "resource-category"\n    ) &&\n    count(*[_type == $type && ^._id in categories[]._ref]) > 0\n  ] | order(title asc) {\n    _id,\n    title,\n    slug,\n    "count": count(*[_type == $type && ^._id in categories[]._ref  && ($topic == null || $topic in topics[]->slug.current)])\n  }\n}\n': RESOURCE_CATEGORY_COUNT_QUERY_RESULT;
-    '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::link($link) = $link[] {\n    \n  ...,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n\n\n  *[_type == $contentType][0]{\n    _type,\n    slug,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "blog-index" => "/blog",\n      ^._type == "blog-post" => "/blog/" + ^.slug.current,\n      ^._type == "case-studies-index" => "/case-studies",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    \n  modules[]{\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n    \n  "content": fn::pt(content)\n,\n  }\n\n  }\n,\n    "categoryFilter": {\n      "totalPostCount": count(*[_type == \n  select(\n        $contentType == "blog-index" => "blog-post",\n        $contentType == "case-studies-index" => "case-study"\n  )\n]),\n      "currentCategoryPostCount": count(*[_type == \n  select(\n        $contentType == "blog-index" => "blog-post",\n        $contentType == "case-studies-index" => "case-study"\n  )\n && ($category == null || $category in categories[]->slug.current) && ($topic == null || $topic in topics[]->slug.current)]),\n      "categories": *[_type ==  select(\n        $contentType == "blog-index" => "blog-category")] {\n        _id,\n        "slug": select(\n          $contentType == "blog-index" => "/blog/" + slug.current),\n        \n  "title": fn::ptPlain(title)\n,\n        "count": count(*[_type == "blog-post" && references(^._id)])\n      },\n    },\n    "posts": *[_type == \n  select(\n        $contentType == "blog-index" => "blog-post",\n        $contentType == "case-studies-index" => "case-study"\n  )\n && ($topic == null || $topic in topics[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {\n      _id,\n      _type,\n      _createdAt,\n      \n  "title": fn::ptPlain(title)\n,\n      slug,\n      description,\n      publishedDate,\n      category->{\n        _id,\n        _type,\n        slug,\n        title,\n      },\n      contentTopic->{\n        _id,\n        _type,\n        slug,\n        title,\n      },\n      \n  "link": fn::link(link)\n,\n      \n  "image": fn::img(image)\n,\n    }\n  }\n': GET_CONTENT_TYPE_INDEX_QUERY_RESULT;
+    '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::link($link) = $link[] {\n    \n  ...,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n\n\n  *[_type == $contentType][0]{\n    _type,\n    slug,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "blog-index" => "/blog",\n      ^._type == "blog-post" => "/blog/" + ^.slug.current,\n      ^._type == "case-studies-index" => "/case-studies",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    \n  modules[]{\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n    \n  "content": fn::pt(content)\n,\n  }\n\n  }\n,\n    "categoryFilter": {\n      "totalPostCount": count(*[_type == \n  select(\n        $contentType == "blog-index" => "blog-post",\n        $contentType == "case-studies-index" => "case-study"\n  )\n]),\n      "currentCategoryPostCount": count(*[_type == \n  select(\n        $contentType == "blog-index" => "blog-post",\n        $contentType == "case-studies-index" => "case-study"\n  )\n && ($category == null || $category in category[]->slug.current) && ($topic == null || $topic in topic[]->slug.current)]),\n      "categories": *[_type ==  select(\n        $contentType == "blog-index" => "blog-category")] {\n        _id,\n        slug,\n        \n  "title": fn::ptPlain(title)\n,\n        "count": count(*[_type == \n  select(\n        $contentType == "blog-index" => "blog-post",\n        $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)])\n      },\n    },\n    "topicFilter": {\n      "totalPostCount": count(*[_type == \n  select(\n        $contentType == "blog-index" => "blog-post",\n        $contentType == "case-studies-index" => "case-study"\n  )\n]),\n      "currentTopicPostCount": count(*[_type == \n  select(\n        $contentType == "blog-index" => "blog-post",\n        $contentType == "case-studies-index" => "case-study"\n  )\n && ($category == null || $category in category[]->slug.current) && ($topic == null || $topic in topic[]->slug.current)]),\n      "categories": *[_type ==  select(\n        $contentType == "blog-index" => "blog-category")] {\n        _id,\n        slug,\n        \n  "title": fn::ptPlain(title)\n,\n        "count": count(*[_type == \n  select(\n        $contentType == "blog-index" => "blog-post",\n        $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)])\n      },\n    },\n    "posts": *[_type == \n  select(\n        $contentType == "blog-index" => "blog-post",\n        $contentType == "case-studies-index" => "case-study"\n  )\n && ($topic == null || $topic in topics[]->slug.current) && ($category == null || $category in category[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {\n      _id,\n      _type,\n      _createdAt,\n      publishedDate,\n      slug,\n      \n  "title": fn::ptPlain(title)\n,\n      \n  "link": fn::link(link)\n,\n      \n  "image": fn::img(image)\n,\n      \n  "description": fn::ptPlain(description)\n,\n      category[]->{\n        _id,\n        _type,\n        slug,\n        \n  "title": fn::ptPlain(title)\n,\n      },\n      contentTopic[]->{\n        _id,\n        _type,\n        slug,\n        \n  "title": fn::ptPlain(title)\n,\n      },\n    }\n  }\n': GET_CONTENT_TYPE_INDEX_QUERY_RESULT;
     '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::link($link) = $link[] {\n    \n  ...,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n\n\n  *[_type == \n  select(\n        $contentType == "blog-index" => "blog-post",\n        $contentType == "case-studies-index" => "case-study"\n  )\n && slug.current == $slug][0]{\n    _id,\n    _createdAt,\n    _type,\n    slug,\n    publishedDate,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "blog-index" => "/blog",\n      ^._type == "blog-post" => "/blog/" + ^.slug.current,\n      ^._type == "case-studies-index" => "/case-studies",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    \n  modules[]{\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n    \n  "content": fn::pt(content)\n,\n  }\n\n  }\n,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "image": fn::img(image)\n,\n    \n  "content": fn::pt(content)\n,\n    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180),\n  }\n': GET_CONTENT_TYPE_SLUG_QUERY_RESULT;
     "*[_type == $contentType && defined(slug)]{slug}": GET_CONTENT_TYPE_SLUGS_STATIC_PARAMS_QUERY_RESULT;
   }

@@ -121,38 +121,48 @@ export const GET_CONTENT_TYPE_INDEX_QUERY = defineQuery(`
     ${modulesFragment},
     "categoryFilter": {
       "totalPostCount": count(*[_type == ${selectContentType}]),
-      "currentCategoryPostCount": count(*[_type == ${selectContentType} && ($category == null || $category in categories[]->slug.current) && ($topic == null || $topic in topics[]->slug.current)]),
+      "currentCategoryPostCount": count(*[_type == ${selectContentType} && ($category == null || $category in category[]->slug.current) && ($topic == null || $topic in topic[]->slug.current)]),
       "categories": *[_type ==  select(
         $contentType == "blog-index" => "blog-category")] {
         _id,
-        "slug": select(
-          $contentType == "blog-index" => "/blog/" + slug.current),
+        slug,
         ${titleFragment},
-        "count": count(*[_type == "blog-post" && references(^._id)])
+        "count": count(*[_type == ${selectContentType} && references(^._id)])
       },
     },
-    "posts": *[_type == ${selectContentType} && ($topic == null || $topic in topics[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {
+    "topicFilter": {
+      "totalPostCount": count(*[_type == ${selectContentType}]),
+      "currentTopicPostCount": count(*[_type == ${selectContentType} && ($category == null || $category in category[]->slug.current) && ($topic == null || $topic in topic[]->slug.current)]),
+      "categories": *[_type ==  select(
+        $contentType == "blog-index" => "blog-category")] {
+        _id,
+        slug,
+        ${titleFragment},
+        "count": count(*[_type == ${selectContentType} && references(^._id)])
+      },
+    },
+    "posts": *[_type == ${selectContentType} && ($topic == null || $topic in topics[]->slug.current) && ($category == null || $category in category[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {
       _id,
       _type,
       _createdAt,
-      ${titleFragment},
-      slug,
-      description,
       publishedDate,
-      category->{
-        _id,
-        _type,
-        slug,
-        title,
-      },
-      contentTopic->{
-        _id,
-        _type,
-        slug,
-        title,
-      },
+      slug,
+      ${titleFragment},
       ${linkFragment},
       ${imageFragment},
+      ${descriptionFragment},
+      category[]->{
+        _id,
+        _type,
+        slug,
+        ${titleFragment},
+      },
+      contentTopic[]->{
+        _id,
+        _type,
+        slug,
+        ${titleFragment},
+      },
     }
   }
 `);

@@ -26,14 +26,16 @@ export default async function BlogIndexPage(props: {
   searchParams: Promise<{
     page?: string;
     topic?: string;
+    category?: string;
   }>;
 }) {
   const searchParams = await props.searchParams;
-  const { topic, page } = searchParams;
+  const { topic, page, category } = searchParams;
 
   const [data] = await Promise.all([
     FETCH_CONTENT_TYPE_INDEX_PAGE_DATA({
       contentType: CONTENT_TYPE,
+      category: category,
       topic: topic,
       page: page ? parseInt(page) : 1,
     }),
@@ -72,11 +74,12 @@ export default async function BlogIndexPage(props: {
                   <p>{new Date(post._createdAt).toLocaleDateString()}</p>
                 )}
 
-                {post.category && (
-                  <p>
-                    <PortableTextFragment value={post.category.title} />
+                {post.category?.map((category) => (
+                  <p key={category._id}>
+                    <PortableTextFragment value={category.title} />
                   </p>
-                )}
+                ))}
+
                 <Button
                   href={`/blog/${post.slug.current}`}
                   variant="ghost"
