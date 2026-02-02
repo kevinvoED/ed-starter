@@ -506,6 +506,30 @@ export type BlogCategory = {
   orderRank?: string;
 };
 
+export type ContentTopic = {
+  _id: string;
+  _type: "content-topic";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  slug: Slug;
+  orderRank?: string;
+};
+
 export type Page = {
   _id: string;
   _type: "page";
@@ -744,7 +768,11 @@ export type CaseStudy = {
       _key: string;
     } & Link
   >;
-  contentTopic?: ContentTopicReference;
+  contentTopic?: Array<
+    {
+      _key: string;
+    } & ContentTopicReference
+  >;
   description?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -815,30 +843,6 @@ export type Slug = {
   _type: "slug";
   current: string;
   source?: string;
-};
-
-export type ContentTopic = {
-  _id: string;
-  _type: "content-topic";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs?: null;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-  slug: Slug;
-  orderRank?: string;
 };
 
 export type CreatedAt = {
@@ -1037,6 +1041,7 @@ export type AllSanitySchemaTypes =
   | Footer
   | Navbar
   | BlogCategory
+  | ContentTopic
   | Page
   | BlogIndex
   | BlogCategoryReference
@@ -1048,7 +1053,6 @@ export type AllSanitySchemaTypes =
   | PlatformChild
   | PlatformIndex
   | Slug
-  | ContentTopic
   | CreatedAt
   | Author
   | HighlightColor
@@ -1573,7 +1577,25 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _key: string;
             }> | null;
             category: null;
-            contentTopic: null;
+            contentTopic: Array<{
+              _id: string;
+              _type: "content-topic";
+              slug: Slug;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+            }> | null;
           }
       >;
     }
@@ -1858,7 +1880,25 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _key: string;
             }> | null;
             category: null;
-            contentTopic: null;
+            contentTopic: Array<{
+              _id: string;
+              _type: "content-topic";
+              slug: Slug;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+            }> | null;
           }
       >;
     }
@@ -2322,7 +2362,25 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _key: string;
             }> | null;
             category: null;
-            contentTopic: null;
+            contentTopic: Array<{
+              _id: string;
+              _type: "content-topic";
+              slug: Slug;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+            }> | null;
           }
       >;
     }
@@ -2806,7 +2864,25 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _key: string;
             }> | null;
             category: null;
-            contentTopic: null;
+            contentTopic: Array<{
+              _id: string;
+              _type: "content-topic";
+              slug: Slug;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+            }> | null;
           }
       >;
     }
@@ -3270,7 +3346,25 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _key: string;
             }> | null;
             category: null;
-            contentTopic: null;
+            contentTopic: Array<{
+              _id: string;
+              _type: "content-topic";
+              slug: Slug;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+            }> | null;
           }
       >;
     }
@@ -3754,7 +3848,25 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _key: string;
             }> | null;
             category: null;
-            contentTopic: null;
+            contentTopic: Array<{
+              _id: string;
+              _type: "content-topic";
+              slug: Slug;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+            }> | null;
           }
       >;
     }
@@ -4026,7 +4138,25 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _key: string;
             }> | null;
             category: null;
-            contentTopic: null;
+            contentTopic: Array<{
+              _id: string;
+              _type: "content-topic";
+              slug: Slug;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+            }> | null;
           }
       >;
     }
@@ -4311,7 +4441,25 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _key: string;
             }> | null;
             category: null;
-            contentTopic: null;
+            contentTopic: Array<{
+              _id: string;
+              _type: "content-topic";
+              slug: Slug;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+            }> | null;
           }
       >;
     }
@@ -4583,7 +4731,25 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _key: string;
             }> | null;
             category: null;
-            contentTopic: null;
+            contentTopic: Array<{
+              _id: string;
+              _type: "content-topic";
+              slug: Slug;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+            }> | null;
           }
       >;
     }
@@ -4855,7 +5021,25 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _key: string;
             }> | null;
             category: null;
-            contentTopic: null;
+            contentTopic: Array<{
+              _id: string;
+              _type: "content-topic";
+              slug: Slug;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+            }> | null;
           }
       >;
     }
@@ -5127,7 +5311,25 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _key: string;
             }> | null;
             category: null;
-            contentTopic: null;
+            contentTopic: Array<{
+              _id: string;
+              _type: "content-topic";
+              slug: Slug;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+            }> | null;
           }
       >;
     }
@@ -5399,7 +5601,25 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _key: string;
             }> | null;
             category: null;
-            contentTopic: null;
+            contentTopic: Array<{
+              _id: string;
+              _type: "content-topic";
+              slug: Slug;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+            }> | null;
           }
       >;
     }
@@ -5822,7 +6042,25 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _key: string;
             }> | null;
             category: null;
-            contentTopic: null;
+            contentTopic: Array<{
+              _id: string;
+              _type: "content-topic";
+              slug: Slug;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+            }> | null;
           }
       >;
     }
@@ -6245,7 +6483,25 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _key: string;
             }> | null;
             category: null;
-            contentTopic: null;
+            contentTopic: Array<{
+              _id: string;
+              _type: "content-topic";
+              slug: Slug;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+            }> | null;
           }
       >;
     }
@@ -6668,7 +6924,25 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _key: string;
             }> | null;
             category: null;
-            contentTopic: null;
+            contentTopic: Array<{
+              _id: string;
+              _type: "content-topic";
+              slug: Slug;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+            }> | null;
           }
       >;
     }
@@ -6940,7 +7214,25 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _key: string;
             }> | null;
             category: null;
-            contentTopic: null;
+            contentTopic: Array<{
+              _id: string;
+              _type: "content-topic";
+              slug: Slug;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+            }> | null;
           }
       >;
     }
@@ -7212,7 +7504,25 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               _key: string;
             }> | null;
             category: null;
-            contentTopic: null;
+            contentTopic: Array<{
+              _id: string;
+              _type: "content-topic";
+              slug: Slug;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+            }> | null;
           }
       >;
     }

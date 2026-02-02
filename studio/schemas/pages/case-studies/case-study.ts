@@ -60,10 +60,11 @@ export default defineType({
     defineField({
       name: "contentTopic",
       title: "Content Topic",
-      type: "reference",
       description: "Optional. Select a content topic for the post.",
+      type: "array",
       group: "content",
-      to: { type: "content-topic" },
+      of: [{ type: "reference", to: { type: "content-topic" } }],
+      validation: (Rule) => Rule.max(1),
     }),
     defineField({
       ...description,
