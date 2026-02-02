@@ -8,9 +8,9 @@ import { defineQuery } from "next-sanity";
 import {
   descriptionFragment,
   imageFragment,
+  linkFragment,
   metaFragment,
   portableTextFragment,
-  postFragment,
   titleFragment,
 } from "./fragments/fragments";
 import { FN_LOGO, GROQ_FUNCTIONS } from "./functions/functions";
@@ -82,6 +82,33 @@ export const PAGES_SLUGS_QUERY = defineQuery(
  * ====================================================
  */
 
+const selectContentType = `
+  select(
+        $contentType == "blog-index" => "blog-post",
+        $contentType == "case-studies-index" => "case-study"
+  )
+`;
+
+export const RESOURCE_CATEGORY_COUNT_QUERY = defineQuery(`
+{
+  "totalPostCount": count(*[_type == $type]),
+  "currentCategoryPostCount": count(*[_type == $type && ($category == null || $category in categories[]->slug.current) && ($topic == null || $topic in topics[]->slug.current)]),
+  "categories": *[
+    _type == select(
+      $type == "case-study" => "case-study-category",
+      $type == "news-article" => "news-category",
+      "resource-category"
+    ) &&
+    count(*[_type == $type && ^._id in categories[]._ref]) > 0
+  ] | order(title asc) {
+    _id,
+    title,
+    slug,
+    "count": count(*[_type == $type && ^._id in categories[]._ref  && ($topic == null || $topic in topics[]->slug.current)])
+  }
+}
+`);
+
 export const GET_CONTENT_TYPE_INDEX_QUERY = defineQuery(`
   ${GROQ_FUNCTIONS}
 
@@ -92,22 +119,48 @@ export const GET_CONTENT_TYPE_INDEX_QUERY = defineQuery(`
     ${descriptionFragment},
     ${metaFragment},
     ${modulesFragment},
-    "posts": *[_type == select(
-      $contentType == "blog-index" => "blog-post",
-      $contentType == "case-studies-index" => "case-study"
-    ) && ($topic == null || $topic in topics[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {
-        ${postFragment}
-      }
+    "categoryFilter": {
+      "totalPostCount": count(*[_type == ${selectContentType}]),
+      "currentCategoryPostCount": count(*[_type == ${selectContentType} && ($category == null || $category in categories[]->slug.current) && ($topic == null || $topic in topics[]->slug.current)]),
+      "categories": *[_type ==  select(
+        $contentType == "blog-index" => "blog-category")] {
+        _id,
+        "slug": select(
+          $contentType == "blog-index" => "/blog/" + slug.current),
+        ${titleFragment},
+        "count": count(*[_type == "blog-post" && references(^._id)])
+      },
+    },
+    "posts": *[_type == ${selectContentType} && ($topic == null || $topic in topics[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {
+      _id,
+      _type,
+      _createdAt,
+      ${titleFragment},
+      slug,
+      description,
+      publishedDate,
+      category->{
+        _id,
+        _type,
+        slug,
+        title,
+      },
+      contentTopic->{
+        _id,
+        _type,
+        slug,
+        title,
+      },
+      ${linkFragment},
+      ${imageFragment},
+    }
   }
 `);
 
 export const GET_CONTENT_TYPE_SLUG_QUERY = defineQuery(`
   ${GROQ_FUNCTIONS}
 
-  *[_type == select(
-      $contentType == "blog-index" => "blog-post",
-      $contentType == "case-studies-index" => "case-study"
-    ) && slug.current == $slug][0]{
+  *[_type == ${selectContentType} && slug.current == $slug][0]{
     _id,
     _createdAt,
     _type,

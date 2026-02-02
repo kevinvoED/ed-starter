@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { FETCH_CONTENT_TYPE_INDEX_PAGE_DATA } from "@/sanity/lib/fetch";
 import { Transition } from "@/components/animations/Transition";
+import { ContentCategoryFilter } from "@/components/layout/Content/ContentCategoryFilter";
 import { JSONLDScript } from "@/components/layout/JsonLD/Jsonld";
 import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
 import { Button } from "@/components/primitives/Button/Button";
@@ -42,6 +43,7 @@ export default async function BlogIndexPage(props: {
     return notFound();
   }
 
+  console.log(data);
   return (
     <>
       <JSONLDScript document={data} />
@@ -49,7 +51,7 @@ export default async function BlogIndexPage(props: {
       <div className="flex flex-col gap-y-10 p-custom py-20">
         <header className="">
           {data.title && (
-            <h1>
+            <h1 className="type-4860">
               <PortableTextFragment value={data.title} />
             </h1>
           )}
@@ -59,13 +61,20 @@ export default async function BlogIndexPage(props: {
             </p>
           )}
         </header>
+
+        <ContentCategoryFilter data={data.categoryFilter} />
+
         <ul className="grid-custom">
           {data?.posts?.map((post) => (
             <li key={post._id} className="col-span-3">
               <Transition className="flex flex-col gap-y-20 rounded bg-white p-4 text-black">
                 {post._createdAt && (
-                  <p className="">
-                    {new Date(post._createdAt).toLocaleDateString()}
+                  <p>{new Date(post._createdAt).toLocaleDateString()}</p>
+                )}
+
+                {post.category && (
+                  <p>
+                    <PortableTextFragment value={post.category.title} />
                   </p>
                 )}
                 <Button

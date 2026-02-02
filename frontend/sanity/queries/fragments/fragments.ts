@@ -83,18 +83,3 @@ export const descriptionFragment = `
 export const portableTextFragment = `
   "content": fn::pt(content)
 `;
-
-// ------------------
-// Miscellaneous Fragments
-// ------------------
-export const postFragment = `
-  _id,
-  _type,
-  _createdAt,
-  ${titleFragment},
-  slug,
-  description,
-  publishedDate,
-  ${linkFragment},
-  ${imageFragment}
-`;

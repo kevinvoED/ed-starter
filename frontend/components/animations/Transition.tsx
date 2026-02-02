@@ -5,6 +5,8 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const FADE_SLIDE_DISTANCE = 10;
 const SLIDE_DISTANCE = 100;
 
