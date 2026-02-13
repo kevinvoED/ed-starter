@@ -88,7 +88,7 @@ export const SanityImage = ({
     hasExpandedAsset(image) &&
     image?.asset?.metadata?.lqip
       ? "blur"
-      : undefined;
+      : "empty";
 
   return (
     <Image
@@ -97,7 +97,7 @@ export const SanityImage = ({
       placeholder={placeholder}
       blurDataURL={blurDataURL}
       className={cn("object-cover", className)}
-      sizes={sizes || ""}
+      sizes={sizes || "100vw"}
       width={imageWidth}
       height={imageHeight}
       quality={priority ? 100 : 75}
