@@ -1,6 +1,10 @@
 import { imageFields } from "../functions/functions";
 
-// Used in sitemap.ts to generate full urls to the content
+/*
+ * =====================================================
+ * ================= SPECIAL FRAGMENTS =================
+ * =====================================================
+ */
 export const urlQuery = `
   "url": select(
     slug.current == "index" => $baseUrl + "/",
@@ -45,12 +49,16 @@ export const metaFragment = `
   }
 `;
 
-// Used for PortableTextPlain fields
+/*
+ * =====================================================
+ * ================= COMMON FRAGMENTS ==================
+ * =====================================================
+ */
+
 export const ptPlainFragment = `
   fn::ptPlain(content)
 `;
 
-// Used for PortableText fields
 export const ptFragment = `
   fn::ptPlain(content)
 `;
@@ -73,9 +81,6 @@ export const videoFragment = `
   }
 `;
 
-// ------------------
-// Common Fragments
-// ------------------
 export const titleFragment = `
   "title": fn::ptPlain(title)
 `;
@@ -87,3 +92,9 @@ export const descriptionFragment = `
 export const portableTextFragment = `
   "content": fn::pt(content)
 `;
+
+/*
+ * ======================================================
+ * ============== MISCELLANEOUS FRAGMENTS ===============
+ * ======================================================
+ */
