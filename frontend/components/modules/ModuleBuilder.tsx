@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react";
 import type { PAGE_QUERY_RESULT } from "@/sanity.types";
 import { HeroPrimary } from "@/components/modules/Hero/HeroPrimary";
+import { Marquee } from "@/components/modules/Marquee/Marquee";
 import { MyModulesRendererErrorBoundary } from "../layout/ErrorBoundary/ErrorBoundary";
 
 export type ModuleBlock = NonNullable<
@@ -17,6 +18,7 @@ const componentMap: {
   >;
 } = {
   "hero-primary": HeroPrimary,
+  marquee: Marquee,
 };
 
 const LocalErrorFallback: React.FC<React.PropsWithChildren> = ({

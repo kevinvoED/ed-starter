@@ -63,6 +63,10 @@ export const imageFragment = `
   "image": fn::img(image)
 `;
 
+export const imagesFragment = `
+  "images": fn::imgs(images)
+`;
+
 export const videoFragment = `
   video{
    ${imageFields}

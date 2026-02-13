@@ -25,7 +25,10 @@ export const relationTypes = sortBy(
  * Note that you should not add any page-related schemas here.
  * This is only for module-related schemas.
  */
-export const moduleBlocks = sortBy([{ type: "hero-primary" }], ["type"]);
+export const moduleBlocks = sortBy(
+  [{ type: "hero-primary" }, { type: "marquee" }],
+  ["type"],
+);
 
 /*
  * In Sanity Studio, you can group modules together when adding a new module to any page.
@@ -38,6 +41,10 @@ export const moduleGroups = sortBy(
     {
       name: "hero",
       of: ["hero-primary"],
+    },
+    {
+      name: "marquee",
+      of: ["marquee"],
     },
   ],
   ["name"],

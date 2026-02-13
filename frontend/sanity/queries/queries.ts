@@ -15,6 +15,7 @@ import {
 } from "./fragments/fragments";
 import { FN_LOGO, GROQ_FUNCTIONS } from "./functions/functions";
 import { HERO_PRIMARY_QUERY } from "./modules/hero/hero-primary";
+import { MARQUEE_QUERY } from "./modules/marquee/marquee";
 
 /*
  * ====================================================
@@ -25,7 +26,8 @@ import { HERO_PRIMARY_QUERY } from "./modules/hero/hero-primary";
 // @sanity-typegen-ignore
 export const modulesFragment = defineQuery(`
   modules[]{
-    ${HERO_PRIMARY_QUERY}
+    ${HERO_PRIMARY_QUERY},
+    ${MARQUEE_QUERY}
   }
 `);
 

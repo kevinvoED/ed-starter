@@ -8,7 +8,7 @@ import {
   PortableTextFragment,
 } from "@/components/primitives/PortableText/PortableText";
 
-type HeroPrimaryProps = ModuleProps<"hero-primary">;
+type Props = ModuleProps<"hero-primary">;
 
 export const HeroPrimary = ({
   title,
@@ -16,7 +16,7 @@ export const HeroPrimary = ({
   image,
   description,
   content,
-}: HeroPrimaryProps) => {
+}: Props) => {
   return (
     <div className="fluid-py-10/20 p-custom">
       <h2 className="ftype type-2040 to-type-3240">Here's some text</h2>

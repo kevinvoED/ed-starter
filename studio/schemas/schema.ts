@@ -23,6 +23,7 @@ import link from "@/schemas/objects/link";
 // Modules
 import heroPrimary from "@/schemas/modules/hero/hero-primary";
 import portableText from "@/schemas/objects/portable-text";
+import marquee from "@/schemas/modules/marquee/marquee";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -49,5 +50,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     portableText,
     // Modules
     heroPrimary,
+    marquee,
   ],
 };
