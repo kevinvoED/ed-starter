@@ -90,6 +90,7 @@ export default async function BlogIndexPage(props: {
                 ))}
 
                 <Button
+                  id="cta"
                   href={`/blog/${post.slug.current}`}
                   variant="ghost"
                   card

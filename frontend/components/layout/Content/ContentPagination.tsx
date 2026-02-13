@@ -48,6 +48,7 @@ export const ContentPagination = ({
       <div className={cn("flex gap-4", className)}>
         {currentPage > 1 && (
           <Button
+            id="cta"
             variant="ghost"
             href={createPageUrl(currentPage - 1)}
             hasArrow={false}
@@ -64,6 +65,7 @@ export const ContentPagination = ({
             </div>
           ) : (
             <Button
+              id="cta"
               variant={pageNum === currentPage ? "ghost" : "ghost"}
               key={pageNum}
               href={createPageUrl(pageNum as number)}
@@ -77,6 +79,7 @@ export const ContentPagination = ({
 
         {currentPage < totalPages && (
           <Button
+            id="cta"
             variant="ghost"
             href={createPageUrl(currentPage + 1)}
             hasArrow={false}
