@@ -1,5 +1,5 @@
 import type { DocumentActionComponent, Slug } from "sanity";
-import { Link } from "lucide-react";
+import { LinkIcon } from "@sanity/icons";
 import { useToast } from "@sanity/ui";
 import { linkMapper } from "../../frontend/lib/utils/url-mapper";
 
@@ -64,7 +64,7 @@ export const OpenDocumentUrlAction: DocumentActionComponent = (props) => {
   return {
     label: "View On Website",
     onHandle,
-    icon: Link, // Using the Link icon from phosphor-react
+    icon: LinkIcon, // Using the Link icon from phosphor-react
     disabled: isDisabled,
   };
 };
