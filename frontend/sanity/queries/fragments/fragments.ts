@@ -77,7 +77,7 @@ export const imagesFragment = `
 
 export const videoFragment = `
   video{
-   ${imageFields}
+    ${imageFields}
   }
 `;
 
