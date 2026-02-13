@@ -50,8 +50,6 @@ export default async function BlogPostPage(props: {
     notFound();
   }
 
-  console.log(post);
-
   return (
     <>
       <JSONLDScript document={post} />

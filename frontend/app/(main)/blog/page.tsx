@@ -2,12 +2,14 @@ import { notFound } from "next/navigation";
 import { FETCH_CONTENT_TYPE_INDEX_PAGE_DATA } from "@/sanity/lib/fetch";
 import { Transition } from "@/components/animations/Transition";
 import { ContentCategoryFilter } from "@/components/layout/Content/ContentCategoryFilter";
+import { ContentPagination } from "@/components/layout/Content/ContentPagination";
 import { ContentTopicFilter } from "@/components/layout/Content/ContentTopicFilter";
 import { JSONLDScript } from "@/components/layout/JsonLD/Jsonld";
 import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
 import { Button } from "@/components/primitives/Button/Button";
 import { PortableTextFragment } from "@/components/primitives/PortableText/PortableText";
 import { generatePageMetadata } from "@/lib/site/metadata";
+import { createPageUrl } from "@/lib/utils/pagination";
 
 const CONTENT_TYPE = "blog-index";
 
@@ -46,7 +48,6 @@ export default async function BlogIndexPage(props: {
     return notFound();
   }
 
-  console.log(data);
   return (
     <>
       <JSONLDScript document={data} />
@@ -102,6 +103,22 @@ export default async function BlogIndexPage(props: {
           ))}
         </ul>
       </div>
+
+      {data.posts && data.posts.length > 0 && (
+        <ContentPagination
+          totalPages={Math.ceil(
+            (data.categoryFilter.currentCategoryPostCount ||
+              data.topicFilter.currentTopicPostCount ||
+              0) / 2,
+          )}
+          currentPage={page ? parseInt(page) : 1}
+          createPageUrl={(pageNum) =>
+            createPageUrl({ route: "blog", pageNum, category, topic })
+          }
+          className="col-span-full self-start"
+          scrollTargetId="blog-posts-list"
+        />
+      )}
 
       {/* Remove the ModuleBuilder if you do not need to render specific modules here like Driver modules */}
       <ModuleBuilder modules={data?.modules ?? []} />

@@ -50,8 +50,6 @@ export default async function CaseStudiesPostPage(props: {
     notFound();
   }
 
-  console.log(post);
-
   return (
     <>
       <JSONLDScript document={post} />

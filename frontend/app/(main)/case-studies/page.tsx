@@ -102,12 +102,12 @@ export default async function BlogIndexPage(props: {
         </ul>
       </div>
 
-      {/* TODO: add currentcategorypost or else pagination wont work */}
       {data.posts && data.posts.length > 0 && (
         <ContentPagination
           totalPages={Math.ceil(
-            (data.categoryFilter.totalPostCount ||
-              data.topicFilter.totalPostCount) / 2,
+            (data.categoryFilter.currentCategoryPostCount ||
+              data.topicFilter.currentTopicPostCount ||
+              0) / 2,
           )}
           currentPage={page ? parseInt(page) : 1}
           createPageUrl={(pageNum) =>
