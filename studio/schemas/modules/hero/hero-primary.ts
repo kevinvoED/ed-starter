@@ -6,7 +6,7 @@ import {
   image,
   link,
   portableText,
-  titleHighlight,
+  title,
 } from "@/schemas/sharedFields";
 
 export default defineType({
@@ -14,7 +14,7 @@ export default defineType({
   title: "Hero Primary",
   type: "object",
   fields: [
-    titleHighlight,
+    title,
     description,
     defineField({
       ...link,

@@ -49,7 +49,7 @@ export const ptListFields = [
 export const ptAnnotationLinkFields = {
   name: "link",
   type: "object",
-  title: "Button Link",
+  title: "Link",
   icon: LinkIcon,
   fields: [
     {
@@ -138,6 +138,7 @@ export const pageTitle = defineField({
   title: "Page Title",
   type: "string",
   description: "Purely for organizational purposes within Sanity Studio.",
+  validation: (Rule) => Rule.required(),
 });
 
 // ------------------------------------------------
@@ -148,43 +149,20 @@ export const title = portableTextPlain({
   name: "title",
   title: "Title",
   description: "Main title for this section or module.",
-  oneLine: true,
-});
-
-export const titleHighlight = portableTextPlain({
-  name: "title",
-  title: "Title",
-  description: "Main title for this section or module.",
-  oneLine: true,
-  enableHighlight: true,
-});
-
-export const titleHighlightLineBreak = portableTextPlain({
-  name: "title",
-  title: "Title",
-  description: "Main title for this section or module.",
-  enableHighlight: true,
-});
-
-export const titleHighlightLink = portableTextPlain({
-  name: "title",
-  title: "Title",
-  description: "Main title for this section or module.",
-  oneLine: true,
+  validation: true,
   enableHighlight: true,
   enableLink: true,
+  oneLine: true,
 });
 
-export const titleAll = portableTextPlain({
+export const titleLineBreak = portableTextPlain({
   name: "title",
   title: "Title",
-  description: "Main title for this section or module.",
-  oneLine: true,
+  description:
+    "Main title for this section or module. New line breaks are respected.",
+  validation: true,
   enableHighlight: true,
   enableLink: true,
-  enableDecorator: true,
-  enableList: true,
-  enableTypeStyle: true,
 });
 
 export const description = portableTextPlain({
@@ -192,16 +170,12 @@ export const description = portableTextPlain({
   title: "Description",
   description:
     "Supplementary text that provides additional context or information.",
-  validation: false,
-});
-
-export const descriptionLink = portableTextPlain({
-  name: "description",
-  title: "Description",
-  description:
-    "Supplementary text that provides additional context or information.",
+  validation: true,
+  enableList: true,
   enableLink: true,
-  validation: false,
+  enableHighlight: true,
+  enableDecorator: true,
+  enableTypeStyle: true,
 });
 
 // ------------------------------------------------
@@ -240,7 +214,7 @@ export const link = defineField({
   type: "array",
   description: "Optional. Select an internal page or external URL to link to.",
   of: [{ type: "link" }],
-  validation: (Rule) => Rule.max(1),
+  validation: (Rule) => Rule.required().max(1),
 });
 
 // ------------------------------------------------
@@ -266,6 +240,7 @@ export const image = defineField({
         Rule.max(150).error("Alt text must be less than 150 characters."),
     },
   ],
+  validation: (Rule) => Rule.required(),
 });
 
 export const images = defineField({
@@ -275,6 +250,7 @@ export const images = defineField({
   description: "Select or upload multiple images.",
   of: [{ type: "image" }],
   icon: ImagesIcon,
+  validation: (Rule) => Rule.required().min(1),
 });
 
 export const logo = defineField({
@@ -285,6 +261,7 @@ export const logo = defineField({
   options: {
     accept: "image/svg+xml",
   },
+  validation: (Rule) => Rule.required(),
 });
 
 // ------------------------------------------------
@@ -299,6 +276,7 @@ export const video = defineField({
   },
   type: "file",
   icon: VideoIcon,
+  validation: (Rule) => Rule.required(),
 });
 
 // ------------------------------------------------

@@ -11,7 +11,7 @@ import {
   portableText,
   publishedDate,
   slug,
-  titleHighlight,
+  title,
 } from "@/schemas/sharedFields";
 import { formatDate } from "../../../../frontend/lib/utils/date";
 
@@ -44,7 +44,7 @@ export default defineType({
       group: "settings",
     }),
     defineField({
-      ...titleHighlight,
+      ...title,
       group: "content",
     }),
     defineField({

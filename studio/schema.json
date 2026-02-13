@@ -116,6 +116,216 @@
     }
   },
   {
+    "type": "type",
+    "name": "blog-index.reference",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_ref": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          }
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "reference"
+          }
+        },
+        "_weak": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      },
+      "dereferencesTo": "blog-index"
+    }
+  },
+  {
+    "type": "type",
+    "name": "blog-post.reference",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_ref": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          }
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "reference"
+          }
+        },
+        "_weak": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      },
+      "dereferencesTo": "blog-post"
+    }
+  },
+  {
+    "type": "type",
+    "name": "case-studies-index.reference",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_ref": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          }
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "reference"
+          }
+        },
+        "_weak": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      },
+      "dereferencesTo": "case-studies-index"
+    }
+  },
+  {
+    "type": "type",
+    "name": "case-study.reference",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_ref": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          }
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "reference"
+          }
+        },
+        "_weak": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      },
+      "dereferencesTo": "case-study"
+    }
+  },
+  {
+    "type": "type",
+    "name": "page.reference",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_ref": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          }
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "reference"
+          }
+        },
+        "_weak": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      },
+      "dereferencesTo": "page"
+    }
+  },
+  {
+    "type": "type",
+    "name": "platform-child.reference",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_ref": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          }
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "reference"
+          }
+        },
+        "_weak": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      },
+      "dereferencesTo": "platform-child"
+    }
+  },
+  {
+    "type": "type",
+    "name": "platform-index.reference",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_ref": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          }
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "reference"
+          }
+        },
+        "_weak": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      },
+      "dereferencesTo": "platform-index"
+    }
+  },
+  {
     "name": "marquee",
     "type": "type",
     "value": {
@@ -230,7 +440,133 @@
                         "markDefs": {
                           "type": "objectAttribute",
                           "value": {
-                            "type": "null"
+                            "type": "array",
+                            "of": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "object",
+                                  "attributes": {
+                                    "type": {
+                                      "type": "objectAttribute",
+                                      "value": {
+                                        "type": "union",
+                                        "of": [
+                                          {
+                                            "type": "string",
+                                            "value": "internal"
+                                          },
+                                          {
+                                            "type": "string",
+                                            "value": "external"
+                                          }
+                                        ]
+                                      },
+                                      "optional": false
+                                    },
+                                    "internalLink": {
+                                      "type": "objectAttribute",
+                                      "value": {
+                                        "type": "union",
+                                        "of": [
+                                          {
+                                            "type": "inline",
+                                            "name": "blog-index.reference"
+                                          },
+                                          {
+                                            "type": "inline",
+                                            "name": "blog-post.reference"
+                                          },
+                                          {
+                                            "type": "inline",
+                                            "name": "case-studies-index.reference"
+                                          },
+                                          {
+                                            "type": "inline",
+                                            "name": "case-study.reference"
+                                          },
+                                          {
+                                            "type": "inline",
+                                            "name": "page.reference"
+                                          },
+                                          {
+                                            "type": "inline",
+                                            "name": "platform-child.reference"
+                                          },
+                                          {
+                                            "type": "inline",
+                                            "name": "platform-index.reference"
+                                          }
+                                        ]
+                                      },
+                                      "optional": true
+                                    },
+                                    "href": {
+                                      "type": "objectAttribute",
+                                      "value": {
+                                        "type": "string"
+                                      },
+                                      "optional": true
+                                    },
+                                    "openInNewTab": {
+                                      "type": "objectAttribute",
+                                      "value": {
+                                        "type": "boolean"
+                                      },
+                                      "optional": true
+                                    },
+                                    "_type": {
+                                      "type": "objectAttribute",
+                                      "value": {
+                                        "type": "string",
+                                        "value": "link"
+                                      }
+                                    }
+                                  },
+                                  "rest": {
+                                    "type": "object",
+                                    "attributes": {
+                                      "_key": {
+                                        "type": "objectAttribute",
+                                        "value": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "type": "object",
+                                  "attributes": {
+                                    "_key": {
+                                      "type": "objectAttribute",
+                                      "value": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "rest": {
+                                    "type": "inline",
+                                    "name": "textColor"
+                                  }
+                                },
+                                {
+                                  "type": "object",
+                                  "attributes": {
+                                    "_key": {
+                                      "type": "objectAttribute",
+                                      "value": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "rest": {
+                                    "type": "inline",
+                                    "name": "highlightColor"
+                                  }
+                                }
+                              ]
+                            }
                           },
                           "optional": true
                         },
@@ -449,6 +785,97 @@
                         {
                           "type": "object",
                           "attributes": {
+                            "type": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "union",
+                                "of": [
+                                  {
+                                    "type": "string",
+                                    "value": "internal"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "value": "external"
+                                  }
+                                ]
+                              },
+                              "optional": false
+                            },
+                            "internalLink": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "union",
+                                "of": [
+                                  {
+                                    "type": "inline",
+                                    "name": "blog-index.reference"
+                                  },
+                                  {
+                                    "type": "inline",
+                                    "name": "blog-post.reference"
+                                  },
+                                  {
+                                    "type": "inline",
+                                    "name": "case-studies-index.reference"
+                                  },
+                                  {
+                                    "type": "inline",
+                                    "name": "case-study.reference"
+                                  },
+                                  {
+                                    "type": "inline",
+                                    "name": "page.reference"
+                                  },
+                                  {
+                                    "type": "inline",
+                                    "name": "platform-child.reference"
+                                  },
+                                  {
+                                    "type": "inline",
+                                    "name": "platform-index.reference"
+                                  }
+                                ]
+                              },
+                              "optional": true
+                            },
+                            "href": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "string"
+                              },
+                              "optional": true
+                            },
+                            "openInNewTab": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "boolean"
+                              },
+                              "optional": true
+                            },
+                            "_type": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "string",
+                                "value": "link"
+                              }
+                            }
+                          },
+                          "rest": {
+                            "type": "object",
+                            "attributes": {
+                              "_key": {
+                                "type": "objectAttribute",
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "attributes": {
                             "_key": {
                               "type": "objectAttribute",
                               "value": {
@@ -573,6 +1000,30 @@
                       {
                         "type": "string",
                         "value": "normal"
+                      },
+                      {
+                        "type": "string",
+                        "value": "h1"
+                      },
+                      {
+                        "type": "string",
+                        "value": "h2"
+                      },
+                      {
+                        "type": "string",
+                        "value": "h3"
+                      },
+                      {
+                        "type": "string",
+                        "value": "h4"
+                      },
+                      {
+                        "type": "string",
+                        "value": "h5"
+                      },
+                      {
+                        "type": "string",
+                        "value": "h6"
                       }
                     ]
                   },
@@ -582,14 +1033,149 @@
                   "type": "objectAttribute",
                   "value": {
                     "type": "union",
-                    "of": []
+                    "of": [
+                      {
+                        "type": "string",
+                        "value": "bullet"
+                      },
+                      {
+                        "type": "string",
+                        "value": "number"
+                      }
+                    ]
                   },
                   "optional": true
                 },
                 "markDefs": {
                   "type": "objectAttribute",
                   "value": {
-                    "type": "null"
+                    "type": "array",
+                    "of": {
+                      "type": "union",
+                      "of": [
+                        {
+                          "type": "object",
+                          "attributes": {
+                            "type": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "union",
+                                "of": [
+                                  {
+                                    "type": "string",
+                                    "value": "internal"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "value": "external"
+                                  }
+                                ]
+                              },
+                              "optional": false
+                            },
+                            "internalLink": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "union",
+                                "of": [
+                                  {
+                                    "type": "inline",
+                                    "name": "blog-index.reference"
+                                  },
+                                  {
+                                    "type": "inline",
+                                    "name": "blog-post.reference"
+                                  },
+                                  {
+                                    "type": "inline",
+                                    "name": "case-studies-index.reference"
+                                  },
+                                  {
+                                    "type": "inline",
+                                    "name": "case-study.reference"
+                                  },
+                                  {
+                                    "type": "inline",
+                                    "name": "page.reference"
+                                  },
+                                  {
+                                    "type": "inline",
+                                    "name": "platform-child.reference"
+                                  },
+                                  {
+                                    "type": "inline",
+                                    "name": "platform-index.reference"
+                                  }
+                                ]
+                              },
+                              "optional": true
+                            },
+                            "href": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "string"
+                              },
+                              "optional": true
+                            },
+                            "openInNewTab": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "boolean"
+                              },
+                              "optional": true
+                            },
+                            "_type": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "string",
+                                "value": "link"
+                              }
+                            }
+                          },
+                          "rest": {
+                            "type": "object",
+                            "attributes": {
+                              "_key": {
+                                "type": "objectAttribute",
+                                "value": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "attributes": {
+                            "_key": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "rest": {
+                            "type": "inline",
+                            "name": "textColor"
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "attributes": {
+                            "_key": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "rest": {
+                            "type": "inline",
+                            "name": "highlightColor"
+                          }
+                        }
+                      ]
+                    }
                   },
                   "optional": true
                 },
@@ -621,7 +1207,7 @@
               }
             }
           },
-          "optional": true
+          "optional": false
         },
         "link": {
           "type": "objectAttribute",
@@ -697,7 +1283,7 @@
               }
             }
           },
-          "optional": true
+          "optional": false
         },
         "content": {
           "type": "objectAttribute",
@@ -708,216 +1294,6 @@
           "optional": true
         }
       }
-    }
-  },
-  {
-    "type": "type",
-    "name": "blog-index.reference",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "_ref": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          }
-        },
-        "_type": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string",
-            "value": "reference"
-          }
-        },
-        "_weak": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "boolean"
-          },
-          "optional": true
-        }
-      },
-      "dereferencesTo": "blog-index"
-    }
-  },
-  {
-    "type": "type",
-    "name": "blog-post.reference",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "_ref": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          }
-        },
-        "_type": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string",
-            "value": "reference"
-          }
-        },
-        "_weak": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "boolean"
-          },
-          "optional": true
-        }
-      },
-      "dereferencesTo": "blog-post"
-    }
-  },
-  {
-    "type": "type",
-    "name": "case-studies-index.reference",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "_ref": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          }
-        },
-        "_type": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string",
-            "value": "reference"
-          }
-        },
-        "_weak": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "boolean"
-          },
-          "optional": true
-        }
-      },
-      "dereferencesTo": "case-studies-index"
-    }
-  },
-  {
-    "type": "type",
-    "name": "case-study.reference",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "_ref": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          }
-        },
-        "_type": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string",
-            "value": "reference"
-          }
-        },
-        "_weak": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "boolean"
-          },
-          "optional": true
-        }
-      },
-      "dereferencesTo": "case-study"
-    }
-  },
-  {
-    "type": "type",
-    "name": "page.reference",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "_ref": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          }
-        },
-        "_type": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string",
-            "value": "reference"
-          }
-        },
-        "_weak": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "boolean"
-          },
-          "optional": true
-        }
-      },
-      "dereferencesTo": "page"
-    }
-  },
-  {
-    "type": "type",
-    "name": "platform-child.reference",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "_ref": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          }
-        },
-        "_type": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string",
-            "value": "reference"
-          }
-        },
-        "_weak": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "boolean"
-          },
-          "optional": true
-        }
-      },
-      "dereferencesTo": "platform-child"
-    }
-  },
-  {
-    "type": "type",
-    "name": "platform-index.reference",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "_ref": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          }
-        },
-        "_type": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string",
-            "value": "reference"
-          }
-        },
-        "_weak": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "boolean"
-          },
-          "optional": true
-        }
-      },
-      "dereferencesTo": "platform-index"
     }
   },
   {
@@ -1626,7 +2002,7 @@
                   }
                 }
               },
-              "optional": true
+              "optional": false
             },
             "foundingDate": {
               "type": "objectAttribute",
@@ -1983,7 +2359,133 @@
                       "markDefs": {
                         "type": "objectAttribute",
                         "value": {
-                          "type": "null"
+                          "type": "array",
+                          "of": {
+                            "type": "union",
+                            "of": [
+                              {
+                                "type": "object",
+                                "attributes": {
+                                  "type": {
+                                    "type": "objectAttribute",
+                                    "value": {
+                                      "type": "union",
+                                      "of": [
+                                        {
+                                          "type": "string",
+                                          "value": "internal"
+                                        },
+                                        {
+                                          "type": "string",
+                                          "value": "external"
+                                        }
+                                      ]
+                                    },
+                                    "optional": false
+                                  },
+                                  "internalLink": {
+                                    "type": "objectAttribute",
+                                    "value": {
+                                      "type": "union",
+                                      "of": [
+                                        {
+                                          "type": "inline",
+                                          "name": "blog-index.reference"
+                                        },
+                                        {
+                                          "type": "inline",
+                                          "name": "blog-post.reference"
+                                        },
+                                        {
+                                          "type": "inline",
+                                          "name": "case-studies-index.reference"
+                                        },
+                                        {
+                                          "type": "inline",
+                                          "name": "case-study.reference"
+                                        },
+                                        {
+                                          "type": "inline",
+                                          "name": "page.reference"
+                                        },
+                                        {
+                                          "type": "inline",
+                                          "name": "platform-child.reference"
+                                        },
+                                        {
+                                          "type": "inline",
+                                          "name": "platform-index.reference"
+                                        }
+                                      ]
+                                    },
+                                    "optional": true
+                                  },
+                                  "href": {
+                                    "type": "objectAttribute",
+                                    "value": {
+                                      "type": "string"
+                                    },
+                                    "optional": true
+                                  },
+                                  "openInNewTab": {
+                                    "type": "objectAttribute",
+                                    "value": {
+                                      "type": "boolean"
+                                    },
+                                    "optional": true
+                                  },
+                                  "_type": {
+                                    "type": "objectAttribute",
+                                    "value": {
+                                      "type": "string",
+                                      "value": "link"
+                                    }
+                                  }
+                                },
+                                "rest": {
+                                  "type": "object",
+                                  "attributes": {
+                                    "_key": {
+                                      "type": "objectAttribute",
+                                      "value": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "type": "object",
+                                "attributes": {
+                                  "_key": {
+                                    "type": "objectAttribute",
+                                    "value": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "rest": {
+                                  "type": "inline",
+                                  "name": "textColor"
+                                }
+                              },
+                              {
+                                "type": "object",
+                                "attributes": {
+                                  "_key": {
+                                    "type": "objectAttribute",
+                                    "value": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "rest": {
+                                  "type": "inline",
+                                  "name": "highlightColor"
+                                }
+                              }
+                            ]
+                          }
                         },
                         "optional": true
                       },
@@ -2131,7 +2633,133 @@
                               "markDefs": {
                                 "type": "objectAttribute",
                                 "value": {
-                                  "type": "null"
+                                  "type": "array",
+                                  "of": {
+                                    "type": "union",
+                                    "of": [
+                                      {
+                                        "type": "object",
+                                        "attributes": {
+                                          "type": {
+                                            "type": "objectAttribute",
+                                            "value": {
+                                              "type": "union",
+                                              "of": [
+                                                {
+                                                  "type": "string",
+                                                  "value": "internal"
+                                                },
+                                                {
+                                                  "type": "string",
+                                                  "value": "external"
+                                                }
+                                              ]
+                                            },
+                                            "optional": false
+                                          },
+                                          "internalLink": {
+                                            "type": "objectAttribute",
+                                            "value": {
+                                              "type": "union",
+                                              "of": [
+                                                {
+                                                  "type": "inline",
+                                                  "name": "blog-index.reference"
+                                                },
+                                                {
+                                                  "type": "inline",
+                                                  "name": "blog-post.reference"
+                                                },
+                                                {
+                                                  "type": "inline",
+                                                  "name": "case-studies-index.reference"
+                                                },
+                                                {
+                                                  "type": "inline",
+                                                  "name": "case-study.reference"
+                                                },
+                                                {
+                                                  "type": "inline",
+                                                  "name": "page.reference"
+                                                },
+                                                {
+                                                  "type": "inline",
+                                                  "name": "platform-child.reference"
+                                                },
+                                                {
+                                                  "type": "inline",
+                                                  "name": "platform-index.reference"
+                                                }
+                                              ]
+                                            },
+                                            "optional": true
+                                          },
+                                          "href": {
+                                            "type": "objectAttribute",
+                                            "value": {
+                                              "type": "string"
+                                            },
+                                            "optional": true
+                                          },
+                                          "openInNewTab": {
+                                            "type": "objectAttribute",
+                                            "value": {
+                                              "type": "boolean"
+                                            },
+                                            "optional": true
+                                          },
+                                          "_type": {
+                                            "type": "objectAttribute",
+                                            "value": {
+                                              "type": "string",
+                                              "value": "link"
+                                            }
+                                          }
+                                        },
+                                        "rest": {
+                                          "type": "object",
+                                          "attributes": {
+                                            "_key": {
+                                              "type": "objectAttribute",
+                                              "value": {
+                                                "type": "string"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "type": "object",
+                                        "attributes": {
+                                          "_key": {
+                                            "type": "objectAttribute",
+                                            "value": {
+                                              "type": "string"
+                                            }
+                                          }
+                                        },
+                                        "rest": {
+                                          "type": "inline",
+                                          "name": "textColor"
+                                        }
+                                      },
+                                      {
+                                        "type": "object",
+                                        "attributes": {
+                                          "_key": {
+                                            "type": "objectAttribute",
+                                            "value": {
+                                              "type": "string"
+                                            }
+                                          }
+                                        },
+                                        "rest": {
+                                          "type": "inline",
+                                          "name": "highlightColor"
+                                        }
+                                      }
+                                    ]
+                                  }
                                 },
                                 "optional": true
                               },
@@ -2285,7 +2913,7 @@
             }
           }
         },
-        "optional": true
+        "optional": false
       },
       "largeLogo": {
         "type": "objectAttribute",
@@ -2339,7 +2967,7 @@
             }
           }
         },
-        "optional": true
+        "optional": false
       },
       "actionlink": {
         "type": "objectAttribute",
@@ -2496,7 +3124,7 @@
             }
           }
         },
-        "optional": true
+        "optional": false
       },
       "link": {
         "type": "objectAttribute",
@@ -2601,7 +3229,133 @@
                           "markDefs": {
                             "type": "objectAttribute",
                             "value": {
-                              "type": "null"
+                              "type": "array",
+                              "of": {
+                                "type": "union",
+                                "of": [
+                                  {
+                                    "type": "object",
+                                    "attributes": {
+                                      "type": {
+                                        "type": "objectAttribute",
+                                        "value": {
+                                          "type": "union",
+                                          "of": [
+                                            {
+                                              "type": "string",
+                                              "value": "internal"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "value": "external"
+                                            }
+                                          ]
+                                        },
+                                        "optional": false
+                                      },
+                                      "internalLink": {
+                                        "type": "objectAttribute",
+                                        "value": {
+                                          "type": "union",
+                                          "of": [
+                                            {
+                                              "type": "inline",
+                                              "name": "blog-index.reference"
+                                            },
+                                            {
+                                              "type": "inline",
+                                              "name": "blog-post.reference"
+                                            },
+                                            {
+                                              "type": "inline",
+                                              "name": "case-studies-index.reference"
+                                            },
+                                            {
+                                              "type": "inline",
+                                              "name": "case-study.reference"
+                                            },
+                                            {
+                                              "type": "inline",
+                                              "name": "page.reference"
+                                            },
+                                            {
+                                              "type": "inline",
+                                              "name": "platform-child.reference"
+                                            },
+                                            {
+                                              "type": "inline",
+                                              "name": "platform-index.reference"
+                                            }
+                                          ]
+                                        },
+                                        "optional": true
+                                      },
+                                      "href": {
+                                        "type": "objectAttribute",
+                                        "value": {
+                                          "type": "string"
+                                        },
+                                        "optional": true
+                                      },
+                                      "openInNewTab": {
+                                        "type": "objectAttribute",
+                                        "value": {
+                                          "type": "boolean"
+                                        },
+                                        "optional": true
+                                      },
+                                      "_type": {
+                                        "type": "objectAttribute",
+                                        "value": {
+                                          "type": "string",
+                                          "value": "link"
+                                        }
+                                      }
+                                    },
+                                    "rest": {
+                                      "type": "object",
+                                      "attributes": {
+                                        "_key": {
+                                          "type": "objectAttribute",
+                                          "value": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "type": "object",
+                                    "attributes": {
+                                      "_key": {
+                                        "type": "objectAttribute",
+                                        "value": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "rest": {
+                                      "type": "inline",
+                                      "name": "textColor"
+                                    }
+                                  },
+                                  {
+                                    "type": "object",
+                                    "attributes": {
+                                      "_key": {
+                                        "type": "objectAttribute",
+                                        "value": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "rest": {
+                                      "type": "inline",
+                                      "name": "highlightColor"
+                                    }
+                                  }
+                                ]
+                              }
                             },
                             "optional": true
                           },
@@ -2723,7 +3477,133 @@
                                       "markDefs": {
                                         "type": "objectAttribute",
                                         "value": {
-                                          "type": "null"
+                                          "type": "array",
+                                          "of": {
+                                            "type": "union",
+                                            "of": [
+                                              {
+                                                "type": "object",
+                                                "attributes": {
+                                                  "type": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "union",
+                                                      "of": [
+                                                        {
+                                                          "type": "string",
+                                                          "value": "internal"
+                                                        },
+                                                        {
+                                                          "type": "string",
+                                                          "value": "external"
+                                                        }
+                                                      ]
+                                                    },
+                                                    "optional": false
+                                                  },
+                                                  "internalLink": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "union",
+                                                      "of": [
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "blog-index.reference"
+                                                        },
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "blog-post.reference"
+                                                        },
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "case-studies-index.reference"
+                                                        },
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "case-study.reference"
+                                                        },
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "page.reference"
+                                                        },
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "platform-child.reference"
+                                                        },
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "platform-index.reference"
+                                                        }
+                                                      ]
+                                                    },
+                                                    "optional": true
+                                                  },
+                                                  "href": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "string"
+                                                    },
+                                                    "optional": true
+                                                  },
+                                                  "openInNewTab": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "boolean"
+                                                    },
+                                                    "optional": true
+                                                  },
+                                                  "_type": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "string",
+                                                      "value": "link"
+                                                    }
+                                                  }
+                                                },
+                                                "rest": {
+                                                  "type": "object",
+                                                  "attributes": {
+                                                    "_key": {
+                                                      "type": "objectAttribute",
+                                                      "value": {
+                                                        "type": "string"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              {
+                                                "type": "object",
+                                                "attributes": {
+                                                  "_key": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "string"
+                                                    }
+                                                  }
+                                                },
+                                                "rest": {
+                                                  "type": "inline",
+                                                  "name": "textColor"
+                                                }
+                                              },
+                                              {
+                                                "type": "object",
+                                                "attributes": {
+                                                  "_key": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "string"
+                                                    }
+                                                  }
+                                                },
+                                                "rest": {
+                                                  "type": "inline",
+                                                  "name": "highlightColor"
+                                                }
+                                              }
+                                            ]
+                                          }
                                         },
                                         "optional": true
                                       },
@@ -2819,6 +3699,30 @@
                                             {
                                               "type": "string",
                                               "value": "normal"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "value": "h1"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "value": "h2"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "value": "h3"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "value": "h4"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "value": "h5"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "value": "h6"
                                             }
                                           ]
                                         },
@@ -2828,14 +3732,149 @@
                                         "type": "objectAttribute",
                                         "value": {
                                           "type": "union",
-                                          "of": []
+                                          "of": [
+                                            {
+                                              "type": "string",
+                                              "value": "bullet"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "value": "number"
+                                            }
+                                          ]
                                         },
                                         "optional": true
                                       },
                                       "markDefs": {
                                         "type": "objectAttribute",
                                         "value": {
-                                          "type": "null"
+                                          "type": "array",
+                                          "of": {
+                                            "type": "union",
+                                            "of": [
+                                              {
+                                                "type": "object",
+                                                "attributes": {
+                                                  "type": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "union",
+                                                      "of": [
+                                                        {
+                                                          "type": "string",
+                                                          "value": "internal"
+                                                        },
+                                                        {
+                                                          "type": "string",
+                                                          "value": "external"
+                                                        }
+                                                      ]
+                                                    },
+                                                    "optional": false
+                                                  },
+                                                  "internalLink": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "union",
+                                                      "of": [
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "blog-index.reference"
+                                                        },
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "blog-post.reference"
+                                                        },
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "case-studies-index.reference"
+                                                        },
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "case-study.reference"
+                                                        },
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "page.reference"
+                                                        },
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "platform-child.reference"
+                                                        },
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "platform-index.reference"
+                                                        }
+                                                      ]
+                                                    },
+                                                    "optional": true
+                                                  },
+                                                  "href": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "string"
+                                                    },
+                                                    "optional": true
+                                                  },
+                                                  "openInNewTab": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "boolean"
+                                                    },
+                                                    "optional": true
+                                                  },
+                                                  "_type": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "string",
+                                                      "value": "link"
+                                                    }
+                                                  }
+                                                },
+                                                "rest": {
+                                                  "type": "object",
+                                                  "attributes": {
+                                                    "_key": {
+                                                      "type": "objectAttribute",
+                                                      "value": {
+                                                        "type": "string"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              {
+                                                "type": "object",
+                                                "attributes": {
+                                                  "_key": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "string"
+                                                    }
+                                                  }
+                                                },
+                                                "rest": {
+                                                  "type": "inline",
+                                                  "name": "textColor"
+                                                }
+                                              },
+                                              {
+                                                "type": "object",
+                                                "attributes": {
+                                                  "_key": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "string"
+                                                    }
+                                                  }
+                                                },
+                                                "rest": {
+                                                  "type": "inline",
+                                                  "name": "highlightColor"
+                                                }
+                                              }
+                                            ]
+                                          }
                                         },
                                         "optional": true
                                       },
@@ -2867,7 +3906,7 @@
                                     }
                                   }
                                 },
-                                "optional": true
+                                "optional": false
                               },
                               "link": {
                                 "type": "objectAttribute",
@@ -2978,7 +4017,133 @@
                                       "markDefs": {
                                         "type": "objectAttribute",
                                         "value": {
-                                          "type": "null"
+                                          "type": "array",
+                                          "of": {
+                                            "type": "union",
+                                            "of": [
+                                              {
+                                                "type": "object",
+                                                "attributes": {
+                                                  "type": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "union",
+                                                      "of": [
+                                                        {
+                                                          "type": "string",
+                                                          "value": "internal"
+                                                        },
+                                                        {
+                                                          "type": "string",
+                                                          "value": "external"
+                                                        }
+                                                      ]
+                                                    },
+                                                    "optional": false
+                                                  },
+                                                  "internalLink": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "union",
+                                                      "of": [
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "blog-index.reference"
+                                                        },
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "blog-post.reference"
+                                                        },
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "case-studies-index.reference"
+                                                        },
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "case-study.reference"
+                                                        },
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "page.reference"
+                                                        },
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "platform-child.reference"
+                                                        },
+                                                        {
+                                                          "type": "inline",
+                                                          "name": "platform-index.reference"
+                                                        }
+                                                      ]
+                                                    },
+                                                    "optional": true
+                                                  },
+                                                  "href": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "string"
+                                                    },
+                                                    "optional": true
+                                                  },
+                                                  "openInNewTab": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "boolean"
+                                                    },
+                                                    "optional": true
+                                                  },
+                                                  "_type": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "string",
+                                                      "value": "link"
+                                                    }
+                                                  }
+                                                },
+                                                "rest": {
+                                                  "type": "object",
+                                                  "attributes": {
+                                                    "_key": {
+                                                      "type": "objectAttribute",
+                                                      "value": {
+                                                        "type": "string"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              {
+                                                "type": "object",
+                                                "attributes": {
+                                                  "_key": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "string"
+                                                    }
+                                                  }
+                                                },
+                                                "rest": {
+                                                  "type": "inline",
+                                                  "name": "textColor"
+                                                }
+                                              },
+                                              {
+                                                "type": "object",
+                                                "attributes": {
+                                                  "_key": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "string"
+                                                    }
+                                                  }
+                                                },
+                                                "rest": {
+                                                  "type": "inline",
+                                                  "name": "highlightColor"
+                                                }
+                                              }
+                                            ]
+                                          }
                                         },
                                         "optional": true
                                       },
@@ -3306,7 +4471,133 @@
               "markDefs": {
                 "type": "objectAttribute",
                 "value": {
-                  "type": "null"
+                  "type": "array",
+                  "of": {
+                    "type": "union",
+                    "of": [
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "string",
+                                  "value": "internal"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "external"
+                                }
+                              ]
+                            },
+                            "optional": false
+                          },
+                          "internalLink": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "inline",
+                                  "name": "blog-index.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "blog-post.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "case-studies-index.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "case-study.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "page.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "platform-child.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "platform-index.reference"
+                                }
+                              ]
+                            },
+                            "optional": true
+                          },
+                          "href": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "openInNewTab": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "boolean"
+                            },
+                            "optional": true
+                          },
+                          "_type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string",
+                              "value": "link"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "object",
+                          "attributes": {
+                            "_key": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "inline",
+                          "name": "textColor"
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "inline",
+                          "name": "highlightColor"
+                        }
+                      }
+                    ]
+                  }
                 },
                 "optional": true
               },
@@ -3470,7 +4761,133 @@
               "markDefs": {
                 "type": "objectAttribute",
                 "value": {
-                  "type": "null"
+                  "type": "array",
+                  "of": {
+                    "type": "union",
+                    "of": [
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "string",
+                                  "value": "internal"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "external"
+                                }
+                              ]
+                            },
+                            "optional": false
+                          },
+                          "internalLink": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "inline",
+                                  "name": "blog-index.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "blog-post.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "case-studies-index.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "case-study.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "page.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "platform-child.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "platform-index.reference"
+                                }
+                              ]
+                            },
+                            "optional": true
+                          },
+                          "href": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "openInNewTab": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "boolean"
+                            },
+                            "optional": true
+                          },
+                          "_type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string",
+                              "value": "link"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "object",
+                          "attributes": {
+                            "_key": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "inline",
+                          "name": "textColor"
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "inline",
+                          "name": "highlightColor"
+                        }
+                      }
+                    ]
+                  }
                 },
                 "optional": true
               },
@@ -3561,7 +4978,7 @@
         "value": {
           "type": "string"
         },
-        "optional": true
+        "optional": false
       },
       "slug": {
         "type": "objectAttribute",
@@ -3751,7 +5168,133 @@
               "markDefs": {
                 "type": "objectAttribute",
                 "value": {
-                  "type": "null"
+                  "type": "array",
+                  "of": {
+                    "type": "union",
+                    "of": [
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "string",
+                                  "value": "internal"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "external"
+                                }
+                              ]
+                            },
+                            "optional": false
+                          },
+                          "internalLink": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "inline",
+                                  "name": "blog-index.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "blog-post.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "case-studies-index.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "case-study.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "page.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "platform-child.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "platform-index.reference"
+                                }
+                              ]
+                            },
+                            "optional": true
+                          },
+                          "href": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "openInNewTab": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "boolean"
+                            },
+                            "optional": true
+                          },
+                          "_type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string",
+                              "value": "link"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "object",
+                          "attributes": {
+                            "_key": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "inline",
+                          "name": "textColor"
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "inline",
+                          "name": "highlightColor"
+                        }
+                      }
+                    ]
+                  }
                 },
                 "optional": true
               },
@@ -3847,6 +5390,30 @@
                     {
                       "type": "string",
                       "value": "normal"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h1"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h2"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h3"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h4"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h5"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h6"
                     }
                   ]
                 },
@@ -3856,14 +5423,149 @@
                 "type": "objectAttribute",
                 "value": {
                   "type": "union",
-                  "of": []
+                  "of": [
+                    {
+                      "type": "string",
+                      "value": "bullet"
+                    },
+                    {
+                      "type": "string",
+                      "value": "number"
+                    }
+                  ]
                 },
                 "optional": true
               },
               "markDefs": {
                 "type": "objectAttribute",
                 "value": {
-                  "type": "null"
+                  "type": "array",
+                  "of": {
+                    "type": "union",
+                    "of": [
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "string",
+                                  "value": "internal"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "external"
+                                }
+                              ]
+                            },
+                            "optional": false
+                          },
+                          "internalLink": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "inline",
+                                  "name": "blog-index.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "blog-post.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "case-studies-index.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "case-study.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "page.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "platform-child.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "platform-index.reference"
+                                }
+                              ]
+                            },
+                            "optional": true
+                          },
+                          "href": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "openInNewTab": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "boolean"
+                            },
+                            "optional": true
+                          },
+                          "_type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string",
+                              "value": "link"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "object",
+                          "attributes": {
+                            "_key": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "inline",
+                          "name": "textColor"
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "inline",
+                          "name": "highlightColor"
+                        }
+                      }
+                    ]
+                  }
                 },
                 "optional": true
               },
@@ -3895,7 +5597,7 @@
             }
           }
         },
-        "optional": true
+        "optional": false
       },
       "featuredPost": {
         "type": "objectAttribute",
@@ -4182,6 +5884,97 @@
                       {
                         "type": "object",
                         "attributes": {
+                          "type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "string",
+                                  "value": "internal"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "external"
+                                }
+                              ]
+                            },
+                            "optional": false
+                          },
+                          "internalLink": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "inline",
+                                  "name": "blog-index.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "blog-post.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "case-studies-index.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "case-study.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "page.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "platform-child.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "platform-index.reference"
+                                }
+                              ]
+                            },
+                            "optional": true
+                          },
+                          "href": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "openInNewTab": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "boolean"
+                            },
+                            "optional": true
+                          },
+                          "_type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string",
+                              "value": "link"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "object",
+                          "attributes": {
+                            "_key": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "attributes": {
                           "_key": {
                             "type": "objectAttribute",
                             "value": {
@@ -4380,6 +6173,30 @@
                     {
                       "type": "string",
                       "value": "normal"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h1"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h2"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h3"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h4"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h5"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h6"
                     }
                   ]
                 },
@@ -4389,14 +6206,149 @@
                 "type": "objectAttribute",
                 "value": {
                   "type": "union",
-                  "of": []
+                  "of": [
+                    {
+                      "type": "string",
+                      "value": "bullet"
+                    },
+                    {
+                      "type": "string",
+                      "value": "number"
+                    }
+                  ]
                 },
                 "optional": true
               },
               "markDefs": {
                 "type": "objectAttribute",
                 "value": {
-                  "type": "null"
+                  "type": "array",
+                  "of": {
+                    "type": "union",
+                    "of": [
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "string",
+                                  "value": "internal"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "external"
+                                }
+                              ]
+                            },
+                            "optional": false
+                          },
+                          "internalLink": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "inline",
+                                  "name": "blog-index.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "blog-post.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "case-studies-index.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "case-study.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "page.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "platform-child.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "platform-index.reference"
+                                }
+                              ]
+                            },
+                            "optional": true
+                          },
+                          "href": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "openInNewTab": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "boolean"
+                            },
+                            "optional": true
+                          },
+                          "_type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string",
+                              "value": "link"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "object",
+                          "attributes": {
+                            "_key": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "inline",
+                          "name": "textColor"
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "inline",
+                          "name": "highlightColor"
+                        }
+                      }
+                    ]
+                  }
                 },
                 "optional": true
               },
@@ -4428,7 +6380,7 @@
             }
           }
         },
-        "optional": true
+        "optional": false
       },
       "image": {
         "type": "objectAttribute",
@@ -4482,7 +6434,7 @@
             }
           }
         },
-        "optional": true
+        "optional": false
       },
       "author": {
         "type": "objectAttribute",
@@ -4549,6 +6501,36 @@
           "name": "meta"
         },
         "optional": true
+      }
+    }
+  },
+  {
+    "name": "slug",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "slug"
+          }
+        },
+        "current": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": false
+        },
+        "source": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        }
       }
     }
   },
@@ -4673,7 +6655,133 @@
               "markDefs": {
                 "type": "objectAttribute",
                 "value": {
-                  "type": "null"
+                  "type": "array",
+                  "of": {
+                    "type": "union",
+                    "of": [
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "string",
+                                  "value": "internal"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "external"
+                                }
+                              ]
+                            },
+                            "optional": false
+                          },
+                          "internalLink": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "inline",
+                                  "name": "blog-index.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "blog-post.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "case-studies-index.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "case-study.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "page.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "platform-child.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "platform-index.reference"
+                                }
+                              ]
+                            },
+                            "optional": true
+                          },
+                          "href": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "openInNewTab": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "boolean"
+                            },
+                            "optional": true
+                          },
+                          "_type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string",
+                              "value": "link"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "object",
+                          "attributes": {
+                            "_key": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "inline",
+                          "name": "textColor"
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "inline",
+                          "name": "highlightColor"
+                        }
+                      }
+                    ]
+                  }
                 },
                 "optional": true
               },
@@ -4769,6 +6877,30 @@
                     {
                       "type": "string",
                       "value": "normal"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h1"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h2"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h3"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h4"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h5"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h6"
                     }
                   ]
                 },
@@ -4778,14 +6910,149 @@
                 "type": "objectAttribute",
                 "value": {
                   "type": "union",
-                  "of": []
+                  "of": [
+                    {
+                      "type": "string",
+                      "value": "bullet"
+                    },
+                    {
+                      "type": "string",
+                      "value": "number"
+                    }
+                  ]
                 },
                 "optional": true
               },
               "markDefs": {
                 "type": "objectAttribute",
                 "value": {
-                  "type": "null"
+                  "type": "array",
+                  "of": {
+                    "type": "union",
+                    "of": [
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "string",
+                                  "value": "internal"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "external"
+                                }
+                              ]
+                            },
+                            "optional": false
+                          },
+                          "internalLink": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "inline",
+                                  "name": "blog-index.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "blog-post.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "case-studies-index.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "case-study.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "page.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "platform-child.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "platform-index.reference"
+                                }
+                              ]
+                            },
+                            "optional": true
+                          },
+                          "href": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "openInNewTab": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "boolean"
+                            },
+                            "optional": true
+                          },
+                          "_type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string",
+                              "value": "link"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "object",
+                          "attributes": {
+                            "_key": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "inline",
+                          "name": "textColor"
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "inline",
+                          "name": "highlightColor"
+                        }
+                      }
+                    ]
+                  }
                 },
                 "optional": true
               },
@@ -4817,7 +7084,7 @@
             }
           }
         },
-        "optional": true
+        "optional": false
       },
       "featuredPost": {
         "type": "objectAttribute",
@@ -5014,6 +7281,97 @@
                       {
                         "type": "object",
                         "attributes": {
+                          "type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "string",
+                                  "value": "internal"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "external"
+                                }
+                              ]
+                            },
+                            "optional": false
+                          },
+                          "internalLink": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "inline",
+                                  "name": "blog-index.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "blog-post.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "case-studies-index.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "case-study.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "page.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "platform-child.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "platform-index.reference"
+                                }
+                              ]
+                            },
+                            "optional": true
+                          },
+                          "href": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "openInNewTab": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "boolean"
+                            },
+                            "optional": true
+                          },
+                          "_type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string",
+                              "value": "link"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "object",
+                          "attributes": {
+                            "_key": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "attributes": {
                           "_key": {
                             "type": "objectAttribute",
                             "value": {
@@ -5190,6 +7548,30 @@
                     {
                       "type": "string",
                       "value": "normal"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h1"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h2"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h3"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h4"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h5"
+                    },
+                    {
+                      "type": "string",
+                      "value": "h6"
                     }
                   ]
                 },
@@ -5199,14 +7581,149 @@
                 "type": "objectAttribute",
                 "value": {
                   "type": "union",
-                  "of": []
+                  "of": [
+                    {
+                      "type": "string",
+                      "value": "bullet"
+                    },
+                    {
+                      "type": "string",
+                      "value": "number"
+                    }
+                  ]
                 },
                 "optional": true
               },
               "markDefs": {
                 "type": "objectAttribute",
                 "value": {
-                  "type": "null"
+                  "type": "array",
+                  "of": {
+                    "type": "union",
+                    "of": [
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "string",
+                                  "value": "internal"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "external"
+                                }
+                              ]
+                            },
+                            "optional": false
+                          },
+                          "internalLink": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "inline",
+                                  "name": "blog-index.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "blog-post.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "case-studies-index.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "case-study.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "page.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "platform-child.reference"
+                                },
+                                {
+                                  "type": "inline",
+                                  "name": "platform-index.reference"
+                                }
+                              ]
+                            },
+                            "optional": true
+                          },
+                          "href": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "openInNewTab": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "boolean"
+                            },
+                            "optional": true
+                          },
+                          "_type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string",
+                              "value": "link"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "object",
+                          "attributes": {
+                            "_key": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "inline",
+                          "name": "textColor"
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "inline",
+                          "name": "highlightColor"
+                        }
+                      }
+                    ]
+                  }
                 },
                 "optional": true
               },
@@ -5238,7 +7755,7 @@
             }
           }
         },
-        "optional": true
+        "optional": false
       },
       "image": {
         "type": "objectAttribute",
@@ -5292,7 +7809,7 @@
             }
           }
         },
-        "optional": true
+        "optional": false
       },
       "author": {
         "type": "objectAttribute",
@@ -5359,277 +7876,6 @@
           "name": "meta"
         },
         "optional": true
-      }
-    }
-  },
-  {
-    "name": "platform-child",
-    "type": "document",
-    "attributes": {
-      "_id": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_type": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string",
-          "value": "platform-child"
-        }
-      },
-      "_createdAt": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_updatedAt": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_rev": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "title": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      },
-      "slug": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "inline",
-          "name": "slug"
-        },
-        "optional": false
-      },
-      "modules": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "array",
-          "of": {
-            "type": "union",
-            "of": [
-              {
-                "type": "object",
-                "attributes": {
-                  "_key": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "rest": {
-                  "type": "inline",
-                  "name": "hero-primary"
-                }
-              },
-              {
-                "type": "object",
-                "attributes": {
-                  "_key": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "rest": {
-                  "type": "inline",
-                  "name": "marquee"
-                }
-              }
-            ]
-          }
-        },
-        "optional": true
-      },
-      "meta": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "inline",
-          "name": "meta"
-        },
-        "optional": true
-      },
-      "orderRank": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      }
-    }
-  },
-  {
-    "name": "platform-index",
-    "type": "document",
-    "attributes": {
-      "_id": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_type": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string",
-          "value": "platform-index"
-        }
-      },
-      "_createdAt": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_updatedAt": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_rev": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "title": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      },
-      "slug": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "inline",
-          "name": "slug"
-        },
-        "optional": false
-      },
-      "modules": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "array",
-          "of": {
-            "type": "union",
-            "of": [
-              {
-                "type": "object",
-                "attributes": {
-                  "_key": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "rest": {
-                  "type": "inline",
-                  "name": "hero-primary"
-                }
-              },
-              {
-                "type": "object",
-                "attributes": {
-                  "_key": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "rest": {
-                  "type": "inline",
-                  "name": "marquee"
-                }
-              }
-            ]
-          }
-        },
-        "optional": true
-      },
-      "meta": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "inline",
-          "name": "meta"
-        },
-        "optional": true
-      },
-      "orderRank": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      }
-    }
-  },
-  {
-    "name": "slug",
-    "type": "type",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "_type": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string",
-            "value": "slug"
-          }
-        },
-        "current": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": false
-        },
-        "source": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
-        }
-      }
-    }
-  },
-  {
-    "name": "created-at",
-    "type": "type",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "_type": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string",
-            "value": "created-at"
-          }
-        },
-        "placeholder": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
-        }
       }
     }
   },
@@ -5756,6 +8002,115 @@
             }
           }
         },
+        "optional": false
+      },
+      "orderRank": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      }
+    }
+  },
+  {
+    "name": "platform-child",
+    "type": "document",
+    "attributes": {
+      "_id": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_type": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string",
+          "value": "platform-child"
+        }
+      },
+      "_createdAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_updatedAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_rev": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "title": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": false
+      },
+      "slug": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "slug"
+        },
+        "optional": false
+      },
+      "modules": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "union",
+            "of": [
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "hero-primary"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "marquee"
+                }
+              }
+            ]
+          }
+        },
+        "optional": true
+      },
+      "meta": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "meta"
+        },
         "optional": true
       },
       "orderRank": {
@@ -5764,6 +8119,138 @@
           "type": "string"
         },
         "optional": true
+      }
+    }
+  },
+  {
+    "name": "platform-index",
+    "type": "document",
+    "attributes": {
+      "_id": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_type": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string",
+          "value": "platform-index"
+        }
+      },
+      "_createdAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_updatedAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_rev": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "title": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": false
+      },
+      "slug": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "slug"
+        },
+        "optional": false
+      },
+      "modules": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "union",
+            "of": [
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "hero-primary"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "marquee"
+                }
+              }
+            ]
+          }
+        },
+        "optional": true
+      },
+      "meta": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "meta"
+        },
+        "optional": true
+      },
+      "orderRank": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      }
+    }
+  },
+  {
+    "name": "created-at",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "created-at"
+          }
+        },
+        "placeholder": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        }
       }
     }
   },

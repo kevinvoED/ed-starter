@@ -35,90 +35,6 @@ export type MetaImage = {
   _type: "image";
 };
 
-export type Marquee = {
-  _type: "marquee";
-  variant: "text" | "image";
-  items?: Array<{
-    title: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: null;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }>;
-    _type: "marqueeItem";
-    _key: string;
-  }>;
-  images?: Array<{
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-    _key: string;
-  }>;
-};
-
-export type HeroPrimary = {
-  _type: "hero-primary";
-  title: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs?: Array<
-      | ({
-          _key: string;
-        } & TextColor)
-      | ({
-          _key: string;
-        } & HighlightColor)
-    >;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-  description?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs?: null;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-  link?: Array<
-    {
-      _key: string;
-    } & Link
-  >;
-  image?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
-  content?: PortableText;
-};
-
 export type BlogIndexReference = {
   _ref: string;
   _type: "reference";
@@ -166,6 +82,149 @@ export type PlatformIndexReference = {
   _type: "reference";
   _weak?: boolean;
   [internalGroqTypeReferenceTo]?: "platform-index";
+};
+
+export type Marquee = {
+  _type: "marquee";
+  variant: "text" | "image";
+  items?: Array<{
+    title: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: never;
+      markDefs?: Array<
+        | {
+            type: "internal" | "external";
+            internalLink?:
+              | BlogIndexReference
+              | BlogPostReference
+              | CaseStudiesIndexReference
+              | CaseStudyReference
+              | PageReference
+              | PlatformChildReference
+              | PlatformIndexReference;
+            href?: string;
+            openInNewTab?: boolean;
+            _type: "link";
+            _key: string;
+          }
+        | ({
+            _key: string;
+          } & TextColor)
+        | ({
+            _key: string;
+          } & HighlightColor)
+      >;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
+    _type: "marqueeItem";
+    _key: string;
+  }>;
+  images?: Array<{
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+};
+
+export type HeroPrimary = {
+  _type: "hero-primary";
+  title: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: Array<
+      | {
+          type: "internal" | "external";
+          internalLink?:
+            | BlogIndexReference
+            | BlogPostReference
+            | CaseStudiesIndexReference
+            | CaseStudyReference
+            | PageReference
+            | PlatformChildReference
+            | PlatformIndexReference;
+          href?: string;
+          openInNewTab?: boolean;
+          _type: "link";
+          _key: string;
+        }
+      | ({
+          _key: string;
+        } & TextColor)
+      | ({
+          _key: string;
+        } & HighlightColor)
+    >;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  description: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<
+      | {
+          type: "internal" | "external";
+          internalLink?:
+            | BlogIndexReference
+            | BlogPostReference
+            | CaseStudiesIndexReference
+            | CaseStudyReference
+            | PageReference
+            | PlatformChildReference
+            | PlatformIndexReference;
+          href?: string;
+          openInNewTab?: boolean;
+          _type: "link";
+          _key: string;
+        }
+      | ({
+          _key: string;
+        } & TextColor)
+      | ({
+          _key: string;
+        } & HighlightColor)
+    >;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  link?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
+  image: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  content?: PortableText;
 };
 
 export type PortableText = Array<
@@ -268,7 +327,7 @@ export type Organization = {
   organization?: {
     name: string;
     description?: string;
-    logo?: {
+    logo: {
       asset?: SanityImageAssetReference;
       media?: unknown;
       hotspot?: SanityImageHotspot;
@@ -327,7 +386,29 @@ export type Footer = {
       }>;
       style?: "normal";
       listItem?: never;
-      markDefs?: null;
+      markDefs?: Array<
+        | {
+            type: "internal" | "external";
+            internalLink?:
+              | BlogIndexReference
+              | BlogPostReference
+              | CaseStudiesIndexReference
+              | CaseStudyReference
+              | PageReference
+              | PlatformChildReference
+              | PlatformIndexReference;
+            href?: string;
+            openInNewTab?: boolean;
+            _type: "link";
+            _key: string;
+          }
+        | ({
+            _key: string;
+          } & TextColor)
+        | ({
+            _key: string;
+          } & HighlightColor)
+      >;
       level?: number;
       _type: "block";
       _key: string;
@@ -348,7 +429,29 @@ export type Footer = {
         }>;
         style?: "normal";
         listItem?: never;
-        markDefs?: null;
+        markDefs?: Array<
+          | {
+              type: "internal" | "external";
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href?: string;
+              openInNewTab?: boolean;
+              _type: "link";
+              _key: string;
+            }
+          | ({
+              _key: string;
+            } & TextColor)
+          | ({
+              _key: string;
+            } & HighlightColor)
+        >;
         level?: number;
         _type: "block";
         _key: string;
@@ -364,7 +467,7 @@ export type Footer = {
     _type: "category";
     _key: string;
   }>;
-  smallLogo?: {
+  smallLogo: {
     asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
@@ -372,7 +475,7 @@ export type Footer = {
     alt?: string;
     _type: "image";
   };
-  largeLogo?: {
+  largeLogo: {
     asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
@@ -403,7 +506,7 @@ export type Navbar = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  logo?: {
+  logo: {
     asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
@@ -425,7 +528,29 @@ export type Navbar = {
           }>;
           style?: "normal";
           listItem?: never;
-          markDefs?: null;
+          markDefs?: Array<
+            | {
+                type: "internal" | "external";
+                internalLink?:
+                  | BlogIndexReference
+                  | BlogPostReference
+                  | CaseStudiesIndexReference
+                  | CaseStudyReference
+                  | PageReference
+                  | PlatformChildReference
+                  | PlatformIndexReference;
+                href?: string;
+                openInNewTab?: boolean;
+                _type: "link";
+                _key: string;
+              }
+            | ({
+                _key: string;
+              } & TextColor)
+            | ({
+                _key: string;
+              } & HighlightColor)
+          >;
           level?: number;
           _type: "block";
           _key: string;
@@ -441,21 +566,65 @@ export type Navbar = {
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs?: Array<
+                  | {
+                      type: "internal" | "external";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href?: string;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | ({
+                      _key: string;
+                    } & TextColor)
+                  | ({
+                      _key: string;
+                    } & HighlightColor)
+                >;
                 level?: number;
                 _type: "block";
                 _key: string;
               }>;
-              description?: Array<{
+              description: Array<{
                 children?: Array<{
                   marks?: Array<string>;
                   text?: string;
                   _type: "span";
                   _key: string;
                 }>;
-                style?: "normal";
-                listItem?: never;
-                markDefs?: null;
+                style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+                listItem?: "bullet" | "number";
+                markDefs?: Array<
+                  | {
+                      type: "internal" | "external";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href?: string;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | ({
+                      _key: string;
+                    } & TextColor)
+                  | ({
+                      _key: string;
+                    } & HighlightColor)
+                >;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -474,7 +643,29 @@ export type Navbar = {
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs?: null;
+                markDefs?: Array<
+                  | {
+                      type: "internal" | "external";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href?: string;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | ({
+                      _key: string;
+                    } & TextColor)
+                  | ({
+                      _key: string;
+                    } & HighlightColor)
+                >;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -528,7 +719,29 @@ export type BlogCategory = {
     }>;
     style?: "normal";
     listItem?: never;
-    markDefs?: null;
+    markDefs?: Array<
+      | {
+          type: "internal" | "external";
+          internalLink?:
+            | BlogIndexReference
+            | BlogPostReference
+            | CaseStudiesIndexReference
+            | CaseStudyReference
+            | PageReference
+            | PlatformChildReference
+            | PlatformIndexReference;
+          href?: string;
+          openInNewTab?: boolean;
+          _type: "link";
+          _key: string;
+        }
+      | ({
+          _key: string;
+        } & TextColor)
+      | ({
+          _key: string;
+        } & HighlightColor)
+    >;
     level?: number;
     _type: "block";
     _key: string;
@@ -552,7 +765,29 @@ export type ContentTopic = {
     }>;
     style?: "normal";
     listItem?: never;
-    markDefs?: null;
+    markDefs?: Array<
+      | {
+          type: "internal" | "external";
+          internalLink?:
+            | BlogIndexReference
+            | BlogPostReference
+            | CaseStudiesIndexReference
+            | CaseStudyReference
+            | PageReference
+            | PlatformChildReference
+            | PlatformIndexReference;
+          href?: string;
+          openInNewTab?: boolean;
+          _type: "link";
+          _key: string;
+        }
+      | ({
+          _key: string;
+        } & TextColor)
+      | ({
+          _key: string;
+        } & HighlightColor)
+    >;
     level?: number;
     _type: "block";
     _key: string;
@@ -567,7 +802,7 @@ export type Page = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
+  title: string;
   slug: Slug;
   modules?: Array<
     | ({
@@ -597,21 +832,65 @@ export type BlogIndex = {
     }>;
     style?: "normal";
     listItem?: never;
-    markDefs?: null;
+    markDefs?: Array<
+      | {
+          type: "internal" | "external";
+          internalLink?:
+            | BlogIndexReference
+            | BlogPostReference
+            | CaseStudiesIndexReference
+            | CaseStudyReference
+            | PageReference
+            | PlatformChildReference
+            | PlatformIndexReference;
+          href?: string;
+          openInNewTab?: boolean;
+          _type: "link";
+          _key: string;
+        }
+      | ({
+          _key: string;
+        } & TextColor)
+      | ({
+          _key: string;
+        } & HighlightColor)
+    >;
     level?: number;
     _type: "block";
     _key: string;
   }>;
-  description?: Array<{
+  description: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
       _type: "span";
       _key: string;
     }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs?: null;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<
+      | {
+          type: "internal" | "external";
+          internalLink?:
+            | BlogIndexReference
+            | BlogPostReference
+            | CaseStudiesIndexReference
+            | CaseStudyReference
+            | PageReference
+            | PlatformChildReference
+            | PlatformIndexReference;
+          href?: string;
+          openInNewTab?: boolean;
+          _type: "link";
+          _key: string;
+        }
+      | ({
+          _key: string;
+        } & TextColor)
+      | ({
+          _key: string;
+        } & HighlightColor)
+    >;
     level?: number;
     _type: "block";
     _key: string;
@@ -667,6 +946,21 @@ export type BlogPost = {
     style?: "normal";
     listItem?: never;
     markDefs?: Array<
+      | {
+          type: "internal" | "external";
+          internalLink?:
+            | BlogIndexReference
+            | BlogPostReference
+            | CaseStudiesIndexReference
+            | CaseStudyReference
+            | PageReference
+            | PlatformChildReference
+            | PlatformIndexReference;
+          href?: string;
+          openInNewTab?: boolean;
+          _type: "link";
+          _key: string;
+        }
       | ({
           _key: string;
         } & TextColor)
@@ -694,21 +988,43 @@ export type BlogPost = {
       _key: string;
     } & ContentTopicReference
   >;
-  description?: Array<{
+  description: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
       _type: "span";
       _key: string;
     }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs?: null;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<
+      | {
+          type: "internal" | "external";
+          internalLink?:
+            | BlogIndexReference
+            | BlogPostReference
+            | CaseStudiesIndexReference
+            | CaseStudyReference
+            | PageReference
+            | PlatformChildReference
+            | PlatformIndexReference;
+          href?: string;
+          openInNewTab?: boolean;
+          _type: "link";
+          _key: string;
+        }
+      | ({
+          _key: string;
+        } & TextColor)
+      | ({
+          _key: string;
+        } & HighlightColor)
+    >;
     level?: number;
     _type: "block";
     _key: string;
   }>;
-  image?: {
+  image: {
     asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
@@ -729,6 +1045,12 @@ export type BlogPost = {
   meta?: Meta;
 };
 
+export type Slug = {
+  _type: "slug";
+  current: string;
+  source?: string;
+};
+
 export type CaseStudiesIndex = {
   _id: string;
   _type: "case-studies-index";
@@ -745,21 +1067,65 @@ export type CaseStudiesIndex = {
     }>;
     style?: "normal";
     listItem?: never;
-    markDefs?: null;
+    markDefs?: Array<
+      | {
+          type: "internal" | "external";
+          internalLink?:
+            | BlogIndexReference
+            | BlogPostReference
+            | CaseStudiesIndexReference
+            | CaseStudyReference
+            | PageReference
+            | PlatformChildReference
+            | PlatformIndexReference;
+          href?: string;
+          openInNewTab?: boolean;
+          _type: "link";
+          _key: string;
+        }
+      | ({
+          _key: string;
+        } & TextColor)
+      | ({
+          _key: string;
+        } & HighlightColor)
+    >;
     level?: number;
     _type: "block";
     _key: string;
   }>;
-  description?: Array<{
+  description: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
       _type: "span";
       _key: string;
     }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs?: null;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<
+      | {
+          type: "internal" | "external";
+          internalLink?:
+            | BlogIndexReference
+            | BlogPostReference
+            | CaseStudiesIndexReference
+            | CaseStudyReference
+            | PageReference
+            | PlatformChildReference
+            | PlatformIndexReference;
+          href?: string;
+          openInNewTab?: boolean;
+          _type: "link";
+          _key: string;
+        }
+      | ({
+          _key: string;
+        } & TextColor)
+      | ({
+          _key: string;
+        } & HighlightColor)
+    >;
     level?: number;
     _type: "block";
     _key: string;
@@ -794,6 +1160,21 @@ export type CaseStudy = {
     style?: "normal";
     listItem?: never;
     markDefs?: Array<
+      | {
+          type: "internal" | "external";
+          internalLink?:
+            | BlogIndexReference
+            | BlogPostReference
+            | CaseStudiesIndexReference
+            | CaseStudyReference
+            | PageReference
+            | PlatformChildReference
+            | PlatformIndexReference;
+          href?: string;
+          openInNewTab?: boolean;
+          _type: "link";
+          _key: string;
+        }
       | ({
           _key: string;
         } & TextColor)
@@ -816,21 +1197,43 @@ export type CaseStudy = {
       _key: string;
     } & ContentTopicReference
   >;
-  description?: Array<{
+  description: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
       _type: "span";
       _key: string;
     }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs?: null;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<
+      | {
+          type: "internal" | "external";
+          internalLink?:
+            | BlogIndexReference
+            | BlogPostReference
+            | CaseStudiesIndexReference
+            | CaseStudyReference
+            | PageReference
+            | PlatformChildReference
+            | PlatformIndexReference;
+          href?: string;
+          openInNewTab?: boolean;
+          _type: "link";
+          _key: string;
+        }
+      | ({
+          _key: string;
+        } & TextColor)
+      | ({
+          _key: string;
+        } & HighlightColor)
+    >;
     level?: number;
     _type: "block";
     _key: string;
   }>;
-  image?: {
+  image: {
     asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
@@ -851,13 +1254,37 @@ export type CaseStudy = {
   meta?: Meta;
 };
 
+export type Author = {
+  _id: string;
+  _type: "author";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  bio: string;
+  link?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
+  image: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  orderRank?: string;
+};
+
 export type PlatformChild = {
   _id: string;
   _type: "platform-child";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
+  title: string;
   slug: Slug;
   modules?: Array<
     | ({
@@ -877,7 +1304,7 @@ export type PlatformIndex = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
+  title: string;
   slug: Slug;
   modules?: Array<
     | ({
@@ -891,39 +1318,9 @@ export type PlatformIndex = {
   orderRank?: string;
 };
 
-export type Slug = {
-  _type: "slug";
-  current: string;
-  source?: string;
-};
-
 export type CreatedAt = {
   _type: "created-at";
   placeholder?: string;
-};
-
-export type Author = {
-  _id: string;
-  _type: "author";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name: string;
-  bio: string;
-  link?: Array<
-    {
-      _key: string;
-    } & Link
-  >;
-  image?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
-  orderRank?: string;
 };
 
 export type HighlightColor = {
@@ -1076,8 +1473,6 @@ export type AllSanitySchemaTypes =
   | Meta
   | SanityImageAssetReference
   | MetaImage
-  | Marquee
-  | HeroPrimary
   | BlogIndexReference
   | BlogPostReference
   | CaseStudiesIndexReference
@@ -1085,6 +1480,8 @@ export type AllSanitySchemaTypes =
   | PageReference
   | PlatformChildReference
   | PlatformIndexReference
+  | Marquee
+  | HeroPrimary
   | PortableText
   | Link
   | Configuration
@@ -1101,13 +1498,13 @@ export type AllSanitySchemaTypes =
   | ContentTopicReference
   | AuthorReference
   | BlogPost
+  | Slug
   | CaseStudiesIndex
   | CaseStudy
+  | Author
   | PlatformChild
   | PlatformIndex
-  | Slug
   | CreatedAt
-  | Author
   | HighlightColor
   | TextColor
   | SimplerColor
@@ -1170,7 +1567,7 @@ export type ORGANIZATION_QUERY_RESULT = {
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
       _type: "image";
-    } | null;
+    };
     foundingDate?: string;
     industry?: string;
     contactPhone?: string;
@@ -1217,6 +1614,27 @@ export type PAGE_QUERY_RESULT = {
                 value?: string;
               }
             | {
+                type: "external" | "internal";
+                internalLink?:
+                  | BlogIndexReference
+                  | BlogPostReference
+                  | CaseStudiesIndexReference
+                  | CaseStudyReference
+                  | PageReference
+                  | PlatformChildReference
+                  | PlatformIndexReference;
+                href:
+                  | string
+                  | "/"
+                  | "/blog"
+                  | "/case-studies"
+                  | "/platform"
+                  | null;
+                openInNewTab?: boolean;
+                _type: "link";
+                _key: string;
+              }
+            | {
                 _key: string;
                 _type: "textColor";
                 label?: string;
@@ -1234,13 +1652,47 @@ export type PAGE_QUERY_RESULT = {
             _type: "span";
             _key: string;
           }>;
-          style?: "normal";
-          listItem?: never;
-          markDefs: null;
+          style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+          listItem?: "bullet" | "number";
+          markDefs: Array<
+            | {
+                _key: string;
+                _type: "highlightColor";
+                label?: string;
+                value?: string;
+              }
+            | {
+                type: "external" | "internal";
+                internalLink?:
+                  | BlogIndexReference
+                  | BlogPostReference
+                  | CaseStudiesIndexReference
+                  | CaseStudyReference
+                  | PageReference
+                  | PlatformChildReference
+                  | PlatformIndexReference;
+                href:
+                  | string
+                  | "/"
+                  | "/blog"
+                  | "/case-studies"
+                  | "/platform"
+                  | null;
+                openInNewTab?: boolean;
+                _type: "link";
+                _key: string;
+              }
+            | {
+                _key: string;
+                _type: "textColor";
+                label?: string;
+                value?: string;
+              }
+          > | null;
           level?: number;
           _type: "block";
           _key: string;
-        }> | null;
+        }>;
         link: Array<{
           _key: string;
           _type: "link";
@@ -1275,7 +1727,7 @@ export type PAGE_QUERY_RESULT = {
           crop?: SanityImageCrop;
           alt?: string;
           _type: "image";
-        } | null;
+        };
         content: Array<
           | {
               children?: Array<{
@@ -1358,7 +1810,41 @@ export type PAGE_QUERY_RESULT = {
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -1385,7 +1871,7 @@ export type PAGE_QUERY_RESULT = {
       }
   > | null;
   meta: {
-    title: string | null;
+    title: string;
     description: string | null;
     noindex: boolean | null;
     relativeUrl: string | "/";
@@ -1425,7 +1911,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -1448,7 +1968,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -1481,6 +2035,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -1531,7 +2106,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -1539,13 +2114,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: Array<{
               _id: string;
               _type: "blog-category";
@@ -1559,7 +2168,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -1578,7 +2221,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -1608,6 +2285,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -1658,7 +2356,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -1666,13 +2364,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: null;
             contentTopic: Array<{
               _id: string;
@@ -1687,7 +2419,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -1708,7 +2474,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         }>;
         style?: "normal";
         listItem?: never;
-        markDefs: null;
+        markDefs: Array<
+          | {
+              _key: string;
+              _type: "highlightColor";
+              label?: string;
+              value?: string;
+            }
+          | {
+              type: "external" | "internal";
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              _type: "link";
+              _key: string;
+            }
+          | {
+              _key: string;
+              _type: "textColor";
+              label?: string;
+              value?: string;
+            }
+        > | null;
         level?: number;
         _type: "block";
         _key: string;
@@ -1730,7 +2530,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -1753,7 +2587,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -1786,6 +2654,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -1836,7 +2725,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -1844,13 +2733,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: Array<{
               _id: string;
               _type: "blog-category";
@@ -1864,7 +2787,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -1883,7 +2840,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -1913,6 +2904,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -1963,7 +2975,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -1971,13 +2983,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: null;
             contentTopic: Array<{
               _id: string;
@@ -1992,7 +3038,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -2013,7 +3093,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         }>;
         style?: "normal";
         listItem?: never;
-        markDefs: null;
+        markDefs: Array<
+          | {
+              _key: string;
+              _type: "highlightColor";
+              label?: string;
+              value?: string;
+            }
+          | {
+              type: "external" | "internal";
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              _type: "link";
+              _key: string;
+            }
+          | {
+              _key: string;
+              _type: "textColor";
+              label?: string;
+              value?: string;
+            }
+        > | null;
         level?: number;
         _type: "block";
         _key: string;
@@ -2025,13 +3139,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
           _type: "span";
           _key: string;
         }>;
-        style?: "normal";
-        listItem?: never;
-        markDefs: null;
+        style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<
+          | {
+              _key: string;
+              _type: "highlightColor";
+              label?: string;
+              value?: string;
+            }
+          | {
+              type: "external" | "internal";
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              _type: "link";
+              _key: string;
+            }
+          | {
+              _key: string;
+              _type: "textColor";
+              label?: string;
+              value?: string;
+            }
+        > | null;
         level?: number;
         _type: "block";
         _key: string;
-      }> | null;
+      }>;
       meta: {
         title:
           | Array<{
@@ -2043,7 +3191,29 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               }>;
               style?: "normal";
               listItem?: never;
-              markDefs?: null;
+              markDefs?: Array<
+                | ({
+                    _key: string;
+                  } & HighlightColor)
+                | ({
+                    _key: string;
+                  } & TextColor)
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href?: string;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+              >;
               level?: number;
               _type: "block";
               _key: string;
@@ -2075,6 +3245,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -2092,13 +3283,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             link: Array<{
               _key: string;
               _type: "link";
@@ -2139,7 +3364,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             content: Array<
               | {
                   children?: Array<{
@@ -2222,7 +3447,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -2262,7 +3521,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -2285,7 +3578,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -2318,6 +3645,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -2368,7 +3716,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -2376,13 +3724,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: Array<{
               _id: string;
               _type: "blog-category";
@@ -2396,7 +3778,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -2415,7 +3831,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -2445,6 +3895,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -2495,7 +3966,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -2503,13 +3974,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: null;
             contentTopic: Array<{
               _id: string;
@@ -2524,7 +4029,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -2553,6 +4092,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               value?: string;
             }
           | {
+              type: "external" | "internal";
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              _type: "link";
+              _key: string;
+            }
+          | {
               _key: string;
               _type: "textColor";
               label?: string;
@@ -2570,13 +4130,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
           _type: "span";
           _key: string;
         }>;
-        style?: "normal";
-        listItem?: never;
-        markDefs: null;
+        style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<
+          | {
+              _key: string;
+              _type: "highlightColor";
+              label?: string;
+              value?: string;
+            }
+          | {
+              type: "external" | "internal";
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              _type: "link";
+              _key: string;
+            }
+          | {
+              _key: string;
+              _type: "textColor";
+              label?: string;
+              value?: string;
+            }
+        > | null;
         level?: number;
         _type: "block";
         _key: string;
-      }> | null;
+      }>;
       meta: {
         title:
           | Array<{
@@ -2595,6 +4189,21 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 | ({
                     _key: string;
                   } & TextColor)
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href?: string;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
               >;
               level?: number;
               _type: "block";
@@ -2627,6 +4236,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -2644,13 +4274,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             link: Array<{
               _key: string;
               _type: "link";
@@ -2691,7 +4355,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             content: Array<
               | {
                   children?: Array<{
@@ -2774,7 +4438,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -2814,7 +4512,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -2837,7 +4569,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -2870,6 +4636,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -2920,7 +4707,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -2928,13 +4715,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: Array<{
               _id: string;
               _type: "blog-category";
@@ -2948,7 +4769,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -2967,7 +4822,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -2997,6 +4886,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -3047,7 +4957,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -3055,13 +4965,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: null;
             contentTopic: Array<{
               _id: string;
@@ -3076,7 +5020,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -3097,7 +5075,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         }>;
         style?: "normal";
         listItem?: never;
-        markDefs: null;
+        markDefs: Array<
+          | {
+              _key: string;
+              _type: "highlightColor";
+              label?: string;
+              value?: string;
+            }
+          | {
+              type: "external" | "internal";
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              _type: "link";
+              _key: string;
+            }
+          | {
+              _key: string;
+              _type: "textColor";
+              label?: string;
+              value?: string;
+            }
+        > | null;
         level?: number;
         _type: "block";
         _key: string;
@@ -3109,13 +5121,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
           _type: "span";
           _key: string;
         }>;
-        style?: "normal";
-        listItem?: never;
-        markDefs: null;
+        style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<
+          | {
+              _key: string;
+              _type: "highlightColor";
+              label?: string;
+              value?: string;
+            }
+          | {
+              type: "external" | "internal";
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              _type: "link";
+              _key: string;
+            }
+          | {
+              _key: string;
+              _type: "textColor";
+              label?: string;
+              value?: string;
+            }
+        > | null;
         level?: number;
         _type: "block";
         _key: string;
-      }> | null;
+      }>;
       meta: {
         title:
           | Array<{
@@ -3127,7 +5173,29 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               }>;
               style?: "normal";
               listItem?: never;
-              markDefs?: null;
+              markDefs?: Array<
+                | ({
+                    _key: string;
+                  } & HighlightColor)
+                | ({
+                    _key: string;
+                  } & TextColor)
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href?: string;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+              >;
               level?: number;
               _type: "block";
               _key: string;
@@ -3159,6 +5227,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -3176,13 +5265,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             link: Array<{
               _key: string;
               _type: "link";
@@ -3223,7 +5346,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             content: Array<
               | {
                   children?: Array<{
@@ -3306,7 +5429,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -3346,7 +5503,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -3369,7 +5560,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -3402,6 +5627,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -3452,7 +5698,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -3460,13 +5706,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: Array<{
               _id: string;
               _type: "blog-category";
@@ -3480,7 +5760,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -3499,7 +5813,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -3529,6 +5877,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -3579,7 +5948,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -3587,13 +5956,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: null;
             contentTopic: Array<{
               _id: string;
@@ -3608,7 +6011,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -3637,6 +6074,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               value?: string;
             }
           | {
+              type: "external" | "internal";
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              _type: "link";
+              _key: string;
+            }
+          | {
               _key: string;
               _type: "textColor";
               label?: string;
@@ -3654,13 +6112,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
           _type: "span";
           _key: string;
         }>;
-        style?: "normal";
-        listItem?: never;
-        markDefs: null;
+        style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<
+          | {
+              _key: string;
+              _type: "highlightColor";
+              label?: string;
+              value?: string;
+            }
+          | {
+              type: "external" | "internal";
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              _type: "link";
+              _key: string;
+            }
+          | {
+              _key: string;
+              _type: "textColor";
+              label?: string;
+              value?: string;
+            }
+        > | null;
         level?: number;
         _type: "block";
         _key: string;
-      }> | null;
+      }>;
       meta: {
         title:
           | Array<{
@@ -3679,6 +6171,21 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 | ({
                     _key: string;
                   } & TextColor)
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href?: string;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
               >;
               level?: number;
               _type: "block";
@@ -3711,6 +6218,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -3728,13 +6256,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             link: Array<{
               _key: string;
               _type: "link";
@@ -3775,7 +6337,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             content: Array<
               | {
                   children?: Array<{
@@ -3858,7 +6420,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -3898,7 +6494,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -3921,7 +6551,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -3954,6 +6618,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -4004,7 +6689,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -4012,13 +6697,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: Array<{
               _id: string;
               _type: "blog-category";
@@ -4032,7 +6751,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -4051,7 +6804,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -4081,6 +6868,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -4131,7 +6939,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -4139,13 +6947,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: null;
             contentTopic: Array<{
               _id: string;
@@ -4160,7 +7002,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -4190,7 +7066,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -4213,7 +7123,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -4246,6 +7190,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -4296,7 +7261,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -4304,13 +7269,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: Array<{
               _id: string;
               _type: "blog-category";
@@ -4324,7 +7323,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -4343,7 +7376,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -4373,6 +7440,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -4423,7 +7511,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -4431,13 +7519,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: null;
             contentTopic: Array<{
               _id: string;
@@ -4452,7 +7574,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -4473,7 +7629,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         }>;
         style?: "normal";
         listItem?: never;
-        markDefs: null;
+        markDefs: Array<
+          | {
+              _key: string;
+              _type: "highlightColor";
+              label?: string;
+              value?: string;
+            }
+          | {
+              type: "external" | "internal";
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              _type: "link";
+              _key: string;
+            }
+          | {
+              _key: string;
+              _type: "textColor";
+              label?: string;
+              value?: string;
+            }
+        > | null;
         level?: number;
         _type: "block";
         _key: string;
@@ -4495,7 +7685,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -4518,7 +7742,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -4551,6 +7809,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -4601,7 +7880,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -4609,13 +7888,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: Array<{
               _id: string;
               _type: "blog-category";
@@ -4629,7 +7942,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -4648,7 +7995,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -4678,6 +8059,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -4728,7 +8130,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -4736,13 +8138,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: null;
             contentTopic: Array<{
               _id: string;
@@ -4757,7 +8193,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -4787,7 +8257,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -4810,7 +8314,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -4843,6 +8381,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -4893,7 +8452,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -4901,13 +8460,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: Array<{
               _id: string;
               _type: "blog-category";
@@ -4921,7 +8514,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -4940,7 +8567,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -4970,6 +8631,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -5020,7 +8702,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -5028,13 +8710,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: null;
             contentTopic: Array<{
               _id: string;
@@ -5049,7 +8765,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -5079,7 +8829,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -5102,7 +8886,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -5135,6 +8953,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -5185,7 +9024,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -5193,13 +9032,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: Array<{
               _id: string;
               _type: "blog-category";
@@ -5213,7 +9086,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -5232,7 +9139,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -5262,6 +9203,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -5312,7 +9274,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -5320,13 +9282,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: null;
             contentTopic: Array<{
               _id: string;
@@ -5341,7 +9337,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -5371,7 +9401,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -5394,7 +9458,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -5427,6 +9525,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -5477,7 +9596,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -5485,13 +9604,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: Array<{
               _id: string;
               _type: "blog-category";
@@ -5505,7 +9658,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -5524,7 +9711,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -5554,6 +9775,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -5604,7 +9846,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -5612,13 +9854,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: null;
             contentTopic: Array<{
               _id: string;
@@ -5633,7 +9909,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -5663,7 +9973,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -5686,7 +10030,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -5719,6 +10097,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -5769,7 +10168,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -5777,13 +10176,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: Array<{
               _id: string;
               _type: "blog-category";
@@ -5797,7 +10230,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -5816,7 +10283,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -5846,6 +10347,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -5896,7 +10418,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -5904,13 +10426,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: null;
             contentTopic: Array<{
               _id: string;
@@ -5925,7 +10481,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -5940,7 +10530,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
       title: null;
       description: null;
       meta: {
-        title: string | null;
+        title: string;
         description: string | null;
         noindex: boolean | null;
         relativeUrl: string | "/";
@@ -5967,6 +10557,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -5984,13 +10595,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             link: Array<{
               _key: string;
               _type: "link";
@@ -6031,7 +10676,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             content: Array<
               | {
                   children?: Array<{
@@ -6114,7 +10759,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -6154,7 +10833,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -6177,7 +10890,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -6210,6 +10957,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -6260,7 +11028,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -6268,13 +11036,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: Array<{
               _id: string;
               _type: "blog-category";
@@ -6288,7 +11090,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -6307,7 +11143,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -6337,6 +11207,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -6387,7 +11278,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -6395,13 +11286,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: null;
             contentTopic: Array<{
               _id: string;
@@ -6416,7 +11341,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -6431,7 +11390,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
       title: null;
       description: null;
       meta: {
-        title: string | null;
+        title: string;
         description: string | null;
         noindex: boolean | null;
         relativeUrl: string | "/";
@@ -6458,6 +11417,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -6475,13 +11455,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             link: Array<{
               _key: string;
               _type: "link";
@@ -6522,7 +11536,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             content: Array<
               | {
                   children?: Array<{
@@ -6605,7 +11619,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -6645,7 +11693,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -6668,7 +11750,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -6701,6 +11817,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -6751,7 +11888,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -6759,13 +11896,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: Array<{
               _id: string;
               _type: "blog-category";
@@ -6779,7 +11950,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -6798,7 +12003,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -6828,6 +12067,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -6878,7 +12138,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -6886,13 +12146,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: null;
             contentTopic: Array<{
               _id: string;
@@ -6907,7 +12201,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -6922,7 +12250,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
       title: null;
       description: null;
       meta: {
-        title: string | null;
+        title: string;
         description: string | null;
         noindex: boolean | null;
         relativeUrl: "/" | "/platform";
@@ -6949,6 +12277,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -6966,13 +12315,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             link: Array<{
               _key: string;
               _type: "link";
@@ -7013,7 +12396,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             content: Array<
               | {
                   children?: Array<{
@@ -7096,7 +12479,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -7136,7 +12553,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -7159,7 +12610,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -7192,6 +12677,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -7242,7 +12748,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -7250,13 +12756,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: Array<{
               _id: string;
               _type: "blog-category";
@@ -7270,7 +12810,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -7289,7 +12863,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -7319,6 +12927,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -7369,7 +12998,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -7377,13 +13006,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: null;
             contentTopic: Array<{
               _id: string;
@@ -7398,7 +13061,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -7428,7 +13125,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -7451,7 +13182,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -7484,6 +13249,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -7534,7 +13320,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -7542,13 +13328,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: Array<{
               _id: string;
               _type: "blog-category";
@@ -7562,7 +13382,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -7581,7 +13435,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -7611,6 +13499,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -7661,7 +13570,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -7669,13 +13578,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: null;
             contentTopic: Array<{
               _id: string;
@@ -7690,7 +13633,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -7720,7 +13697,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -7743,7 +13754,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }>;
             style?: "normal";
             listItem?: never;
-            markDefs: null;
+            markDefs: Array<
+              | {
+                  _key: string;
+                  _type: "highlightColor";
+                  label?: string;
+                  value?: string;
+                }
+              | {
+                  type: "external" | "internal";
+                  internalLink?:
+                    | BlogIndexReference
+                    | BlogPostReference
+                    | CaseStudiesIndexReference
+                    | CaseStudyReference
+                    | PageReference
+                    | PlatformChildReference
+                    | PlatformIndexReference;
+                  href:
+                    | string
+                    | "/"
+                    | "/blog"
+                    | "/case-studies"
+                    | "/platform"
+                    | null;
+                  openInNewTab?: boolean;
+                  _type: "link";
+                  _key: string;
+                }
+              | {
+                  _key: string;
+                  _type: "textColor";
+                  label?: string;
+                  value?: string;
+                }
+            > | null;
             level?: number;
             _type: "block";
             _key: string;
@@ -7776,6 +13821,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -7826,7 +13892,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -7834,13 +13900,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: Array<{
               _id: string;
               _type: "blog-category";
@@ -7854,7 +13954,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -7873,7 +14007,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -7903,6 +14071,27 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -7953,7 +14142,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             description: Array<{
               children?: Array<{
                 marks?: Array<string>;
@@ -7961,13 +14150,47 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             category: null;
             contentTopic: Array<{
               _id: string;
@@ -7982,7 +14205,41 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -8021,6 +14278,21 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                 | ({
                     _key: string;
                   } & TextColor)
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href?: string;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
               >;
               level?: number;
               _type: "block";
@@ -8053,6 +14325,27 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -8070,13 +14363,47 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             link: Array<{
               _key: string;
               _type: "link";
@@ -8117,7 +14444,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             content: Array<
               | {
                   children?: Array<{
@@ -8200,7 +14527,41 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -8243,6 +14604,27 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               value?: string;
             }
           | {
+              type: "external" | "internal";
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              _type: "link";
+              _key: string;
+            }
+          | {
               _key: string;
               _type: "textColor";
               label?: string;
@@ -8260,13 +14642,47 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
           _type: "span";
           _key: string;
         }>;
-        style?: "normal";
-        listItem?: never;
-        markDefs: null;
+        style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<
+          | {
+              _key: string;
+              _type: "highlightColor";
+              label?: string;
+              value?: string;
+            }
+          | {
+              type: "external" | "internal";
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              _type: "link";
+              _key: string;
+            }
+          | {
+              _key: string;
+              _type: "textColor";
+              label?: string;
+              value?: string;
+            }
+        > | null;
         level?: number;
         _type: "block";
         _key: string;
-      }> | null;
+      }>;
       image: {
         asset: {
           _id: string;
@@ -8284,7 +14700,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
         crop?: SanityImageCrop;
         alt?: string;
         _type: "image";
-      } | null;
+      };
       content: Array<
         | {
             children?: Array<{
@@ -8377,6 +14793,21 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                 | ({
                     _key: string;
                   } & TextColor)
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href?: string;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
               >;
               level?: number;
               _type: "block";
@@ -8409,6 +14840,27 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                     value?: string;
                   }
                 | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
                     _key: string;
                     _type: "textColor";
                     label?: string;
@@ -8426,13 +14878,47 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "normal";
-              listItem?: never;
-              markDefs: null;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
               level?: number;
               _type: "block";
               _key: string;
-            }> | null;
+            }>;
             link: Array<{
               _key: string;
               _type: "link";
@@ -8473,7 +14959,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            } | null;
+            };
             content: Array<
               | {
                   children?: Array<{
@@ -8556,7 +15042,41 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                 }>;
                 style?: "normal";
                 listItem?: never;
-                markDefs: null;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
                 level?: number;
                 _type: "block";
                 _key: string;
@@ -8599,6 +15119,27 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               value?: string;
             }
           | {
+              type: "external" | "internal";
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              _type: "link";
+              _key: string;
+            }
+          | {
               _key: string;
               _type: "textColor";
               label?: string;
@@ -8616,13 +15157,47 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
           _type: "span";
           _key: string;
         }>;
-        style?: "normal";
-        listItem?: never;
-        markDefs: null;
+        style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<
+          | {
+              _key: string;
+              _type: "highlightColor";
+              label?: string;
+              value?: string;
+            }
+          | {
+              type: "external" | "internal";
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              _type: "link";
+              _key: string;
+            }
+          | {
+              _key: string;
+              _type: "textColor";
+              label?: string;
+              value?: string;
+            }
+        > | null;
         level?: number;
         _type: "block";
         _key: string;
-      }> | null;
+      }>;
       image: {
         asset: {
           _id: string;
@@ -8640,7 +15215,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
         crop?: SanityImageCrop;
         alt?: string;
         _type: "image";
-      } | null;
+      };
       content: Array<
         | {
             children?: Array<{
