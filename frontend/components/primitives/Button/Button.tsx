@@ -10,12 +10,14 @@ import { cn } from "@/lib/utils/cn";
 import { sanitizeForId } from "@/lib/utils/generic";
 import { kebabCase } from "es-toolkit/string";
 
+// TODO: extract Button and SanityLink components that use same shared cva
 export const ButtonVariants = cva(
   "group inline-flex cursor-pointer select-none items-center justify-center whitespace-nowrap font-inherit outline-0 transition-colors duration-300 ease-in-out focus-visible:outline focus-visible:outline-1 focus-visible:outline-white focus-visible:-outline-offset-1 focus-visible:ring focus-visible:ring-1 active:bg-gray-charcoal active:shadow-[inset_0_1px_3px_rgba(0,0,0,0.1)] has-[>svg]:gap-1.5 [&_svg]:size-3",
   {
     variants: {
       variant: {
-        primary: "",
+        primary: "text-neon",
+        secondary: "text-debug-red",
         icon: "bg-transparent",
         ghost: "type-mono-1240",
       },
@@ -144,7 +146,7 @@ export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
           {hasArrow && (
             <Icon
               variant="arrow-right"
-              className={`${openInNewTab ? "-rotate-45" : ""}`}
+              className={`${openInNewTab ? "-rotate-45" : ""} transition-transform duration-300 ease-in-out group-hover:translate-x-1`}
             />
           )}
           {/* Add download case */}
@@ -183,7 +185,7 @@ export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
           {hasArrow && (
             <Icon
               variant="arrow-right"
-              className={`${openInNewTab ? "-rotate-45" : ""}`}
+              className={`${openInNewTab ? "-rotate-45" : ""} transition-transform duration-300 ease-in-out group-hover:translate-x-1`}
             />
           )}
           {/* Add download case */}

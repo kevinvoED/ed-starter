@@ -27,18 +27,38 @@ export const HeroPrimary = ({
         </Transition>
       )}
 
-      {/* {description && (
-        <TextScramble chars="lowerCase">
-          <PortableText value={description} />
-        </TextScramble>
-      )}
+      {description && <PortableText value={description} />}
 
-      {description && (
-        <TextScramble chars="lowerCase">
-          <PortableText value={title} />
-        </TextScramble>
-      )} */}
+      {description && <PortableText value={title} />}
       {image && <SanityImage image={image} />}
+
+      <article className="fluid-p-4/12 fluid-gap-10/20 relative flex flex-col bg-black text-white">
+        <h2>Placeholder title</h2>
+
+        <div className="flex flex-col gap-4">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
+            tempore suscipit ipsam, optio porro pariatur impedit beatae, hic
+            totam adipisci debitis laborum, voluptate praesentium. Eaque nobis,
+            provident excepturi laborum voluptatibus architecto animi eos vel at
+            aut nemo sed esse eum voluptates laboriosam, officiis itaque
+            nesciunt ut asperiores dicta dignissimos. Dolore?
+          </p>
+
+          {link?.slice(0, 1).map((link) => (
+            <Button
+              key={link._key}
+              link={link}
+              card={true}
+              variant="secondary"
+              id="nav"
+              width="fit"
+            >
+              {link.label}
+            </Button>
+          ))}
+        </div>
+      </article>
 
       <div className="flex flex-col items-start gap-4">
         <Button
