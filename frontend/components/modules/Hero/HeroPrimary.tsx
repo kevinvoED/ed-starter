@@ -27,7 +27,7 @@ export const HeroPrimary = ({
         </Transition>
       )}
 
-      {description && (
+      {/* {description && (
         <TextScramble chars="lowerCase">
           <PortableText value={description} />
         </TextScramble>
@@ -37,23 +37,33 @@ export const HeroPrimary = ({
         <TextScramble chars="lowerCase">
           <PortableText value={title} />
         </TextScramble>
-      )}
+      )} */}
       {image && <SanityImage image={image} />}
 
-      <Button
-        href="https://www.google.com"
-        variant="primary"
-        openInNewTab
-        hasArrow={false}
-      >
-        Google
-      </Button>
-
-      {link?.map((link) => (
-        <Button key={link._key} link={link} variant="primary">
-          {link.label}
+      <div className="flex flex-col items-start gap-4">
+        <Button
+          href="https://www.google.com"
+          variant="primary"
+          openInNewTab
+          hasArrow={false}
+          width="fit"
+          id="cta"
+        >
+          Google
         </Button>
-      ))}
+
+        {link?.map((link) => (
+          <Button
+            key={link._key}
+            link={link}
+            variant="primary"
+            id="nav"
+            width="fit"
+          >
+            {link.label}
+          </Button>
+        ))}
+      </div>
 
       {content && (
         <div className="fluid-py-4/12">
