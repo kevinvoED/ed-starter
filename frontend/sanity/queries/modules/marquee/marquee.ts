@@ -1,5 +1,5 @@
 import { defineQuery } from "next-sanity";
-import { imagesFragment, titleFragment } from "../../fragments/fragments";
+import { imagesFragment, titleFragment } from "../../fragments";
 
 // @sanity-typegen-ignore
 export const MARQUEE_QUERY = defineQuery(`

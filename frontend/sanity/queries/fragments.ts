@@ -1,4 +1,4 @@
-import { imageFields } from "../functions/functions";
+import { imageFields } from "./functions";
 
 /*
  * =====================================================

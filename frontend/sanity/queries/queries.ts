@@ -12,8 +12,8 @@ import {
   metaFragment,
   portableTextFragment,
   titleFragment,
-} from "./fragments/fragments";
-import { FN_LOGO, GROQ_FUNCTIONS } from "./functions/functions";
+} from "./fragments";
+import { FN_LOGO, GROQ_FUNCTIONS } from "./functions";
 import { HERO_PRIMARY_QUERY } from "./modules/hero/hero-primary";
 import { MARQUEE_QUERY } from "./modules/marquee/marquee";
 

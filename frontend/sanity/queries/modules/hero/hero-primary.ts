@@ -5,7 +5,7 @@ import {
   linkFragment,
   portableTextFragment,
   titleFragment,
-} from "../../fragments/fragments";
+} from "../../fragments";
 
 // @sanity-typegen-ignore
 export const HERO_PRIMARY_QUERY = defineQuery(`
