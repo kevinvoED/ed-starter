@@ -31,7 +31,34 @@
   --color-alabaster: oklch(0.8853 0 0); /* #D9D9D9 */
   --color-platinum: oklch(0.9431 0 0); /* #ECECEC */
   --color-porcelain: oklch(0.9674 0.0029 84.56); /* #F5F4F2 */
+
+  /* Animations */
+  --animate-accordion-up: accordionSlideUp 0.18s ease-in-out;
+  --animate-accordion-down: accordionSlideDown 0.18s ease-in-out;
+
+  @keyframes accordionSlideUp {
+    from {
+      height: var(--accordion-panel-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  @keyframes accordionSlideDown {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--accordion-panel-height);
+    }
+  }
+
+
 }
+
+
+
 
 /* ------------------------------------------------------------ */
 /* -------------------- Utility Classes ---------------------- */
@@ -69,6 +96,11 @@ html {
 
 * {
   scrollbar-width: thin;
+}
+
+/* @see: https://base-ui.com/react/overview/quick-start */
+.root {
+  isolation: isolate;
 }
 
 html.overflow-hidden {
