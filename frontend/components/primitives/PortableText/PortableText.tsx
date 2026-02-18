@@ -12,35 +12,15 @@ import { cn } from "@/lib/utils/cn";
 /*
  * PortableText renders Sanity Portable Text blocks with configurable layout and semantics.
  *
- * ## PROPS
- *
- * - `value` — Sanity Portable Text array (required)
- * - `style` — Layout mode for block spacing (default: "module")
- * - `slot` — Wrapper element for block content when you need semantic markup without default styling
- *
- * ## STYLE
- *
- * - `module` — No default spacing. Use for content inside modules where spacing is controlled
- *   by the parent (e.g. `[&_p]:mb-20`). Best for hero blocks, cards, and custom layouts.
- *
- * - `article` — Adds margin spacing between blocks (e.g. `mb-12` on paragraphs, lists).
- *   Use for long-form content: blog posts, case studies, legal pages.
- *
- * ## SLOT
- *
- * When `slot` is provided, the root block content is wrapped in that element instead of a `<p>`.
- * Use for titles, headings, or other inline content that should not be wrapped in a paragraph.
- *
- * - Pass an HTML element name: `slot="h1"`, `slot="h2"`, `slot="span"`
- * - Pass `Fragment` to render children without any element wrapper
- *
- * ## Usage examples
+ * ### Usage examples
  *
  * // Article content with default block spacing
  * <PortableText value={post.content} style="article" />
  *
- * // Module content, spacing controlled by parent
- * <PortableText value={description} />
+ * // Module content, specific spacing controlled by parent
+ * <div className="type-body-2040 [&_p]:mb-24">
+ *   <PortableText value={description} />
+ * </div>
  *
  * // Title as heading
  * <PortableText value={title} slot="h1" className="type-heading-3230"/>
@@ -52,8 +32,8 @@ import { cn } from "@/lib/utils/cn";
 type PortableTextComponentProps = {
   className?: string;
   value: PortableTextProps["value"];
-  style?: "article" | "module";
-  slot?: ElementType | "Fragment";
+  style?: "article" | "module"; // `article` adds bottom margins to each element, `module` adds none
+  slot?: ElementType | "Fragment"; // wrapper element that over-rides the default `<p>` tag
 };
 
 export const PortableText = ({
