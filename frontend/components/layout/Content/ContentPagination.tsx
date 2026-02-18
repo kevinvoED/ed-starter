@@ -1,6 +1,6 @@
 import { ChevronLeft, ChevronRight, Ellipsis } from "lucide-react";
 import { ContentPaginationScrollHandler } from "@/components/layout/Content/ContentPaginationScrollHandler";
-import { Button } from "@/components/primitives/Button/Button";
+import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { cn } from "@/lib/utils/cn";
 
 type ContentPaginationProps = {
@@ -47,7 +47,7 @@ export const ContentPagination = ({
 
       <div className={cn("flex gap-4", className)}>
         {currentPage > 1 && (
-          <Button
+          <SanityLink
             id="cta"
             variant="ghost"
             href={createPageUrl(currentPage - 1)}
@@ -55,7 +55,7 @@ export const ContentPagination = ({
             scroll={false}
           >
             <ChevronLeft className="!size-12 stroke-1" />
-          </Button>
+          </SanityLink>
         )}
 
         {getVisiblePages(currentPage, totalPages).map((pageNum, idx) =>
@@ -64,7 +64,7 @@ export const ContentPagination = ({
               <Ellipsis key={`dots-${idx}`} className="text-background" />
             </div>
           ) : (
-            <Button
+            <SanityLink
               id="cta"
               variant={pageNum === currentPage ? "ghost" : "ghost"}
               key={pageNum}
@@ -73,12 +73,12 @@ export const ContentPagination = ({
               scroll={false}
             >
               {pageNum}
-            </Button>
+            </SanityLink>
           ),
         )}
 
         {currentPage < totalPages && (
-          <Button
+          <SanityLink
             id="cta"
             variant="ghost"
             href={createPageUrl(currentPage + 1)}
@@ -86,7 +86,7 @@ export const ContentPagination = ({
             scroll={false}
           >
             <ChevronRight className="!size-12 stroke-1" />
-          </Button>
+          </SanityLink>
         )}
       </div>
     </>

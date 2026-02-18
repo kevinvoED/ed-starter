@@ -10,7 +10,7 @@ This directory contains custom SVG icons that work alongside Lucide icons in the
 
 ## Adding a New Custom Icon
 
-1. **Create the icon component** (e.g., `my-custom-icon.tsx`):
+1. **Create the icon component** (e.g., `MyCustomIcon.tsx`):
 
 ```tsx
 import { CustomIconProps } from "./index";
@@ -36,28 +36,19 @@ export default function MyCustomIcon({
 }
 ```
 
-2. **Export it in `index.ts`**:
+2. **Export it in `IconList.ts`**:
 
 ```tsx
 export { default as MyCustomIcon } from "./my-custom-icon";
 ```
 
-3. **Add it to the component map** in `frontend/components/icon.tsx`:
+3. **Add it to the component map** in `frontend/components/primitves/Icon.tsx`:
 
 ```tsx
 const customIconComponents: Record<string, CustomIcons.CustomIcon> = {
   // ... existing icons
   "my-custom-icon": CustomIcons.MyCustomIcon,
 };
-```
-
-4. **Add it to Sanity Studio** in `studio/schemas/blocks/shared/icon-variants.ts`:
-
-```tsx
-export const ICON_VARIANTS = [
-  // ... existing variants
-  { title: "My Custom Icon", value: "my-custom-icon" },
-];
 ```
 
 ## Replacing Lucide Icons

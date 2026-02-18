@@ -1,43 +1,45 @@
-import * as CustomIcons from "@/components/primitives/Icon/IconList";
+import { ArrowRightIcon } from "@/components/primitives/Icon/ArrowRightIcon";
+import { CopyIcon } from "@/components/primitives/Icon/CopyIcon";
 import { cn } from "@/lib/utils/cn";
 
-type IconProps = {
+// Type for custom icon components that match Lucide's interface
+export type CustomIconProps = {
   className?: string;
-  variant: string;
   strokeWidth?: number;
   size?: number;
 };
 
-// Map of custom icon names to their components
-const iconComponents: Record<string, CustomIcons.CustomIcon> = {
-  youtube: CustomIcons.Youtube,
-  copy: CustomIcons.Copy,
-  "arrow-down": CustomIcons.ArrowDown,
-  "arrow-right": CustomIcons.ArrowRight,
-  "category-x": CustomIcons.CategoryX,
+// Export type that matches LucideIcon for consistency
+export type CustomIcon = React.ComponentType<{
+  className?: string;
+  strokeWidth?: number;
+}>;
+
+// Add additional icons here
+const iconComponents: Record<string, CustomIcon> = {
+  copy: CopyIcon,
+  "arrow-right": ArrowRightIcon,
+};
+
+type IconProps = {
+  variant: keyof typeof iconComponents;
+  strokeWidth?: number;
+  className?: string;
+  size?: number;
 };
 
 export const Icon = ({
-  className,
   variant,
+  className,
   strokeWidth = 1,
   size = 4,
 }: IconProps) => {
-  if (variant === "none") {
-    return null;
-  }
+  const IconComponent = iconComponents[variant];
 
-  // Check for custom icons first
-  if (iconComponents[variant]) {
-    const IconComponent = iconComponents[variant];
-    return (
-      <IconComponent
-        className={cn(`size-${size}`, className)}
-        strokeWidth={strokeWidth}
-      />
-    );
-  }
-
-  // Icon not found
-  return null;
+  return (
+    <IconComponent
+      className={cn(`size-${size}`, className)}
+      strokeWidth={strokeWidth}
+    />
+  );
 };

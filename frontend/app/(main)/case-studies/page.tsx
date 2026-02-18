@@ -5,7 +5,7 @@ import { ContentPagination } from "@/components/layout/Content/ContentPagination
 import { ContentTopicFilter } from "@/components/layout/Content/ContentTopicFilter";
 import { JSONLDScript } from "@/components/layout/JsonLD/Jsonld";
 import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
-import { Button } from "@/components/primitives/Button/Button";
+import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { PortableTextFragment } from "@/components/primitives/PortableText/PortableText";
 import { generatePageMetadata } from "@/lib/site/metadata";
 import { createPageUrl } from "@/lib/utils/pagination";
@@ -87,7 +87,7 @@ export default async function BlogIndexPage(props: {
                   </p>
                 ))}
 
-                <Button
+                <SanityLink
                   id="cta"
                   href={`/blog/${post.slug.current}`}
                   variant="ghost"
@@ -96,7 +96,7 @@ export default async function BlogIndexPage(props: {
                   width="fit"
                 >
                   <PortableTextFragment value={post.title} />
-                </Button>
+                </SanityLink>
               </Transition>
             </li>
           ))}

@@ -1,9 +1,9 @@
-import type { CustomIconProps } from "@/components/primitives/Icon/IconList";
+import type { CustomIconProps } from "@/components/primitives/Icon/Icon";
 
-export default function CopyIcon({
+export const CopyIcon = ({
   className,
   strokeWidth = 1,
-}: Omit<CustomIconProps, "size">) {
+}: Omit<CustomIconProps, "size">) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,4 +22,4 @@ export default function CopyIcon({
       />
     </svg>
   );
-}
+};

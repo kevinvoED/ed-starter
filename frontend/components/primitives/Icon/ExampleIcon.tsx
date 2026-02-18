@@ -1,9 +1,9 @@
-import type { CustomIconProps } from "./IconList";
+import type { CustomIconProps } from "@/components/primitives/Icon/Icon";
 
-export default function ExampleCustomIcon({
+export const ExampleCustomIcon = ({
   className,
   strokeWidth = 1.5,
-}: Omit<CustomIconProps, "size">) {
+}: Omit<CustomIconProps, "size">) => {
   return (
     <svg
       className={className}
@@ -22,4 +22,4 @@ export default function ExampleCustomIcon({
       <path d="12 8v8" />
     </svg>
   );
-}
+};
