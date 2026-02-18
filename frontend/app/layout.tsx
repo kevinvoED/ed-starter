@@ -27,13 +27,15 @@ export default function RootLayout({
           fontMono.variable,
         )}
       >
-        <NuqsAdapter>
-          <Lenis>
-            {children}
-            <GSAPRuntime />
-            <ScrollRestoration />
-          </Lenis>
-        </NuqsAdapter>
+        <div className="root">
+          <NuqsAdapter>
+            <Lenis>
+              {children}
+              <GSAPRuntime />
+              <ScrollRestoration />
+            </Lenis>
+          </NuqsAdapter>
+        </div>
       </body>
     </html>
   );
