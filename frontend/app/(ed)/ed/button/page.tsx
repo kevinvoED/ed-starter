@@ -1,11 +1,11 @@
-import { Button } from "@/components/primitives/Button/Button";
+import { SanityLink } from "@/components/primitives/Link/SanityLink";
 
 export default async function EDButtonPage() {
   return (
     <div>
-      <Button id="cta" href="/">
+      <SanityLink id="cta" href="/">
         Button
-      </Button>
+      </SanityLink>
     </div>
   );
 }

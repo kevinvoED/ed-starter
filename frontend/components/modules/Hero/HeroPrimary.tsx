@@ -1,8 +1,8 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
 import { TextScramble } from "@/components/animations/TextScramble";
 import { Transition } from "@/components/animations/Transition";
-import { Button } from "@/components/primitives/Button/Button";
 import { SanityImage } from "@/components/primitives/Image/SanityImage";
+import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import {
   PortableText,
   PortableTextFragment,
@@ -17,6 +17,7 @@ export const HeroPrimary = ({
   description,
   content,
 }: Props) => {
+  console.log(link);
   return (
     <div className="fluid-py-10/20 p-custom">
       <h2 className="ftype type-2040 to-type-3240">Here's some text</h2>
@@ -36,17 +37,17 @@ export const HeroPrimary = ({
         <h2>Placeholder title</h2>
 
         <div className="flex flex-col gap-4">
-          <p>
+          <Transition>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
             tempore suscipit ipsam, optio porro pariatur impedit beatae, hic
             totam adipisci debitis laborum, voluptate praesentium. Eaque nobis,
             provident excepturi laborum voluptatibus architecto animi eos vel at
             aut nemo sed esse eum voluptates laboriosam, officiis itaque
             nesciunt ut asperiores dicta dignissimos. Dolore?
-          </p>
+          </Transition>
 
           {link?.slice(0, 1).map((link) => (
-            <Button
+            <SanityLink
               key={link._key}
               link={link}
               card={true}
@@ -55,13 +56,23 @@ export const HeroPrimary = ({
               width="fit"
             >
               {link.label}
-            </Button>
+            </SanityLink>
           ))}
         </div>
       </article>
 
       <div className="flex flex-col items-start gap-4">
-        <Button
+        <SanityLink
+          variant="primary"
+          openInNewTab
+          hasArrow={false}
+          width="fit"
+          id="cta"
+        >
+          Nothing
+        </SanityLink>
+
+        <SanityLink
           href="https://www.google.com"
           variant="primary"
           openInNewTab
@@ -70,18 +81,12 @@ export const HeroPrimary = ({
           id="cta"
         >
           Google
-        </Button>
+        </SanityLink>
 
         {link?.map((link) => (
-          <Button
-            key={link._key}
-            link={link}
-            variant="primary"
-            id="nav"
-            width="fit"
-          >
+          <SanityLink key={link._key} link={link} variant="primary" width="fit">
             {link.label}
-          </Button>
+          </SanityLink>
         ))}
       </div>
 
