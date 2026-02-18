@@ -34,7 +34,7 @@ export const PortableTextHeading = ({
   children,
 }: PortableTextHeadingProps) => {
   const text = getTextFromChildren(children);
-  const id = kebabCase(text);
+  const id = `heading-${kebabCase(text)}`;
   const Slot = heading;
 
   return (

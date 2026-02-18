@@ -1,13 +1,11 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
+import { TextMask } from "@/components/animations/TextMask";
 import { TextReveal } from "@/components/animations/TextReveal";
 import { TextScramble } from "@/components/animations/TextScramble";
 import { Transition } from "@/components/animations/Transition";
 import { SanityImage } from "@/components/primitives/Image/SanityImage";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
-import {
-  PortableText,
-  PortableTextFragment,
-} from "@/components/primitives/PortableText/PortableText";
+import { PortableText } from "@/components/primitives/PortableText/PortableText";
 
 type HeroPrimaryProps = ModuleProps<"hero-primary">;
 
@@ -21,11 +19,46 @@ export const HeroPrimary = ({
   console.log(link);
   return (
     <div className="fluid-py-10/20 p-custom">
-      <h2 className="ftype type-2040 to-type-3240">Here's some text</h2>
+      {title && <PortableText value={title} slot="h2" />}
+      {title && (
+        <Transition className="type-9660" slot="h2">
+          <PortableText value={title} />
+        </Transition>
+      )}
+      {title && (
+        <TextScramble className="type-9660">
+          <PortableText value={title} slot="h2" />
+        </TextScramble>
+      )}
+      {title && (
+        <TextReveal>
+          <PortableText value={title} slot="h2" />
+        </TextReveal>
+      )}
+      {title && (
+        <TextMask>
+          <PortableText value={title} slot="h2" />
+        </TextMask>
+      )}
+
+      {title && <PortableText value={title} />}
+
+      {description && (
+        <div className="type-3260">
+          <PortableText value={description} />
+        </div>
+      )}
+
+      {description && (
+        <PortableText value={description} className="type-3260" />
+      )}
+      {description && <PortableText value={description} />}
+
+      {/* <h2 className="ftype type-2040 to-type-3240">Here's some text</h2>
 
       {title && (
         <TextReveal slot="h2">
-          <PortableTextFragment value={title} />
+          <PortableText value={title} />
         </TextReveal>
       )}
 
@@ -99,9 +132,9 @@ export const HeroPrimary = ({
 
       {description && (
         <TextScramble>
-          <PortableTextFragment value={title} />
+          <PortableText value={title} />
         </TextScramble>
-      )}
+      )} */}
     </div>
   );
 };

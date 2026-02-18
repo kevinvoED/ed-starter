@@ -2,6 +2,7 @@ import {
   type PortableTextProps,
   PortableText as PortableTextRenderer,
 } from "@portabletext/react";
+import { type ElementType, Fragment } from "react";
 import Link from "next/link";
 import { SanityImage } from "@/components/primitives/Image/SanityImage";
 import { PortableTextHeading } from "@/components/primitives/PortableText/PortableTextHeading";
@@ -9,43 +10,73 @@ import { PortableTextYoutube } from "@/components/primitives/PortableText/Portab
 import { cn } from "@/lib/utils/cn";
 
 /*
- * There are different types of styles associated with PortableText
- * style = "article" is used for resource-type pages for full article content with proper spacing
- * style = "module" is used when you want PortableText's <p></p> and <h1></h1> etc tags without bottom-margins
- * style = "fragment" is used for titles and heading elements; outputs a React Fragment
+ * PortableText renders Sanity Portable Text blocks with configurable layout and semantics.
+ *
+ * ## PROPS
+ *
+ * - `value` — Sanity Portable Text array (required)
+ * - `style` — Layout mode for block spacing (default: "module")
+ * - `slot` — Wrapper element for block content when you need semantic markup without default styling
+ *
+ * ## STYLE
+ *
+ * - `module` — No default spacing. Use for content inside modules where spacing is controlled
+ *   by the parent (e.g. `[&_p]:mb-20`). Best for hero blocks, cards, and custom layouts.
+ *
+ * - `article` — Adds margin spacing between blocks (e.g. `mb-12` on paragraphs, lists).
+ *   Use for long-form content: blog posts, case studies, legal pages.
+ *
+ * ## SLOT
+ *
+ * When `slot` is provided, the root block content is wrapped in that element instead of a `<p>`.
+ * Use for titles, headings, or other inline content that should not be wrapped in a paragraph.
+ *
+ * - Pass an HTML element name: `slot="h1"`, `slot="h2"`, `slot="span"`
+ * - Pass `Fragment` to render children without any element wrapper
+ *
+ * ## Usage examples
+ *
+ * // Article content with default block spacing
+ * <PortableText value={post.content} style="article" />
+ *
+ * // Module content, spacing controlled by parent
+ * <PortableText value={description} />
+ *
+ * // Title as heading
+ * <PortableText value={title} slot="h1" className="type-heading-3230"/>
+ *
+ * // Inline text without wrapper (note: using `slot="Fragment"` is the same as using `slot="span"`)
+ * <PortableText value={eyebrow} slot="span" />
  */
 
-export const PortableText = ({
-  value,
-  className,
-  style = "module",
-}: {
-  value: PortableTextProps["value"];
+type PortableTextComponentProps = {
   className?: string;
-  style?: "article" | "module" | "fragment";
-}) => {
-  const components = portableTextComponents(style, className);
-
-  return <PortableTextRenderer value={value} components={components} />;
+  value: PortableTextProps["value"];
+  style?: "article" | "module";
+  slot?: ElementType | "Fragment";
 };
 
-export const PortableTextFragment = ({
-  value,
+export const PortableText = ({
   className,
-  style = "fragment",
-}: {
-  value: PortableTextProps["value"];
-  className?: string;
-  style?: "article" | "module" | "fragment";
-}) => {
-  const components = portableTextComponents(style, className);
+  value,
+  slot,
+  style = "module",
+}: PortableTextComponentProps) => {
+  const components = portableTextComponents(style, slot);
 
+  if (className && className.length > 0) {
+    return (
+      <div className={className}>
+        <PortableTextRenderer value={value} components={components} />
+      </div>
+    );
+  }
   return <PortableTextRenderer value={value} components={components} />;
 };
 
 const portableTextComponents = (
-  style: "module" | "article" | "fragment" = "module",
-  className?: string,
+  style: "module" | "article" = "module",
+  slot?: ElementType | "Fragment",
 ): PortableTextProps["components"] => ({
   types: {
     image: ({ value }) => {
@@ -53,8 +84,11 @@ const portableTextComponents = (
         <figure className="mb-12 max-h-fit">
           <SanityImage
             image={value}
-            className="h-full max-h-70 w-full max-w-fit overflow-hidden rounded-lg object-contain object-left lg:max-h-138"
-            sizes="100vw"
+            className={cn(
+              "overflow-hidden object-contain",
+              "h-full max-h-70 w-full max-w-fit lg:max-h-138",
+            )}
+            sizes="(max-width: 768px) 100vw, 75vw"
             priority={true}
           />
         </figure>
@@ -67,19 +101,15 @@ const portableTextComponents = (
   block: {
     normal: ({ children }) => {
       /*
-       * If the style is "fragment", return the children as is
-       * Primarily used for titles and descriptions that don't need any styling
-       * Triggered by using the PortableTextFragment component instead of PortableText
+       * If `slot` is provided, return the children wrapped in the slot element
+       * Otherwise output a regular `<p>` tag, with optional margin spacing based on `style`
        */
-      if (style === "fragment") {
-        return <>{children}</>;
+      if (slot) {
+        const Slot = slot === "Fragment" ? Fragment : slot;
+        return <Slot>{children}</Slot>;
       }
 
-      return (
-        <p className={cn("", style === "article" ? "mb-12" : "", className)}>
-          {children}
-        </p>
-      );
+      return <p className={style === "article" ? "mb-12" : ""}>{children}</p>;
     },
     h1: ({ children }) => {
       return (
@@ -138,22 +168,34 @@ const portableTextComponents = (
       );
     },
     textColor: ({ children, value }) => (
+      // @see: https://github.com/cositehq/sanity-plugin-simpler-color-input
       <span style={{ color: value.value }}>{children}</span>
     ),
     highlightColor: ({ children, value }) => (
+      // @see: https://github.com/cositehq/sanity-plugin-simpler-color-input
       <span style={{ background: value.value }}>{children}</span>
     ),
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="mb-10 list-disc pl-5">{children}</ul>
+      <ul className={cn("list-disc pl-5", style === "article" ? "mb-12" : "")}>
+        {children}
+      </ul>
     ),
     number: ({ children }) => (
-      <ol className="mb-10 list-decimal pl-5">{children}</ol>
+      <ol
+        className={cn("list-decimal pl-5", style === "article" ? "mb-12" : "")}
+      >
+        {children}
+      </ol>
     ),
   },
   listItem: {
-    bullet: ({ children }) => <li className="mb-4">{children}</li>,
-    number: ({ children }) => <li className="mb-4">{children}</li>,
+    bullet: ({ children }) => (
+      <li className={`${style === "article" ? "mb-4" : "mb-2"}`}>{children}</li>
+    ),
+    number: ({ children }) => (
+      <li className={`${style === "article" ? "mb-4" : "mb-2"}`}>{children}</li>
+    ),
   },
 });

@@ -6,7 +6,7 @@ import { ContentTopicFilter } from "@/components/layout/Content/ContentTopicFilt
 import { JSONLDScript } from "@/components/layout/JsonLD/Jsonld";
 import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
-import { PortableTextFragment } from "@/components/primitives/PortableText/PortableText";
+import { PortableText } from "@/components/primitives/PortableText/PortableText";
 import { generatePageMetadata } from "@/lib/site/metadata";
 import { createPageUrl } from "@/lib/utils/pagination";
 
@@ -53,16 +53,8 @@ export default async function BlogIndexPage(props: {
 
       <div className="flex flex-col gap-y-10 p-custom py-20">
         <header>
-          {data.title && (
-            <h1>
-              <PortableTextFragment value={data.title} />
-            </h1>
-          )}
-          {data.description && (
-            <p>
-              <PortableTextFragment value={data.description} />
-            </p>
-          )}
+          {data.title && <PortableText value={data.title} slot="h1" />}
+          {data.description && <PortableText value={data.description} />}
         </header>
 
         <ContentTopicFilter data={data.topicFilter} />
@@ -79,15 +71,11 @@ export default async function BlogIndexPage(props: {
                 )}
 
                 {post.category?.map((category) => (
-                  <p key={category._id}>
-                    <PortableTextFragment value={category.title} />
-                  </p>
+                  <PortableText value={category.title} key={category._id} />
                 ))}
 
                 {post.contentTopic?.map((category) => (
-                  <p key={category._id}>
-                    <PortableTextFragment value={category.title} />
-                  </p>
+                  <PortableText value={category.title} key={category._id} />
                 ))}
 
                 <SanityLink
@@ -98,7 +86,7 @@ export default async function BlogIndexPage(props: {
                   hasArrow={false}
                   width="fit"
                 >
-                  <PortableTextFragment value={post.title} />
+                  <PortableText value={post.title} />
                 </SanityLink>
               </Transition>
             </li>

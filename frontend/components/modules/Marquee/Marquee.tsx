@@ -4,7 +4,7 @@ import type { ModuleProps } from "@/sanity/lib/fetch";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { SanityImage } from "@/components/primitives/Image/SanityImage";
-import { PortableTextFragment } from "@/components/primitives/PortableText/PortableText";
+import { PortableText } from "@/components/primitives/PortableText/PortableText";
 import { horizontalLoop } from "@/lib/styles/animations";
 import { Observer } from "gsap/all";
 
@@ -92,7 +92,7 @@ export const Marquee = ({ variant, items, images }: MarqueeProps) => {
               className="marquee-item flex items-center justify-center gap-x-12"
             >
               <div className="type-4860 flex h-35 max-w-fit items-center justify-center whitespace-nowrap">
-                <PortableTextFragment value={item.title} />
+                <PortableText value={item.title} />
               </div>
 
               <div className="type-4860 mr-12 flex h-35 w-20 items-center justify-center text-silver">

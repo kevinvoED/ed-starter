@@ -2,7 +2,7 @@
 
 import type { GET_CONTENT_TYPE_INDEX_QUERY_RESULT } from "@/sanity.types";
 import { parseAsString, useQueryStates } from "nuqs";
-import { PortableTextFragment } from "@/components/primitives/PortableText/PortableText";
+import { PortableText } from "@/components/primitives/PortableText/PortableText";
 import { cn } from "@/lib/utils/cn";
 import { getFilterItemCount } from "@/lib/utils/filter";
 
@@ -46,7 +46,7 @@ export const ContentTopicFilter = ({
               onClick={() => onSelect(topicItem.slug.current)}
               className="flex items-center gap-x-1.5"
             >
-              <PortableTextFragment value={topicItem.title} />
+              <PortableText value={topicItem.title} />
               <span>
                 {getFilterItemCount(topic, topicItem, data["content-topics"])}
               </span>
