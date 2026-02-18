@@ -30,9 +30,12 @@ export default async function EDAccordionPage() {
         defaultValue={[DATA?.[1].title]}
         className="col-span-4 col-start-5 my-25"
       >
-        {DATA.map((item) => (
+        {DATA.map((item, index) => (
           <AccordionItem key={item.title} value={item.title}>
-            <AccordionTrigger>{item.title}</AccordionTrigger>
+            <AccordionTrigger display="flex" className="gap-2">
+              <div className="col-span-1">0{index + 1}</div>
+              <span className="col-span-8 col-start-3"> {item.title}</span>
+            </AccordionTrigger>
             <AccordionContent>{item.content}</AccordionContent>
           </AccordionItem>
         ))}
