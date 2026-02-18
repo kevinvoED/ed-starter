@@ -23,7 +23,7 @@ export const HeroPrimary = ({
       <h2 className="ftype type-2040 to-type-3240">Here's some text</h2>
 
       {title && (
-        <Transition>
+        <Transition slot="h2">
           <PortableTextFragment value={title} />
         </Transition>
       )}

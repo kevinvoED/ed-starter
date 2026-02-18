@@ -6,6 +6,9 @@ import { gsap } from "gsap";
 import { SplitText } from "gsap/all";
 
 type TextMaskProps = {
+  slot?: React.ElementType;
+  y?: number;
+  x?: number;
   duration?: number;
   delay?: number;
   stagger?: number;
@@ -16,6 +19,9 @@ type TextMaskProps = {
 };
 
 export const TextMask = ({
+  slot = "div",
+  y = 25,
+  x = 0,
   duration = 1,
   stagger = 0.12,
   delay = 0,
@@ -25,6 +31,7 @@ export const TextMask = ({
   children,
 }: TextMaskProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const Component = slot;
 
   useGSAP(() => {
     // Set container to visible or else you'll see a brief flash on page load
@@ -37,7 +44,8 @@ export const TextMask = ({
       autoSplit: true,
       onSplit: (self) => {
         gsap.from(self.lines, {
-          y: 25,
+          y: y,
+          x: x,
           opacity: 0,
           stagger: stagger,
           duration: duration,
@@ -56,8 +64,8 @@ export const TextMask = ({
   }, [duration, delay, stagger, ease, triggerOnce]);
 
   return (
-    <div ref={containerRef} style={{ opacity: 0 }} className={className}>
+    <Component ref={containerRef} style={{ opacity: 0 }} className={className}>
       {children}
-    </div>
+    </Component>
   );
 };

@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils/cn";
 import { CustomEase, SplitText } from "gsap/all";
 
 type TextRevealProps = {
+  slot?: React.ElementType;
   duration?: number;
   delay?: number;
   stagger?: number;
@@ -20,6 +21,7 @@ type TextRevealProps = {
 gsap.registerPlugin(CustomEase);
 
 export const TextReveal = ({
+  slot = "div",
   duration = 1,
   delay = 0,
   stagger = 0,
@@ -30,7 +32,7 @@ export const TextReveal = ({
   children,
 }: TextRevealProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-
+  const Component = slot;
   useGSAP(() => {
     // Set container to visible or else you'll see a brief flash on page load
     gsap.set(containerRef.current, { opacity: 1 });
@@ -126,7 +128,7 @@ export const TextReveal = ({
   }, [duration, delay, stagger, ease, boxColor, triggerOnce]);
 
   return (
-    <div
+    <Component
       ref={containerRef}
       style={{ opacity: 0 }}
       className={cn(
@@ -135,6 +137,6 @@ export const TextReveal = ({
       )}
     >
       {children}
-    </div>
+    </Component>
   );
 };

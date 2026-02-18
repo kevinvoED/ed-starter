@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrambleTextPlugin);
 gsap.registerPlugin(ScrollTrigger);
 
 type TextScrambleProps = {
+  slot?: React.ElementType;
   children: React.ReactNode;
   className?: string;
   duration?: number;
@@ -21,6 +22,7 @@ type TextScrambleProps = {
 };
 
 export const TextScramble = ({
+  slot = "div",
   children,
   className,
   duration = 1.75,
@@ -32,6 +34,7 @@ export const TextScramble = ({
   chars = "upperCase",
 }: TextScrambleProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const Component = slot;
 
   useGSAP(() => {
     // Scramble text
@@ -75,8 +78,8 @@ export const TextScramble = ({
   }, [duration, delay, stagger, ease, triggerOnce]);
 
   return (
-    <div ref={containerRef} className={className}>
+    <Component ref={containerRef} className={className}>
       {children}
-    </div>
+    </Component>
   );
 };
