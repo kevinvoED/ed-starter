@@ -126,16 +126,27 @@ export const GET_CONTENT_TYPE_INDEX_QUERY = defineQuery(`
       },
       "currentTopicPostCount": count(*[_type == ${selectContentType} && ($category == null || $category in category[]->slug.current) && ($topic == null || $topic in contentTopic[]->slug.current)]),
     },
+    "pagination": {
+      "totalPages": round(count(*[_type == ${selectContentType} && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)]) / 2),
+      "scrollTargetId": select(
+        _type == "case-studies-index" => "case-studies-posts-list",
+        _type == "blog-index" => "blog-posts-list",
+      ),
+    },
     "posts": *[_type == ${selectContentType} && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {
       _id,
       _type,
       _createdAt,
       publishedDate,
       slug,
-      ${titleFragment},
       ${linkFragment},
+      ${titleFragment},
       ${imageFragment},
       ${descriptionFragment},
+      "href": select(
+        _type == "case-study" => "/case-studies/" + slug.current,
+        _type == "blog-post" => "/blog/" + slug.current,
+      ),
       category[]->{
         _id,
         _type,

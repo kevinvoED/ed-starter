@@ -53,7 +53,7 @@ export default async function BlogIndexPage(props: {
       <JSONLDScript document={data} />
 
       <div className="flex flex-col gap-y-10 p-custom py-20">
-        <header className="">
+        <header>
           {data.title && (
             <h1 className="type-4860">
               <PortableTextFragment value={data.title} />
@@ -69,10 +69,13 @@ export default async function BlogIndexPage(props: {
         <ContentCategoryFilter data={data.categoryFilter} />
         <ContentTopicFilter data={data.topicFilter} />
 
-        <ul className="grid-custom">
-          {data?.posts?.map((post) => (
+        <ul className="grid-custom" id={data?.pagination.scrollTargetId || ""}>
+          {data?.posts?.map((post, index) => (
             <li key={post._id} className="col-span-3">
-              <Transition className="flex flex-col gap-y-20 rounded bg-white p-4 text-black">
+              <Transition
+                delay={index * 0.15}
+                className="flex flex-col gap-y-20 rounded bg-white p-4 text-black"
+              >
                 {post._createdAt && (
                   <p>{new Date(post._createdAt).toLocaleDateString()}</p>
                 )}
@@ -91,7 +94,7 @@ export default async function BlogIndexPage(props: {
 
                 <SanityLink
                   id="cta"
-                  href={`/blog/${post.slug.current}`}
+                  href={post.href}
                   variant="ghost"
                   card
                   hasArrow={false}
@@ -107,17 +110,13 @@ export default async function BlogIndexPage(props: {
 
       {data.posts && data.posts.length > 0 && (
         <ContentPagination
-          totalPages={Math.ceil(
-            (data.categoryFilter.currentCategoryPostCount ||
-              data.topicFilter.currentTopicPostCount ||
-              0) / 2,
-          )}
+          scrollTargetId={data?.pagination.scrollTargetId || ""}
+          totalPages={data?.pagination?.totalPages}
           currentPage={page ? parseInt(page) : 1}
           createPageUrl={(pageNum) =>
             createPageUrl({ route: "blog", pageNum, category, topic })
           }
           className="col-span-full self-start"
-          scrollTargetId="blog-posts-list"
         />
       )}
 
