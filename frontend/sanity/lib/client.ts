@@ -12,16 +12,11 @@ export const client = createClient({
     filter: (props) => {
       // Disable stega for specific field names that commonly need cleaning
       const fieldsToDisableStega = [
+        "text", // Add this to disable stega in PortableText text nodes
+        "children", // Add this to disable stega in PortableText children arrays
         "title",
         "description",
         "content",
-        "eyebrow",
-        "label",
-        "quote",
-        "author",
-        "codeBlock",
-        "text", // Add this to disable stega in PortableText text nodes
-        "children", // Add this to disable stega in PortableText children arrays
       ];
       if (fieldsToDisableStega.includes(props.sourcePath.at(-1) as string)) {
         return false;
