@@ -94,8 +94,8 @@ export const Transition = ({
 
     gsap.to(ref.current, {
       ...config.to,
-      duration: Number(duration),
-      delay: Number(delay),
+      duration: duration,
+      delay: delay,
       ease: ease,
       onComplete,
       scrollTrigger: {
@@ -116,28 +116,12 @@ export const Transition = ({
     ScrollTrigger.refresh();
   }, [animation, duration, delay, triggerOnce]);
 
-  const initialTransform = () => {
-    if (animation === "slideUp") {
-      return "translateY(100px)";
-    }
-    if (animation === "slideDown") {
-      return "translateY(-100px)";
-    }
-    if (animation === "slideLeft") {
-      return "translateX(-100px)";
-    }
-    if (animation === "slideRight") {
-      return "translateX(100px)";
-    }
-  };
-
   return (
     <Component
       ref={ref}
       className={className}
       style={{
         opacity: animation.includes("fade") ? 0 : 1,
-        transform: initialTransform(),
       }}
     >
       {children}

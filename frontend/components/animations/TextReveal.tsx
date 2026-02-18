@@ -22,7 +22,7 @@ gsap.registerPlugin(CustomEase);
 
 export const TextReveal = ({
   slot = "div",
-  duration = 1,
+  duration = 0.75,
   delay = 0,
   stagger = 0,
   ease = "power4.inOut",

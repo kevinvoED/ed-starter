@@ -10,9 +10,9 @@ import { Observer } from "gsap/all";
 
 gsap.registerPlugin(Observer);
 
-type Props = ModuleProps<"marquee">;
+type MarqueeProps = ModuleProps<"marquee">;
 
-export const Marquee = ({ variant, items, images }: Props) => {
+export const Marquee = ({ variant, items, images }: MarqueeProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const observerRef = useRef<Observer | null>(null);

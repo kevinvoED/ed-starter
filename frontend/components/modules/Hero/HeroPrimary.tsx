@@ -1,4 +1,5 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
+import { TextReveal } from "@/components/animations/TextReveal";
 import { TextScramble } from "@/components/animations/TextScramble";
 import { Transition } from "@/components/animations/Transition";
 import { SanityImage } from "@/components/primitives/Image/SanityImage";
@@ -8,7 +9,7 @@ import {
   PortableTextFragment,
 } from "@/components/primitives/PortableText/PortableText";
 
-type Props = ModuleProps<"hero-primary">;
+type HeroPrimaryProps = ModuleProps<"hero-primary">;
 
 export const HeroPrimary = ({
   title,
@@ -16,16 +17,16 @@ export const HeroPrimary = ({
   image,
   description,
   content,
-}: Props) => {
+}: HeroPrimaryProps) => {
   console.log(link);
   return (
     <div className="fluid-py-10/20 p-custom">
       <h2 className="ftype type-2040 to-type-3240">Here's some text</h2>
 
       {title && (
-        <Transition slot="h2">
+        <TextReveal slot="h2">
           <PortableTextFragment value={title} />
-        </Transition>
+        </TextReveal>
       )}
 
       {description && <PortableText value={description} />}
