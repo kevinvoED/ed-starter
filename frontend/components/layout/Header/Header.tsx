@@ -1,5 +1,6 @@
 import { fetchSanityNavbar } from "@/sanity/lib/fetch";
-import { Navbar } from "./Navbar";
+import { DesktopNavbar } from "@/components/layout/Header/DesktopNavbar";
+import { MobileNavbar } from "@/components/layout/Header/MobileNavbar";
 
 export const Header = async () => {
   const navigationHeader = await fetchSanityNavbar();
@@ -8,5 +9,10 @@ export const Header = async () => {
     return null;
   }
 
-  return <Navbar />;
+  return (
+    <>
+      <DesktopNavbar />
+      <MobileNavbar />
+    </>
+  );
 };

@@ -1,6 +1,4 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
-import { PlusIcon } from "lucide-react";
-import { TextMask } from "@/components/animations/TextMask";
 import { TextReveal } from "@/components/animations/TextReveal";
 import { TextScramble } from "@/components/animations/TextScramble";
 import { Transition } from "@/components/animations/Transition";
@@ -23,7 +21,6 @@ export const HeroPrimary = ({
   description,
   content,
 }: HeroPrimaryProps) => {
-  console.log(link);
   return (
     <div className="fluid-py-10/20 p-custom">
       {title && <PortableText value={title} slot="h1" />}
@@ -39,7 +36,7 @@ export const HeroPrimary = ({
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-      {/* <h2 className="ftype type-2040 to-type-3240">Here's some text</h2>
+      <h2 className="ftype type-2040 to-type-3240">Here's some text</h2>
 
       {title && (
         <TextReveal slot="h2">
@@ -119,7 +116,7 @@ export const HeroPrimary = ({
         <TextScramble>
           <PortableText value={title} />
         </TextScramble>
-      )} */}
+      )}
     </div>
   );
 };
