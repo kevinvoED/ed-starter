@@ -2,12 +2,7 @@ import type { ModuleProps } from "@/sanity/lib/fetch";
 import { TextReveal } from "@/components/animations/TextReveal";
 import { TextScramble } from "@/components/animations/TextScramble";
 import { Transition } from "@/components/animations/Transition";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/primitives/Accordion/Accordion";
+import { Icon } from "@/components/primitives/Icon/Icon";
 import { SanityImage } from "@/components/primitives/Image/SanityImage";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
@@ -26,16 +21,6 @@ export const HeroPrimary = ({
       {title && <PortableText value={title} slot="h1" />}
       {description && <PortableText value={description} />}
 
-      <Accordion defaultValue={["shipping"]} className="max-w-lg">
-        <AccordionItem value={"item-1"}>
-          <AccordionTrigger display="flex">
-            <PortableText value={title} />
-          </AccordionTrigger>
-          <AccordionContent>
-            <PortableText value={description} />
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
       <h2 className="ftype type-2040 to-type-3240">Here's some text</h2>
 
       {title && (
@@ -44,10 +29,14 @@ export const HeroPrimary = ({
         </TextReveal>
       )}
 
+      <Icon variant="arrow-right" />
+
       {description && <PortableText value={description} />}
 
       {description && <PortableText value={title} />}
-      {image && <SanityImage image={image} />}
+      {image && (
+        <SanityImage image={image} sizes="(max-width: 768px) 100vw, 75vw" />
+      )}
 
       <article className="fluid-p-4/12 fluid-gap-10/20 relative flex flex-col bg-black text-white">
         <h2>Placeholder title</h2>
