@@ -10,30 +10,49 @@ import { PortableTextYoutube } from "@/components/primitives/PortableText/Portab
 import { cn } from "@/lib/utils/cn";
 
 /*
- * PortableText renders Sanity Portable Text blocks with configurable layout and semantics.
+ * PortableText component for rendering Sanity's Rich Text Editor content
+ * @docs: https://www.sanity.io/docs/studio/portable-text-editor-configuration
  *
- * ### Usage examples
+ * ---------------------
+ * Usage Example: Basic
+ * ---------------------
+ * <PortableText value={post.content} />
  *
- * // Article content with default block spacing
- * <PortableText value={post.content} style="article" />
+ * ---------------------
+ * Usage Example: Article Style
+ * ---------------------
+ * <PortableText value={post.content} style="article"/>
  *
- * // Module content, specific spacing controlled by parent
- * <div className="type-body-2040 [&_p]:mb-24">
+ * ---------------------
+ * Usage Example: Module Style
+ * ---------------------
+ * <PortableText value={post.content} style="module"/>
+ *
+ * ---------------------
+ * Usage Example: Spacing controlled by parent
+ * ---------------------
+ * <Transition className="[&_p]:mb-24">
  *   <PortableText value={description} />
- * </div>
+ * </Transition>
  *
- * // Title as heading
+ * ---------------------
+ * Usage Example: Styling typography
+ * ---------------------
  * <PortableText value={title} slot="h1" className="type-heading-3230"/>
  *
- * // Inline text without wrapper (note: using `slot="Fragment"` is the same as using `slot="span"`)
+ * ---------------------
+ * Usage Example: Slotting any HTML element to override the default `<p>` tag; includes React.Fragment
+ * ---------------------
  * <PortableText value={eyebrow} slot="span" />
+ * <PortableText value={title} slot="h1" />
+ * <PortableText value={description} slot="fragment" />
  */
 
 type PortableTextComponentProps = {
   className?: string;
   value: PortableTextProps["value"];
-  style?: "article" | "module"; // `article` adds bottom margins to each element, `module` adds none
-  slot?: ElementType | "Fragment"; // wrapper element that over-rides the default `<p>` tag
+  style?: "article" | "module";
+  slot?: ElementType | "Fragment";
 };
 
 export const PortableText = ({
@@ -58,6 +77,10 @@ const portableTextComponents = (
   style: "module" | "article" = "module",
   slot?: ElementType | "Fragment",
 ): PortableTextProps["components"] => ({
+  /*
+   * Special custom components that users can inject directly into their PortableText field
+   * You can create a new custom component in this directory and then add it t this `types` object
+   */
   types: {
     image: ({ value }) => {
       return (

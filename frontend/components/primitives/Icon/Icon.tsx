@@ -2,21 +2,21 @@ import { ArrowRightIcon } from "@/components/primitives/Icon/ArrowRightIcon";
 import { CopyIcon } from "@/components/primitives/Icon/CopyIcon";
 import { cn } from "@/lib/utils/cn";
 
-// Type for custom icon components that match Lucide's interface
-export type CustomIconProps = {
-  className?: string;
-  strokeWidth?: number;
-  size?: number;
-};
+/*
+ * Master Icon component for rendering custom svg icons
+ *
+ * ---------------------
+ * Usage Example: Basic
+ * ---------------------
+ * <Icon variant="arrow-right" />
+ *
+ * ---------------------
+ * Usage Example: Custom size and stroke width
+ * ---------------------
+ * <Icon variant="copy" size={10} strokeWidth={2} />
+ */
 
-// Export type that matches LucideIcon for consistency
-export type CustomIcon = React.ComponentType<{
-  className?: string;
-  strokeWidth?: number;
-}>;
-
-// Add additional icons here
-const iconComponents: Record<string, CustomIcon> = {
+const iconComponents = {
   copy: CopyIcon,
   "arrow-right": ArrowRightIcon,
 };
