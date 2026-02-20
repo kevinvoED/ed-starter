@@ -16,7 +16,7 @@ import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
  * ---------------------
  * Usage Example: Basic
  * ---------------------
- *  <Accordion defaultValue={[DATA?.[1].title]} multiple={true} className="col-span-full">
+ *  <Accordion display="flex" defaultValue={[DATA?.[1].title]} multiple={true} className="col-span-full">
  *    {DATA.map((item) => (
  *      <AccordionItem key={item.title} value={item.title}>
  *        <AccordionTrigger display="flex" icon="plus">
@@ -32,14 +32,14 @@ import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
  * ---------------------
  * Usage Example: Grid
  * ---------------------
- *  <Accordion defaultValue={[DATA?.[1].title]} multiple={true} className="col-span-full">
+ *  <Accordion display="grid" defaultValue={[DATA?.[1].title]} multiple={true} className="col-span-full">
  *    {DATA.map((item, index) => (
  *      <AccordionItem key={item.title} value={item.title}>
- *        <AccordionTrigger display="grid" icon="chevron">
+ *        <AccordionTrigger icon="chevron" className="gap-2">
  *          <div className="col-span-1">0{index + 1}</div>
  *          {item.title && <PortableText value={item.title} className="col-span-8 col-start-3"/>}
  *        </AccordionTrigger>
- *        <AccordionContent>
+ *        <AccordionContent className="col-span-full col-start-3">
  *          {item.content && <PortableText value={item.content} />}
  *        </AccordionContent>
  *      </AccordionItem>
@@ -49,10 +49,10 @@ import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
  * ---------------------
  * Usage Example: Flex
  * ---------------------
- *  <Accordion defaultValue={[DATA?.[1].title]} multiple={true} className="col-span-full">
+ *  <Accordion display="flex" defaultValue={[DATA?.[1].title]}>
  *    {DATA.map((item, index) => (
  *      <AccordionItem key={item.title} value={item.title}>
- *        <AccordionTrigger display="flex" icon="chevron">
+ *        <AccordionTrigger icon="chevron" className="gap-2">
  *          {item.title && <PortableText value={item.title} />}
  *        </AccordionTrigger>
  *        <AccordionContent>
@@ -63,11 +63,16 @@ import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
  *  </Accordion>
  */
 
-function Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {
+function Accordion({
+  className,
+  display,
+  ...props
+}: AccordionPrimitive.Root.Props & { display: "grid" | "flex" }) {
   return (
     <AccordionPrimitive.Root
       data-slot="accordion"
-      className={cn("flex w-full flex-col", className)}
+      data-display={display}
+      className={cn("group/accordion flex w-full flex-col", className)}
       {...props}
     />
   );
@@ -86,11 +91,9 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
 function AccordionTrigger({
   className,
   children,
-  display,
   icon = "chevron",
   ...props
 }: AccordionPrimitive.Trigger.Props & {
-  display: "grid" | "flex";
   icon?: "chevron" | "plus";
 }) {
   return (
@@ -98,9 +101,8 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "group/accordion-trigger relative flex-1 border border-transparent text-left outline-none transition-all focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-5",
-          display === "grid" && "grid-custom",
-          display === "flex" && "flex items-center justify-between",
+          "group/accordion-trigger group-data-[display=grid]/accordion:grid-custom relative flex-1 border border-transparent text-left outline-none transition-all focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-5 group-data-[display=flex]/accordion:flex group-data-[display=flex]/accordion:items-center group-data-[display=flex]/accordion:justify-between",
+
           className,
         )}
         {...props}
@@ -132,13 +134,10 @@ function AccordionContent({
   return (
     <AccordionPrimitive.Panel
       data-slot="accordion-content"
-      className={cn(
-        "overflow-hidden text-sm data-closed:animate-accordion-up data-open:animate-accordion-down",
-        className,
-      )}
+      className="group-data-[display=grid]/accordion:grid-custom overflow-hidden text-sm data-closed:animate-accordion-up data-open:animate-accordion-down group-data-[display=flex]/accordion:flex"
       {...props}
     >
-      {children}
+      <div className={cn(className)}>{children}</div>
     </AccordionPrimitive.Panel>
   );
 }

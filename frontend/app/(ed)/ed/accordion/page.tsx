@@ -29,14 +29,14 @@ export default async function EDAccordionPage() {
       <div className="col-span-4 col-start-5 flex flex-col gap-4">
         <h2 className="font-bold">Basic Usage: Flex</h2>
         <Accordion
+          display="flex"
           defaultValue={[DATA?.[1].title]}
           className="col-span-4 col-start-5"
         >
-          {DATA.map((item, index) => (
+          {DATA.map((item) => (
             <AccordionItem key={item.title} value={item.title}>
-              <AccordionTrigger display="grid" className="gap-2">
-                <div className="col-span-1">0{index + 1}</div>
-                <span className="col-span-8 col-start-3"> {item.title}</span>
+              <AccordionTrigger className="gap-2">
+                {item.title}
               </AccordionTrigger>
               <AccordionContent>{item.content}</AccordionContent>
             </AccordionItem>
@@ -47,16 +47,17 @@ export default async function EDAccordionPage() {
       <div className="col-span-4 col-start-5 flex flex-col gap-4">
         <h2 className="font-bold">Basic Usage: Grid</h2>
         <Accordion
+          display="grid"
           defaultValue={[DATA?.[1].title]}
           className="col-span-4 col-start-5"
         >
           {DATA.map((item, index) => (
             <AccordionItem key={item.title} value={item.title}>
-              <AccordionTrigger display="grid" className="gap-2">
+              <AccordionTrigger className="gap-2">
                 <div className="col-span-1">0{index + 1}</div>
                 <span className="col-span-8 col-start-3"> {item.title}</span>
               </AccordionTrigger>
-              <AccordionContent className="col-start-2">
+              <AccordionContent className="col-span-full col-start-3">
                 {item.content}
               </AccordionContent>
             </AccordionItem>
