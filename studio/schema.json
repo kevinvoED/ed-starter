@@ -3126,7 +3126,7 @@
         },
         "optional": false
       },
-      "link": {
+      "mainLinks": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
@@ -3136,16 +3136,46 @@
               {
                 "type": "object",
                 "attributes": {
-                  "_key": {
+                  "link": {
                     "type": "objectAttribute",
                     "value": {
-                      "type": "string"
+                      "type": "array",
+                      "of": {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "inline",
+                          "name": "link"
+                        }
+                      }
+                    },
+                    "optional": false
+                  },
+                  "_type": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string",
+                      "value": "standaloneLink"
                     }
                   }
                 },
                 "rest": {
-                  "type": "inline",
-                  "name": "link"
+                  "type": "object",
+                  "attributes": {
+                    "_key": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "string"
+                      }
+                    }
+                  }
                 }
               },
               {

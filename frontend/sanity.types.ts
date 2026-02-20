@@ -514,10 +514,16 @@ export type Navbar = {
     alt?: string;
     _type: "image";
   };
-  link?: Array<
-    | ({
+  mainLinks?: Array<
+    | {
+        link: Array<
+          {
+            _key: string;
+          } & Link
+        >;
+        _type: "standaloneLink";
         _key: string;
-      } & Link)
+      }
     | {
         title: Array<{
           children?: Array<{
@@ -1539,14 +1545,321 @@ export type FOOTER_QUERY_RESULT = Array<{
 
 // Source: ../frontend/sanity/queries/documents/navbar.ts
 // Variable: NAVBAR_QUERY
-// Query: *[_type == "navbar"]{    _type,  }
+// Query: fn fn::img($image) = $image {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::imgs($images) = $images[] {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::logo($logo) = $logo {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::link($link) = $link[] {      ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )  };    fn fn::ptPlain($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "link" => {        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };    fn fn::pt($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "link" => {        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };  *[_type == "navbar"]{    _key,    _type,      "logo": fn::logo(logo),    mainLinks[]{      _type,      _key,      _type == "standaloneLink" => {          "link": fn::link(link)      },      _type == "group" => {        title,        group[]{          _type,          _key,          _type == "card" => {            title,              "description": fn::ptPlain(description),              "link": fn::link(link)          },          _type == "link-group" => {            title,              "link": fn::link(link)          },          _type == "resources" => {            resources[]->{              _id,              "_type": "resource",              title,              slug,              "href": select(                _type == "post" => "/blog/" + slug.current,                _type == "case-study" => "/case-studies/" + slug.current,                _type == "resource" => "/resources/" + slug.current,                _type == "event" => "/events/" + slug.current,                _type == "news-article" => "/news/" + slug.current,              ),              "buttonText": select(                _type == "post" => "Read Post",                _type == "case-study" => "Read Case Study",                _type == "resource" => "Learn More",                _type == "event" => "Learn More",                _type == "news-article" => "Read Article",              ),                "image": fn::img(image)            }          }        }      },      _type == "divider" => {        type,      }    },    ctaLinks[]{        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  }
 export type NAVBAR_QUERY_RESULT = Array<{
+  _key: null;
   _type: "navbar";
+  logo: {
+    asset: {
+      _id: string;
+      url: string | null;
+      metadata: {
+        lqip: string | null;
+        dimensions: {
+          width: number;
+          height: number;
+        } | null;
+      } | null;
+    } | null;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  mainLinks: Array<
+    | {
+        _type: "divider";
+        _key: string;
+        type: "dot" | "space" | null;
+      }
+    | {
+        _type: "group";
+        _key: string;
+        title: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: never;
+          markDefs?: Array<
+            | ({
+                _key: string;
+              } & HighlightColor)
+            | ({
+                _key: string;
+              } & TextColor)
+            | {
+                type: "external" | "internal";
+                internalLink?:
+                  | BlogIndexReference
+                  | BlogPostReference
+                  | CaseStudiesIndexReference
+                  | CaseStudyReference
+                  | PageReference
+                  | PlatformChildReference
+                  | PlatformIndexReference;
+                href?: string;
+                openInNewTab?: boolean;
+                _type: "link";
+                _key: string;
+              }
+          >;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
+        group: Array<
+          | {
+              _type: "card";
+              _key: string;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs?: Array<
+                  | ({
+                      _key: string;
+                    } & HighlightColor)
+                  | ({
+                      _key: string;
+                    } & TextColor)
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href?: string;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                >;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+              description: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+                listItem?: "bullet" | "number";
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+              link: null;
+            }
+          | {
+              _type: "link-group";
+              _key: string;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs?: Array<
+                  | ({
+                      _key: string;
+                    } & HighlightColor)
+                  | ({
+                      _key: string;
+                    } & TextColor)
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href?: string;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                >;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+              link: Array<{
+                _key: string;
+                _type: "link";
+                type: "external" | "internal";
+                label: string;
+                internalLink?:
+                  | BlogIndexReference
+                  | BlogPostReference
+                  | CaseStudiesIndexReference
+                  | CaseStudyReference
+                  | PageReference
+                  | PlatformChildReference
+                  | PlatformIndexReference;
+                href:
+                  | string
+                  | "/"
+                  | "/blog"
+                  | "/case-studies"
+                  | "/platform"
+                  | null;
+                openInNewTab?: boolean;
+                anchorTag?: string;
+              }> | null;
+            }
+          | {
+              _type: "resources";
+              _key: string;
+              resources: Array<{
+                _id: string;
+                _type: "resource";
+                title: Array<{
+                  children?: Array<{
+                    marks?: Array<string>;
+                    text?: string;
+                    _type: "span";
+                    _key: string;
+                  }>;
+                  style?: "normal";
+                  listItem?: never;
+                  markDefs?: Array<
+                    | ({
+                        _key: string;
+                      } & HighlightColor)
+                    | ({
+                        _key: string;
+                      } & TextColor)
+                    | {
+                        type: "external" | "internal";
+                        internalLink?:
+                          | BlogIndexReference
+                          | BlogPostReference
+                          | CaseStudiesIndexReference
+                          | CaseStudyReference
+                          | PageReference
+                          | PlatformChildReference
+                          | PlatformIndexReference;
+                        href?: string;
+                        openInNewTab?: boolean;
+                        _type: "link";
+                        _key: string;
+                      }
+                  >;
+                  level?: number;
+                  _type: "block";
+                  _key: string;
+                }>;
+                slug: Slug;
+                href: null;
+                buttonText: null;
+                image: {
+                  asset: {
+                    _id: string;
+                    url: string | null;
+                    metadata: {
+                      lqip: string | null;
+                      dimensions: {
+                        width: number;
+                        height: number;
+                      } | null;
+                    } | null;
+                  } | null;
+                  media?: unknown;
+                  hotspot?: SanityImageHotspot;
+                  crop?: SanityImageCrop;
+                  alt?: string;
+                  _type: "image";
+                };
+              }> | null;
+            }
+        > | null;
+      }
+    | {
+        _type: "standaloneLink";
+        _key: string;
+        link: Array<{
+          _key: string;
+          _type: "link";
+          type: "external" | "internal";
+          label: string;
+          internalLink?:
+            | BlogIndexReference
+            | BlogPostReference
+            | CaseStudiesIndexReference
+            | CaseStudyReference
+            | PageReference
+            | PlatformChildReference
+            | PlatformIndexReference;
+          href: string | "/" | "/blog" | "/case-studies" | "/platform" | null;
+          openInNewTab?: boolean;
+          anchorTag?: string;
+        }>;
+      }
+  > | null;
+  ctaLinks: null;
 }>;
 
 // Source: ../frontend/sanity/queries/queries.ts
 // Variable: ORGANIZATION_QUERY
-// Query: fn fn::logo($logo) = $logo {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };  *[_type == "organization"][0]{    organization {      ...,      "logo": fn::logo(logo),    }  }
+// Query: fn fn::logo($logo) = $logo {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };  *[_type == "organization"][0]{    organization {      ...,        "logo": fn::logo(logo),    }  }
 export type ORGANIZATION_QUERY_RESULT = {
   organization: {
     name: string;
@@ -15400,8 +15713,8 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     '\n  *[_type == "footer"]{\n    _key,\n    _type,\n  }\n': FOOTER_QUERY_RESULT;
-    '\n  *[_type == "navbar"]{\n    _type,\n  }\n': NAVBAR_QUERY_RESULT;
-    '\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n\n  *[_type == "organization"][0]{\n    organization {\n      ...,\n      "logo": fn::logo(logo),\n    }\n  }\n': ORGANIZATION_QUERY_RESULT;
+    '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::link($link) = $link[] {\n    \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n\n\n  *[_type == "navbar"]{\n    _key,\n    _type,\n    \n  "logo": fn::logo(logo)\n,\n    mainLinks[]{\n      _type,\n      _key,\n      _type == "standaloneLink" => {\n        \n  "link": fn::link(link)\n\n      },\n      _type == "group" => {\n        title,\n        group[]{\n          _type,\n          _key,\n          _type == "card" => {\n            title,\n            \n  "description": fn::ptPlain(description)\n,\n            \n  "link": fn::link(link)\n\n          },\n          _type == "link-group" => {\n            title,\n            \n  "link": fn::link(link)\n\n          },\n          _type == "resources" => {\n            resources[]->{\n              _id,\n              "_type": "resource",\n              title,\n              slug,\n              "href": select(\n                _type == "post" => "/blog/" + slug.current,\n                _type == "case-study" => "/case-studies/" + slug.current,\n                _type == "resource" => "/resources/" + slug.current,\n                _type == "event" => "/events/" + slug.current,\n                _type == "news-article" => "/news/" + slug.current,\n              ),\n              "buttonText": select(\n                _type == "post" => "Read Post",\n                _type == "case-study" => "Read Case Study",\n                _type == "resource" => "Learn More",\n                _type == "event" => "Learn More",\n                _type == "news-article" => "Read Article",\n              ),\n              \n  "image": fn::img(image)\n\n            }\n          }\n        }\n      },\n      _type == "divider" => {\n        type,\n      }\n    },\n    ctaLinks[]{\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  }\n': NAVBAR_QUERY_RESULT;
+    '\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n\n  *[_type == "organization"][0]{\n    organization {\n      ...,\n      \n  "logo": fn::logo(logo)\n,\n    }\n  }\n': ORGANIZATION_QUERY_RESULT;
     '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::link($link) = $link[] {\n    \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n\n\n  *[_type == "page" && slug.current == $slug][0]{\n    _type,\n    \n  modules[]{\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n    \n  "content": fn::pt(content)\n,\n  }\n,\n    \n  _type == "marquee" => {\n    _type,\n    _key,\n    variant,\n    "items" : select(variant == "text" => items[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n    }),\n    \n  "images": fn::imgs(images)\n\n  }\n\n  }\n,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "blog-index" => "/blog",\n      ^._type == "blog-post" => "/blog/" + ^.slug.current,\n      ^._type == "case-studies-index" => "/case-studies",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n\n  }\n': PAGE_QUERY_RESULT;
     "*[_type == $pageType && defined(slug)]{slug}": PAGES_SLUGS_QUERY_RESULT;
     '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::link($link) = $link[] {\n    \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n\n\n  *[_type == $contentType][0]{\n    _type,\n    slug,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "blog-index" => "/blog",\n      ^._type == "blog-post" => "/blog/" + ^.slug.current,\n      ^._type == "case-studies-index" => "/case-studies",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    \n  modules[]{\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n    \n  "content": fn::pt(content)\n,\n  }\n,\n    \n  _type == "marquee" => {\n    _type,\n    _key,\n    variant,\n    "items" : select(variant == "text" => items[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n    }),\n    \n  "images": fn::imgs(images)\n\n  }\n\n  }\n,\n    // Data for filtering by category (ContentCategoryFilter.tsx)\n    "categoryFilter": {\n      "totalPostCount": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n]),\n      "categories": *[_type ==  select(\n        $contentType == "blog-index" => "blog-category") && count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)]) > 0] {\n          _id,\n          slug,\n          \n  "title": fn::ptPlain(title)\n,\n          // Number of posts in this category\n          "count": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)])\n      },\n      "currentCategoryPostCount": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && ($category == null || $category in category[]->slug.current) && ($topic == null || $topic in contentTopic[]->slug.current)]),\n    },\n    // Data for filtering by topic (ContentTopicFilter.tsx)\n    "topicFilter": {\n      "totalPostCount": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n]),\n      "content-topics": *[_type == "content-topic" &&\n        count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)]) > 0] {\n          _id,\n          slug,\n          \n  "title": fn::ptPlain(title)\n,\n          "count": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)])\n      },\n      "currentTopicPostCount": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && ($category == null || $category in category[]->slug.current) && ($topic == null || $topic in contentTopic[]->slug.current)]),\n    },\n    "pagination": {\n      "totalPages": round(count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)]) / 2),\n      "scrollTargetId": select(\n        _type == "case-studies-index" => "case-studies-posts-list",\n        _type == "blog-index" => "blog-posts-list",\n      ),\n    },\n    "posts": *[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {\n      _id,\n      _type,\n      _createdAt,\n      publishedDate,\n      slug,\n      \n  "link": fn::link(link)\n,\n      \n  "title": fn::ptPlain(title)\n,\n      \n  "image": fn::img(image)\n,\n      \n  "description": fn::ptPlain(description)\n,\n      "href": select(\n        _type == "case-study" => "/case-studies/" + slug.current,\n        _type == "blog-post" => "/blog/" + slug.current,\n      ),\n      category[]->{\n        _id,\n        _type,\n        slug,\n        \n  "title": fn::ptPlain(title)\n,\n      },\n      contentTopic[]->{\n        _id,\n        _type,\n        slug,\n        \n  "title": fn::ptPlain(title)\n,\n      },\n    }\n  }\n': GET_CONTENT_TYPE_INDEX_QUERY_RESULT;

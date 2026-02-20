@@ -3,15 +3,15 @@ import { DesktopNavbar } from "@/components/layout/Header/DesktopNavbar";
 import { MobileNavbar } from "@/components/layout/Header/MobileNavbar";
 
 export const Header = async () => {
-  const navigationHeader = await fetchSanityNavbar();
+  const data = await fetchSanityNavbar();
 
-  if (!navigationHeader) {
+  if (!data) {
     return null;
   }
 
   return (
     <>
-      <DesktopNavbar />
+      <DesktopNavbar data={data} />
       <MobileNavbar />
     </>
   );

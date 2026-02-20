@@ -9,6 +9,7 @@ import {
   descriptionFragment,
   imageFragment,
   linkFragment,
+  logoFragment,
   metaFragment,
   portableTextFragment,
   titleFragment,
@@ -43,7 +44,7 @@ export const ORGANIZATION_QUERY = defineQuery(`
   *[_type == "organization"][0]{
     organization {
       ...,
-      "logo": fn::logo(logo),
+      ${logoFragment},
     }
   }
 `);

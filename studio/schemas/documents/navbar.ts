@@ -17,11 +17,35 @@ export default defineType({
   fields: [
     logo,
     defineField({
-      name: "link",
+      name: "mainLinks",
       title: "Main link",
       type: "array",
       of: [
-        { type: "link", title: "Standalone Link" },
+        {
+          name: "standaloneLink",
+          title: "Standalone Link",
+          type: "object",
+          icon: LinkIcon,
+          fields: [
+            {
+              ...link,
+              title: "Standalone Link",
+              description: "The label of the standalone link.",
+            },
+          ],
+          preview: {
+            select: {
+              title: "link[0].label",
+            },
+            prepare({ title }) {
+              return {
+                title: title,
+                subtitle: "Standalone Link",
+                media: LinkIcon,
+              };
+            },
+          },
+        },
         {
           name: "group",
           type: "object",
@@ -92,7 +116,9 @@ export default defineType({
             },
             prepare({ title }) {
               return {
-                title,
+                title: toPlainText(title),
+                subtitle: "Group Of Links",
+                media: PanelRightIcon,
               };
             },
           },
@@ -127,7 +153,7 @@ export default defineType({
     }),
     defineField({
       name: "ctalink",
-      title: "CTA link",
+      title: "Cta Links",
       type: "array",
       of: [{ type: "link", title: "Standalone CTA Link" }],
     }),
