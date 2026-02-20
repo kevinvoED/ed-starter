@@ -21,6 +21,14 @@ const navigationItems = [
     href: "/ed/tabs",
     label: "Tabs",
   },
+  {
+    href: "/ed/sheet",
+    label: "Sheet",
+  },
+  {
+    href: "/ed/select",
+    label: "Select",
+  },
 ];
 
 const contentNavItems = [
