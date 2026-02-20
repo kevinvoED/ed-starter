@@ -1,4 +1,4 @@
-# Spur
+# ED - Starter Kit
 [![Next.js][next-js]][next-js-url] [![Sanity][sanity]][sanity-url] [![React][react]][react-url] [![Tailwind][tailwind]][tailwind-url]
 
 [react-url]: https://reactjs.org/
@@ -11,68 +11,92 @@
 [sanity]: https://img.shields.io/badge/Sanity-20232A?style=for-the-badge&logo=sanity&logoColor=F97316
 
 ## Pre-requisites
-- **Node.js**: Version specified in `.nvmrc` (use `nvm use`)
-- **pnpm**: `~10.19.0` (installed automatically via `packageManager` field)
 
-> If you are having trouble with `corepack` not being able to install `pnpm`, try clearing the cache with `corepack cache clean`
+| Tool| Action|
+| :------------------------ | :----------------------------------------------- |
+| `Node.js`| Version specified in `.nvmrc` (use `nvm use`)|
+| `pnpm`| `~10.19.0` (installed automatically via `packageManager` field)|
+
+> If you are having trouble with `corepack` not being able to install `pnpm`, try clearing the cache with `corepack cache clean`.
 
 
-## Initial Setup
+## Setup & Development
 
-1. **Set Up ENV**:
+```typescript
+// Set up ENV variables
+$ cp frontend/.env.local.example frontend/.env.local
+$ cp studio/.env.local.example studio/.env.local
 
-```bash
-cp frontend/.env.local.example frontend/.env.local
-cp studio/.env.local.example studio/.env.local
+// Set your node version
+$ nvm use
+
+//Install dependencies in root, frontend, and studio folders
+$ pnpm install
+
+// Run `pnpm run dev` in root folder to run frontend and studio dev environments in parallel
+$ pnpm run dev
 ```
-
-Refer to Keeper to find keys and secrets
-
-2. **Set Node Version**:
-
-```bash
-nvm use
-```
-
-3. **Install Dependencies**:
-
-```bash
-pnpm install
-```
-
-
-## Development
-
-Running this command will run frontend and studio in parallel:
-
-```bash
-pnpm dev
-```
-
-This starts:
-
-- **Frontend**: `http://localhost:3000` (Next.js)
-- **Studio**: `http://localhost:3333` (Sanity Studio)
 
 ## Project Structure
 
 ```
-spur-us/
-├── frontend/          # Next.js Frontend
-│   ├── app
-│   ├── components
-│   ├── lib
-│   └── sanity
-│   └── package.json
-├── studio/            # Sanity Studio
-│   ├── lib
-│   ├── schemas
-│   └── package.json
-├── package.json       # Root workspace config
-└── pnpm-workspace.yaml
+ED Starter
+│
+├── 📂 .cursor
+├── 📂 .skills
+├── 📂 frontend
+│   ├── 📂 app
+│   ├── 📂 components
+│   │   ├── 📂 animations
+│   │   ├── 📂 layout
+│   │   ├── 📂 miscellaneous
+│   │   ├── 📂 modules
+│   │   └── 📂 primitives
+│   ├── 📂 public
+│   ├── 📂 lib
+│   │   ├── 📂 hooks
+│   │   ├── 📂 site
+│   │   ├── 📂 styles
+│   │   └── 📂 utils
+│   ├── 📂 sanity
+│   │   ├── 📂 lib
+│   │   └── 📂 queries
+│   ├── 📄 sanity.types.ts
+│   └── 📄 package.json
+├── 📂 studio
+│   ├── 📂 actions
+│   ├── 📂 components
+│   ├── 📂 lib
+│   ├── 📂 schemas
+│   │   ├── 📂 documents
+│   │   ├── 📂 modules
+│   │   ├── 📂 objects
+│   │   ├── 📂 pages
+│   │   ├── 📂 previews
+│   │   ├── 📄 moduleTypes.ts
+│   │   ├── 📄 schema.ts
+│   │   └── 📄 sharedFields.ts
+│   ├── 📄 sanity.cli.ts
+│   ├── 📄 sanity.config.ts
+│   └── 📄 package.json
+├── 📄 biome.json
+└── 📄 package.json
 ```
 
+## Commands
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `pnpm install`             | Installs dependencies                            |
+| `pnpm run dev`             | Starts local dev and local Sanity studio servers in parallel|
+| `pnpm run dev:next`        | Starts local dev server at localhost:3000|
+| `pnpm run dev:studio`      | Starts Sanity Studio server at localhost:3333    |
+| `pnpm run typegen`         | Autogenerates types using Sanity TypeGen         |
+| `pnpm run typecheck`       | TypeScript type checking                         |
+| `pnpm run format`          | Formats and lints code with Biome                |
+
 ## Naming Conventions
+>Note that Biome.js will warn you during the linting process if a file does not match properly.
 
 - `/frontend/components`: `PascalCase`
   - ✅ `Author.tsx`
@@ -88,110 +112,7 @@ spur-us/
   - ❌ `BlogCategory.ts`
   - ❌ `blogCategory.ts`
 
->Note that Biome.js will warn you during the linting process if a file does not match properly.
-
-## Commands
-
-> Commands ran from the root of the project, in a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm run dev`             | Starts local dev and local Sanity studio servers in parallel|
-| `pnpm run dev:next`        | Starts local dev server at localhost:3000|
-| `pnpm run dev:studio`      | Starts Sanity Studio server at localhost:3333    |
-| `pnpm run typegen`         | Autogenerates types using Sanity TypeGen         |
-| `pnpm run typecheck`       | TypeScript type checking                         |
-| `pnpm run format`          | Formats and lints code with Biome                |
-
-## PortableText
-
-### PortableText
-
-There are two different `PortableText` types used in this project:
-
-`PortableText`: primarily used for long-form article content with access to all rich text features and embedded components.
-
-```typescript
-// studio/schemas/modules/documents/post.ts
-
-// Usage in a schema
-...,
-defineField({
-  ...portableText,
-  group: "content",
-})
-
-// GROQ querying the schema; note by default the 'name' is 'content'
-...
-content[]{
-  ${ptFragment}
-}
-
-// In your component, remember to import our custom PortableText
-import { PortableText } from "@/components/PortableText/PortableText";
-...
-<h1><PortableText value={content}/></h1>
-
-//You can also pass in a mode for light or dark depending on the background of the module and you can't control the text for whatever reason
-<PortableText
-  value={content}
-  mode="light" // or "dark"
-/>
-
-// You can also pass in a style (article, module, or fragment) which applies different styling or outputs a different HTML tag. By default, it's set to 'module' which outputs a <p> tag without any spacing.
-<PortableText
-  value={content}
-  mode="module" // "article" / "fragment"
-/>
-```
-### PortableTextPlain
-`PortableTextPlain`: primarily used for text fields within modules
-
-```typescript
-// There are pre-defined common usages for 'PortableTextPlain' in 'sharedFields.ts'
-defineField({
-  ...title,
-})
-
-// Example: Creating custom portable-text-plain field
-import { portableTextPlain } from "@/schemas/objects/portable-text-plain";
-
-defineField(
-  portableTextPlain({
-    name: "title", // defaults to 'content' unless specified
-    title: "Title",
-    enableLink: true,
-    enableBold: true,
-  })
-)
-
-// You can enable any combination of flags, by default they are all false except for validation.
-defineField(
-  portableTextPlain({
-    name: "richContent",
-    title: "Rich Content",
-    description: "Full featured text editor for module content.",
-    enableTypeStyle: true,
-    enableBold: true,
-    enableItalic: true,
-    enableBulletList: true,
-    enableNumberList: true,
-    enableHighlight: true,
-    enableLink: true,
-  })
-)
-
-// Sometimes your schema field might be too long in comparison to the text content that will be inside it. This happens mainly with titles as they do not contain very many characters. You can enable 'oneLine' to turn the field into only one line. Note that this inherently disables line breaks.
-defineField(
-  portableTextPlain({
-    name: "quote",
-    title: "Quote",
-    oneLine: true,
-  })
-)
-```
-## Tips & Tricks
+## FAQ
 
 ### How do I create a new Sanity schema and component?
 1. Create your schema inside `/studio/schemas` in the appropriate folder
@@ -270,24 +191,22 @@ if (typeof window !== "undefined") {
 import { ScrollTrigger } from "gsap/all";
 ```
 
-### Properly typing Radix components
+## To-Do List
 
-While using RadixUI components, you may notice a TypeScript error regarding props passed in or errors complaining about there being no children prop. ForwardRefExoticComponent no longer accepts 'children' prop in React 18.2+ and TypeScript 5.x+. We can instead extend each component in `globals.d.ts`.
-
-![alt text](https://github.com/spurintel/spur-us/blob/main/frontend/public/images/readme-globals.png "Image")
-
-```typescript
-declare module "@radix-ui/react-accordion" {
-  export interface AccordionSingleProps extends PropsWithChildren {
-    className?: string;
-  }
-  ...
-}
-```
-
-
-
-## Bug Bounty
-> List of outstanding bugs that need fixing; the prize for clearing one of the bounties is the self-satisfaction of getting this list one step closer to its complete and utter demise.
-
-- absolute imports don't work inside `/sanity/queries` and is presumably conflicting with Sanity TypeGen somehow
+- [ ] Favicons
+- [ ] 404 Routes
+- [ ] Link Preconnects
+- [ ] Agents.MD
+- [ ] Skills.MD
+- [ ] .cursorrules
+- [ ] llms.txt
+- [ ] Global-referenced modules (e.g. drivers)
+- [ ] Plop
+- [ ] dotenv
+- [ ] Swiper? Embla?
+- [ ] Video module
+- [ ] Spacer module?
+- [ ] Announcement Bar
+- [ ] Nav bar theme and direction-aware
+- [ ] Skip to main content button
+- [ ] Image aspect ratio + size description validation in Sanity Schemas
