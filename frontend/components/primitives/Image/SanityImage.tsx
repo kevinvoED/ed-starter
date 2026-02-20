@@ -48,7 +48,7 @@ interface SanityImageProps extends HTMLAttributes<"img"> {
   image: ImageType | null;
   width?: number;
   height?: number;
-  sizes?: string;
+  sizes: string;
   priority?: boolean;
 }
 
@@ -97,7 +97,7 @@ export const SanityImage = ({
       placeholder={placeholder}
       blurDataURL={blurDataURL}
       className={cn("object-cover", className)}
-      sizes={sizes || "100vw"}
+      sizes={sizes}
       width={imageWidth}
       height={imageHeight}
       quality={priority ? 100 : 75}
