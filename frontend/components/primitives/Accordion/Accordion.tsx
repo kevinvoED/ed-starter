@@ -132,17 +132,13 @@ function AccordionContent({
   return (
     <AccordionPrimitive.Panel
       data-slot="accordion-content"
-      className="overflow-hidden text-sm data-closed:animate-accordion-up data-open:animate-accordion-down"
+      className={cn(
+        "overflow-hidden text-sm data-closed:animate-accordion-up data-open:animate-accordion-down",
+        className,
+      )}
       {...props}
     >
-      <div
-        className={cn(
-          "h-(--accordion-panel-height) data-ending-style:h-0 data-starting-style:h-0",
-          className,
-        )}
-      >
-        {children}
-      </div>
+      {children}
     </AccordionPrimitive.Panel>
   );
 }

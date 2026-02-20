@@ -62,6 +62,7 @@ export const Marquee = ({ variant, items, images }: MarqueeProps) => {
     };
   }, []);
 
+  // Update to LogoSoup from Sanity
   if (variant === "image" && images && images.length > 0) {
     return (
       <div ref={containerRef} className="w-full overflow-hidden">
