@@ -18,7 +18,7 @@ import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
  *
  * IMPORTANT: The LenisWrapper overrides typical scroll behavior of Base/UI and shad/cn components
  * Traditionally, these components are supposed to prevent the user from scrolling
- * To prevent this, we can take the useLenis hook to stop or start Lenis when interacting with buttons.
+ * To prevent this, we can take the useLenis hook to stop or start Lenis with the onOpenChange callback.
  *
  * ---------------------
  * Usage Example: Basic
@@ -60,33 +60,37 @@ import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 
  */
 
-function Sheet({ ...props }: SheetPrimitive.Root.Props) {
-  return <SheetPrimitive.Root data-slot="sheet" {...props} />;
+function Sheet({ onOpenChange, ...props }: SheetPrimitive.Root.Props) {
+  const lenis = useLenis();
+
+  const handleOpenChange = (
+    open: boolean,
+    eventDetails: SheetPrimitive.Root.ChangeEventDetails,
+  ) => {
+    open ? lenis?.stop() : lenis?.start();
+    onOpenChange?.(open, eventDetails);
+  };
+
+  return (
+    <SheetPrimitive.Root
+      data-slot="sheet"
+      onOpenChange={handleOpenChange}
+      {...props}
+    />
+  );
 }
 
 function SheetTrigger({ children, ...props }: SheetPrimitive.Trigger.Props) {
-  const lenis = useLenis();
-
   return (
-    <SheetPrimitive.Trigger
-      data-slot="sheet-trigger"
-      onClick={() => lenis?.stop()}
-      {...props}
-    >
+    <SheetPrimitive.Trigger data-slot="sheet-trigger" {...props}>
       {children}
     </SheetPrimitive.Trigger>
   );
 }
 
 function SheetClose({ children, ...props }: SheetPrimitive.Close.Props) {
-  const lenis = useLenis();
-
   return (
-    <SheetPrimitive.Close
-      data-slot="sheet-close"
-      onClick={() => lenis?.start()}
-      {...props}
-    >
+    <SheetPrimitive.Close data-slot="sheet-close" {...props}>
       {children}
     </SheetPrimitive.Close>
   );
@@ -120,8 +124,6 @@ function SheetContent({
   side?: "top" | "right" | "bottom" | "left";
   showCloseButton?: boolean;
 }) {
-  const lenis = useLenis();
-
   return (
     <SheetPortal>
       <SheetOverlay />
@@ -142,10 +144,7 @@ function SheetContent({
           <SheetPrimitive.Close
             data-slot="sheet-close"
             render={
-              <Button
-                onClick={() => lenis?.stop()}
-                className="absolute top-3 right-3"
-              >
+              <Button className="absolute top-3 right-3">
                 <XIcon />
                 <span className="sr-only">Close</span>
               </Button>
