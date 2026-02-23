@@ -14,7 +14,7 @@ type MediaQueryResult = {
   removeListener?: (listener: (event: MediaQueryListEvent) => void) => void;
 };
 
-export function useIsMobile(mobileScreenSize = 768) {
+export function useIsMobile(mobileScreenSize = 777) {
   const [isMobile, setIsMobile] = React.useState(() => {
     if (
       typeof window === "undefined" ||
