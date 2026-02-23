@@ -4,6 +4,7 @@ import { GSAPRuntime } from "@/components/layout/GSAP/Runtime";
 import { fontBody, fontHeading, fontMono } from "@/lib/styles/fonts";
 import { cn } from "@/lib/utils/cn";
 import "./globals.css";
+import { GridGuideline } from "@/components/layout/GridGuideline/GridGuideline";
 import { ScrollRestoration } from "@/components/miscellaneous/ScrollRestoration";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
@@ -31,6 +32,7 @@ export default function RootLayout({
           <NuqsAdapter>
             <Lenis>
               {children}
+              {!isProduction && <GridGuideline />}
               <GSAPRuntime />
               <ScrollRestoration />
             </Lenis>
