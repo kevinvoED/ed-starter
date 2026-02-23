@@ -169,8 +169,8 @@ export type FetchedSanityFooter = Awaited<ReturnType<typeof fetchSanityFooter>>;
 
 // All modules are already pre-wrapped with a <section> tag in ModuleBuilder.tsx
 return (
-          <section key={_key} data-module={_type}>
-            <Component>...</Component>
+  <section key={_key} data-module={_type}>
+    <Component>...</Component>
 ```
 
 ### Each component does not need to initialize ScrollTrigger
