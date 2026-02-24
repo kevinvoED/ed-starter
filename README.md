@@ -43,7 +43,7 @@ $ pnpm run dev
 ED Starter
 │
 ├── 📂 .cursor
-├── 📂 .skills
+├── 📂 .agents
 ├── 📂 frontend
 │   ├── 📂 app
 │   ├── 📂 components
@@ -196,8 +196,8 @@ import { ScrollTrigger } from "gsap/all";
 - [x] Favicons
 - [x] 404 Routes
 - [ ] Link Preconnects
-- [ ] Agents.MD
-- [ ] Skills.MD
+- [x] Agents.MD
+- [x] Skills.MD
 - [ ] .cursorrules
 - [ ] llms.txt
 - [ ] Global-referenced modules (e.g. drivers)
@@ -207,6 +207,7 @@ import { ScrollTrigger } from "gsap/all";
 - [ ] Video module
 - [ ] Spacer module?
 - [ ] Announcement Bar
+- [ ] RichText module
 - [ ] Nav bar theme and direction-aware
 - [ ] Skip to main content button
 - [ ] Image aspect ratio + size description validation in Sanity Schemas
