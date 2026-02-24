@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils/cn";
  * ---------------------
  * Usage Example: Basic
  * ---------------------
- * <TableRoot>
+ * <Table>
  *   <TableHeader>
  *     <TableRow>
  *       <TableHead>Header 1</TableHead>
@@ -27,12 +27,12 @@ import { cn } from "@/lib/utils/cn";
  *       <TableCell>Data 2</TableCell>
  *     </TableRow>
  *   </TableBody>
- * </TableRoot>
+ * </Table>
  *
  * ---------------------
  * Usage Example: With Caption and Footer
  * ---------------------
- * <TableRoot>
+ * <Table>
  *   <TableCaption>A list of your recent invoices.</TableCaption>
  *   <TableHeader>
  *     <TableRow>
@@ -56,10 +56,10 @@ import { cn } from "@/lib/utils/cn";
  *       <TableCell className="text-right">$2,500.00</TableCell>
  *     </TableRow>
  *   </TableFooter>
- * </TableRoot>
+ * </Table>
  */
 
-function TableRoot({ className, ...props }: React.ComponentProps<"table">) {
+function Table({ className, ...props }: React.ComponentProps<"table">) {
   return (
     <div
       data-slot="table-container"
@@ -159,7 +159,7 @@ function TableCaption({
 }
 
 export {
-  TableRoot,
+  Table,
   TableHeader,
   TableBody,
   TableFooter,

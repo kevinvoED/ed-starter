@@ -1,11 +1,11 @@
 import {
+  Table,
   TableBody,
   TableCaption,
   TableCell,
   TableFooter,
   TableHead,
   TableHeader,
-  TableRoot,
   TableRow,
 } from "@/components/primitives/Table/Table";
 import { cn } from "@/lib/utils/cn";
@@ -61,7 +61,7 @@ export default async function EDTablePage() {
   return (
     <div className="grid-custom min-h-dvh p-custom">
       <div className="col-span-7 col-start-3 py-20">
-        <TableRoot>
+        <Table>
           <TableCaption>A list of your recent invoices.</TableCaption>
           <TableHeader>
             <TableRow>
@@ -96,7 +96,7 @@ export default async function EDTablePage() {
               <TableCell className="text-right">$2,500.00</TableCell>
             </TableRow>
           </TableFooter>
-        </TableRoot>
+        </Table>
       </div>
     </div>
   );
