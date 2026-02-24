@@ -1,7 +1,6 @@
 "use client";
 
 import type { ModuleProps } from "@/sanity/lib/fetch";
-import { useGSAP } from "@gsap/react";
 import { toPlainText } from "@portabletext/react";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
