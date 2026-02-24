@@ -53,12 +53,7 @@
       height: var(--accordion-panel-height);
     }
   }
-
-
 }
-
-
-
 
 /* ------------------------------------------------------------ */
 /* -------------------- Utility Classes ---------------------- */
@@ -98,7 +93,7 @@ html {
   scrollbar-width: thin;
 }
 
-@see: https://base-ui.com/react/overview/quick-start
+/* @see: https://base-ui.com/react/overview/quick-start */
 .root {
   isolation: isolate;
 }
@@ -143,4 +138,3 @@ img {
   -o-user-select: none;
   user-select: none;
 }
-
