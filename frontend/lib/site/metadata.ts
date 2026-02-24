@@ -60,6 +60,28 @@ export function generatePageMetadata(
   return {
     title: String(page?.meta?.title),
     description: page?.meta?.description,
+    icons: {
+      icon: [
+        {
+          media: "(prefers-color-scheme: light)",
+          url: "/seo/favicon.svg",
+          href: "/seo/favicon.svg",
+        },
+        {
+          media: "(prefers-color-scheme: dark)",
+          url: "/seo/favicon.svg",
+          href: "/seo/favicon.svg",
+        },
+        { url: "/seo/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      ],
+      apple: [
+        {
+          url: "/seo/apple-touch-icon.png",
+          sizes: "180x180",
+          type: "image/png",
+        },
+      ],
+    },
     openGraph: {
       siteName: "Engine Digital",
       countryName: "Canada",
