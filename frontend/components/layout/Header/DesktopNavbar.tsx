@@ -9,7 +9,7 @@ export const DesktopNavbar = ({ data }: { data: NAVBAR_QUERY_RESULT }) => {
   if (!data || data.length <= 0) return null;
 
   return (
-    <NavigationMenu.Root className="min-w-max bg-white p-custom py-4 text-black">
+    <NavigationMenu.Root className="hidden min-w-max bg-white p-custom py-4 text-black md:block">
       {data.map((item) => (
         <NavigationMenu.List
           key={item._key}
