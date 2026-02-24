@@ -193,17 +193,9 @@ import { ScrollTrigger } from "gsap/all";
 
 ## To-Do List
 
-- [x] Favicons
-- [x] 404 Routes
-- [ ] Link Preconnects
-- [x] Agents.MD
-- [x] Skills.MD
-- [ ] .cursorrules
-- [ ] llms.txt
+- [ ] llms.txt (auto-generated with Sanity?)
 - [ ] Global-referenced modules (e.g. drivers)
-- [ ] Plop
-- [ ] dotenv
-- [ ] Swiper? Embla?
+- [ ] Swiper? Embla? Carousel?
 - [ ] Video module
 - [ ] Spacer module?
 - [ ] Announcement Bar
@@ -211,3 +203,4 @@ import { ScrollTrigger } from "gsap/all";
 - [ ] Nav bar theme and direction-aware
 - [ ] Skip to main content button
 - [ ] Image aspect ratio + size description validation in Sanity Schemas
+- [ ] update next.config.mjs
