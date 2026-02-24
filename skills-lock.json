@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "skills": {
+    "content-experimentation-best-practices": {
+      "source": "sanity-io/agent-toolkit",
+      "sourceType": "github",
+      "computedHash": "9ccde4d8effe46d2b29b584d03d6c5dcf407abb99fdcbbef0814f8ef429f6311"
+    },
+    "content-modeling-best-practices": {
+      "source": "sanity-io/agent-toolkit",
+      "sourceType": "github",
+      "computedHash": "7ea7cf957ccedb956a0a2e18fa68a487a40c5b4a84caa5a58305a4113f449731"
+    },
+    "sanity-best-practices": {
+      "source": "sanity-io/agent-toolkit",
+      "sourceType": "github",
+      "computedHash": "32c76efed696e8e868afaa281a22a04dfd38b4be556fc06c19bfa79b267d04af"
+    },
+    "seo-aeo-best-practices": {
+      "source": "sanity-io/agent-toolkit",
+      "sourceType": "github",
+      "computedHash": "a2122ad11c627122fafbabf7826ea8d832bd3f4ab57ed12b5c06f49caba3301a"
+    },
+    "vercel-composition-patterns": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "computedHash": "f98931159fa9c7fed043bcd18a891a46dcf89ababa38df13a4c5b7b30dc0ce07"
+    },
+    "vercel-react-best-practices": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "computedHash": "4365be772fd3b41994a72ad478472c6d680678e7f3859860ab010e9c46e48ee0"
+    }
+  }
+}
