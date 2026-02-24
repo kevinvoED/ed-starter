@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
 
+/*
+ * Next.js - Not Found
+ *
+ * @DOCS: https://nextjs.org/docs/app/api-reference/file-conventions/not-found
+ */
+
 export const metadata: Metadata = {
   title: "Page not found",
 };
