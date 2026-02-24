@@ -6,7 +6,7 @@ import { useIsMobile } from "@/lib/hooks/use-is-mobile";
 export const GridGuideline = () => {
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
