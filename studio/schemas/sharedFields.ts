@@ -248,7 +248,7 @@ export const images = defineField({
   title: "Images",
   type: "array",
   description: "Select or upload multiple images.",
-  of: [{ type: "image" }],
+  of: [image],
   icon: ImagesIcon,
   validation: (Rule) => Rule.required().min(1),
 });

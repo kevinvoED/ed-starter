@@ -355,6 +355,13 @@
           },
           "optional": false
         },
+        "enableVelocity": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": false
+        },
         "items": {
           "type": "objectAttribute",
           "value": {
@@ -623,6 +630,23 @@
           },
           "optional": true
         },
+        "imageType": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "regular"
+              },
+              {
+                "type": "string",
+                "value": "logo"
+              }
+            ]
+          },
+          "optional": true
+        },
         "images": {
           "type": "objectAttribute",
           "value": {
@@ -658,6 +682,13 @@
                   "value": {
                     "type": "inline",
                     "name": "sanity.imageCrop"
+                  },
+                  "optional": true
+                },
+                "alt": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
                   },
                   "optional": true
                 },

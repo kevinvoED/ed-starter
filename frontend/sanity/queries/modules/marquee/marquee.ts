@@ -7,6 +7,8 @@ export const MARQUEE_QUERY = defineQuery(`
     _type,
     _key,
     variant,
+    enableVelocity,
+    imageType,
     "items" : select(variant == "text" => items[]{
       _key,
       ${titleFragment},

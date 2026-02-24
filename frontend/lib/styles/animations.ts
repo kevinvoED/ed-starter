@@ -31,6 +31,12 @@ export function horizontalLoop(
 ) {
   items = gsap.utils.toArray(items);
   config = config || {};
+
+  if (!items.length || !items[0]) {
+    console.warn("horizontalLoop: No valid items provided");
+    return gsap.timeline({ paused: true });
+  }
+
   let tl = gsap.timeline({
       repeat: config.repeat,
       paused: config.paused,
