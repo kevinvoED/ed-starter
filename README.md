@@ -193,8 +193,8 @@ import { ScrollTrigger } from "gsap/all";
 
 ## To-Do List
 
-- [ ] Favicons
-- [ ] 404 Routes
+- [x] Favicons
+- [x] 404 Routes
 - [ ] Link Preconnects
 - [ ] Agents.MD
 - [ ] Skills.MD
