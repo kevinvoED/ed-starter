@@ -1,9 +1,10 @@
-import type { CustomIconProps } from "@/components/primitives/Icon/Icon";
-
 export const ExampleCustomIcon = ({
   className,
   strokeWidth = 1.5,
-}: Omit<CustomIconProps, "size">) => {
+}: {
+  className: string;
+  strokeWidth: number;
+}) => {
   return (
     <svg
       className={className}
