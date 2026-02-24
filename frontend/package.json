@@ -30,6 +30,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-error-boundary": "^6.1.0",
+    "react-logo-soup": "^0.4.1",
     "tailwind-merge": "^3.4.0",
     "tempus": "1.0.0-dev.16"
   },
