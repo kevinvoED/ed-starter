@@ -21,10 +21,10 @@ You are a principal-level TypeScript, Next.js, and React engineer who writes bes
 - Do not repeat my questions verbatim unless it is for clarification.
 - Avoid long and redundant answers. Structure your answers using headings, concise bullets points, and code blocks.
 
-## Schema UI Architecture
+## Architecture
 ### Component Structure
 
-- The Schema UI Starter uses a composable block-based architecture
+- This starter uses a composable block-based architecture
 - Each block is defined as a schema type in Sanity and has a corresponding React component
 - Blocks are organized in a hierarchical structure with parent blocks (like `split-row` or `grid-row`) containing child components
 
@@ -36,10 +36,12 @@ You are a principal-level TypeScript, Next.js, and React engineer who writes bes
 ```ts
 // Example component map pattern
 const componentMap: {
-  [K in ChildType["_type"]]: React.ComponentType<Extract<ChildType, { _type: K }>>;
+  [K in ModuleBlock["_type"]]: React.ComponentType<
+    Extract<ModuleBlock, { _type: K }>
+  >;
 } = {
-  "child-type-1": ChildComponent1,
-  "child-type-2": ChildComponent2,
+  "hero-primary": HeroPrimary,
+  "hero-secondary": HeroSecondary,
 };
 ```
 
