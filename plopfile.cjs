@@ -124,14 +124,27 @@
         ].sort((a, b) => a.name.localeCompare(b.name))
       },
     ],
-    actions: function (data) {
+    actions: function () {
       return [
         ">>> REMEMBER TO UPDATE: 'studio/schemas/schema.ts'",
-        ">>> REMEMBER TO UPDATE: 'studio/sanity.config.ts'",
+        ">>> REMEMBER TO UPDATE: 'studio/lib/structure.ts'",
+        ">>> REMEMBER TO UPDATE: 'frontend/sanity/queries/queries.ts'",
+        ">>> REMEMBER TO UPDATE: 'frontend/sanity/lib/fetch.ts'",
+        ">>> REMEMBER TO MOVE THE COMPONENT FILE TO THE CORRECT FOLDER: 'frontend/components'",
         {
           type: 'add',
           path: 'studio/schemas/{{lowerCase type}}s/{{kebabCase name}}.ts',
           templateFile: '.plop/sanity-schema-{{lowerCase type}}.ts.hbs',
+        },
+        {
+          type: 'add',
+          path: 'frontend/sanity/queries/documents/{{kebabCase name}}.ts',
+          templateFile: '.plop/sanity-schema-query.ts.hbs',
+        },
+        {
+          type: 'add',
+          path: 'frontend/components/{{pascalCase name}}.tsx',
+          templateFile: '.plop/sanity-schema-component.tsx.hbs',
         },
       ];
     },
