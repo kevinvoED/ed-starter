@@ -1,4 +1,4 @@
-import type { JSONLDScriptProps } from "@/components/layout/JsonLD/Jsonld";
+import type { JSONLDScriptProps } from "@/components/miscellaneous/JsonLD/Jsonld";
 import type { ORGANIZATION_QUERY_RESULT } from "@/sanity.types";
 import type { ViewableTypes } from "../utils/url-mapper";
 import { generatePageMetadata } from "./metadata";

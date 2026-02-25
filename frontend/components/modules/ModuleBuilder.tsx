@@ -10,7 +10,7 @@ import { FullVideo } from "@/components/modules/Miscellaneous/FullVideo";
 import { TableExample } from "@/components/modules/Table/TableExample";
 import { RichText } from "@/components/modules/Text/RichText";
 import { TextExample } from "@/components/modules/Text/TextExample";
-import { MyModulesRendererErrorBoundary } from "../layout/ErrorBoundary/ErrorBoundary";
+import { MyModulesRendererErrorBoundary } from "../miscellaneous/ErrorBoundary/ErrorBoundary";
 
 export type ModuleBlock = NonNullable<
   NonNullable<PAGE_QUERY_RESULT>["modules"]

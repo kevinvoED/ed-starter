@@ -3,7 +3,7 @@ import { FETCH_CONTENT_TYPE_INDEX_PAGE_DATA } from "@/sanity/lib/fetch";
 import { Transition } from "@/components/animations/Transition";
 import { ContentPagination } from "@/components/layout/Content/ContentPagination";
 import { ContentTopicFilter } from "@/components/layout/Content/ContentTopicFilter";
-import { JSONLDScript } from "@/components/layout/JsonLD/Jsonld";
+import { JSONLDScript } from "@/components/miscellaneous/JsonLD/Jsonld";
 import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";

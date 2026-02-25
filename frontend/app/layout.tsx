@@ -5,7 +5,7 @@ import { fontBody, fontHeading, fontMono } from "@/lib/styles/fonts";
 import { cn } from "@/lib/utils/cn";
 import "./globals.css";
 import { GridGuideline } from "@/components/layout/GridGuideline/GridGuideline";
-import { ScrollRestoration } from "@/components/miscellaneous/ScrollRestoration";
+import { ScrollRestoration } from "@/components/miscellaneous/ScrollRestoration/ScrollRestoration";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 const isProduction = process.env.NEXT_PUBLIC_SITE_ENV === "production";
