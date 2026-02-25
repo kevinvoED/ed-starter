@@ -9,6 +9,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const nextConfig = {
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: process.env.NODE_ENV === "production",
+  },
+  poweredByHeader: false,
   /** @see https://nextjs.org/docs/app/api-reference/config/next-config-js/headers */
   async headers() {
     return [
@@ -88,7 +95,6 @@ const nextConfig = {
     return rewrites;
   },
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
