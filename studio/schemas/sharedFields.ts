@@ -229,6 +229,7 @@ export const image = defineField({
   options: {
     hotspot: true,
     collapsed: false,
+    accept: "image/jpeg, image/png, image/webp, image/svg+xml",
   },
   fields: [
     {
