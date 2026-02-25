@@ -15,8 +15,13 @@ import {
   titleFragment,
 } from "./fragments";
 import { FN_LOGO, GROQ_FUNCTIONS } from "./functions";
+import { CARD_EXAMPLE_QUERY } from "./modules/card/card-example";
+import { DRIVER_EXAMPLE_QUERY } from "./modules/driver/driver-example";
 import { HERO_PRIMARY_QUERY } from "./modules/hero/hero-primary";
+import { LIST_EXAMPLE_QUERY } from "./modules/list/list-example";
 import { MARQUEE_QUERY } from "./modules/marquee/marquee";
+import { TABLE_EXAMPLE_QUERY } from "./modules/table/table-example";
+import { TEXT_EXAMPLE_QUERY } from "./modules/text/text-example";
 
 /*
  * ====================================================
@@ -28,7 +33,12 @@ import { MARQUEE_QUERY } from "./modules/marquee/marquee";
 export const modulesFragment = defineQuery(`
   modules[]{
     ${HERO_PRIMARY_QUERY},
-    ${MARQUEE_QUERY}
+    ${MARQUEE_QUERY},
+    ${CARD_EXAMPLE_QUERY},
+    ${DRIVER_EXAMPLE_QUERY},
+    ${LIST_EXAMPLE_QUERY},
+    ${TABLE_EXAMPLE_QUERY},
+    ${TEXT_EXAMPLE_QUERY},
   }
 `);
 

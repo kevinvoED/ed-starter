@@ -26,7 +26,15 @@ export const relationTypes = sortBy(
  * This is only for module-related schemas.
  */
 export const moduleBlocks = sortBy(
-  [{ type: "hero-primary" }, { type: "marquee" }],
+  [
+    { type: "hero-primary" },
+    { type: "marquee" },
+    { type: "card-example" },
+    { type: "driver-example" },
+    { type: "list-example" },
+    { type: "table-example" },
+    { type: "text-example" },
+  ],
   ["type"],
 );
 
@@ -43,8 +51,28 @@ export const moduleGroups = sortBy(
       of: ["hero-primary"],
     },
     {
-      name: "marquee",
+      name: "miscellaneous",
       of: ["marquee"],
+    },
+    {
+      name: "card",
+      of: ["card-example"],
+    },
+    {
+      name: "driver",
+      of: ["driver-example"],
+    },
+    {
+      name: "list",
+      of: ["list-example"],
+    },
+    {
+      name: "table",
+      of: ["table-example"],
+    },
+    {
+      name: "text",
+      of: ["text-example"],
     },
   ],
   ["name"],

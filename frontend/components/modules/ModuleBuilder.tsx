@@ -1,7 +1,12 @@
 import type { ComponentProps } from "react";
 import type { PAGE_QUERY_RESULT } from "@/sanity.types";
+import { CardExample } from "@/components/modules/Card/CardExample";
+import { DriverExample } from "@/components/modules/Driver/DriverExample";
 import { HeroPrimary } from "@/components/modules/Hero/HeroPrimary";
+import { ListExample } from "@/components/modules/List/ListExample";
 import { Marquee } from "@/components/modules/Marquee/Marquee";
+import { TableExample } from "@/components/modules/Table/TableExample";
+import { TextExample } from "@/components/modules/Text/TextExample";
 import { MyModulesRendererErrorBoundary } from "../layout/ErrorBoundary/ErrorBoundary";
 
 export type ModuleBlock = NonNullable<
@@ -19,6 +24,11 @@ const componentMap: {
 } = {
   "hero-primary": HeroPrimary,
   marquee: Marquee,
+  "card-example": CardExample,
+  "driver-example": DriverExample,
+  "list-example": ListExample,
+  "table-example": TableExample,
+  "text-example": TextExample,
 };
 
 const LocalErrorFallback: React.FC<React.PropsWithChildren> = ({

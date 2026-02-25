@@ -1,0 +1,19 @@
+import { defineQuery } from "next-sanity";
+import {
+  descriptionFragment,
+  imageFragment,
+  linkFragment,
+  titleFragment,
+} from "../../fragments";
+
+// @sanity-typegen-ignore
+export const {{constantCase name}}_QUERY = defineQuery(`
+  _type == "{{kebabCase name}}" => {
+    _type,
+    _key,
+    ${titleFragment},
+    ${descriptionFragment},
+    ${linkFragment},
+    ${imageFragment},
+  }
+`);

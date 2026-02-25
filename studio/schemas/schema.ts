@@ -23,7 +23,12 @@ import link from "@/schemas/objects/link";
 // Modules
 import heroPrimary from "@/schemas/modules/hero/hero-primary";
 import portableText from "@/schemas/objects/portable-text";
-import marquee from "@/schemas/modules/marquee/marquee";
+import marquee from "@/schemas/modules/miscellaneous/marquee";
+import cardExample from "@/schemas/modules/card/card-example";
+import driverExample from "@/schemas/modules/driver/driver-example";
+import listExample from "@/schemas/modules/list/list-example";
+import tableExample from "@/schemas/modules/table/table-example";
+import textExample from "@/schemas/modules/text/text-example";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -51,5 +56,10 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     // Modules
     heroPrimary,
     marquee,
+    cardExample,
+    driverExample,
+    listExample,
+    tableExample,
+    textExample,
   ],
 };
