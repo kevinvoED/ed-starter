@@ -116,6 +116,30 @@
     }
   },
   {
+    "name": "rich-text",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "rich-text"
+          }
+        },
+        "content": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "portable-text"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
     "type": "type",
     "name": "blog-index.reference",
     "value": {
@@ -8723,6 +8747,21 @@
                 },
                 "rest": {
                   "type": "inline",
+                  "name": "rich-text"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
                   "name": "table-example"
                 }
               },
@@ -9403,6 +9442,21 @@
                 "rest": {
                   "type": "inline",
                   "name": "marquee"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "rich-text"
                 }
               },
               {
@@ -10337,6 +10391,21 @@
                 },
                 "rest": {
                   "type": "inline",
+                  "name": "rich-text"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
                   "name": "table-example"
                 }
               },
@@ -11040,6 +11109,21 @@
                 "rest": {
                   "type": "inline",
                   "name": "marquee"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "rich-text"
                 }
               },
               {
@@ -11862,6 +11946,21 @@
                 },
                 "rest": {
                   "type": "inline",
+                  "name": "rich-text"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
                   "name": "table-example"
                 }
               },
@@ -12173,6 +12272,21 @@
                 },
                 "rest": {
                   "type": "inline",
+                  "name": "rich-text"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
                   "name": "table-example"
                 }
               },
@@ -12343,6 +12457,21 @@
                 "rest": {
                   "type": "inline",
                   "name": "marquee"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "rich-text"
                 }
               },
               {

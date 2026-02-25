@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/primitives/Button/Button";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
 
+// Taken from Brinqa
+// TODO: refactor and improve
+
 // Create a content-based version identifier for the banner
 function createBannerVersion(
   banner: NonNullable<BANNER_QUERY_RESULT>[0],

@@ -198,7 +198,6 @@ import { ScrollTrigger } from "gsap/all";
 - [ ] Swiper? Embla? Carousel?
 - [ ] Video module
 - [ ] Spacer module?
-- [ ] RichText module
 - [ ] Nav bar theme and direction-aware
 - [ ] Image aspect ratio + size description validation in Sanity Schemas
 - [ ] update next.config.mjs

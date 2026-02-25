@@ -6,6 +6,7 @@ import { HeroPrimary } from "@/components/modules/Hero/HeroPrimary";
 import { ListExample } from "@/components/modules/List/ListExample";
 import { Marquee } from "@/components/modules/Marquee/Marquee";
 import { TableExample } from "@/components/modules/Table/TableExample";
+import { RichText } from "@/components/modules/Text/RichText";
 import { TextExample } from "@/components/modules/Text/TextExample";
 import { MyModulesRendererErrorBoundary } from "../layout/ErrorBoundary/ErrorBoundary";
 
@@ -24,6 +25,7 @@ const componentMap: {
 } = {
   "hero-primary": HeroPrimary,
   marquee: Marquee,
+  "rich-text": RichText,
   "card-example": CardExample,
   "driver-example": DriverExample,
   "list-example": ListExample,
@@ -34,7 +36,7 @@ const componentMap: {
 const LocalErrorFallback: React.FC<React.PropsWithChildren> = ({
   children,
 }) => (
-  <div className="bg-[#993333] p-2 text-white">
+  <div className="bg-debug-red p-2 text-white">
     <h2 className="mb-2 font-bold text-xl">
       Something went wrong rendering a block
     </h2>
