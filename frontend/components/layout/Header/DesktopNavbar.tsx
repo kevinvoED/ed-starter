@@ -5,6 +5,8 @@ import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
 import { NavigationMenu } from "@base-ui/react/navigation-menu";
 
+// TODO PROJECT-LAUNCH: programmatically handle prefetch on SanityLink
+
 export const DesktopNavbar = ({ data }: { data: NAVBAR_QUERY_RESULT }) => {
   if (!data || data.length <= 0) return null;
 

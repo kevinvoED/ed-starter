@@ -1,5 +1,7 @@
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
 
+// TODO PROJECT-LAUNCH: programmatically handle prefetch on SanityLink
+
 export const MobileNavbar = () => {
   return (
     <nav className="hidden">
