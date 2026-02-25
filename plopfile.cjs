@@ -54,6 +54,10 @@
             value: 'list',
           },
           {
+            name: 'Image',
+            value: 'image',
+          },
+          {
             name: 'Table',
             value: 'table',
           },

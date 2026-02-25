@@ -3,6 +3,7 @@ import type { PAGE_QUERY_RESULT } from "@/sanity.types";
 import { CardExample } from "@/components/modules/Card/CardExample";
 import { DriverExample } from "@/components/modules/Driver/DriverExample";
 import { HeroPrimary } from "@/components/modules/Hero/HeroPrimary";
+import { FullImage } from "@/components/modules/Image/FullImage";
 import { ListExample } from "@/components/modules/List/ListExample";
 import { Marquee } from "@/components/modules/Marquee/Marquee";
 import { TableExample } from "@/components/modules/Table/TableExample";
@@ -31,11 +32,10 @@ const componentMap: {
   "list-example": ListExample,
   "table-example": TableExample,
   "text-example": TextExample,
+  "full-image": FullImage,
 };
 
-const LocalErrorFallback: React.FC<React.PropsWithChildren> = ({
-  children,
-}) => (
+const LocalErrorFallback = ({ children }: { children: React.ReactNode }) => (
   <div className="bg-debug-red p-2 text-white">
     <h2 className="mb-2 font-bold text-xl">
       Something went wrong rendering a block

@@ -31,6 +31,7 @@ import driverExample from "@/schemas/modules/driver/driver-example";
 import listExample from "@/schemas/modules/list/list-example";
 import tableExample from "@/schemas/modules/table/table-example";
 import textExample from "@/schemas/modules/text/text-example";
+import fullImage from "@/schemas/modules/image/full-image";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -65,5 +66,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     tableExample,
     textExample,
     richText,
+    fullImage,
   ],
 };

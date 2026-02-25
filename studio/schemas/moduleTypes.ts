@@ -30,6 +30,7 @@ export const moduleBlocks = sortBy(
     { type: "hero-primary" },
     { type: "marquee" },
     { type: "rich-text" },
+    { type: "full-image" },
     // Delete or edit example modules once you populate your project
     { type: "card-example" },
     { type: "driver-example" },
@@ -67,6 +68,10 @@ export const moduleGroups = sortBy(
     {
       name: "list",
       of: ["list-example"],
+    },
+    {
+      name: "image",
+      of: ["full-image"],
     },
     {
       name: "table",
