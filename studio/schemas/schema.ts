@@ -18,6 +18,7 @@ import navbar from "@/schemas/documents/navbar";
 import organization from "@/schemas/documents/organization";
 import blogCategory from "@/schemas/pages/blog/blog-category";
 import contentTopic from "@/schemas/pages/content-topic";
+import banner from "@/schemas/documents/banner";
 // Objects
 import link from "@/schemas/objects/link";
 // Modules
@@ -50,6 +51,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     organization,
     configuration,
     author,
+    banner,
     // Objects
     link,
     portableText,

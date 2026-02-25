@@ -1,4 +1,5 @@
 import type {
+  BANNER_QUERY_RESULT,
   FOOTER_QUERY_RESULT,
   GET_CONTENT_TYPE_INDEX_QUERY_RESULT,
   GET_CONTENT_TYPE_SLUG_QUERY_RESULT,
@@ -9,6 +10,7 @@ import type {
   PAGES_SLUGS_QUERY_RESULT,
 } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/live";
+import { BANNER_QUERY } from "@/sanity/queries/documents/banner";
 import { FOOTER_QUERY } from "@/sanity/queries/documents/footer";
 import { NAVBAR_QUERY } from "@/sanity/queries/documents/navbar";
 import {
@@ -38,6 +40,13 @@ export const fetchSanityOrganization =
     });
     return data;
   };
+
+export const fetchSanityBanner = async (): Promise<BANNER_QUERY_RESULT> => {
+  const { data } = await sanityFetch({
+    query: BANNER_QUERY,
+  });
+  return data;
+};
 
 export const fetchSanityNavbar = async (): Promise<NAVBAR_QUERY_RESULT> => {
   const { data } = await sanityFetch({

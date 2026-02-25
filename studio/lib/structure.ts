@@ -64,6 +64,11 @@ const globalItems = [
     schemaType: "footer",
     icon: EarthGlobeIcon,
   },
+  {
+    title: "Banner",
+    schemaType: "banner",
+    icon: BookmarkIcon,
+  },
 ];
 
 const administrationItems = [
