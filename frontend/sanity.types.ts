@@ -53,7 +53,7 @@ export type FullVideo = {
 
 export type FullImage = {
   _type: "full-image";
-  image: {
+  image?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
@@ -3051,7 +3051,7 @@ export type PAGE_QUERY_RESULT = {
           crop?: SanityImageCrop;
           alt?: string;
           _type: "image";
-        };
+        } | null;
       }
     | {
         _type: "full-video";
@@ -6161,7 +6161,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            };
+            } | null;
           }
         | {
             _type: "full-video";
@@ -7971,7 +7971,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            };
+            } | null;
           }
         | {
             _type: "full-video";
@@ -9781,7 +9781,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            };
+            } | null;
           }
         | {
             _type: "full-video";
@@ -11591,7 +11591,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            };
+            } | null;
           }
         | {
             _type: "full-video";
@@ -16785,7 +16785,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            };
+            } | null;
           }
         | {
             _type: "full-video";
@@ -18464,7 +18464,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            };
+            } | null;
           }
         | {
             _type: "full-video";
@@ -20143,7 +20143,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            };
+            } | null;
           }
         | {
             _type: "full-video";
@@ -23022,7 +23022,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            };
+            } | null;
           }
         | {
             _type: "full-video";
@@ -24350,7 +24350,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               crop?: SanityImageCrop;
               alt?: string;
               _type: "image";
-            };
+            } | null;
           }
         | {
             _type: "full-video";

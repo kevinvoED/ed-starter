@@ -1,5 +1,6 @@
 import { ImageIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
+import { validateImage } from "@/lib/utils";
 import { image } from "@/schemas/sharedFields";
 
 export default defineType({
@@ -9,6 +10,12 @@ export default defineType({
   fields: [
     defineField({
       ...image,
+      validation: (Rule) =>
+        Rule.custom(
+          validateImage({
+            minWidth: 900,
+          }),
+        ),
     }),
   ],
   preview: {
