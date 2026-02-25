@@ -6,6 +6,7 @@ import { HeroPrimary } from "@/components/modules/Hero/HeroPrimary";
 import { FullImage } from "@/components/modules/Image/FullImage";
 import { ListExample } from "@/components/modules/List/ListExample";
 import { Marquee } from "@/components/modules/Marquee/Marquee";
+import { FullVideo } from "@/components/modules/Miscellaneous/FullVideo";
 import { TableExample } from "@/components/modules/Table/TableExample";
 import { RichText } from "@/components/modules/Text/RichText";
 import { TextExample } from "@/components/modules/Text/TextExample";
@@ -33,6 +34,7 @@ const componentMap: {
   "table-example": TableExample,
   "text-example": TextExample,
   "full-image": FullImage,
+  "full-video": FullVideo,
 };
 
 const LocalErrorFallback = ({ children }: { children: React.ReactNode }) => (

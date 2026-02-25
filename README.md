@@ -196,7 +196,6 @@ import { ScrollTrigger } from "gsap/all";
 - [ ] llms.txt (auto-generated with Sanity?)
 - [ ] Global-referenced modules (e.g. drivers)
 - [ ] Swiper? Embla? Carousel?
-- [ ] Video module
 - [ ] Spacer module?
 - [ ] Nav bar theme and direction-aware
 - [ ] Image aspect ratio + size description validation in Sanity Schemas

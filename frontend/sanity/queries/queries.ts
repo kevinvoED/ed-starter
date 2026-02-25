@@ -21,10 +21,10 @@ import { HERO_PRIMARY_QUERY } from "./modules/hero/hero-primary";
 import { FULL_IMAGE_QUERY } from "./modules/image/full-image";
 import { LIST_EXAMPLE_QUERY } from "./modules/list/list-example";
 import { MARQUEE_QUERY } from "./modules/marquee/marquee";
+import { FULL_VIDEO_QUERY } from "./modules/miscellaneous/full-video";
 import { TABLE_EXAMPLE_QUERY } from "./modules/table/table-example";
 import { RICH_TEXT_QUERY } from "./modules/text/rich-text";
 import { TEXT_EXAMPLE_QUERY } from "./modules/text/text-example";
-
 /*
  * ====================================================
  * ============= MODULE-BUILDER FRAGMENT ==============
@@ -38,6 +38,7 @@ export const modulesFragment = defineQuery(`
     ${MARQUEE_QUERY},
     ${RICH_TEXT_QUERY},
     ${FULL_IMAGE_QUERY},
+    ${FULL_VIDEO_QUERY},
     ${CARD_EXAMPLE_QUERY},
     ${DRIVER_EXAMPLE_QUERY},
     ${LIST_EXAMPLE_QUERY},

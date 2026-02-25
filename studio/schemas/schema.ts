@@ -32,6 +32,7 @@ import listExample from "@/schemas/modules/list/list-example";
 import tableExample from "@/schemas/modules/table/table-example";
 import textExample from "@/schemas/modules/text/text-example";
 import fullImage from "@/schemas/modules/image/full-image";
+import fullVideo from "@/schemas/modules/miscellaneous/full-video";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -67,5 +68,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     textExample,
     richText,
     fullImage,
+    fullVideo,
   ],
 };
