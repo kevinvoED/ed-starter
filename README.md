@@ -11,13 +11,14 @@
 [sanity]: https://img.shields.io/badge/Sanity-20232A?style=for-the-badge&logo=sanity&logoColor=F97316
 
 ## Pre-requisites
+> If you are having trouble with `corepack` not being able to install `pnpm`, try clearing the cache with `corepack cache clean`.
 
 | Tool| Action|
 | :------------------------ | :----------------------------------------------- |
 | `Node.js`| Version specified in `.nvmrc` (use `nvm use`)|
 | `pnpm`| `~10.19.0` (installed automatically via `packageManager` field)|
 
-> If you are having trouble with `corepack` not being able to install `pnpm`, try clearing the cache with `corepack cache clean`.
+
 
 
 ## Setup & Development
@@ -30,10 +31,10 @@ $ cp studio/.env.local.example studio/.env.local
 // Set your node version
 $ nvm use
 
-//Install dependencies in root, frontend, and studio folders
+// Install dependencies in root, frontend, and studio folders
 $ pnpm install
 
-// Run `pnpm run dev` in root folder to run frontend and studio dev environments in parallel
+// Run in root folder to run frontend and studio dev environments in parallel
 $ pnpm run dev
 ```
 
@@ -114,21 +115,19 @@ ED Starter
 
 ## FAQ
 
-### How do I create a new Sanity schema and component?
-1. Create your schema inside `/studio/schemas` in the appropriate folder
-2. Add your schema to `/studio/schema.ts`
-3. Add your schema to `/studio/moduleTypes.ts`
+### How do I create a new Sanity-powered module?
+1. In root, run `pnpm run plop` and select `Add New Module`
+2. Plop will then auto-generate a component, query, and schema file
+3. Add your schema to `/studio/schemas/schema.ts` and `/studio/schemas/moduleTypes.ts`
 4. Add your schema image preview to `/studio/schemas/previews`
-5. Create a query for your schema at `/frontend/sanity/queries`
-6. Add that query to `/frontend/sanity/queries/page.ts`
-7. Create your component in `/frontend/components`
-8. Add your component and schema to `/frontend/components/ModuleBuilder.tsx`
-9. Make good use of `sharedFields.ts` for schemas and the `shared` fragments for queries
+5. Add your query to `/frontend/sanity/queries/queries.ts`
+6. Add your component and schema to `/frontend/components/modules/ModuleBuilder.tsx`
+7. Run `pnpm run typegen` to auto-generate new types. Done!
 
 ### Creating field previews
 
 1. Install `imagemagick` with `brew install imagemagick`
-2. Check it installed the convert tool with `magick --help` and it should return a path
+2. Run `magick --help` to return a path to ensure its installed the convert tool
 3. Export the frame of the component (use JPG)
 4. Extract the JPG
 5. Crop and resize to `536x336`
@@ -186,8 +185,6 @@ if (typeof window !== "undefined") {
 }
 
 // You do have to import ScrollTrigger if you plan on using its methods though
-
-// MyComponent.tsx
 import { ScrollTrigger } from "gsap/all";
 ```
 
