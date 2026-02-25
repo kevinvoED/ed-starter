@@ -3,6 +3,8 @@
   const BANNED_WORDS = ['schema', 'component'];
 
   // Helper functions
+  plop.setHelper('eq', (a, b) => a === b);
+
   const checkForBannedWords = (answer) => {
     return BANNED_WORDS.some(word => answer.toLowerCase().includes(word.toLowerCase()));
   };
@@ -66,7 +68,7 @@
         ].sort((a, b) => a.name.localeCompare(b.name))
       },
     ],
-    actions: function (data) {
+    actions: function () {
       return [
         ">>> REMEMBER TO UPDATE: 'studio/schemas/schema.ts'",
         ">>> REMEMBER TO UPDATE: 'studio/schemas/moduleTypes.ts'",
@@ -139,7 +141,7 @@
         {
           type: 'add',
           path: 'frontend/sanity/queries/documents/{{kebabCase name}}.ts',
-          templateFile: '.plop/sanity-schema-query.ts.hbs',
+          templateFile: '.plop/sanity-schema-query{{#if (eq type "document")}}-document{{/if}}.ts.hbs',
         },
         {
           type: 'add',

@@ -1,0 +1,21 @@
+import { defineQuery } from "next-sanity";
+import {
+  descriptionFragment,
+  imageFragment,
+  linkFragment,
+  titleFragment,
+} from "../fragments";
+import { GROQ_FUNCTIONS } from "../functions";
+
+export const {{constantCase name}}_QUERY = defineQuery(`
+  ${GROQ_FUNCTIONS}
+
+  *[_type == "{{kebabCase name}}"]{
+    _type,
+    _key,
+    ${titleFragment},
+    ${descriptionFragment},
+    ${linkFragment},
+    ${imageFragment}
+  }
+`);
