@@ -2,39 +2,6 @@
   // Constants
   const BANNED_WORDS = ['schema', 'component'];
 
-  const MODULE_SCHEMA_CATEGORIES = [
-    {
-      name: 'Hero',
-      value: 'hero',
-    },
-    {
-      name: 'Card',
-      value: 'card',
-    },
-    {
-      name: 'Driver',
-      value: 'driver',
-    },
-    {
-      name: 'List',
-      value: 'list',
-    },
-    {
-      name: 'Table',
-      value: 'table',
-    },
-    {
-      name: 'Text',
-      value: 'text',
-    },
-    {
-      name: 'Miscellaneous',
-      value: 'miscellaneous',
-    },
-  ].sort((a, b) => a.name.localeCompare(b.name));
-
-
-
   // Helper functions
   const checkForBannedWords = (answer) => {
     return BANNED_WORDS.some(word => answer.toLowerCase().includes(word.toLowerCase()));
@@ -45,14 +12,13 @@
     return lastWord?.toLowerCase().at(-1) === 's';
   };
 
-
-
-  plop.setGenerator('Add new module', {
-    description: 'Add a new Sanity Schema + GROQ query + Component file.',
+  // Plop generators
+  plop.setGenerator('Add New Module', {
+    description: '(Sanity Schema + GROQ query + Component files)',
     prompts: [
       {
-        type: 'input',
         name: 'name',
+        type: 'input',
         message: 'Name of schema? Spaces are allowed and respected. (e.g. Hero Primary, Card Grid, etc.)',
         validate(answer) {
           const hasBannedWord = checkForBannedWords(answer);
@@ -65,16 +31,45 @@
         },
       },
       {
-        type: 'list',
         name: 'category',
+        type: 'list',
         message: 'What category does this schema fit into?',
-        choices: MODULE_SCHEMA_CATEGORIES,
+        choices: [
+          {
+            name: 'Hero',
+            value: 'hero',
+          },
+          {
+            name: 'Card',
+            value: 'card',
+          },
+          {
+            name: 'Driver',
+            value: 'driver',
+          },
+          {
+            name: 'List',
+            value: 'list',
+          },
+          {
+            name: 'Table',
+            value: 'table',
+          },
+          {
+            name: 'Text',
+            value: 'text',
+          },
+          {
+            name: 'Miscellaneous',
+            value: 'miscellaneous',
+          },
+        ].sort((a, b) => a.name.localeCompare(b.name))
       },
     ],
     actions: function (data) {
       return [
-        ">>> REMEMBER TO UPDATE: 'studio/schema.ts'",
-        ">>> REMEMBER TO UPDATE: 'studio/moduleTypes.ts'",
+        ">>> REMEMBER TO UPDATE: 'studio/schemas/schema.ts'",
+        ">>> REMEMBER TO UPDATE: 'studio/schemas/moduleTypes.ts'",
         ">>> REMEMBER TO UPDATE: 'frontend/sanity/queries/queries.ts'",
         ">>> REMEMBER TO UPDATE: 'frontend/components/ModuleBuilder.tsx'",
         {
@@ -96,13 +91,13 @@
     },
   });
 
-  plop.setGenerator('create-component', {
-    description: 'Next Component',
+  plop.setGenerator('Add Sanity Schema', {
+    description: '(Documents & Object).',
     prompts: [
       {
-        type: 'input',
         name: 'name',
-        message: 'Insert component',
+        type: 'input',
+        message: 'Name of schema? Spaces are allowed and respected. (e.g. Author, Configuration, etc.)',
         validate(answer) {
           const hasBannedWord = checkForBannedWords(answer);
           const hasPluralEnding = checkForPluralEnding(answer);
@@ -113,18 +108,32 @@
           return true;
         },
       },
-    ],
-    actions: [
       {
-        type: 'add',
-        path: 'components/{{pascalCase name}}/index.tsx',
-        templateFile: 'plop-templates/component.tsx.hbs',
-      },
-      {
-        type: 'add',
-        path: '__tests__/components/{{pascalCase name}}/{{pascalCase name}}.snapshot.test.tsx',
-        templateFile: 'plop-templates/component-snapshot-test.tsx.hbs',
+        name: 'type',
+        type: 'list',
+        message: 'What type of schema do you want to add?',
+        choices: [
+          {
+            name: 'document',
+            value: 'document',
+          },
+          {
+            name: 'object',
+            value: 'object',
+          },
+        ].sort((a, b) => a.name.localeCompare(b.name))
       },
     ],
+    actions: function (data) {
+      return [
+        ">>> REMEMBER TO UPDATE: 'studio/schemas/schema.ts'",
+        ">>> REMEMBER TO UPDATE: 'studio/sanity.config.ts'",
+        {
+          type: 'add',
+          path: 'studio/schemas/{{lowerCase type}}s/{{kebabCase name}}.ts',
+          templateFile: '.plop/sanity-schema-{{lowerCase type}}.ts.hbs',
+        },
+      ];
+    },
   });
 };

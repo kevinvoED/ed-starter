@@ -1,0 +1,42 @@
+import { toPlainText } from "@portabletext/react";
+import { UserIcon } from "@sanity/icons";
+import { orderRankField } from "@sanity/orderable-document-list";
+import { defineField, defineType } from "sanity";
+import { description, image, link, title } from "@/schemas/sharedFields";
+
+export default defineType({
+  name: "{{kebabCase name}}",
+  title: "{{titleCase name}}",
+  type: "document",
+  icon: UserIcon,
+  fields: [
+    defineField({
+      ...title,
+    }),
+    defineField({
+      ...description,
+    }),
+    defineField({
+      ...image,
+    }),
+    defineField({
+      ...link,
+      validation: (Rule) => Rule.max(2),
+    }),
+    orderRankField({ type: "{{kebabCase name}}" }),
+  ],
+  preview: {
+    select: {
+      title: "title",
+      image: "image",
+    },
+    prepare({ title, image }) {
+      return {
+        title: "{{titleCase name}}",
+        subtitle: toPlainText(title),
+        media: image,
+      };
+    },
+  },
+});
+
