@@ -24,18 +24,17 @@
 ## Setup & Development
 
 ```typescript
-// Set up ENV variables
-$ cp frontend/.env.local.example frontend/.env.local
-$ cp studio/.env.local.example studio/.env.local
-
 // Set your node version
 $ nvm use
+
+// Set up .env variables
+$ pnpm setup-env
 
 // Install dependencies in root, frontend, and studio folders
 $ pnpm install
 
-// Run in root folder to run frontend and studio dev environments in parallel
-$ pnpm run dev
+// Run in root folder to start frontend and studio dev environments in parallel
+$ pnpm dev
 ```
 
 ## Project Structure
@@ -86,15 +85,16 @@ ED Starter
 
 ## Commands
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm run dev`             | Starts local dev and local Sanity studio servers in parallel|
-| `pnpm run dev:next`        | Starts local dev server at localhost:3000|
-| `pnpm run dev:studio`      | Starts Sanity Studio server at localhost:3333    |
-| `pnpm run typegen`         | Autogenerates types using Sanity TypeGen         |
-| `pnpm run typecheck`       | TypeScript type checking                         |
-| `pnpm run format`          | Formats and lints code with Biome                |
+| Command                | Action                                                         |
+| :--------------------- | :--------------------------------------------------------------|
+| `pnpm install`         | Installs dependencies                                          |
+| `pnpm dev`             | Starts local dev and local Sanity studio servers in parallel   |
+| `pnpm dev:next`        | Starts local dev server at localhost:3000                      |
+| `pnpm dev:studio`      | Starts Sanity Studio server at localhost:3333                  |
+| `pnpm typegen`         | Autogenerates types using Sanity TypeGen                       |
+| `pnpm typecheck`       | TypeScript type checking                                       |
+| `pnpm format`          | Formats and lints code with Biome                              |
+| `pnpm setup-env`       | Symlinks root .env.local to frontend and studio folders        |
 
 ## Naming Conventions
 >Note that Biome.js will warn you during the linting process if a file does not match properly.

@@ -12,7 +12,8 @@
 		"typegen": "cd studio && pnpm typegen",
 		"typecheck": "cd frontend && pnpm typecheck",
 		"format": "biome format --fix && biome check --fix",
-		"plop": "plop"
+		"plop": "plop",
+		"setup-env": "cp -i \"$PWD/.env.example.local\" \"$PWD/.env.local\" && ln \"$PWD/.env.local\" \"$PWD/frontend/.env.local\" && ln \"$PWD/.env.local\" \"$PWD/studio/.env.local\""
 	},
 	"packageManager": "pnpm@10.19.0",
 	"devDependencies": {
