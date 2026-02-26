@@ -124,8 +124,14 @@ ED Starter
 6. Add your component and schema to `/frontend/components/modules/ModuleBuilder.tsx`
 7. Run `pnpm run typegen` to auto-generate new types. Done!
 
-### Creating field previews
+### How do I create a global-referenced module?
+1. Follow steps above to create a Sanity-powered module
+2. Add the schema to `globalModuleBlocks` in `/studio/schemas/moduleTypes.ts`
+3. Add the relevant query to `GLOBAL_MODULE_QUERY` in `/frontend/sanity/modules/miscellaneous/global-module.ts`
+4. In Sanity Studio, you can now create a reference instance of your module under `Global Modules`
+5. On any page with a Module Builder, you can now select `Global Module` and select that specific module instance
 
+### Creating field previews
 1. Install `imagemagick` with `brew install imagemagick`
 2. Run `magick --help` to return a path to ensure its installed the convert tool
 3. Export the frame of the component (use JPG)
@@ -191,7 +197,6 @@ import { ScrollTrigger } from "gsap/all";
 ## To-Do List
 
 - [ ] llms.txt (auto-generated with Sanity?)
-- [ ] Global-referenced modules (e.g. drivers)
 - [ ] Swiper? Embla? Carousel?
 - [ ] Spacer module?
 - [ ] Nav bar theme and direction-aware
