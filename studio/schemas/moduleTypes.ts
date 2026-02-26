@@ -44,6 +44,19 @@ export const moduleBlocks = sortBy(
 );
 
 /*
+ * List of module schemas that can be referenced inside global-module.ts and global-module-library.ts
+ * If you add a new schema here, then update frontend/sanity/queries/modules/miscellaneous/global-module.ts
+ */
+export const globalModuleBlocks = sortBy(
+  [
+    // Delete or edit example modules once you populate your project
+    { type: "card-example" },
+    { type: "driver-example" },
+  ],
+  ["type"],
+);
+
+/*
  * In Sanity Studio, you can group modules together when adding a new module to any page.
  * If your new schema fits into any pre-existing groups, then add it.
  * Otherwise, create a new group for your schema. Please try to be as generic as possible.

@@ -12,9 +12,9 @@ export default defineType({
       name: "moduleRef",
       title: "Select Global Module",
       description:
-        "Select a global module from the library. These are pre-configured modules that can be referenced and used anywhere on the site. ",
+        "Select a global module from the library. These are pre-configured modules that can be referenced and used anywhere on the site.",
       type: "reference",
-      to: [{ type: "module-library" }],
+      to: [{ type: "global-module-library" }],
       validation: (Rule) => Rule.required(),
     }),
   ],

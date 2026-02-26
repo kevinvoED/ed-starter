@@ -117,7 +117,7 @@
   },
   {
     "type": "type",
-    "name": "module-library.reference",
+    "name": "global-module-library.reference",
     "value": {
       "type": "object",
       "attributes": {
@@ -142,7 +142,7 @@
           "optional": true
         }
       },
-      "dereferencesTo": "module-library"
+      "dereferencesTo": "global-module-library"
     }
   },
   {
@@ -162,7 +162,7 @@
           "type": "objectAttribute",
           "value": {
             "type": "inline",
-            "name": "module-library.reference"
+            "name": "global-module-library.reference"
           },
           "optional": false
         }
@@ -5023,7 +5023,7 @@
     }
   },
   {
-    "name": "module-library",
+    "name": "global-module-library",
     "type": "document",
     "attributes": {
       "_id": {
@@ -5036,7 +5036,7 @@
         "type": "objectAttribute",
         "value": {
           "type": "string",
-          "value": "module-library"
+          "value": "global-module-library"
         }
       },
       "_createdAt": {
@@ -5057,7 +5057,7 @@
           "type": "string"
         }
       },
-      "internalName": {
+      "label": {
         "type": "objectAttribute",
         "value": {
           "type": "string"

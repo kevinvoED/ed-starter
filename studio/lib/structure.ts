@@ -48,8 +48,8 @@ const resourceItems = [
 
 const referenceItems = [
   {
-    title: "Module Library",
-    schemaType: "module-library",
+    title: "Global Modules",
+    schemaType: "global-module-library",
     icon: EarthGlobeIcon,
   },
   {

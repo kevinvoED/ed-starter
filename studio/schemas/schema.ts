@@ -11,7 +11,7 @@ import caseStudy from "@/schemas/pages/case-studies/case-study";
 import platformChild from "@/schemas/pages/platform/platform-child";
 import platformIndex from "@/schemas/pages/platform/platform-index";
 // Documents
-import moduleLibrary from "@/schemas/documents/module-library";
+import globalModuleLibrary from "@/schemas/documents/global-module-library";
 import author from "@/schemas/documents/author";
 import configuration from "@/schemas/documents/configuration";
 import footer from "@/schemas/documents/footer";
@@ -57,7 +57,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     configuration,
     author,
     banner,
-    moduleLibrary,
+    globalModuleLibrary,
     // Objects
     link,
     portableText,

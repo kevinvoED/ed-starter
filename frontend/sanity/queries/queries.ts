@@ -35,6 +35,7 @@ import { TEXT_EXAMPLE_QUERY } from "./modules/text/text-example";
 // @sanity-typegen-ignore
 export const modulesFragment = defineQuery(`
   modules[]{
+    ${GLOBAL_MODULE_QUERY},
     ${HERO_PRIMARY_QUERY},
     ${MARQUEE_QUERY},
     ${RICH_TEXT_QUERY},
@@ -45,7 +46,6 @@ export const modulesFragment = defineQuery(`
     ${LIST_EXAMPLE_QUERY},
     ${TABLE_EXAMPLE_QUERY},
     ${TEXT_EXAMPLE_QUERY},
-    ${GLOBAL_MODULE_QUERY},
   }
 `);
 
