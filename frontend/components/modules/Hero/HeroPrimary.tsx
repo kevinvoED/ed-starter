@@ -18,8 +18,16 @@ export const HeroPrimary = ({
 }: HeroPrimaryProps) => {
   return (
     <div className="fluid-py-10/20 p-custom">
-      {title && <PortableText value={title} slot="h1" />}
-      {description && <PortableText value={description} />}
+      {title && (
+        <PortableText
+          value={title}
+          slot="h1"
+          className="ftype type-body-1440 to-type-body-3240"
+        />
+      )}
+      {description && (
+        <PortableText value={description} className="type-mono-1040" />
+      )}
 
       <h2 className="ftype type-2040 to-type-3240">Here's some text</h2>
 

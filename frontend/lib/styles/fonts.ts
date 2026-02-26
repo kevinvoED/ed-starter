@@ -1,5 +1,14 @@
 import localFont from "next/font/local";
 
+/*
+ * Custom fonts are loaded using localFont from next/font/local
+ * @docs: https://nextjs.org/docs/app/getting-started/fonts#local-fonts
+ *
+ * Place custom font files in public/fonts.
+ * Typical projects will always have a fontHeading, fontBody, and sometimes fontMono variables.
+ * These variables are used in frontend/app/globals.css and frontend/app/layout.tsx
+ */
+
 export const fontHeading = localFont({
   src: [
     {
@@ -21,6 +30,20 @@ export const fontHeading = localFont({
   variable: "--font-heading",
 });
 
+export const fontBody = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Inter-VariableFont.ttf",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Inter-VariableFont.ttf",
+      style: "italic",
+    },
+  ],
+  variable: "--font-body",
+});
+
 export const fontMono = localFont({
   src: [
     {
@@ -35,18 +58,4 @@ export const fontMono = localFont({
     },
   ],
   variable: "--font-mono",
-});
-
-export const fontBody = localFont({
-  src: [
-    {
-      path: "../../public/fonts/Inter-VariableFont.ttf",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/Inter-VariableFont.ttf",
-      style: "italic",
-    },
-  ],
-  variable: "--font-body",
 });

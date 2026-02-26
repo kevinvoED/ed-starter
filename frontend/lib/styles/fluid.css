@@ -1,9 +1,9 @@
 @layer theme {
   :root {
-    /* UPDATE as needed - Based on the figma mobile, desktop sizes */
-    --fluid-screen-min: 480;
+    /* UPDATE ON PROEJCT BASIS - based on Figma mobile + desktop screen sizes */
+    --fluid-screen-min: 375;
     --fluid-screen-max: 1512;
-    /* arbitrary floor values don't want to ever go below */
+    /* Arbitrary floor values that we never want to go below */
     --line-height-floor: 0.9rem;
     --letter-spacing-floor: -0.25rem;
 
@@ -19,15 +19,11 @@
       1 /
       (var(--fluid-screen-max) - var(--fluid-screen-min))
     );
-    /* The Progress: How many pixels we are past the min screen size are we */
+    /* How many pixels we are past the min screen size */
     --v-diff: calc(100vw - (var(--fluid-screen-min) * var(--to-px)));
-    /* The Fluid Progress multiplier */
+    /* Fluid Progress multiplier */
     --fluid-progress: calc(var(--v-diff) * var(--fluid-multiplier));
 
-    /*
-  Re-usable font weight vars - create as needed for the typography styles below
-  - just an abstraction of the tailwind vars so we know actual font weight setting in our type- styles
-  */
     --font-weight-100: var(--font-weight-thin);
     --font-weight-200: var(--font-weight-extralight);
     --font-weight-300: var(--font-weight-light);
@@ -39,10 +35,14 @@
     --font-weight-900: var(--font-weight-black);
 
     /*
-  UPDATE as needed
-  Re-usable font size vars (--font-scale-PX) - create as needed for the typography styles below - set to unitless rem values for FF calcs - we convert to actual rem values later
-  */
+      UPDATE AS NEEDED.
+      Create as needed for the typography styles below.
+      Set to unitless rem values for FF calcs.
+      We convert to actual rem values later.
+     */
+    --font-scale-10: calc(var(--tw-per-rem) * 2.5);
     --font-scale-12: calc(var(--tw-per-rem) * 3);
+    --font-scale-14: calc(var(--tw-per-rem) * 3.5);
     --font-scale-16: calc(var(--tw-per-rem) * 4);
     --font-scale-20: calc(var(--tw-per-rem) * 5);
     --font-scale-24: calc(var(--tw-per-rem) * 6);
@@ -59,15 +59,17 @@
 
 @layer utilities {
   /*
-  usage:
-  <h2 class="ftype type-1640 to-type-3240">Here is some content</h2>
-  mobile size = type-1640
-  desktop size = to-type-3240 (just use max- prefix)
+   * ---------------------
+   * Usage Example
+   * ---------------------
+   * <h2 class="ftype type-1640 to-type-3240">Placeholder Text</h2>
+   *  >>> Mobile-screen === type-1640
+   *  >>> Desktop-screen === to-type-3240
   */
   .ftype:is([class*="to-"]) {
     /*
-    - based on the unitless difference in sizes convert to the pixel equivalent for the fluid size calculation
-    - convert the min size to rems since we pass these through as unitless
+    * Based on the unitless difference in sizes, we convert to the pixel equivalent for fluid size calcs
+    * Convert the min size to rems since we pass these through as unitless
     */
     --fs-diff-px: calc(
       (var(--to-font-size) - var(--font-size)) *
@@ -79,8 +81,8 @@
       calc(var(--min-font-size) + var(--fs-diff-px) * var(--fluid-progress))
     );
     /*
-    - using an arbitraty floor value so that we never get too tight with line-height and letter-spacing
-    - do we need to clamp and set min and max values that line height and letter spacing should never go beyond.
+    * Using an arbitrary floor value so that `line-height` and `letter-spacing` are never too tight
+    * Clamping and setting `min` and `max` values so that both never go beyond the `min` and `max` values
     */
     --lh-diff-px: calc(
       (var(--to-line-height) - var(--line-height)) *
@@ -111,34 +113,60 @@
 }
 
 /*
-  UPDATE as needed
-  custom typography styles - can be used alone or with fluid type as the min font size
-  - extract font size from figma - scale value in px (--font-scale-PX)
-  - extract line-height from figma in px - calc(PX / 16 * var(--to-rem)) we convert to rems
-  - extract letter-spacing from figma in px - calc(PX / 16 * var(--to-rem)) we convert to rems
-  - font-weight and font-family are not fluid - so not exposed as a var
-  */
-@utility type-1640 {
-  --font-size: var(--font-scale-16);
-  --line-height: calc(20 / var(--base-font-size));
-  --letter-spacing: calc(0.75 / var(--base-font-size));
+ * BASE STANDALONE TYPOGRAPHY STYLES
+ * Update and add custom typography styles as needed, remember to add to fluid styles below as well.
+ * Styles listed here are considered standalone type styles, but can be used with fluid.
+ * Extract font size from figma - scale value in px (--font-scale-PX)
+ * Extract line-height from figma in px - calc(PX / 16 * var(--to-rem)) we convert to rems
+ * Extract letter-spacing from figma in px - calc(PX / 16 * var(--to-rem)) we convert to rems
+ * font-weight and font-family are not fluid - so not exposed as a var
+*/
+
+/*
+ * ---------------------
+ * HEADING TYPESETS
+ * ---------------------
+*/
+@utility type-heading-9660 {
+  --font-size: var(--font-scale-96);
+  --line-height: calc(100 / var(--base-font-size));
+  --letter-spacing: calc(-0.5 / var(--base-font-size));
+  font-size: calc(var(--font-size) * var(--to-rem));
+  line-height: calc(var(--line-height) * var(--to-rem));
+  letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
+  font-weight: var(--font-weight-600);
+  font-family: var(--font-heading);
+}
+
+@utility type-heading-4860 {
+  --font-size: var(--font-scale-48);
+  --line-height: calc(54 / var(--base-font-size));
+  --letter-spacing: calc(-0.5 / var(--base-font-size));
+  font-size: calc(var(--font-size) * var(--to-rem));
+  line-height: calc(var(--line-height) * var(--to-rem));
+  letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
+  font-weight: var(--font-weight-600);
+  font-family: var(--font-heading);
+}
+
+@utility type-heading-3240 {
+  --font-size: var(--font-scale-32);
+  --line-height: calc(40 / var(--base-font-size));
+  --letter-spacing: calc(0.25 / var(--base-font-size));
   font-size: calc(var(--font-size) * var(--to-rem));
   line-height: calc(var(--line-height) * var(--to-rem));
   letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
   font-weight: var(--font-weight-400);
-  font-family: var(--font-body);
+  font-family: var(--font-heading);
 }
-@utility type-2040 {
-  --font-size: var(--font-scale-20);
-  --line-height: calc(28 / var(--base-font-size));
-  --letter-spacing: calc(0.75 / var(--base-font-size));
-  font-size: calc(var(--font-size) * var(--to-rem));
-  line-height: calc(var(--line-height) * var(--to-rem));
-  letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
-  font-weight: var(--font-weight-400);
-  font-family: var(--font-body);
-}
-@utility type-3240 {
+
+/*
+ * ---------------------
+ * BODY TYPESETS
+ * ---------------------
+*/
+
+@utility type-body-3240 {
   --font-size: var(--font-scale-32);
   --line-height: calc(40 / var(--base-font-size));
   --letter-spacing: calc(0.25 / var(--base-font-size));
@@ -148,82 +176,154 @@
   font-weight: var(--font-weight-400);
   font-family: var(--font-body);
 }
-@utility type-3260 {
-  --font-size: var(--font-scale-32);
-  --line-height: calc(40 / var(--base-font-size));
-  --letter-spacing: calc(-0.5 / var(--base-font-size));
+
+@utility type-body-1650 {
+  --font-size: var(--font-scale-16);
+  --line-height: calc(20 / var(--base-font-size));
+  --letter-spacing: calc(0.75 / var(--base-font-size));
   font-size: calc(var(--font-size) * var(--to-rem));
   line-height: calc(var(--line-height) * var(--to-rem));
   letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
-  font-weight: var(--font-weight-600);
+  font-weight: var(--font-weight-500);
   font-family: var(--font-body);
 }
-@utility type-4860 {
-  --font-size: var(--font-scale-48);
-  --line-height: calc(54 / var(--base-font-size));
-  --letter-spacing: calc(-0.5 / var(--base-font-size));
+
+@utility type-body-1640 {
+  --font-size: var(--font-scale-16);
+  --line-height: calc(20 / var(--base-font-size));
+  --letter-spacing: calc(0.75 / var(--base-font-size));
   font-size: calc(var(--font-size) * var(--to-rem));
   line-height: calc(var(--line-height) * var(--to-rem));
   letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
-  font-weight: var(--font-weight-600);
+  font-weight: var(--font-weight-400);
   font-family: var(--font-body);
 }
-@utility type-9660 {
-  --font-size: var(--font-scale-96);
-  --line-height: calc(100 / var(--base-font-size));
-  --letter-spacing: calc(-0.5 / var(--base-font-size));
+
+@utility type-body-1450 {
+  --font-size: var(--font-scale-14);
+  --line-height: calc(18 / var(--base-font-size));
+  --letter-spacing: calc(0.75 / var(--base-font-size));
   font-size: calc(var(--font-size) * var(--to-rem));
   line-height: calc(var(--line-height) * var(--to-rem));
   letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
-  font-weight: var(--font-weight-600);
+  font-weight: var(--font-weight-500);
+  font-family: var(--font-body);
+}
+
+@utility type-body-1440 {
+  --font-size: var(--font-scale-14);
+  --line-height: calc(18 / var(--base-font-size));
+  --letter-spacing: calc(0.75 / var(--base-font-size));
+  font-size: calc(var(--font-size) * var(--to-rem));
+  line-height: calc(var(--line-height) * var(--to-rem));
+  letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
+  font-weight: var(--font-weight-400);
   font-family: var(--font-body);
 }
 
 /*
-    UPDATE as needed
-    "to-" classes only to be used with fluid type as the upper bound font definition
-    - just copy each type class above and prefix the vars with --to
-    - copy above styles and then prompt gemini:
-        "duplicate each of these classes, prefix the class name with .to- prefix the variables with to- and remove all actual properties and remove the @utlity function"
-    */
-@utility to-type-1640 {
-  --to-font-size: var(--font-scale-16);
-  --to-line-height: calc(20 / var(--base-font-size));
-  --to-letter-spacing: calc(0.75 / var(--base-font-size));
+ * ---------------------
+ * MONOSPACE TYPESETS
+ * ---------------------
+*/
+
+@utility type-mono-1040 {
+  --font-size: var(--font-scale-10);
+  --line-height: calc(14 / var(--base-font-size));
+  --letter-spacing: calc(0.25 / var(--base-font-size));
+  font-size: calc(var(--font-size) * var(--to-rem));
+  line-height: calc(var(--line-height) * var(--to-rem));
+  letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
+  font-weight: var(--font-weight-400);
+  font-family: var(--font-mono);
 }
-@utility to-type-2040 {
-  --to-font-size: var(--font-scale-20);
-  --to-line-height: calc(28 / var(--base-font-size));
-  --to-letter-spacing: calc(0.75 / var(--base-font-size));
-}
-@utility to-type-3240 {
-  --to-font-size: var(--font-scale-32);
-  --to-line-height: calc(40 / var(--base-font-size));
-  --to-letter-spacing: calc(0.25 / var(--base-font-size));
-}
-@utility to-type-3260 {
-  --to-font-size: var(--font-scale-32);
-  --to-line-height: calc(40 / var(--base-font-size));
-  --to-letter-spacing: calc(-0.5 / var(--base-font-size));
-}
-@utility to-type-4860 {
-  --to-font-size: var(--font-scale-48);
-  --to-line-height: calc(54 / var(--base-font-size));
-  --to-letter-spacing: calc(-0.5 / var(--base-font-size));
-}
-@utility to-type-9660 {
+
+/*
+ * FLUID TYPOGRAPHY STYLES
+ * Update and add custom fluid typography styles as needed.
+ * "to-" classes only to be used with fluid type as the upper bound font definition
+ * Simply copy each typeset above and prefix the vars with "--to"
+*/
+
+/*
+ * ---------------------
+ * HEADING FLUID TYPESETS
+ * ---------------------
+*/
+@utility to-type-heading-9660 {
   --to-font-size: var(--font-scale-96);
   --to-line-height: calc(100 / var(--base-font-size));
   --to-letter-spacing: calc(-0.5 / var(--base-font-size));
 }
 
+@utility to-type-heading-4860 {
+  --to-font-size: var(--font-scale-48);
+  --to-line-height: calc(54 / var(--base-font-size));
+  --to-letter-spacing: calc(-0.5 / var(--base-font-size));
+}
+
+@utility to-type-heading-3260 {
+  --to-font-size: var(--font-scale-32);
+  --to-line-height: calc(40 / var(--base-font-size));
+  --to-letter-spacing: calc(-0.5 / var(--base-font-size));
+}
+
 /*
-Functional Utility Fluid Spacing Classes
-usage:
-<div class="fluid-pt-4/8">Here is some content</div>
-mobile padding = 16px
-desktop padding = 32px
+ * ---------------------
+ * BODY FLUID TYPESETS
+ * ---------------------
 */
+@utility to-type-body-3240 {
+  --to-font-size: var(--font-scale-32);
+  --to-line-height: calc(40 / var(--base-font-size));
+  --to-letter-spacing: calc(0.25 / var(--base-font-size));
+}
+
+@utility to-type-body-1650 {
+  --to-font-size: var(--font-scale-16);
+  --to-line-height: calc(20 / var(--base-font-size));
+  --to-letter-spacing: calc(0.75 / var(--base-font-size));
+}
+
+@utility to-type-body-1640 {
+  --to-font-size: var(--font-scale-16);
+  --to-line-height: calc(20 / var(--base-font-size));
+  --to-letter-spacing: calc(0.75 / var(--base-font-size));
+}
+
+@utility to-type-body-1450 {
+  --to-font-size: var(--font-scale-14);
+  --to-line-height: calc(18 / var(--base-font-size));
+  --to-letter-spacing: calc(0.75 / var(--base-font-size));
+}
+
+@utility to-type-body-1440 {
+  --to-font-size: var(--font-scale-14);
+  --to-line-height: calc(18 / var(--base-font-size));
+  --to-letter-spacing: calc(0.75 / var(--base-font-size));
+}
+
+/*
+ * ---------------------
+ * MONO FLUID TYPESETS
+ * ---------------------
+*/
+@utility to-type-mono-1040 {
+  --to-font-size: var(--font-scale-10);
+  --to-line-height: calc(14 / var(--base-font-size));
+  --to-letter-spacing: calc(0.25 / var(--base-font-size));
+}
+
+/*
+ * FLUID UTILITY SPACING CLASSES
+ * ---------------------
+ * Usage Example
+ * ---------------------
+ * <div class="fluid-pt-4/8">Placeholder Content</div>
+ *  >>> Mobile-screen === 16px padding-top
+ *  >>> Desktop-screen === 32px padding-top
+*/
+
 /* --- PADDING --- */
 @utility fluid-p-* {
   --p-diff: calc(
