@@ -32,6 +32,7 @@ export const moduleBlocks = sortBy(
     { type: "rich-text" },
     { type: "full-image" },
     { type: "full-video" },
+    { type: "global-module" },
     // Delete or edit example modules once you populate your project
     { type: "card-example" },
     { type: "driver-example" },

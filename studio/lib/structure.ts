@@ -7,6 +7,7 @@ import {
   EarthGlobeIcon,
   FolderIcon,
   RedoIcon,
+  SchemaIcon,
   UserIcon,
 } from "@sanity/icons";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
@@ -47,6 +48,11 @@ const resourceItems = [
 
 const referenceItems = [
   {
+    title: "Module Library",
+    schemaType: "module-library",
+    icon: EarthGlobeIcon,
+  },
+  {
     title: "Authors",
     schemaType: "author",
     icon: UserIcon,
@@ -57,12 +63,12 @@ const globalItems = [
   {
     title: "Navbar",
     schemaType: "navbar",
-    icon: EarthGlobeIcon,
+    icon: SchemaIcon,
   },
   {
     title: "Footer",
     schemaType: "footer",
-    icon: EarthGlobeIcon,
+    icon: SchemaIcon,
   },
   {
     title: "Banner",

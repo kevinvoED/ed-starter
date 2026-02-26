@@ -11,6 +11,7 @@ import caseStudy from "@/schemas/pages/case-studies/case-study";
 import platformChild from "@/schemas/pages/platform/platform-child";
 import platformIndex from "@/schemas/pages/platform/platform-index";
 // Documents
+import moduleLibrary from "@/schemas/documents/module-library";
 import author from "@/schemas/documents/author";
 import configuration from "@/schemas/documents/configuration";
 import footer from "@/schemas/documents/footer";
@@ -33,6 +34,7 @@ import tableExample from "@/schemas/modules/table/table-example";
 import textExample from "@/schemas/modules/text/text-example";
 import fullImage from "@/schemas/modules/image/full-image";
 import fullVideo from "@/schemas/modules/miscellaneous/full-video";
+import globalModule from "@/schemas/modules/miscellaneous/global-module";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -55,6 +57,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     configuration,
     author,
     banner,
+    moduleLibrary,
     // Objects
     link,
     portableText,
@@ -69,5 +72,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     richText,
     fullImage,
     fullVideo,
+    globalModule,
   ],
 };

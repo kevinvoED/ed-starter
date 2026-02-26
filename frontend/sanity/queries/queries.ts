@@ -22,6 +22,7 @@ import { FULL_IMAGE_QUERY } from "./modules/image/full-image";
 import { LIST_EXAMPLE_QUERY } from "./modules/list/list-example";
 import { MARQUEE_QUERY } from "./modules/marquee/marquee";
 import { FULL_VIDEO_QUERY } from "./modules/miscellaneous/full-video";
+import { GLOBAL_MODULE_QUERY } from "./modules/miscellaneous/global-module";
 import { TABLE_EXAMPLE_QUERY } from "./modules/table/table-example";
 import { RICH_TEXT_QUERY } from "./modules/text/rich-text";
 import { TEXT_EXAMPLE_QUERY } from "./modules/text/text-example";
@@ -44,6 +45,7 @@ export const modulesFragment = defineQuery(`
     ${LIST_EXAMPLE_QUERY},
     ${TABLE_EXAMPLE_QUERY},
     ${TEXT_EXAMPLE_QUERY},
+    ${GLOBAL_MODULE_QUERY},
   }
 `);
 
