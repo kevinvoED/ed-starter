@@ -197,6 +197,5 @@ import { ScrollTrigger } from "gsap/all";
 ## To-Do List
 
 - [ ] llms.txt (auto-generated with Sanity?)
-- [ ] Swiper? Embla? Carousel?
 - [ ] Spacer module?
 - [ ] Nav bar theme and direction-aware
