@@ -17,6 +17,7 @@ export const ContentTopicFilter = ({
   data,
   className,
 }: ContentTopicFilterProps) => {
+  // Grab topic param from URL
   const [{ topic }, setQueryStates] = useQueryStates(
     {
       topic: parseAsString.withDefault("none"),
@@ -24,36 +25,56 @@ export const ContentTopicFilter = ({
     { shallow: false },
   );
 
-  async function onSelect(item: string) {
+  async function handleClick(item: string) {
+    // Set new topic param in URL
     await setQueryStates({
       topic: item,
     });
   }
 
   return (
-    <div className={cn("", className)}>
-      <ul className="flex flex-wrap gap-x-10">
-        <div>Topics: </div>
+    <nav
+      aria-label="Topic filter"
+      className={cn(
+        "flex flex-col gap-3 md:flex-row md:items-center",
+        className,
+      )}
+    >
+      <span className="font-bold">Topics:</span>
 
-        <button type="button" onClick={() => onSelect("none")}>
-          All ({data.totalPostCount})
-        </button>
+      <ul className="flex flex-col gap-5 md:flex-row md:flex-wrap">
+        <li>
+          <button
+            type="button"
+            onClick={() => handleClick("none")}
+            className={topic === "none" ? "underline" : ""}
+          >
+            All ({data.totalPostCount})
+          </button>
+        </li>
 
-        {data["content-topics"].map((topicItem) => (
-          <li key={topicItem._id}>
-            <button
-              type="button"
-              onClick={() => onSelect(topicItem.slug.current)}
-              className="flex items-center gap-x-1.5"
-            >
-              <PortableText value={topicItem.title} />
-              <span>
-                {getFilterItemCount(topic, topicItem, data["content-topics"])}
-              </span>
-            </button>
-          </li>
-        ))}
+        {data["content-topics"].map((item) => {
+          const { _id, slug, title } = item;
+
+          return (
+            <li key={_id}>
+              <button
+                type="button"
+                onClick={() => handleClick(slug.current)}
+                className={cn(
+                  "flex items-center gap-x-1.5",
+                  topic === slug.current && "underline",
+                )}
+              >
+                {title && <PortableText value={title} />}
+                <span>
+                  ({getFilterItemCount(topic, item, data["content-topics"])})
+                </span>
+              </button>
+            </li>
+          );
+        })}
       </ul>
-    </div>
+    </nav>
   );
 };

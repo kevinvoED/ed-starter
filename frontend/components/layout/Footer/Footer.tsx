@@ -5,9 +5,7 @@ import { MobileFooter } from "@/components/layout/Footer/MobileFooter";
 export const Footer = async () => {
   const data = await fetchSanityFooter();
 
-  if (!data) {
-    return null;
-  }
+  if (!data) return null;
 
   return (
     <div data-nav-theme="dark">

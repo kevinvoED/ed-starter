@@ -5,9 +5,7 @@ import { MobileNavbar } from "@/components/layout/Header/MobileNavbar";
 export const Header = async () => {
   const data = await fetchSanityNavbar();
 
-  if (!data) {
-    return null;
-  }
+  if (!data) return null;
 
   return (
     <>

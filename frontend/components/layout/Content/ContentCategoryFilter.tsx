@@ -14,9 +14,10 @@ type ContentCategoryFilterProps = {
 };
 
 export const ContentCategoryFilter = ({
-  data,
   className,
+  data,
 }: ContentCategoryFilterProps) => {
+  // Grab category param from URL
   const [{ category }, setQueryStates] = useQueryStates(
     {
       category: parseAsString.withDefault("none"),
@@ -24,36 +25,57 @@ export const ContentCategoryFilter = ({
     { shallow: false },
   );
 
-  async function onSelect(item: string) {
+  async function handleClick(item: string) {
+    // Set new category param in URL
     await setQueryStates({
       category: item,
     });
   }
 
   return (
-    <div className={cn("", className)}>
-      <ul className="flex flex-wrap gap-x-10">
-        <div>Categories: </div>
+    <nav
+      aria-label="Category filter"
+      className={cn(
+        "flex flex-col gap-3 md:flex-row md:items-center",
+        className,
+      )}
+    >
+      <span className="font-bold">Categories:</span>
 
-        <button type="button" onClick={() => onSelect("none")}>
-          All ({data.totalPostCount})
-        </button>
+      <ul className="flex flex-col gap-5 md:flex-row md:flex-wrap">
+        <li>
+          <button
+            type="button"
+            onClick={() => handleClick("none")}
+            className={category === "none" ? "underline" : ""}
+          >
+            All ({data.totalPostCount})
+          </button>
+        </li>
 
-        {data.categories.map((categoryItem) => (
-          <li key={categoryItem._id}>
-            <button
-              type="button"
-              onClick={() => onSelect(categoryItem.slug.current)}
-              className="flex items-center gap-x-1.5"
-            >
-              <PortableText value={categoryItem.title} />
-              <span>
-                {getFilterItemCount(category, categoryItem, data.categories)}
-              </span>
-            </button>
-          </li>
-        ))}
+        {data.categories.map((categoryItem) => {
+          const { _id, slug, title } = categoryItem;
+
+          return (
+            <li key={_id}>
+              <button
+                type="button"
+                onClick={() => handleClick(slug.current)}
+                className={cn(
+                  "flex items-center gap-x-1.5",
+                  category === slug.current && "underline",
+                )}
+              >
+                {title && <PortableText value={title} />}
+                <span>
+                  ({getFilterItemCount(category, categoryItem, data.categories)}
+                  )
+                </span>
+              </button>
+            </li>
+          );
+        })}
       </ul>
-    </div>
+    </nav>
   );
 };

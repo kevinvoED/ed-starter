@@ -3,6 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import { useIsMobile } from "@/lib/hooks/use-is-mobile";
 
+/*
+ * GridGuideline aims to mimic the Grid layout guide functionality from Figma
+ * Toggle this on and off using Shift + G on the website itself
+ * This is only shown on the development environment. This doesn't appear on production.
+ * Useful for debugging and visualizing the grid layout when working with modules.
+ */
+
 export const GridGuideline = () => {
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);

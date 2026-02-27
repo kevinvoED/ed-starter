@@ -22,10 +22,23 @@ import {
   PAGES_SLUGS_QUERY,
 } from "@/sanity/queries/queries";
 
+/*
+ * Sanity Data Fetching Layer
+ *
+ * Centralized file for fetching data from Sanity
+ * Used for queries to fetch data such as navigation and all pages.
+ *
+ * All fetch functions use `sanityFetch` from @/sanity/lib/live which provides:
+ * > Automatic caching and revalidation
+ * > Visual editing support via Stega encoding
+ * > Type-safe query results via Sanity TypeGen
+ */
+
 // Types
-type ModuleType = NonNullable<
-  NonNullable<PAGE_QUERY_RESULT>["modules"]
->[number]["_type"];
+type ModuleType = Extract<
+  NonNullable<NonNullable<PAGE_QUERY_RESULT>["modules"]>[number],
+  { _type: unknown }
+>["_type"];
 
 export type ModuleProps<T extends ModuleType = ModuleType> = Extract<
   NonNullable<NonNullable<PAGE_QUERY_RESULT>["modules"]>[number],

@@ -2,7 +2,11 @@ import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import imageUrlBuilder from "@sanity/image-url";
 import { dataset, projectId } from "./env";
 
-// https://www.sanity.io/docs/image-url
+/*
+ * Image URL Builder
+ * @docs: https://www.sanity.io/docs/image-url
+ */
+
 const builder = imageUrlBuilder({ projectId, dataset });
 
 export const urlFor = (source: SanityImageSource) => {

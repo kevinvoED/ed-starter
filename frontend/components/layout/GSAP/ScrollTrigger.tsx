@@ -1,6 +1,6 @@
 "use client";
 
-/**
+/*
  * ScrollTrigger component
  *
  * Initializing ScrollTrigger and registering GSAP's ScrollTrigger with Lenis.

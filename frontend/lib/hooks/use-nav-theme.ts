@@ -6,10 +6,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export type NavTheme = "dark" | "light";
 
-/**
+/*
  * Hook that detects which section the navbar is overlapping
  * and returns the appropriate theme based on section's data-nav-theme attribute
  */
+
 export function useNavTheme(): NavTheme {
   const [theme, setTheme] = useState<NavTheme>("dark");
   const pathname = usePathname();

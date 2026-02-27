@@ -5,6 +5,33 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/all";
 
+/*
+ * Text Mask GSAP Animation
+ * @docs: https://gsap.com/docs/v3/Plugins/SplitText/
+ *
+ * ---------------------
+ * Usage Example: Basic
+ * ---------------------
+ *  <TextMask>
+ *    Placeholder Text
+ *  </TextMask>
+ *
+ * ---------------------
+ * Usage Example: Classic Options
+ * ---------------------
+ *  <TextMask
+ *    y={25}
+ *    x={0}
+ *    duration={1.5}
+ *    stagger={0.12}
+ *    delay={0}
+ *    ease="power2.inOut"
+ *    triggerOnce={true}
+ *  >
+ *    Placeholder Text
+ *  </TextMask>
+ */
+
 type TextMaskProps = {
   slot?: React.ElementType;
   y?: number;

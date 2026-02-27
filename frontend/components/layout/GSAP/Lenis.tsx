@@ -1,6 +1,6 @@
 "use client";
 
-/**
+/*
  * Lenis Component
  *
  * Initializes and provides Lenis smooth scrolling context to the application.

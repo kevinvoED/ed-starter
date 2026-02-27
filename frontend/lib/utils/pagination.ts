@@ -1,3 +1,11 @@
+/*
+ * Utility function to create a page URL with optional query parameters
+ *
+ * Usage Example:
+ *  createPageUrl({ route: "blog", pageNum: 2, category: "technology" })
+ *  // Returns: /blog?page=2&category=technology
+ */
+
 export const createPageUrl = ({
   route,
   pageNum,

@@ -3,12 +3,14 @@
 import { useLenis } from "lenis/react";
 import { useEffect } from "react";
 
-/**
+/*
  * ScrollRestoration Component
  *
  * Preserves scroll position on page refresh when using Lenis smooth scroll.
  * Must be used inside a Lenis provider.
+ * This only works on the development environment. This doesn't appear on production.
  */
+
 export function ScrollRestoration() {
   const lenis = useLenis();
 

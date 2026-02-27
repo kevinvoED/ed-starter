@@ -8,6 +8,33 @@ import { ScrambleTextPlugin, ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrambleTextPlugin);
 gsap.registerPlugin(ScrollTrigger);
 
+/*
+ * Text Scramble GSAP Animation
+ * @docs: https://gsap.com/docs/v3/Plugins/ScrambleTextPlugin/
+ *
+ * ---------------------
+ * Usage Example: Basic
+ * ---------------------
+ *  <TextScramble>
+ *    Placeholder Text
+ *  </TextScramble>
+ *
+ * ---------------------
+ * Usage Example: Classic Options
+ * ---------------------
+ *  <TextScramble
+ *    duration={1.75}
+ *    delay={0}
+ *    stagger={0.05}
+ *    ease="power4.inOut"
+ *    triggerOnce={true}
+ *    playOnHover={false}
+ *    chars="upperCase"
+ *  >
+ *    Placeholder Text
+ *  </TextScramble>
+ */
+
 type TextScrambleProps = {
   slot?: React.ElementType;
   children: React.ReactNode;

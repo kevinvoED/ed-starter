@@ -20,7 +20,7 @@
       (var(--fluid-screen-max) - var(--fluid-screen-min))
     );
     /* How many pixels we are past the min screen size */
-    --v-diff: calc(100vw - (var(--fluid-screen-min) * var(--to-px)));
+    --v-diff: calc(100cqw - (var(--fluid-screen-min) * var(--to-px)));
     /* Fluid Progress multiplier */
     --fluid-progress: calc(var(--v-diff) * var(--fluid-multiplier));
 

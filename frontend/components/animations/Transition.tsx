@@ -7,6 +7,34 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+/*
+ * Transition (Fade & Slide) GSAP Animation
+ * @docs: https://gsap.com/docs/v3/Plugins/ScrollTrigger/
+ *
+ * ---------------------
+ * Usage Example: Basic
+ * ---------------------
+ *  <Transition>
+ *    Placeholder Text
+ *  </Transition>
+ *
+ * ---------------------
+ * Usage Example: Classic Options
+ * ---------------------
+ *  <Transition
+ *    animation="slideUp"
+ *    duration={1.5}
+ *    delay={0.05 * index}
+ *    ease="power2.inOut"
+ *    triggerOnce={true}
+ *    onComplete={() => {
+ *      console.log("Animation completed");
+ *    }}
+ *  >
+ *    Placeholder Text
+ *  </Transition>
+ */
+
 const FADE_SLIDE_DISTANCE = 10;
 const SLIDE_DISTANCE = 100;
 

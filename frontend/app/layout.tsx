@@ -33,8 +33,8 @@ export default function RootLayout({
             <Lenis>
               {children}
               {!isProduction && <GridGuideline />}
+              {!isProduction && <ScrollRestoration />}
               <GSAPRuntime />
-              <ScrollRestoration />
             </Lenis>
           </NuqsAdapter>
         </div>

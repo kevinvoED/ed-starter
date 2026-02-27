@@ -1,6 +1,6 @@
 "use client";
 
-/**
+/*
  * GSAP + Tempus
  *
  * This component wires Tempus to GSAP and ensures they are automatically

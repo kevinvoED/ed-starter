@@ -1,6 +1,15 @@
 import { createClient } from "next-sanity";
 import { apiVersion, dataset, projectId, useCdn } from "./env";
 
+// Disable stega for specific field names that commonly need cleaning
+const fieldsToDisableStega = [
+  "text", // PortableText text nodes
+  "children", // PortableText children arrays
+  "title",
+  "description",
+  "content",
+];
+
 export const client = createClient({
   projectId,
   dataset,
@@ -10,17 +19,10 @@ export const client = createClient({
   stega: {
     studioUrl: process.env.NEXT_PUBLIC_STUDIO_URL,
     filter: (props) => {
-      // Disable stega for specific field names that commonly need cleaning
-      const fieldsToDisableStega = [
-        "text", // Add this to disable stega in PortableText text nodes
-        "children", // Add this to disable stega in PortableText children arrays
-        "title",
-        "description",
-        "content",
-      ];
       if (fieldsToDisableStega.includes(props.sourcePath.at(-1) as string)) {
         return false;
       }
+
       return props.filterDefault(props);
     },
   },

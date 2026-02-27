@@ -1,6 +1,6 @@
 "use client";
 
-/**
+/*
  * GSAPRuntime Component
  *
  * This component houses GSAPRuntime which is a core component to enable Lenis scrolling.

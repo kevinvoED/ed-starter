@@ -6,7 +6,7 @@ type FilterItem = {
   count?: number;
 };
 
-/**
+/*
  * Returns the count for a filter item if it matches the current filter value,
  * otherwise returns 0. Handles "none" and undefined filter values as matching all items.
  */

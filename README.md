@@ -199,3 +199,4 @@ import { ScrollTrigger } from "gsap/all";
 - [ ] llms.txt (auto-generated with Sanity?)
 - [ ] Spacer module?
 - [ ] Nav bar theme and direction-aware
+- [ ] Componetize pages and layouts so its easily testable

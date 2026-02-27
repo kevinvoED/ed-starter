@@ -6,6 +6,32 @@ import { gsap } from "gsap";
 import { cn } from "@/lib/utils/cn";
 import { CustomEase, SplitText } from "gsap/all";
 
+/*
+ * Text Reveal GSAP Animation
+ * @docs: https://gsap.com/docs/v3/Plugins/SplitText/
+ *
+ * ---------------------
+ * Usage Example: Basic
+ * ---------------------
+ *  <TextReveal>
+ *    Placeholder Text
+ *  </TextReveal>
+ *
+ * ---------------------
+ * Usage Example: Classic Options
+ * ---------------------
+ *  <TextReveal
+ *    duration={1.5}
+ *    stagger={0.12}
+ *    delay={0}
+ *    ease="power2.inOut"
+ *    triggerOnce={false}
+ *    boxColor="bg-white"
+ *  >
+ *    Placeholder Text
+ *  </TextReveal>
+ */
+
 type TextRevealProps = {
   slot?: React.ElementType;
   duration?: number;
