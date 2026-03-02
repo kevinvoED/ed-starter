@@ -1,5 +1,5 @@
 import { DocumentIcon } from "@sanity/icons";
-import { createPageType } from "@/schemas/pages/pageBuilder";
+import { createPageType } from "@/schemas/pages/page-builder";
 
 export default createPageType({
   name: "platform-child",

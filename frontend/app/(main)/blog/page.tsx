@@ -21,8 +21,6 @@ export async function generateMetadata() {
     notFound();
   }
 
-  console.log(page);
-
   return generatePageMetadata(page);
 }
 

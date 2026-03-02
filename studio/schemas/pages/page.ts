@@ -1,4 +1,4 @@
-import { createPageType } from "./pageBuilder";
+import { createPageType } from "./page-builder";
 
 /*
  * This is the most generic base-level page type.

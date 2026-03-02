@@ -178,7 +178,7 @@
               "options": {
                 "strictCase": true,
                 "requireAscii": true,
-                "filenameCases": ["PascalCase", "kebab-case"]
+                "filenameCases": ["PascalCase"]
               }
             }
           }
@@ -186,7 +186,17 @@
       }
     },
     {
-      "includes": ["studio/src/schemas/**/*.ts"],
+      "includes": [
+        "frontend/lib/**/*.ts",
+        "frontend/lib/**/*.css",
+        "frontend/sanity/lib/*.ts",
+        "frontend/sanity/queries/**/*.ts",
+        "studio/lib/*.ts",
+        "studio/schemas/documents/*.ts",
+        "studio/schemas/modules/*.ts",
+        "studio/schemas/objects/*.ts",
+        "studio/schemas/pages/*.ts"
+      ],
       "linter": {
         "rules": {
           "style": {
@@ -195,7 +205,7 @@
               "options": {
                 "strictCase": true,
                 "requireAscii": true,
-                "filenameCases": ["camelCase"]
+                "filenameCases": ["kebab-case"]
               }
             }
           }

@@ -1,5 +1,5 @@
 import { File } from "lucide-react";
-import { createPageType } from "@/schemas/pages/pageBuilder";
+import { createPageType } from "@/schemas/pages/page-builder";
 
 /*
  * This is a parent-specific page type that is used to display the landing page.
