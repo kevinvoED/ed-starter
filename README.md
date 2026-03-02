@@ -18,9 +18,6 @@
 | `Node.js`| Version specified in `.nvmrc` (use `nvm use`)|
 | `pnpm`| `~10.19.0` (installed automatically via `packageManager` field)|
 
-
-
-
 ## Setup & Development
 
 ```typescript
@@ -199,5 +196,3 @@ import { ScrollTrigger } from "gsap/all";
 - [ ] llms.txt (auto-generated with Sanity?)
 - [ ] Spacer module?
 - [ ] Nav bar theme and direction-aware
-- [ ] Componetize pages and layouts so its easily testable
-- [ ] Update the fluid.css with Kele's v4
