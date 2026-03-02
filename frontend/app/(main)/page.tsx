@@ -3,8 +3,8 @@ import {
   fetchSanityOrganization,
   fetchSanityPageBySlug,
 } from "@/sanity/lib/fetch";
+import { Page } from "@/components/layout/Page/Page";
 import { OrganizationJSONLDScript } from "@/components/miscellaneous/JsonLD/Jsonld";
-import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
 import { generatePageMetadata } from "@/lib/site/metadata";
 
 export async function generateMetadata() {
@@ -28,9 +28,8 @@ export default async function IndexPage() {
   }
 
   return (
-    <>
+    <Page page={page} disableJsonLd>
       {organization && <OrganizationJSONLDScript organization={organization} />}
-      <ModuleBuilder modules={page?.modules ?? []} />
-    </>
+    </Page>
   );
 }

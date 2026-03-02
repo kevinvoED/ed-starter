@@ -3,9 +3,7 @@ import {
   FETCH_CONTENT_TYPE_SLUG_PAGE_DATA,
   FETCH_CONTENT_TYPE_SLUGS_STATIC_PARAMS_DATA,
 } from "@/sanity/lib/fetch";
-import { Transition } from "@/components/animations/Transition";
-import { JSONLDScript } from "@/components/miscellaneous/JsonLD/Jsonld";
-import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
+import { Page } from "@/components/layout/Page/Page";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
 import { generatePageMetadata } from "@/lib/site/metadata";
 
@@ -51,19 +49,8 @@ export default async function CaseStudiesPostPage(props: {
   }
 
   return (
-    <>
-      <JSONLDScript document={post} />
-      <div className="grid-custom gap-y-20 bg-platinum p-custom pt-10 pb-20 lg:py-35">
-        <Transition
-          delay={0.3}
-          className="col-span-full lg:col-span-8 lg:col-start-3"
-        >
-          {post.content && (
-            <PortableText value={post.content} style="article" />
-          )}
-        </Transition>
-      </div>
-      <ModuleBuilder modules={post?.modules ?? []} />
-    </>
+    <Page page={post} className="p-custom">
+      {post.content && <PortableText value={post.content} style="article" />}
+    </Page>
   );
 }

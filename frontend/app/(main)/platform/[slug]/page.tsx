@@ -1,11 +1,9 @@
-import type { JSONLDScriptProps } from "@/components/miscellaneous/JsonLD/Jsonld";
 import { notFound } from "next/navigation";
 import {
   fetchSanityPageBySlug,
   fetchSanityPagesStaticParams,
 } from "@/sanity/lib/fetch";
-import { JSONLDScript } from "@/components/miscellaneous/JsonLD/Jsonld";
-import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
+import { Page } from "@/components/layout/Page/Page";
 import { generatePageMetadata } from "@/lib/site/metadata";
 
 export async function generateStaticParams() {
@@ -34,7 +32,7 @@ export async function generateMetadata(props: {
   return generatePageMetadata(page!);
 }
 
-export default async function Page(props: {
+export default async function PlatformChildPage(props: {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{
     page?: string;
@@ -50,10 +48,5 @@ export default async function Page(props: {
     notFound();
   }
 
-  return (
-    <>
-      <JSONLDScript document={page as JSONLDScriptProps["document"]} />
-      <ModuleBuilder modules={page?.modules ?? []} />
-    </>
-  );
+  return <Page page={page} />;
 }

@@ -3,8 +3,7 @@ import { FETCH_CONTENT_TYPE_INDEX_PAGE_DATA } from "@/sanity/lib/fetch";
 import { Transition } from "@/components/animations/Transition";
 import { ContentPagination } from "@/components/layout/Content/ContentPagination";
 import { ContentTopicFilter } from "@/components/layout/Content/ContentTopicFilter";
-import { JSONLDScript } from "@/components/miscellaneous/JsonLD/Jsonld";
-import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
+import { Page } from "@/components/layout/Page/Page";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
 import { generatePageMetadata } from "@/lib/site/metadata";
@@ -48,9 +47,7 @@ export default async function BlogIndexPage(props: {
   }
 
   return (
-    <>
-      <JSONLDScript document={data} />
-
+    <Page page={data}>
       <div className="flex flex-col gap-y-10 p-custom py-20">
         <header>
           {data.title && <PortableText value={data.title} slot="h1" />}
@@ -105,9 +102,6 @@ export default async function BlogIndexPage(props: {
           className="col-span-full self-start"
         />
       )}
-
-      {/* Remove the ModuleBuilder if you do not need to render specific modules here like Driver modules */}
-      <ModuleBuilder modules={data?.modules ?? []} />
-    </>
+    </Page>
   );
 }

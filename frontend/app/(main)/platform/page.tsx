@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { fetchSanityPageBySlug } from "@/sanity/lib/fetch";
-import { JSONLDScript } from "@/components/miscellaneous/JsonLD/Jsonld";
-import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
+import { Page } from "@/components/layout/Page/Page";
 import { generatePageMetadata } from "@/lib/site/metadata";
 
 export async function generateMetadata() {
@@ -27,10 +26,5 @@ export default async function PlatformIndexPage() {
     return notFound();
   }
 
-  return (
-    <>
-      <JSONLDScript document={page} />
-      <ModuleBuilder modules={page?.modules ?? []} />
-    </>
-  );
+  return <Page page={page} />;
 }
