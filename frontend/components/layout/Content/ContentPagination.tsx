@@ -45,7 +45,7 @@ export const ContentPagination = ({
         />
       )}
 
-      <div className={cn("flex gap-4", className)}>
+      <div className={cn("flex gap-4 p-custom", className)}>
         {currentPage > 1 && (
           <SanityLink
             id="cta"
@@ -54,7 +54,7 @@ export const ContentPagination = ({
             hasArrow={false}
             scroll={false}
           >
-            <ChevronLeft className="!size-12 stroke-1" />
+            <ChevronLeft className="size-5! stroke-1" />
           </SanityLink>
         )}
 
@@ -85,7 +85,7 @@ export const ContentPagination = ({
             hasArrow={false}
             scroll={false}
           >
-            <ChevronRight className="!size-12 stroke-1" />
+            <ChevronRight className="size-5! stroke-1" />
           </SanityLink>
         )}
       </div>

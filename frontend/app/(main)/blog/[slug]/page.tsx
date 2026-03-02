@@ -32,7 +32,7 @@ export async function generateMetadata(props: {
     notFound();
   }
 
-  return generatePageMetadata(post!);
+  return generatePageMetadata(post);
 }
 
 export default async function BlogPostPage(props: {
