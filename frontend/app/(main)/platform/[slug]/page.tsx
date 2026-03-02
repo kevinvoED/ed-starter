@@ -29,7 +29,7 @@ export async function generateMetadata(props: {
     notFound();
   }
 
-  return generatePageMetadata(page!);
+  return generatePageMetadata(page);
 }
 
 export default async function PlatformChildPage(props: {

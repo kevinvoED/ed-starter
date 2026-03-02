@@ -20,7 +20,7 @@ export async function generateMetadata() {
     notFound();
   }
 
-  return generatePageMetadata(page!);
+  return generatePageMetadata(page);
 }
 
 export default async function BlogIndexPage(props: {
@@ -77,7 +77,7 @@ export default async function BlogIndexPage(props: {
 
                 <SanityLink
                   id="cta"
-                  href={`/blog/${post.slug.current}`}
+                  href={`/case-studies/${post.slug.current}`}
                   variant="ghost"
                   card
                   hasArrow={false}

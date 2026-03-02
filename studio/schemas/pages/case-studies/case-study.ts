@@ -49,6 +49,7 @@ export default defineType({
     }),
     defineField({
       ...slug,
+      group: "content",
     }),
     defineField({
       ...link,
@@ -62,8 +63,8 @@ export default defineType({
       title: "Content Topic",
       description: "Optional. Select a content topic for the post.",
       type: "array",
-      group: "content",
       of: [{ type: "reference", to: { type: "content-topic" } }],
+      group: "content",
       validation: (Rule) => Rule.max(1),
     }),
     defineField({
@@ -72,15 +73,15 @@ export default defineType({
     }),
     defineField({
       ...image,
-      description: "Recommended Image Size - 928x530 pixels; ratio - 16:9.",
+      group: "content",
     }),
     defineField({
       name: "author",
       title: "Author",
       type: "reference",
       description: "Optional. Used to credit the author of the post.",
-      group: "settings",
       to: { type: "author" },
+      group: "settings",
     }),
     defineField({
       ...portableText,

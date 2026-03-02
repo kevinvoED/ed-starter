@@ -21,7 +21,9 @@ export async function generateMetadata() {
     notFound();
   }
 
-  return generatePageMetadata(page!);
+  console.log(page);
+
+  return generatePageMetadata(page);
 }
 
 export default async function BlogIndexPage(props: {

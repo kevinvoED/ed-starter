@@ -1399,6 +1399,12 @@ export type ContentTopic = {
   orderRank?: string;
 };
 
+export type Slug = {
+  _type: "slug";
+  current: string;
+  source?: string;
+};
+
 export type Page = {
   _id: string;
   _type: "page";
@@ -1452,7 +1458,6 @@ export type BlogIndex = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  slug: Slug;
   title: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -1489,6 +1494,7 @@ export type BlogIndex = {
     _type: "block";
     _key: string;
   }>;
+  slug: Slug;
   description: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -1729,19 +1735,12 @@ export type BlogPost = {
   meta?: Meta;
 };
 
-export type Slug = {
-  _type: "slug";
-  current: string;
-  source?: string;
-};
-
 export type CaseStudiesIndex = {
   _id: string;
   _type: "case-studies-index";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  slug: Slug;
   title: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -1778,6 +1777,7 @@ export type CaseStudiesIndex = {
     _type: "block";
     _key: string;
   }>;
+  slug: Slug;
   description: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -2297,13 +2297,13 @@ export type AllSanitySchemaTypes =
   | Navbar
   | BlogCategory
   | ContentTopic
+  | Slug
   | Page
   | BlogIndex
   | BlogCategoryReference
   | ContentTopicReference
   | AuthorReference
   | BlogPost
-  | Slug
   | CaseStudiesIndex
   | CaseStudy
   | Author

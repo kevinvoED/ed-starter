@@ -28,9 +28,12 @@ export default defineType({
     },
   ],
   fields: [
-    slug,
     defineField({
       ...title,
+      group: "content",
+    }),
+    defineField({
+      ...slug,
       group: "content",
     }),
     defineField({
@@ -43,8 +46,8 @@ export default defineType({
       type: "reference",
       description:
         "Optional. Select a featured post to be displayed at the very top of the page.",
-      group: "content",
       to: { type: "case-study" },
+      group: "content",
     }),
     defineField({
       ...modules,
