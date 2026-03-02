@@ -37,6 +37,36 @@ $ pnpm install
 $ pnpm dev
 ```
 
+## Commands
+
+| Command                | Action                                                         |
+| :--------------------- | :--------------------------------------------------------------|
+| `pnpm install`         | Installs dependencies                                          |
+| `pnpm dev`             | Starts local dev and local Sanity studio servers in parallel   |
+| `pnpm dev:next`        | Starts local dev server at localhost:3000                      |
+| `pnpm dev:studio`      | Starts Sanity Studio server at localhost:3333                  |
+| `pnpm typegen`         | Autogenerates types using Sanity TypeGen                       |
+| `pnpm typecheck`       | TypeScript type checking                                       |
+| `pnpm format`          | Formats and lints code with Biome                              |
+| `pnpm setup-env`       | Symlinks root .env.local to frontend and studio folders        |
+
+## Naming Conventions
+>Note that Biome.js will warn you during the linting process if a file does not match properly.
+
+- `/frontend/components`: `PascalCase`
+  - ✅ `Author.tsx`
+  - ✅ `HeroPrimary.tsx`
+  - ✅ `CardGrid.tsx`
+  - ❌ `blog-category.tsx`
+  - ❌ `blogCategory.tsx`
+
+- `studio/schemas` & `frontend/sanity/queries`: `kebab-case`
+  - ✅ `author.ts`
+  - ✅ `hero-primary.ts`
+  - ✅ `card-grid.ts`
+  - ❌ `BlogCategory.ts`
+  - ❌ `blogCategory.ts`
+
 ## Project Structure
 
 ```
@@ -82,36 +112,6 @@ ED Starter
 ├── 📄 biome.json
 └── 📄 package.json
 ```
-
-## Commands
-
-| Command                | Action                                                         |
-| :--------------------- | :--------------------------------------------------------------|
-| `pnpm install`         | Installs dependencies                                          |
-| `pnpm dev`             | Starts local dev and local Sanity studio servers in parallel   |
-| `pnpm dev:next`        | Starts local dev server at localhost:3000                      |
-| `pnpm dev:studio`      | Starts Sanity Studio server at localhost:3333                  |
-| `pnpm typegen`         | Autogenerates types using Sanity TypeGen                       |
-| `pnpm typecheck`       | TypeScript type checking                                       |
-| `pnpm format`          | Formats and lints code with Biome                              |
-| `pnpm setup-env`       | Symlinks root .env.local to frontend and studio folders        |
-
-## Naming Conventions
->Note that Biome.js will warn you during the linting process if a file does not match properly.
-
-- `/frontend/components`: `PascalCase`
-  - ✅ `Author.tsx`
-  - ✅ `HeroPrimary.tsx`
-  - ✅ `CardGrid.tsx`
-  - ❌ `blog-category.tsx`
-  - ❌ `blogCategory.tsx`
-
-- `studio/schemas` & `frontend/sanity/queries`: `kebab-case`
-  - ✅ `author.ts`
-  - ✅ `hero-primary.ts`
-  - ✅ `card-grid.ts`
-  - ❌ `BlogCategory.ts`
-  - ❌ `blogCategory.ts`
 
 ## FAQ
 
@@ -200,3 +200,4 @@ import { ScrollTrigger } from "gsap/all";
 - [ ] Spacer module?
 - [ ] Nav bar theme and direction-aware
 - [ ] Componetize pages and layouts so its easily testable
+- [ ] Update the fluid.css with Kele's v4

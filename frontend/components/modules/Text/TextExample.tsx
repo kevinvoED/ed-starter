@@ -13,7 +13,7 @@ export const TextExample = ({
   link,
 }: TextExampleProps) => {
   return (
-    <div className="fluid-py-10/20 p-custom">
+    <div className="f-py-10/20 p-custom">
       {title && (
         <Transition>
           <PortableText

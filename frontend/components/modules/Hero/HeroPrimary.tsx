@@ -17,7 +17,7 @@ export const HeroPrimary = ({
   content,
 }: HeroPrimaryProps) => {
   return (
-    <div className="fluid-py-10/20 p-custom">
+    <div className="f-py-10/20 p-custom">
       {title && (
         <PortableText
           value={title}
@@ -46,7 +46,7 @@ export const HeroPrimary = ({
         <SanityImage image={image} sizes="(max-width: 768px) 100vw, 75vw" />
       )}
 
-      <article className="fluid-p-4/12 fluid-gap-10/20 relative flex flex-col bg-black text-white">
+      <article className="f-p-4/12 f-gap-10/20 relative flex flex-col bg-black text-white">
         <h2>Placeholder title</h2>
 
         <div className="flex flex-col gap-4">
@@ -104,7 +104,7 @@ export const HeroPrimary = ({
       </div>
 
       {content && (
-        <div className="fluid-py-4/12">
+        <div className="f-py-4/12">
           <PortableText value={content} style="article" />
         </div>
       )}
