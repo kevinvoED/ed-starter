@@ -1,9 +1,14 @@
 {
-  "name": "ED Starter Frontend",
+  "name": "frontend",
   "version": "1.0.0",
   "description": "ED Starter Frontend",
   "homepage": "https://enginedigital.com",
   "private": true,
+  "engines": {
+    "node": "^22.12.0",
+    "pnpm": "~10.19.0"
+  },
+  "packageManager": "pnpm@10.19.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
