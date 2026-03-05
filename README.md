@@ -34,6 +34,30 @@ $ pnpm install
 $ pnpm dev
 ```
 
+## Installing packages
+> The following ENV needs to be added to Vercel for it to recognize and default to pnpm: `ENABLE_EXPERIMENTAL_COREPACK=1`
+
+### From Root (Recommended)
+
+```bash
+# Installing packages for frontend
+pnpm i -w <package-name> --filter frontend
+
+# Installing packages for studio
+pnpm i -w <package-name> --filter studio
+```
+
+### From workspace directory manually
+```bash
+# Installing packages for frontend
+cd frontend
+pnpm i <package-name>
+
+# Installing packages for studio
+cd studio
+pnpm i <package-name>
+```
+
 ## Commands
 
 | Command                | Action                                                         |
@@ -190,9 +214,3 @@ if (typeof window !== "undefined") {
 // You do have to import ScrollTrigger if you plan on using its methods though
 import { ScrollTrigger } from "gsap/all";
 ```
-
-## To-Do List
-
-- [ ] llms.txt (auto-generated with Sanity?)
-- [ ] Spacer module?
-- [ ] Nav bar theme and direction-aware
