@@ -1,9 +1,7 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
 
-type FullVideoProps = ModuleProps<"full-video">;
-
-export const FullVideo = ({ video }: FullVideoProps) => {
-  if (!video || !video.asset?.url) return null;
+export const FullVideo = ({ video }: ModuleProps<"full-video">) => {
+  if (!video?.asset?.url) return null;
 
   return (
     <video

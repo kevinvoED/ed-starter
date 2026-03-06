@@ -1,9 +1,7 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
 import { kebabCase } from "es-toolkit/string";
 
-type SpacerProps = ModuleProps<"spacer">;
-
-export const Spacer = ({ spacing, anchorId }: SpacerProps) => {
+export const Spacer = ({ spacing, anchorId }: ModuleProps<"spacer">) => {
   if (!spacing) return null;
 
   const spacingMapping = {

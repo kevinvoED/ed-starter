@@ -7,15 +7,15 @@ import { SanityImage } from "@/components/primitives/Image/SanityImage";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
 
-type HeroPrimaryProps = ModuleProps<"hero-primary">;
-
 export const HeroPrimary = ({
   title,
   link,
   image,
   description,
   content,
-}: HeroPrimaryProps) => {
+}: ModuleProps<"hero-primary">) => {
+  if (!title) return null;
+
   return (
     <div className="f-py-10/20 p-custom">
       {title && (

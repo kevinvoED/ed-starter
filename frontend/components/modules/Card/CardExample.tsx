@@ -4,14 +4,14 @@ import { SanityImage } from "@/components/primitives/Image/SanityImage";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
 
-type CardExampleProps = ModuleProps<"card-example">;
-
 export const CardExample = ({
   title,
   description,
   image,
   link,
-}: CardExampleProps) => {
+}: ModuleProps<"card-example">) => {
+  if (!title) return null;
+
   return (
     <div className="f-py-10/20 p-custom">
       {title && (

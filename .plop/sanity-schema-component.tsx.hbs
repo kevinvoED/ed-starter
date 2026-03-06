@@ -4,14 +4,14 @@ import { SanityImage } from "@/components/primitives/Image/SanityImage";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
 
-type {{pascalCase name}}Props = ModuleProps<"{{kebabCase name}}">;
-
 export const {{pascalCase name}} = ({
   title,
   description,
   image,
   link,
-}: {{pascalCase name}}Props) => {
+}: ModuleProps<"{{kebabCase name}}">) => {
+  if (!title) return null;
+
   return (
     <div className="f-py-10/20 p-custom">
       {title && (

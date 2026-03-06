@@ -1,9 +1,7 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
 import { SanityImage } from "@/components/primitives/Image/SanityImage";
 
-type FullImageProps = ModuleProps<"full-image">;
-
-export const FullImage = ({ image }: FullImageProps) => {
+export const FullImage = ({ image }: ModuleProps<"full-image">) => {
   if (!image) return null;
 
   return (
