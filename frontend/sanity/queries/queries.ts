@@ -23,9 +23,11 @@ import { LIST_EXAMPLE_QUERY } from "./modules/list/list-example";
 import { MARQUEE_QUERY } from "./modules/marquee/marquee";
 import { FULL_VIDEO_QUERY } from "./modules/miscellaneous/full-video";
 import { GLOBAL_MODULE_QUERY } from "./modules/miscellaneous/global-module";
+import { SPACER_QUERY } from "./modules/miscellaneous/spacer";
 import { TABLE_EXAMPLE_QUERY } from "./modules/table/table-example";
 import { RICH_TEXT_QUERY } from "./modules/text/rich-text";
 import { TEXT_EXAMPLE_QUERY } from "./modules/text/text-example";
+
 /*
  * ====================================================
  * ============= MODULE-BUILDER FRAGMENT ==============
@@ -36,6 +38,7 @@ import { TEXT_EXAMPLE_QUERY } from "./modules/text/text-example";
 export const modulesFragment = defineQuery(`
   modules[]{
     ${GLOBAL_MODULE_QUERY},
+    ${SPACER_QUERY},
     ${HERO_PRIMARY_QUERY},
     ${MARQUEE_QUERY},
     ${RICH_TEXT_QUERY},

@@ -27,6 +27,7 @@ export const relationTypes = sortBy(
  */
 export const moduleBlocks = sortBy(
   [
+    { type: "spacer" },
     { type: "hero-primary" },
     { type: "marquee" },
     { type: "rich-text" },
@@ -70,7 +71,7 @@ export const moduleGroups = sortBy(
     },
     {
       name: "miscellaneous",
-      of: ["marquee", "full-video"],
+      of: ["marquee", "full-video", "spacer"],
     },
     {
       name: "card",

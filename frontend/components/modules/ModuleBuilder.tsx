@@ -7,6 +7,7 @@ import { FullImage } from "@/components/modules/Image/FullImage";
 import { ListExample } from "@/components/modules/List/ListExample";
 import { Marquee } from "@/components/modules/Marquee/Marquee";
 import { FullVideo } from "@/components/modules/Miscellaneous/FullVideo";
+import { Spacer } from "@/components/modules/Miscellaneous/Spacer";
 import { TableExample } from "@/components/modules/Table/TableExample";
 import { RichText } from "@/components/modules/Text/RichText";
 import { TextExample } from "@/components/modules/Text/TextExample";
@@ -26,6 +27,7 @@ const componentMap: {
     Extract<ModuleBlock, { _type: K }>
   >;
 } = {
+  spacer: Spacer,
   "hero-primary": HeroPrimary,
   marquee: Marquee,
   "rich-text": RichText,

@@ -23,6 +23,7 @@ import banner from "@/schemas/documents/banner";
 // Objects
 import link from "@/schemas/objects/link";
 // Modules
+import spacer from "@/schemas/modules/miscellaneous/spacer";
 import heroPrimary from "@/schemas/modules/hero/hero-primary";
 import richText from "@/schemas/modules/text/rich-text";
 import portableText from "@/schemas/objects/portable-text";
@@ -62,6 +63,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     link,
     portableText,
     // Modules
+    spacer,
     heroPrimary,
     marquee,
     cardExample,
