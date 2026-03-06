@@ -53,8 +53,8 @@ export const FN_LINK = `
   };
 `;
 
-export const FN_PT_PLAIN = `
-  fn fn::ptPlain($content) = $content[] {
+export const FN_PT = `
+  fn fn::pt($content) = $content[] {
     ...,
     markDefs[]{
       ...,
@@ -64,12 +64,44 @@ export const FN_PT_PLAIN = `
     },
     _type == "link" => {
       ${linkFields}
-    }
+    },
+      _type == "richTable" => {
+      ...,
+        _type,
+        _key,
+        hasColumnTitles,
+        hasRowTitles,
+        columnHeaders[]{
+          _key,
+          _type,
+          cellIndex,
+          title,
+        },
+        rows[]{
+          _key,
+          _type,
+          cells[]{
+            _key,
+            _type,
+            content[]{
+              ...,
+              markDefs[]{
+                ...,
+                _type == "link" => {
+                  _type,
+                  _key,
+                  href,
+                },
+              },
+            },
+          },
+        },
+      },
   };
 `;
 
-export const FN_PT = `
-  fn fn::pt($content) = $content[] {
+export const FN_PT_PLAIN = `
+  fn fn::ptPlain($content) = $content[] {
     ...,
     markDefs[]{
       ...,

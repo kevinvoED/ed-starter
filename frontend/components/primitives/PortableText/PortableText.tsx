@@ -6,6 +6,7 @@ import { type ElementType, Fragment } from "react";
 import Link from "next/link";
 import { SanityImage } from "@/components/primitives/Image/SanityImage";
 import { PortableTextHeading } from "@/components/primitives/PortableText/PortableTextHeading";
+import { PortableTextRichTable } from "@/components/primitives/PortableText/PortableTextRichTable";
 import { PortableTextYoutube } from "@/components/primitives/PortableText/PortableTextYoutube";
 import { cn } from "@/lib/utils/cn";
 
@@ -99,6 +100,9 @@ const portableTextComponents = (
     },
     youtube: ({ value }) => {
       return <PortableTextYoutube {...value} />;
+    },
+    richTable: ({ value }) => {
+      return <PortableTextRichTable {...value} />;
     },
   },
   block: {

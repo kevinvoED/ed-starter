@@ -27,6 +27,7 @@ import { presentationOptions } from "@/lib/presentation";
 import { structure } from "@/lib/structure";
 import { schema } from "@/schemas/schema";
 import { OpenDocumentUrlAction } from "./actions";
+import { richTablePlugin } from "sanity-plugin-rich-table";
 import { simplerColorInput } from "sanity-plugin-simpler-color-input";
 import {
   VIEWABLE_TYPES,
@@ -74,5 +75,6 @@ export default defineConfig({
     table(),
     dashboardTool(deploymentOptions),
     simplerColorInput(simplerColorInputOptions),
+    richTablePlugin({}),
   ],
 });
