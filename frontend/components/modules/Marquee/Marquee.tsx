@@ -2,15 +2,13 @@ import type { ModuleProps } from "@/sanity/lib/fetch";
 import { ImageMarquee } from "@/components/primitives/Marquee/ImageMarquee";
 import { TextMarquee } from "@/components/primitives/Marquee/TextMarquee";
 
-type MarqueeProps = ModuleProps<"marquee">;
-
 export const Marquee = ({
   variant,
   items,
   images,
   enableVelocity,
   imageType,
-}: MarqueeProps) => {
+}: ModuleProps<"marquee">) => {
   return (
     <div className="grid-custom overflow-hidden bg-white text-black">
       {variant === "text" && (
