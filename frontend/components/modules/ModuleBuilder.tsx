@@ -12,9 +12,10 @@ import { RichText } from "@/components/modules/Text/RichText";
 import { TextExample } from "@/components/modules/Text/TextExample";
 import { MyModulesRendererErrorBoundary } from "../miscellaneous/ErrorBoundary/ErrorBoundary";
 
-export type ModuleBlock = NonNullable<
-  NonNullable<PAGE_QUERY_RESULT>["modules"]
->[number];
+export type ModuleBlock = Extract<
+  NonNullable<NonNullable<PAGE_QUERY_RESULT>["modules"]>[number],
+  { _type: string }
+>;
 
 type ModuleBuilderProps = {
   modules: ModuleBlock[];
