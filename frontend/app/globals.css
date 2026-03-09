@@ -89,10 +89,6 @@ html {
   }
 }
 
-* {
-  scrollbar-width: thin;
-}
-
 /* @see: https://base-ui.com/react/overview/quick-start */
 .root {
   isolation: isolate;
@@ -103,7 +99,7 @@ html.overflow-hidden {
   touch-action: none;
 }
 
-svg.icon {
+svg {
   path[fill],
   rect[fill],
   circle[fill] {
