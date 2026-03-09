@@ -22,12 +22,12 @@ import contentTopic from "@/schemas/pages/content-topic";
 import banner from "@/schemas/documents/banner";
 // Objects
 import link from "@/schemas/objects/link";
+import portableText from "@/schemas/objects/portable-text";
 // Modules
 import spacer from "@/schemas/modules/miscellaneous/spacer";
 import heroPrimary from "@/schemas/modules/hero/hero-primary";
 import imageExample from "@/schemas/modules/image/image-example";
 import richText from "@/schemas/modules/text/rich-text";
-import portableText from "@/schemas/objects/portable-text";
 import marquee from "@/schemas/modules/miscellaneous/marquee";
 import cardExample from "@/schemas/modules/card/card-example";
 import driverExample from "@/schemas/modules/driver/driver-example";

@@ -145,13 +145,6 @@ export const structure: StructureResolver = (S: StructureBuilder, context) =>
                 ]),
             ),
       ),
-      // orderableDocumentListDeskItem({
-      //   type: "solutions-child",
-      //   title: "Solutions",
-      //   icon: FolderIcon,
-      //   S,
-      //   context,
-      // }),
       S.divider().title("Content"),
       orderableDocumentListDeskItem({
         type: "content-topic",

@@ -34,7 +34,11 @@ import {
  * > Type-safe query results via Sanity TypeGen
  */
 
-// Types
+/*
+ * ====================================================
+ * ================== MODULE TYPES ====================
+ * ====================================================
+ */
 type ModuleType = Extract<
   NonNullable<NonNullable<PAGE_QUERY_RESULT>["modules"]>[number],
   { _type: unknown }
@@ -45,7 +49,11 @@ export type ModuleProps<T extends ModuleType = ModuleType> = Extract<
   { _type: T }
 >;
 
-// Global Items
+/*
+ * ====================================================
+ * ================= GLOBAL QUERIES ===================
+ * ====================================================
+ */
 export const fetchSanityOrganization =
   async (): Promise<ORGANIZATION_QUERY_RESULT> => {
     const { data } = await sanityFetch({
@@ -75,7 +83,11 @@ export const fetchSanityFooter = async (): Promise<FOOTER_QUERY_RESULT> => {
   return data;
 };
 
-// Pages
+/*
+ * ====================================================
+ * ================== PAGE QUERIES ====================
+ * ====================================================
+ */
 export const fetchSanityPageBySlug = async ({
   pageType,
   slug,
@@ -110,48 +122,6 @@ export const fetchSanityPagesStaticParams = async ({
 
   return data;
 };
-
-// Authors
-// export const fetchSanityAuthorBySlug = async ({
-//   slug,
-// }: {
-//   slug: string;
-// }): Promise<AUTHOR_QUERY_RESULT> => {
-//   const { data } = await sanityFetch({
-//     query: AUTHOR_QUERY,
-//     params: { slug, offset: 0, end: 0 },
-//   });
-//   return data;
-// };
-
-// export const fetchSanityAuthorWithResources = async ({
-//   slug,
-//   page,
-//   limit,
-// }: {
-//   slug: string;
-//   page?: number;
-//   limit: number;
-// }): Promise<AUTHOR_QUERY_RESULT> => {
-//   const offset = page && limit ? (page - 1) * limit : 0;
-//   const end = offset + limit;
-
-//   const { data } = await sanityFetch({
-//     query: AUTHOR_QUERY,
-//     params: { slug, offset, end },
-//   });
-//   return data;
-// };
-
-// export const fetchSanityAuthorsStaticParams =
-//   async (): Promise<AUTHOR_SLUGS_QUERY_RESULT> => {
-//     const { data } = await sanityFetch({
-//       query: AUTHOR_SLUGS_QUERY,
-//       perspective: "published",
-//       stega: false,
-//     });
-//     return data;
-//   };
 
 /*
  * ====================================================

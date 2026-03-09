@@ -31,6 +31,7 @@ export const SINGLETON_DOCUMENT_TYPES = new Set([
   "platform-index",
 ]);
 
+// Define the color options for the simpler color input
 export const COLOR_OPTIONS = [
   { label: "Light", value: "#ffffff" },
   { label: "Dark", value: "#333333" },
