@@ -39,6 +39,8 @@ export const ptStyleHeadingFields = [
 export const ptDecoratorFields = [
   { title: "Bold", value: "strong" },
   { title: "Italic", value: "em" },
+  { title: "Underline", value: "underline" },
+  { title: "Strike", value: "strike-through" },
 ];
 
 export const ptListFields = [
@@ -46,58 +48,60 @@ export const ptListFields = [
   { title: "Number", value: "number" },
 ];
 
-export const ptAnnotationLinkFields = {
-  name: "link",
-  type: "object",
-  title: "Link",
-  icon: LinkIcon,
-  fields: [
-    {
-      name: "type",
-      title: "Button Type",
-      description:
-        "Choose how this link behaves. Internal Links will navigate to pages within the site and External for outside URLs.",
-      type: "string",
-      options: {
-        list: [
-          { title: "Internal Link", value: "internal" },
-          { title: "External URL", value: "external" },
-        ],
-        layout: "radio",
+export const ptAnnotationLinkFields = [
+  {
+    name: "link",
+    type: "object",
+    title: "Link",
+    icon: LinkIcon,
+    fields: [
+      {
+        name: "type",
+        title: "Button Type",
+        description:
+          "Choose how this link behaves. Internal Links will navigate to pages within the site and External for outside URLs.",
+        type: "string",
+        options: {
+          list: [
+            { title: "Internal Link", value: "internal" },
+            { title: "External URL", value: "external" },
+          ],
+          layout: "radio",
+        },
+        initialValue: "internal",
+        validation: (Rule: Rule) => Rule.required(),
       },
-      initialValue: "internal",
-      validation: (Rule: Rule) => Rule.required(),
-    },
-    {
-      name: "internalLink",
-      title: "Internal Link",
-      description:
-        "Link to another page on this site. Select from existing pages or posts.",
-      type: "reference",
-      to: relationTypes,
-      hidden: ({ parent }: { parent: { type?: string } }) =>
-        parent?.type !== "internal",
-    },
-    {
-      name: "href",
-      title: "External URL",
-      description:
-        "Enter a valid external URL to link to (http, https, mailto, tel).",
-      type: "url",
-      hidden: ({ parent }: { parent: { type?: string } }) =>
-        parent?.type !== "external",
-    },
-    {
-      name: "openInNewTab",
-      type: "boolean",
-      title: "Open in a new tab?",
-      description: "When enabled, the link opens in a new browser tab.",
-      initialValue: false,
-      hidden: ({ parent }: { parent: { type?: string | undefined } }) =>
-        !["external", "internal"].includes(parent?.type ?? ""),
-    },
-  ],
-};
+      {
+        name: "internalLink",
+        title: "Internal Link",
+        description:
+          "Link to another page on this site. Select from existing pages or posts.",
+        type: "reference",
+        to: relationTypes,
+        hidden: ({ parent }: { parent: { type?: string } }) =>
+          parent?.type !== "internal",
+      },
+      {
+        name: "href",
+        title: "External URL",
+        description:
+          "Enter a valid external URL to link to (http, https, mailto, tel).",
+        type: "url",
+        hidden: ({ parent }: { parent: { type?: string } }) =>
+          parent?.type !== "external",
+      },
+      {
+        name: "openInNewTab",
+        type: "boolean",
+        title: "Open in a new tab?",
+        description: "When enabled, the link opens in a new browser tab.",
+        initialValue: false,
+        hidden: ({ parent }: { parent: { type?: string | undefined } }) =>
+          !["external", "internal"].includes(parent?.type ?? ""),
+      },
+    ],
+  },
+];
 
 export const ptAnnotationHighlightFields = [
   {

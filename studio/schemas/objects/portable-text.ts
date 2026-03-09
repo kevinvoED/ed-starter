@@ -36,7 +36,7 @@ export default defineType({
       marks: {
         decorators: [...ptDecoratorFields],
         annotations: [
-          ...[ptAnnotationLinkFields],
+          ...ptAnnotationLinkFields,
           ...ptAnnotationHighlightFields,
         ],
       },

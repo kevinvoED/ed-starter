@@ -3,7 +3,7 @@ import { LinkIcon } from "@sanity/icons";
 import { useToast } from "@sanity/ui";
 import { linkMapper } from "../../frontend/lib/utils/url-mapper";
 
-/**
+/*
  * Custom action to open the document's URL in a new browser tab.
  * This action assumes the document has a 'url' field of type slug
  * and that you have configured the FRONTEND_BASE_URL.
@@ -64,7 +64,7 @@ export const OpenDocumentUrlAction: DocumentActionComponent = (props) => {
   return {
     label: "View On Website",
     onHandle,
-    icon: LinkIcon, // Using the Link icon from phosphor-react
+    icon: LinkIcon,
     disabled: isDisabled,
   };
 };

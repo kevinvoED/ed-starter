@@ -108,7 +108,7 @@ export const portableTextPlain = ({
         marks: {
           decorators: [...(enableDecorator ? ptDecoratorFields : [])],
           annotations: [
-            ...(enableLink ? [ptAnnotationLinkFields] : []),
+            ...(enableLink ? ptAnnotationLinkFields : []),
             ...(enableHighlight ? ptAnnotationHighlightFields : []),
           ],
         },
