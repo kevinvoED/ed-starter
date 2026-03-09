@@ -71,7 +71,7 @@ export const moduleGroups = sortBy(
     },
     {
       name: "miscellaneous",
-      of: ["marquee", "full-video", "spacer"],
+      of: ["marquee", "spacer", "global-module"],
     },
     {
       name: "card",
@@ -88,6 +88,10 @@ export const moduleGroups = sortBy(
     {
       name: "image",
       of: ["full-image"],
+    },
+    {
+      name: "media",
+      of: ["full-image", "full-video"],
     },
     {
       name: "table",

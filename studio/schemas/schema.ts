@@ -33,8 +33,8 @@ import driverExample from "@/schemas/modules/driver/driver-example";
 import listExample from "@/schemas/modules/list/list-example";
 import tableExample from "@/schemas/modules/table/table-example";
 import textExample from "@/schemas/modules/text/text-example";
-import fullImage from "@/schemas/modules/image/full-image";
-import fullVideo from "@/schemas/modules/miscellaneous/full-video";
+import fullImage from "@/schemas/modules/media/full-image";
+import fullVideo from "@/schemas/modules/media/full-video";
 import globalModule from "@/schemas/modules/miscellaneous/global-module";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
