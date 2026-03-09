@@ -174,7 +174,7 @@ ED Starter
 magick "~/Downloads/exported-component-frame-from-figma.jpg" -resize 536x336^ -gravity North -extent 536x336 -quality 95 "studio/schemas/previews/component-name-output.jpg"
 ```
 
-### Use ModuleProps is a type-safe way of typing your components
+### Using `ModuleProps` is a type-safe way of typing your components
 
 ```typescript
 import type { ModuleProps } from "@/sanity/lib/fetch";
@@ -183,7 +183,7 @@ export const HeroPrimary = ({ title, content }: ModuleProps<"hero-primary">) => 
 ...
 ```
 
-### All modules are already pre-wrapped with a <section> tag in ModuleBuilder.tsx
+### All modules are already pre-wrapped with a `section` tag in ModuleBuilder.tsx
 
 ```typescript
 return (
