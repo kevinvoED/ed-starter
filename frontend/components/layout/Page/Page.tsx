@@ -3,7 +3,7 @@ import type {
   GET_CONTENT_TYPE_SLUG_QUERY_RESULT,
   PAGE_QUERY_RESULT,
 } from "@/sanity.types";
-import { JSONLDScript } from "@/components/miscellaneous/JsonLD/Jsonld";
+import { JSONLDScript } from "@/components/layout/JsonLD/Jsonld";
 import { ModuleBuilder } from "@/components/modules/ModuleBuilder";
 import { cn } from "@/lib/utils/cn";
 

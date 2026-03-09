@@ -12,7 +12,7 @@ import { Spacer } from "@/components/modules/Miscellaneous/Spacer";
 import { TableExample } from "@/components/modules/Table/TableExample";
 import { RichText } from "@/components/modules/Text/RichText";
 import { TextExample } from "@/components/modules/Text/TextExample";
-import { MyModulesRendererErrorBoundary } from "../miscellaneous/ErrorBoundary/ErrorBoundary";
+import { MyModulesRendererErrorBoundary } from "../layout/ErrorBoundary/ErrorBoundary";
 
 export type ModuleBlock = Extract<
   NonNullable<NonNullable<PAGE_QUERY_RESULT>["modules"]>[number],

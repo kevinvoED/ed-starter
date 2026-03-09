@@ -4,7 +4,6 @@ UI components organized by purpose.
 components/
 ├── animations/      → Pre-defined GSAP animations
 ├── layout/          → Global layout components
-├── miscellaneous/   → Unrelated other components
 ├── modules/         → Sanity-schema powered modules
 └── primitives/      → Basic common components
 ```
@@ -33,15 +32,11 @@ components/
 | `ContentPaginationScrollHandler` | Auto-scroll handler for pagination                           |
 | `ContentCategoryFilter`        | Category filtering UI for content                              |
 | `ContentTopicFilter`           | Topic filtering UI for content                                 |
-
-## Miscellaneous
-| Component                | Purpose                                                        |
-| :----------------------- | :--------------------------------------------------------------|
-| `ErrorBoundary`          | React error boundary for error handling                        |
-| `DraftMode`              | Draft mode toggle for Sanity preview                           |
-| `DisableDraftMode`       | Component to exit draft preview mode                           |
-| `ScrollRestoration`      | Browser scroll position restoration utility                    |
-| `JsonLD`                 | Structured data JSON-LD component for SEO                      |
+| `ErrorBoundary`                | React error boundary for error handling                        |
+| `DraftMode`                    | Draft mode toggle for Sanity preview                           |
+| `DisableDraftMode`             | Component to exit draft preview mode                           |
+| `ScrollRestoration`            | Browser scroll position restoration utility                    |
+| `JsonLD`                       | Structured data JSON-LD component for SEO                      |
 
 ## Modules
 | Component                | Purpose                                                        |

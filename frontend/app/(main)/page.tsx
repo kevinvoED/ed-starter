@@ -3,8 +3,8 @@ import {
   fetchSanityOrganization,
   fetchSanityPageBySlug,
 } from "@/sanity/lib/fetch";
+import { OrganizationJSONLDScript } from "@/components/layout/JsonLD/Jsonld";
 import { Page } from "@/components/layout/Page/Page";
-import { OrganizationJSONLDScript } from "@/components/miscellaneous/JsonLD/Jsonld";
 import { generatePageMetadata } from "@/lib/site/metadata";
 
 export async function generateMetadata() {
