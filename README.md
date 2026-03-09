@@ -174,53 +174,54 @@ ED Starter
 magick "~/Downloads/exported-component-frame-from-figma.jpg" -resize 536x336^ -gravity North -extent 536x336 -quality 95 "studio/schemas/previews/component-name-output.jpg"
 ```
 
-### Using ModuleProps is a type-safe way of typing your components
+### Use ModuleProps is a type-safe way of typing your components
 
 ```typescript
 import type { ModuleProps } from "@/sanity/lib/fetch";
 
-// replace hero-primary with any schema name
-type HeroPrimaryProps = ModuleProps<"hero-primary">;
-
-// and you'll be able to access all props with intellisense
-export const HeroPrimary = ({ title, content }: HeroPrimaryProps) => { ...
+export const HeroPrimary = ({ title, content }: ModuleProps<"hero-primary">) => {
+...
 ```
 
-### Use function return types for prop types
+### All modules are already pre-wrapped with a <section> tag in ModuleBuilder.tsx
 
 ```typescript
-interface Props {
-  // now, any changes to the `fetchSanityFooter` function will be caught here!
-  footer: Awaited<ReturnType<typeof fetchSanityFooter>>;
-  class?: ClassValue[];
-}
-
-// or, create a type that can wrap this up for you
-export type FetchedSanityFooter = Awaited<ReturnType<typeof fetchSanityFooter>>;
-```
-
-### Your components do not need to start with a section tag
-
-```typescript
-
-// All modules are already pre-wrapped with a <section> tag in ModuleBuilder.tsx
 return (
-  <section key={_key} data-module={_type}>
-    <Component>...</Component>
+  <section key={module._key + moduleType} data-module={moduleType}>
+    <MyModulesRendererErrorBoundary module={module}>
+      <Component {...(module as ComponentProps<typeof Component>)} />
+    </MyModulesRendererErrorBoundary>
+  </section>
+);
 ```
 
 ### Each component does not need to initialize ScrollTrigger
 
 ```typescript
-
 // We already register ScrollTrigger in ScrollTrigger.tsx which lives in our root layout
-
-// ScrollTrigger.tsx
 if (typeof window !== "undefined") {
   gsap.registerPlugin(GSAPScrollTrigger, SplitText);
   GSAPScrollTrigger.clearScrollMemory("manual");
 }
 
-// You do have to import ScrollTrigger if you plan on using its methods though
+// However, you will have to import ScrollTrigger if you plan on using its methods
 import { ScrollTrigger } from "gsap/all";
 ```
+
+### You can add size validation to images in Sanity schemas
+
+```typescript
+import { validateImage } from "@/lib/utils";
+
+defineField({
+  ...image,
+  validation: (Rule) => Rule.custom(validateImage({
+    minWidth: 1920,
+    minHeight: 1080,
+    maxWidth: 1920,
+    maxHeight: 1080,
+    aspectRatio: 16 / 9,
+  })),
+})
+```
+
