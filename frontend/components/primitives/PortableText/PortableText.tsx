@@ -4,8 +4,8 @@ import {
 } from "@portabletext/react";
 import { type ElementType, Fragment } from "react";
 import Link from "next/link";
-import { SanityImage } from "@/components/primitives/Image/SanityImage";
 import { PortableTextHeading } from "@/components/primitives/PortableText/PortableTextHeading";
+import { PortableTextImage } from "@/components/primitives/PortableText/PortableTextImage";
 import { PortableTextRichTable } from "@/components/primitives/PortableText/PortableTextRichTable";
 import { PortableTextYoutube } from "@/components/primitives/PortableText/PortableTextYoutube";
 import { cn } from "@/lib/utils/cn";
@@ -80,23 +80,11 @@ const portableTextComponents = (
 ): PortableTextProps["components"] => ({
   /*
    * Special custom components that users can inject directly into their PortableText field
-   * You can create a new custom component in this directory and then add it t this `types` object
+   * Create a new custom component and then add it to the `types` object
    */
   types: {
     image: ({ value }) => {
-      return (
-        <figure className="mb-12 max-h-fit">
-          <SanityImage
-            image={value}
-            className={cn(
-              "overflow-hidden object-contain",
-              "h-full max-h-70 w-full max-w-fit lg:max-h-138",
-            )}
-            sizes="(max-width: 768px) 100vw, 75vw"
-            priority={true}
-          />
-        </figure>
-      );
+      return <PortableTextImage {...value} />;
     },
     youtube: ({ value }) => {
       return <PortableTextYoutube {...value} />;
