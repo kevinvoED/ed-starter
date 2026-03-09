@@ -912,7 +912,7 @@ export type Banner = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title: Array<{
+  title?: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -948,7 +948,7 @@ export type Banner = {
     _type: "block";
     _key: string;
   }>;
-  description: Array<{
+  description?: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -2587,7 +2587,7 @@ export type BANNER_QUERY_RESULT = Array<{
     level?: number;
     _type: "block";
     _key: string;
-  }>;
+  }> | null;
   description: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -2629,7 +2629,7 @@ export type BANNER_QUERY_RESULT = Array<{
     level?: number;
     _type: "block";
     _key: string;
-  }>;
+  }> | null;
   link: Array<{
     _key: string;
     _type: "link";
@@ -4964,7 +4964,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         level?: number;
         _type: "block";
         _key: string;
-      }>;
+      }> | null;
       description: Array<{
         children?: Array<{
           marks?: Array<string>;
@@ -5012,7 +5012,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         level?: number;
         _type: "block";
         _key: string;
-      }>;
+      }> | null;
       meta: null;
       modules: null;
       categoryFilter: {

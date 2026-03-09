@@ -6054,7 +6054,7 @@
             }
           }
         },
-        "optional": false
+        "optional": true
       },
       "description": {
         "type": "objectAttribute",
@@ -6325,7 +6325,7 @@
             }
           }
         },
-        "optional": false
+        "optional": true
       },
       "link": {
         "type": "objectAttribute",
