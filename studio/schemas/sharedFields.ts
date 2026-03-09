@@ -17,9 +17,11 @@ import { portableTextPlain } from "@/schemas/objects/portable-text-plain";
  * Please keep this file organized and well documented
  */
 
-// ------------------------------------------------
-// PortableText-related fields (must be at the top)
-// ------------------------------------------------
+/*
+ * -----------------------------------------------
+ * PortableText-related fields (must be at the top)
+ * ------------------------------------------------
+ */
 export const portableText = defineField({
   name: "content",
   title: "Portable Text",
@@ -114,9 +116,11 @@ export const ptAnnotationHighlightFields = [
   },
 ];
 
-// ------------------------------------------------
-// ModuleBuilder-related fields
-// ------------------------------------------------
+/*
+ * -----------------------------------------------
+ * ModuleBuilder-related fields
+ * ------------------------------------------------
+ */
 export const modules = defineField({
   name: "modules",
   title: "Modules",
@@ -145,10 +149,11 @@ export const pageTitle = defineField({
   validation: (Rule) => Rule.required(),
 });
 
-// ------------------------------------------------
-// PortableText & PortableTextPlain-related fields
-// ------------------------------------------------
-
+/*
+ * -----------------------------------------------
+ * PortableText & PortableTextPlain
+ * ------------------------------------------------
+ */
 export const title = portableTextPlain({
   name: "title",
   title: "Title",
@@ -182,10 +187,11 @@ export const description = portableTextPlain({
   enableTypeStyle: true,
 });
 
-// ------------------------------------------------
-// Slug-related fields
-// ------------------------------------------------
-
+/*
+ * -----------------------------------------------
+ * Slugs
+ * ------------------------------------------------
+ */
 export const slug = defineField({
   name: "slug",
   title: "Page Slug",
@@ -209,9 +215,11 @@ export const slugReadOnly = defineField({
   validation: (Rule) => Rule.required(),
 });
 
-// ------------------------------------------------
-// Link-related fields
-// ------------------------------------------------
+/*
+ * -----------------------------------------------
+ * Link
+ * ------------------------------------------------
+ */
 export const link = defineField({
   name: "link",
   title: "Button Link",
@@ -221,9 +229,11 @@ export const link = defineField({
   validation: (Rule) => Rule.required().max(1),
 });
 
-// ------------------------------------------------
-// Image-related fields
-// ------------------------------------------------
+/*
+ * -----------------------------------------------
+ * Media
+ * ------------------------------------------------
+ */
 export const image = defineField({
   name: "image",
   title: "Image",
@@ -269,9 +279,6 @@ export const logo = defineField({
   validation: (Rule) => Rule.required(),
 });
 
-// ------------------------------------------------
-// Video-related fields
-// ------------------------------------------------
 export const video = defineField({
   name: "video",
   title: "Video",
@@ -284,9 +291,11 @@ export const video = defineField({
   validation: (Rule) => Rule.required(),
 });
 
-// ------------------------------------------------
-// Metadata & SEO-related fields
-// ------------------------------------------------
+/*
+ * -----------------------------------------------
+ * Metadata & SEO
+ * ------------------------------------------------
+ */
 export const meta = defineField({
   name: "meta",
   title: "Metadata & SEO",
@@ -317,9 +326,11 @@ export const meta = defineField({
   ],
 });
 
-// ------------------------------------------------
-// contentType-related fields
-// ------------------------------------------------
+/*
+ * -----------------------------------------------
+ * Content Type
+ * ------------------------------------------------
+ */
 export const publishedDate = defineField({
   name: "publishedDate",
   title: "Published Date",
@@ -353,4 +364,19 @@ export const toggle = defineField({
   type: "boolean",
   initialValue: false,
   validation: (Rule) => Rule.required(),
+});
+
+/*
+ * -----------------------------------------------
+ * Miscellaneous
+ * ------------------------------------------------
+ */
+
+export const eyebrow = defineField({
+  name: "eyebrow",
+  title: "Eyebrow",
+  type: "string",
+  description:
+    "Optional. Add accompanying short text that usually precedes the title.",
+  validation: (Rule) => Rule.required().max(30),
 });
