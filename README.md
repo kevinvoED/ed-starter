@@ -134,6 +134,16 @@ ED Starter
 └── 📄 package.json
 ```
 
+## Documentation
+
+> Detailed README.mds for specific areas of the codebase:
+
+| README.md | Purpose |
+| :------------ | :---------- |
+| [frontend/components](frontend/components/README.md) | UI component library                           |
+| [frontend/lib](frontend/lib/README.md) | Utility functions, hooks, and global configurations          |
+| [frontend/sanity/queries](frontend/sanity/queries/README.md) | GROQ query patterns and best practices |
+
 ## FAQ
 
 ### How do I create a new Sanity-powered module?
