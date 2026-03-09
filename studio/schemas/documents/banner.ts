@@ -1,4 +1,3 @@
-import { toPlainText } from "@portabletext/react";
 import { UserIcon } from "@sanity/icons";
 import { orderRankField } from "@sanity/orderable-document-list";
 import { defineField, defineType } from "sanity";
@@ -12,9 +11,11 @@ export default defineType({
   fields: [
     defineField({
       ...title,
+      validation: (Rule) => Rule,
     }),
     defineField({
       ...description,
+      validation: (Rule) => Rule,
     }),
     defineField({
       ...link,
@@ -23,16 +24,8 @@ export default defineType({
     orderRankField({ type: "banner" }),
   ],
   preview: {
-    select: {
-      title: "title",
-      image: "image",
-    },
-    prepare({ title, image }) {
-      return {
-        title: "Banner",
-        subtitle: toPlainText(title),
-        media: image,
-      };
+    prepare() {
+      return { title: "Banner" };
     },
   },
 });

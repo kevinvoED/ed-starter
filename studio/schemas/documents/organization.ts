@@ -118,14 +118,8 @@ export default defineType({
     }),
   ],
   preview: {
-    select: {
-      title: "name",
-    },
-    prepare({ title }) {
-      return {
-        title: "Organization",
-        subtitle: title,
-      };
+    prepare() {
+      return { title: "Organization" };
     },
   },
 });

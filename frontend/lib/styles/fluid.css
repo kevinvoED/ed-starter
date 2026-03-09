@@ -155,25 +155,25 @@
  * HEADING TYPESETS
  * ---------------------
 */
-@utility type-heading-9660 {
+@utility type-heading-9640 {
   --font-size: var(--font-scale-96);
   --line-height: calc(100 / var(--base-font-size));
   --letter-spacing: calc(-0.5 / var(--base-font-size));
   font-size: calc(var(--font-size) * var(--to-rem));
   line-height: calc(var(--line-height) * var(--to-rem));
   letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
-  font-weight: var(--font-weight-600);
+  font-weight: var(--font-weight-400);
   font-family: var(--font-heading);
 }
 
-@utility type-heading-4860 {
+@utility type-heading-4840 {
   --font-size: var(--font-scale-48);
   --line-height: calc(54 / var(--base-font-size));
   --letter-spacing: calc(-0.5 / var(--base-font-size));
   font-size: calc(var(--font-size) * var(--to-rem));
   line-height: calc(var(--line-height) * var(--to-rem));
   letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
-  font-weight: var(--font-weight-600);
+  font-weight: var(--font-weight-400);
   font-family: var(--font-heading);
 }
 
@@ -219,7 +219,7 @@
 @utility type-body-1640 {
   --font-size: var(--font-scale-16);
   --line-height: calc(20 / var(--base-font-size));
-  --letter-spacing: calc(0.75 / var(--base-font-size));
+  --letter-spacing: calc(0.25 / var(--base-font-size));
   font-size: calc(var(--font-size) * var(--to-rem));
   line-height: calc(var(--line-height) * var(--to-rem));
   letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
@@ -278,19 +278,19 @@
  * HEADING FLUID TYPESETS
  * ---------------------
 */
-@utility to-type-heading-9660 {
+@utility to-type-heading-9640 {
   --to-font-size: var(--font-scale-96);
   --to-line-height: calc(100 / var(--base-font-size));
   --to-letter-spacing: calc(-0.5 / var(--base-font-size));
 }
 
-@utility to-type-heading-4860 {
+@utility to-type-heading-4840 {
   --to-font-size: var(--font-scale-48);
   --to-line-height: calc(54 / var(--base-font-size));
   --to-letter-spacing: calc(-0.5 / var(--base-font-size));
 }
 
-@utility to-type-heading-3260 {
+@utility to-type-heading-3240 {
   --to-font-size: var(--font-scale-32);
   --to-line-height: calc(40 / var(--base-font-size));
   --to-letter-spacing: calc(-0.5 / var(--base-font-size));
