@@ -3,6 +3,7 @@ import type { PAGE_QUERY_RESULT } from "@/sanity.types";
 import { CardExample } from "@/components/modules/Card/CardExample";
 import { DriverExample } from "@/components/modules/Driver/DriverExample";
 import { HeroPrimary } from "@/components/modules/Hero/HeroPrimary";
+import { ImageExample } from "@/components/modules/Image/ImageExample";
 import { ListExample } from "@/components/modules/List/ListExample";
 import { Marquee } from "@/components/modules/Marquee/Marquee";
 import { FullImage } from "@/components/modules/Media/FullImage";
@@ -28,16 +29,17 @@ const componentMap: {
   >;
 } = {
   spacer: Spacer,
-  "hero-primary": HeroPrimary,
   marquee: Marquee,
+  "hero-primary": HeroPrimary,
   "rich-text": RichText,
+  "full-image": FullImage,
+  "full-video": FullVideo,
   "card-example": CardExample,
   "driver-example": DriverExample,
   "list-example": ListExample,
   "table-example": TableExample,
   "text-example": TextExample,
-  "full-image": FullImage,
-  "full-video": FullVideo,
+  "image-example": ImageExample,
 };
 
 const LocalErrorFallback = ({ children }: { children: React.ReactNode }) => (

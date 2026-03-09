@@ -40,6 +40,7 @@ export const moduleBlocks = sortBy(
     { type: "list-example" },
     { type: "table-example" },
     { type: "text-example" },
+    { type: "image-example" },
   ],
   ["type"],
 );
@@ -87,7 +88,7 @@ export const moduleGroups = sortBy(
     },
     {
       name: "image",
-      of: ["full-image"],
+      of: ["image-example"],
     },
     {
       name: "media",

@@ -25,6 +25,7 @@ import link from "@/schemas/objects/link";
 // Modules
 import spacer from "@/schemas/modules/miscellaneous/spacer";
 import heroPrimary from "@/schemas/modules/hero/hero-primary";
+import imageExample from "@/schemas/modules/image/image-example";
 import richText from "@/schemas/modules/text/rich-text";
 import portableText from "@/schemas/objects/portable-text";
 import marquee from "@/schemas/modules/miscellaneous/marquee";
@@ -63,17 +64,19 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     link,
     portableText,
     // Modules
+    globalModule,
     spacer,
     heroPrimary,
     marquee,
+    richText,
+    fullImage,
+    fullVideo,
+    // Remove example modules
+    imageExample,
     cardExample,
     driverExample,
     listExample,
     tableExample,
     textExample,
-    richText,
-    fullImage,
-    fullVideo,
-    globalModule,
   ],
 };
