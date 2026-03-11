@@ -4,7 +4,14 @@
 	"description": "ED-Starter: Next.js & Sanity",
 	"homepage": "https://enginedigital.com",
 	"private": true,
+	"packageManager": "pnpm@10.19.0",
+	"engines": {
+		"node": "^22.12.0",
+		"pnpm": ">=10.19.0",
+		"npm": "Please use pnpm instead of npm."
+	},
 	"scripts": {
+		"preinstall": "npx only-allow pnpm",
 		"build": "cd frontend && pnpm run build",
 		"dev": "pnpm --parallel -r run dev",
 		"dev:next": "pnpm run dev --workspace=frontend",
@@ -15,7 +22,6 @@
 		"plop": "plop",
 		"setup-env": "cp -i \"$PWD/.env.example.local\" \"$PWD/.env.local\" && ln \"$PWD/.env.local\" \"$PWD/frontend/.env.local\" && ln \"$PWD/.env.local\" \"$PWD/studio/.env.local\""
 	},
-	"packageManager": "pnpm@10.19.0",
 	"devDependencies": {
 		"@biomejs/biome": "^2.3.12",
 		"plop": "^4.0.5"
