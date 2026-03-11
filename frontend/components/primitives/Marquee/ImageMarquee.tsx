@@ -2,12 +2,12 @@
 
 import type { ModuleProps } from "@/sanity/lib/fetch";
 import { useEffect, useRef } from "react";
-import { LogoSoup, useLogoSoup } from "react-logo-soup";
 import { gsap } from "gsap";
 import { SanityImage } from "@/components/primitives/Image/SanityImage";
 import { useIsMobile } from "@/lib/hooks/use-is-mobile";
 import { horizontalLoop } from "@/lib/styles/animations";
 import { cn } from "@/lib/utils/cn";
+import { LogoSoup, useLogoSoup } from "@sanity-labs/logo-soup/react";
 import { Observer } from "gsap/all";
 
 type ImageMarqueeProps = {
@@ -22,7 +22,7 @@ type ImageMarqueeProps = {
 };
 
 // https://codepen.io/mark_sottek/pen/pvoaXRv
-// https://github.com/sanity-labs/react-logo-soup?tab=readme-ov-file
+// https://github.com/sanity-labs/logo-soup#readme
 
 export const ImageMarquee = ({
   className,
