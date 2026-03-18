@@ -8,6 +8,8 @@ const EyebrowVariants = cva(
       variant: {
         default:
           "type-mono-1040 bg-black px-2.5 py-0.5 text-black text-white ring ring-1 ring-white/70",
+        filter:
+          "type-mono-1040 max-w-fit rounded-full bg-black px-2 py-0.5 font-bold text-white",
       },
     },
     defaultVariants: {

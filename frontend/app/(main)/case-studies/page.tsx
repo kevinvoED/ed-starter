@@ -5,6 +5,7 @@ import { Transition } from "@/components/animations/Transition";
 import { ContentPagination } from "@/components/layout/Content/ContentPagination";
 import { ContentTopicFilter } from "@/components/layout/Content/ContentTopicFilter";
 import { Page } from "@/components/layout/Page/Page";
+import { Eyebrow } from "@/components/primitives/Eyebrow/Eyebrow";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
 import { generatePageMetadata } from "@/lib/site/metadata";
@@ -61,26 +62,21 @@ export default async function BlogIndexPage({
               >
                 <div className="flex gap-2">
                   {post._createdAt && (
-                    <p className="max-w-fit rounded-full bg-black px-2 py-0.5 font-semibold text-white text-xs">
+                    <Eyebrow variant="filter">
                       {new Date(post._createdAt).toLocaleDateString()}
-                    </p>
+                    </Eyebrow>
                   )}
+
                   {post.category?.map(({ _id, title }) => (
-                    <div
-                      key={_id}
-                      className="max-w-fit rounded-full bg-black px-2 py-0.5 font-semibold text-white text-xs"
-                    >
+                    <Eyebrow key={_id} variant="filter">
                       <PortableText value={title} />
-                    </div>
+                    </Eyebrow>
                   ))}
 
                   {post.contentTopic?.map(({ _id, title }) => (
-                    <div
-                      key={_id}
-                      className="max-w-fit rounded-full bg-black px-2 py-0.5 font-semibold text-white text-xs"
-                    >
+                    <Eyebrow key={_id} variant="filter">
                       <PortableText value={title} key={_id} />
-                    </div>
+                    </Eyebrow>
                   ))}
                 </div>
 
