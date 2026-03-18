@@ -199,7 +199,12 @@ export const slug = defineField({
   description: "A unique ID to be used as the slug/route for this page.",
   options: {
     source: "title",
-    slugify: (input) => kebabCase(toPlainText(input)),
+    slugify: (input) => {
+      if (typeof input === "string") {
+        return kebabCase(input);
+      }
+      return kebabCase(toPlainText(input));
+    },
   },
   validation: (Rule) => Rule.required(),
 });
