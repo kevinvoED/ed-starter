@@ -1,26 +1,36 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { useDraftModeEnvironment } from "next-sanity/hooks";
+import { useEffect, useState, useTransition } from "react";
+import { useIsPresentationTool } from "next-sanity/hooks";
+import { SanityLinkVariants } from "@/components/primitives/Link/SanityLink";
+import { disableDraftMode } from "@/lib/actions/draft-mode";
+import { cn } from "@/lib/utils/cn";
 
 export function DisableDraftMode() {
-  const environment = useDraftModeEnvironment();
-  const searchParams = useSearchParams();
-  const isIframe = searchParams.get("iframe") === "true";
+  const isPresentationTool = useIsPresentationTool();
+  const [pending, startTransition] = useTransition();
+  const [isInIframe, setIsInIframe] = useState(false);
 
-  // Only show the disable draft mode button when outside of Presentation Tool
-  if (environment !== "live" && environment !== "unknown") {
-    return null;
-  }
+  useEffect(() => {
+    setIsInIframe(window.self !== window.top);
+  }, []);
 
-  // Don't show the button when in iframe mode
-  if (isIframe) {
-    return null;
-  }
+  // Hide when inside Presentation Tool or any Studio iframe pane
+  if (isPresentationTool || isInIframe) return null;
 
   return (
-    <a className="fixed right-4 bottom-4" href="/api/draft-mode/disable">
-      Disable Draft Mode
-    </a>
+    <button
+      type="button"
+      disabled={pending}
+      onClick={() => startTransition(() => disableDraftMode())}
+      className={cn(
+        SanityLinkVariants({
+          variant: "primary",
+        }),
+        "fixed right-4 bottom-4 z-9999",
+      )}
+    >
+      <span>{pending ? "Disabling..." : "Disable Draft Mode"}</span>
+    </button>
   );
 }
