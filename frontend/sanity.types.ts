@@ -12,6 +12,8 @@
  * ---------------------------------------------------------------------------------
  */
 
+export declare const internalGroqTypeReferenceTo: unique symbol;
+
 // Source: schema.json
 export type Meta = {
   title?: string;
@@ -2411,14 +2413,14 @@ export type SanityFileAsset = {
   title?: string;
   description?: string;
   altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
+  sha1hash: string;
+  extension: string;
+  mimeType: string;
+  size: number;
+  assetId: string;
   uploadId?: string;
-  path?: string;
-  url?: string;
+  path: string;
+  url: string;
   source?: SanityAssetSourceData;
 };
 
@@ -2440,14 +2442,14 @@ export type SanityImageAsset = {
   title?: string;
   description?: string;
   altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
+  sha1hash: string;
+  extension: string;
+  mimeType: string;
+  size: number;
+  assetId: string;
   uploadId?: string;
-  path?: string;
-  url?: string;
+  path: string;
+  url: string;
   metadata?: SanityImageMetadata;
   source?: SanityAssetSourceData;
 };
@@ -2531,14 +2533,6 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageAsset
   | Geopoint;
-
-export declare const internalGroqTypeReferenceTo: unique symbol;
-
-type ArrayOf<T> = Array<
-  T & {
-    _key: string;
-  }
->;
 
 // Source: ../frontend/sanity/queries/documents/banner.ts
 // Variable: BANNER_QUERY
@@ -2666,7 +2660,7 @@ export type NAVBAR_QUERY_RESULT = Array<{
   logo: {
     asset: {
       _id: string;
-      url: string | null;
+      url: string;
       metadata: {
         lqip: string | null;
         dimensions: {
@@ -2927,7 +2921,7 @@ export type NAVBAR_QUERY_RESULT = Array<{
                 image: {
                   asset: {
                     _id: string;
-                    url: string | null;
+                    url: string;
                     metadata: {
                       lqip: string | null;
                       dimensions: {
@@ -2981,7 +2975,7 @@ export type ORGANIZATION_QUERY_RESULT = {
     logo: {
       asset: {
         _id: string;
-        url: string | null;
+        url: string;
         metadata: {
           lqip: string | null;
           dimensions: {
@@ -3140,7 +3134,7 @@ export type PAGE_QUERY_RESULT = {
         image: {
           asset: {
             _id: string;
-            url: string | null;
+            url: string;
             metadata: {
               lqip: string | null;
               dimensions: {
@@ -3275,7 +3269,7 @@ export type PAGE_QUERY_RESULT = {
         image: {
           asset: {
             _id: string;
-            url: string | null;
+            url: string;
             metadata: {
               lqip: string | null;
               dimensions: {
@@ -3297,7 +3291,7 @@ export type PAGE_QUERY_RESULT = {
         image: {
           asset: {
             _id: string;
-            url: string | null;
+            url: string;
             metadata: {
               lqip: string | null;
               dimensions: {
@@ -3319,7 +3313,7 @@ export type PAGE_QUERY_RESULT = {
         video: {
           asset: {
             _id: string;
-            url: string | null;
+            url: string;
             metadata: null;
           } | null;
           media?: unknown;
@@ -3445,7 +3439,7 @@ export type PAGE_QUERY_RESULT = {
         image: {
           asset: {
             _id: string;
-            url: string | null;
+            url: string;
             metadata: {
               lqip: string | null;
               dimensions: {
@@ -3693,7 +3687,7 @@ export type PAGE_QUERY_RESULT = {
         image: {
           asset: {
             _id: string;
-            url: string | null;
+            url: string;
             metadata: {
               lqip: string | null;
               dimensions: {
@@ -3828,7 +3822,7 @@ export type PAGE_QUERY_RESULT = {
         image: {
           asset: {
             _id: string;
-            url: string | null;
+            url: string;
             metadata: {
               lqip: string | null;
               dimensions: {
@@ -3904,7 +3898,7 @@ export type PAGE_QUERY_RESULT = {
         images: Array<{
           asset: {
             _id: string;
-            url: string | null;
+            url: string;
             metadata: {
               lqip: string | null;
               dimensions: {
@@ -4163,7 +4157,7 @@ export type PAGE_QUERY_RESULT = {
         image: {
           asset: {
             _id: string;
-            url: string | null;
+            url: string;
             metadata: {
               lqip: string | null;
               dimensions: {
@@ -4298,7 +4292,7 @@ export type PAGE_QUERY_RESULT = {
         image: {
           asset: {
             _id: string;
-            url: string | null;
+            url: string;
             metadata: {
               lqip: string | null;
               dimensions: {
@@ -4542,7 +4536,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -4793,7 +4787,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -5214,7 +5208,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -5465,7 +5459,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -5839,7 +5833,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -6090,7 +6084,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -6480,7 +6474,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -6621,7 +6615,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -6643,7 +6637,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -6665,7 +6659,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             video: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: null;
               } | null;
               media?: unknown;
@@ -6797,7 +6791,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -7051,7 +7045,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -7192,7 +7186,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -7268,7 +7262,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             images: Array<{
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -7533,7 +7527,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -7674,7 +7668,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -7891,7 +7885,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -8142,7 +8136,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -8532,7 +8526,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -8673,7 +8667,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -8695,7 +8689,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -8717,7 +8711,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             video: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: null;
               } | null;
               media?: unknown;
@@ -8849,7 +8843,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -9103,7 +9097,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -9244,7 +9238,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -9320,7 +9314,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             images: Array<{
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -9585,7 +9579,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -9726,7 +9720,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -9943,7 +9937,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -10194,7 +10188,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -10584,7 +10578,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -10725,7 +10719,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -10747,7 +10741,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -10769,7 +10763,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             video: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: null;
               } | null;
               media?: unknown;
@@ -10901,7 +10895,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -11155,7 +11149,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -11296,7 +11290,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -11372,7 +11366,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             images: Array<{
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -11637,7 +11631,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -11778,7 +11772,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -11995,7 +11989,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -12246,7 +12240,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -12636,7 +12630,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -12777,7 +12771,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -12799,7 +12793,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -12821,7 +12815,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             video: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: null;
               } | null;
               media?: unknown;
@@ -12953,7 +12947,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -13207,7 +13201,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -13348,7 +13342,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -13424,7 +13418,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             images: Array<{
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -13689,7 +13683,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -13830,7 +13824,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -14047,7 +14041,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -14298,7 +14292,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -14625,7 +14619,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -14876,7 +14870,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -15250,7 +15244,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -15501,7 +15495,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -15828,7 +15822,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -16079,7 +16073,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -16406,7 +16400,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -16657,7 +16651,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -16984,7 +16978,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -17235,7 +17229,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -17562,7 +17556,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -17813,7 +17807,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -18140,7 +18134,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -18391,7 +18385,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -18650,7 +18644,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -18791,7 +18785,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -18813,7 +18807,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -18835,7 +18829,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             video: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: null;
               } | null;
               media?: unknown;
@@ -18967,7 +18961,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -19221,7 +19215,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -19362,7 +19356,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -19438,7 +19432,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             images: Array<{
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -19703,7 +19697,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -19844,7 +19838,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -20061,7 +20055,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -20312,7 +20306,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -20571,7 +20565,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -20712,7 +20706,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -20734,7 +20728,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -20756,7 +20750,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             video: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: null;
               } | null;
               media?: unknown;
@@ -20888,7 +20882,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -21142,7 +21136,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -21283,7 +21277,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -21359,7 +21353,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             images: Array<{
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -21624,7 +21618,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -21765,7 +21759,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -21982,7 +21976,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -22233,7 +22227,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -22492,7 +22486,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -22633,7 +22627,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -22655,7 +22649,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -22677,7 +22671,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             video: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: null;
               } | null;
               media?: unknown;
@@ -22809,7 +22803,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -23063,7 +23057,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -23204,7 +23198,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -23280,7 +23274,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             images: Array<{
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -23545,7 +23539,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -23686,7 +23680,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -23903,7 +23897,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -24154,7 +24148,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -24481,7 +24475,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -24732,7 +24726,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -25059,7 +25053,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -25310,7 +25304,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -25613,7 +25607,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -25754,7 +25748,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -25776,7 +25770,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -25798,7 +25792,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             video: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: null;
               } | null;
               media?: unknown;
@@ -25930,7 +25924,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -26184,7 +26178,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -26325,7 +26319,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -26401,7 +26395,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             images: Array<{
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -26666,7 +26660,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -26807,7 +26801,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -26924,7 +26918,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
       image: {
         asset: {
           _id: string;
-          url: string | null;
+          url: string;
           metadata: {
             lqip: string | null;
             dimensions: {
@@ -27230,7 +27224,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -27371,7 +27365,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -27393,7 +27387,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -27415,7 +27409,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             video: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: null;
               } | null;
               media?: unknown;
@@ -27547,7 +27541,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -27801,7 +27795,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -27942,7 +27936,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -28018,7 +28012,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             images: Array<{
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -28283,7 +28277,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -28424,7 +28418,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             image: {
               asset: {
                 _id: string;
-                url: string | null;
+                url: string;
                 metadata: {
                   lqip: string | null;
                   dimensions: {
@@ -28541,7 +28535,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
       image: {
         asset: {
           _id: string;
-          url: string | null;
+          url: string;
           metadata: {
             lqip: string | null;
             dimensions: {
