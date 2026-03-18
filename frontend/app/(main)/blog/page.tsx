@@ -1,6 +1,6 @@
 import type { ContentType } from "@/lib/utils/types";
 import { notFound } from "next/navigation";
-import { FETCH_CONTENT_TYPE_INDEX_PAGE_DATA } from "@/sanity/lib/fetch";
+import { fetchContentTypeIndexPageData } from "@/sanity/lib/fetch";
 import { Transition } from "@/components/animations/Transition";
 import { ContentCategoryFilter } from "@/components/layout/Content/ContentCategoryFilter";
 import { ContentPagination } from "@/components/layout/Content/ContentPagination";
@@ -14,7 +14,7 @@ import { createPageUrl } from "@/lib/utils/pagination";
 const CONTENT_TYPE: ContentType = "blog-index";
 
 export async function generateMetadata() {
-  const page = await FETCH_CONTENT_TYPE_INDEX_PAGE_DATA({
+  const page = await fetchContentTypeIndexPageData({
     contentType: CONTENT_TYPE,
   });
 
@@ -34,7 +34,7 @@ export default async function BlogIndexPage({
 }) {
   const { topic, page, category } = await searchParams;
 
-  const data = await FETCH_CONTENT_TYPE_INDEX_PAGE_DATA({
+  const data = await fetchContentTypeIndexPageData({
     contentType: CONTENT_TYPE,
     category: category,
     topic: topic,

@@ -1,3 +1,15 @@
+/*
+ * Sanity Data Fetching Layer
+ *
+ * Centralized file for fetching data from Sanity
+ * Used for queries to fetch data such as navigation and all pages.
+ *
+ * All fetch functions use `sanityFetch` from @/sanity/lib/live which provides:
+ * - Automatic caching and revalidation
+ * - Visual editing support via Stega encoding
+ * - Type-safe query results via Sanity TypeGen
+ */
+
 import type { ContentType } from "@/lib/utils/types";
 import type {
   BANNER_QUERY_RESULT,
@@ -24,22 +36,11 @@ import {
 } from "@/sanity/queries/queries";
 
 /*
- * Sanity Data Fetching Layer
- *
- * Centralized file for fetching data from Sanity
- * Used for queries to fetch data such as navigation and all pages.
- *
- * All fetch functions use `sanityFetch` from @/sanity/lib/live which provides:
- * > Automatic caching and revalidation
- * > Visual editing support via Stega encoding
- * > Type-safe query results via Sanity TypeGen
- */
-
-/*
  * ====================================================
  * ================== MODULE TYPES ====================
  * ====================================================
  */
+
 type ModuleType = Extract<
   NonNullable<NonNullable<PAGE_QUERY_RESULT>["modules"]>[number],
   { _type: unknown }
@@ -89,18 +90,13 @@ export const fetchSanityFooter = async (): Promise<FOOTER_QUERY_RESULT> => {
  * ================== PAGE QUERIES ====================
  * ====================================================
  */
-export const fetchSanityPageBySlug = async ({
+export const fetchPageSlugData = async ({
   pageType,
   slug,
 }: {
   pageType: string;
   slug: string;
 }): Promise<PAGE_QUERY_RESULT> => {
-  // console.log(
-  //   "Query size:",
-  //   new TextEncoder().encode(PAGE_SLUG_QUERY).length,
-  //   "bytes",
-  // );
   const { data } = await sanityFetch({
     query: PAGE_SLUG_QUERY,
     params: { pageType, slug },
@@ -109,7 +105,7 @@ export const fetchSanityPageBySlug = async ({
   return data;
 };
 
-export const fetchSanityPagesStaticParams = async ({
+export const fetchPageStaticParamsData = async ({
   pageType,
 }: {
   pageType: string;
@@ -130,7 +126,7 @@ export const fetchSanityPagesStaticParams = async ({
  * ====================================================
  */
 
-export const FETCH_CONTENT_TYPE_INDEX_PAGE_DATA = async ({
+export const fetchContentTypeIndexPageData = async ({
   contentType,
   category,
   page,
@@ -157,10 +153,11 @@ export const FETCH_CONTENT_TYPE_INDEX_PAGE_DATA = async ({
       end,
     },
   });
+
   return data;
 };
 
-export const FETCH_CONTENT_TYPE_SLUG_PAGE_DATA = async ({
+export const fetchContentTypeSlugPageData = async ({
   contentType,
   slug,
 }: {
@@ -175,7 +172,7 @@ export const FETCH_CONTENT_TYPE_SLUG_PAGE_DATA = async ({
   return data;
 };
 
-export const FETCH_CONTENT_TYPE_SLUGS_STATIC_PARAMS_DATA = async ({
+export const fetchContentTypeSlugStaticParamsData = async ({
   contentType,
 }: {
   contentType: ContentType;

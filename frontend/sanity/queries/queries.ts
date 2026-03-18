@@ -98,9 +98,9 @@ export const PAGE_SLUG_QUERY = defineQuery(`
   }
 `);
 
-export const PAGES_SLUGS_QUERY = defineQuery(
-  "*[_type == $pageType && defined(slug)]{slug}",
-);
+export const PAGES_SLUGS_QUERY = defineQuery(`
+  *[_type == $pageType && defined(slug)]{slug}
+`);
 
 /*
  * ====================================================
@@ -206,6 +206,6 @@ export const GET_CONTENT_TYPE_SLUG_QUERY = defineQuery(`
   }
 `);
 
-export const GET_CONTENT_TYPE_SLUGS_STATIC_PARAMS_QUERY = defineQuery(
-  "*[_type == $contentType && defined(slug)]{slug}",
-);
+export const GET_CONTENT_TYPE_SLUGS_STATIC_PARAMS_QUERY = defineQuery(`
+  *[_type == $contentType && defined(slug)]{slug}
+`);

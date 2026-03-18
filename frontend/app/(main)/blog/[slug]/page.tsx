@@ -1,8 +1,8 @@
 import type { ContentType, NextParams } from "@/lib/utils/types";
 import { notFound } from "next/navigation";
 import {
-  FETCH_CONTENT_TYPE_SLUG_PAGE_DATA,
-  FETCH_CONTENT_TYPE_SLUGS_STATIC_PARAMS_DATA,
+  fetchContentTypeSlugPageData,
+  fetchContentTypeSlugStaticParamsData,
 } from "@/sanity/lib/fetch";
 import { Page } from "@/components/layout/Page/Page";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
@@ -11,7 +11,7 @@ import { generatePageMetadata } from "@/lib/site/metadata";
 const CONTENT_TYPE: ContentType = "blog-index";
 
 export async function generateStaticParams() {
-  const posts = await FETCH_CONTENT_TYPE_SLUGS_STATIC_PARAMS_DATA({
+  const posts = await fetchContentTypeSlugStaticParamsData({
     contentType: CONTENT_TYPE,
   });
   const staticParams = posts.map((post) => ({
@@ -23,7 +23,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: NextParams }) {
   const { slug } = await params;
-  const post = await FETCH_CONTENT_TYPE_SLUG_PAGE_DATA({
+  const post = await fetchContentTypeSlugPageData({
     contentType: CONTENT_TYPE,
     slug: slug,
   });
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: NextParams }) {
 
 export default async function BlogPostPage({ params }: { params: NextParams }) {
   const { slug } = await params;
-  const post = await FETCH_CONTENT_TYPE_SLUG_PAGE_DATA({
+  const post = await fetchContentTypeSlugPageData({
     contentType: CONTENT_TYPE,
     slug: slug,
   });

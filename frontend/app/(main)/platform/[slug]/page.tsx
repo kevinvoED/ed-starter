@@ -1,14 +1,14 @@
 import type { NextParams } from "@/lib/utils/types";
 import { notFound } from "next/navigation";
 import {
-  fetchSanityPageBySlug,
-  fetchSanityPagesStaticParams,
+  fetchPageSlugData,
+  fetchPageStaticParamsData,
 } from "@/sanity/lib/fetch";
 import { Page } from "@/components/layout/Page/Page";
 import { generatePageMetadata } from "@/lib/site/metadata";
 
 export async function generateStaticParams() {
-  const pages = await fetchSanityPagesStaticParams({
+  const pages = await fetchPageStaticParamsData({
     pageType: "platform-child",
   });
 
@@ -21,7 +21,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: NextParams }) {
   const { slug } = await params;
-  const page = await fetchSanityPageBySlug({
+  const page = await fetchPageSlugData({
     pageType: "platform-child",
     slug: slug,
   });
@@ -37,7 +37,7 @@ export default async function PlatformChildPage({
   params: NextParams;
 }) {
   const { slug } = await params;
-  const page = await fetchSanityPageBySlug({
+  const page = await fetchPageSlugData({
     pageType: "platform-child",
     slug: slug,
   });

@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
-import { fetchSanityPageBySlug } from "@/sanity/lib/fetch";
+import { fetchPageSlugData } from "@/sanity/lib/fetch";
 import { Page } from "@/components/layout/Page/Page";
 import { generatePageMetadata } from "@/lib/site/metadata";
 
 export async function generateMetadata() {
-  const page = await fetchSanityPageBySlug({
+  const page = await fetchPageSlugData({
     pageType: "platform-index",
     slug: "platform",
   });
@@ -15,7 +15,7 @@ export async function generateMetadata() {
 }
 
 export default async function PlatformIndexPage() {
-  const page = await fetchSanityPageBySlug({
+  const page = await fetchPageSlugData({
     pageType: "platform-index",
     slug: "platform",
   });
