@@ -1,13 +1,8 @@
 "use client";
 
-// This configuration is used to for the Sanity Studio that's mounted on the `/app/studio/[[...tool]]/page.tsx` route
-
-import { codeInput } from "@sanity/code-input";
 import { dashboardTool } from "@sanity/dashboard";
-import { table } from "@sanity/table";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
-import { presentationTool } from "sanity/presentation";
 import { structureTool } from "sanity/structure";
 import { media } from "sanity-plugin-media";
 import { simplerColorInputOptions } from "@/lib/color-input";
@@ -23,7 +18,6 @@ import {
   SANITY_STUDIO_PROJECT_ID,
 } from "@/lib/env";
 import { guideTool } from "@/lib/guide-tool";
-import { presentationOptions } from "@/lib/presentation";
 import { structure } from "@/lib/structure";
 import { schema } from "@/schemas/schema";
 import { OpenDocumentUrlAction } from "./actions";
@@ -68,13 +62,17 @@ export default defineConfig({
   tools: [guideTool()],
   plugins: [
     structureTool({ structure, defaultDocumentNode }),
-    presentationTool(presentationOptions),
+    // presentationTool(presentationOptions), // Re-enable if needed; update resolved links in presentation.ts
     visionTool({ defaultApiVersion: SANITY_STUDIO_API_VERSION }),
-    codeInput(),
     media(),
-    table(),
     dashboardTool(deploymentOptions),
     simplerColorInput(simplerColorInputOptions),
     richTablePlugin({}),
   ],
+  releases: {
+    enabled: false,
+  },
+  scheduledDrafts: {
+    enabled: false,
+  },
 });

@@ -2333,20 +2333,6 @@ export type SimplerColor = {
   value?: string;
 };
 
-export type Table = {
-  _type: "table";
-  rows?: Array<
-    {
-      _key: string;
-    } & TableRow
-  >;
-};
-
-export type TableRow = {
-  _type: "tableRow";
-  cells?: Array<string>;
-};
-
 export type MediaTag = {
   _id: string;
   _type: "media.tag";
@@ -2354,14 +2340,6 @@ export type MediaTag = {
   _updatedAt: string;
   _rev: string;
   name?: Slug;
-};
-
-export type Code = {
-  _type: "code";
-  language?: string;
-  filename?: string;
-  code?: string;
-  highlightedLines?: Array<number>;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -2521,10 +2499,7 @@ export type AllSanitySchemaTypes =
   | HighlightColor
   | TextColor
   | SimplerColor
-  | Table
-  | TableRow
   | MediaTag
-  | Code
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions

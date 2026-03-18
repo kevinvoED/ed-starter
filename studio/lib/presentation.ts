@@ -33,10 +33,21 @@ const resolvePresentation: PresentationPluginOptions["resolve"] = {
       route: "/:slug",
       filter: `_type == 'page' && slug.current == $slug`,
     },
-
+    {
+      route: "/blog", // doesn't work for some reason but slugs do ???
+      filter: `_type == 'blog-index'`,
+    },
     {
       route: "/blog/:slug",
-      filter: `_type == 'post' && slug.current == $slug`,
+      filter: `_type == 'blog-post' && slug.current == $slug`,
+    },
+    {
+      route: "/case-studies", // doesn't work for some reason but slugs do ???
+      filter: `_type == 'case-studies-index'`,
+    },
+    {
+      route: "/case-studies/:slug",
+      filter: `_type == 'case-study' && slug.current == $slug`,
     },
   ]),
 };
