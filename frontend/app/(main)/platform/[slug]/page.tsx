@@ -1,3 +1,4 @@
+import type { NextParams } from "@/lib/utils/types";
 import { notFound } from "next/navigation";
 import {
   fetchSanityPageBySlug,
@@ -11,42 +12,37 @@ export async function generateStaticParams() {
     pageType: "platform-child",
   });
 
-  return pages.map((page) => ({
+  const staticParams = pages.map((page) => ({
     slug: page.slug?.current,
   }));
+
+  return staticParams;
 }
 
-export async function generateMetadata(props: {
-  params: Promise<{ slug: string }>;
-}) {
-  const params = await props.params;
+export async function generateMetadata({ params }: { params: NextParams }) {
+  const { slug } = await params;
   const page = await fetchSanityPageBySlug({
     pageType: "platform-child",
-    slug: params.slug,
+    slug: slug,
   });
 
-  if (!page) {
-    notFound();
-  }
+  if (!page) return notFound();
 
   return generatePageMetadata(page);
 }
 
-export default async function PlatformChildPage(props: {
-  params: Promise<{ slug: string }>;
-  searchParams: Promise<{
-    page?: string;
-  }>;
+export default async function PlatformChildPage({
+  params,
+}: {
+  params: NextParams;
 }) {
-  const params = await props.params;
+  const { slug } = await params;
   const page = await fetchSanityPageBySlug({
     pageType: "platform-child",
-    slug: params.slug,
+    slug: slug,
   });
 
-  if (!page) {
-    notFound();
-  }
+  if (!page) return notFound();
 
   return <Page page={page} />;
 }

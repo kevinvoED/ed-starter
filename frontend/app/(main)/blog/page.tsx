@@ -17,35 +17,30 @@ export async function generateMetadata() {
     contentType: CONTENT_TYPE,
   });
 
-  if (!page) {
-    notFound();
-  }
+  if (!page) return notFound();
 
   return generatePageMetadata(page);
 }
 
-export default async function BlogIndexPage(props: {
+export default async function BlogIndexPage({
+  searchParams,
+}: {
   searchParams: Promise<{
     page?: string;
     topic?: string;
     category?: string;
   }>;
 }) {
-  const searchParams = await props.searchParams;
-  const { topic, page, category } = searchParams;
+  const { topic, page, category } = await searchParams;
 
-  const [data] = await Promise.all([
-    FETCH_CONTENT_TYPE_INDEX_PAGE_DATA({
-      contentType: CONTENT_TYPE,
-      category: category,
-      topic: topic,
-      page: page ? parseInt(page) : 1,
-    }),
-  ]);
+  const data = await FETCH_CONTENT_TYPE_INDEX_PAGE_DATA({
+    contentType: CONTENT_TYPE,
+    category: category,
+    topic: topic,
+    page: page ? parseInt(page) : 1,
+  });
 
-  if (!data) {
-    return notFound();
-  }
+  if (!data) return notFound();
 
   return (
     <Page page={data}>

@@ -1,3 +1,4 @@
+import type { NextParams } from "@/lib/utils/types";
 import { notFound } from "next/navigation";
 import {
   fetchSanityPageBySlug,
@@ -8,43 +9,33 @@ import { generatePageMetadata } from "@/lib/site/metadata";
 
 export async function generateStaticParams() {
   const pages = await fetchSanityPagesStaticParams({ pageType: "page" });
-
-  return pages.map((page) => ({
+  const staticParams = pages.map((page) => ({
     slug: page.slug?.current,
   }));
+
+  return staticParams;
 }
 
-export async function generateMetadata(props: {
-  params: Promise<{ slug: string }>;
-}) {
-  const params = await props.params;
+export async function generateMetadata({ params }: { params: NextParams }) {
+  const { slug } = await params;
   const page = await fetchSanityPageBySlug({
     pageType: "page",
-    slug: params.slug,
+    slug: slug,
   });
 
-  if (!page) {
-    notFound();
-  }
+  if (!page) return notFound();
 
   return generatePageMetadata(page);
 }
 
-export default async function SlugPage(props: {
-  params: Promise<{ slug: string }>;
-  searchParams: Promise<{
-    page?: string;
-  }>;
-}) {
-  const params = await props.params;
+export default async function SlugPage({ params }: { params: NextParams }) {
+  const { slug } = await params;
   const page = await fetchSanityPageBySlug({
     pageType: "page",
-    slug: params.slug,
+    slug: slug,
   });
 
-  if (!page) {
-    notFound();
-  }
+  if (!page) return notFound();
 
   return <Page page={page} />;
 }

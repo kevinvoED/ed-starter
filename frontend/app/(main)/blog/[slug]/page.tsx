@@ -1,3 +1,4 @@
+import type { NextParams } from "@/lib/utils/types";
 import { notFound } from "next/navigation";
 import {
   FETCH_CONTENT_TYPE_SLUG_PAGE_DATA,
@@ -13,43 +14,36 @@ export async function generateStaticParams() {
   const posts = await FETCH_CONTENT_TYPE_SLUGS_STATIC_PARAMS_DATA({
     contentType: CONTENT_TYPE,
   });
-
-  return posts.map((post) => ({
+  const staticParams = posts.map((post) => ({
     slug: post.slug?.current,
   }));
+
+  return staticParams;
 }
 
-export async function generateMetadata(props: {
-  params: Promise<{ slug: string }>;
-}) {
-  const params = await props.params;
+export async function generateMetadata({ params }: { params: NextParams }) {
+  const { slug } = await params;
   const post = await FETCH_CONTENT_TYPE_SLUG_PAGE_DATA({
     contentType: CONTENT_TYPE,
-    slug: params.slug,
+    slug: slug,
   });
 
-  if (!post) {
-    notFound();
-  }
+  if (!post) return notFound();
 
   return generatePageMetadata(post);
 }
 
-export default async function BlogPostPage(props: {
-  params: Promise<{ slug: string }>;
-}) {
-  const params = await props.params;
+export default async function BlogPostPage({ params }: { params: NextParams }) {
+  const { slug } = await params;
   const post = await FETCH_CONTENT_TYPE_SLUG_PAGE_DATA({
     contentType: CONTENT_TYPE,
-    slug: params.slug,
+    slug: slug,
   });
 
-  if (!post) {
-    notFound();
-  }
+  if (!post) return notFound();
 
   return (
-    <Page page={post} className="p-custom">
+    <Page page={post}>
       {post.content && <PortableText value={post.content} style="article" />}
     </Page>
   );

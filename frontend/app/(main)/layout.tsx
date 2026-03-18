@@ -5,7 +5,6 @@ import { DisableDraftMode } from "@/components/layout/DraftMode/DisableDraftMode
 import { Footer } from "@/components/layout/Footer/Footer";
 import { Header } from "@/components/layout/Header/Header";
 import { SkipToMain } from "@/components/layout/Header/SkipToMain";
-import { Starter } from "@/components/modules/Starter";
 import { Banner } from "@/components/primitives/Banner/Banner";
 
 export default async function MainLayout({
@@ -18,10 +17,7 @@ export default async function MainLayout({
       <SkipToMain />
       <Banner />
       <Header />
-      <main>
-        <Starter />
-        {children}
-      </main>
+      <main>{children}</main>
       <SanityLive />
       {(await draftMode()).isEnabled && (
         <>

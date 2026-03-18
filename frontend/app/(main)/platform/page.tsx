@@ -9,9 +9,7 @@ export async function generateMetadata() {
     slug: "platform",
   });
 
-  if (!page) {
-    notFound();
-  }
+  if (!page) return notFound();
 
   return generatePageMetadata(page);
 }
@@ -22,9 +20,7 @@ export default async function PlatformIndexPage() {
     slug: "platform",
   });
 
-  if (!page) {
-    return notFound();
-  }
+  if (!page) return notFound();
 
   return <Page page={page} />;
 }
