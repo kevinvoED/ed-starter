@@ -1,5 +1,8 @@
 import { notFound } from "next/navigation";
-import { FETCH_CONTENT_TYPE_INDEX_PAGE_DATA } from "@/sanity/lib/fetch";
+import {
+  type ContentType,
+  FETCH_CONTENT_TYPE_INDEX_PAGE_DATA,
+} from "@/sanity/lib/fetch";
 import { Transition } from "@/components/animations/Transition";
 import { ContentPagination } from "@/components/layout/Content/ContentPagination";
 import { ContentTopicFilter } from "@/components/layout/Content/ContentTopicFilter";
@@ -9,7 +12,7 @@ import { PortableText } from "@/components/primitives/PortableText/PortableText"
 import { generatePageMetadata } from "@/lib/site/metadata";
 import { createPageUrl } from "@/lib/utils/pagination";
 
-const CONTENT_TYPE = "case-studies-index";
+const CONTENT_TYPE: ContentType = "case-studies-index";
 
 export async function generateMetadata() {
   const page = await FETCH_CONTENT_TYPE_INDEX_PAGE_DATA({

@@ -1,4 +1,4 @@
-import type { NextParams } from "@/lib/utils/types";
+import type { ContentType, NextParams } from "@/lib/utils/types";
 import { notFound } from "next/navigation";
 import {
   FETCH_CONTENT_TYPE_SLUG_PAGE_DATA,
@@ -8,7 +8,7 @@ import { Page } from "@/components/layout/Page/Page";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
 import { generatePageMetadata } from "@/lib/site/metadata";
 
-const CONTENT_TYPE = "case-studies-index";
+const CONTENT_TYPE: ContentType = "case-studies-index";
 
 export async function generateStaticParams() {
   const posts = await FETCH_CONTENT_TYPE_SLUGS_STATIC_PARAMS_DATA({

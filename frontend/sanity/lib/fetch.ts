@@ -1,3 +1,4 @@
+import type { ContentType } from "@/lib/utils/types";
 import type {
   BANNER_QUERY_RESULT,
   FOOTER_QUERY_RESULT,
@@ -128,8 +129,6 @@ export const fetchSanityPagesStaticParams = async ({
  * =============== CONTENT-TYPE QUERIES ===============
  * ====================================================
  */
-
-type ContentType = "blog-index" | "case-studies-index";
 
 export const FETCH_CONTENT_TYPE_INDEX_PAGE_DATA = async ({
   contentType,
