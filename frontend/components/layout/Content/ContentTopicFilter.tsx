@@ -2,14 +2,14 @@
 
 import type { GET_CONTENT_TYPE_INDEX_QUERY_RESULT } from "@/sanity.types";
 import { parseAsString, useQueryStates } from "nuqs";
+import { Button } from "@/components/primitives/Button/Button";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
 import { cn } from "@/lib/utils/cn";
-import { getFilterItemCount } from "@/lib/utils/filter";
 
 type ContentTopicFilterProps = {
   className?: string;
   data: NonNullable<
-    NonNullable<GET_CONTENT_TYPE_INDEX_QUERY_RESULT>["topicFilter"]
+    NonNullable<GET_CONTENT_TYPE_INDEX_QUERY_RESULT>["filters"]
   >;
 };
 
@@ -17,16 +17,19 @@ export const ContentTopicFilter = ({
   data,
   className,
 }: ContentTopicFilterProps) => {
+  if (!data) return null;
+
+  const { defaults, topics } = data;
+
   // Grab topic param from URL
   const [{ topic }, setQueryStates] = useQueryStates(
     {
-      topic: parseAsString.withDefault("none"),
+      topic: parseAsString.withDefault(defaults.label),
     },
     { shallow: false },
   );
 
   async function handleClick(item: string) {
-    // Set new topic param in URL
     await setQueryStates({
       topic: item,
     });
@@ -40,26 +43,24 @@ export const ContentTopicFilter = ({
         className,
       )}
     >
-      <span className="font-bold">Topics:</span>
+      <h4 className="font-bold">{topics.label}</h4>
 
       <ul className="flex flex-col gap-5 md:flex-row md:flex-wrap">
         <li>
-          <button
-            type="button"
-            onClick={() => handleClick("none")}
-            className={topic === "none" ? "underline" : ""}
+          <Button
+            onClick={() => handleClick(defaults.label)}
+            className={topic === defaults.label ? "underline" : ""}
           >
-            All ({data.totalPostCount})
-          </button>
+            {defaults.label} ({defaults.count})
+          </Button>
         </li>
 
-        {data["content-topics"].map((item) => {
-          const { _id, slug, title } = item;
+        {data.topics.items.map((item) => {
+          const { _id, slug, title, count } = item;
 
           return (
             <li key={_id}>
-              <button
-                type="button"
+              <Button
                 onClick={() => handleClick(slug.current)}
                 className={cn(
                   "flex items-center gap-x-1.5",
@@ -67,10 +68,8 @@ export const ContentTopicFilter = ({
                 )}
               >
                 {title && <PortableText value={title} />}
-                <span>
-                  ({getFilterItemCount(topic, item, data["content-topics"])})
-                </span>
-              </button>
+                {count && <span>({count})</span>}
+              </Button>
             </li>
           );
         })}

@@ -1,8 +1,6 @@
+import type { ContentType } from "@/lib/utils/types";
 import { notFound } from "next/navigation";
-import {
-  type ContentType,
-  fetchContentTypeIndexPageData,
-} from "@/sanity/lib/fetch";
+import { fetchContentTypeIndexPageData } from "@/sanity/lib/fetch";
 import { Transition } from "@/components/animations/Transition";
 import { ContentPagination } from "@/components/layout/Content/ContentPagination";
 import { ContentTopicFilter } from "@/components/layout/Content/ContentTopicFilter";
@@ -52,36 +50,49 @@ export default async function BlogIndexPage({
           {data.description && <PortableText value={data.description} />}
         </header>
 
-        <ContentTopicFilter data={data.topicFilter} />
+        <ContentTopicFilter data={data.filters} />
 
         <ul className="grid-custom" id={data?.pagination.scrollTargetId || ""}>
           {data?.posts?.map((post, index) => (
             <li key={post._id} className="col-span-3">
               <Transition
                 delay={index * 0.15}
-                className="flex flex-col gap-y-20 rounded bg-white p-4 text-black"
+                className="flex flex-col gap-y-50 rounded border border-black/5 bg-black/5 p-4 text-black"
               >
-                {post._createdAt && (
-                  <p>{new Date(post._createdAt).toLocaleDateString()}</p>
-                )}
+                <div className="flex gap-2">
+                  {post._createdAt && (
+                    <p className="max-w-fit rounded-full bg-black px-2 py-0.5 font-semibold text-white text-xs">
+                      {new Date(post._createdAt).toLocaleDateString()}
+                    </p>
+                  )}
+                  {post.category?.map(({ _id, title }) => (
+                    <div
+                      key={_id}
+                      className="max-w-fit rounded-full bg-black px-2 py-0.5 font-semibold text-white text-xs"
+                    >
+                      <PortableText value={title} />
+                    </div>
+                  ))}
 
-                {post.category?.map((category) => (
-                  <PortableText value={category.title} key={category._id} />
-                ))}
-
-                {post.contentTopic?.map((category) => (
-                  <PortableText value={category.title} key={category._id} />
-                ))}
+                  {post.contentTopic?.map(({ _id, title }) => (
+                    <div
+                      key={_id}
+                      className="max-w-fit rounded-full bg-black px-2 py-0.5 font-semibold text-white text-xs"
+                    >
+                      <PortableText value={title} key={_id} />
+                    </div>
+                  ))}
+                </div>
 
                 <SanityLink
                   id="cta"
-                  href={`/case-studies/${post.slug.current}`}
+                  href={post.href}
                   variant="ghost"
                   card
                   hasArrow={false}
                   width="fit"
                 >
-                  <PortableText value={post.title} />
+                  <PortableText value={post.title} className="type-body-1650" />
                 </SanityLink>
               </Transition>
             </li>

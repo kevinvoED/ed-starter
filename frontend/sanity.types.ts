@@ -4328,7 +4328,7 @@ export type PAGES_SLUGS_QUERY_RESULT = Array<{
 
 // Source: ../frontend/sanity/queries/queries.ts
 // Variable: GET_CONTENT_TYPE_INDEX_QUERY
-// Query: fn fn::img($image) = $image {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::imgs($images) = $images[] {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::logo($logo) = $logo {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::link($link) = $link[] {      ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )  };    fn fn::ptPlain($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "link" => {        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };    fn fn::pt($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "link" => {        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    },      _type == "richTable" => {      ...,        _type,        _key,        hasColumnTitles,        hasRowTitles,        columnHeaders[]{          _key,          _type,          cellIndex,          title,        },        rows[]{          _key,          _type,          cells[]{            _key,            _type,            content[]{              ...,              markDefs[]{                ...,                _type == "link" => {                  _type,                  _key,                  href,                },              },            },          },        },      },  };  *[_type == $contentType][0]{    _type,    slug,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),        meta{    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "blog-index" => "/blog",      ^._type == "blog-post" => "/blog/" + ^.slug.current,      ^._type == "case-studies-index" => "/case-studies",      ^._type == "case-study" => "/case-studies/" + ^.slug.current,      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      "/" + ^.slug.current    ),    "image": coalesce(      image.asset->url + "?w=1200&h=630&fit=max",      ^.image.asset->url + "?w=1200&h=630&fit=max",      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },      modules[]{      _type == "global-module" => moduleRef->module[0]{    _type,    "_key": ^._key,      _type == "card-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },      _type == "driver-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },  },      _type == "spacer" => {    _type,    _key,    spacing,    anchorId  },      _type == "hero-primary" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),      "content": fn::pt(content),  },      _type == "marquee" => {    _type,    _key,    variant,    enableVelocity,    imageType,    "items" : select(variant == "text" => items[]{      _key,        "title": fn::ptPlain(title),    }),      "images": fn::imgs(images)  },      _type == "rich-text" => {    _type,    _key,      "content": fn::pt(content),  },      _type == "full-image" => {    _type,    _key,      "image": fn::img(image),  },      _type == "full-video" => {    _type,    _key,     video{      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  }  },    // Remove example modules      _type == "card-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },      _type == "driver-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },      _type == "list-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },      _type == "table-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },      _type == "text-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },      _type == "image-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },  },    // Data for filtering by category (ContentCategoryFilter.tsx)    "categoryFilter": {      "totalPostCount": count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  )]),      "categories": *[_type ==  select(        $contentType == "blog-index" => "blog-category") && count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && references(^._id)]) > 0] {          _id,          slug,            "title": fn::ptPlain(title),          // Number of posts in this category          "count": count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && references(^._id)])      },      "currentCategoryPostCount": count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && ($category == null || $category in category[]->slug.current) && ($topic == null || $topic in contentTopic[]->slug.current)]),    },    // Data for filtering by topic (ContentTopicFilter.tsx)    "topicFilter": {      "totalPostCount": count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  )]),      "content-topics": *[_type == "content-topic" &&        count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && references(^._id)]) > 0] {          _id,          slug,            "title": fn::ptPlain(title),          "count": count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && references(^._id)])      },      "currentTopicPostCount": count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && ($category == null || $category in category[]->slug.current) && ($topic == null || $topic in contentTopic[]->slug.current)]),    },    "pagination": {      "totalPages": round(count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)]) / 2),      "scrollTargetId": select(        _type == "case-studies-index" => "case-studies-posts-list",        _type == "blog-index" => "blog-posts-list",      ),    },    "posts": *[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {      _id,      _type,      _createdAt,      publishedDate,      slug,        "link": fn::link(link),        "title": fn::ptPlain(title),        "image": fn::img(image),        "description": fn::ptPlain(description),      "href": select(        _type == "case-study" => "/case-studies/" + slug.current,        _type == "blog-post" => "/blog/" + slug.current,      ),      category[]->{        _id,        _type,        slug,          "title": fn::ptPlain(title),      },      contentTopic[]->{        _id,        _type,        slug,          "title": fn::ptPlain(title),      },    }  }
+// Query: fn fn::img($image) = $image {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::imgs($images) = $images[] {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::logo($logo) = $logo {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::link($link) = $link[] {      ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )  };    fn fn::ptPlain($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "link" => {        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };    fn fn::pt($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "link" => {        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    },      _type == "richTable" => {      ...,        _type,        _key,        hasColumnTitles,        hasRowTitles,        columnHeaders[]{          _key,          _type,          cellIndex,          title,        },        rows[]{          _key,          _type,          cells[]{            _key,            _type,            content[]{              ...,              markDefs[]{                ...,                _type == "link" => {                  _type,                  _key,                  href,                },              },            },          },        },      },  };  *[_type == $contentType][0]{    _type,    slug,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),        meta{    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "blog-index" => "/blog",      ^._type == "blog-post" => "/blog/" + ^.slug.current,      ^._type == "case-studies-index" => "/case-studies",      ^._type == "case-study" => "/case-studies/" + ^.slug.current,      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      "/" + ^.slug.current    ),    "image": coalesce(      image.asset->url + "?w=1200&h=630&fit=max",      ^.image.asset->url + "?w=1200&h=630&fit=max",      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },      modules[]{      _type == "global-module" => moduleRef->module[0]{    _type,    "_key": ^._key,      _type == "card-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },      _type == "driver-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },  },      _type == "spacer" => {    _type,    _key,    spacing,    anchorId  },      _type == "hero-primary" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),      "content": fn::pt(content),  },      _type == "marquee" => {    _type,    _key,    variant,    enableVelocity,    imageType,    "items" : select(variant == "text" => items[]{      _key,        "title": fn::ptPlain(title),    }),      "images": fn::imgs(images)  },      _type == "rich-text" => {    _type,    _key,      "content": fn::pt(content),  },      _type == "full-image" => {    _type,    _key,      "image": fn::img(image),  },      _type == "full-video" => {    _type,    _key,     video{      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  }  },    // Remove example modules      _type == "card-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },      _type == "driver-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },      _type == "list-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },      _type == "table-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },      _type == "text-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },      _type == "image-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },  },    "filters": {      "defaults": {        "label": "All", // Also used for as nuqs' default value for filtering        "count": count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  )]), // Total number of posts      },      "categories": {        "label": select(          $contentType == "blog-index" => "Field of Study",          $contentType == "case-studies-index" => "Research Area",          "Category" // Default fallback if specific content types don't have special labels        ),        "items": *[_type ==  select(          $contentType == "blog-index" => "blog-category") && count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && references(^._id)]) > 0] {            _id,            slug,              "title": fn::ptPlain(title),            "count": count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && references(^._id)])         }       },       "topics": {        "label": select(          $contentType == "case-studies-index" => "Industry",          "Topic" // Default fallback if specific content types don't have special labels        ),        "items": *[_type == "content-topic" &&        count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && references(^._id)]) > 0] {          _id,          slug,            "title": fn::ptPlain(title),          "count": count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && references(^._id)])        },       },    },    "pagination": {      "totalPages": round(count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)]) / 2),      "scrollTargetId": select(        _type == "case-studies-index" => "case-studies-posts-list",        _type == "blog-index" => "blog-posts-list",        "posts-list"      ),    },    "posts": *[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {      _id,      _type,      _createdAt,      publishedDate,      slug,        "link": fn::link(link),        "title": fn::ptPlain(title),        "image": fn::img(image),        "description": fn::ptPlain(description),      "href": select(        _type == "case-study" => "/case-studies/" + slug.current,        _type == "blog-post" => "/blog/" + slug.current,      ),      category[]->{        _id,          "title": fn::ptPlain(title),      },      contentTopic[]->{        _id,          "title": fn::ptPlain(title),      },    }  }
 export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
   | {
       _type: "author";
@@ -4337,123 +4337,127 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
       description: null;
       meta: null;
       modules: null;
-      categoryFilter: {
-        totalPostCount: number;
-        categories: Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+      filters: {
+        defaults: {
+          label: "All";
+          count: number;
+        };
+        categories: {
+          label: "Category" | "Field of Study" | "Research Area";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentCategoryPostCount: number;
-      };
-      topicFilter: {
-        totalPostCount: number;
-        "content-topics": Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+        };
+        topics: {
+          label: "Industry" | "Topic";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentTopicPostCount: number;
+        };
       };
       pagination: {
         totalPages: number;
-        scrollTargetId: null;
+        scrollTargetId: "posts-list";
       };
       posts: Array<
         | {
@@ -4602,8 +4606,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             href: string;
             category: Array<{
               _id: string;
-              _type: "blog-category";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -4655,8 +4657,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }> | null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -4854,8 +4854,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             category: null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -5009,123 +5007,127 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
       }> | null;
       meta: null;
       modules: null;
-      categoryFilter: {
-        totalPostCount: number;
-        categories: Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+      filters: {
+        defaults: {
+          label: "All";
+          count: number;
+        };
+        categories: {
+          label: "Category" | "Field of Study" | "Research Area";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentCategoryPostCount: number;
-      };
-      topicFilter: {
-        totalPostCount: number;
-        "content-topics": Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+        };
+        topics: {
+          label: "Industry" | "Topic";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentTopicPostCount: number;
+        };
       };
       pagination: {
         totalPages: number;
-        scrollTargetId: null;
+        scrollTargetId: "posts-list";
       };
       posts: Array<
         | {
@@ -5274,8 +5276,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             href: string;
             category: Array<{
               _id: string;
-              _type: "blog-category";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -5327,8 +5327,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }> | null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -5526,8 +5524,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             category: null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -5634,123 +5630,127 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
       description: null;
       meta: null;
       modules: null;
-      categoryFilter: {
-        totalPostCount: number;
-        categories: Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+      filters: {
+        defaults: {
+          label: "All";
+          count: number;
+        };
+        categories: {
+          label: "Category" | "Field of Study" | "Research Area";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentCategoryPostCount: number;
-      };
-      topicFilter: {
-        totalPostCount: number;
-        "content-topics": Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+        };
+        topics: {
+          label: "Industry" | "Topic";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentTopicPostCount: number;
+        };
       };
       pagination: {
         totalPages: number;
-        scrollTargetId: null;
+        scrollTargetId: "posts-list";
       };
       posts: Array<
         | {
@@ -5899,8 +5899,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             href: string;
             category: Array<{
               _id: string;
-              _type: "blog-category";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -5952,8 +5950,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }> | null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -6151,8 +6147,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             category: null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -7686,119 +7680,123 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
           }
         | {}
       > | null;
-      categoryFilter: {
-        totalPostCount: number;
-        categories: Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+      filters: {
+        defaults: {
+          label: "All";
+          count: number;
+        };
+        categories: {
+          label: "Category" | "Field of Study" | "Research Area";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentCategoryPostCount: number;
-      };
-      topicFilter: {
-        totalPostCount: number;
-        "content-topics": Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+        };
+        topics: {
+          label: "Industry" | "Topic";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentTopicPostCount: number;
+        };
       };
       pagination: {
         totalPages: number;
@@ -7951,8 +7949,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             href: string;
             category: Array<{
               _id: string;
-              _type: "blog-category";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -8004,8 +8000,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }> | null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -8203,8 +8197,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             category: null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -9738,123 +9730,127 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
           }
         | {}
       > | null;
-      categoryFilter: {
-        totalPostCount: number;
-        categories: Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+      filters: {
+        defaults: {
+          label: "All";
+          count: number;
+        };
+        categories: {
+          label: "Category" | "Field of Study" | "Research Area";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentCategoryPostCount: number;
-      };
-      topicFilter: {
-        totalPostCount: number;
-        "content-topics": Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+        };
+        topics: {
+          label: "Industry" | "Topic";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentTopicPostCount: number;
+        };
       };
       pagination: {
         totalPages: number;
-        scrollTargetId: null;
+        scrollTargetId: "posts-list";
       };
       posts: Array<
         | {
@@ -10003,8 +9999,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             href: string;
             category: Array<{
               _id: string;
-              _type: "blog-category";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -10056,8 +10050,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }> | null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -10255,8 +10247,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             category: null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -11790,119 +11780,123 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
           }
         | {}
       > | null;
-      categoryFilter: {
-        totalPostCount: number;
-        categories: Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+      filters: {
+        defaults: {
+          label: "All";
+          count: number;
+        };
+        categories: {
+          label: "Category" | "Field of Study" | "Research Area";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentCategoryPostCount: number;
-      };
-      topicFilter: {
-        totalPostCount: number;
-        "content-topics": Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+        };
+        topics: {
+          label: "Industry" | "Topic";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentTopicPostCount: number;
+        };
       };
       pagination: {
         totalPages: number;
@@ -12055,8 +12049,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             href: string;
             category: Array<{
               _id: string;
-              _type: "blog-category";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -12108,8 +12100,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }> | null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -12307,8 +12297,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             category: null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -13842,123 +13830,127 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
           }
         | {}
       > | null;
-      categoryFilter: {
-        totalPostCount: number;
-        categories: Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+      filters: {
+        defaults: {
+          label: "All";
+          count: number;
+        };
+        categories: {
+          label: "Category" | "Field of Study" | "Research Area";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentCategoryPostCount: number;
-      };
-      topicFilter: {
-        totalPostCount: number;
-        "content-topics": Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+        };
+        topics: {
+          label: "Industry" | "Topic";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentTopicPostCount: number;
+        };
       };
       pagination: {
         totalPages: number;
-        scrollTargetId: null;
+        scrollTargetId: "posts-list";
       };
       posts: Array<
         | {
@@ -14107,8 +14099,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             href: string;
             category: Array<{
               _id: string;
-              _type: "blog-category";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -14160,8 +14150,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }> | null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -14359,8 +14347,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             category: null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -14420,123 +14406,127 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
       description: null;
       meta: null;
       modules: null;
-      categoryFilter: {
-        totalPostCount: number;
-        categories: Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+      filters: {
+        defaults: {
+          label: "All";
+          count: number;
+        };
+        categories: {
+          label: "Category" | "Field of Study" | "Research Area";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentCategoryPostCount: number;
-      };
-      topicFilter: {
-        totalPostCount: number;
-        "content-topics": Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+        };
+        topics: {
+          label: "Industry" | "Topic";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentTopicPostCount: number;
+        };
       };
       pagination: {
         totalPages: number;
-        scrollTargetId: null;
+        scrollTargetId: "posts-list";
       };
       posts: Array<
         | {
@@ -14685,8 +14675,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             href: string;
             category: Array<{
               _id: string;
-              _type: "blog-category";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -14738,8 +14726,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }> | null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -14937,8 +14923,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             category: null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -15045,123 +15029,127 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
       description: null;
       meta: null;
       modules: null;
-      categoryFilter: {
-        totalPostCount: number;
-        categories: Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+      filters: {
+        defaults: {
+          label: "All";
+          count: number;
+        };
+        categories: {
+          label: "Category" | "Field of Study" | "Research Area";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentCategoryPostCount: number;
-      };
-      topicFilter: {
-        totalPostCount: number;
-        "content-topics": Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+        };
+        topics: {
+          label: "Industry" | "Topic";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentTopicPostCount: number;
+        };
       };
       pagination: {
         totalPages: number;
-        scrollTargetId: null;
+        scrollTargetId: "posts-list";
       };
       posts: Array<
         | {
@@ -15310,8 +15298,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             href: string;
             category: Array<{
               _id: string;
-              _type: "blog-category";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -15363,8 +15349,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }> | null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -15562,8 +15546,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             category: null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -15623,123 +15605,127 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
       description: null;
       meta: null;
       modules: null;
-      categoryFilter: {
-        totalPostCount: number;
-        categories: Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+      filters: {
+        defaults: {
+          label: "All";
+          count: number;
+        };
+        categories: {
+          label: "Category" | "Field of Study" | "Research Area";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentCategoryPostCount: number;
-      };
-      topicFilter: {
-        totalPostCount: number;
-        "content-topics": Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+        };
+        topics: {
+          label: "Industry" | "Topic";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentTopicPostCount: number;
+        };
       };
       pagination: {
         totalPages: number;
-        scrollTargetId: null;
+        scrollTargetId: "posts-list";
       };
       posts: Array<
         | {
@@ -15888,8 +15874,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             href: string;
             category: Array<{
               _id: string;
-              _type: "blog-category";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -15941,8 +15925,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }> | null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -16140,8 +16122,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             category: null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -16201,123 +16181,127 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
       description: null;
       meta: null;
       modules: null;
-      categoryFilter: {
-        totalPostCount: number;
-        categories: Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+      filters: {
+        defaults: {
+          label: "All";
+          count: number;
+        };
+        categories: {
+          label: "Category" | "Field of Study" | "Research Area";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentCategoryPostCount: number;
-      };
-      topicFilter: {
-        totalPostCount: number;
-        "content-topics": Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+        };
+        topics: {
+          label: "Industry" | "Topic";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentTopicPostCount: number;
+        };
       };
       pagination: {
         totalPages: number;
-        scrollTargetId: null;
+        scrollTargetId: "posts-list";
       };
       posts: Array<
         | {
@@ -16466,8 +16450,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             href: string;
             category: Array<{
               _id: string;
-              _type: "blog-category";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -16519,8 +16501,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }> | null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -16718,8 +16698,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             category: null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -16779,123 +16757,127 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
       description: null;
       meta: null;
       modules: null;
-      categoryFilter: {
-        totalPostCount: number;
-        categories: Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+      filters: {
+        defaults: {
+          label: "All";
+          count: number;
+        };
+        categories: {
+          label: "Category" | "Field of Study" | "Research Area";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentCategoryPostCount: number;
-      };
-      topicFilter: {
-        totalPostCount: number;
-        "content-topics": Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+        };
+        topics: {
+          label: "Industry" | "Topic";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentTopicPostCount: number;
+        };
       };
       pagination: {
         totalPages: number;
-        scrollTargetId: null;
+        scrollTargetId: "posts-list";
       };
       posts: Array<
         | {
@@ -17044,8 +17026,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             href: string;
             category: Array<{
               _id: string;
-              _type: "blog-category";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -17097,8 +17077,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }> | null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -17296,8 +17274,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             category: null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -17357,123 +17333,127 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
       description: null;
       meta: null;
       modules: null;
-      categoryFilter: {
-        totalPostCount: number;
-        categories: Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+      filters: {
+        defaults: {
+          label: "All";
+          count: number;
+        };
+        categories: {
+          label: "Category" | "Field of Study" | "Research Area";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentCategoryPostCount: number;
-      };
-      topicFilter: {
-        totalPostCount: number;
-        "content-topics": Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+        };
+        topics: {
+          label: "Industry" | "Topic";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentTopicPostCount: number;
+        };
       };
       pagination: {
         totalPages: number;
-        scrollTargetId: null;
+        scrollTargetId: "posts-list";
       };
       posts: Array<
         | {
@@ -17622,8 +17602,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             href: string;
             category: Array<{
               _id: string;
-              _type: "blog-category";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -17675,8 +17653,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }> | null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -17874,8 +17850,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             category: null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -17935,123 +17909,127 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
       description: null;
       meta: null;
       modules: null;
-      categoryFilter: {
-        totalPostCount: number;
-        categories: Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+      filters: {
+        defaults: {
+          label: "All";
+          count: number;
+        };
+        categories: {
+          label: "Category" | "Field of Study" | "Research Area";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentCategoryPostCount: number;
-      };
-      topicFilter: {
-        totalPostCount: number;
-        "content-topics": Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+        };
+        topics: {
+          label: "Industry" | "Topic";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentTopicPostCount: number;
+        };
       };
       pagination: {
         totalPages: number;
-        scrollTargetId: null;
+        scrollTargetId: "posts-list";
       };
       posts: Array<
         | {
@@ -18200,8 +18178,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             href: string;
             category: Array<{
               _id: string;
-              _type: "blog-category";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -18253,8 +18229,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }> | null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -18452,8 +18426,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             category: null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -19856,123 +19828,127 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
           }
         | {}
       > | null;
-      categoryFilter: {
-        totalPostCount: number;
-        categories: Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+      filters: {
+        defaults: {
+          label: "All";
+          count: number;
+        };
+        categories: {
+          label: "Category" | "Field of Study" | "Research Area";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentCategoryPostCount: number;
-      };
-      topicFilter: {
-        totalPostCount: number;
-        "content-topics": Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+        };
+        topics: {
+          label: "Industry" | "Topic";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentTopicPostCount: number;
+        };
       };
       pagination: {
         totalPages: number;
-        scrollTargetId: null;
+        scrollTargetId: "posts-list";
       };
       posts: Array<
         | {
@@ -20121,8 +20097,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             href: string;
             category: Array<{
               _id: string;
-              _type: "blog-category";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -20174,8 +20148,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }> | null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -20373,8 +20345,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             category: null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -21777,123 +21747,127 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
           }
         | {}
       > | null;
-      categoryFilter: {
-        totalPostCount: number;
-        categories: Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+      filters: {
+        defaults: {
+          label: "All";
+          count: number;
+        };
+        categories: {
+          label: "Category" | "Field of Study" | "Research Area";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentCategoryPostCount: number;
-      };
-      topicFilter: {
-        totalPostCount: number;
-        "content-topics": Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+        };
+        topics: {
+          label: "Industry" | "Topic";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentTopicPostCount: number;
+        };
       };
       pagination: {
         totalPages: number;
-        scrollTargetId: null;
+        scrollTargetId: "posts-list";
       };
       posts: Array<
         | {
@@ -22042,8 +22016,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             href: string;
             category: Array<{
               _id: string;
-              _type: "blog-category";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -22095,8 +22067,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }> | null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -22294,8 +22264,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             category: null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -23698,123 +23666,127 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
           }
         | {}
       > | null;
-      categoryFilter: {
-        totalPostCount: number;
-        categories: Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+      filters: {
+        defaults: {
+          label: "All";
+          count: number;
+        };
+        categories: {
+          label: "Category" | "Field of Study" | "Research Area";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentCategoryPostCount: number;
-      };
-      topicFilter: {
-        totalPostCount: number;
-        "content-topics": Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+        };
+        topics: {
+          label: "Industry" | "Topic";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentTopicPostCount: number;
+        };
       };
       pagination: {
         totalPages: number;
-        scrollTargetId: null;
+        scrollTargetId: "posts-list";
       };
       posts: Array<
         | {
@@ -23963,8 +23935,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             href: string;
             category: Array<{
               _id: string;
-              _type: "blog-category";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -24016,8 +23986,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }> | null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -24215,8 +24183,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             category: null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -24276,123 +24242,127 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
       description: null;
       meta: null;
       modules: null;
-      categoryFilter: {
-        totalPostCount: number;
-        categories: Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+      filters: {
+        defaults: {
+          label: "All";
+          count: number;
+        };
+        categories: {
+          label: "Category" | "Field of Study" | "Research Area";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentCategoryPostCount: number;
-      };
-      topicFilter: {
-        totalPostCount: number;
-        "content-topics": Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+        };
+        topics: {
+          label: "Industry" | "Topic";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentTopicPostCount: number;
+        };
       };
       pagination: {
         totalPages: number;
-        scrollTargetId: null;
+        scrollTargetId: "posts-list";
       };
       posts: Array<
         | {
@@ -24541,8 +24511,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             href: string;
             category: Array<{
               _id: string;
-              _type: "blog-category";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -24594,8 +24562,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }> | null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -24793,8 +24759,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             category: null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -24854,123 +24818,127 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
       description: null;
       meta: null;
       modules: null;
-      categoryFilter: {
-        totalPostCount: number;
-        categories: Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+      filters: {
+        defaults: {
+          label: "All";
+          count: number;
+        };
+        categories: {
+          label: "Category" | "Field of Study" | "Research Area";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentCategoryPostCount: number;
-      };
-      topicFilter: {
-        totalPostCount: number;
-        "content-topics": Array<{
-          _id: string;
-          slug: Slug;
-          title: Array<{
-            children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
+        };
+        topics: {
+          label: "Industry" | "Topic";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
               _key: string;
             }>;
-            style?: "normal";
-            listItem?: never;
-            markDefs: Array<
-              | {
-                  _key: string;
-                  _type: "highlightColor";
-                  label?: string;
-                  value?: string;
-                }
-              | {
-                  type: "external" | "internal";
-                  internalLink?:
-                    | BlogIndexReference
-                    | BlogPostReference
-                    | CaseStudiesIndexReference
-                    | CaseStudyReference
-                    | PageReference
-                    | PlatformChildReference
-                    | PlatformIndexReference;
-                  href:
-                    | string
-                    | "/"
-                    | "/blog"
-                    | "/case-studies"
-                    | "/platform"
-                    | null;
-                  openInNewTab?: boolean;
-                  _type: "link";
-                  _key: string;
-                }
-              | {
-                  _key: string;
-                  _type: "textColor";
-                  label?: string;
-                  value?: string;
-                }
-            > | null;
-            level?: number;
-            _type: "block";
-            _key: string;
+            count: number;
           }>;
-          count: number;
-        }>;
-        currentTopicPostCount: number;
+        };
       };
       pagination: {
         totalPages: number;
-        scrollTargetId: null;
+        scrollTargetId: "posts-list";
       };
       posts: Array<
         | {
@@ -25119,8 +25087,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             href: string;
             category: Array<{
               _id: string;
-              _type: "blog-category";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -25172,8 +25138,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             }> | null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -25371,8 +25335,6 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             category: null;
             contentTopic: Array<{
               _id: string;
-              _type: "content-topic";
-              slug: Slug;
               title: Array<{
                 children?: Array<{
                   marks?: Array<string>;
@@ -28683,9 +28645,9 @@ declare module "@sanity/client" {
     '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::link($link) = $link[] {\n    \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    },\n      _type == "richTable" => {\n      ...,\n        _type,\n        _key,\n        hasColumnTitles,\n        hasRowTitles,\n        columnHeaders[]{\n          _key,\n          _type,\n          cellIndex,\n          title,\n        },\n        rows[]{\n          _key,\n          _type,\n          cells[]{\n            _key,\n            _type,\n            content[]{\n              ...,\n              markDefs[]{\n                ...,\n                _type == "link" => {\n                  _type,\n                  _key,\n                  href,\n                },\n              },\n            },\n          },\n        },\n      },\n  };\n\n\n\n  *[_type == "navbar"]{\n    _key,\n    _type,\n    \n  "logo": fn::logo(logo)\n,\n    mainLinks[]{\n      _type,\n      _key,\n      _type == "standaloneLink" => {\n        \n  "link": fn::link(link)\n\n      },\n      _type == "group" => {\n        title,\n        group[]{\n          _type,\n          _key,\n          _type == "card" => {\n            title,\n            \n  "description": fn::ptPlain(description)\n,\n            \n  "link": fn::link(link)\n\n          },\n          _type == "link-group" => {\n            title,\n            \n  "link": fn::link(link)\n\n          },\n          _type == "resources" => {\n            resources[]->{\n              _id,\n              "_type": "resource",\n              title,\n              slug,\n              "href": select(\n                _type == "post" => "/blog/" + slug.current,\n                _type == "case-study" => "/case-studies/" + slug.current,\n                _type == "resource" => "/resources/" + slug.current,\n                _type == "event" => "/events/" + slug.current,\n                _type == "news-article" => "/news/" + slug.current,\n              ),\n              "buttonText": select(\n                _type == "post" => "Read Post",\n                _type == "case-study" => "Read Case Study",\n                _type == "resource" => "Learn More",\n                _type == "event" => "Learn More",\n                _type == "news-article" => "Read Article",\n              ),\n              \n  "image": fn::img(image)\n\n            }\n          }\n        }\n      },\n      _type == "divider" => {\n        type,\n      }\n    },\n    ctaLinks[]{\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  }\n': NAVBAR_QUERY_RESULT;
     '\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n\n  *[_type == "organization"][0]{\n    organization {\n      ...,\n      \n  "logo": fn::logo(logo)\n,\n    }\n  }\n': ORGANIZATION_QUERY_RESULT;
     '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::link($link) = $link[] {\n    \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    },\n      _type == "richTable" => {\n      ...,\n        _type,\n        _key,\n        hasColumnTitles,\n        hasRowTitles,\n        columnHeaders[]{\n          _key,\n          _type,\n          cellIndex,\n          title,\n        },\n        rows[]{\n          _key,\n          _type,\n          cells[]{\n            _key,\n            _type,\n            content[]{\n              ...,\n              markDefs[]{\n                ...,\n                _type == "link" => {\n                  _type,\n                  _key,\n                  href,\n                },\n              },\n            },\n          },\n        },\n      },\n  };\n\n\n\n  *[_type == "page" && slug.current == $slug][0]{\n    _type,\n    \n  modules[]{\n    \n  _type == "global-module" => moduleRef->module[0]{\n    _type,\n    "_key": ^._key,\n    \n  _type == "card-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "driver-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n  }\n,\n    \n  _type == "spacer" => {\n    _type,\n    _key,\n    spacing,\n    anchorId\n  }\n,\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n    \n  "content": fn::pt(content)\n,\n  }\n,\n    \n  _type == "marquee" => {\n    _type,\n    _key,\n    variant,\n    enableVelocity,\n    imageType,\n    "items" : select(variant == "text" => items[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n    }),\n    \n  "images": fn::imgs(images)\n\n  }\n,\n    \n  _type == "rich-text" => {\n    _type,\n    _key,\n    \n  "content": fn::pt(content)\n,\n  }\n,\n    \n  _type == "full-image" => {\n    _type,\n    _key,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "full-video" => {\n    _type,\n    _key,\n   \n  video{\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  }\n\n  }\n,\n    // Remove example modules\n    \n  _type == "card-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "driver-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "list-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "table-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "text-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "image-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n  }\n,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "blog-index" => "/blog",\n      ^._type == "blog-post" => "/blog/" + ^.slug.current,\n      ^._type == "case-studies-index" => "/case-studies",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n\n  }\n': PAGE_QUERY_RESULT;
-    "*[_type == $pageType && defined(slug)]{slug}": PAGES_SLUGS_QUERY_RESULT;
-    '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::link($link) = $link[] {\n    \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    },\n      _type == "richTable" => {\n      ...,\n        _type,\n        _key,\n        hasColumnTitles,\n        hasRowTitles,\n        columnHeaders[]{\n          _key,\n          _type,\n          cellIndex,\n          title,\n        },\n        rows[]{\n          _key,\n          _type,\n          cells[]{\n            _key,\n            _type,\n            content[]{\n              ...,\n              markDefs[]{\n                ...,\n                _type == "link" => {\n                  _type,\n                  _key,\n                  href,\n                },\n              },\n            },\n          },\n        },\n      },\n  };\n\n\n\n  *[_type == $contentType][0]{\n    _type,\n    slug,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "blog-index" => "/blog",\n      ^._type == "blog-post" => "/blog/" + ^.slug.current,\n      ^._type == "case-studies-index" => "/case-studies",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    \n  modules[]{\n    \n  _type == "global-module" => moduleRef->module[0]{\n    _type,\n    "_key": ^._key,\n    \n  _type == "card-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "driver-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n  }\n,\n    \n  _type == "spacer" => {\n    _type,\n    _key,\n    spacing,\n    anchorId\n  }\n,\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n    \n  "content": fn::pt(content)\n,\n  }\n,\n    \n  _type == "marquee" => {\n    _type,\n    _key,\n    variant,\n    enableVelocity,\n    imageType,\n    "items" : select(variant == "text" => items[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n    }),\n    \n  "images": fn::imgs(images)\n\n  }\n,\n    \n  _type == "rich-text" => {\n    _type,\n    _key,\n    \n  "content": fn::pt(content)\n,\n  }\n,\n    \n  _type == "full-image" => {\n    _type,\n    _key,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "full-video" => {\n    _type,\n    _key,\n   \n  video{\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  }\n\n  }\n,\n    // Remove example modules\n    \n  _type == "card-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "driver-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "list-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "table-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "text-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "image-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n  }\n,\n    // Data for filtering by category (ContentCategoryFilter.tsx)\n    "categoryFilter": {\n      "totalPostCount": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n]),\n      "categories": *[_type ==  select(\n        $contentType == "blog-index" => "blog-category") && count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)]) > 0] {\n          _id,\n          slug,\n          \n  "title": fn::ptPlain(title)\n,\n          // Number of posts in this category\n          "count": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)])\n      },\n      "currentCategoryPostCount": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && ($category == null || $category in category[]->slug.current) && ($topic == null || $topic in contentTopic[]->slug.current)]),\n    },\n    // Data for filtering by topic (ContentTopicFilter.tsx)\n    "topicFilter": {\n      "totalPostCount": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n]),\n      "content-topics": *[_type == "content-topic" &&\n        count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)]) > 0] {\n          _id,\n          slug,\n          \n  "title": fn::ptPlain(title)\n,\n          "count": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)])\n      },\n      "currentTopicPostCount": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && ($category == null || $category in category[]->slug.current) && ($topic == null || $topic in contentTopic[]->slug.current)]),\n    },\n    "pagination": {\n      "totalPages": round(count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)]) / 2),\n      "scrollTargetId": select(\n        _type == "case-studies-index" => "case-studies-posts-list",\n        _type == "blog-index" => "blog-posts-list",\n      ),\n    },\n    "posts": *[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {\n      _id,\n      _type,\n      _createdAt,\n      publishedDate,\n      slug,\n      \n  "link": fn::link(link)\n,\n      \n  "title": fn::ptPlain(title)\n,\n      \n  "image": fn::img(image)\n,\n      \n  "description": fn::ptPlain(description)\n,\n      "href": select(\n        _type == "case-study" => "/case-studies/" + slug.current,\n        _type == "blog-post" => "/blog/" + slug.current,\n      ),\n      category[]->{\n        _id,\n        _type,\n        slug,\n        \n  "title": fn::ptPlain(title)\n,\n      },\n      contentTopic[]->{\n        _id,\n        _type,\n        slug,\n        \n  "title": fn::ptPlain(title)\n,\n      },\n    }\n  }\n': GET_CONTENT_TYPE_INDEX_QUERY_RESULT;
+    "\n  *[_type == $pageType && defined(slug)]{slug}\n": PAGES_SLUGS_QUERY_RESULT;
+    '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::link($link) = $link[] {\n    \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    },\n      _type == "richTable" => {\n      ...,\n        _type,\n        _key,\n        hasColumnTitles,\n        hasRowTitles,\n        columnHeaders[]{\n          _key,\n          _type,\n          cellIndex,\n          title,\n        },\n        rows[]{\n          _key,\n          _type,\n          cells[]{\n            _key,\n            _type,\n            content[]{\n              ...,\n              markDefs[]{\n                ...,\n                _type == "link" => {\n                  _type,\n                  _key,\n                  href,\n                },\n              },\n            },\n          },\n        },\n      },\n  };\n\n\n\n  *[_type == $contentType][0]{\n    _type,\n    slug,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "blog-index" => "/blog",\n      ^._type == "blog-post" => "/blog/" + ^.slug.current,\n      ^._type == "case-studies-index" => "/case-studies",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    \n  modules[]{\n    \n  _type == "global-module" => moduleRef->module[0]{\n    _type,\n    "_key": ^._key,\n    \n  _type == "card-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "driver-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n  }\n,\n    \n  _type == "spacer" => {\n    _type,\n    _key,\n    spacing,\n    anchorId\n  }\n,\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n    \n  "content": fn::pt(content)\n,\n  }\n,\n    \n  _type == "marquee" => {\n    _type,\n    _key,\n    variant,\n    enableVelocity,\n    imageType,\n    "items" : select(variant == "text" => items[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n    }),\n    \n  "images": fn::imgs(images)\n\n  }\n,\n    \n  _type == "rich-text" => {\n    _type,\n    _key,\n    \n  "content": fn::pt(content)\n,\n  }\n,\n    \n  _type == "full-image" => {\n    _type,\n    _key,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "full-video" => {\n    _type,\n    _key,\n   \n  video{\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  }\n\n  }\n,\n    // Remove example modules\n    \n  _type == "card-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "driver-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "list-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "table-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "text-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "image-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n  }\n,\n    "filters": {\n      "defaults": {\n        "label": "All", // Also used for as nuqs\' default value for filtering\n        "count": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n]), // Total number of posts\n      },\n      "categories": {\n        "label": select(\n          $contentType == "blog-index" => "Field of Study",\n          $contentType == "case-studies-index" => "Research Area",\n          "Category" // Default fallback if specific content types don\'t have special labels\n        ),\n        "items": *[_type ==  select(\n          $contentType == "blog-index" => "blog-category") && count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)]) > 0] {\n            _id,\n            slug,\n            \n  "title": fn::ptPlain(title)\n,\n            "count": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)])\n         }\n       },\n       "topics": {\n        "label": select(\n          $contentType == "case-studies-index" => "Industry",\n          "Topic" // Default fallback if specific content types don\'t have special labels\n        ),\n        "items": *[_type == "content-topic" &&\n        count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)]) > 0] {\n          _id,\n          slug,\n          \n  "title": fn::ptPlain(title)\n,\n          "count": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)])\n        },\n       },\n    },\n    "pagination": {\n      "totalPages": round(count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)]) / 2),\n      "scrollTargetId": select(\n        _type == "case-studies-index" => "case-studies-posts-list",\n        _type == "blog-index" => "blog-posts-list",\n        "posts-list"\n      ),\n    },\n    "posts": *[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {\n      _id,\n      _type,\n      _createdAt,\n      publishedDate,\n      slug,\n      \n  "link": fn::link(link)\n,\n      \n  "title": fn::ptPlain(title)\n,\n      \n  "image": fn::img(image)\n,\n      \n  "description": fn::ptPlain(description)\n,\n      "href": select(\n        _type == "case-study" => "/case-studies/" + slug.current,\n        _type == "blog-post" => "/blog/" + slug.current,\n      ),\n      category[]->{\n        _id,\n        \n  "title": fn::ptPlain(title)\n,\n      },\n      contentTopic[]->{\n        _id,\n        \n  "title": fn::ptPlain(title)\n,\n      },\n    }\n  }\n': GET_CONTENT_TYPE_INDEX_QUERY_RESULT;
     '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::link($link) = $link[] {\n    \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "link" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    },\n      _type == "richTable" => {\n      ...,\n        _type,\n        _key,\n        hasColumnTitles,\n        hasRowTitles,\n        columnHeaders[]{\n          _key,\n          _type,\n          cellIndex,\n          title,\n        },\n        rows[]{\n          _key,\n          _type,\n          cells[]{\n            _key,\n            _type,\n            content[]{\n              ...,\n              markDefs[]{\n                ...,\n                _type == "link" => {\n                  _type,\n                  _key,\n                  href,\n                },\n              },\n            },\n          },\n        },\n      },\n  };\n\n\n\n  *[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && slug.current == $slug][0]{\n    _id,\n    _createdAt,\n    _type,\n    slug,\n    publishedDate,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "blog-index" => "/blog",\n      ^._type == "blog-post" => "/blog/" + ^.slug.current,\n      ^._type == "case-studies-index" => "/case-studies",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    \n  modules[]{\n    \n  _type == "global-module" => moduleRef->module[0]{\n    _type,\n    "_key": ^._key,\n    \n  _type == "card-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "driver-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n  }\n,\n    \n  _type == "spacer" => {\n    _type,\n    _key,\n    spacing,\n    anchorId\n  }\n,\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n    \n  "content": fn::pt(content)\n,\n  }\n,\n    \n  _type == "marquee" => {\n    _type,\n    _key,\n    variant,\n    enableVelocity,\n    imageType,\n    "items" : select(variant == "text" => items[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n    }),\n    \n  "images": fn::imgs(images)\n\n  }\n,\n    \n  _type == "rich-text" => {\n    _type,\n    _key,\n    \n  "content": fn::pt(content)\n,\n  }\n,\n    \n  _type == "full-image" => {\n    _type,\n    _key,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "full-video" => {\n    _type,\n    _key,\n   \n  video{\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  }\n\n  }\n,\n    // Remove example modules\n    \n  _type == "card-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "driver-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "list-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "table-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "text-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "image-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "link": fn::link(link)\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n  }\n,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "image": fn::img(image)\n,\n    \n  "content": fn::pt(content)\n,\n    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180),\n  }\n': GET_CONTENT_TYPE_SLUG_QUERY_RESULT;
-    "*[_type == $contentType && defined(slug)]{slug}": GET_CONTENT_TYPE_SLUGS_STATIC_PARAMS_QUERY_RESULT;
+    "\n  *[_type == $contentType && defined(slug)]{slug}\n": GET_CONTENT_TYPE_SLUGS_STATIC_PARAMS_QUERY_RESULT;
   }
 }

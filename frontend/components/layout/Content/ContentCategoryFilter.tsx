@@ -2,14 +2,14 @@
 
 import type { GET_CONTENT_TYPE_INDEX_QUERY_RESULT } from "@/sanity.types";
 import { parseAsString, useQueryStates } from "nuqs";
+import { Button } from "@/components/primitives/Button/Button";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
 import { cn } from "@/lib/utils/cn";
-import { getFilterItemCount } from "@/lib/utils/filter";
 
 type ContentCategoryFilterProps = {
   className?: string;
   data: NonNullable<
-    NonNullable<GET_CONTENT_TYPE_INDEX_QUERY_RESULT>["categoryFilter"]
+    NonNullable<GET_CONTENT_TYPE_INDEX_QUERY_RESULT>["filters"]
   >;
 };
 
@@ -17,16 +17,18 @@ export const ContentCategoryFilter = ({
   className,
   data,
 }: ContentCategoryFilterProps) => {
-  // Grab category param from URL
+  if (!data) return null;
+
+  const { defaults, categories } = data;
+
   const [{ category }, setQueryStates] = useQueryStates(
     {
-      category: parseAsString.withDefault("none"),
+      category: parseAsString.withDefault(defaults.label),
     },
     { shallow: false },
   );
 
   async function handleClick(item: string) {
-    // Set new category param in URL
     await setQueryStates({
       category: item,
     });
@@ -40,26 +42,24 @@ export const ContentCategoryFilter = ({
         className,
       )}
     >
-      <span className="font-bold">Categories:</span>
+      <h4 className="font-bold">{categories.label}</h4>
 
       <ul className="flex flex-col gap-5 md:flex-row md:flex-wrap">
         <li>
-          <button
-            type="button"
-            onClick={() => handleClick("none")}
-            className={category === "none" ? "underline" : ""}
+          <Button
+            onClick={() => handleClick(defaults.label)}
+            className={category === defaults.label ? "underline" : ""}
           >
-            All ({data.totalPostCount})
-          </button>
+            {defaults.label} ({defaults.count})
+          </Button>
         </li>
 
-        {data.categories.map((categoryItem) => {
-          const { _id, slug, title } = categoryItem;
+        {data.categories.items.map((item) => {
+          const { _id, slug, title, count } = item;
 
           return (
             <li key={_id}>
-              <button
-                type="button"
+              <Button
                 onClick={() => handleClick(slug.current)}
                 className={cn(
                   "flex items-center gap-x-1.5",
@@ -67,11 +67,8 @@ export const ContentCategoryFilter = ({
                 )}
               >
                 {title && <PortableText value={title} />}
-                <span>
-                  ({getFilterItemCount(category, categoryItem, data.categories)}
-                  )
-                </span>
-              </button>
+                {count && <span>({count})</span>}
+              </Button>
             </li>
           );
         })}

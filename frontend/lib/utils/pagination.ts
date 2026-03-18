@@ -12,7 +12,7 @@ export const createPageUrl = ({
   category,
   topic,
 }: {
-  route: "blog" | "case-studies" | "resources" | "events";
+  route: "blog" | "case-studies";
   pageNum: number;
   category?: string;
   topic?: string;

@@ -125,36 +125,45 @@ export const GET_CONTENT_TYPE_INDEX_QUERY = defineQuery(`
     ${descriptionFragment},
     ${metaFragment},
     ${modulesFragment},
-    // Data for filtering by category (ContentCategoryFilter.tsx)
-    "categoryFilter": {
-      "totalPostCount": count(*[_type == ${selectContentType}]),
-      "categories": *[_type ==  select(
-        $contentType == "blog-index" => "blog-category") && count(*[_type == ${selectContentType} && references(^._id)]) > 0] {
-          _id,
-          slug,
-          ${titleFragment},
-          // Number of posts in this category
-          "count": count(*[_type == ${selectContentType} && references(^._id)])
+    "filters": {
+      "defaults": {
+        "label": "All", // Also used for as nuqs' default value for filtering
+        "count": count(*[_type == ${selectContentType}]), // Total number of posts
       },
-      "currentCategoryPostCount": count(*[_type == ${selectContentType} && ($category == null || $category in category[]->slug.current) && ($topic == null || $topic in contentTopic[]->slug.current)]),
-    },
-    // Data for filtering by topic (ContentTopicFilter.tsx)
-    "topicFilter": {
-      "totalPostCount": count(*[_type == ${selectContentType}]),
-      "content-topics": *[_type == "content-topic" &&
+      "categories": {
+        "label": select(
+          $contentType == "blog-index" => "Field of Study",
+          $contentType == "case-studies-index" => "Research Area",
+          "Category" // Default fallback if specific content types don't have special labels
+        ),
+        "items": *[_type ==  select(
+          $contentType == "blog-index" => "blog-category") && count(*[_type == ${selectContentType} && references(^._id)]) > 0] {
+            _id,
+            slug,
+            ${titleFragment},
+            "count": count(*[_type == ${selectContentType} && references(^._id)])
+         }
+       },
+       "topics": {
+        "label": select(
+          $contentType == "case-studies-index" => "Industry",
+          "Topic" // Default fallback if specific content types don't have special labels
+        ),
+        "items": *[_type == "content-topic" &&
         count(*[_type == ${selectContentType} && references(^._id)]) > 0] {
           _id,
           slug,
           ${titleFragment},
           "count": count(*[_type == ${selectContentType} && references(^._id)])
-      },
-      "currentTopicPostCount": count(*[_type == ${selectContentType} && ($category == null || $category in category[]->slug.current) && ($topic == null || $topic in contentTopic[]->slug.current)]),
+        },
+       },
     },
     "pagination": {
       "totalPages": round(count(*[_type == ${selectContentType} && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)]) / 2),
       "scrollTargetId": select(
         _type == "case-studies-index" => "case-studies-posts-list",
         _type == "blog-index" => "blog-posts-list",
+        "posts-list"
       ),
     },
     "posts": *[_type == ${selectContentType} && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {
@@ -173,14 +182,10 @@ export const GET_CONTENT_TYPE_INDEX_QUERY = defineQuery(`
       ),
       category[]->{
         _id,
-        _type,
-        slug,
         ${titleFragment},
       },
       contentTopic[]->{
         _id,
-        _type,
-        slug,
         ${titleFragment},
       },
     }
