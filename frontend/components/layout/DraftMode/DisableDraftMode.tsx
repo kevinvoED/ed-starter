@@ -2,9 +2,7 @@
 
 import { useEffect, useState, useTransition } from "react";
 import { useIsPresentationTool } from "next-sanity/hooks";
-import { SanityLinkVariants } from "@/components/primitives/Link/SanityLink";
 import { disableDraftMode } from "@/lib/actions/draft-mode";
-import { cn } from "@/lib/utils/cn";
 
 export function DisableDraftMode() {
   const isPresentationTool = useIsPresentationTool();
@@ -23,12 +21,7 @@ export function DisableDraftMode() {
       type="button"
       disabled={pending}
       onClick={() => startTransition(() => disableDraftMode())}
-      className={cn(
-        SanityLinkVariants({
-          variant: "primary",
-        }),
-        "fixed right-4 bottom-4 z-9999",
-      )}
+      className="fixed right-4 bottom-4 z-9999 cursor-pointer rounded-full bg-debug-blue px-4 py-2 font-semibold text-white text-xs transition-colors duration-300 ease-in-out hover:bg-debug-blue/90"
     >
       <span>{pending ? "Disabling..." : "Disable Draft Mode"}</span>
     </button>
