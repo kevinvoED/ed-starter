@@ -1,48 +1,14 @@
 import type { HTMLAttributes } from "react";
-import type {
-  internalGroqTypeReferenceTo,
-  SanityImageCrop,
-  SanityImageHotspot,
-} from "@/sanity.types";
+import type { ModuleProps } from "@/sanity/lib/fetch";
+import type { MetaImage } from "@/sanity.types";
 import Image from "next/image";
+import { imageLoader } from "next-sanity/image";
 import { urlFor } from "@/sanity/lib/image";
 import { cn } from "@/lib/utils/cn";
 
-export type ResolvedImageType = {
-  asset: {
-    _id: string;
-    url: string | null;
-    metadata: {
-      lqip: string | null;
-      dimensions: {
-        width: number | null;
-        height: number | null;
-      } | null;
-    } | null;
-  } | null;
-  media?: unknown;
-  hotspot?: SanityImageHotspot;
-  crop?: SanityImageCrop;
-  alt?: string;
-  _type: "image";
-};
+export type ResolvedImageType = NonNullable<ModuleProps<"full-image">["image"]>;
 
-type ReferenceImageType = {
-  asset?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-  };
-  media?: unknown;
-  hotspot?: SanityImageHotspot;
-  crop?: SanityImageCrop;
-  alt?: string;
-  _type: "image";
-};
-
-// Union type supporting both formats
-export type ImageType = ResolvedImageType | ReferenceImageType;
+export type ImageType = ResolvedImageType | MetaImage;
 
 interface SanityImageProps extends HTMLAttributes<"img"> {
   image: ImageType | null;
@@ -92,8 +58,9 @@ export const SanityImage = ({
 
   return (
     <Image
+      loader={imageLoader}
       src={urlFor(image).url()}
-      alt={image?.alt || ""}
+      alt={hasExpandedAsset(image) ? image?.alt || "" : ""}
       placeholder={placeholder}
       blurDataURL={blurDataURL}
       className={cn("object-cover", className)}
