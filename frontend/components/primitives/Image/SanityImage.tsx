@@ -27,32 +27,32 @@ const hasExpandedAsset = (image: ImageType): image is ResolvedImageType => {
 
 export const SanityImage = ({
   image,
+  sizes,
   className,
   width = 200,
   height = 200,
-  sizes,
   priority = false,
 }: SanityImageProps) => {
   if (!image) return null;
 
   // Handle both reference and expanded asset formats
   const imageWidth = hasExpandedAsset(image)
-    ? image?.asset?.metadata?.dimensions?.width || width
+    ? image.asset?.metadata?.dimensions?.width || width
     : width;
 
   const imageHeight = hasExpandedAsset(image)
-    ? image?.asset?.metadata?.dimensions?.height || height
+    ? image.asset?.metadata?.dimensions?.height || height
     : height;
 
   const blurDataURL = hasExpandedAsset(image)
-    ? image?.asset?.metadata?.lqip || ""
+    ? image.asset?.metadata?.lqip || ""
     : "";
 
   const placeholder =
     imageWidth > 40 &&
     imageHeight > 40 &&
     hasExpandedAsset(image) &&
-    image?.asset?.metadata?.lqip
+    image.asset?.metadata?.lqip
       ? "blur"
       : "empty";
 
@@ -67,8 +67,8 @@ export const SanityImage = ({
       sizes={sizes}
       width={imageWidth}
       height={imageHeight}
-      quality={priority ? 100 : 75}
       priority={priority}
+      quality={priority ? 100 : 75}
       loading={priority ? "eager" : "lazy"}
     />
   );
