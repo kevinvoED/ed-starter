@@ -5,6 +5,7 @@ import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { media } from "sanity-plugin-media";
+import { GeneratePageMetadataAction } from "@/actions/generate-page-metadata";
 import { simplerColorInputOptions } from "@/lib/color-input";
 import {
   SINGLETON_DOCUMENT_ACTIONS,
@@ -20,7 +21,7 @@ import {
 import { guideTool } from "@/lib/guide-tool";
 import { structure } from "@/lib/structure";
 import { schema } from "@/schemas/schema";
-import { OpenDocumentUrlAction } from "./actions";
+import { OpenDocumentUrlAction } from "./actions/open-document-url";
 import { richTablePlugin } from "sanity-plugin-rich-table";
 import { simplerColorInput } from "sanity-plugin-simpler-color-input";
 import {
@@ -47,6 +48,7 @@ export default defineConfig({
 
       if (VIEWABLE_TYPES.has(schemaType as ViewableTypes)) {
         myActions.push(OpenDocumentUrlAction);
+        myActions.push(GeneratePageMetadataAction);
       }
 
       return SINGLETON_DOCUMENT_TYPES.has(schemaType)
@@ -62,7 +64,6 @@ export default defineConfig({
   tools: [guideTool()],
   plugins: [
     structureTool({ structure, defaultDocumentNode }),
-    // presentationTool(presentationOptions), // Re-enable if needed; update resolved links in presentation.ts
     visionTool({ defaultApiVersion: SANITY_STUDIO_API_VERSION }),
     media(),
     dashboardTool(deploymentOptions),

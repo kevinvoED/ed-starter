@@ -12,3 +12,6 @@ export const SANITY_STUDIO_DATASET =
 
 export const SANITY_STUDIO_HOSTNAME =
   process.env.SANITY_STUDIO_HOSTNAME || "ed-starter-dev.sanity.studio";
+
+export const SANITY_STUDIO_AI_PROVIDER_API_KEY =
+  process.env.SANITY_STUDIO_AI_PROVIDER_API_KEY || "";

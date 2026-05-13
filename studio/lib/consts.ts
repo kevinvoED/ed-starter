@@ -12,6 +12,8 @@ export const RELATION_SCHEMA_TYPES = [
   { schemaType: "case-study", route: "/case-studies/" },
 ];
 
+export const HERO_DOCUMENT_TYPES = new Set(["hero-primary"]);
+
 // Define the actions that should be available for singleton documents
 export const SINGLETON_DOCUMENT_ACTIONS = new Set([
   "publish",
