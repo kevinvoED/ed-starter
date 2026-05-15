@@ -1,6 +1,6 @@
 import { CogIcon } from "lucide-react";
 import { defineField, defineType } from "sanity";
-import { logo } from "@/schemas/sharedFields";
+import { logo } from "@/schemas/common";
 
 export default defineType({
   name: "organization",

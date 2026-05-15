@@ -1,6 +1,6 @@
 import { VideoIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { video } from "@/schemas/sharedFields";
+import { video } from "@/schemas/common";
 
 export default defineType({
   name: "full-video",

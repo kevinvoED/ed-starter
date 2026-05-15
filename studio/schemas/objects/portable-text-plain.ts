@@ -10,14 +10,14 @@ import {
   ptDecoratorFields,
   ptListFields,
   ptStyleHeadingFields,
-} from "@/schemas/sharedFields";
+} from "@/schemas/common";
 
 /*
  * PortableTextPlain (Rich Text Editor)
  * @docs: https://www.sanity.io/docs/studio/portable-text-editor-configuration
  *
  * There are two different PortableText types used: PortableText and PortableTextPlain.
- * When using this in a custom schema, make sure to use one from 'sharedFields.ts' instead.
+ * When using this in a custom schema, make sure to use one from 'common.ts' instead.
  * @see: @/schemas/objects/portable-text.ts
  *
  * PortableTextPlain does NOT have the entire toolbox of features and sub-modules built in.
@@ -39,11 +39,11 @@ import {
  *   })
  * )
  *
- * Alternatively, there are pre-defined common usages of PortableTextPlain in 'sharedFields.ts'
+ * Alternatively, there are pre-defined common usages of PortableTextPlain in 'common.ts'
  *
  *  EXAMPLE USAGE:
  *
- * import { titleHighlight } from "@/schemas/sharedFields";
+ * import { titleHighlight } from "@/schemas/common";
  *
  * defineField({
  *   ...titleHighlight,

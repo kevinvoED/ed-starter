@@ -1,7 +1,7 @@
 import { Menu } from "lucide-react";
 import { FolderIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { link, logo, title, toggle } from "@/schemas/sharedFields";
+import { link, logo, title, toggle } from "@/schemas/common";
 
 export default defineType({
   name: "footer",

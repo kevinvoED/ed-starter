@@ -1,7 +1,7 @@
 import { UserIcon } from "@sanity/icons";
 import { orderRankField } from "@sanity/orderable-document-list";
 import { defineField, defineType } from "sanity";
-import { description, link, title } from "@/schemas/sharedFields";
+import { description, link, title } from "@/schemas/common";
 
 export default defineType({
   name: "banner",

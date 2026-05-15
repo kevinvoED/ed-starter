@@ -1,12 +1,6 @@
 import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import {
-  description,
-  meta,
-  modules,
-  slug,
-  title,
-} from "@/schemas/sharedFields";
+import { description, meta, modules, slug, title } from "@/schemas/common";
 
 export default defineType({
   name: "blog-index",

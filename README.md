@@ -126,7 +126,7 @@ ED Starter
 │   │   ├── 📂 previews
 │   │   ├── 📄 moduleTypes.ts
 │   │   ├── 📄 schema.ts
-│   │   └── 📄 sharedFields.ts
+│   │   └── 📄 common.ts
 │   ├── 📄 sanity.cli.ts
 │   ├── 📄 sanity.config.ts
 │   └── 📄 package.json

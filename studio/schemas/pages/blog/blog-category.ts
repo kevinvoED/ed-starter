@@ -1,7 +1,7 @@
 import { BookmarkIcon } from "@sanity/icons";
 import { orderRankField } from "@sanity/orderable-document-list";
 import { defineField, defineType } from "sanity";
-import { slug, title } from "@/schemas/sharedFields";
+import { slug, title } from "@/schemas/common";
 
 export default defineType({
   name: "blog-category",

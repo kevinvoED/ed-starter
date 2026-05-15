@@ -12,7 +12,7 @@ import {
   publishedDate,
   slug,
   title,
-} from "@/schemas/sharedFields";
+} from "@/schemas/common";
 import { formatDate } from "../../../../frontend/lib/utils/date";
 
 export default defineType({

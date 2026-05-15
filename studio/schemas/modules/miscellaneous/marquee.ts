@@ -1,7 +1,7 @@
 import { DashboardIcon, MasterDetailIcon } from "@sanity/icons";
 import { upperFirst } from "es-toolkit";
 import { defineField, defineType } from "sanity";
-import { images, title } from "@/schemas/sharedFields";
+import { images, title } from "@/schemas/common";
 
 export default defineType({
   name: "marquee",

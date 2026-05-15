@@ -7,7 +7,7 @@ import {
   link,
   portableText,
   title,
-} from "@/schemas/sharedFields";
+} from "@/schemas/common";
 
 export default defineType({
   name: "hero-primary",

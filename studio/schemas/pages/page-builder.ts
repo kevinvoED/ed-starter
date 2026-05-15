@@ -1,7 +1,7 @@
 import { DocumentIcon } from "@sanity/icons";
 import { orderRankField } from "@sanity/orderable-document-list";
 import { defineField, defineType, type SchemaTypeDefinition } from "sanity";
-import { meta, modules, pageTitle, slug } from "@/schemas/sharedFields";
+import { meta, modules, pageTitle, slug } from "@/schemas/common";
 
 interface PageBuilderOptions {
   name: string;

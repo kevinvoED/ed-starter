@@ -7,7 +7,7 @@ import {
   PanelRightIcon,
 } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { description, link, logo, title } from "@/schemas/sharedFields";
+import { description, link, logo, title } from "@/schemas/common";
 
 export default defineType({
   name: "navbar",

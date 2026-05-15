@@ -1,7 +1,7 @@
 import { ImageIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import { validateImage } from "@/lib/utils";
-import { image } from "@/schemas/sharedFields";
+import { image } from "@/schemas/common";
 
 export default defineType({
   name: "full-image",
