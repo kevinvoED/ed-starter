@@ -7,9 +7,9 @@ import {
   SheetTrigger,
 } from "@/components/primitives/Sheet/Sheet";
 
-export default async function EDSheetPage() {
+export const StarterSheet = () => {
   return (
-    <div className="grid-custom min-h-dvh place-items-center p-custom">
+    <div className="grid-custom place-items-center p-custom">
       <div className="col-span-4 col-start-5">
         <Sheet>
           <SheetTrigger>Open</SheetTrigger>
@@ -26,4 +26,4 @@ export default async function EDSheetPage() {
       </div>
     </div>
   );
-}
+};

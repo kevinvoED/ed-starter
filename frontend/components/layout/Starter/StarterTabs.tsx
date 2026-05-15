@@ -24,9 +24,9 @@ const DATA = [
   },
 ];
 
-export default async function EDTabsPage() {
+export const StarterTabs = () => {
   return (
-    <div className="grid-custom min-h-dvh place-items-center p-custom">
+    <div className="grid-custom place-items-center p-custom">
       <Tabs
         className="col-span-full lg:col-span-4 lg:col-start-5"
         defaultValue={DATA?.[0].title}
@@ -47,4 +47,4 @@ export default async function EDTabsPage() {
       </Tabs>
     </div>
   );
-}
+};

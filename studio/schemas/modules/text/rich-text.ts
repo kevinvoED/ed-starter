@@ -1,4 +1,4 @@
-import { DocumentIcon } from "@sanity/icons";
+import { TextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import { portableText } from "@/schemas/common";
 
@@ -15,7 +15,7 @@ export default defineType({
     prepare() {
       return {
         title: "Rich Text",
-        media: DocumentIcon,
+        media: TextIcon,
       };
     },
   },

@@ -23,10 +23,10 @@ const DATA = [
   },
 ];
 
-export default async function EDAccordionPage() {
+export const StarterAccordion = () => {
   return (
-    <div className="grid-custom my-10 gap-y-25 p-custom">
-      <div className="col-span-4 col-start-5 flex flex-col gap-4">
+    <div className="grid-custom gap-20">
+      <div className="col-span-6 flex flex-col gap-4">
         <h2 className="font-bold">Basic Usage: Flex</h2>
         <Accordion
           display="flex"
@@ -35,16 +35,14 @@ export default async function EDAccordionPage() {
         >
           {DATA.map((item) => (
             <AccordionItem key={item.title} value={item.title}>
-              <AccordionTrigger className="gap-2">
-                {item.title}
-              </AccordionTrigger>
+              <AccordionTrigger>{item.title}</AccordionTrigger>
               <AccordionContent>{item.content}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
       </div>
 
-      <div className="col-span-4 col-start-5 flex flex-col gap-4">
+      <div className="col-span-6 flex flex-col gap-4">
         <h2 className="font-bold">Basic Usage: Grid</h2>
         <Accordion
           display="grid"
@@ -53,7 +51,7 @@ export default async function EDAccordionPage() {
         >
           {DATA.map((item, index) => (
             <AccordionItem key={item.title} value={item.title}>
-              <AccordionTrigger className="gap-2">
+              <AccordionTrigger>
                 <div className="col-span-1">0{index + 1}</div>
                 <span className="col-span-8 col-start-3"> {item.title}</span>
               </AccordionTrigger>
@@ -66,4 +64,4 @@ export default async function EDAccordionPage() {
       </div>
     </div>
   );
-}
+};

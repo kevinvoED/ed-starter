@@ -57,9 +57,9 @@ const invoices = [
   },
 ];
 
-export default async function EDTablePage() {
+export const StarterTable = () => {
   return (
-    <div className="grid-custom min-h-dvh p-custom">
+    <div className="grid-custom p-custom">
       <div className="col-span-7 col-start-3 py-20">
         <Table>
           <TableCaption>A list of your recent invoices.</TableCaption>
@@ -100,4 +100,4 @@ export default async function EDTablePage() {
       </div>
     </div>
   );
-}
+};

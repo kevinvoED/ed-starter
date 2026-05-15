@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import { fetchPageSlugData, fetchSanityOrganization } from "@/sanity/lib/fetch";
 import { OrganizationJSONLDScript } from "@/components/layout/JsonLD/Jsonld";
 import { Page } from "@/components/layout/Page/Page";
-import { Starter } from "@/components/modules/Starter";
 import { generatePageMetadata } from "@/lib/site/metadata";
 
 export async function generateMetadata() {
@@ -24,7 +23,6 @@ export default async function IndexPage() {
   return (
     <Page page={page} disableJsonLd>
       {organization && <OrganizationJSONLDScript organization={organization} />}
-      <Starter />
     </Page>
   );
 }

@@ -101,7 +101,7 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "group/accordion-trigger group-data-[display=grid]/accordion:grid-custom relative flex-1 border border-transparent text-left outline-none transition-all focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-5 group-data-[display=flex]/accordion:flex group-data-[display=flex]/accordion:items-center group-data-[display=flex]/accordion:justify-between",
+          "group/accordion-trigger group-data-[display=grid]/accordion:grid-custom relative flex-1 gap-2 border border-transparent py-2.5 text-left outline-none transition-all focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-5 group-data-[display=flex]/accordion:flex group-data-[display=flex]/accordion:items-center group-data-[display=flex]/accordion:justify-between",
 
           className,
         )}
@@ -137,7 +137,14 @@ function AccordionContent({
       className="group-data-[display=grid]/accordion:grid-custom overflow-hidden text-sm data-closed:animate-accordion-up data-open:animate-accordion-down group-data-[display=flex]/accordion:flex"
       {...props}
     >
-      <div className={cn(className)}>{children}</div>
+      <div
+        className={cn(
+          "pb-2.5 group-data-[display=grid]/accordion:col-span-full group-data-[display=grid]/accordion:col-start-3",
+          className,
+        )}
+      >
+        {children}
+      </div>
     </AccordionPrimitive.Panel>
   );
 }

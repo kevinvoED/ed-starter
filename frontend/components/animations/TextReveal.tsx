@@ -39,7 +39,12 @@ type TextRevealProps = {
   stagger?: number;
   ease?: string;
   className?: string;
-  boxColor?: "bg-white" | "bg-black" | "bg-neon";
+  boxColor?:
+    | "bg-white"
+    | "bg-black"
+    | "bg-neon"
+    | "bg-debug-red"
+    | "bg-debug-blue";
   triggerOnce?: boolean;
   children: React.ReactNode;
 };
@@ -146,7 +151,7 @@ export const TextReveal = ({
               duration: duration,
               ease: "power2.inOut",
             },
-            "-=100%",
+            "-=150%",
           );
         });
       },

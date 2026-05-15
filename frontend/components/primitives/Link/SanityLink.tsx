@@ -39,7 +39,7 @@ export const SanityLinkVariants = cva(
     defaultVariants: {
       variant: "primary",
       card: false,
-      width: "auto",
+      width: "fit",
       disabled: false,
     },
   },

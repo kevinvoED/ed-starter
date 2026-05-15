@@ -11,7 +11,7 @@ export const DesktopNavbar = ({ data }: { data: NAVBAR_QUERY_RESULT }) => {
   if (!data || data.length <= 0) return null;
 
   return (
-    <NavigationMenu.Root className="hidden min-w-max bg-white p-custom py-4 text-black md:block">
+    <NavigationMenu.Root className="hidden min-w-max bg-transparent p-custom py-4 text-white md:block">
       {data.map((item) => (
         <NavigationMenu.List
           key={item._key}
@@ -19,7 +19,13 @@ export const DesktopNavbar = ({ data }: { data: NAVBAR_QUERY_RESULT }) => {
         >
           <li key={item.logo.asset?._id}>
             <figure>
-              {item.logo && <SanityImage image={item.logo} sizes="100vw" />}
+              {item.logo && (
+                <SanityImage
+                  image={item.logo}
+                  sizes="100vw"
+                  className="invert"
+                />
+              )}
             </figure>
           </li>
 
@@ -47,7 +53,7 @@ export const DesktopNavbar = ({ data }: { data: NAVBAR_QUERY_RESULT }) => {
                 <NavigationMenu.Item key={mainLink._key}>
                   <NavigationMenu.Trigger className={triggerClassName}>
                     {mainLink.title && <PortableText value={mainLink.title} />}
-                    <NavigationMenu.Icon className="transition-transform duration-200 ease-in-out data-[popup-open]:rotate-180">
+                    <NavigationMenu.Icon className="transition-transform duration-200 ease-in-out data-popup-open:rotate-180">
                       <ChevronDownIcon />
                     </NavigationMenu.Icon>
                   </NavigationMenu.Trigger>

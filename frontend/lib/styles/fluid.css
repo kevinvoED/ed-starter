@@ -56,6 +56,7 @@
     --font-scale-80: calc(var(--tw-per-rem) * 20);
     --font-scale-96: calc(var(--tw-per-rem) * 24);
     --font-scale-120: calc(var(--tw-per-rem) * 30);
+    --font-scale-200: calc(var(--tw-per-rem) * 50);
   }
 }
 
@@ -155,6 +156,17 @@
  * HEADING TYPESETS
  * ---------------------
 */
+@utility type-heading-20050 {
+  --font-size: var(--font-scale-200);
+  --line-height: calc(224 / var(--base-font-size));
+  --letter-spacing: calc(-4 / var(--base-font-size));
+  font-size: calc(var(--font-size) * var(--to-rem));
+  line-height: calc(var(--line-height) * var(--to-rem));
+  letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
+  font-weight: var(--font-weight-500);
+  font-family: var(--font-heading);
+}
+
 @utility type-heading-9640 {
   --font-size: var(--font-scale-96);
   --line-height: calc(100 / var(--base-font-size));
@@ -255,6 +267,17 @@
  * ---------------------
 */
 
+@utility type-mono-1240 {
+  --font-size: var(--font-scale-12);
+  --line-height: calc(16 / var(--base-font-size));
+  --letter-spacing: calc(0.25 / var(--base-font-size));
+  font-size: calc(var(--font-size) * var(--to-rem));
+  line-height: calc(var(--line-height) * var(--to-rem));
+  letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
+  font-weight: var(--font-weight-400);
+  font-family: var(--font-mono);
+}
+
 @utility type-mono-1040 {
   --font-size: var(--font-scale-10);
   --line-height: calc(14 / var(--base-font-size));
@@ -278,6 +301,12 @@
  * HEADING FLUID TYPESETS
  * ---------------------
 */
+@utility to-type-heading-20050 {
+  --to-font-size: var(--font-scale-200);
+  --to-line-height: calc(200 / var(--base-font-size));
+  --to-letter-spacing: calc(-600 / var(--base-font-size));
+}
+
 @utility to-type-heading-9640 {
   --to-font-size: var(--font-scale-96);
   --to-line-height: calc(100 / var(--base-font-size));
@@ -336,6 +365,13 @@
  * MONO FLUID TYPESETS
  * ---------------------
 */
+
+@utility to-type-mono-1240 {
+  --to-font-size: var(--font-scale-12);
+  --to-line-height: calc(16 / var(--base-font-size));
+  --to-letter-spacing: calc(0.25 / var(--base-font-size));
+}
+
 @utility to-type-mono-1040 {
   --to-font-size: var(--font-scale-10);
   --to-line-height: calc(14 / var(--base-font-size));

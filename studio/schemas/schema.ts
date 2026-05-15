@@ -18,7 +18,7 @@ import footer from "@/schemas/documents/footer";
 import navbar from "@/schemas/documents/navbar";
 import organization from "@/schemas/documents/organization";
 import blogCategory from "@/schemas/pages/blog/blog-category";
-import contentTopic from "@/schemas/pages/content-topic";
+import contentTopic from "@/schemas/documents/content-topic";
 import banner from "@/schemas/documents/banner";
 // Objects
 import link from "@/schemas/objects/link";

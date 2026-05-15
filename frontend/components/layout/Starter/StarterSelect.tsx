@@ -4,9 +4,9 @@ import {
   NativeSelectOption,
 } from "@/components/primitives/Select/NativeSelect";
 
-export default async function EDSelectPage() {
+export const StarterSelect = () => {
   return (
-    <div className="grid-custom min-h-dvh place-items-center p-custom">
+    <div className="grid-custom place-items-center p-custom">
       <NativeSelect className="col-span-2">
         <NativeSelectOption value="">Select status</NativeSelectOption>
         <NativeSelectOption value="todo">Todo</NativeSelectOption>
@@ -24,8 +24,6 @@ export default async function EDSelectPage() {
           </NativeSelectOption>
         </NativeSelectOptGroup>
       </NativeSelect>
-
-      <div className="min-h-screen"></div>
     </div>
   );
-}
+};
