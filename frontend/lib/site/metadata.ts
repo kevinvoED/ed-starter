@@ -4,6 +4,7 @@ import type {
   GET_CONTENT_TYPE_SLUG_QUERY_RESULT,
   PAGE_QUERY_RESULT,
 } from "@/sanity.types";
+import { toPlainText } from "@portabletext/react";
 
 const isProduction = process.env.NEXT_PUBLIC_SITE_ENV === "production";
 
@@ -57,9 +58,17 @@ export function generatePageMetadata(
 
   const indexRules = page?.meta?.noindex ? "noindex" : "index, follow";
 
+  const formattedTitle = Array.isArray(page?.meta?.title)
+    ? toPlainText(page?.meta?.title)
+    : String(page?.meta?.title);
+
+  const formattedDescription = Array.isArray(page?.meta?.description)
+    ? toPlainText(page?.meta?.description)
+    : String(page?.meta?.description);
+
   return {
-    title: String(page?.meta?.title),
-    description: page?.meta?.description,
+    title: formattedTitle,
+    description: formattedDescription,
     icons: {
       icon: [
         {
