@@ -7,6 +7,7 @@ import { ContentPagination } from "@/components/layout/Content/ContentPagination
 import { ContentTopicFilter } from "@/components/layout/Content/ContentTopicFilter";
 import { Page } from "@/components/layout/Page/Page";
 import { Eyebrow } from "@/components/primitives/Eyebrow/Eyebrow";
+import { SanityImage } from "@/components/primitives/Image/SanityImage";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
 import { generatePageMetadata } from "@/lib/site/metadata";
@@ -66,38 +67,52 @@ export default async function BlogIndexPage({
             <li key={post._id} className="col-span-3">
               <Transition
                 delay={index * 0.15}
-                className="flex flex-col gap-y-50 rounded border border-black/5 bg-black/5 p-4 text-black"
+                className="flex flex-col gap-3 overflow-hidden rounded-lg border border-black/5 bg-black/5 text-black"
               >
-                <div className="flex gap-2">
-                  {post._createdAt && (
-                    <Eyebrow variant="filter">
-                      {new Date(post._createdAt).toLocaleDateString()}
-                    </Eyebrow>
-                  )}
+                {post.image && (
+                  <SanityImage
+                    image={post.image}
+                    width={100}
+                    height={100}
+                    sizes="(max-width: 768px) 100vw, 75vw"
+                    className="overflow-hidden rounded-tl-lg rounded-tr-lg"
+                  />
+                )}
+                <div className="flex flex-col gap-4 p-5">
+                  <div className="flex gap-2">
+                    {post._createdAt && (
+                      <Eyebrow variant="filter">
+                        {new Date(post._createdAt).toLocaleDateString()}
+                      </Eyebrow>
+                    )}
 
-                  {post.category?.map(({ _id, title }) => (
-                    <Eyebrow key={_id} variant="filter">
-                      <PortableText value={title} />
-                    </Eyebrow>
-                  ))}
+                    {post.category?.map(({ _id, title }) => (
+                      <Eyebrow key={_id} variant="filter">
+                        <PortableText value={title} />
+                      </Eyebrow>
+                    ))}
 
-                  {post.contentTopic?.map(({ _id, title }) => (
-                    <Eyebrow key={_id} variant="filter">
-                      <PortableText value={title} key={_id} />
-                    </Eyebrow>
-                  ))}
+                    {post.contentTopic?.map(({ _id, title }) => (
+                      <Eyebrow key={_id} variant="filter">
+                        <PortableText value={title} key={_id} />
+                      </Eyebrow>
+                    ))}
+                  </div>
+
+                  <SanityLink
+                    id="cta"
+                    href={post.href}
+                    variant="ghost"
+                    card
+                    hasArrow={false}
+                    width="fit"
+                  >
+                    <PortableText
+                      value={post.title}
+                      className="type-body-1650"
+                    />
+                  </SanityLink>
                 </div>
-
-                <SanityLink
-                  id="cta"
-                  href={post.href}
-                  variant="ghost"
-                  card
-                  hasArrow={false}
-                  width="fit"
-                >
-                  <PortableText value={post.title} className="type-body-1650" />
-                </SanityLink>
               </Transition>
             </li>
           ))}

@@ -45,7 +45,7 @@ export const ContentPagination = ({
         />
       )}
 
-      <div className={cn("flex gap-4 p-custom", className)}>
+      <div className={cn("flex gap-4 p-custom pb-30", className)}>
         {currentPage > 1 && (
           <SanityLink
             id="cta"

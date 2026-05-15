@@ -2,6 +2,7 @@ import { PlayIcon, ThListIcon } from "@sanity/icons";
 import { defineArrayMember, defineType } from "sanity";
 import { YouTubePreview } from "@/components/youtube-preview";
 import {
+  image,
   ptAnnotationHighlightFields,
   ptAnnotationLinkFields,
   ptDecoratorFields,
@@ -42,15 +43,7 @@ export default defineType({
       },
     }),
     defineArrayMember({
-      type: "image",
-      options: { hotspot: true },
-      fields: [
-        {
-          name: "alt",
-          type: "string",
-          title: "Alternative Text",
-        },
-      ],
+      ...image,
     }),
     defineArrayMember({
       name: "youtube",

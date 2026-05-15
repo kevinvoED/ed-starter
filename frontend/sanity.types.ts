@@ -166,6 +166,7 @@ export type TextExample = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+    prompt?: string;
     _type: "image";
   };
   link?: Array<
@@ -255,6 +256,7 @@ export type TableExample = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+    prompt?: string;
     _type: "image";
   };
   link?: Array<
@@ -344,6 +346,7 @@ export type ListExample = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+    prompt?: string;
     _type: "image";
   };
   link?: Array<
@@ -433,6 +436,7 @@ export type DriverExample = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+    prompt?: string;
     _type: "image";
   };
   link?: Array<
@@ -522,6 +526,7 @@ export type CardExample = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+    prompt?: string;
     _type: "image";
   };
   link?: Array<
@@ -611,6 +616,7 @@ export type ImageExample = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+    prompt?: string;
     _type: "image";
   };
   link?: Array<
@@ -644,6 +650,7 @@ export type FullImage = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+    prompt?: string;
     _type: "image";
   };
 };
@@ -704,6 +711,7 @@ export type Marquee = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+    prompt?: string;
     _type: "image";
     _key: string;
   }>;
@@ -794,6 +802,7 @@ export type HeroPrimary = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+    prompt?: string;
     _type: "image";
   };
   content?: PortableText;
@@ -860,6 +869,7 @@ export type PortableText = Array<
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
       alt?: string;
+      prompt?: string;
       _type: "image";
       _key: string;
     }
@@ -1170,6 +1180,7 @@ export type Footer = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+    prompt?: string;
     _type: "image";
   };
   largeLogo: {
@@ -1178,6 +1189,7 @@ export type Footer = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+    prompt?: string;
     _type: "image";
   };
   actionlink?: Array<
@@ -1209,6 +1221,7 @@ export type Navbar = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+    prompt?: string;
     _type: "image";
   };
   mainLinks?: Array<
@@ -1805,6 +1818,7 @@ export type BlogPost = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+    prompt?: string;
     _type: "image";
   };
   author?: AuthorReference;
@@ -2074,6 +2088,7 @@ export type CaseStudy = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+    prompt?: string;
     _type: "image";
   };
   author?: AuthorReference;
@@ -2141,6 +2156,7 @@ export type Author = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+    prompt?: string;
     _type: "image";
   };
   orderRank?: string;
@@ -2257,6 +2273,152 @@ export type CreatedAt = {
   placeholder?: string;
 };
 
+export type SanityAssistInstructionTask = {
+  _type: "sanity.assist.instructionTask";
+  path?: string;
+  instructionKey?: string;
+  started?: string;
+  updated?: string;
+  info?: string;
+};
+
+export type SanityAssistTaskStatus = {
+  _type: "sanity.assist.task.status";
+  tasks?: Array<
+    {
+      _key: string;
+    } & SanityAssistInstructionTask
+  >;
+};
+
+export type SanityAssistSchemaTypeAnnotations = {
+  _type: "sanity.assist.schemaType.annotations";
+  title?: string;
+  fields?: Array<
+    {
+      _key: string;
+    } & SanityAssistSchemaTypeField
+  >;
+};
+
+export type SanityAssistOutputType = {
+  _type: "sanity.assist.output.type";
+  type?: string;
+};
+
+export type SanityAssistOutputField = {
+  _type: "sanity.assist.output.field";
+  path?: string;
+};
+
+export type AssistInstructionContextReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "assist.instruction.context";
+};
+
+export type SanityAssistInstructionContext = {
+  _type: "sanity.assist.instruction.context";
+  reference: AssistInstructionContextReference;
+};
+
+export type AssistInstructionContext = {
+  _id: string;
+  _type: "assist.instruction.context";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  context?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
+export type SanityAssistInstructionUserInput = {
+  _type: "sanity.assist.instruction.userInput";
+  message: string;
+  description?: string;
+};
+
+export type SanityAssistInstructionPrompt = Array<{
+  children?: Array<
+    | {
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }
+    | ({
+        _key: string;
+      } & SanityAssistInstructionFieldRef)
+    | ({
+        _key: string;
+      } & SanityAssistInstructionContext)
+    | ({
+        _key: string;
+      } & SanityAssistInstructionUserInput)
+  >;
+  style?: "normal";
+  listItem?: never;
+  markDefs?: null;
+  level?: number;
+  _type: "block";
+  _key: string;
+}>;
+
+export type SanityAssistInstructionFieldRef = {
+  _type: "sanity.assist.instruction.fieldRef";
+  path?: string;
+};
+
+export type SanityAssistInstruction = {
+  _type: "sanity.assist.instruction";
+  prompt?: SanityAssistInstructionPrompt;
+  icon?: string;
+  title?: string;
+  userId?: string;
+  createdById?: string;
+  output?: Array<
+    | ({
+        _key: string;
+      } & SanityAssistOutputField)
+    | ({
+        _key: string;
+      } & SanityAssistOutputType)
+  >;
+};
+
+export type SanityAssistSchemaTypeField = {
+  _type: "sanity.assist.schemaType.field";
+  path?: string;
+  instructions?: Array<
+    {
+      _key: string;
+    } & SanityAssistInstruction
+  >;
+};
+
+export type MediaTag = {
+  _id: string;
+  _type: "media.tag";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: Slug;
+};
+
 export type Content = Array<{
   children?: Array<{
     marks?: Array<string>;
@@ -2331,15 +2493,6 @@ export type SimplerColor = {
   _type: "simplerColor";
   label?: string;
   value?: string;
-};
-
-export type MediaTag = {
-  _id: string;
-  _type: "media.tag";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: Slug;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -2490,6 +2643,20 @@ export type AllSanitySchemaTypes =
   | PlatformChild
   | PlatformIndex
   | CreatedAt
+  | SanityAssistInstructionTask
+  | SanityAssistTaskStatus
+  | SanityAssistSchemaTypeAnnotations
+  | SanityAssistOutputType
+  | SanityAssistOutputField
+  | AssistInstructionContextReference
+  | SanityAssistInstructionContext
+  | AssistInstructionContext
+  | SanityAssistInstructionUserInput
+  | SanityAssistInstructionPrompt
+  | SanityAssistInstructionFieldRef
+  | SanityAssistInstruction
+  | SanityAssistSchemaTypeField
+  | MediaTag
   | Content
   | RichTableBlock
   | ColumnHeader
@@ -2499,7 +2666,6 @@ export type AllSanitySchemaTypes =
   | HighlightColor
   | TextColor
   | SimplerColor
-  | MediaTag
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
@@ -2648,6 +2814,7 @@ export type NAVBAR_QUERY_RESULT = Array<{
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+    prompt?: string;
     _type: "image";
   };
   mainLinks: Array<
@@ -2909,6 +3076,7 @@ export type NAVBAR_QUERY_RESULT = Array<{
                   hotspot?: SanityImageHotspot;
                   crop?: SanityImageCrop;
                   alt?: string;
+                  prompt?: string;
                   _type: "image";
                 };
               }> | null;
@@ -3122,6 +3290,7 @@ export type PAGE_QUERY_RESULT = {
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
           alt?: string;
+          prompt?: string;
           _type: "image";
         };
       }
@@ -3257,6 +3426,7 @@ export type PAGE_QUERY_RESULT = {
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
           alt?: string;
+          prompt?: string;
           _type: "image";
         };
       }
@@ -3279,6 +3449,7 @@ export type PAGE_QUERY_RESULT = {
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
           alt?: string;
+          prompt?: string;
           _type: "image";
         } | null;
       }
@@ -3427,6 +3598,7 @@ export type PAGE_QUERY_RESULT = {
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
           alt?: string;
+          prompt?: string;
           _type: "image";
         };
         content: Array<
@@ -3484,6 +3656,7 @@ export type PAGE_QUERY_RESULT = {
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
               _key: string;
               markDefs: null;
@@ -3675,6 +3848,7 @@ export type PAGE_QUERY_RESULT = {
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
           alt?: string;
+          prompt?: string;
           _type: "image";
         };
       }
@@ -3810,6 +3984,7 @@ export type PAGE_QUERY_RESULT = {
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
           alt?: string;
+          prompt?: string;
           _type: "image";
         };
       }
@@ -3886,6 +4061,7 @@ export type PAGE_QUERY_RESULT = {
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
           alt?: string;
+          prompt?: string;
           _type: "image";
           _key: string;
         }> | null;
@@ -3948,6 +4124,7 @@ export type PAGE_QUERY_RESULT = {
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
               _key: string;
               markDefs: null;
@@ -4145,6 +4322,7 @@ export type PAGE_QUERY_RESULT = {
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
           alt?: string;
+          prompt?: string;
           _type: "image";
         };
       }
@@ -4280,6 +4458,7 @@ export type PAGE_QUERY_RESULT = {
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
           alt?: string;
+          prompt?: string;
           _type: "image";
         };
       }
@@ -4306,7 +4485,7 @@ export type PAGES_SLUGS_QUERY_RESULT = Array<{
 // Query: fn fn::img($image) = $image {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::imgs($images) = $images[] {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::logo($logo) = $logo {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::link($link) = $link[] {      ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )  };    fn fn::ptPlain($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "link" => {        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };    fn fn::pt($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "link" => {        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    },      _type == "richTable" => {      ...,        _type,        _key,        hasColumnTitles,        hasRowTitles,        columnHeaders[]{          _key,          _type,          cellIndex,          title,        },        rows[]{          _key,          _type,          cells[]{            _key,            _type,            content[]{              ...,              markDefs[]{                ...,                _type == "link" => {                  _type,                  _key,                  href,                },              },            },          },        },      },  };  *[_type == $contentType][0]{    _type,    slug,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),        meta{    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "blog-index" => "/blog",      ^._type == "blog-post" => "/blog/" + ^.slug.current,      ^._type == "case-studies-index" => "/case-studies",      ^._type == "case-study" => "/case-studies/" + ^.slug.current,      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      "/" + ^.slug.current    ),    "image": coalesce(      image.asset->url + "?w=1200&h=630&fit=max",      ^.image.asset->url + "?w=1200&h=630&fit=max",      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },      modules[]{      _type == "global-module" => moduleRef->module[0]{    _type,    "_key": ^._key,      _type == "card-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },      _type == "driver-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },  },      _type == "spacer" => {    _type,    _key,    spacing,    anchorId  },      _type == "hero-primary" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),      "content": fn::pt(content),  },      _type == "marquee" => {    _type,    _key,    variant,    enableVelocity,    imageType,    "items" : select(variant == "text" => items[]{      _key,        "title": fn::ptPlain(title),    }),      "images": fn::imgs(images)  },      _type == "rich-text" => {    _type,    _key,      "content": fn::pt(content),  },      _type == "full-image" => {    _type,    _key,      "image": fn::img(image),  },      _type == "full-video" => {    _type,    _key,     video{      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  }  },    // Remove example modules      _type == "card-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },      _type == "driver-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },      _type == "list-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },      _type == "table-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },      _type == "text-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },      _type == "image-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "link": fn::link(link),      "image": fn::img(image),  },  },    "filters": {      "defaults": {        "label": "All", // Also used for as nuqs' default value for filtering        "count": count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  )]), // Total number of posts      },      "categories": {        "label": select(          $contentType == "blog-index" => "Field of Study",          $contentType == "case-studies-index" => "Research Area",          "Category" // Default fallback if specific content types don't have special labels        ),        "items": *[_type ==  select(          $contentType == "blog-index" => "blog-category") && count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && references(^._id)]) > 0] {            _id,            slug,              "title": fn::ptPlain(title),            "count": count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && references(^._id)])         }       },       "topics": {        "label": select(          $contentType == "case-studies-index" => "Industry",          "Topic" // Default fallback if specific content types don't have special labels        ),        "items": *[_type == "content-topic" &&        count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && references(^._id)]) > 0] {          _id,          slug,            "title": fn::ptPlain(title),          "count": count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && references(^._id)])        },       },    },    "pagination": {      "totalPages": round(count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)]) / 2),      "scrollTargetId": select(        _type == "case-studies-index" => "case-studies-posts-list",        _type == "blog-index" => "blog-posts-list",        "posts-list"      ),    },    "posts": *[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {      _id,      _type,      _createdAt,      publishedDate,      slug,        "link": fn::link(link),        "title": fn::ptPlain(title),        "image": fn::img(image),        "description": fn::ptPlain(description),      "href": select(        _type == "case-study" => "/case-studies/" + slug.current,        _type == "blog-post" => "/blog/" + slug.current,      ),      category[]->{        _id,          "title": fn::ptPlain(title),      },      contentTopic[]->{        _id,          "title": fn::ptPlain(title),      },    }  }
 export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
   | {
-      _type: "author";
+      _type: "assist.instruction.context";
       slug: null;
       title: null;
       description: null;
@@ -4528,6 +4707,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -4775,6 +4955,585 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
+              _type: "image";
+            };
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }>;
+            href: string;
+            category: null;
+            contentTopic: Array<{
+              _id: string;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+            }> | null;
+          }
+      >;
+    }
+  | {
+      _type: "author";
+      slug: null;
+      title: null;
+      description: null;
+      meta: null;
+      modules: null;
+      filters: {
+        defaults: {
+          label: "All";
+          count: number;
+        };
+        categories: {
+          label: "Category" | "Field of Study" | "Research Area";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }>;
+            count: number;
+          }>;
+        };
+        topics: {
+          label: "Industry" | "Topic";
+          items: Array<{
+            _id: string;
+            slug: Slug;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }>;
+            count: number;
+          }>;
+        };
+      };
+      pagination: {
+        totalPages: number;
+        scrollTargetId: "posts-list";
+      };
+      posts: Array<
+        | {
+            _id: string;
+            _type: "blog-post";
+            _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }>;
+            image: {
+              asset: {
+                _id: string;
+                url: string;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              prompt?: string;
+              _type: "image";
+            };
+            description: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }>;
+            href: string;
+            category: Array<{
+              _id: string;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+            }> | null;
+            contentTopic: Array<{
+              _id: string;
+              title: Array<{
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "normal";
+                listItem?: never;
+                markDefs: Array<
+                  | {
+                      _key: string;
+                      _type: "highlightColor";
+                      label?: string;
+                      value?: string;
+                    }
+                  | {
+                      type: "external" | "internal";
+                      internalLink?:
+                        | BlogIndexReference
+                        | BlogPostReference
+                        | CaseStudiesIndexReference
+                        | CaseStudyReference
+                        | PageReference
+                        | PlatformChildReference
+                        | PlatformIndexReference;
+                      href:
+                        | string
+                        | "/"
+                        | "/blog"
+                        | "/case-studies"
+                        | "/platform"
+                        | null;
+                      openInNewTab?: boolean;
+                      _type: "link";
+                      _key: string;
+                    }
+                  | {
+                      _key: string;
+                      _type: "textColor";
+                      label?: string;
+                      value?: string;
+                    }
+                > | null;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }>;
+            }> | null;
+          }
+        | {
+            _id: string;
+            _type: "case-study";
+            _createdAt: string;
+            publishedDate: string | null;
+            slug: Slug;
+            link: Array<{
+              _key: string;
+              _type: "link";
+              type: "external" | "internal";
+              label: string;
+              internalLink?:
+                | BlogIndexReference
+                | BlogPostReference
+                | CaseStudiesIndexReference
+                | CaseStudyReference
+                | PageReference
+                | PlatformChildReference
+                | PlatformIndexReference;
+              href:
+                | string
+                | "/"
+                | "/blog"
+                | "/case-studies"
+                | "/platform"
+                | null;
+              openInNewTab?: boolean;
+              anchorTag?: string;
+            }> | null;
+            title: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "normal";
+              listItem?: never;
+              markDefs: Array<
+                | {
+                    _key: string;
+                    _type: "highlightColor";
+                    label?: string;
+                    value?: string;
+                  }
+                | {
+                    type: "external" | "internal";
+                    internalLink?:
+                      | BlogIndexReference
+                      | BlogPostReference
+                      | CaseStudiesIndexReference
+                      | CaseStudyReference
+                      | PageReference
+                      | PlatformChildReference
+                      | PlatformIndexReference;
+                    href:
+                      | string
+                      | "/"
+                      | "/blog"
+                      | "/case-studies"
+                      | "/platform"
+                      | null;
+                    openInNewTab?: boolean;
+                    _type: "link";
+                    _key: string;
+                  }
+                | {
+                    _key: string;
+                    _type: "textColor";
+                    label?: string;
+                    value?: string;
+                  }
+              > | null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }>;
+            image: {
+              asset: {
+                _id: string;
+                url: string;
+                metadata: {
+                  lqip: string | null;
+                  dimensions: {
+                    width: number;
+                    height: number;
+                  } | null;
+                } | null;
+              } | null;
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -5198,6 +5957,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -5445,6 +6205,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -5821,6 +6582,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -6068,6 +6830,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -6456,6 +7219,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -6597,6 +7361,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -6619,6 +7384,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             } | null;
           }
@@ -6773,6 +7539,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             content: Array<
@@ -6830,6 +7597,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   hotspot?: SanityImageHotspot;
                   crop?: SanityImageCrop;
                   alt?: string;
+                  prompt?: string;
                   _type: "image";
                   _key: string;
                   markDefs: null;
@@ -7027,6 +7795,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -7168,6 +7937,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -7244,6 +8014,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
               _key: string;
             }> | null;
@@ -7306,6 +8077,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   hotspot?: SanityImageHotspot;
                   crop?: SanityImageCrop;
                   alt?: string;
+                  prompt?: string;
                   _type: "image";
                   _key: string;
                   markDefs: null;
@@ -7509,6 +8281,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -7650,6 +8423,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -7871,6 +8645,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -8118,6 +8893,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -8506,6 +9282,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -8647,6 +9424,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -8669,6 +9447,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             } | null;
           }
@@ -8823,6 +9602,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             content: Array<
@@ -8880,6 +9660,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   hotspot?: SanityImageHotspot;
                   crop?: SanityImageCrop;
                   alt?: string;
+                  prompt?: string;
                   _type: "image";
                   _key: string;
                   markDefs: null;
@@ -9077,6 +9858,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -9218,6 +10000,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -9294,6 +10077,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
               _key: string;
             }> | null;
@@ -9356,6 +10140,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   hotspot?: SanityImageHotspot;
                   crop?: SanityImageCrop;
                   alt?: string;
+                  prompt?: string;
                   _type: "image";
                   _key: string;
                   markDefs: null;
@@ -9559,6 +10344,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -9700,6 +10486,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -9921,6 +10708,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -10168,6 +10956,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -10556,6 +11345,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -10697,6 +11487,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -10719,6 +11510,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             } | null;
           }
@@ -10873,6 +11665,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             content: Array<
@@ -10930,6 +11723,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   hotspot?: SanityImageHotspot;
                   crop?: SanityImageCrop;
                   alt?: string;
+                  prompt?: string;
                   _type: "image";
                   _key: string;
                   markDefs: null;
@@ -11127,6 +11921,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -11268,6 +12063,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -11344,6 +12140,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
               _key: string;
             }> | null;
@@ -11406,6 +12203,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   hotspot?: SanityImageHotspot;
                   crop?: SanityImageCrop;
                   alt?: string;
+                  prompt?: string;
                   _type: "image";
                   _key: string;
                   markDefs: null;
@@ -11609,6 +12407,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -11750,6 +12549,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -11971,6 +12771,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -12218,6 +13019,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -12606,6 +13408,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -12747,6 +13550,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -12769,6 +13573,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             } | null;
           }
@@ -12923,6 +13728,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             content: Array<
@@ -12980,6 +13786,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   hotspot?: SanityImageHotspot;
                   crop?: SanityImageCrop;
                   alt?: string;
+                  prompt?: string;
                   _type: "image";
                   _key: string;
                   markDefs: null;
@@ -13177,6 +13984,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -13318,6 +14126,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -13394,6 +14203,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
               _key: string;
             }> | null;
@@ -13456,6 +14266,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   hotspot?: SanityImageHotspot;
                   crop?: SanityImageCrop;
                   alt?: string;
+                  prompt?: string;
                   _type: "image";
                   _key: string;
                   markDefs: null;
@@ -13659,6 +14470,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -13800,6 +14612,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -14021,6 +14834,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -14268,6 +15082,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -14597,6 +15412,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -14844,6 +15660,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -15220,6 +16037,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -15467,6 +16285,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -15796,6 +16615,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -16043,6 +16863,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -16372,6 +17193,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -16619,6 +17441,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -16948,6 +17771,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -17195,6 +18019,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -17524,6 +18349,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -17771,6 +18597,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -18100,6 +18927,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -18347,6 +19175,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -18604,6 +19433,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -18745,6 +19575,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -18767,6 +19598,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             } | null;
           }
@@ -18921,6 +19753,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             content: Array<
@@ -18978,6 +19811,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   hotspot?: SanityImageHotspot;
                   crop?: SanityImageCrop;
                   alt?: string;
+                  prompt?: string;
                   _type: "image";
                   _key: string;
                   markDefs: null;
@@ -19175,6 +20009,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -19316,6 +20151,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -19392,6 +20228,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
               _key: string;
             }> | null;
@@ -19454,6 +20291,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   hotspot?: SanityImageHotspot;
                   crop?: SanityImageCrop;
                   alt?: string;
+                  prompt?: string;
                   _type: "image";
                   _key: string;
                   markDefs: null;
@@ -19657,6 +20495,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -19798,6 +20637,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -20019,6 +20859,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -20266,6 +21107,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -20523,6 +21365,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -20664,6 +21507,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -20686,6 +21530,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             } | null;
           }
@@ -20840,6 +21685,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             content: Array<
@@ -20897,6 +21743,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   hotspot?: SanityImageHotspot;
                   crop?: SanityImageCrop;
                   alt?: string;
+                  prompt?: string;
                   _type: "image";
                   _key: string;
                   markDefs: null;
@@ -21094,6 +21941,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -21235,6 +22083,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -21311,6 +22160,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
               _key: string;
             }> | null;
@@ -21373,6 +22223,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   hotspot?: SanityImageHotspot;
                   crop?: SanityImageCrop;
                   alt?: string;
+                  prompt?: string;
                   _type: "image";
                   _key: string;
                   markDefs: null;
@@ -21576,6 +22427,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -21717,6 +22569,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -21938,6 +22791,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -22185,6 +23039,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -22442,6 +23297,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -22583,6 +23439,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -22605,6 +23462,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             } | null;
           }
@@ -22759,6 +23617,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             content: Array<
@@ -22816,6 +23675,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   hotspot?: SanityImageHotspot;
                   crop?: SanityImageCrop;
                   alt?: string;
+                  prompt?: string;
                   _type: "image";
                   _key: string;
                   markDefs: null;
@@ -23013,6 +23873,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -23154,6 +24015,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -23230,6 +24092,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
               _key: string;
             }> | null;
@@ -23292,6 +24155,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   hotspot?: SanityImageHotspot;
                   crop?: SanityImageCrop;
                   alt?: string;
+                  prompt?: string;
                   _type: "image";
                   _key: string;
                   markDefs: null;
@@ -23495,6 +24359,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -23636,6 +24501,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -23857,6 +24723,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -24104,6 +24971,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -24433,6 +25301,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -24680,6 +25549,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -25009,6 +25879,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -25256,6 +26127,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             description: Array<{
@@ -25557,6 +26429,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -25698,6 +26571,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -25720,6 +26594,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             } | null;
           }
@@ -25874,6 +26749,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             content: Array<
@@ -25931,6 +26807,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                   hotspot?: SanityImageHotspot;
                   crop?: SanityImageCrop;
                   alt?: string;
+                  prompt?: string;
                   _type: "image";
                   _key: string;
                   markDefs: null;
@@ -26128,6 +27005,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -26269,6 +27147,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -26345,6 +27224,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
               _key: string;
             }> | null;
@@ -26407,6 +27287,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                   hotspot?: SanityImageHotspot;
                   crop?: SanityImageCrop;
                   alt?: string;
+                  prompt?: string;
                   _type: "image";
                   _key: string;
                   markDefs: null;
@@ -26610,6 +27491,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -26751,6 +27633,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -26868,6 +27751,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         alt?: string;
+        prompt?: string;
         _type: "image";
       };
       content: Array<
@@ -26925,6 +27809,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             hotspot?: SanityImageHotspot;
             crop?: SanityImageCrop;
             alt?: string;
+            prompt?: string;
             _type: "image";
             _key: string;
             markDefs: null;
@@ -27174,6 +28059,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -27315,6 +28201,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -27337,6 +28224,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             } | null;
           }
@@ -27491,6 +28379,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
             content: Array<
@@ -27548,6 +28437,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                   hotspot?: SanityImageHotspot;
                   crop?: SanityImageCrop;
                   alt?: string;
+                  prompt?: string;
                   _type: "image";
                   _key: string;
                   markDefs: null;
@@ -27745,6 +28635,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -27886,6 +28777,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -27962,6 +28854,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
               _key: string;
             }> | null;
@@ -28024,6 +28917,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                   hotspot?: SanityImageHotspot;
                   crop?: SanityImageCrop;
                   alt?: string;
+                  prompt?: string;
                   _type: "image";
                   _key: string;
                   markDefs: null;
@@ -28227,6 +29121,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -28368,6 +29263,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               alt?: string;
+              prompt?: string;
               _type: "image";
             };
           }
@@ -28485,6 +29381,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         alt?: string;
+        prompt?: string;
         _type: "image";
       };
       content: Array<
@@ -28542,6 +29439,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             hotspot?: SanityImageHotspot;
             crop?: SanityImageCrop;
             alt?: string;
+            prompt?: string;
             _type: "image";
             _key: string;
             markDefs: null;

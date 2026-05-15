@@ -1,4 +1,5 @@
 import type { StructureBuilder, StructureResolver } from "sanity/structure";
+import { contextDocumentTypeName } from "@sanity/assist";
 import {
   BookmarkIcon,
   CogIcon,
@@ -248,4 +249,5 @@ export const structure: StructureResolver = (S: StructureBuilder, context) =>
               .documentId(schemaType),
           ),
       ),
+      S.documentTypeListItem(contextDocumentTypeName),
     ]);

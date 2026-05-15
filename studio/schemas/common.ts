@@ -268,18 +268,32 @@ export const image = defineField({
   description: "Select or upload an image.",
   options: {
     hotspot: true,
-    collapsed: false,
     accept: "image/jpeg, image/png, image/webp, image/svg+xml",
+    aiAssist: {
+      imageInstructionField: "prompt",
+      imageDescriptionField: "alt",
+    },
   },
   fields: [
-    {
+    defineField({
       name: "alt",
       title: "Alternative Text",
-      type: "string",
+      type: "text",
+      rows: 2,
       description: "Optional. Used for accessibility and SEO.",
       validation: (Rule) =>
-        Rule.max(150).error("Alt text must be less than 150 characters."),
-    },
+        Rule.max(200).error("Alt text must be less than 200 characters."),
+    }),
+    defineField({
+      name: "prompt",
+      title: "Image Prompt",
+      type: "text",
+      rows: 5,
+      description:
+        "Write a prompt to describe the image you want to generate with AI Assist.",
+      validation: (Rule) =>
+        Rule.max(400).error("Prompt must be less than 400 characters."),
+    }),
   ],
   validation: (Rule) => Rule.required(),
 });

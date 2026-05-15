@@ -1,5 +1,6 @@
 "use client";
 
+import { assist } from "@sanity/assist";
 import { dashboardTool } from "@sanity/dashboard";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
@@ -65,10 +66,11 @@ export default defineConfig({
   plugins: [
     structureTool({ structure, defaultDocumentNode }),
     visionTool({ defaultApiVersion: SANITY_STUDIO_API_VERSION }),
-    media(),
     dashboardTool(deploymentOptions),
     simplerColorInput(simplerColorInputOptions),
     richTablePlugin({}),
+    media(),
+    assist(),
   ],
   releases: {
     enabled: false,
