@@ -139,6 +139,27 @@ export const modules = defineField({
       ],
     },
   },
+  validation: (Rule) =>
+    Rule.custom((items: Array<{ _type?: string }> | undefined) => {
+      // Custom validation to ensure there is only one Hero module per page
+      if (!items || !Array.isArray(items)) return true;
+
+      const typeIncludesHero = (type: string | undefined) =>
+        type?.toLowerCase().includes("hero");
+
+      const numberOfHeroModules = items.filter((item) =>
+        typeIncludesHero(item._type),
+      ).length;
+
+      if (numberOfHeroModules > 1) {
+        return "There can only be a single Hero module per page.";
+      }
+
+      if (numberOfHeroModules === 1 && !typeIncludesHero(items[0]._type)) {
+        return "The Hero module must be the first item in the modules list.";
+      }
+      return true;
+    }),
 });
 
 export const pageTitle = defineField({
