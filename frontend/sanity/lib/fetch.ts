@@ -151,6 +151,7 @@ export const fetchContentTypeIndexPageData = async ({
       page,
       offset,
       end,
+      limit,
     },
   });
 

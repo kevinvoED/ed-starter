@@ -7,7 +7,6 @@ import { ContentListing } from "@/components/layout/Content/ContentListing";
 import { ContentPagination } from "@/components/layout/Content/ContentPagination";
 import { Page } from "@/components/layout/Page/Page";
 import { generatePageMetadata } from "@/lib/site/metadata";
-import { createPageUrl } from "@/lib/utils/pagination";
 
 const CONTENT_TYPE: ContentType = "case-studies-index";
 
@@ -57,9 +56,6 @@ export default async function BlogIndexPage({
       <ContentPagination
         pagination={data?.pagination}
         currentPage={page ? parseInt(page) : 1}
-        createPageUrl={(pageNum) =>
-          createPageUrl({ route: "case-studies", pageNum, category, topic })
-        }
       />
     </Page>
   );

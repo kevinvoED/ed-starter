@@ -159,7 +159,7 @@ export const GET_CONTENT_TYPE_INDEX_QUERY = defineQuery(`
        },
     },
     "pagination": {
-      "totalPages": round(count(*[_type == ${selectContentType} && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)]) / 2),
+      "totalPages": (count(*[_type == ${selectContentType} && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)]) / $limit),
       "scrollTargetId": select(
         _type == "case-studies-index" => "case-studies-posts-list",
         _type == "blog-index" => "blog-posts-list",
