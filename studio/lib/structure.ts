@@ -12,7 +12,9 @@ import {
   UserIcon,
 } from "@sanity/icons";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
+import { startCase } from "es-toolkit";
 import { defaultDocumentNode } from "@/lib/default-document-node";
+import { globalModuleBlocks } from "@/schemas/moduleTypes";
 
 const parentChildPageItems = [
   {
@@ -48,11 +50,6 @@ const resourceItems = [
 ];
 
 const referenceItems = [
-  {
-    title: "Global Modules",
-    schemaType: "global-module-library",
-    icon: EarthGlobeIcon,
-  },
   {
     title: "Authors",
     schemaType: "author",
@@ -216,6 +213,31 @@ export const structure: StructureResolver = (S: StructureBuilder, context) =>
             ),
       ),
       S.divider().title("References"),
+      S.listItem()
+        .title("Global Modules")
+        .icon(EarthGlobeIcon)
+        .child(
+          S.list()
+            .title("Global Modules")
+            .items(
+              globalModuleBlocks.map(({ type }) =>
+                S.listItem()
+                  .title(startCase(type))
+                  .icon(FolderIcon)
+                  .child(
+                    S.documentTypeList("global-module-library")
+                      .title(startCase(type))
+                      .filter(
+                        '_type == "global-module-library" && module[0]._type == $type',
+                      )
+                      .params({ type })
+                      .defaultOrdering([
+                        { field: "_createdAt", direction: "desc" },
+                      ]),
+                  ),
+              ),
+            ),
+        ),
       ...referenceItems.map(({ title, icon, schemaType }) =>
         orderableDocumentListDeskItem({
           type: schemaType,
