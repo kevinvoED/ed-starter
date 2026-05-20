@@ -9,6 +9,7 @@ import {
   FolderIcon,
   RedoIcon,
   SchemaIcon,
+  StarIcon,
   UserIcon,
 } from "@sanity/icons";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
@@ -21,7 +22,7 @@ const parentChildPageItems = [
     title: "Platform",
     parentTitle: "Platform Index",
     parentSchemaType: "platform-index",
-    parentIcon: FolderIcon,
+    parentIcon: StarIcon,
     childTitle: "Platform Child Pages",
     childSchemaType: "platform-child",
     childIcon: DocumentsIcon,
@@ -37,7 +38,7 @@ const resourceItems = [
     landingPageSchemaType: "blog-index",
     categoryTitle: "Blog Categories",
     categorySchemaType: "blog-category",
-    icon: FolderIcon,
+    icon: StarIcon,
   },
   {
     title: "Case Studies",
@@ -45,7 +46,7 @@ const resourceItems = [
     itemSchemaType: "case-study",
     landingPageTitle: "Case Studies Landing",
     landingPageSchemaType: "case-studies-index",
-    icon: FolderIcon,
+    icon: StarIcon,
   },
 ];
 
@@ -100,7 +101,7 @@ export const structure: StructureResolver = (S: StructureBuilder, context) =>
         context,
       }),
 
-      S.divider().title(""),
+      S.divider().title("Nested Pages"),
       ...parentChildPageItems.map(
         ({
           title,
@@ -113,7 +114,7 @@ export const structure: StructureResolver = (S: StructureBuilder, context) =>
         }) =>
           S.listItem()
             .title(title)
-            .icon(parentIcon)
+            .icon(FolderIcon)
             .child(
               S.list()
                 .title(title)
@@ -164,7 +165,7 @@ export const structure: StructureResolver = (S: StructureBuilder, context) =>
         }) =>
           S.listItem()
             .title(title)
-            .icon(icon)
+            .icon(FolderIcon)
             .child(
               S.list()
                 .title(title)
@@ -197,16 +198,14 @@ export const structure: StructureResolver = (S: StructureBuilder, context) =>
                     ),
                   ...(categoryTitle && categorySchemaType
                     ? [
-                        S.listItem()
-                          .title(categoryTitle)
-                          .schemaType(categorySchemaType)
-                          .child(
-                            S.documentTypeList(categorySchemaType)
-                              .title(categoryTitle)
-                              .defaultOrdering([
-                                { field: "title", direction: "asc" },
-                              ]),
-                          ),
+                        S.divider(),
+                        orderableDocumentListDeskItem({
+                          type: categorySchemaType,
+                          title: categoryTitle,
+                          icon: BookmarkIcon,
+                          S,
+                          context,
+                        }),
                       ]
                     : []),
                 ]),
