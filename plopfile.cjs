@@ -78,6 +78,7 @@
         ">>> REMEMBER TO UPDATE: 'studio/schemas/moduleTypes.ts'",
         ">>> REMEMBER TO UPDATE: 'frontend/sanity/queries/queries.ts'",
         ">>> REMEMBER TO UPDATE: 'frontend/components/ModuleBuilder.tsx'",
+        ">>> REMEMBER TO RUN typegen and UPDATE your test snapshots.",
         {
           type: 'add',
           path: 'studio/schemas/modules/{{lowerCase category}}/{{kebabCase name}}.ts',
