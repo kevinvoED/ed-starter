@@ -11,6 +11,7 @@ import { StarterSheet } from "@/components/layout/Starter/StarterSheet";
 import { StarterTable } from "@/components/layout/Starter/StarterTable";
 import { StarterTabs } from "@/components/layout/Starter/StarterTabs";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
+import { cn } from "@/lib/utils/cn";
 
 // ! DELETE AFTER PROJECT INITIALIZATION
 
@@ -62,7 +63,6 @@ const EXAMPLE_LINKS = [
 
 export const Starter = () => {
   const pathname = usePathname();
-
   const [example] = useQueryState("example");
   const isExampleActive = (value: string) => example === value;
 
@@ -82,14 +82,17 @@ export const Starter = () => {
 
           <div className="flex flex-col pl-5">
             {MAIN_LINKS.map((link, index) => (
-              <TextMask key={link.href} delay={0.15 * index}>
+              <TextMask key={link.label} delay={0.15 * index}>
                 <SanityLink
                   href={link.href}
                   id="cta"
                   variant="ghost"
                   hasArrow={false}
                   scroll={false}
-                  className={`hover:underline ${pathname.includes(link.label) ? "pl-2 font-bold" : ""}`}
+                  className={cn(
+                    "hover:underline",
+                    pathname === link.href ? "pl-2 font-bold" : "",
+                  )}
                 >
                   {link.label}
                 </SanityLink>
@@ -110,7 +113,12 @@ export const Starter = () => {
                   variant="ghost"
                   hasArrow={false}
                   scroll={false}
-                  className={`hover:underline ${example?.includes(link.label.toLowerCase()) ? "pl-2 font-bold" : ""}`}
+                  className={cn(
+                    "hover:underline",
+                    example?.includes(link.label.toLowerCase())
+                      ? "pl-2 font-bold"
+                      : "",
+                  )}
                 >
                   {link.label}
                 </SanityLink>
@@ -119,7 +127,7 @@ export const Starter = () => {
           </div>
         </div>
       </div>
-      <div className="col-span-8 col-start-5 my-5 p-custom">
+      <div className="col-spanfull my-5 p-custom lg:col-span-8 lg:col-start-5">
         {isExampleActive("accordion") && <StarterAccordion />}
         {isExampleActive("button") && <StarterButton />}
         {isExampleActive("marquee") && <StarterMarquee />}
