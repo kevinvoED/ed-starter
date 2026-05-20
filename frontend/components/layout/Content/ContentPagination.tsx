@@ -1,6 +1,7 @@
 import type { GET_CONTENT_TYPE_INDEX_QUERY_RESULT } from "@/sanity.types";
-import { ChevronLeft, ChevronRight, Ellipsis } from "lucide-react";
+import { Ellipsis } from "lucide-react";
 import { ContentPaginationScrollHandler } from "@/components/layout/Content/ContentPaginationScrollHandler";
+import { Icon } from "@/components/primitives/Icon/Icon";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { cn } from "@/lib/utils/cn";
 
@@ -46,7 +47,7 @@ export const ContentPagination = ({
 
       <div
         className={cn(
-          "col-span-full flex gap-4 self-start p-custom pb-30",
+          "col-span-full flex items-center gap-4 self-start pb-30",
           className,
         )}
       >
@@ -58,7 +59,12 @@ export const ContentPagination = ({
             hasArrow={false}
             scroll={false}
           >
-            <ChevronLeft className="size-5! stroke-1" />
+            <Icon
+              variant="arrow-right"
+              strokeWidth={1}
+              size={4}
+              className="rotate-180"
+            />
           </SanityLink>
         )}
 
@@ -90,7 +96,7 @@ export const ContentPagination = ({
             hasArrow={false}
             scroll={false}
           >
-            <ChevronRight className="size-5! stroke-1" />
+            <Icon variant="arrow-right" strokeWidth={1} size={4} />
           </SanityLink>
         )}
       </div>

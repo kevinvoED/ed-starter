@@ -54,15 +54,13 @@ export default async function BlogIndexPage({
         posts={data?.posts}
       />
 
-      {data.posts && data.posts.length > 0 && (
-        <ContentPagination
-          pagination={data?.pagination}
-          currentPage={page ? parseInt(page) : 1}
-          createPageUrl={(pageNum) =>
-            createPageUrl({ route: "case-studies", pageNum, category, topic })
-          }
-        />
-      )}
+      <ContentPagination
+        pagination={data?.pagination}
+        currentPage={page ? parseInt(page) : 1}
+        createPageUrl={(pageNum) =>
+          createPageUrl({ route: "case-studies", pageNum, category, topic })
+        }
+      />
     </Page>
   );
 }

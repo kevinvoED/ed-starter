@@ -238,7 +238,10 @@ const SanityLinkIconContent = ({
       {hasArrow && (
         <Icon
           variant="arrow-right"
-          className={`${openInNewTab ? "-rotate-45" : ""} transition-transform duration-300 ease-in-out group-hover/button:translate-x-1`}
+          className={cn(
+            "transition-transform duration-300 ease-in-out group-hover/button:translate-x-1",
+            openInNewTab ? "-rotate-45" : "",
+          )}
         />
       )}
       {/* Add download case */}

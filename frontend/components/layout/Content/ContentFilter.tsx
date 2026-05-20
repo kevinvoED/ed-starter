@@ -111,8 +111,9 @@ export const ContentFilterItem = ({
               <Checkbox.Indicator className="flex data-unchecked:hidden">
                 <Icon
                   variant="check"
-                  className="size-3.5 text-white"
+                  className="text-white"
                   strokeWidth={2}
+                  size={3.5}
                 />
               </Checkbox.Indicator>
             </Checkbox.Root>
