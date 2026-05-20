@@ -22,5 +22,6 @@ export const urlFor = (source: SanityImageSource) => {
     return imageBuilder;
   }
 
+  //biome-ignore lint/suspicious/noFocusedTests: fit is required for sanity images
   return imageBuilder.format("webp").fit("crop");
 };

@@ -1,0 +1,23 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Eyebrow > matches snapshot — default variant 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    class="group relative inline-flex max-w-fit flex-no-wrap items-center justify-center overflow-hidden rounded-full type-mono-1040 bg-black px-2.5 py-0.5 text-white ring-1 ring-white/70"
+  >
+    Default
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Eyebrow > matches snapshot — filter variant 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    class="group relative inline-flex flex-no-wrap items-center justify-center overflow-hidden type-mono-1040 max-w-fit rounded-full bg-black px-2 py-0.5 font-bold text-white"
+  >
+    Filter
+  </div>
+</DocumentFragment>
+`;

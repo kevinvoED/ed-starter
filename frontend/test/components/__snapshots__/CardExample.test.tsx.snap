@@ -1,0 +1,95 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CardExample > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="f-py-10/20 p-custom"
+  >
+    <div
+      class=""
+      style="opacity: 0;"
+    >
+      <div
+        class="ftype type-heading-3250 to-type-heading-4850"
+      >
+        <h2>
+          My Title
+        </h2>
+      </div>
+    </div>
+    <div
+      class=""
+      style="opacity: 0;"
+    >
+      <div
+        class="type-body-1640"
+      >
+        <p
+          class="ftype type-body-1440 to-type-body-1640"
+        >
+          Card description.
+        </p>
+      </div>
+    </div>
+    <img
+      alt="Test card image"
+      class="object-cover"
+      data-nimg="1"
+      decoding="async"
+      height="100"
+      loading="lazy"
+      sizes="(max-width: 768px) 75vw, 200px"
+      src="https://example.com/image.jpg?w=3840"
+      srcset="https://example.com/image.jpg?w=640 640w, https://example.com/image.jpg?w=750 750w, https://example.com/image.jpg?w=828 828w, https://example.com/image.jpg?w=1080 1080w, https://example.com/image.jpg?w=1200 1200w, https://example.com/image.jpg?w=1920 1920w, https://example.com/image.jpg?w=2048 2048w, https://example.com/image.jpg?w=3840 3840w"
+      style="color: transparent;"
+      width="100"
+    />
+    <div
+      class="flex flex-col gap-4"
+    >
+      <a
+        class="group/button inline-flex select-none items-center justify-center font-inherit outline-0 transition-colors duration-300 ease-in-out focus-visible:outline-1 focus-visible:outline-white focus-visible:-outline-offset-1 focus-visible:ring-1 has-[>svg]:gap-1.5 [&_svg]:size-3 rounded whitespace-nowrap w-fit"
+        href="https://example.com"
+        id="cta-example-com-lnk1"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Learn more
+        <svg
+          class="size-4 transition-transform duration-300 ease-in-out group-hover/button:translate-x-1"
+          fill="none"
+          height="11"
+          stroke="currentColor"
+          stroke-width="1"
+          viewBox="0 0 11 11"
+          width="11"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>
+            Arrow Right
+          </title>
+          <g
+            clip-path="url(#clip0_3611_4127)"
+          >
+            <path
+              d="M1 5H10M10 5L6 0.5M10 5L6 9.5"
+              stroke="currentColor"
+            />
+          </g>
+          <defs>
+            <clippath
+              id="clip0_3611_4127"
+            >
+              <rect
+                fill="currentColor"
+                height="11"
+                width="11"
+              />
+            </clippath>
+          </defs>
+        </svg>
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;

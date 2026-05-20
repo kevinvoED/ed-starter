@@ -42,5 +42,6 @@
     "lib/styles/typography.mjs",
     "lib/styles/spacing.mjs"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "types": ["vitest/globals", "@testing-library/jest-dom"]
 }

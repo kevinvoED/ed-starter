@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Transition > matches snapshot — default props 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+    style="opacity: 0;"
+  >
+    Snap
+  </div>
+</DocumentFragment>
+`;

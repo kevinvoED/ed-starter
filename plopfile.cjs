@@ -93,6 +93,11 @@
           path: 'frontend/components/modules/{{pascalCase category}}/{{pascalCase name}}.tsx',
           templateFile: '.plop/sanity-schema-component.tsx.hbs',
         },
+        {
+          type: 'add',
+          path: 'frontend/test/components/{{pascalCase name}}.test.tsx',
+          templateFile: '.plop/component-test.tsx.hbs',
+        },
       ];
     },
   });
