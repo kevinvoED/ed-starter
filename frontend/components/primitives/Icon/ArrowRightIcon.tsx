@@ -12,6 +12,7 @@ export const ArrowRightIcon = ({
       height="11"
       viewBox="0 0 11 11"
       fill="none"
+      stroke="currentColor"
       className={className}
       strokeWidth={strokeWidth}
     >

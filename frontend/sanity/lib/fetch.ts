@@ -130,7 +130,7 @@ export const fetchContentTypeIndexPageData = async ({
   contentType,
   category,
   page,
-  limit = 2,
+  limit = 3,
   topic,
 }: {
   contentType: ContentType;

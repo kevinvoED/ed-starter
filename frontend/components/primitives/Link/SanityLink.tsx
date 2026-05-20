@@ -137,7 +137,7 @@ export const SanityLink = forwardRef<HTMLAnchorElement, SanityLinkProps>(
             SanityLinkVariants({ variant, width, disabled, card, className }),
           )}
         >
-          <span>{children}</span>
+          <span className="size-full">{children}</span>
 
           <SanityLinkIconContent
             openInNewTab={openInNewTab}
@@ -166,7 +166,7 @@ export const SanityLink = forwardRef<HTMLAnchorElement, SanityLinkProps>(
             SanityLinkVariants({ variant, width, disabled, card, className }),
           )}
         >
-          <span>{children}</span>
+          <span className="size-full">{children}</span>
 
           <SanityLinkIconContent
             openInNewTab={openInNewTab}
@@ -215,7 +215,7 @@ export const SanityLink = forwardRef<HTMLAnchorElement, SanityLinkProps>(
           SanityLinkVariants({ variant, width, disabled, card, className }),
         )}
       >
-        <span>{children}</span>
+        <span className="size-full">{children}</span>
 
         <SanityLinkIconContent
           openInNewTab={openInNewTab}

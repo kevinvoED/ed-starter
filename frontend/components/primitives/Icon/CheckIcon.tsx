@@ -1,0 +1,23 @@
+export const CheckIcon = ({
+  className,
+  strokeWidth = 1,
+}: {
+  className: string;
+  strokeWidth: number;
+}) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      className={className}
+      strokeWidth={strokeWidth}
+    >
+      <title>Check Icon</title>
+      <path d="m2.5 8.5 4 4 7-9" />
+    </svg>
+  );
+};

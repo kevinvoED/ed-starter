@@ -104,7 +104,16 @@ const portableTextComponents = (
         return <Slot>{children}</Slot>;
       }
 
-      return <p className={style === "article" ? "mb-12" : ""}>{children}</p>;
+      return (
+        <p
+          className={cn(
+            "ftype type-body-1440 to-type-body-1640",
+            style === "article" && "mb-12",
+          )}
+        >
+          {children}
+        </p>
+      );
     },
     h1: ({ children }) => {
       return (

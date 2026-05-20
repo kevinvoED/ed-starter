@@ -1,4 +1,5 @@
 import { ArrowRightIcon } from "@/components/primitives/Icon/ArrowRightIcon";
+import { CheckIcon } from "@/components/primitives/Icon/CheckIcon";
 import { CopyIcon } from "@/components/primitives/Icon/CopyIcon";
 import { cn } from "@/lib/utils/cn";
 
@@ -19,6 +20,7 @@ import { cn } from "@/lib/utils/cn";
 const iconComponents = {
   copy: CopyIcon,
   "arrow-right": ArrowRightIcon,
+  check: CheckIcon,
 };
 
 type IconProps = {

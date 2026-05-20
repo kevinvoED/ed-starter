@@ -1,14 +1,14 @@
+import type { GET_CONTENT_TYPE_INDEX_QUERY_RESULT } from "@/sanity.types";
 import { ChevronLeft, ChevronRight, Ellipsis } from "lucide-react";
 import { ContentPaginationScrollHandler } from "@/components/layout/Content/ContentPaginationScrollHandler";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { cn } from "@/lib/utils/cn";
 
 type ContentPaginationProps = {
+  pagination: NonNullable<GET_CONTENT_TYPE_INDEX_QUERY_RESULT>["pagination"];
   currentPage: number;
-  totalPages: number;
   createPageUrl: (pageNum: number) => string;
   className?: string;
-  scrollTargetId?: string;
   scrollOffset?: number;
 };
 
@@ -27,25 +27,29 @@ const getVisiblePages = (current: number, total: number) => {
 };
 
 export const ContentPagination = ({
+  pagination,
   currentPage,
-  totalPages,
   createPageUrl,
   className,
-  scrollTargetId,
   scrollOffset = 175,
 }: ContentPaginationProps) => {
-  if (totalPages <= 1) return null;
+  if (pagination.totalPages <= 1) return null;
 
   return (
     <>
-      {scrollTargetId && (
+      {pagination.scrollTargetId && (
         <ContentPaginationScrollHandler
-          scrollTargetId={scrollTargetId}
+          scrollTargetId={pagination.scrollTargetId}
           scrollOffset={scrollOffset}
         />
       )}
 
-      <div className={cn("flex gap-4 p-custom pb-30", className)}>
+      <div
+        className={cn(
+          "col-span-full flex gap-4 self-start p-custom pb-30",
+          className,
+        )}
+      >
         {currentPage > 1 && (
           <SanityLink
             id="cta"
@@ -58,26 +62,27 @@ export const ContentPagination = ({
           </SanityLink>
         )}
 
-        {getVisiblePages(currentPage, totalPages).map((pageNum, idx) =>
-          pageNum === "..." ? (
-            <div key={`dots-${idx}`} className="flex items-center px-2">
-              <Ellipsis key={`dots-${idx}`} className="text-background" />
-            </div>
-          ) : (
-            <SanityLink
-              id="cta"
-              variant={pageNum === currentPage ? "ghost" : "ghost"}
-              key={pageNum}
-              href={createPageUrl(pageNum as number)}
-              hasArrow={false}
-              scroll={false}
-            >
-              {pageNum}
-            </SanityLink>
-          ),
+        {getVisiblePages(currentPage, pagination.totalPages).map(
+          (pageNum, idx) =>
+            pageNum === "..." ? (
+              <div key={`dots-${idx}`} className="flex items-center px-2">
+                <Ellipsis key={`dots-${idx}`} className="text-background" />
+              </div>
+            ) : (
+              <SanityLink
+                id="cta"
+                variant={pageNum === currentPage ? "ghost" : "ghost"}
+                key={pageNum}
+                href={createPageUrl(pageNum as number)}
+                hasArrow={false}
+                scroll={false}
+              >
+                {pageNum}
+              </SanityLink>
+            ),
         )}
 
-        {currentPage < totalPages && (
+        {currentPage < pagination.totalPages && (
           <SanityLink
             id="cta"
             variant="ghost"
