@@ -23,7 +23,7 @@
 		"setup-env": "cp -i \"$PWD/.env.example.local\" \"$PWD/.env.local\" && ln \"$PWD/.env.local\" \"$PWD/frontend/.env.local\" && ln \"$PWD/.env.local\" \"$PWD/studio/.env.local\"",
 		"test": "cd frontend && npx vitest --run",
 		"test:watch": "cd frontend && npx vitest --update",
-		"ci": "pnpm format && pnpm test && pnpm typegen && pnpm build"
+		"ci": "pnpm format && pnpm typegen && pnpm test && pnpm build"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.6",
