@@ -3,7 +3,6 @@ import {
   descriptionFragment,
   imageFragment,
   linkFragment,
-  portableTextFragment,
   titleFragment,
 } from "../../fragments";
 
@@ -16,6 +15,5 @@ export const HERO_PRIMARY_QUERY = defineQuery(`
     ${descriptionFragment},
     ${linkFragment},
     ${imageFragment},
-    ${portableTextFragment},
   }
 `);

@@ -5093,7 +5093,7 @@
               }
             }
           },
-          "optional": true
+          "optional": false
         },
         "image": {
           "type": "objectAttribute",
@@ -5155,14 +5155,6 @@
             }
           },
           "optional": false
-        },
-        "content": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "inline",
-            "name": "portable-text"
-          },
-          "optional": true
         }
       }
     }

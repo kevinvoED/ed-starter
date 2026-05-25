@@ -1,28 +1,13 @@
 import { toPlainText } from "@portabletext/react";
 import { DashboardIcon } from "@sanity/icons";
-import { defineField, defineType } from "sanity";
-import {
-  description,
-  image,
-  link,
-  portableText,
-  title,
-} from "@/schemas/common";
+import { defineType } from "sanity";
+import { description, image, link, title } from "@/schemas/common";
 
 export default defineType({
   name: "hero-primary",
   title: "Hero Primary",
   type: "object",
-  fields: [
-    title,
-    description,
-    defineField({
-      ...link,
-      validation: (Rule) => Rule.max(2),
-    }),
-    image,
-    portableText,
-  ],
+  fields: [title, description, link, image],
   preview: {
     select: {
       title: "title",

@@ -252,7 +252,7 @@ export const link = defineField({
   type: "array",
   description: "Optional. Select an internal page or external URL to link to.",
   of: [{ type: "link" }],
-  validation: (Rule) => Rule.required().max(1),
+  validation: (Rule) => Rule.required().max(2),
 });
 
 /*
