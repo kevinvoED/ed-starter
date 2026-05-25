@@ -159,7 +159,7 @@
 @utility type-heading-20050 {
   --font-size: var(--font-scale-200);
   --line-height: calc(224 / var(--base-font-size));
-  --letter-spacing: calc(-4 / var(--base-font-size));
+  --letter-spacing: calc(0 / var(--base-font-size));
   font-size: calc(var(--font-size) * var(--to-rem));
   line-height: calc(var(--line-height) * var(--to-rem));
   letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
@@ -170,7 +170,7 @@
 @utility type-heading-9640 {
   --font-size: var(--font-scale-96);
   --line-height: calc(100 / var(--base-font-size));
-  --letter-spacing: calc(-0.5 / var(--base-font-size));
+  --letter-spacing: calc(0 / var(--base-font-size));
   font-size: calc(var(--font-size) * var(--to-rem));
   line-height: calc(var(--line-height) * var(--to-rem));
   letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
@@ -181,7 +181,7 @@
 @utility type-heading-4840 {
   --font-size: var(--font-scale-48);
   --line-height: calc(54 / var(--base-font-size));
-  --letter-spacing: calc(-0.5 / var(--base-font-size));
+  --letter-spacing: calc(0 / var(--base-font-size));
   font-size: calc(var(--font-size) * var(--to-rem));
   line-height: calc(var(--line-height) * var(--to-rem));
   letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
@@ -192,7 +192,7 @@
 @utility type-heading-3240 {
   --font-size: var(--font-scale-32);
   --line-height: calc(40 / var(--base-font-size));
-  --letter-spacing: calc(0.25 / var(--base-font-size));
+  --letter-spacing: calc(0 / var(--base-font-size));
   font-size: calc(var(--font-size) * var(--to-rem));
   line-height: calc(var(--line-height) * var(--to-rem));
   letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
@@ -209,7 +209,7 @@
 @utility type-body-3240 {
   --font-size: var(--font-scale-32);
   --line-height: calc(40 / var(--base-font-size));
-  --letter-spacing: calc(0.25 / var(--base-font-size));
+  --letter-spacing: calc(0 / var(--base-font-size));
   font-size: calc(var(--font-size) * var(--to-rem));
   line-height: calc(var(--line-height) * var(--to-rem));
   letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
@@ -220,7 +220,7 @@
 @utility type-body-1650 {
   --font-size: var(--font-scale-16);
   --line-height: calc(20 / var(--base-font-size));
-  --letter-spacing: calc(0.75 / var(--base-font-size));
+  --letter-spacing: calc(0 / var(--base-font-size));
   font-size: calc(var(--font-size) * var(--to-rem));
   line-height: calc(var(--line-height) * var(--to-rem));
   letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
@@ -231,7 +231,7 @@
 @utility type-body-1640 {
   --font-size: var(--font-scale-16);
   --line-height: calc(20 / var(--base-font-size));
-  --letter-spacing: calc(0.25 / var(--base-font-size));
+  --letter-spacing: calc(0 / var(--base-font-size));
   font-size: calc(var(--font-size) * var(--to-rem));
   line-height: calc(var(--line-height) * var(--to-rem));
   letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
@@ -242,7 +242,7 @@
 @utility type-body-1450 {
   --font-size: var(--font-scale-14);
   --line-height: calc(18 / var(--base-font-size));
-  --letter-spacing: calc(0.75 / var(--base-font-size));
+  --letter-spacing: calc(0 / var(--base-font-size));
   font-size: calc(var(--font-size) * var(--to-rem));
   line-height: calc(var(--line-height) * var(--to-rem));
   letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
@@ -253,7 +253,7 @@
 @utility type-body-1440 {
   --font-size: var(--font-scale-14);
   --line-height: calc(18 / var(--base-font-size));
-  --letter-spacing: calc(0.75 / var(--base-font-size));
+  --letter-spacing: calc(0 / var(--base-font-size));
   font-size: calc(var(--font-size) * var(--to-rem));
   line-height: calc(var(--line-height) * var(--to-rem));
   letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
@@ -270,7 +270,7 @@
 @utility type-mono-1240 {
   --font-size: var(--font-scale-12);
   --line-height: calc(16 / var(--base-font-size));
-  --letter-spacing: calc(0.25 / var(--base-font-size));
+  --letter-spacing: calc(0 / var(--base-font-size));
   font-size: calc(var(--font-size) * var(--to-rem));
   line-height: calc(var(--line-height) * var(--to-rem));
   letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
@@ -281,7 +281,7 @@
 @utility type-mono-1040 {
   --font-size: var(--font-scale-10);
   --line-height: calc(14 / var(--base-font-size));
-  --letter-spacing: calc(0.25 / var(--base-font-size));
+  --letter-spacing: calc(0 / var(--base-font-size));
   font-size: calc(var(--font-size) * var(--to-rem));
   line-height: calc(var(--line-height) * var(--to-rem));
   letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
@@ -304,25 +304,25 @@
 @utility to-type-heading-20050 {
   --to-font-size: var(--font-scale-200);
   --to-line-height: calc(200 / var(--base-font-size));
-  --to-letter-spacing: calc(-600 / var(--base-font-size));
+  --to-letter-spacing: calc(-1 / var(--base-font-size));
 }
 
 @utility to-type-heading-9640 {
   --to-font-size: var(--font-scale-96);
   --to-line-height: calc(100 / var(--base-font-size));
-  --to-letter-spacing: calc(-0.5 / var(--base-font-size));
+  --to-letter-spacing: calc(-1 / var(--base-font-size));
 }
 
 @utility to-type-heading-4840 {
   --to-font-size: var(--font-scale-48);
   --to-line-height: calc(54 / var(--base-font-size));
-  --to-letter-spacing: calc(-0.5 / var(--base-font-size));
+  --to-letter-spacing: calc(-1 / var(--base-font-size));
 }
 
 @utility to-type-heading-3240 {
   --to-font-size: var(--font-scale-32);
   --to-line-height: calc(40 / var(--base-font-size));
-  --to-letter-spacing: calc(-0.5 / var(--base-font-size));
+  --to-letter-spacing: calc(-1 / var(--base-font-size));
 }
 
 /*
@@ -333,31 +333,31 @@
 @utility to-type-body-3240 {
   --to-font-size: var(--font-scale-32);
   --to-line-height: calc(40 / var(--base-font-size));
-  --to-letter-spacing: calc(0.25 / var(--base-font-size));
+  --to-letter-spacing: calc(-1 / var(--base-font-size));
 }
 
 @utility to-type-body-1650 {
   --to-font-size: var(--font-scale-16);
   --to-line-height: calc(20 / var(--base-font-size));
-  --to-letter-spacing: calc(0.75 / var(--base-font-size));
+  --to-letter-spacing: calc(0 / var(--base-font-size));
 }
 
 @utility to-type-body-1640 {
   --to-font-size: var(--font-scale-16);
   --to-line-height: calc(20 / var(--base-font-size));
-  --to-letter-spacing: calc(0.75 / var(--base-font-size));
+  --to-letter-spacing: calc(0 / var(--base-font-size));
 }
 
 @utility to-type-body-1450 {
   --to-font-size: var(--font-scale-14);
   --to-line-height: calc(18 / var(--base-font-size));
-  --to-letter-spacing: calc(0.75 / var(--base-font-size));
+  --to-letter-spacing: calc(0 / var(--base-font-size));
 }
 
 @utility to-type-body-1440 {
   --to-font-size: var(--font-scale-14);
   --to-line-height: calc(18 / var(--base-font-size));
-  --to-letter-spacing: calc(0.75 / var(--base-font-size));
+  --to-letter-spacing: calc(0 / var(--base-font-size));
 }
 
 /*
@@ -369,13 +369,13 @@
 @utility to-type-mono-1240 {
   --to-font-size: var(--font-scale-12);
   --to-line-height: calc(16 / var(--base-font-size));
-  --to-letter-spacing: calc(0.25 / var(--base-font-size));
+  --to-letter-spacing: calc(0 / var(--base-font-size));
 }
 
 @utility to-type-mono-1040 {
   --to-font-size: var(--font-scale-10);
   --to-line-height: calc(14 / var(--base-font-size));
-  --to-letter-spacing: calc(0.25 / var(--base-font-size));
+  --to-letter-spacing: calc(0 / var(--base-font-size));
 }
 
 /*
