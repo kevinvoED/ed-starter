@@ -23,7 +23,7 @@ export default function RootLayout({
       {isProduction && GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
       <body
         className={cn(
-          "relative h-svh bg-white text-[#131416] antialiased",
+          "relative min-h-svh bg-white text-black antialiased",
           fontBody.variable,
           fontHeading.variable,
           fontMono.variable,

@@ -1,0 +1,13 @@
+language js;
+
+// Enforce usage of custom SanityLink component over Link from next/link
+
+`import $name from $source` as $import where {
+    $source <: r"['\"]next/link['\"]",
+    $filename <: not includes "components/primitives/Link/SanityLink.tsx",
+    register_diagnostic(
+        span = $import,
+        message = "Use SanityLink from @/components/primitives/Link/SanityLink instead of directly importing from next/link.",
+        severity = "error"
+    )
+}

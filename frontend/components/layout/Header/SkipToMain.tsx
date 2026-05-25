@@ -1,3 +1,4 @@
+import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { cn } from "@/lib/utils/cn";
 
 type SkipToMainProps = {
@@ -6,15 +7,15 @@ type SkipToMainProps = {
 
 export const SkipToMain = ({ className }: SkipToMainProps) => {
   return (
-    <a
+    <SanityLink
       href="#main"
-      id="skipToMain"
+      id="nav"
       className={cn(
         "absolute top-4 left-4 z-9999 -translate-y-16 bg-white px-3 py-1.5 text-black transition focus:translate-y-0",
         className,
       )}
     >
       Skip to main content
-    </a>
+    </SanityLink>
   );
 };

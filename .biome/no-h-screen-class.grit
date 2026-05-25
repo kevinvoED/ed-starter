@@ -1,0 +1,12 @@
+language js;
+
+// Prevent usage of h-screen and min-h-screen Tailwind classes
+
+JsStringLiteralExpression() as $literal where {
+    $literal <: r".*h-screen.*",
+    register_diagnostic(
+        span = $literal,
+        message = "Use h-svh or min-h-svh instead of h-screen/min-h-screen.",
+        severity = "error"
+    )
+}

@@ -1,0 +1,16 @@
+language js;
+
+// Prevent direct usage of the <a> element
+
+`<a $attrs>$content</a>` as $anchor where {
+    !$anchor <: within `if ($condition) { return ($jsx) }` where {
+        $condition <: contains or { `isExternal`, `isExternalSSR` }
+    },
+    $filename <: not includes "components/primitives/Link/SanityLink.tsx",
+    $filename <: not includes "studio/components/guide.tsx",
+    register_diagnostic(
+        span = $anchor,
+        message = "Use SanityLink from @/components/primitives/Link/SanityLink instead of the native <a> element.",
+        severity = "error"
+    )
+}

@@ -15,7 +15,7 @@ export const PortableTextYoutube = ({
   return (
     <div
       className={cn(
-        "[&_lite-youtube]:!w-full [&_lite-youtube]:!max-w-none mb-12 w-full overflow-hidden [&_lite-youtube]:aspect-video",
+        "mb-12 w-full overflow-hidden [&_lite-youtube]:aspect-video [&_lite-youtube]:w-full! [&_lite-youtube]:max-w-none!",
         className,
       )}
     >

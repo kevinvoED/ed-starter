@@ -3,7 +3,7 @@ import {
   PortableText as PortableTextRenderer,
 } from "@portabletext/react";
 import { type ElementType, Fragment } from "react";
-import Link from "next/link";
+import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { PortableTextHeading } from "@/components/primitives/PortableText/PortableTextHeading";
 import { PortableTextImage } from "@/components/primitives/PortableText/PortableTextImage";
 import { PortableTextRichTable } from "@/components/primitives/PortableText/PortableTextRichTable";
@@ -161,14 +161,15 @@ const portableTextComponents = (
   marks: {
     link: ({ value, children }) => {
       return (
-        <Link
+        <SanityLink
           href={value?.href || ""}
           target={value.openInNewTab ? "_blank" : undefined}
           rel={value.openInNewTab ? "noopener" : undefined}
           className="underline"
+          id="cta"
         >
           {children}
-        </Link>
+        </SanityLink>
       );
     },
     textColor: ({ children, value }) => (

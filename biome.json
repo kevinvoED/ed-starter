@@ -17,6 +17,12 @@
       "indentScriptAndStyle": false
     }
   },
+  "plugins": [
+    "./.biome/no-anchor-element.grit",
+    "./.biome/no-native-next-link.grit",
+    "./.biome/no-arbitrary-colors.grit",
+    "./.biome/no-h-screen-class.grit"
+  ],
   "files": {
     "ignoreUnknown": false,
     "includes": [

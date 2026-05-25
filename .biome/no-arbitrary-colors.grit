@@ -1,0 +1,12 @@
+language js;
+
+// Prevent usage of arbitrary color classes from Tailwind
+
+JsStringLiteralExpression() as $literal where {
+    $literal <: r".*\[#[0-9a-fA-F]+\].*",
+    register_diagnostic(
+        span = $literal,
+        message = "Use custom design tokens from globals.css over arbitrary color classes like [#A1B2C3].",
+        severity = "error"
+    )
+}
