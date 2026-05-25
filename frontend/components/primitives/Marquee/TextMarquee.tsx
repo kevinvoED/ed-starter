@@ -4,8 +4,8 @@ import type { ModuleProps } from "@/sanity/lib/fetch";
 import { toPlainText } from "@portabletext/react";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { horizontalLoop } from "@/lib/styles/animations";
 import { cn } from "@/lib/utils/cn";
+import { horizontalLoop } from "@/lib/utils/horizontal-loop";
 import { Observer } from "gsap/all";
 
 // @see https://codepen.io/GreenSock/pen/zYaxEKV
