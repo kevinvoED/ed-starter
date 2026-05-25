@@ -1,0 +1,20 @@
+@theme {
+  /* Default colors */
+  --color-*: initial; /* Remove default color palette */
+  --color-debug-blue: oklch(62.3% 0.214 259.815); /* #2B7FFF */
+  --color-debug-red: oklch(63.7% 0.237 25.331); /* #FB2C36 */
+
+  /* Primary colors */
+  --color-white: oklch(0.9851 0 0); /* #FAFAFA */
+  --color-black: oklch(0.1913 0 0); /* #141414 */
+  --color-neon: oklch(0.932 0.2277 122.64); /* #CEFF00 */
+
+  /* Secondary colors */
+  --color-gunmetal: oklch(0.3753 0 0); /* #414141 */
+  --color-charcoal: oklch(0.4676 0 0); /* #5A5A5A */
+  --color-ash: oklch(0.6434 0 0); /* #8D8D8D */
+  --color-silver: oklch(0.7668 0 0); /* #B3B3B3 */
+  --color-alabaster: oklch(0.8853 0 0); /* #D9D9D9 */
+  --color-platinum: oklch(0.9431 0 0); /* #ECECEC */
+  --color-porcelain: oklch(0.9674 0.0029 84.56); /* #F5F4F2 */
+}
