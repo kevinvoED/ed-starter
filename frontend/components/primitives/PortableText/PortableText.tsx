@@ -64,14 +64,16 @@ export const PortableText = ({
 }: PortableTextComponentProps) => {
   const components = portableTextComponents(style, slot);
 
-  if (className && className.length > 0) {
-    return (
-      <div className={className}>
-        <PortableTextRenderer value={value} components={components} />
-      </div>
-    );
-  }
-  return <PortableTextRenderer value={value} components={components} />;
+  return (
+    <div
+      className={cn(
+        style === "module" && !slot && "[&_p:last-of-type]:mb-0",
+        className,
+      )}
+    >
+      <PortableTextRenderer value={value} components={components} />
+    </div>
+  );
 };
 
 const portableTextComponents = (
@@ -109,6 +111,7 @@ const portableTextComponents = (
           className={cn(
             "ftype type-body-1440 to-type-body-1640",
             style === "article" && "mb-12",
+            style === "module" && "mb-4",
           )}
         >
           {children}
@@ -117,28 +120,28 @@ const portableTextComponents = (
     },
     h1: ({ children }) => {
       return (
-        <PortableTextHeading heading="h1" className="type-heading-3230">
+        <PortableTextHeading heading="h1" className="type-heading-3240">
           {children}
         </PortableTextHeading>
       );
     },
     h2: ({ children }) => {
       return (
-        <PortableTextHeading heading="h2" className="type-heading-3230">
+        <PortableTextHeading heading="h2" className="type-heading-3240">
           {children}
         </PortableTextHeading>
       );
     },
     h3: ({ children }) => {
       return (
-        <PortableTextHeading heading="h3" className="type-heading-3230">
+        <PortableTextHeading heading="h3" className="type-heading-3240">
           {children}
         </PortableTextHeading>
       );
     },
     h4: ({ children }) => {
       return (
-        <PortableTextHeading heading="h4" className="type-heading-3230">
+        <PortableTextHeading heading="h4" className="type-heading-3240">
           {children}
         </PortableTextHeading>
       );
