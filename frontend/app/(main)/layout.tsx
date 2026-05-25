@@ -20,9 +20,7 @@ export default async function MainLayout({
       <Header />
       <main className="w-full">
         <Suspense
-          fallback={
-            <section className="min-h-screen bg-debug-blue text-white" />
-          }
+          fallback={<section className="h-svh bg-debug-blue text-white" />}
         >
           <Starter />
         </Suspense>

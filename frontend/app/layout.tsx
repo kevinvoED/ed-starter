@@ -5,6 +5,7 @@ import { fontBody, fontHeading, fontMono } from "@/lib/styles/fonts";
 import { cn } from "@/lib/utils/cn";
 import "./globals.css";
 import { GridGuideline } from "@/components/layout/GridGuideline/GridGuideline";
+import { ScrollToTopOnNavigate } from "@/components/layout/GSAP/ScrollToTopOnNavigate";
 import { ScrollRestoration } from "@/components/layout/ScrollRestoration/ScrollRestoration";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
@@ -22,7 +23,7 @@ export default function RootLayout({
       {isProduction && GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
       <body
         className={cn(
-          "relative min-h-dvh bg-white text-[#131416] antialiased",
+          "relative h-svh bg-white text-[#131416] antialiased",
           fontBody.variable,
           fontHeading.variable,
           fontMono.variable,
@@ -31,6 +32,7 @@ export default function RootLayout({
         <div className="root">
           <NuqsAdapter>
             <Lenis>
+              <ScrollToTopOnNavigate />
               {children}
               {!isProduction && <GridGuideline />}
               {!isProduction && <ScrollRestoration />}

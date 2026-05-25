@@ -21,6 +21,8 @@ export function Lenis({ children }: LenisProps) {
     <ReactLenis
       root
       options={{
+        // Let Next.js win scroll-to-top during Link navigations while Lenis is lerping
+        stopInertiaOnNavigate: true,
         lerp: 0.12,
         anchors: true,
       }}

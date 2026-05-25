@@ -75,7 +75,7 @@ export const Starter = () => {
   };
 
   return (
-    <section className="grid-custom relative min-h-screen grid-rows-[65%_1fr] gap-20 overflow-hidden bg-debug-blue text-white">
+    <section className="grid-custom relative h-svh grid-rows-[65%_1fr] gap-20 overflow-hidden bg-debug-blue text-white">
       <div className="absolute top-5 left-5">
         <div className="type-mono-1240 uppercase tracking-tighter!">
           <TextMask>ED {"//"} Starter</TextMask>
