@@ -62,14 +62,19 @@ pnpm i <package-name>
 
 | Command                | Action                                                         |
 | :--------------------- | :--------------------------------------------------------------|
+| `pnpm setup-env`       | Symlinks root .env.local to frontend and studio folders        |
 | `pnpm install`         | Installs dependencies                                          |
 | `pnpm dev`             | Starts local dev and local Sanity studio servers in parallel   |
 | `pnpm dev:next`        | Starts local dev server at localhost:3000                      |
 | `pnpm dev:studio`      | Starts Sanity Studio server at localhost:3333                  |
 | `pnpm typegen`         | Autogenerates types using Sanity TypeGen                       |
 | `pnpm typecheck`       | TypeScript type checking                                       |
-| `pnpm format`          | Formats and lints code with Biome                              |
-| `pnpm setup-env`       | Symlinks root .env.local to frontend and studio folders        |
+| `pnpm format`          | Biome lint checks the entire codebase                          |
+| `pnpm plop`            | Generate pre-defined templated files                           |
+| `pnpm test`            | Runs unit tests                                                |
+| `pnpm test:watch`      | Updates snapshots and watches for changes to test files        |
+| `pnpm ci`              | Sequentially runs `format`, `typegen`, `test`, and `build`     |
+
 
 ## Naming Conventions
 >Note that Biome.js will warn you during the linting process if a file does not match properly.
@@ -93,18 +98,20 @@ pnpm i <package-name>
 ```
 ED Starter
 │
-├── 📂 .cursor
 ├── 📂 .agents
+├── 📂 .biome
+├── 📂 .cursor
+├── 📂 .plop
 ├── 📂 frontend
 │   ├── 📂 app
 │   ├── 📂 components
 │   │   ├── 📂 animations
 │   │   ├── 📂 layout
-│   │   ├── 📂 miscellaneous
 │   │   ├── 📂 modules
 │   │   └── 📂 primitives
 │   ├── 📂 public
 │   ├── 📂 lib
+│   │   ├── 📂 actions
 │   │   ├── 📂 hooks
 │   │   ├── 📂 site
 │   │   ├── 📂 styles
@@ -112,7 +119,10 @@ ED Starter
 │   ├── 📂 sanity
 │   │   ├── 📂 lib
 │   │   └── 📂 queries
+│   ├── 📂 test
+│   │   └── 📂 components
 │   ├── 📄 sanity.types.ts
+│   ├── 📄 tsconfig.json
 │   └── 📄 package.json
 ├── 📂 studio
 │   ├── 📂 actions
@@ -124,13 +134,14 @@ ED Starter
 │   │   ├── 📂 objects
 │   │   ├── 📂 pages
 │   │   ├── 📂 previews
+│   │   ├── 📄 common.ts
 │   │   ├── 📄 moduleTypes.ts
-│   │   ├── 📄 schema.ts
-│   │   └── 📄 common.ts
+│   │   └── 📄 schema.ts
 │   ├── 📄 sanity.cli.ts
 │   ├── 📄 sanity.config.ts
 │   └── 📄 package.json
 ├── 📄 biome.json
+├── 📄 plopfile.cjs
 └── 📄 package.json
 ```
 
@@ -148,7 +159,7 @@ ED Starter
 
 ### How do I create a new Sanity-powered module?
 1. In root, run `pnpm run plop` and select `Add New Module`
-2. Plop will then auto-generate a component, query, and schema file
+2. Plop will then auto-generate a component, query, test, and schema file
 3. Add your schema to `/studio/schemas/schema.ts` and `/studio/schemas/moduleTypes.ts`
 4. Add your schema image preview to `/studio/schemas/previews`
 5. Add your query to `/frontend/sanity/queries/queries.ts`
