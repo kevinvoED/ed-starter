@@ -10,11 +10,11 @@ export const HeroPrimary = ({
   description,
 }: ModuleProps<"hero-primary">) => {
   return (
-    <div className="grid-custom-md">
+    <div className="grid-custom">
       <SanityImage
         image={image}
         sizes="(max-width: 768px) 100vw, 50vw"
-        className="col-span-full h-full md:col-span-6"
+        className="col-span-full size-full md:col-span-6"
       />
 
       <div className="f-py-6/12 f-gap-6/12 col-span-full flex flex-col p-custom md:col-span-6 md:pl-0">
@@ -29,7 +29,7 @@ export const HeroPrimary = ({
         </div>
 
         <div className="flex flex-wrap gap-4">
-          {link.map((link) => (
+          {link?.map((link) => (
             <SanityLink
               key={link._key}
               link={link}

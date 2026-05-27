@@ -43,19 +43,19 @@
 /* ------------------------------------------------------------ */
 
 @utility p-custom {
-  @apply px-5 lg:px-6;
-}
-
-@utility p-custom-md {
   @apply px-5 md:px-6;
 }
 
-@utility grid-custom {
-  @apply grid grid-cols-4 lg:grid-cols-12 gap-5;
+@utility p-custom-lg {
+  @apply px-5 lg:px-6;
 }
 
-@utility grid-custom-md {
+@utility grid-custom {
   @apply grid grid-cols-4 md:grid-cols-12 gap-5;
+}
+
+@utility grid-custom-lg {
+  @apply grid grid-cols-4 lg:grid-cols-12 gap-5;
 }
 
 /* ------------------------------------------------------------ */
