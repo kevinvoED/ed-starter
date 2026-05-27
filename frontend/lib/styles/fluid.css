@@ -391,24 +391,24 @@
 /* --- PADDING --- */
 @utility f-p-* {
   --p-diff: calc(
-    (--modifier(integer) * var(--px-per-tw)) -
-    (--value(integer) * var(--px-per-tw))
+    (--modifier(number) * var(--px-per-tw)) -
+    (--value(number) * var(--px-per-tw))
   );
-  --p-min-size: calc(var(--spacing) * --value(integer));
+  --p-min-size: calc(var(--spacing) * --value(number));
   --p-fluid: calc(var(--p-min-size) + (var(--p-diff) * var(--fluid-progress)));
   padding: max(var(--p-min-size), var(--p-fluid));
   /* Overrides when inside .contained */
   .contained & {
-    --p-max-size: calc(var(--spacing) * --modifier(integer));
+    --p-max-size: calc(var(--spacing) * --modifier(number));
     padding: clamp(var(--p-min-size), var(--p-fluid), var(--p-max-size));
   }
 }
 @utility f-pt-* {
   --pt-diff: calc(
-    (--modifier(integer) * var(--px-per-tw)) -
-    (--value(integer) * var(--px-per-tw))
+    (--modifier(number) * var(--px-per-tw)) -
+    (--value(number) * var(--px-per-tw))
   );
-  --pt-min-size: calc(var(--spacing) * --value(integer));
+  --pt-min-size: calc(var(--spacing) * --value(number));
   --pt-fluid: calc(
     var(--pt-min-size) +
     (var(--pt-diff) * var(--fluid-progress))
@@ -416,16 +416,16 @@
   padding-top: max(var(--pt-min-size), var(--pt-fluid));
   /* Overrides when inside .contained */
   .contained & {
-    --pt-max-size: calc(var(--spacing) * --modifier(integer));
+    --pt-max-size: calc(var(--spacing) * --modifier(number));
     padding-top: clamp(var(--pt-min-size), var(--pt-fluid), var(--pt-max-size));
   }
 }
 @utility f-pb-* {
   --pb-diff: calc(
-    (--modifier(integer) * var(--px-per-tw)) -
-    (--value(integer) * var(--px-per-tw))
+    (--modifier(number) * var(--px-per-tw)) -
+    (--value(number) * var(--px-per-tw))
   );
-  --pb-min-size: calc(var(--spacing) * --value(integer));
+  --pb-min-size: calc(var(--spacing) * --value(number));
   --pb-fluid: calc(
     var(--pb-min-size) +
     (var(--pb-diff) * var(--fluid-progress))
@@ -433,7 +433,7 @@
   padding-bottom: max(var(--pb-min-size), var(--pb-fluid));
   /* Overrides when inside .contained */
   .contained & {
-    --pb-max-size: calc(var(--spacing) * --modifier(integer));
+    --pb-max-size: calc(var(--spacing) * --modifier(number));
     padding-bottom: clamp(
       var(--pb-min-size),
       var(--pb-fluid),
@@ -443,10 +443,10 @@
 }
 @utility f-pl-* {
   --pl-diff: calc(
-    (--modifier(integer) * var(--px-per-tw)) -
-    (--value(integer) * var(--px-per-tw))
+    (--modifier(number) * var(--px-per-tw)) -
+    (--value(number) * var(--px-per-tw))
   );
-  --pl-min-size: calc(var(--spacing) * --value(integer));
+  --pl-min-size: calc(var(--spacing) * --value(number));
   --pl-fluid: calc(
     var(--pl-min-size) +
     (var(--pl-diff) * var(--fluid-progress))
@@ -454,7 +454,7 @@
   padding-left: max(var(--pl-min-size), var(--pl-fluid));
   /* Overrides when inside .contained */
   .contained & {
-    --pl-max-size: calc(var(--spacing) * --modifier(integer));
+    --pl-max-size: calc(var(--spacing) * --modifier(number));
     padding-left: clamp(
       var(--pl-min-size),
       var(--pl-fluid),
@@ -464,10 +464,10 @@
 }
 @utility f-pr-* {
   --pr-diff: calc(
-    (--modifier(integer) * var(--px-per-tw)) -
-    (--value(integer) * var(--px-per-tw))
+    (--modifier(number) * var(--px-per-tw)) -
+    (--value(number) * var(--px-per-tw))
   );
-  --pr-min-size: calc(var(--spacing) * --value(integer));
+  --pr-min-size: calc(var(--spacing) * --value(number));
   --pr-fluid: calc(
     var(--pr-min-size) +
     (var(--pr-diff) * var(--fluid-progress))
@@ -475,7 +475,7 @@
   padding-right: max(var(--pr-min-size), var(--pr-fluid));
   /* Overrides when inside .contained */
   .contained & {
-    --pr-max-size: calc(var(--spacing) * --modifier(integer));
+    --pr-max-size: calc(var(--spacing) * --modifier(number));
     padding-right: clamp(
       var(--pr-min-size),
       var(--pr-fluid),
@@ -485,10 +485,10 @@
 }
 @utility f-px-* {
   --px-diff: calc(
-    (--modifier(integer) * var(--px-per-tw)) -
-    (--value(integer) * var(--px-per-tw))
+    (--modifier(number) * var(--px-per-tw)) -
+    (--value(number) * var(--px-per-tw))
   );
-  --px-min-size: calc(var(--spacing) * --value(integer));
+  --px-min-size: calc(var(--spacing) * --value(number));
   --px-fluid: calc(
     var(--px-min-size) +
     (var(--px-diff) * var(--fluid-progress))
@@ -497,7 +497,7 @@
   padding-right: max(var(--px-min-size), var(--px-fluid));
   /* Overrides when inside .contained */
   .contained & {
-    --px-max-size: calc(var(--spacing) * --modifier(integer));
+    --px-max-size: calc(var(--spacing) * --modifier(number));
     padding-left: clamp(
       var(--px-min-size),
       var(--px-fluid),
@@ -512,10 +512,10 @@
 }
 @utility f-py-* {
   --py-diff: calc(
-    (--modifier(integer) * var(--px-per-tw)) -
-    (--value(integer) * var(--px-per-tw))
+    (--modifier(number) * var(--px-per-tw)) -
+    (--value(number) * var(--px-per-tw))
   );
-  --py-min-size: calc(var(--spacing) * --value(integer));
+  --py-min-size: calc(var(--spacing) * --value(number));
   --py-fluid: calc(
     var(--py-min-size) +
     (var(--py-diff) * var(--fluid-progress))
@@ -524,7 +524,7 @@
   padding-bottom: max(var(--py-min-size), var(--py-fluid));
   /* Overrides when inside .contained */
   .contained & {
-    --py-max-size: calc(var(--spacing) * --modifier(integer));
+    --py-max-size: calc(var(--spacing) * --modifier(number));
     padding-top: clamp(var(--py-min-size), var(--py-fluid), var(--py-max-size));
     padding-bottom: clamp(
       var(--py-min-size),
@@ -537,24 +537,24 @@
 /* --- MARGINS --- */
 @utility f-m-* {
   --m-diff: calc(
-    (--modifier(integer) * var(--px-per-tw)) -
-    (--value(integer) * var(--px-per-tw))
+    (--modifier(number) * var(--px-per-tw)) -
+    (--value(number) * var(--px-per-tw))
   );
-  --m-min-size: calc(var(--spacing) * --value(integer));
+  --m-min-size: calc(var(--spacing) * --value(number));
   --m-fluid: calc(var(--m-min-size) + (var(--m-diff) * var(--fluid-progress)));
   margin: max(var(--m-min-size), var(--m-fluid));
   /* Overrides when inside .contained */
   .contained & {
-    --m-max-size: calc(var(--spacing) * --modifier(integer));
+    --m-max-size: calc(var(--spacing) * --modifier(number));
     margin: clamp(var(--m-min-size), var(--m-fluid), var(--m-max-size));
   }
 }
 @utility f-mt-* {
   --mt-diff: calc(
-    (--modifier(integer) * var(--px-per-tw)) -
-    (--value(integer) * var(--px-per-tw))
+    (--modifier(number) * var(--px-per-tw)) -
+    (--value(number) * var(--px-per-tw))
   );
-  --mt-min-size: calc(var(--spacing) * --value(integer));
+  --mt-min-size: calc(var(--spacing) * --value(number));
   --mt-fluid: calc(
     var(--mt-min-size) +
     (var(--mt-diff) * var(--fluid-progress))
@@ -562,16 +562,16 @@
   margin-top: max(var(--mt-min-size), var(--mt-fluid));
   /* Overrides when inside .contained */
   .contained & {
-    --mt-max-size: calc(var(--spacing) * --modifier(integer));
+    --mt-max-size: calc(var(--spacing) * --modifier(number));
     margin-top: clamp(var(--mt-min-size), var(--mt-fluid), var(--mt-max-size));
   }
 }
 @utility f-mb-* {
   --mb-diff: calc(
-    (--modifier(integer) * var(--px-per-tw)) -
-    (--value(integer) * var(--px-per-tw))
+    (--modifier(number) * var(--px-per-tw)) -
+    (--value(number) * var(--px-per-tw))
   );
-  --mb-min-size: calc(var(--spacing) * --value(integer));
+  --mb-min-size: calc(var(--spacing) * --value(number));
   --mb-fluid: calc(
     var(--mb-min-size) +
     (var(--mb-diff) * var(--fluid-progress))
@@ -579,7 +579,7 @@
   margin-bottom: max(var(--mb-min-size), var(--mb-fluid));
   /* Overrides when inside .contained */
   .contained & {
-    --mb-max-size: calc(var(--spacing) * --modifier(integer));
+    --mb-max-size: calc(var(--spacing) * --modifier(number));
     margin-bottom: clamp(
       var(--mb-min-size),
       var(--mb-fluid),
@@ -589,10 +589,10 @@
 }
 @utility f-ml-* {
   --ml-diff: calc(
-    (--modifier(integer) * var(--px-per-tw)) -
-    (--value(integer) * var(--px-per-tw))
+    (--modifier(number) * var(--px-per-tw)) -
+    (--value(number) * var(--px-per-tw))
   );
-  --ml-min-size: calc(var(--spacing) * --value(integer));
+  --ml-min-size: calc(var(--spacing) * --value(number));
   --ml-fluid: calc(
     var(--ml-min-size) +
     (var(--ml-diff) * var(--fluid-progress))
@@ -600,16 +600,16 @@
   margin-left: max(var(--ml-min-size), var(--ml-fluid));
   /* Overrides when inside .contained */
   .contained & {
-    --ml-max-size: calc(var(--spacing) * --modifier(integer));
+    --ml-max-size: calc(var(--spacing) * --modifier(number));
     margin-left: clamp(var(--ml-min-size), var(--ml-fluid), var(--ml-max-size));
   }
 }
 @utility f-mr-* {
   --mr-diff: calc(
-    (--modifier(integer) * var(--px-per-tw)) -
-    (--value(integer) * var(--px-per-tw))
+    (--modifier(number) * var(--px-per-tw)) -
+    (--value(number) * var(--px-per-tw))
   );
-  --mr-min-size: calc(var(--spacing) * --value(integer));
+  --mr-min-size: calc(var(--spacing) * --value(number));
   --mr-fluid: calc(
     var(--mr-min-size) +
     (var(--mr-diff) * var(--fluid-progress))
@@ -617,7 +617,7 @@
   margin-right: max(var(--mr-min-size), var(--mr-fluid));
   /* Overrides when inside .contained */
   .contained & {
-    --mr-max-size: calc(var(--spacing) * --modifier(integer));
+    --mr-max-size: calc(var(--spacing) * --modifier(number));
     margin-right: clamp(
       var(--mr-min-size),
       var(--mr-fluid),
@@ -627,10 +627,10 @@
 }
 @utility f-mx-* {
   --mx-diff: calc(
-    (--modifier(integer) * var(--px-per-tw)) -
-    (--value(integer) * var(--px-per-tw))
+    (--modifier(number) * var(--px-per-tw)) -
+    (--value(number) * var(--px-per-tw))
   );
-  --mx-min-size: calc(var(--spacing) * --value(integer));
+  --mx-min-size: calc(var(--spacing) * --value(number));
   --mx-fluid: calc(
     var(--mx-min-size) +
     (var(--mx-diff) * var(--fluid-progress))
@@ -639,7 +639,7 @@
   margin-right: max(var(--mx-min-size), var(--mx-fluid));
   /* Overrides when inside .contained */
   .contained & {
-    --mx-max-size: calc(var(--spacing) * --modifier(integer));
+    --mx-max-size: calc(var(--spacing) * --modifier(number));
     margin-left: clamp(var(--mx-min-size), var(--mx-fluid), var(--mx-max-size));
     margin-right: clamp(
       var(--mx-min-size),
@@ -650,10 +650,10 @@
 }
 @utility f-my-* {
   --my-diff: calc(
-    (--modifier(integer) * var(--px-per-tw)) -
-    (--value(integer) * var(--px-per-tw))
+    (--modifier(number) * var(--px-per-tw)) -
+    (--value(number) * var(--px-per-tw))
   );
-  --my-min-size: calc(var(--spacing) * --value(integer));
+  --my-min-size: calc(var(--spacing) * --value(number));
   --my-fluid: calc(
     var(--my-min-size) +
     (var(--my-diff) * var(--fluid-progress))
@@ -662,7 +662,7 @@
   margin-bottom: max(var(--my-min-size), var(--my-fluid));
   /* Overrides when inside .contained */
   .contained & {
-    --my-max-size: calc(var(--spacing) * --modifier(integer));
+    --my-max-size: calc(var(--spacing) * --modifier(number));
     margin-left: clamp(var(--my-min-size), var(--my-fluid), var(--my-max-size));
     margin-right: clamp(
       var(--my-min-size),
@@ -675,24 +675,24 @@
 /* --- GAP --- */
 @utility f-gap-* {
   --g-diff: calc(
-    (--modifier(integer) * var(--px-per-tw)) -
-    (--value(integer) * var(--px-per-tw))
+    (--modifier(number) * var(--px-per-tw)) -
+    (--value(number) * var(--px-per-tw))
   );
-  --g-min-size: calc(var(--spacing) * --value(integer));
+  --g-min-size: calc(var(--spacing) * --value(number));
   --g-fluid: calc(var(--g-min-size) + (var(--g-diff) * var(--fluid-progress)));
   gap: max(var(--g-min-size), var(--g-fluid));
   /* Overrides when inside .contained */
   .contained & {
-    --g-max-size: calc(var(--spacing) * --modifier(integer));
+    --g-max-size: calc(var(--spacing) * --modifier(number));
     gap: clamp(var(--g-min-size), var(--g-fluid), var(--g-max-size));
   }
 }
 @utility f-gap-x-* {
   --gx-diff: calc(
-    (--modifier(integer) * var(--px-per-tw)) -
-    (--value(integer) * var(--px-per-tw))
+    (--modifier(number) * var(--px-per-tw)) -
+    (--value(number) * var(--px-per-tw))
   );
-  --gx-min-size: calc(var(--spacing) * --value(integer));
+  --gx-min-size: calc(var(--spacing) * --value(number));
   --gx-fluid: calc(
     var(--gx-min-size) +
     (var(--gx-diff) * var(--fluid-progress))
@@ -700,16 +700,16 @@
   column-gap: max(var(--gx-min-size), var(--gx-fluid));
   /* Overrides when inside .contained */
   .contained & {
-    --gx-max-size: calc(var(--spacing) * --modifier(integer));
+    --gx-max-size: calc(var(--spacing) * --modifier(number));
     column-gap: clamp(var(--gx-min-size), var(--gx-fluid), var(--gx-max-size));
   }
 }
 @utility f-gap-y-* {
   --gy-diff: calc(
-    (--modifier(integer) * var(--px-per-tw)) -
-    (--value(integer) * var(--px-per-tw))
+    (--modifier(number) * var(--px-per-tw)) -
+    (--value(number) * var(--px-per-tw))
   );
-  --gy-min-size: calc(var(--spacing) * --value(integer));
+  --gy-min-size: calc(var(--spacing) * --value(number));
   --gy-fluid: calc(
     var(--gy-min-size) +
     (var(--gy-diff) * var(--fluid-progress))
@@ -717,7 +717,7 @@
   row-gap: max(var(--gy-min-size), var(--gy-fluid));
   /* Overrides when inside .contained */
   .contained & {
-    --gy-max-size: calc(var(--spacing) * --modifier(integer));
+    --gy-max-size: calc(var(--spacing) * --modifier(number));
     row-gap: clamp(var(--gy-min-size), var(--gy-fluid), var(--gy-max-size));
   }
 }
