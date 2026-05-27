@@ -64,7 +64,7 @@ export const ptFragment = `
 `;
 
 export const linkFragment = `
-  "link": fn::link(link)
+  "link": coalesce(fn::link(link), [])
 `;
 
 export const imageFragment = `

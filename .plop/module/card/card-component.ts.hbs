@@ -2,12 +2,12 @@ import type { ModuleProps } from "@/sanity/lib/fetch";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
 
-export const CardExample = ({
+export const {{titleCase name}} = ({
   title,
   description,
   link,
   cards,
-}: ModuleProps<"card-example">) => {
+}: ModuleProps<"{{kebabCase name}}">) => {
   return (
     <div className="grid-custom f-py-10/20 f-gap-8/12 bg-black p-custom text-white">
       <div className="f-gap-y-2/4 grid-custom col-span-full text-center">

@@ -7,8 +7,8 @@ import {
 } from "../../fragments";
 
 // @sanity-typegen-ignore
-export const CARD_EXAMPLE_QUERY = defineQuery(`
-  _type == "card-example" => {
+export const {{constantCase name}}_QUERY = defineQuery(`
+  _type == "{{kebabCase name}}" => {
     _type,
     _key,
     ${titleFragment},

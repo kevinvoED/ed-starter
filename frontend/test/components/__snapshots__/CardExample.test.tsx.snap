@@ -3,26 +3,24 @@
 exports[`CardExample > matches snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="f-py-10/20 p-custom"
+    class="grid-custom f-py-10/20 f-gap-8/12 bg-black p-custom text-white"
   >
     <div
-      class=""
-      style="opacity: 0;"
+      class="f-gap-y-2/4 grid-custom col-span-full text-center"
     >
       <div
-        class="ftype type-heading-3250 to-type-heading-4850"
+        class="md:col-span-8 md:col-start-3"
       >
-        <h2>
-          My Title
-        </h2>
+        <div
+          class="type-heading-4840"
+        >
+          <h1>
+            My Title
+          </h1>
+        </div>
       </div>
-    </div>
-    <div
-      class=""
-      style="opacity: 0;"
-    >
       <div
-        class="[&_p:last-of-type]:mb-0 type-body-1640"
+        class="[&_p:last-of-type]:mb-0 md:col-span-4 md:col-start-5"
       >
         <p
           class="ftype type-body-1440 to-type-body-1640 mb-4"
@@ -31,65 +29,35 @@ exports[`CardExample > matches snapshot 1`] = `
         </p>
       </div>
     </div>
-    <img
-      alt="Test card image"
-      class="object-cover"
-      data-nimg="1"
-      decoding="async"
-      height="100"
-      loading="lazy"
-      sizes="(max-width: 768px) 75vw, 200px"
-      src="https://example.com/image.jpg?w=3840"
-      srcset="https://example.com/image.jpg?w=640 640w, https://example.com/image.jpg?w=750 750w, https://example.com/image.jpg?w=828 828w, https://example.com/image.jpg?w=1080 1080w, https://example.com/image.jpg?w=1200 1200w, https://example.com/image.jpg?w=1920 1920w, https://example.com/image.jpg?w=2048 2048w, https://example.com/image.jpg?w=3840 3840w"
-      style="color: transparent;"
-      width="100"
-    />
-    <div
-      class="flex flex-col gap-4"
+    <article
+      class="f-p-2/4 f-gap-2/4 col-span-full flex flex-col rounded-lg bg-white text-black md:col-span-3"
     >
-      <a
-        class="group/button inline-flex select-none items-center justify-center font-inherit outline-0 transition-colors duration-300 ease-in-out focus-visible:outline-2 focus-visible:outline-debug-blue focus-visible:outline-offset-4 has-[>svg]:gap-1.5 [&_svg]:size-3 rounded whitespace-nowrap ftype type-body-1450 to-type-body-1650 f-py-1/2 f-px-2/3 bg-debug-blue text-white hover:bg-debug-blue/90 w-fit"
-        href="https://example.com"
-        id="cta-example-com-lnk1"
-        rel="noopener noreferrer"
-        target="_blank"
+      <div
+        class="type-heading-3240"
       >
-        Learn more
-        <svg
-          class="size-4 transition-transform duration-300 ease-in-out group-hover/button:translate-x-1"
-          fill="none"
-          height="11"
-          stroke="currentColor"
-          stroke-width="1"
-          viewBox="0 0 11 11"
-          width="11"
-          xmlns="http://www.w3.org/2000/svg"
+        <h1>
+          My card title
+        </h1>
+      </div>
+      <div
+        class="[&_p:last-of-type]:mb-0"
+      >
+        <p
+          class="ftype type-body-1440 to-type-body-1640 mb-4"
         >
-          <title>
-            Arrow Right
-          </title>
-          <g
-            clip-path="url(#clip0_3611_4127)"
-          >
-            <path
-              d="M1 5H10M10 5L6 0.5M10 5L6 9.5"
-              stroke="currentColor"
-            />
-          </g>
-          <defs>
-            <clippath
-              id="clip0_3611_4127"
-            >
-              <rect
-                fill="currentColor"
-                height="11"
-                width="11"
-              />
-            </clippath>
-          </defs>
-        </svg>
-      </a>
-    </div>
+          Card descriptions
+        </p>
+      </div>
+    </article>
+    <a
+      class="group/button inline-flex select-none items-center justify-center font-inherit outline-0 transition-colors duration-300 ease-in-out focus-visible:outline-2 focus-visible:outline-debug-blue focus-visible:outline-offset-4 has-[>svg]:gap-1.5 [&_svg]:size-3 rounded whitespace-nowrap ftype type-body-1450 to-type-body-1650 f-py-1/2 f-px-2/3 bg-debug-blue text-white hover:bg-debug-blue/90 w-fit col-span-full place-self-center"
+      href="https://example.com"
+      id="cta-example-com-lnk1"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      Learn more
+    </a>
   </div>
 </DocumentFragment>
 `;

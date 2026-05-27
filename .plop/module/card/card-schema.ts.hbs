@@ -4,8 +4,8 @@ import { defineField, defineType } from "sanity";
 import { cards, description, link, title } from "@/schemas/common";
 
 export default defineType({
-  name: "card-example",
-  title: "Card Example",
+  name: "{{kebabCase name}}",
+  title: "{{titleCase name}}",
   type: "object",
   fields: [
     title,
@@ -24,7 +24,7 @@ export default defineType({
     },
     prepare({ title }) {
       return {
-        title: "Card Example",
+        title: "{{titleCase name}}",
         subtitle: toPlainText(title),
         media: InlineIcon,
       };

@@ -30,15 +30,6 @@ const props: ModuleProps<"card-example"> = {
   _key: "base",
   title: TITLE_BLOCK,
   description: DESCRIPTION_BLOCK,
-  image: {
-    _type: "image",
-    alt: "Test card image",
-    asset: {
-      _id: "image-abc123def456abc1-100x100-jpg",
-      url: "https://example.com",
-      metadata: { lqip: null, dimensions: { width: 100, height: 100 } },
-    },
-  },
   link: [
     {
       _key: "lnk1",
@@ -48,17 +39,45 @@ const props: ModuleProps<"card-example"> = {
       label: "Learn more",
     },
   ],
+  cards: [
+    {
+      _key: "c1",
+      title: [
+        {
+          _type: "block",
+          _key: "t1",
+          children: [
+            { _type: "span", _key: "s1", marks: [], text: "My card title" },
+          ],
+          markDefs: [],
+          style: "normal",
+        },
+      ],
+      description: [
+        {
+          _type: "block",
+          _key: "d1",
+          children: [
+            { _type: "span", _key: "s2", marks: [], text: "Card descriptions" },
+          ],
+          markDefs: [],
+          style: "normal",
+        },
+      ],
+      link: [],
+      image: {
+        _type: "image",
+        asset: {
+          _id: "image-abc123def456abc1-100x100-jpg",
+          url: "https://example.com",
+          metadata: { lqip: null, dimensions: { width: 100, height: 100 } },
+        },
+      },
+    },
+  ],
 };
 
 describe("CardExample", () => {
-  test("returns null when title is not provided", () => {
-    const { container } = render(
-      // @ts-expect-error intentional missing required prop for null guard test
-      <CardExample />,
-    );
-    expect(container.firstChild).toBeNull();
-  });
-
   test("renders title", () => {
     const { getByText } = render(<CardExample {...props} />);
     expect(getByText("My Title")).toBeInTheDocument();
@@ -72,11 +91,6 @@ describe("CardExample", () => {
   test("matches snapshot", () => {
     const { asFragment } = render(<CardExample {...props} />);
     expect(asFragment()).toMatchSnapshot();
-  });
-
-  test("renders image when provided", () => {
-    const { getByRole } = render(<CardExample {...props} />);
-    expect(getByRole("img", { name: "Test card image" })).toBeInTheDocument();
   });
 
   test("renders CTA link when provided", () => {

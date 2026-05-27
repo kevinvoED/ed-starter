@@ -1,7 +1,7 @@
 import { toPlainText } from "@portabletext/react";
 import { ImageIcon, ImagesIcon, LinkIcon, VideoIcon } from "@sanity/icons";
 import { kebabCase } from "es-toolkit";
-import { defineField, type Rule } from "sanity";
+import { defineArrayMember, defineField, type Rule } from "sanity";
 import {
   moduleBlocks,
   moduleGroups,
@@ -419,4 +419,21 @@ export const eyebrow = defineField({
   description:
     "Optional. Add accompanying short text that usually precedes the title.",
   validation: (Rule) => Rule.required().max(30),
+});
+
+export const cards = defineField({
+  name: "cards",
+  title: "Cards",
+  type: "array",
+  description:
+    "Display up to 4 cards. Order is respected. Minimum 2 cards required.",
+  validation: (Rule) => Rule.min(2).max(4),
+  of: [
+    defineArrayMember({
+      name: "card",
+      title: "Card",
+      type: "object",
+      fields: [title, description, image, link],
+    }),
+  ],
 });

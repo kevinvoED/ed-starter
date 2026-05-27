@@ -72,7 +72,21 @@
         ].sort((a, b) => a.name.localeCompare(b.name))
       },
     ],
-    actions: function () {
+    actions: function (data) {
+      const isCard = data.category === "card";
+      const templates = isCard
+        ? {
+            schema: ".plop/module/card/card-schema.ts.hbs",
+            query: ".plop/module/card/card-query.ts.hbs",
+            component: ".plop/module/card/card-component.ts.hbs",
+          }
+        : {
+            schema: ".plop/sanity-schema-module.ts.hbs",
+            query: ".plop/sanity-schema-query.ts.hbs",
+            component: ".plop/sanity-schema-component.tsx.hbs",
+          };
+
+
       return [
         ">>> REMEMBER TO UPDATE: 'studio/schemas/schema.ts'",
         ">>> REMEMBER TO UPDATE: 'studio/schemas/moduleTypes.ts'",
@@ -80,24 +94,24 @@
         ">>> REMEMBER TO UPDATE: 'frontend/components/ModuleBuilder.tsx'",
         ">>> REMEMBER TO RUN typegen and UPDATE your test snapshots.",
         {
-          type: 'add',
-          path: 'studio/schemas/modules/{{lowerCase category}}/{{kebabCase name}}.ts',
-          templateFile: '.plop/sanity-schema-module.ts.hbs',
+          type: "add",
+          path: "studio/schemas/modules/{{lowerCase category}}/{{kebabCase name}}.ts",
+          templateFile: templates.schema,
         },
         {
-          type: 'add',
-          path: 'frontend/sanity/queries/modules/{{lowerCase category}}/{{kebabCase name}}.ts',
-          templateFile: '.plop/sanity-schema-query.ts.hbs',
+          type: "add",
+          path: "frontend/sanity/queries/modules/{{lowerCase category}}/{{kebabCase name}}.ts",
+          templateFile: templates.query,
         },
         {
-          type: 'add',
-          path: 'frontend/components/modules/{{pascalCase category}}/{{pascalCase name}}.tsx',
-          templateFile: '.plop/sanity-schema-component.tsx.hbs',
+          type: "add",
+          path: "frontend/components/modules/{{pascalCase category}}/{{pascalCase name}}.tsx",
+          templateFile: templates.component,
         },
         {
-          type: 'add',
-          path: 'frontend/test/components/{{pascalCase name}}.test.tsx',
-          templateFile: '.plop/component-test.tsx.hbs',
+          type: "add",
+          path: "frontend/test/components/{{pascalCase name}}.test.tsx",
+          templateFile: ".plop/component-test.tsx.hbs",
         },
       ];
     },
