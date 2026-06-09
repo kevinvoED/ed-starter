@@ -72,7 +72,6 @@ export const ContentPagination = ({
             id="cta"
             variant="ghost"
             href={buildPageUrl(currentPage - 1)}
-            hasArrow={false}
             scroll={false}
           >
             <Icon
@@ -95,7 +94,6 @@ export const ContentPagination = ({
               variant={pageNum === currentPage ? "ghost" : "ghost"}
               key={pageNum}
               href={buildPageUrl(pageNum as number)}
-              hasArrow={false}
               scroll={false}
             >
               {pageNum}
@@ -108,7 +106,6 @@ export const ContentPagination = ({
             id="cta"
             variant="ghost"
             href={buildPageUrl(currentPage + 1)}
-            hasArrow={false}
             scroll={false}
           >
             <Icon variant="arrow-right" strokeWidth={1} size={4} />

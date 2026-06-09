@@ -84,7 +84,7 @@ export const SanityLink = forwardRef<HTMLAnchorElement, SanityLinkProps>(
       variant,
       width,
       card,
-      hasArrow = true,
+      hasArrow = false,
       hasDownload = false,
       scroll = true,
       openInNewTab = false,

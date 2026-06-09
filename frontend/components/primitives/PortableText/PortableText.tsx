@@ -65,12 +65,7 @@ export const PortableText = ({
   const components = portableTextComponents(style, slot);
 
   return (
-    <div
-      className={cn(
-        style === "module" && !slot && "[&_p:last-of-type]:mb-0",
-        className,
-      )}
-    >
+    <div className={cn(!slot && "[&_p:last-of-type]:mb-0", className)}>
       <PortableTextRenderer value={value} components={components} />
     </div>
   );

@@ -5,33 +5,15 @@ import { SanityLink } from "@/components/primitives/Link/SanityLink";
 export const MobileNavbar = () => {
   return (
     <nav className="hidden">
-      <SanityLink
-        href="/"
-        id="nav"
-        variant="ghost"
-        width="fit"
-        hasArrow={false}
-      >
+      <SanityLink href="/" id="nav" variant="ghost" width="fit">
         Home
       </SanityLink>
 
-      <SanityLink
-        href="/ed/button"
-        id="nav"
-        variant="ghost"
-        width="fit"
-        hasArrow={false}
-      >
+      <SanityLink href="/ed/button" id="nav" variant="ghost" width="fit">
         Button
       </SanityLink>
 
-      <SanityLink
-        href="/ed/accordion"
-        id="nav"
-        variant="ghost"
-        width="fit"
-        hasArrow={false}
-      >
+      <SanityLink href="/ed/accordion" id="nav" variant="ghost" width="fit">
         Accordion
       </SanityLink>
     </nav>

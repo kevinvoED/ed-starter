@@ -10,7 +10,7 @@ export const Marquee = ({
   imageType,
 }: ModuleProps<"marquee">) => {
   return (
-    <div className="grid-custom overflow-hidden">
+    <div className="grid-custom place-items-center overflow-hidden">
       {variant === "text" && (
         <TextMarquee
           items={items}

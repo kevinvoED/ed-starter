@@ -37,7 +37,6 @@ export const ContentListing = ({
               href={post.href}
               variant="ghost"
               card
-              hasArrow={false}
               width="fit"
               className="h-full"
             >

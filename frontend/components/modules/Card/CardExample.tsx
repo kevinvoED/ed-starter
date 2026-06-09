@@ -41,7 +41,6 @@ export const CardExample = ({
           key={link._key}
           link={link}
           width="fit"
-          hasArrow={false}
           className="col-span-full place-self-center"
         >
           {link.label}

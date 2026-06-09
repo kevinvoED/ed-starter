@@ -37,7 +37,6 @@ export const Starter = () => {
                 href={link.href}
                 id="cta"
                 variant="ghost"
-                hasArrow={false}
                 scroll={false}
                 className={cn(
                   "hover:underline",

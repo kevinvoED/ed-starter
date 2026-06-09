@@ -39,7 +39,6 @@ export const DesktopNavbar = ({ data }: { data: NAVBAR_QUERY_RESULT }) => {
                     id="nav"
                     variant="ghost"
                     width="fit"
-                    hasArrow={false}
                     className={triggerClassName}
                   >
                     {mainLink.link[0].label}
@@ -81,7 +80,6 @@ export const DesktopNavbar = ({ data }: { data: NAVBAR_QUERY_RESULT }) => {
                                       id="nav"
                                       variant="ghost"
                                       width="fit"
-                                      hasArrow={false}
                                     >
                                       {item.label}
                                     </SanityLink>
@@ -108,14 +106,14 @@ export const DesktopNavbar = ({ data }: { data: NAVBAR_QUERY_RESULT }) => {
           sideOffset={10}
           collisionPadding={{ top: 5, bottom: 5, left: 20, right: 20 }}
           collisionAvoidance={{ side: "none" }}
-          className="box-border h-[var(--positioner-height)] w-[var(--positioner-width)] max-w-[var(--available-width)] transition-[top,left,right,bottom] duration-[var(--duration)] ease-[var(--easing)] before:absolute before:content-[''] data-[instant]:transition-none data-[side=bottom]:before:top-[-10px] data-[side=left]:before:top-0 data-[side=right]:before:top-0 data-[side=bottom]:before:right-0 data-[side=left]:before:right-[-10px] data-[side=top]:before:right-0 data-[side=left]:before:bottom-0 data-[side=right]:before:bottom-0 data-[side=top]:before:bottom-[-10px] data-[side=bottom]:before:left-0 data-[side=right]:before:left-[-10px] data-[side=top]:before:left-0 data-[side=bottom]:before:h-2.5 data-[side=top]:before:h-2.5 data-[side=left]:before:w-2.5 data-[side=right]:before:w-2.5"
+          className="box-border h-(--positioner-height) w-(--positioner-width) max-w-(--available-width) transition-[top,left,right,bottom] duration-(--duration) ease-(--easing) before:absolute before:content-[''] data-instant:transition-none data-[side=bottom]:before:top-[-10px] data-[side=left]:before:top-0 data-[side=right]:before:top-0 data-[side=bottom]:before:right-0 data-[side=left]:before:right-[-10px] data-[side=top]:before:right-0 data-[side=left]:before:bottom-0 data-[side=right]:before:bottom-0 data-[side=top]:before:bottom-[-10px] data-[side=bottom]:before:left-0 data-[side=right]:before:left-[-10px] data-[side=top]:before:left-0 data-[side=bottom]:before:h-2.5 data-[side=top]:before:h-2.5 data-[side=left]:before:w-2.5 data-[side=right]:before:w-2.5"
           style={{
             ["--duration" as string]: "0.35s",
             ["--easing" as string]: "cubic-bezier(0.22, 1, 0.36, 1)",
           }}
         >
-          <NavigationMenu.Popup className="data-[ending-style]:easing-[ease] relative h-[var(--popup-height)] w-[var(--popup-width)] origin-[var(--transform-origin)] rounded-lg bg-[canvas] text-white shadow-gray-200 shadow-lg outline outline-white transition-[opacity,transform,width,height,scale,translate] duration-[var(--duration)] ease-[var(--easing)] data-[ending-style]:scale-90 data-[starting-style]:scale-90 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0 data-[ending-style]:duration-150 min-[32rem]:w-[var(--popup-width)]">
-            <NavigationMenu.Arrow className="flex transition-[left] duration-[var(--duration)] ease-[var(--easing)] data-[side=bottom]:top-[-7px] data-[side=left]:right-[-13px] data-[side=top]:bottom-[-8px] data-[side=right]:left-[-13px] data-[side=left]:rotate-90 data-[side=right]:-rotate-90 data-[side=top]:rotate-180">
+          <NavigationMenu.Popup className="data-[ending-style]:easing-[ease] relative h-(--popup-height) w-(--popup-width) origin-(--transform-origin) rounded-lg bg-[canvas] text-white shadow-gray-200 shadow-lg outline outline-white transition-[opacity,transform,width,height,scale,translate] duration-(--duration) ease-(--easing) data-ending-style:scale-90 data-starting-style:scale-90 data-ending-style:opacity-0 data-starting-style:opacity-0 data-ending-style:duration-150 min-[32rem]:w-(--popup-width)">
+            <NavigationMenu.Arrow className="flex transition-[left] duration-(--duration) ease-(--easing) data-[side=bottom]:top-[-7px] data-[side=left]:right-[-13px] data-[side=top]:bottom-[-8px] data-[side=right]:left-[-13px] data-[side=left]:rotate-90 data-[side=right]:-rotate-90 data-[side=top]:rotate-180">
               <ArrowSvg />
             </NavigationMenu.Arrow>
             <NavigationMenu.Viewport className="relative h-full w-full overflow-hidden" />
