@@ -65,6 +65,12 @@ The following AI skills are installed and available for this project (located in
   - **MEDIUM**: Client-Side Data Fetching (`client-*`), Re-render Optimization (`rerender-*`), Rendering Performance (`rendering-*`)
   - **LOW-MEDIUM**: JavaScript Performance (`js-*`), Advanced Patterns (`advanced-*`)
 
+### figma-module-from-frame
+- **Purpose**: Recreate a selected Figma frame as a Sanity page-builder module (schema, GROQ, React) using project colors, primitives, and `ModuleProps`
+- **When to use**: When the user selects a Figma frame and asks to build or recreate a module (e.g. ListText), or mentions Figma MCP + Sanity module
+- **How to invoke**: Use `load(source: "figma-module-from-frame")` or name the skill explicitly in the prompt
+- **Key topics**: Figma Desktop MCP (once), `colors.css` tokens, `SanityLink`/`SanityImage`/`PortableText`, no hardcoded CMS content, `pnpm typegen`
+
 ### sanity-best-practices (Knowledge Router)
 
 If the Sanity MCP server (`https://mcp.sanity.io`) is available, use `list_sanity_rules` and `get_sanity_rules` to load always up-to-date rules on demand. Otherwise, use the table below to find local rule files.
