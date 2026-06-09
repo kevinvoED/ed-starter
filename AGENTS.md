@@ -320,8 +320,8 @@ const [formState, formAction] = useFormState(serverAction, null);
 - **Best Practices**: Use `sanity_get_sanity_rules` to load specific development guidelines (e.g., `sanity-nextjs`, `sanity-groq`).
 
 ### Sanity MCP Configuration
-- **Project ID**: `cncla7g4`
-- **Dataset**: `migration`
+- **Project ID**: `00t2z2kg`
+- **Dataset**: `development`
 
 These values must always be used when working with Sanity MCP tools.
 
