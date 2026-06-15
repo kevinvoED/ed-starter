@@ -1,7 +1,7 @@
 import { UserIcon } from "@sanity/icons";
 import { orderRankField } from "@sanity/orderable-document-list";
 import { defineField, defineType } from "sanity";
-import { image, link } from "@/schemas/common";
+import { image, links } from "@/schemas/common";
 
 export default defineType({
   name: "author",
@@ -25,11 +25,11 @@ export default defineType({
       validation: (Rule) => Rule.required().max(300),
     }),
     defineField({
-      ...link,
+      ...links,
       title: "Social Media",
       description:
         "Optional. Add links to this author's social media profiles.",
-      validation: (Rule) => Rule,
+      validation: (Rule) => Rule.max(5),
     }),
     defineField({
       ...image,

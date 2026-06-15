@@ -1,7 +1,7 @@
 import { Menu } from "lucide-react";
 import { FolderIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { link, logo, title, toggle } from "@/schemas/common";
+import { links, logo, title, toggle } from "@/schemas/common";
 
 export default defineType({
   name: "footer",
@@ -34,7 +34,7 @@ export default defineType({
               validation: (Rule) => Rule.required(),
             },
             {
-              ...link,
+              ...links,
               name: "indexPageLink",
               title: "Category Index Page",
               description: "Select an internal index page this should link to.",
@@ -69,7 +69,7 @@ export default defineType({
                       title: "Sub Category Title",
                     }),
                     defineField({
-                      ...link,
+                      ...links,
                       title: "Link Items",
                       description: "",
                       validation: (Rule) => Rule.required(),

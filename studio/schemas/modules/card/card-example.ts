@@ -1,7 +1,7 @@
 import { toPlainText } from "@portabletext/react";
 import { InlineIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { cards, description, link, title } from "@/schemas/common";
+import { cards, description, links, title } from "@/schemas/common";
 
 export default defineType({
   name: "card-example",
@@ -10,7 +10,7 @@ export default defineType({
   fields: [
     title,
     description,
-    link,
+    links,
     defineField({
       ...cards,
       description:

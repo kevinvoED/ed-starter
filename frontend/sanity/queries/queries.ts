@@ -8,7 +8,7 @@ import { defineQuery } from "next-sanity";
 import {
   descriptionFragment,
   imageFragment,
-  linkFragment,
+  linksFragment,
   logoFragment,
   metaFragment,
   portableTextFragment,
@@ -172,7 +172,7 @@ export const GET_CONTENT_TYPE_INDEX_QUERY = defineQuery(`
       _createdAt,
       publishedDate,
       slug,
-      ${linkFragment},
+      ${linksFragment},
       ${titleFragment},
       ${imageFragment},
       ${descriptionFragment},

@@ -30,7 +30,7 @@ const props: ModuleProps<"card-example"> = {
   _key: "base",
   title: TITLE_BLOCK,
   description: DESCRIPTION_BLOCK,
-  link: [
+  links: [
     {
       _key: "lnk1",
       _type: "link",
@@ -64,7 +64,7 @@ const props: ModuleProps<"card-example"> = {
           style: "normal",
         },
       ],
-      link: [],
+      links: [],
       image: {
         _type: "image",
         asset: {
@@ -95,8 +95,8 @@ describe("CardExample", () => {
 
   test("renders CTA link when provided", () => {
     const { getByRole } = render(<CardExample {...props} />);
-    const link = getByRole("link", { name: /Learn more/i });
-    expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute("href", "https://example.com");
+    const links = getByRole("link", { name: /Learn more/i });
+    expect(links).toBeInTheDocument();
+    expect(links).toHaveAttribute("href", "https://example.com");
   });
 });

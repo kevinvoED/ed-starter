@@ -5,7 +5,7 @@ import { PortableText } from "@/components/primitives/PortableText/PortableText"
 export const CardExample = ({
   title,
   description,
-  link,
+  links,
   cards,
 }: ModuleProps<"card-example">) => {
   return (
@@ -36,7 +36,7 @@ export const CardExample = ({
         </article>
       ))}
 
-      {link?.map((link) => (
+      {links?.map((link) => (
         <SanityLink
           key={link._key}
           link={link}

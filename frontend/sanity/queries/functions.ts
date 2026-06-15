@@ -13,7 +13,7 @@ export const imageFields = `
   }
 `;
 
-export const linkFields = `
+export const linksFields = `
   ...,
   _key,
   "href": select(
@@ -48,8 +48,8 @@ export const FN_LOGO = `
 `;
 
 export const FN_LINK = `
-  fn fn::link($link) = $link[] {
-    ${linkFields}
+  fn fn::links($links) = $links[] {
+    ${linksFields}
   };
 `;
 
@@ -59,11 +59,11 @@ export const FN_PT = `
     markDefs[]{
       ...,
       _type == "link" => {
-        ${linkFields}
+        ${linksFields}
       }
     },
-    _type == "link" => {
-      ${linkFields}
+    _type == "links" => {
+      ${linksFields}
     },
       _type == "richTable" => {
       ...,
@@ -106,11 +106,11 @@ export const FN_PT_PLAIN = `
     markDefs[]{
       ...,
       _type == "link" => {
-        ${linkFields}
+        ${linksFields}
       }
     },
-    _type == "link" => {
-      ${linkFields}
+    _type == "links" => {
+      ${linksFields}
     }
   };
 `;

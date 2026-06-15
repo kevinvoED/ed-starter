@@ -47,7 +47,7 @@ export const FN_IMAGE = `
   - `imageFragment` - `"image": fn::img(image)`
   - `imagesFragment` - `"images": fn::imgs(images)`
   - `logoFragment` - `"logo": fn::logo(logo)`
-  - `linkFragment` - `"link": fn::link(link)`
+  - `linksFragment` - `"link": fn::link(link)`
   - `portableTextFragment` - `"content": fn::pt(content)`
   - `videoFragment` - Video object with image fields
 
@@ -86,7 +86,7 @@ export const MODULE_NAME_QUERY = defineQuery(`
     _key,
     ${titleFragment},
     ${descriptionFragment},
-    ${linkFragment},
+    ${linksFragment},
     // ... other fields specific to this module
   }
 `);
@@ -261,7 +261,7 @@ export const MY_QUERY = defineQuery(`
 ```ts
 // modules/cta/cta-banner.ts
 import { defineQuery } from "next-sanity";
-import { titleFragment, linkFragment } from "../../fragments";
+import { titleFragment, linksFragment } from "../../fragments";
 
 // @sanity-typegen-ignore
 export const CTA_BANNER_QUERY = defineQuery(`
@@ -269,7 +269,7 @@ export const CTA_BANNER_QUERY = defineQuery(`
     _type,
     _key,
     ${titleFragment},
-    ${linkFragment},
+    ${linksFragment},
     theme
   }
 `);

@@ -8,7 +8,7 @@ export const DriverExample = ({
   title,
   description,
   image,
-  link,
+  links,
 }: ModuleProps<"driver-example">) => {
   if (!title) return null;
 
@@ -33,9 +33,9 @@ export const DriverExample = ({
         <SanityImage image={image} sizes="(max-width: 768px) 75vw, 200px" />
       )}
 
-      {link && (
+      {links && (
         <div className="flex flex-col gap-4">
-          {link.map((link) => (
+          {links.map((link) => (
             <SanityLink
               key={link._key}
               link={link}

@@ -2,10 +2,10 @@ import { defineQuery } from "next-sanity";
 import {
   descriptionFragment,
   imageFragment,
-  linkFragment,
+  linksFragment,
   logoFragment,
 } from "../fragments";
-import { GROQ_FUNCTIONS, linkFields } from "../functions";
+import { GROQ_FUNCTIONS, linksFields } from "../functions";
 
 export const NAVBAR_QUERY = defineQuery(`
   ${GROQ_FUNCTIONS}
@@ -18,7 +18,7 @@ export const NAVBAR_QUERY = defineQuery(`
       _type,
       _key,
       _type == "standaloneLink" => {
-        ${linkFragment}
+        ${linksFragment}
       },
       _type == "group" => {
         title,
@@ -28,11 +28,11 @@ export const NAVBAR_QUERY = defineQuery(`
           _type == "card" => {
             title,
             ${descriptionFragment},
-            ${linkFragment}
+            ${linksFragment}
           },
           _type == "link-group" => {
             title,
-            ${linkFragment}
+            ${linksFragment}
           },
           _type == "resources" => {
             resources[]->{
@@ -64,7 +64,7 @@ export const NAVBAR_QUERY = defineQuery(`
       }
     },
     ctaLinks[]{
-      ${linkFields}
+      ${linksFields}
     }
   }
 `);

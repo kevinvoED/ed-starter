@@ -1,13 +1,13 @@
 import { toPlainText } from "@portabletext/react";
 import { DashboardIcon } from "@sanity/icons";
 import { defineType } from "sanity";
-import { description, image, link, title } from "@/schemas/common";
+import { description, image, links, title } from "@/schemas/common";
 
 export default defineType({
   name: "hero-primary",
   title: "Hero Primary",
   type: "object",
-  fields: [title, description, link, image],
+  fields: [title, description, links, image],
   preview: {
     select: {
       title: "title",

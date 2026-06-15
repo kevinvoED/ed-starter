@@ -22,6 +22,7 @@ export const SanityLinkVariants = cva(
         secondary: "text-debug-red",
         icon: "bg-transparent",
         ghost: "type-mono-1240",
+        portableText: "ftype type-body-1440 to-type-body-1640 underline",
       },
       width: {
         auto: "w-auto",

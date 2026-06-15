@@ -63,8 +63,8 @@ export const ptFragment = `
   fn::ptPlain(content)
 `;
 
-export const linkFragment = `
-  "link": coalesce(fn::link(link), [])
+export const linksFragment = `
+  "links": coalesce(fn::links(links), [])
 `;
 
 export const imageFragment = `

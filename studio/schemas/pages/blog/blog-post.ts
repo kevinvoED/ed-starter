@@ -5,7 +5,7 @@ import {
   createdAt,
   description,
   image,
-  link,
+  links,
   meta,
   modules,
   portableText,
@@ -53,7 +53,7 @@ export default defineType({
       group: "content",
     }),
     defineField({
-      ...link,
+      ...links,
       description:
         "Optional. Used to redirect this to another page instead of its respective Detail page.",
       validation: (Rule) => Rule.max(1),

@@ -5,7 +5,7 @@ import { PortableText } from "@/components/primitives/PortableText/PortableText"
 
 export const HeroPrimary = ({
   title,
-  link,
+  links,
   image,
   description,
 }: ModuleProps<"hero-primary">) => {
@@ -28,13 +28,15 @@ export const HeroPrimary = ({
           <PortableText value={description} className="max-w-prose" />
         </div>
 
-        <div className="flex flex-wrap gap-4">
-          {link.map((link) => (
-            <SanityLink key={link._key} link={link} width="fit">
-              {link.label}
-            </SanityLink>
-          ))}
-        </div>
+        {links && (
+          <div className="flex flex-wrap gap-4">
+            {links.map((link) => (
+              <SanityLink key={link._key} link={link} width="fit">
+                {link.label}
+              </SanityLink>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

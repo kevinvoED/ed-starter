@@ -2,7 +2,7 @@ import { defineQuery } from "next-sanity";
 import {
   descriptionFragment,
   imageFragment,
-  linkFragment,
+  linksFragment,
   titleFragment,
 } from "../../fragments";
 
@@ -13,7 +13,7 @@ export const LIST_EXAMPLE_QUERY = defineQuery(`
     _key,
     ${titleFragment},
     ${descriptionFragment},
-    ${linkFragment},
+    ${linksFragment},
     ${imageFragment},
   }
 `);

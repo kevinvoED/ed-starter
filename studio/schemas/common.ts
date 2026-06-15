@@ -246,13 +246,13 @@ export const slugReadOnly = defineField({
  * Link
  * ------------------------------------------------
  */
-export const link = defineField({
-  name: "link",
+export const links = defineField({
+  name: "links",
   title: "Button Link",
   type: "array",
-  description: "Optional. Select an internal page or external URL to link to.",
+  description: "Optional. Select an internal page or an external URL.",
   of: [{ type: "link" }],
-  validation: (Rule) => Rule.required().max(2),
+  validation: (Rule) => Rule.max(2),
 });
 
 /*
@@ -433,7 +433,7 @@ export const cards = defineField({
       name: "card",
       title: "Card",
       type: "object",
-      fields: [title, description, image, link],
+      fields: [title, description, image, links],
     }),
   ],
 });

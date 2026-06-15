@@ -1,7 +1,7 @@
 import { toPlainText } from "@portabletext/react";
 import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { description, image, link, title } from "@/schemas/common";
+import { description, image, links, title } from "@/schemas/common";
 
 export default defineType({
   name: "list-example",
@@ -18,7 +18,7 @@ export default defineType({
       ...image,
     }),
     defineField({
-      ...link,
+      ...links,
       validation: (Rule) => Rule.max(2),
     }),
   ],

@@ -1,7 +1,7 @@
 import { UserIcon } from "@sanity/icons";
 import { orderRankField } from "@sanity/orderable-document-list";
 import { defineField, defineType } from "sanity";
-import { description, link, title } from "@/schemas/common";
+import { description, links, title } from "@/schemas/common";
 
 export default defineType({
   name: "banner",
@@ -18,8 +18,7 @@ export default defineType({
       validation: (Rule) => Rule,
     }),
     defineField({
-      ...link,
-      validation: (Rule) => Rule.max(2),
+      ...links,
     }),
     orderRankField({ type: "banner" }),
   ],

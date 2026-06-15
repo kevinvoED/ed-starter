@@ -1,5 +1,9 @@
 import { defineQuery } from "next-sanity";
-import { descriptionFragment, linkFragment, titleFragment } from "../fragments";
+import {
+  descriptionFragment,
+  linksFragment,
+  titleFragment,
+} from "../fragments";
 import { GROQ_FUNCTIONS } from "../functions";
 
 export const BANNER_QUERY = defineQuery(`
@@ -10,6 +14,6 @@ export const BANNER_QUERY = defineQuery(`
     _key,
     ${titleFragment},
     ${descriptionFragment},
-    ${linkFragment},
+    ${linksFragment},
   }
 `);

@@ -160,10 +160,10 @@ const portableTextComponents = (
     link: ({ value, children }) => {
       return (
         <SanityLink
+          variant="portableText"
           href={value?.href || ""}
           target={value.openInNewTab ? "_blank" : undefined}
           rel={value.openInNewTab ? "noopener" : undefined}
-          className="underline"
           id="cta"
         >
           {children}

@@ -7,7 +7,7 @@ import {
   PanelRightIcon,
 } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { description, link, logo, title } from "@/schemas/common";
+import { description, links, logo, title } from "@/schemas/common";
 
 export default defineType({
   name: "navbar",
@@ -28,9 +28,10 @@ export default defineType({
           icon: LinkIcon,
           fields: [
             {
-              ...link,
+              ...links,
               title: "Standalone Link",
               description: "The label of the standalone link.",
+              validation: (Rule) => Rule.required().max(1),
             },
           ],
           preview: {
@@ -77,9 +78,9 @@ export default defineType({
                   fields: [
                     title,
                     {
-                      ...link,
+                      ...links,
                       description: "",
-                      validation: (Rule) => Rule,
+                      validation: (Rule) => Rule.max(1),
                     },
                   ],
                 },

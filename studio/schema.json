@@ -970,7 +970,7 @@
           },
           "optional": false
         },
-        "link": {
+        "links": {
           "type": "objectAttribute",
           "value": {
             "type": "array",
@@ -1578,7 +1578,7 @@
           },
           "optional": false
         },
-        "link": {
+        "links": {
           "type": "objectAttribute",
           "value": {
             "type": "array",
@@ -2186,7 +2186,7 @@
           },
           "optional": false
         },
-        "link": {
+        "links": {
           "type": "objectAttribute",
           "value": {
             "type": "array",
@@ -2794,7 +2794,7 @@
           },
           "optional": false
         },
-        "link": {
+        "links": {
           "type": "objectAttribute",
           "value": {
             "type": "array",
@@ -3341,7 +3341,7 @@
           },
           "optional": false
         },
-        "link": {
+        "links": {
           "type": "objectAttribute",
           "value": {
             "type": "array",
@@ -3361,7 +3361,7 @@
               }
             }
           },
-          "optional": false
+          "optional": true
         },
         "cards": {
           "type": "objectAttribute",
@@ -3887,7 +3887,7 @@
                   },
                   "optional": false
                 },
-                "link": {
+                "links": {
                   "type": "objectAttribute",
                   "value": {
                     "type": "array",
@@ -3907,7 +3907,7 @@
                       }
                     }
                   },
-                  "optional": false
+                  "optional": true
                 },
                 "_type": {
                   "type": "objectAttribute",
@@ -4518,7 +4518,7 @@
           },
           "optional": false
         },
-        "link": {
+        "links": {
           "type": "objectAttribute",
           "value": {
             "type": "array",
@@ -5643,7 +5643,7 @@
           },
           "optional": false
         },
-        "link": {
+        "links": {
           "type": "objectAttribute",
           "value": {
             "type": "array",
@@ -5663,7 +5663,7 @@
               }
             }
           },
-          "optional": false
+          "optional": true
         },
         "image": {
           "type": "objectAttribute",
@@ -6906,7 +6906,7 @@
         },
         "optional": true
       },
-      "link": {
+      "links": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
@@ -7969,7 +7969,7 @@
                         },
                         "optional": false
                       },
-                      "link": {
+                      "links": {
                         "type": "objectAttribute",
                         "value": {
                           "type": "array",
@@ -8333,7 +8333,7 @@
               {
                 "type": "object",
                 "attributes": {
-                  "link": {
+                  "links": {
                     "type": "objectAttribute",
                     "value": {
                       "type": "array",
@@ -9404,7 +9404,7 @@
                                 },
                                 "optional": false
                               },
-                              "link": {
+                              "links": {
                                 "type": "objectAttribute",
                                 "value": {
                                   "type": "array",
@@ -11632,7 +11632,7 @@
         },
         "optional": false
       },
-      "link": {
+      "links": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
@@ -13336,7 +13336,7 @@
         },
         "optional": false
       },
-      "link": {
+      "links": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
@@ -13994,7 +13994,7 @@
         },
         "optional": false
       },
-      "link": {
+      "links": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
