@@ -23,14 +23,14 @@ export const SanityLinkVariants = cva(
         icon: "bg-transparent",
         ghost: "type-mono-1240",
       },
-      card: {
-        true: 'whitespace-normal after:absolute after:inset-0 after:z-20 after:content-[""]',
-        false: "",
-      },
       width: {
         auto: "w-auto",
         fit: "w-fit",
         full: "w-full",
+      },
+      card: {
+        true: 'whitespace-normal after:absolute after:inset-0 after:z-20 after:content-[""]',
+        false: "",
       },
       disabled: {
         true: "pointer-events-none opacity-50",
@@ -39,8 +39,8 @@ export const SanityLinkVariants = cva(
     },
     defaultVariants: {
       variant: "primary",
-      card: false,
       width: "fit",
+      card: false,
       disabled: false,
     },
   },

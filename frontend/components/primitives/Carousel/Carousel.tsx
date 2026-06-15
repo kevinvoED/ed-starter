@@ -1,11 +1,11 @@
 "use client";
 
-import type { Button } from "@/components/primitives/Button/Button";
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import * as React from "react";
+import { Button } from "@/components/primitives/Button/Button";
 import { cn } from "@/lib/utils/cn";
 
 /*
@@ -235,58 +235,45 @@ function CarouselCounter({
   );
 }
 
-// TODO PROJECT-LAUNCH: replace with your project's Button variant
 function CarouselPrevious({
   className,
-  variant = "icon",
   ...props
 }: React.ComponentProps<typeof Button>) {
   const { scrollPrev, canScrollPrev } = useCarousel();
 
   return (
-    <button
-      type="button"
+    <Button
+      variant="carouselPrevious"
       data-slot="carousel-previous"
-      className={cn(
-        "disabled:pointer-events-auto! disabled:cursor-not-allowed! disabled:text-silver!",
-        className,
-      )}
+      className={className}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
     >
-      {/* TODO PROJECT-LAUNCH: replace with your project's Icon */}
       <ChevronLeft className="size-4" />
       <span className="sr-only">Previous slide</span>
-    </button>
+    </Button>
   );
 }
 
-// TODO PROJECT-LAUNCH: replace with your project's Button variant
 function CarouselNext({
   className,
-  variant = "icon",
   ...props
 }: React.ComponentProps<typeof Button>) {
   const { scrollNext, canScrollNext } = useCarousel();
 
   return (
-    <button
-      type="button"
+    <Button
+      variant="carouselNext"
       data-slot="carousel-next"
-      className={cn(
-        "disabled:pointer-events-auto! disabled:cursor-not-allowed! disabled:text-silver!",
-        className,
-      )}
+      className={className}
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}
     >
-      {/* TODO PROJECT-LAUNCH: replace with your project's Icon */}
       <ChevronRight className="size-4" />
-
       <span className="sr-only">Next slide</span>
-    </button>
+    </Button>
   );
 }
 

@@ -22,7 +22,7 @@ const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
     <div className="bg-debug-red p-2 text-white">
       <h2 className="mb-2 font-bold text-xl">Something went wrong</h2>
       <p className="mb-4">{getErrorMessage(error)}</p>
-      <Button id="cta" variant="ghost" onClick={resetErrorBoundary}>
+      <Button variant="errorBoundary" onClick={resetErrorBoundary}>
         Try again
       </Button>
     </div>
@@ -45,7 +45,7 @@ const ModulesErrorFallback = ({
           : `The module was "undefined". Maybe it was not added to the module component map or is missing in the query? `}
         {getErrorMessage(error)}
       </p>
-      <Button id="cta" variant="ghost" onClick={resetErrorBoundary}>
+      <Button variant="errorBoundary" onClick={resetErrorBoundary}>
         Try again
       </Button>
     </div>

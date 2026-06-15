@@ -29,7 +29,7 @@ export const HeroPrimary = ({
         </div>
 
         <div className="flex flex-wrap gap-4">
-          {link?.map((link) => (
+          {link.map((link) => (
             <SanityLink key={link._key} link={link} width="fit">
               {link.label}
             </SanityLink>

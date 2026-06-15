@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useTransition } from "react";
 import { useIsPresentationTool } from "next-sanity/hooks";
+import { Button } from "@/components/primitives/Button/Button";
 import { disableDraftMode } from "@/lib/actions/draft-mode";
 
 export function DisableDraftMode() {
@@ -17,13 +18,12 @@ export function DisableDraftMode() {
   if (isPresentationTool || isInIframe) return null;
 
   return (
-    <button
-      type="button"
+    <Button
+      variant="draftMode"
       disabled={pending}
       onClick={() => startTransition(() => disableDraftMode())}
-      className="fixed right-4 bottom-4 z-9999 cursor-pointer rounded-full bg-debug-blue px-4 py-2 font-semibold text-white text-xs transition-colors duration-300 ease-in-out hover:bg-debug-blue/90"
     >
       <span>{pending ? "Disabling..." : "Disable Draft Mode"}</span>
-    </button>
+    </Button>
   );
 }

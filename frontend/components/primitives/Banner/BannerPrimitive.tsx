@@ -98,14 +98,7 @@ export const BannerPrimitive = ({
         {banner.description && <PortableText value={banner.description} />}
       </div>
 
-      <Button
-        onClick={handleClose}
-        type="button"
-        aria-label="Close banner"
-        variant="ghost"
-        width="fit"
-        className="size-5 rounded-full bg-debug-blue text-white"
-      >
+      <Button onClick={handleClose} aria-label="Close banner" variant="banner">
         <span className="-translate-y-0.25">×</span>
       </Button>
     </header>
