@@ -1,6 +1,6 @@
 "use client";
 
-import type { GET_CONTENT_TYPE_INDEX_QUERY_RESULT } from "@/sanity.types";
+import type { ContentIndexVariant } from "@/lib/utils/types";
 import { Separator } from "@base-ui/react";
 import { parseAsString, useQueryStates } from "nuqs";
 import { Icon } from "@/components/primitives/Icon/Icon";
@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils/cn";
 import { Checkbox } from "@base-ui/react/checkbox";
 
 type ContentFilterProps = {
-  data: NonNullable<GET_CONTENT_TYPE_INDEX_QUERY_RESULT>["filters"];
+  data: ContentIndexVariant["filters"];
   className?: string;
 };
 
@@ -33,7 +33,7 @@ export const ContentFilter = ({ data, className }: ContentFilterProps) => {
 };
 
 type ContentFilterItemProps = {
-  data: NonNullable<GET_CONTENT_TYPE_INDEX_QUERY_RESULT>["filters"];
+  data: ContentIndexVariant["filters"];
   queryKey: "category" | "topic";
   className?: string;
 };

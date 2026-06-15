@@ -4,12 +4,12 @@ import type {
 } from "sanity-plugin-rich-table";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
 
-interface PortableTextRichTableProps {
+type PortableTextRichTableProps = {
   rows: RichTableType["rows"];
   columnHeaders?: RichTableType["columnHeaders"];
   hasColumnTitles?: RichTableType["hasColumnTitles"];
   hasRowTitles?: RichTableType["hasRowTitles"];
-}
+};
 
 export const PortableTextRichTable = ({
   rows,

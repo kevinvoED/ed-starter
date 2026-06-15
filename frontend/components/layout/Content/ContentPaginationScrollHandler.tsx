@@ -3,10 +3,10 @@
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
-interface ContentPaginationScrollHandlerProps {
+type ContentPaginationScrollHandlerProps = {
   scrollTargetId: string;
   scrollOffset: number;
-}
+};
 
 export const ContentPaginationScrollHandler = ({
   scrollTargetId,

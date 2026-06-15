@@ -1,14 +1,10 @@
-import type { fetchContentTypeIndexPageData } from "@/sanity/lib/fetch";
+import type { ContentIndexVariant } from "@/lib/utils/types";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
 import { cn } from "@/lib/utils/cn";
 
-type IndexPageDataType = NonNullable<
-  Awaited<ReturnType<typeof fetchContentTypeIndexPageData>>
->;
-
 type ContentHeroProps = {
-  title: IndexPageDataType["title"];
-  description: IndexPageDataType["description"];
+  title: ContentIndexVariant["title"];
+  description: ContentIndexVariant["description"];
   className?: string;
 };
 
@@ -17,6 +13,8 @@ export const ContentHero = ({
   description,
   className,
 }: ContentHeroProps) => {
+  if (!title) return null;
+
   return (
     <header
       className={cn(
@@ -24,19 +22,16 @@ export const ContentHero = ({
         className,
       )}
     >
-      {title && (
-        <PortableText
-          value={title}
-          slot="h1"
-          className="ftype type-heading-4840 col-span-full to-type-heading-9640 lg:col-span-6"
-        />
-      )}
-      {description && (
-        <PortableText
-          value={description}
-          className="col-span-full lg:col-span-5 lg:col-start-8"
-        />
-      )}
+      <PortableText
+        value={title}
+        slot="h1"
+        className="ftype type-heading-4840 col-span-full to-type-heading-9640 lg:col-span-6"
+      />
+
+      <PortableText
+        value={description}
+        className="col-span-full lg:col-span-5 lg:col-start-8"
+      />
     </header>
   );
 };

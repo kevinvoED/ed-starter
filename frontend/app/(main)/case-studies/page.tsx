@@ -38,7 +38,7 @@ export default async function BlogIndexPage({
     page: page ? parseInt(page) : 1,
   });
 
-  if (!data) return notFound();
+  if (!data || data._type !== CONTENT_TYPE) return notFound();
 
   return (
     <Page

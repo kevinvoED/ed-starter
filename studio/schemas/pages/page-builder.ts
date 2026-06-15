@@ -3,12 +3,12 @@ import { orderRankField } from "@sanity/orderable-document-list";
 import { defineField, defineType, type SchemaTypeDefinition } from "sanity";
 import { meta, modules, pageTitle, slug } from "@/schemas/common";
 
-interface PageBuilderOptions {
+type PageBuilderOptions = {
   name: string;
   title: string;
   icon?: React.ComponentType;
   type?: "document" | "object";
-}
+};
 
 /*
  * This is a re-useable generic function that creates a page-related schema type.

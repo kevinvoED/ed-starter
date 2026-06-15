@@ -1,4 +1,4 @@
-import type { GET_CONTENT_TYPE_INDEX_QUERY_RESULT } from "@/sanity.types";
+import type { ContentIndexVariant } from "@/lib/utils/types";
 import { toPlainText } from "next-sanity";
 import { Transition } from "@/components/animations/Transition";
 import { Eyebrow } from "@/components/primitives/Eyebrow/Eyebrow";
@@ -8,8 +8,8 @@ import { PortableText } from "@/components/primitives/PortableText/PortableText"
 import { cn } from "@/lib/utils/cn";
 
 type ContentListingProps = {
-  scrollTargetId: NonNullable<GET_CONTENT_TYPE_INDEX_QUERY_RESULT>["pagination"]["scrollTargetId"];
-  posts: NonNullable<GET_CONTENT_TYPE_INDEX_QUERY_RESULT>["posts"];
+  scrollTargetId: ContentIndexVariant["pagination"]["scrollTargetId"];
+  posts: ContentIndexVariant["posts"];
   className?: string;
 };
 
@@ -26,12 +26,15 @@ export const ContentListing = ({
       id={scrollTargetId}
       className={cn("grid-custom col-span-full xl:col-span-10", className)}
     >
-      {posts?.map((post, _index) => (
+      {posts?.map((post, index) => (
         <li
           key={post._id}
-          className="col-span-full rounded-lg bg-white ring ring-black/5 md:col-span-2 lg:col-span-6 xl:col-span-4"
+          className="col-span-full rounded-lg md:col-span-2 lg:col-span-6 xl:col-span-4"
         >
-          <Transition className="h-full">
+          <Transition
+            delay={0.15 * index}
+            className="h-full bg-white ring ring-black/5"
+          >
             <SanityLink
               id="cta"
               href={post.href}
@@ -80,8 +83,6 @@ export const ContentListing = ({
             </SanityLink>
           </Transition>
         </li>
-
-        // </li>
       ))}
     </ul>
   );

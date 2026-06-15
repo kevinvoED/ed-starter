@@ -1,6 +1,6 @@
 "use client";
 
-import type { GET_CONTENT_TYPE_INDEX_QUERY_RESULT } from "@/sanity.types";
+import type { ContentIndexVariant } from "@/lib/utils/types";
 import { Ellipsis } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { parseAsString, useQueryStates } from "nuqs";
@@ -10,7 +10,7 @@ import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { cn } from "@/lib/utils/cn";
 
 type ContentPaginationProps = {
-  pagination: NonNullable<GET_CONTENT_TYPE_INDEX_QUERY_RESULT>["pagination"];
+  pagination: ContentIndexVariant["pagination"];
   currentPage: number;
   className?: string;
   scrollOffset?: number;
@@ -27,18 +27,18 @@ export const ContentPagination = ({
   className,
   scrollOffset = 175,
 }: ContentPaginationProps) => {
-  // GROQ doesn't have a ceil function so we need to convert it client-side
-  const totalPages = Math.ceil(pagination?.totalPages ?? 1);
-
-  // Don't render this component if there is only one page
-  if (totalPages <= 1) return null;
-
   const pathname = usePathname();
 
   const [{ category, topic }] = useQueryStates({
     category: parseAsString,
     topic: parseAsString,
   });
+
+  // GROQ doesn't have a ceil function so we need to convert it client-side
+  const totalPages = Math.ceil(pagination?.totalPages ?? 1);
+
+  // Don't render this component if there is only one page
+  if (totalPages <= 1) return null;
 
   /*
    * Utility function to build a page URL with optional query parameters
@@ -50,6 +50,21 @@ export const ContentPagination = ({
     if (topic) params.set("topic", topic);
     if (pageNum > 1) params.set("page", pageNum.toString());
     return `${pathname}${params.toString() ? `?${params.toString()}` : ""}`;
+  }
+
+  // Renders an ellipsis when there are more than 6 pages
+  function getVisiblePages(current: number, total: number) {
+    if (total <= 6) return Array.from({ length: total }, (_, i) => i + 1);
+
+    if (current <= 2) {
+      return [1, 2, 3, "...", total];
+    }
+
+    if (current >= total - 1) {
+      return [1, "...", total - 2, total - 1, total];
+    }
+
+    return [1, "...", current - 1, current, current + 1, "...", total];
   }
 
   return (
@@ -114,19 +129,4 @@ export const ContentPagination = ({
       </div>
     </>
   );
-};
-
-// Renders an ellipsis if there are more than 6 pages
-const getVisiblePages = (current: number, total: number) => {
-  if (total <= 6) return Array.from({ length: total }, (_, i) => i + 1);
-
-  if (current <= 2) {
-    return [1, 2, 3, "...", total];
-  }
-
-  if (current >= total - 1) {
-    return [1, "...", total - 2, total - 1, total];
-  }
-
-  return [1, "...", current - 1, current, current + 1, "...", total];
 };

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
-interface ScreenSize {
+type useIsMobileProps = {
   width: number | null;
   height: number | null;
   isMobile: boolean;
-}
+};
 
-export const useIsMobile = (): ScreenSize => {
-  const [screenSize, setScreenSize] = useState<ScreenSize>({
+export const useIsMobile = (): useIsMobileProps => {
+  const [screenSize, setScreenSize] = useState<useIsMobileProps>({
     width: null,
     height: null,
     isMobile: false,

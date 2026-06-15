@@ -50,7 +50,7 @@ import {
  * })
  */
 
-interface PortableTextPlainProps {
+type PortableTextPlainProps = {
   name?: string;
   title?: string;
   description?: string;
@@ -62,7 +62,7 @@ interface PortableTextPlainProps {
   enableTypeStyle?: boolean;
   validation?: boolean | ValidationBuilder<ArrayRule<unknown[]>, unknown[]>;
   hidden?: boolean | ((props: { parent: Record<string, unknown> }) => boolean);
-}
+};
 
 export const portableTextPlain = ({
   name = "content",
