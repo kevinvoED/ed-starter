@@ -1,7 +1,7 @@
 import type { ComponentProps } from "react";
 import type { PAGE_QUERY_RESULT } from "@/sanity.types";
 import { CardExample } from "@/components/modules/Card/CardExample";
-import { DriverExample } from "@/components/modules/Driver/DriverExample";
+import { DriverText } from "@/components/modules/Driver/DriverText";
 import { HeroPrimary } from "@/components/modules/Hero/HeroPrimary";
 import { Marquee } from "@/components/modules/Marquee/Marquee";
 import { FullImage } from "@/components/modules/Media/FullImage";
@@ -31,7 +31,7 @@ const componentMap: {
   "full-image": FullImage,
   "full-video": FullVideo,
   "card-example": CardExample,
-  "driver-example": DriverExample,
+  "driver-text": DriverText,
 };
 
 const LocalErrorFallback = ({ children }: { children: React.ReactNode }) => (

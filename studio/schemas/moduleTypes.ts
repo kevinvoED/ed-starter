@@ -27,16 +27,16 @@ export const relationTypes = sortBy(
  */
 export const moduleBlocks = sortBy(
   [
-    { type: "spacer" },
-    { type: "hero-primary" },
-    { type: "marquee" },
+    { type: "global-module" },
     { type: "rich-text" },
+    { type: "spacer" },
+    { type: "marquee" },
     { type: "full-image" },
     { type: "full-video" },
-    { type: "global-module" },
+    { type: "hero-primary" },
+    { type: "driver-text" },
     // Delete or edit example modules once you populate your project
     { type: "card-example" },
-    { type: "driver-example" },
   ],
   ["type"],
 );
@@ -49,8 +49,7 @@ export const globalModuleBlocks = sortBy(
   [
     // Delete or edit example modules once you populate your project
     { type: "card-example" },
-    { type: "driver-example" },
-    { type: "full-image" },
+    { type: "driver-text" },
   ],
   ["type"],
 );
@@ -77,7 +76,7 @@ export const moduleGroups = sortBy(
     },
     {
       name: "driver",
-      of: ["driver-example"],
+      of: ["driver-text"],
     },
     {
       name: "media",

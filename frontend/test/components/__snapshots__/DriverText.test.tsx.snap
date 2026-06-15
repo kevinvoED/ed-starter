@@ -1,0 +1,58 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DriverText > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="grid-custom f-py-12/24 p-custom"
+  >
+    <div
+      class="grid-custom col-span-full place-items-center"
+    >
+      <div
+        class="col-span-full md:col-span-6 md:col-start-4"
+        style="opacity: 0;"
+      >
+        <div
+          class="ftype type-heading-3240 to-type-heading-4840"
+        >
+          <h2>
+            My Title
+          </h2>
+        </div>
+      </div>
+      <div
+        class="col-span-full md:col-span-4 md:col-start-5"
+        style="opacity: 0;"
+      >
+        <div
+          class="[&_p:last-of-type]:mb-0"
+        >
+          <p
+            class="ftype type-body-1440 to-type-body-1640 mb-4"
+          >
+            Card description.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-span-full flex flex-wrap justify-center gap-4 md:col-span-4 md:col-start-5"
+    >
+      <div
+        class=""
+        style="opacity: 0;"
+      >
+        <a
+          class="group/button inline-flex select-none items-center justify-center font-inherit outline-0 transition-colors duration-300 ease-in-out focus-visible:outline-2 focus-visible:outline-debug-blue focus-visible:outline-offset-4 has-[>svg]:gap-1.5 [&_svg]:size-3 rounded whitespace-nowrap ftype type-body-1450 to-type-body-1650 f-py-1/2 f-px-2/3 bg-debug-blue text-white hover:bg-debug-blue/90 w-fit"
+          href="https://example.com"
+          id="cta-example-com-lnk1"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Learn more
+        </a>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

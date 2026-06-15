@@ -29,7 +29,7 @@ import heroPrimary from "@/schemas/modules/hero/hero-primary";
 import richText from "@/schemas/modules/text/rich-text";
 import marquee from "@/schemas/modules/miscellaneous/marquee";
 import cardExample from "@/schemas/modules/card/card-example";
-import driverExample from "@/schemas/modules/driver/driver-example";
+import driverText from "@/schemas/modules/driver/driver-text";
 import fullImage from "@/schemas/modules/media/full-image";
 import fullVideo from "@/schemas/modules/media/full-video";
 import globalModule from "@/schemas/modules/miscellaneous/global-module";
@@ -62,13 +62,13 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     // Modules
     globalModule,
     spacer,
-    heroPrimary,
     marquee,
+    heroPrimary,
     richText,
+    driverText,
     fullImage,
     fullVideo,
     // Remove example modules
     cardExample,
-    driverExample,
   ],
 };

@@ -1,23 +1,23 @@
 import { toPlainText } from "@portabletext/react";
 import { LinkIcon } from "@sanity/icons";
 import { defineType } from "sanity";
-import { description, image, links, title } from "@/schemas/common";
+import { description, links, title } from "@/schemas/common";
 
 export default defineType({
-  name: "{{kebabCase name}}",
-  title: "{{titleCase name}}",
+  name: "driver-text",
+  title: "Driver Text",
   type: "object",
-  icon: DocumentIcon, // Change to relevant icon!
-  fields: [title, description, image, links],
+  icon: LinkIcon,
+  fields: [title, description, links],
   preview: {
     select: {
       title: "title",
     },
     prepare({ title }) {
       return {
-        title: "{{titleCase name}}",
+        title: "Driver Text",
         subtitle: toPlainText(title),
-        media: DocumentIcon, // Change to relevant icon!
+        media: LinkIcon,
       };
     },
   },
