@@ -4,6 +4,7 @@ import { assist } from "@sanity/assist";
 import { dashboardTool } from "@sanity/dashboard";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
+import { presentationTool } from "sanity/presentation";
 import { structureTool } from "sanity/structure";
 import { media } from "sanity-plugin-media";
 import { GeneratePageMetadataAction } from "@/actions/generate-page-metadata";
@@ -20,6 +21,7 @@ import {
   SANITY_STUDIO_PROJECT_ID,
 } from "@/lib/env";
 import { guideTool } from "@/lib/guide-tool";
+import { presentationOptions } from "@/lib/presentation";
 import { structure } from "@/lib/structure";
 import { schema } from "@/schemas/schema";
 import { OpenDocumentUrlAction } from "./actions/open-document-url";
@@ -66,6 +68,7 @@ export default defineConfig({
   plugins: [
     structureTool({ structure, defaultDocumentNode }),
     visionTool({ defaultApiVersion: SANITY_STUDIO_API_VERSION }),
+    presentationTool(presentationOptions),
     dashboardTool(deploymentOptions),
     simplerColorInput(simplerColorInputOptions),
     richTablePlugin({}),
