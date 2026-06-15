@@ -98,6 +98,7 @@ export const MY_MODULE_QUERY = defineQuery(`
 - Match Figma layout with Tailwind + project utilities (`p-custom`, `grid-custom`, `f-py-*`, `f-gap-*`, fluid type classes). Mobile-first.
 - Register in `frontend/components/modules/ModuleBuilder.tsx` `componentMap`.
 - Use `'use client'` only if the module needs client-only APIs; `SanityLink` can be used from a server parent.
+- Don't use native text-related Tailwind classes like `font-thin` or `tracking-tight`. These should be covered with our custom typography classes in `fluid.css`.
 
 ### 4 — Test file
 
@@ -109,6 +110,11 @@ export const MY_MODULE_QUERY = defineQuery(`
   1. A render test for the primary text content.
   2. A snapshot test (`asFragment().toMatchSnapshot()`).
   3. A conditional test for an optional field (e.g. link or image), if the schema has one.
+
+### 5 — Create sanity image preview
+- Grab the screenshot of the module from the initial `get_screenshot` command.
+- Generate a .jpg file inside `/studio/schemas/previews` and rename it as the schema in kebab-case.
+- This new image file should be 536x336 dimensions.
 
 ## Color mapping reference (this project)
 
