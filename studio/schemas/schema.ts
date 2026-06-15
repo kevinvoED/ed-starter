@@ -26,14 +26,10 @@ import portableText from "@/schemas/objects/portable-text";
 // Modules
 import spacer from "@/schemas/modules/miscellaneous/spacer";
 import heroPrimary from "@/schemas/modules/hero/hero-primary";
-import imageExample from "@/schemas/modules/image/image-example";
 import richText from "@/schemas/modules/text/rich-text";
 import marquee from "@/schemas/modules/miscellaneous/marquee";
 import cardExample from "@/schemas/modules/card/card-example";
 import driverExample from "@/schemas/modules/driver/driver-example";
-import listExample from "@/schemas/modules/list/list-example";
-import tableExample from "@/schemas/modules/table/table-example";
-import textExample from "@/schemas/modules/text/text-example";
 import fullImage from "@/schemas/modules/media/full-image";
 import fullVideo from "@/schemas/modules/media/full-video";
 import globalModule from "@/schemas/modules/miscellaneous/global-module";
@@ -72,11 +68,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     fullImage,
     fullVideo,
     // Remove example modules
-    imageExample,
     cardExample,
     driverExample,
-    listExample,
-    tableExample,
-    textExample,
   ],
 };

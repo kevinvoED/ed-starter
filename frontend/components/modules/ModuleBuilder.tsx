@@ -3,15 +3,11 @@ import type { PAGE_QUERY_RESULT } from "@/sanity.types";
 import { CardExample } from "@/components/modules/Card/CardExample";
 import { DriverExample } from "@/components/modules/Driver/DriverExample";
 import { HeroPrimary } from "@/components/modules/Hero/HeroPrimary";
-import { ImageExample } from "@/components/modules/Image/ImageExample";
-import { ListExample } from "@/components/modules/List/ListExample";
 import { Marquee } from "@/components/modules/Marquee/Marquee";
 import { FullImage } from "@/components/modules/Media/FullImage";
 import { FullVideo } from "@/components/modules/Media/FullVideo";
 import { Spacer } from "@/components/modules/Miscellaneous/Spacer";
-import { TableExample } from "@/components/modules/Table/TableExample";
 import { RichText } from "@/components/modules/Text/RichText";
-import { TextExample } from "@/components/modules/Text/TextExample";
 import { MyModulesRendererErrorBoundary } from "../layout/ErrorBoundary/ErrorBoundary";
 
 export type ModuleBlock = Extract<
@@ -36,10 +32,6 @@ const componentMap: {
   "full-video": FullVideo,
   "card-example": CardExample,
   "driver-example": DriverExample,
-  "list-example": ListExample,
-  "table-example": TableExample,
-  "text-example": TextExample,
-  "image-example": ImageExample,
 };
 
 const LocalErrorFallback = ({ children }: { children: React.ReactNode }) => (

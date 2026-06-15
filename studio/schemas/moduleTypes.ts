@@ -37,10 +37,6 @@ export const moduleBlocks = sortBy(
     // Delete or edit example modules once you populate your project
     { type: "card-example" },
     { type: "driver-example" },
-    { type: "list-example" },
-    { type: "table-example" },
-    { type: "text-example" },
-    { type: "image-example" },
   ],
   ["type"],
 );
@@ -54,6 +50,7 @@ export const globalModuleBlocks = sortBy(
     // Delete or edit example modules once you populate your project
     { type: "card-example" },
     { type: "driver-example" },
+    { type: "full-image" },
   ],
   ["type"],
 );
@@ -83,24 +80,12 @@ export const moduleGroups = sortBy(
       of: ["driver-example"],
     },
     {
-      name: "list",
-      of: ["list-example"],
-    },
-    {
-      name: "image",
-      of: ["image-example"],
-    },
-    {
       name: "media",
       of: ["full-image", "full-video"],
     },
     {
-      name: "table",
-      of: ["table-example"],
-    },
-    {
       name: "text",
-      of: ["text-example", "rich-text"],
+      of: ["rich-text"],
     },
   ],
   ["name"],

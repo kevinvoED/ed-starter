@@ -18,16 +18,12 @@ import { FN_LOGO, GROQ_FUNCTIONS } from "./functions";
 import { CARD_EXAMPLE_QUERY } from "./modules/card/card-example";
 import { DRIVER_EXAMPLE_QUERY } from "./modules/driver/driver-example";
 import { HERO_PRIMARY_QUERY } from "./modules/hero/hero-primary";
-import { IMAGE_EXAMPLE_QUERY } from "./modules/image/image-example";
-import { LIST_EXAMPLE_QUERY } from "./modules/list/list-example";
 import { MARQUEE_QUERY } from "./modules/marquee/marquee";
 import { FULL_IMAGE_QUERY } from "./modules/media/full-image";
 import { FULL_VIDEO_QUERY } from "./modules/media/full-video";
 import { GLOBAL_MODULE_QUERY } from "./modules/miscellaneous/global-module";
 import { SPACER_QUERY } from "./modules/miscellaneous/spacer";
-import { TABLE_EXAMPLE_QUERY } from "./modules/table/table-example";
 import { RICH_TEXT_QUERY } from "./modules/text/rich-text";
-import { TEXT_EXAMPLE_QUERY } from "./modules/text/text-example";
 
 /*
  * ====================================================
@@ -48,10 +44,6 @@ export const modulesFragment = defineQuery(`
     // Remove example modules
     ${CARD_EXAMPLE_QUERY},
     ${DRIVER_EXAMPLE_QUERY},
-    ${LIST_EXAMPLE_QUERY},
-    ${TABLE_EXAMPLE_QUERY},
-    ${TEXT_EXAMPLE_QUERY},
-    ${IMAGE_EXAMPLE_QUERY},
   }
 `);
 
