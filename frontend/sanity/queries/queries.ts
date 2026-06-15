@@ -21,6 +21,7 @@ import { HERO_PRIMARY_QUERY } from "./modules/hero/hero-primary";
 import { MARQUEE_QUERY } from "./modules/marquee/marquee";
 import { FULL_IMAGE_QUERY } from "./modules/media/full-image";
 import { FULL_VIDEO_QUERY } from "./modules/media/full-video";
+import { MEDIA_FILE_QUERY } from "./modules/media/media-file";
 import { GLOBAL_MODULE_QUERY } from "./modules/miscellaneous/global-module";
 import { SPACER_QUERY } from "./modules/miscellaneous/spacer";
 import { RICH_TEXT_QUERY } from "./modules/text/rich-text";
@@ -42,6 +43,7 @@ export const modulesFragment = defineQuery(`
     ${DRIVER_TEXT_QUERY},
     ${FULL_IMAGE_QUERY},
     ${FULL_VIDEO_QUERY},
+    ${MEDIA_FILE_QUERY},
     // Remove example modules
     ${CARD_EXAMPLE_QUERY},
   }

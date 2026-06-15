@@ -6,6 +6,7 @@ import { HeroPrimary } from "@/components/modules/Hero/HeroPrimary";
 import { Marquee } from "@/components/modules/Marquee/Marquee";
 import { FullImage } from "@/components/modules/Media/FullImage";
 import { FullVideo } from "@/components/modules/Media/FullVideo";
+import { MediaFile } from "@/components/modules/Media/MediaFile";
 import { Spacer } from "@/components/modules/Miscellaneous/Spacer";
 import { RichText } from "@/components/modules/Text/RichText";
 import { MyModulesRendererErrorBoundary } from "../layout/ErrorBoundary/ErrorBoundary";
@@ -32,6 +33,7 @@ const componentMap: {
   "full-video": FullVideo,
   "card-example": CardExample,
   "driver-text": DriverText,
+  "media-file": MediaFile,
 };
 
 const LocalErrorFallback = ({ children }: { children: React.ReactNode }) => (

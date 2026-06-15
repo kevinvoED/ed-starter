@@ -31,6 +31,7 @@ export const moduleBlocks = sortBy(
     { type: "rich-text" },
     { type: "spacer" },
     { type: "marquee" },
+    { type: "media-file" },
     { type: "full-image" },
     { type: "full-video" },
     { type: "hero-primary" },
@@ -80,7 +81,7 @@ export const moduleGroups = sortBy(
     },
     {
       name: "media",
-      of: ["full-image", "full-video"],
+      of: ["media-file", "full-image", "full-video"],
     },
     {
       name: "text",

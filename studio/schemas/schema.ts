@@ -32,6 +32,7 @@ import cardExample from "@/schemas/modules/card/card-example";
 import driverText from "@/schemas/modules/driver/driver-text";
 import fullImage from "@/schemas/modules/media/full-image";
 import fullVideo from "@/schemas/modules/media/full-video";
+import mediaFile from "@/schemas/modules/media/media-file";
 import globalModule from "@/schemas/modules/miscellaneous/global-module";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -63,6 +64,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     globalModule,
     spacer,
     marquee,
+    mediaFile,
     heroPrimary,
     richText,
     driverText,
