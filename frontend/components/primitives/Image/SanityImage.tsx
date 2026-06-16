@@ -6,7 +6,7 @@ import { imageLoader } from "next-sanity/image";
 import { urlFor } from "@/sanity/lib/image";
 import { cn } from "@/lib/utils/cn";
 
-export type ResolvedImageType = NonNullable<ModuleProps<"full-image">["image"]>;
+export type ResolvedImageType = NonNullable<ModuleProps<"media-file">["image"]>;
 
 export type ImageType = ResolvedImageType | MetaImage;
 
