@@ -1,4 +1,4 @@
-export const CheckIcon = ({
+export const CaretUpDownIcon = ({
   className,
   strokeWidth = 1,
 }: {
@@ -11,13 +11,12 @@ export const CheckIcon = ({
       width="16"
       height="16"
       viewBox="0 0 16 16"
-      fill="none"
       stroke="currentColor"
       className={className}
       strokeWidth={strokeWidth}
     >
-      <title>Check Icon</title>
-      <path d="m2.5 8.5 4 4 7-9" />
+      <title>Caret Up Down Icon</title>
+      <path d="M11 10H5l3 3.5zm0-4H5l3-3.5z" />
     </svg>
   );
 };

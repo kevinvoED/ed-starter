@@ -2,7 +2,7 @@ export const CopyIcon = ({
   className,
   strokeWidth = 1,
 }: {
-  className: string;
+  className?: string;
   strokeWidth: number;
 }) => {
   return (

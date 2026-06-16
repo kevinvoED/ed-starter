@@ -109,12 +109,7 @@ export const ContentFilterItem = ({
               className="size-4 border border-black/50 bg-transparent focus-visible:outline-2 focus-visible:outline-debug-blue focus-visible:outline-offset-2 data-checked:bg-debug-blue data-checked:text-white"
             >
               <Checkbox.Indicator className="flex data-unchecked:hidden">
-                <Icon
-                  variant="check"
-                  className="text-white"
-                  strokeWidth={2}
-                  size={3.5}
-                />
+                <Icon variant="check" className="text-white" strokeWidth={2} />
               </Checkbox.Indicator>
             </Checkbox.Root>
             <span className="ftype type-body-1440 flex items-center gap-x-1.5 to-type-body-1640">

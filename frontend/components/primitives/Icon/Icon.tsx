@@ -1,7 +1,7 @@
 import { ArrowRightIcon } from "@/components/primitives/Icon/ArrowRightIcon";
+import { CaretUpDownIcon } from "@/components/primitives/Icon/CaretUpDownIcon";
 import { CheckIcon } from "@/components/primitives/Icon/CheckIcon";
 import { CopyIcon } from "@/components/primitives/Icon/CopyIcon";
-import { cn } from "@/lib/utils/cn";
 
 /*
  * Master Icon component for rendering custom svg icons
@@ -12,36 +12,26 @@ import { cn } from "@/lib/utils/cn";
  * <Icon variant="arrow-right" />
  *
  * ---------------------
- * Usage Example: Custom size and stroke width
+ * Usage Example: Custom stroke width
  * ---------------------
- * <Icon variant="copy" size={10} strokeWidth={2} />
+ * <Icon variant="copy" strokeWidth={2} />
  */
 
 const iconComponents = {
   copy: CopyIcon,
   "arrow-right": ArrowRightIcon,
   check: CheckIcon,
+  "caret-up-down": CaretUpDownIcon,
 };
 
 type IconProps = {
   variant: keyof typeof iconComponents;
   strokeWidth?: number;
   className?: string;
-  size?: number;
 };
 
-export const Icon = ({
-  variant,
-  className,
-  strokeWidth = 1,
-  size = 4,
-}: IconProps) => {
+export const Icon = ({ variant, className, strokeWidth = 1 }: IconProps) => {
   const IconComponent = iconComponents[variant];
 
-  return (
-    <IconComponent
-      className={cn(`size-${size}`, className)}
-      strokeWidth={strokeWidth}
-    />
-  );
+  return <IconComponent className={className} strokeWidth={strokeWidth} />;
 };

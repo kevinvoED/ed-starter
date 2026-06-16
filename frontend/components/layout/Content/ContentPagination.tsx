@@ -92,7 +92,6 @@ export const ContentPagination = ({
             <Icon
               variant="arrow-right"
               strokeWidth={1}
-              size={4}
               className="rotate-180"
             />
           </SanityLink>
@@ -123,7 +122,7 @@ export const ContentPagination = ({
             href={buildPageUrl(currentPage + 1)}
             scroll={false}
           >
-            <Icon variant="arrow-right" strokeWidth={1} size={4} />
+            <Icon variant="arrow-right" strokeWidth={1} />
           </SanityLink>
         )}
       </div>
