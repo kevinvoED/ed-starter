@@ -32,8 +32,6 @@ export const moduleBlocks = sortBy(
     { type: "spacer" },
     { type: "marquee" },
     { type: "media-file" },
-    { type: "full-image" },
-    { type: "full-video" },
     { type: "hero-primary" },
     { type: "driver-text" },
     // Delete or edit example modules once you populate your project
@@ -81,7 +79,7 @@ export const moduleGroups = sortBy(
     },
     {
       name: "media",
-      of: ["media-file", "full-image", "full-video"],
+      of: ["media-file"],
     },
     {
       name: "text",
