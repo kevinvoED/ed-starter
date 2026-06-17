@@ -15,7 +15,7 @@ function createBannerVersion(
   const contentString = JSON.stringify({
     title: banner.title,
     description: banner.description,
-    link: banner.link,
+    link: banner.links,
   });
 
   let hash = 0;
