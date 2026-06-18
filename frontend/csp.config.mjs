@@ -28,6 +28,7 @@ const connectDomains = [
     "https://www.google.com/recaptcha",
     "https://www.gstatic.com/recaptcha",
     "https://www.googletagmanager.com",
+    "https://*.sanity.io",
   ]),
 ].join(" ");
 
@@ -37,7 +38,17 @@ const frameDomains = [
 
 const frameAncestorDomains = [...new Set(["http://localhost:3333"])].join(" ");
 
-const imageDomains = [...new Set(["https://cdn.sanity.io"])].join(" ");
+const imageDomains = [
+  ...new Set([
+    "https://cdn.sanity.io",
+    "https://image.mux.com",
+    "https://stream.mux.com",
+  ]),
+].join(" ");
+
+const mediaDomains = [
+  ...new Set(["https://cdn.sanity.io", "https://stream.mux.com"]),
+].join(" ");
 
 const csp = `
   default-src 'self';
@@ -45,7 +56,7 @@ const csp = `
   script-src 'self' 'unsafe-eval' 'unsafe-inline' blob: ${scriptDomains};
   style-src 'self' 'unsafe-inline' ${styleDomains};
   img-src 'self' data: blob: ${imageDomains};
-  media-src 'self' https://cdn.sanity.io;
+  media-src 'self' ${mediaDomains};
   connect-src 'self' data: blob: ${connectDomains};
   font-src 'self' data: https://fonts.gstatic.com;
   frame-src 'self' ${frameDomains};
