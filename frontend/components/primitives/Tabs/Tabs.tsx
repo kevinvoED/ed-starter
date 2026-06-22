@@ -31,6 +31,12 @@ import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
  *     </TabsContent>
  *   ))}
  * </Tabs>
+ *
+ * ---------------------
+ * Usage Example: Underline Indicator
+ * ---------------------
+ *
+ * <TabsIndicator variant="underline"/>
  */
 
 function Tabs({ className, ...props }: TabsPrimitive.Root.Props) {
@@ -51,7 +57,7 @@ function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {
     <TabsPrimitive.Tab
       className={cn(
         "flex select-none items-center justify-center whitespace-nowrap break-keep border-0 outline-none transition-colors before:inset-x-0 before:inset-y-1 before:rounded-sm before:outline-debug-blue before:-outline-offset-1 focus-visible:relative focus-visible:before:absolute focus-visible:before:outline-2",
-        "h-10 px-2 hover:text-alabaster data-[active]:text-black",
+        "h-10 px-2 hover:text-alabaster data-active:text-black",
         className,
       )}
       {...props}
@@ -72,12 +78,24 @@ function TabsContent({ className, ...props }: TabsPrimitive.Panel.Props) {
   );
 }
 
-function TabsIndicator({ className, ...props }: TabsPrimitive.Indicator.Props) {
+type TabsIndicatorVariant = "pill" | "underline";
+
+type TabsIndicatorProps = TabsPrimitive.Indicator.Props & {
+  variant?: TabsIndicatorVariant;
+};
+
+function TabsIndicator({
+  className,
+  variant = "pill",
+  ...props
+}: TabsIndicatorProps) {
   return (
     <TabsPrimitive.Indicator
       className={cn(
-        "absolute top-1/2 left-0 z-[-1] w-[var(--active-tab-width)] translate-x-[var(--active-tab-left)] -translate-y-1/2 transition-transform",
-        "h-8 rounded-sm bg-debug-red",
+        "absolute left-0 z-[-1] w-(--active-tab-width) translate-x-(--active-tab-left) transition-transform",
+        variant === "pill" &&
+          "top-1/2 h-8 -translate-y-1/2 rounded-sm bg-debug-red",
+        variant === "underline" && "bottom-0 h-px bg-debug-red",
         className,
       )}
       {...props}
