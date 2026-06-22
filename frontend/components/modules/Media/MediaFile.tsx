@@ -1,23 +1,21 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
 import { SanityImage } from "@/components/primitives/Image/SanityImage";
+import { CustomVideoPlayer } from "@/components/primitives/Video/CustomVideoPlayer";
 
 export const MediaFile = ({
   variant,
   image,
   video,
+  videoPoster,
+  videoType,
+  videoYoutubeUrl,
 }: ModuleProps<"media-file">) => {
   if (variant === "video") {
     return (
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="min-h-dvh object-cover [clip-path:inset(2px_0px)]"
-      >
-        <source src={video?.asset?.url} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      <CustomVideoPlayer
+        src={videoType === "uploaded" ? video?.asset?.url : videoYoutubeUrl}
+        poster={videoPoster?.asset?.url}
+      />
     );
   }
 

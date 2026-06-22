@@ -9,5 +9,8 @@ export const MEDIA_FILE_QUERY = defineQuery(`
     variant,
     ${imageFragment},
     ${videoFragment},
+    videoType,
+    videoYoutubeUrl,
+    "videoPoster": fn::img(videoPoster)
   }
 `);

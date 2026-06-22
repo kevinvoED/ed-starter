@@ -33,7 +33,18 @@ export default defineType({
         }),
     }),
     defineField({
-      ...video,
+      name: "videoType",
+      title: "Video Type",
+      description: "Select the type of video you want to use.",
+      type: "string",
+      options: {
+        list: [
+          { title: "Uploaded File", value: "uploaded" },
+          { title: "Youtube URL", value: "youtube" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "uploaded",
       hidden: ({ parent }) => parent?.variant !== "video",
       validation: (Rule) =>
         Rule.custom((value, context) => {
@@ -42,6 +53,49 @@ export default defineType({
           if (!value) return "Required";
           return true;
         }),
+    }),
+    defineField({
+      name: "videoYoutubeUrl",
+      title: "Youtube URL",
+      description:
+        "Enter the full URL of the Youtube Video you want to display.",
+      type: "url",
+      hidden: ({ parent }) =>
+        parent?.variant !== "video" || parent?.videoType !== "youtube",
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          const parent = context.parent as {
+            variant?: string;
+            videoType?: string;
+          };
+          if (parent?.variant !== "video" || parent?.videoType !== "youtube")
+            return true;
+          if (!value) return "Required";
+          return true;
+        }),
+    }),
+    defineField({
+      ...video,
+      hidden: ({ parent }) =>
+        parent?.variant !== "video" || parent?.videoType !== "uploaded",
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          const parent = context.parent as {
+            variant?: string;
+            videoType?: string;
+          };
+          if (parent?.variant !== "video" || parent?.videoType !== "uploaded")
+            return true;
+          if (!value) return "Required";
+          return true;
+        }),
+    }),
+    defineField({
+      ...image,
+      name: "videoPoster",
+      description: "Optional. Used to display a poster image for the video.",
+      hidden: ({ parent }) => parent?.variant !== "video",
+      validation: (Rule) => Rule,
     }),
   ],
   preview: {

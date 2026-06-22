@@ -8,10 +8,11 @@ import {
   MediaTimeRange,
   MediaVolumeRange,
 } from "media-chrome/react";
+import { cn } from "@/lib/utils/cn";
 
 type CustomVideoPlayerProps = {
   slot?: "media" | string;
-  src?: string;
+  src?: string | null;
   poster?: string;
   muted?: boolean;
   className?: string;
@@ -20,12 +21,14 @@ type CustomVideoPlayerProps = {
 export const CustomVideoPlayer = ({
   slot = "media",
   src = "https://stream.mux.com/A3VXy02VoUinw01pwyomEO3bHnG4P32xzV7u1j1FSzjNg/high.mp4",
-  poster = "https://image.mux.com/A3VXy02VoUinw01pwyomEO3bHnG4P32xzV7u1j1FSzjNg/thumbnail.jpg",
+  poster,
   muted = true,
   className,
 }: CustomVideoPlayerProps) => {
+  if (!src) return null;
+
   return (
-    <MediaController className={className}>
+    <MediaController className={cn("block max-h-fit", className)}>
       <video
         slot={slot}
         src={src}
@@ -33,6 +36,7 @@ export const CustomVideoPlayer = ({
         preload="auto"
         muted={muted}
         suppressHydrationWarning
+        className="block"
       />
       <MediaControlBar
         style={{
