@@ -271,7 +271,7 @@ export const image = defineField({
     accept: "image/jpeg, image/png, image/webp, image/svg+xml",
     aiAssist: {
       imageInstructionField: "prompt",
-      imageDescriptionField: "alt",
+      // imageDescriptionField: "alt",
     },
   },
   fields: [
