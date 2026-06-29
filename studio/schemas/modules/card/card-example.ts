@@ -1,6 +1,7 @@
 import { toPlainText } from "@portabletext/react";
 import { InlineIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
+import { ModulePreview } from "@/components/module-preview";
 import { cards, description, links, title } from "@/schemas/common";
 
 export default defineType({
@@ -18,14 +19,15 @@ export default defineType({
       validation: (Rule) => Rule.min(2).max(4), // Over-ride validation if needed
     }),
   ],
+  components: { preview: ModulePreview },
   preview: {
     select: {
       title: "title",
     },
     prepare({ title }) {
       return {
-        title: "Card Example",
-        subtitle: toPlainText(title),
+        title: toPlainText(title ?? []),
+        subtitle: "Card Example",
         media: InlineIcon,
       };
     },

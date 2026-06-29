@@ -28,15 +28,13 @@ export const HeroPrimary = ({
           <PortableText value={description} className="max-w-prose" />
         </div>
 
-        {links && (
-          <div className="flex flex-wrap gap-4">
-            {links.map((link) => (
-              <SanityLink key={link._key} link={link} width="fit">
-                {link.label}
-              </SanityLink>
-            ))}
-          </div>
-        )}
+        <div className="flex flex-wrap gap-4">
+          {links.map((link) => (
+            <SanityLink key={link._key} link={link} width="fit">
+              {link.label}
+            </SanityLink>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { ImageRemoveIcon } from "@sanity/icons";
 import { upperFirst } from "es-toolkit";
 import { defineField, defineType } from "sanity";
+import { ModulePreview } from "@/components/module-preview";
 
 export default defineType({
   name: "spacer",
@@ -43,15 +44,15 @@ export default defineType({
           .error("Anchor ID cannot contain spaces."),
     }),
   ],
+  components: { preview: ModulePreview },
   preview: {
     select: {
       title: "spacing",
-      anchorId: "anchorId",
     },
-    prepare({ title, anchorId }) {
+    prepare({ title }) {
       return {
-        title: "Spacer",
-        subtitle: `${upperFirst(title)} ${anchorId ? `- Anchor ID: ${anchorId}` : ""}`,
+        title: `${upperFirst(title)}`,
+        subtitle: "Spacer",
         media: ImageRemoveIcon,
       };
     },

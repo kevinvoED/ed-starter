@@ -1,7 +1,22 @@
 import { ImageIcon, VideoIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
+import { ModulePreview } from "@/components/module-preview";
+import { createOptionCards } from "@/components/option-cards";
 import { validateImage } from "@/lib/utils";
 import { image, video } from "@/schemas/common";
+
+const MEDIA_TYPE_OPTIONS = [
+  {
+    title: "Uploaded File",
+    value: "uploaded",
+    description: "Upload a video file.",
+  },
+  {
+    title: "Youtube URL",
+    value: "youtube",
+    description: "Enter the URL of the video you want to use.",
+  },
+];
 
 export default defineType({
   name: "media-file",
@@ -38,13 +53,13 @@ export default defineType({
       description: "Select the type of video you want to use.",
       type: "string",
       options: {
-        list: [
-          { title: "Uploaded File", value: "uploaded" },
-          { title: "Youtube URL", value: "youtube" },
-        ],
+        list: MEDIA_TYPE_OPTIONS.map(({ title, value }) => ({
+          title,
+          value,
+        })),
         layout: "radio",
       },
-      initialValue: "uploaded",
+      components: { input: createOptionCards(MEDIA_TYPE_OPTIONS) },
       hidden: ({ parent }) => parent?.variant !== "video",
       validation: (Rule) =>
         Rule.custom((value, context) => {
@@ -98,14 +113,15 @@ export default defineType({
       validation: (Rule) => Rule,
     }),
   ],
+  components: { preview: ModulePreview },
   preview: {
     select: {
       variant: "variant",
     },
     prepare({ variant }) {
       return {
-        title: "Media File",
-        subtitle: variant === "image" ? "Image" : "Video",
+        title: variant === "image" ? "Image" : "Video",
+        subtitle: "Media File",
         media: variant === "image" ? ImageIcon : VideoIcon,
       };
     },

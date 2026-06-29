@@ -1,7 +1,45 @@
-import { DashboardIcon, MasterDetailIcon } from "@sanity/icons";
+import {
+  DashboardIcon,
+  EarthGlobeIcon,
+  ImageIcon,
+  MasterDetailIcon,
+  TextIcon,
+} from "@sanity/icons";
 import { upperFirst } from "es-toolkit";
 import { defineField, defineType } from "sanity";
+import { ModulePreview } from "@/components/module-preview";
+import { createOptionCards } from "@/components/option-cards";
 import { images, title } from "@/schemas/common";
+
+const MARQUEE_VARIANT_OPTIONS = [
+  {
+    title: "Text",
+    value: "text",
+    description: "Display only text in the marquee.",
+    icon: TextIcon,
+  },
+  {
+    title: "Image",
+    value: "image",
+    description: "Display only images in the marquee.",
+    icon: ImageIcon,
+  },
+];
+
+const IMAGE_TYPE_OPTIONS = [
+  {
+    title: "Regular Image",
+    value: "regular",
+    description: "Display regular images in the marquee.",
+    icon: ImageIcon,
+  },
+  {
+    title: "Logo",
+    value: "logo",
+    description: "Display company logos in the marquee.",
+    icon: EarthGlobeIcon,
+  },
+];
 
 export default defineType({
   name: "marquee",
@@ -13,13 +51,14 @@ export default defineType({
       title: "Variant",
       type: "string",
       options: {
-        list: [
-          { title: "Text", value: "text" },
-          { title: "Image", value: "image" },
-        ],
+        list: MARQUEE_VARIANT_OPTIONS.map(({ title, value }) => ({
+          title,
+          value,
+        })),
         layout: "radio",
       },
-      initialValue: "text",
+      initialValue: MARQUEE_VARIANT_OPTIONS[0].value,
+      components: { input: createOptionCards(MARQUEE_VARIANT_OPTIONS) },
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -63,13 +102,14 @@ export default defineType({
         "Are the images displayed in this marquee considered logos or regular images?",
       type: "string",
       options: {
-        list: [
-          { title: "Regular Image", value: "regular" },
-          { title: "Logo", value: "logo" },
-        ],
+        list: IMAGE_TYPE_OPTIONS.map(({ title, value }) => ({
+          title,
+          value,
+        })),
         layout: "radio",
       },
-      initialValue: "regular",
+      initialValue: IMAGE_TYPE_OPTIONS[0].value,
+      components: { input: createOptionCards(IMAGE_TYPE_OPTIONS) },
       validation: (Rule) =>
         Rule.custom((value, context) => {
           const parent = context.parent as { variant?: string };
@@ -96,14 +136,15 @@ export default defineType({
         }),
     }),
   ],
+  components: { preview: ModulePreview },
   preview: {
     select: {
       variant: "variant",
     },
     prepare({ variant }) {
       return {
-        title: "Marquee",
-        subtitle: `Variant: ${upperFirst(variant)}`,
+        title: `Variant: ${upperFirst(variant)}`,
+        subtitle: "Marquee",
         media: DashboardIcon,
       };
     },

@@ -1,6 +1,8 @@
-import { EarthGlobeIcon } from "@sanity/icons";
+import { toPlainText } from "@portabletext/react";
+import { DashboardIcon, EarthGlobeIcon } from "@sanity/icons";
 import { startCase } from "es-toolkit";
 import { defineField, defineType } from "sanity";
+import { ModulePreview } from "@/components/module-preview";
 
 export default defineType({
   name: "global-module",
@@ -18,6 +20,7 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
   ],
+  components: { preview: ModulePreview },
   preview: {
     select: {
       title: "moduleRef.label",
@@ -25,8 +28,8 @@ export default defineType({
     },
     prepare({ title, type }) {
       return {
-        title: `Global Module (${startCase(type)})`,
-        subtitle: title,
+        title: `${title} (${startCase(type)})`,
+        subtitle: "Global Module",
         media: EarthGlobeIcon,
       };
     },

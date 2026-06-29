@@ -1,6 +1,22 @@
-import { LinkIcon } from "@sanity/icons";
+import { ArrowTopRightIcon, LinkIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
+import { createOptionCards } from "@/components/option-cards";
 import { relationTypes } from "@/schemas/moduleTypes";
+
+const LINK_OPTIONS = [
+  {
+    title: "Internal Link",
+    value: "internal",
+    description: "Navigate to pages within the site",
+    icon: LinkIcon,
+  },
+  {
+    title: "External Link",
+    value: "external",
+    description: "Navigate to an external URL",
+    icon: ArrowTopRightIcon,
+  },
+];
 
 export default defineType({
   name: "link",
@@ -11,17 +27,14 @@ export default defineType({
     defineField({
       name: "type",
       title: "Button Type",
-      description:
-        "Choose how this link behaves. Internal Links will navigate to pages within the site and External for outside URLs.",
+      description: "Select how this link should behave:",
       type: "string",
       options: {
-        list: [
-          { title: "Internal Link", value: "internal" },
-          { title: "External URL", value: "external" },
-        ],
+        list: LINK_OPTIONS.map(({ title, value }) => ({ title, value })),
         layout: "radio",
       },
-      initialValue: "internal",
+      initialValue: LINK_OPTIONS[0].value,
+      components: { input: createOptionCards(LINK_OPTIONS) },
       validation: (Rule) => Rule.required(),
     }),
     defineField({

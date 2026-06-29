@@ -1,5 +1,19 @@
 import { ArrowRight, CogIcon, RefreshCwIcon } from "lucide-react";
 import { defineField, defineType } from "sanity";
+import { createOptionCards } from "@/components/option-cards";
+
+const REDIRECT_TYPE_OPTIONS = [
+  {
+    title: "Permanent (301)",
+    value: "permanent",
+    description: "Permanent redirects preserve SEO for the original URL.",
+  },
+  {
+    title: "Temporary (302)",
+    value: "temporary",
+    description: "Temporary redirects preserve SEO for the original URL.",
+  },
+];
 
 export default defineType({
   name: "configuration",
@@ -69,17 +83,17 @@ export default defineType({
             defineField({
               name: "redirectType",
               title: "Redirect Type",
-              description:
-                "Temporary redirects preserve SEO for the original URL, permanent redirects transfer SEO to the new URL",
+              description: "Select how the redirect should be handled.",
               type: "string",
               options: {
-                list: [
-                  { title: "Permanent (301)", value: "permanent" },
-                  { title: "Temporary (302)", value: "temporary" },
-                ],
+                list: REDIRECT_TYPE_OPTIONS.map(({ title, value }) => ({
+                  title,
+                  value,
+                })),
                 layout: "radio",
               },
-              initialValue: "permanent",
+              initialValue: REDIRECT_TYPE_OPTIONS[0].value,
+              components: { input: createOptionCards(REDIRECT_TYPE_OPTIONS) },
               validation: (Rule) =>
                 Rule.required().error("Redirect type is required"),
             }),

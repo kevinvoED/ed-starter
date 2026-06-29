@@ -1,7 +1,9 @@
 import { toPlainText } from "@portabletext/react";
+import { ExternalLinkIcon } from "lucide-react";
 import { ImageIcon, ImagesIcon, LinkIcon, VideoIcon } from "@sanity/icons";
 import { kebabCase } from "es-toolkit";
 import { defineArrayMember, defineField, type Rule } from "sanity";
+import { createOptionCards } from "@/components/option-cards";
 import {
   moduleBlocks,
   moduleGroups,
@@ -50,6 +52,21 @@ export const ptListFields = [
   { title: "Number", value: "number" },
 ];
 
+const LINK_OPTIONS = [
+  {
+    title: "Internal Link",
+    value: "internal",
+    description: "Navigate to pages within the site",
+    icon: LinkIcon,
+  },
+  {
+    title: "External Link",
+    value: "external",
+    description: "Navigate to an external URL",
+    icon: ExternalLinkIcon,
+  },
+];
+
 export const ptAnnotationLinkFields = [
   {
     name: "link",
@@ -64,13 +81,11 @@ export const ptAnnotationLinkFields = [
           "Choose how this link behaves. Internal Links will navigate to pages within the site and External for outside URLs.",
         type: "string",
         options: {
-          list: [
-            { title: "Internal Link", value: "internal" },
-            { title: "External URL", value: "external" },
-          ],
+          list: LINK_OPTIONS.map(({ title, value }) => ({ title, value })),
           layout: "radio",
         },
-        initialValue: "internal",
+        initialValue: LINK_OPTIONS[0].value,
+        components: { input: createOptionCards(LINK_OPTIONS) },
         validation: (Rule: Rule) => Rule.required(),
       },
       {

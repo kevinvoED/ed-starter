@@ -1,5 +1,7 @@
+import { toPlainText } from "@portabletext/react";
 import { TextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
+import { ModulePreview } from "@/components/module-preview";
 import { portableText } from "@/schemas/common";
 
 export default defineType({
@@ -11,10 +13,15 @@ export default defineType({
       ...portableText,
     }),
   ],
+  components: { preview: ModulePreview },
   preview: {
-    prepare() {
+    select: {
+      content: "content",
+    },
+    prepare({ content }) {
       return {
-        title: "Rich Text",
+        title: toPlainText(content ?? []),
+        subtitle: "Rich Text",
         media: TextIcon,
       };
     },
