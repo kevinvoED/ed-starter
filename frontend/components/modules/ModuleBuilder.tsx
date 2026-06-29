@@ -1,5 +1,6 @@
 import type { ComponentProps } from "react";
 import type { PAGE_QUERY_RESULT } from "@/sanity.types";
+import { ErrorBoundary } from "@/components/layout/ErrorBoundary/ErrorBoundary";
 import { CardExample } from "@/components/modules/Card/CardExample";
 import { DriverText } from "@/components/modules/Driver/DriverText";
 import { HeroPrimary } from "@/components/modules/Hero/HeroPrimary";
@@ -7,7 +8,6 @@ import { Marquee } from "@/components/modules/Marquee/Marquee";
 import { MediaFile } from "@/components/modules/Media/MediaFile";
 import { Spacer } from "@/components/modules/Miscellaneous/Spacer";
 import { RichText } from "@/components/modules/Text/RichText";
-import { MyModulesRendererErrorBoundary } from "../layout/ErrorBoundary/ErrorBoundary";
 
 export type ModuleBlock = Extract<
   NonNullable<NonNullable<PAGE_QUERY_RESULT>["modules"]>[number],
@@ -32,15 +32,6 @@ const componentMap: {
   "media-file": MediaFile,
 };
 
-const LocalErrorFallback = ({ children }: { children: React.ReactNode }) => (
-  <div className="bg-debug-red p-2 text-white">
-    <h2 className="mb-2 font-bold text-xl">
-      Something went wrong rendering a block
-    </h2>
-    <p>{children}</p>
-  </div>
-);
-
 export const ModuleBuilder = ({ modules }: ModuleBuilderProps) => {
   return (
     <>
@@ -55,19 +46,25 @@ export const ModuleBuilder = ({ modules }: ModuleBuilderProps) => {
           console.error(
             `There was no component found for ${moduleType || JSON.stringify(module)}`,
           );
+
           return (
-            <LocalErrorFallback>
-              There was no component found for{" "}
-              {moduleType || JSON.stringify(module)}
-            </LocalErrorFallback>
+            <div className="bg-debug-red p-2 text-white">
+              <h2 className="mb-2 font-bold text-xl">
+                Something went wrong rendering a block
+              </h2>
+              <p>
+                There was no component found for{" "}
+                {moduleType || JSON.stringify(module)}
+              </p>
+            </div>
           );
         }
 
         return (
           <section key={module._key + moduleType} data-module={moduleType}>
-            <MyModulesRendererErrorBoundary module={module}>
+            <ErrorBoundary module={module}>
               <Component {...(module as ComponentProps<typeof Component>)} />
-            </MyModulesRendererErrorBoundary>
+            </ErrorBoundary>
           </section>
         );
       })}

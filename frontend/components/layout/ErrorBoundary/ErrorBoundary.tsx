@@ -1,100 +1,39 @@
 "use client";
 
-import type { ErrorInfo } from "react";
-import type { ErrorBoundaryProps, FallbackProps } from "react-error-boundary";
 import type { ModuleBlock } from "@/components/modules/ModuleBuilder";
-import type { PAGE_QUERY_RESULT } from "@/sanity.types";
-import { ErrorBoundary } from "react-error-boundary";
+import { RefreshCwIcon } from "lucide-react";
+import { useEffect } from "react";
+import { type ErrorInfo, unstable_catchError } from "next/error";
 import { Button } from "@/components/primitives/Button/Button";
+import { pascalCase } from "es-toolkit/string";
 
-const logError = (error: unknown, info: ErrorInfo) => {
-  console.error({ error, info });
-};
+function ErrorFallback(
+  { module }: { module?: ModuleBlock },
+  { error, unstable_retry }: ErrorInfo,
+) {
+  useEffect(() => {
+    console.error({ module, error });
+  }, [module, error]);
 
-type ModulesType = NonNullable<NonNullable<PAGE_QUERY_RESULT>["modules"]>;
-
-const getErrorMessage = (error: unknown): string => {
-  return error instanceof Error ? error.message : "An unknown error occurred";
-};
-
-const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
+  const moduleType = module?._type ? pascalCase(module._type) : "unknown";
   return (
-    <div className="bg-debug-red p-2 text-white">
-      <h2 className="mb-2 font-bold text-xl">Something went wrong</h2>
-      <p className="mb-4">{getErrorMessage(error)}</p>
-      <Button variant="errorBoundary" onClick={resetErrorBoundary}>
-        Try again
-      </Button>
-    </div>
-  );
-};
-
-const ModulesErrorFallback = ({
-  module,
-  error,
-  resetErrorBoundary,
-}: FallbackProps & { module?: ModuleBlock }) => {
-  return (
-    <div className="bg-debug-red p-2 text-white">
-      <h2 className="mb-2 font-bold text-xl">
-        Something went wrong{module ? ` in "${module._type}":` : ":"}
+    <div className="f-py-4/8 f-gap-y-2/4 grid place-items-center bg-debug-red text-center text-white">
+      <h2 className="font-bold text-2xl">
+        Something went wrong {module && ` in "${moduleType}"`}
       </h2>
-      <p className="mb-4">
-        {module
-          ? null
-          : `The module was "undefined". Maybe it was not added to the module component map or is missing in the query? `}
-        {getErrorMessage(error)}
+
+      <p className="font-medium">
+        {!module &&
+          `The module was "undefined". Maybe it was not added to the module component map or is missing in the query? `}
+        {error instanceof Error ? error.message : "An unknown error occurred"}
       </p>
-      <Button variant="errorBoundary" onClick={resetErrorBoundary}>
+
+      <Button variant="errorBoundary" onClick={unstable_retry}>
+        <RefreshCwIcon />
         Try again
       </Button>
     </div>
   );
-};
+}
 
-export const MyErrorBoundary: React.FC<
-  React.PropsWithChildren<
-    Omit<
-      ErrorBoundaryProps,
-      "FallbackComponent" | "onError" | "fallback" | "fallbackRender"
-    >
-  >
-> = ({ children, ...rest }) => {
-  return (
-    <ErrorBoundary
-      FallbackComponent={undefined}
-      fallbackRender={ErrorFallback}
-      onError={logError}
-      {...rest}
-    >
-      {children}
-    </ErrorBoundary>
-  );
-};
-
-const logModulesError =
-  (module?: ModulesType[number]) => (error: unknown, info: ErrorInfo) => {
-    console.error({ module, error, info });
-  };
-
-export const MyModulesRendererErrorBoundary: React.FC<
-  React.PropsWithChildren<
-    Omit<
-      ErrorBoundaryProps,
-      "FallbackComponent" | "onError" | "fallback" | "fallbackRender"
-    > & { module?: ModuleBlock }
-  >
-> = ({ module, children, ...rest }) => {
-  return (
-    <ErrorBoundary
-      FallbackComponent={undefined}
-      fallbackRender={(props) => ModulesErrorFallback({ module, ...props })}
-      onError={logModulesError(module)}
-      {...rest}
-    >
-      {children}
-    </ErrorBoundary>
-  );
-};
-
-export default MyErrorBoundary;
+export const ErrorBoundary = unstable_catchError(ErrorFallback);

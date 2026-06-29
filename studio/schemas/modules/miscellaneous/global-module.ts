@@ -1,5 +1,4 @@
-import { toPlainText } from "@portabletext/react";
-import { DashboardIcon, EarthGlobeIcon } from "@sanity/icons";
+import { EarthGlobeIcon } from "@sanity/icons";
 import { startCase } from "es-toolkit";
 import { defineField, defineType } from "sanity";
 import { ModulePreview } from "@/components/module-preview";

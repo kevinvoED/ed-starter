@@ -15,7 +15,8 @@ export const ButtonVariants = cva(
         tertiary: "",
         icon: "",
         ghost: "",
-        errorBoundary: "",
+        errorBoundary:
+          "rounded-lg bg-white px-4 py-2 font-medium text-black text-sm hover:bg-white/95",
         banner: "size-5 rounded-full bg-debug-blue text-white",
         carouselPrevious:
           "disabled:pointer-events-auto! disabled:cursor-not-allowed! disabled:text-silver!",
