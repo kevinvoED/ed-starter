@@ -74,7 +74,7 @@ export const ContentListing = ({
                   </div>
 
                   <PortableText
-                    slot="h3"
+                    as="h3"
                     value={post.title}
                     className="type-body-1650"
                   />

@@ -12,7 +12,7 @@ export const CardExample = ({
     <div className="grid-custom f-py-10/20 f-gap-8/12 bg-black p-custom text-white">
       <div className="f-gap-y-2/4 grid-custom col-span-full text-center">
         <div className="md:col-span-8 md:col-start-3">
-          <PortableText value={title} slot="h1" className="type-heading-4840" />
+          <PortableText value={title} as="h1" className="type-heading-4840" />
         </div>
 
         <PortableText
@@ -28,7 +28,7 @@ export const CardExample = ({
         >
           <PortableText
             value={card.title}
-            slot="h1"
+            as="h1"
             className="type-heading-3240"
           />
 

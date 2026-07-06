@@ -39,33 +39,33 @@ import { cn } from "@/lib/utils/cn";
  * ---------------------
  * Usage Example: Styling typography
  * ---------------------
- * <PortableText value={title} slot="h1" className="type-heading-3230"/>
+ * <PortableText value={title} as="h1" className="type-heading-3230"/>
  *
  * ---------------------
  * Usage Example: Slotting any HTML element to override the default `<p>` tag; includes React.Fragment
  * ---------------------
- * <PortableText value={eyebrow} slot="span" />
- * <PortableText value={title} slot="h1" />
- * <PortableText value={description} slot="fragment" />
+ * <PortableText value={eyebrow} as="span" />
+ * <PortableText value={title} as="h1" />
+ * <PortableText value={description} as="fragment" />
  */
 
 type PortableTextComponentProps = {
   className?: string;
   value: PortableTextProps["value"];
   style?: "article" | "module";
-  slot?: ElementType | "Fragment";
+  as?: ElementType | "Fragment";
 };
 
 export const PortableText = ({
   className,
   value,
-  slot,
+  as,
   style = "module",
 }: PortableTextComponentProps) => {
-  const components = portableTextComponents(style, slot);
+  const components = portableTextComponents(style, as);
 
   return (
-    <div className={cn(!slot && "[&_p:last-of-type]:mb-0", className)}>
+    <div className={cn(!as && "[&_p:last-of-type]:mb-0", className)}>
       <PortableTextRenderer value={value} components={components} />
     </div>
   );
@@ -73,7 +73,7 @@ export const PortableText = ({
 
 const portableTextComponents = (
   style: "module" | "article" = "module",
-  slot?: ElementType | "Fragment",
+  as?: ElementType | "Fragment",
 ): PortableTextProps["components"] => ({
   /*
    * Special custom components that users can inject directly into their PortableText field
@@ -96,8 +96,8 @@ const portableTextComponents = (
        * If `slot` is provided, return the children wrapped in the slot element
        * Otherwise output a regular `<p>` tag, with optional margin spacing based on `style`
        */
-      if (slot) {
-        const Slot = slot === "Fragment" ? Fragment : slot;
+      if (as) {
+        const Slot = as === "Fragment" ? Fragment : as;
         return <Slot>{children}</Slot>;
       }
 

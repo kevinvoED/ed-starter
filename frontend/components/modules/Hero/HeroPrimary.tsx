@@ -21,7 +21,7 @@ export const HeroPrimary = ({
         <div className="f-gap-y-2/6 flex flex-col">
           <PortableText
             value={title}
-            slot="h1"
+            as="h1"
             className="ftype type-body-1640 to-type-body-3240"
           />
 

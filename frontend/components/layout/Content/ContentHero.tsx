@@ -24,7 +24,7 @@ export const ContentHero = ({
     >
       <PortableText
         value={title}
-        slot="h1"
+        as="h1"
         className="ftype type-heading-4840 col-span-full to-type-heading-9640 lg:col-span-6"
       />
 

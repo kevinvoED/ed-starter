@@ -14,7 +14,7 @@ export const DriverText = ({
         <Transition className="col-span-full md:col-span-6 md:col-start-4">
           <PortableText
             value={title}
-            slot="h2"
+            as="h2"
             className="ftype type-heading-3240 to-type-heading-4840"
           />
         </Transition>
