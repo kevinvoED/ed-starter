@@ -3,7 +3,11 @@
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { gsap } from "gsap";
-import { SplitText } from "gsap/all";
+import { ScrollTrigger, SplitText } from "gsap/all";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(useGSAP, SplitText, ScrollTrigger);
+}
 
 /*
  * Text Mask GSAP Animation

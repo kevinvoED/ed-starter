@@ -5,8 +5,10 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrambleTextPlugin, ScrollTrigger } from "gsap/all";
 
-gsap.registerPlugin(ScrambleTextPlugin);
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrambleTextPlugin);
+}
 
 /*
  * Text Scramble GSAP Animation

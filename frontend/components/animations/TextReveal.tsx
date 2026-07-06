@@ -49,7 +49,9 @@ type TextRevealProps = {
   children: React.ReactNode;
 };
 
-gsap.registerPlugin(CustomEase);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(CustomEase);
+}
 
 export const TextReveal = ({
   slot = "div",
