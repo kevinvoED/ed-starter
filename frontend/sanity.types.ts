@@ -2796,12 +2796,7 @@ export type PAGE_QUERY_RESULT = {
                   | PlatformChildReference
                   | PlatformIndexReference;
                 href:
-                  | string
-                  | "/"
-                  | "/blog"
-                  | "/case-studies"
-                  | "/platform"
-                  | null;
+                  string | "/" | "/blog" | "/case-studies" | "/platform" | null;
                 openInNewTab?: boolean;
                 _type: "link";
                 _key: string;
@@ -2844,12 +2839,7 @@ export type PAGE_QUERY_RESULT = {
                   | PlatformChildReference
                   | PlatformIndexReference;
                 href:
-                  | string
-                  | "/"
-                  | "/blog"
-                  | "/case-studies"
-                  | "/platform"
-                  | null;
+                  string | "/" | "/blog" | "/case-studies" | "/platform" | null;
                 openInNewTab?: boolean;
                 _type: "link";
                 _key: string;
@@ -2880,12 +2870,7 @@ export type PAGE_QUERY_RESULT = {
                 | PlatformChildReference
                 | PlatformIndexReference;
               href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
+                string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
               anchorTag?: string;
             }>
@@ -3003,12 +2988,7 @@ export type PAGE_QUERY_RESULT = {
                   | PlatformChildReference
                   | PlatformIndexReference;
                 href:
-                  | string
-                  | "/"
-                  | "/blog"
-                  | "/case-studies"
-                  | "/platform"
-                  | null;
+                  string | "/" | "/blog" | "/case-studies" | "/platform" | null;
                 openInNewTab?: boolean;
                 anchorTag?: string;
               }>
@@ -3064,12 +3044,7 @@ export type PAGE_QUERY_RESULT = {
                   | PlatformChildReference
                   | PlatformIndexReference;
                 href:
-                  | string
-                  | "/"
-                  | "/blog"
-                  | "/case-studies"
-                  | "/platform"
-                  | null;
+                  string | "/" | "/blog" | "/case-studies" | "/platform" | null;
                 openInNewTab?: boolean;
                 _type: "link";
                 _key: string;
@@ -3112,12 +3087,7 @@ export type PAGE_QUERY_RESULT = {
                   | PlatformChildReference
                   | PlatformIndexReference;
                 href:
-                  | string
-                  | "/"
-                  | "/blog"
-                  | "/case-studies"
-                  | "/platform"
-                  | null;
+                  string | "/" | "/blog" | "/case-studies" | "/platform" | null;
                 openInNewTab?: boolean;
                 _type: "link";
                 _key: string;
@@ -3148,12 +3118,7 @@ export type PAGE_QUERY_RESULT = {
                 | PlatformChildReference
                 | PlatformIndexReference;
               href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
+                string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
               anchorTag?: string;
             }>
@@ -3189,12 +3154,7 @@ export type PAGE_QUERY_RESULT = {
                   | PlatformChildReference
                   | PlatformIndexReference;
                 href:
-                  | string
-                  | "/"
-                  | "/blog"
-                  | "/case-studies"
-                  | "/platform"
-                  | null;
+                  string | "/" | "/blog" | "/case-studies" | "/platform" | null;
                 openInNewTab?: boolean;
                 _type: "link";
                 _key: string;
@@ -3237,12 +3197,7 @@ export type PAGE_QUERY_RESULT = {
                   | PlatformChildReference
                   | PlatformIndexReference;
                 href:
-                  | string
-                  | "/"
-                  | "/blog"
-                  | "/case-studies"
-                  | "/platform"
-                  | null;
+                  string | "/" | "/blog" | "/case-studies" | "/platform" | null;
                 openInNewTab?: boolean;
                 _type: "link";
                 _key: string;
@@ -3273,12 +3228,7 @@ export type PAGE_QUERY_RESULT = {
                 | PlatformChildReference
                 | PlatformIndexReference;
               href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
+                string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
               anchorTag?: string;
             }>
@@ -4775,12 +4725,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 | PlatformChildReference
                 | PlatformIndexReference;
               href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
+                string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
               _type: "link";
               _key: string;
@@ -4823,12 +4768,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 | PlatformChildReference
                 | PlatformIndexReference;
               href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
+                string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
               _type: "link";
               _key: string;
@@ -5451,12 +5391,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 | PlatformChildReference
                 | PlatformIndexReference;
               href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
+                string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
               _type: "link";
               _key: string;
@@ -6080,12 +6015,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 | PlatformChildReference
                 | PlatformIndexReference;
               href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
+                string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
               _type: "link";
               _key: string;
@@ -6128,12 +6058,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 | PlatformChildReference
                 | PlatformIndexReference;
               href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
+                string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
               _type: "link";
               _key: string;
@@ -7594,12 +7519,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 | PlatformChildReference
                 | PlatformIndexReference;
               href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
+                string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
               _type: "link";
               _key: string;
@@ -7642,12 +7562,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 | PlatformChildReference
                 | PlatformIndexReference;
               href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
+                string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
               _type: "link";
               _key: string;
@@ -9108,12 +9023,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 | PlatformChildReference
                 | PlatformIndexReference;
               href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
+                string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
               _type: "link";
               _key: string;
@@ -9156,12 +9066,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 | PlatformChildReference
                 | PlatformIndexReference;
               href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
+                string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
               _type: "link";
               _key: string;
@@ -10622,12 +10527,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 | PlatformChildReference
                 | PlatformIndexReference;
               href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
+                string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
               _type: "link";
               _key: string;
@@ -10670,12 +10570,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 | PlatformChildReference
                 | PlatformIndexReference;
               href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
+                string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
               _type: "link";
               _key: string;
@@ -12718,12 +12613,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 | PlatformChildReference
                 | PlatformIndexReference;
               href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
+                string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
               _type: "link";
               _key: string;
@@ -22419,12 +22309,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                 | PlatformChildReference
                 | PlatformIndexReference;
               href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
+                string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
               _type: "link";
               _key: string;
@@ -22467,12 +22352,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                 | PlatformChildReference
                 | PlatformIndexReference;
               href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
+                string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
               _type: "link";
               _key: string;
@@ -23496,12 +23376,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                 | PlatformChildReference
                 | PlatformIndexReference;
               href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
+                string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
               _type: "link";
               _key: string;
@@ -23544,12 +23419,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                 | PlatformChildReference
                 | PlatformIndexReference;
               href:
-                | string
-                | "/"
-                | "/blog"
-                | "/case-studies"
-                | "/platform"
-                | null;
+                string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
               _type: "link";
               _key: string;
