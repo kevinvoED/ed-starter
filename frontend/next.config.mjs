@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 
+import { sanity } from "next-sanity/live/cache-life";
 import cspHeader from "./csp.config.mjs";
 import getRewritesAndRedirects from "./sanity/lib/get-rewrites-and-redirects.mjs";
 import * as path from "node:path";
@@ -9,6 +10,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const nextConfig = {
+  cacheComponents: true,
+  cacheLife: { default: sanity },
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if your project has type errors.

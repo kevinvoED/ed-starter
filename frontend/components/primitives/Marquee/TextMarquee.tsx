@@ -18,7 +18,9 @@ type TextMarqueeProps = {
   gap: number;
 };
 
-gsap.registerPlugin(Observer);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(Observer);
+}
 
 export const TextMarquee = ({
   items,

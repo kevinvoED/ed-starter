@@ -1,13 +1,10 @@
 /*
  * Sanity Data Fetching Layer
  *
- * Centralized file for fetching data from Sanity
- * Used for queries to fetch data such as navigation and all pages.
- *
- * All fetch functions use `sanityFetch` from @/sanity/lib/live which provides:
- * - Automatic caching and revalidation
- * - Visual editing support via Stega encoding
- * - Type-safe query results via Sanity TypeGen
+ * Centralized file for fetching data from Sanity.
+ * All render-context helpers accept DynamicFetchOptions (perspective + stega)
+ * and must be called from within a 'use cache' component boundary.
+ * Static-params helpers use sanityFetchStaticParams (has its own 'use cache').
  */
 
 import type { ContentType } from "@/lib/utils/types";
@@ -22,7 +19,11 @@ import type {
   PAGE_QUERY_RESULT,
   PAGES_SLUGS_QUERY_RESULT,
 } from "@/sanity.types";
-import { sanityFetch } from "@/sanity/lib/live";
+import {
+  type DynamicFetchOptions,
+  sanityFetch,
+  sanityFetchStaticParams,
+} from "@/sanity/lib/live";
 import { BANNER_QUERY } from "@/sanity/queries/documents/banner";
 import { FOOTER_QUERY } from "@/sanity/queries/documents/footer";
 import { NAVBAR_QUERY } from "@/sanity/queries/documents/navbar";
@@ -56,31 +57,51 @@ export type ModuleProps<T extends ModuleType = ModuleType> = Extract<
  * ================= GLOBAL QUERIES ===================
  * ====================================================
  */
-export const fetchSanityOrganization =
-  async (): Promise<ORGANIZATION_QUERY_RESULT> => {
-    const { data } = await sanityFetch({
-      query: ORGANIZATION_QUERY,
-    });
-    return data;
-  };
 
-export const fetchSanityBanner = async (): Promise<BANNER_QUERY_RESULT> => {
+export const fetchSanityOrganization = async ({
+  perspective,
+  stega,
+}: DynamicFetchOptions): Promise<ORGANIZATION_QUERY_RESULT> => {
+  const { data } = await sanityFetch({
+    query: ORGANIZATION_QUERY,
+    perspective,
+    stega,
+  });
+  return data;
+};
+
+export const fetchSanityBanner = async ({
+  perspective,
+  stega,
+}: DynamicFetchOptions): Promise<BANNER_QUERY_RESULT> => {
   const { data } = await sanityFetch({
     query: BANNER_QUERY,
+    perspective,
+    stega,
   });
   return data;
 };
 
-export const fetchSanityNavbar = async (): Promise<NAVBAR_QUERY_RESULT> => {
+export const fetchSanityNavbar = async ({
+  perspective,
+  stega,
+}: DynamicFetchOptions): Promise<NAVBAR_QUERY_RESULT> => {
   const { data } = await sanityFetch({
     query: NAVBAR_QUERY,
+    perspective,
+    stega,
   });
   return data;
 };
 
-export const fetchSanityFooter = async (): Promise<FOOTER_QUERY_RESULT> => {
+export const fetchSanityFooter = async ({
+  perspective,
+  stega,
+}: DynamicFetchOptions): Promise<FOOTER_QUERY_RESULT> => {
   const { data } = await sanityFetch({
     query: FOOTER_QUERY,
+    perspective,
+    stega,
   });
   return data;
 };
@@ -90,16 +111,21 @@ export const fetchSanityFooter = async (): Promise<FOOTER_QUERY_RESULT> => {
  * ================== PAGE QUERIES ====================
  * ====================================================
  */
+
 export const fetchPageSlugData = async ({
   pageType,
   slug,
+  perspective,
+  stega,
 }: {
   pageType: string;
   slug: string;
-}): Promise<PAGE_QUERY_RESULT> => {
+} & DynamicFetchOptions): Promise<PAGE_QUERY_RESULT> => {
   const { data } = await sanityFetch({
     query: PAGE_SLUG_QUERY,
     params: { pageType, slug },
+    perspective,
+    stega,
   });
 
   return data;
@@ -110,11 +136,9 @@ export const fetchPageStaticParamsData = async ({
 }: {
   pageType: string;
 }): Promise<PAGES_SLUGS_QUERY_RESULT> => {
-  const { data } = await sanityFetch({
+  const { data } = await sanityFetchStaticParams({
     query: PAGES_SLUGS_QUERY,
     params: { pageType },
-    perspective: "published",
-    stega: false,
   });
 
   return data;
@@ -132,13 +156,15 @@ export const fetchContentTypeIndexPageData = async ({
   page,
   limit = 3,
   topic,
+  perspective,
+  stega,
 }: {
   contentType: ContentType;
   category?: string;
   page?: number;
   limit?: number;
   topic?: string;
-}): Promise<GET_CONTENT_TYPE_INDEX_QUERY_RESULT> => {
+} & DynamicFetchOptions): Promise<GET_CONTENT_TYPE_INDEX_QUERY_RESULT> => {
   const offset = page && limit ? (page - 1) * limit : 0;
   const end = offset + limit - 1;
 
@@ -153,6 +179,8 @@ export const fetchContentTypeIndexPageData = async ({
       end,
       limit,
     },
+    perspective,
+    stega,
   });
 
   return data;
@@ -161,13 +189,17 @@ export const fetchContentTypeIndexPageData = async ({
 export const fetchContentTypeSlugPageData = async ({
   contentType,
   slug,
+  perspective,
+  stega,
 }: {
   contentType: ContentType;
   slug: string;
-}): Promise<GET_CONTENT_TYPE_SLUG_QUERY_RESULT> => {
+} & DynamicFetchOptions): Promise<GET_CONTENT_TYPE_SLUG_QUERY_RESULT> => {
   const { data } = await sanityFetch({
     query: GET_CONTENT_TYPE_SLUG_QUERY,
     params: { contentType, slug },
+    perspective,
+    stega,
   });
 
   return data;
@@ -178,10 +210,8 @@ export const fetchContentTypeSlugStaticParamsData = async ({
 }: {
   contentType: ContentType;
 }): Promise<GET_CONTENT_TYPE_SLUGS_STATIC_PARAMS_QUERY_RESULT> => {
-  const { data } = await sanityFetch({
+  const { data } = await sanityFetchStaticParams({
     query: GET_CONTENT_TYPE_SLUGS_STATIC_PARAMS_QUERY,
-    perspective: "published",
-    stega: false,
     params: { contentType },
   });
 

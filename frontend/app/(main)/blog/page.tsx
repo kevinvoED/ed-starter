@@ -1,6 +1,13 @@
 import type { ContentType } from "@/lib/utils/types";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { fetchContentTypeIndexPageData } from "@/sanity/lib/fetch";
+import {
+  type DynamicFetchOptions,
+  getDynamicFetchOptions,
+  sanityFetchMetadata,
+} from "@/sanity/lib/live";
+import { GET_CONTENT_TYPE_INDEX_QUERY } from "@/sanity/queries/queries";
 import { ContentFilter } from "@/components/layout/Content/ContentFilter";
 import { ContentHero } from "@/components/layout/Content/ContentHero";
 import { ContentListing } from "@/components/layout/Content/ContentListing";
@@ -11,8 +18,19 @@ import { generatePageMetadata } from "@/lib/site/metadata";
 const CONTENT_TYPE: ContentType = "blog-index";
 
 export async function generateMetadata() {
-  const page = await fetchContentTypeIndexPageData({
-    contentType: CONTENT_TYPE,
+  const { perspective } = await getDynamicFetchOptions();
+  const { data: page } = await sanityFetchMetadata({
+    query: GET_CONTENT_TYPE_INDEX_QUERY,
+    params: {
+      contentType: CONTENT_TYPE,
+      category: null,
+      topic: null,
+      page: 1,
+      offset: 0,
+      end: 2,
+      limit: 3,
+    },
+    perspective,
   });
 
   if (!page) return notFound();
@@ -20,7 +38,7 @@ export async function generateMetadata() {
   return generatePageMetadata(page);
 }
 
-export default async function BlogIndexPage({
+export default function BlogIndexPage({
   searchParams,
 }: {
   searchParams: Promise<{
@@ -29,13 +47,52 @@ export default async function BlogIndexPage({
     category?: string;
   }>;
 }) {
-  const { topic, page, category } = await searchParams;
+  return (
+    <Suspense>
+      <DynamicBlogIndexPage searchParams={searchParams} />
+    </Suspense>
+  );
+}
 
+async function DynamicBlogIndexPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string; topic?: string; category?: string }>;
+}) {
+  const [{ topic, page, category }, { perspective, stega }] = await Promise.all(
+    [searchParams, getDynamicFetchOptions()],
+  );
+
+  return (
+    <CachedBlogIndexPage
+      topic={topic}
+      page={page}
+      category={category}
+      perspective={perspective}
+      stega={stega}
+    />
+  );
+}
+
+async function CachedBlogIndexPage({
+  topic,
+  page,
+  category,
+  perspective,
+  stega,
+}: {
+  topic?: string;
+  page?: string;
+  category?: string;
+} & DynamicFetchOptions) {
+  "use cache";
   const data = await fetchContentTypeIndexPageData({
     contentType: CONTENT_TYPE,
-    category: category,
-    topic: topic,
+    category,
+    topic,
     page: page ? parseInt(page) : 1,
+    perspective,
+    stega,
   });
 
   if (!data || data._type !== CONTENT_TYPE) return notFound();
