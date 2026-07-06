@@ -1,5 +1,5 @@
 import { toPlainText } from "@portabletext/react";
-import { LinkIcon } from "@sanity/icons";
+import { LinkIcon } from "@sanity/icons/Link";
 import { defineType } from "sanity";
 import { ModulePreview } from "@/components/module-preview";
 import { description, links, title } from "@/schemas/common";

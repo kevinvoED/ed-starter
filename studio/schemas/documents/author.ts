@@ -1,4 +1,4 @@
-import { UserIcon } from "@sanity/icons";
+import { UserIcon } from "@sanity/icons/User";
 import { orderRankField } from "@sanity/orderable-document-list";
 import { defineField, defineType } from "sanity";
 import { image, links } from "@/schemas/common";

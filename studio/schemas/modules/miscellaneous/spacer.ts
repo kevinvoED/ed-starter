@@ -1,4 +1,4 @@
-import { ImageRemoveIcon } from "@sanity/icons";
+import { ImageRemoveIcon } from "@sanity/icons/ImageRemove";
 import { upperFirst } from "es-toolkit";
 import { defineField, defineType } from "sanity";
 import { ModulePreview } from "@/components/module-preview";

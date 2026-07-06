@@ -1,5 +1,5 @@
 import { Menu } from "lucide-react";
-import { FolderIcon } from "@sanity/icons";
+import { FolderIcon } from "@sanity/icons/Folder";
 import { defineField, defineType } from "sanity";
 import { links, logo, title, toggle } from "@/schemas/common";
 

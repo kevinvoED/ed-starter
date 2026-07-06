@@ -1,4 +1,4 @@
-import { EarthGlobeIcon } from "@sanity/icons";
+import { EarthGlobeIcon } from "@sanity/icons/EarthGlobe";
 import { orderRankField } from "@sanity/orderable-document-list";
 import { startCase } from "es-toolkit";
 import { defineArrayMember, defineField, defineType } from "sanity";

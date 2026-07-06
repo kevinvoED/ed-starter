@@ -1,5 +1,5 @@
 import type { DocumentActionComponent, Slug } from "sanity";
-import { LinkIcon } from "@sanity/icons";
+import { LinkIcon } from "@sanity/icons/Link";
 import { useToast } from "@sanity/ui";
 import { linkMapper } from "../../frontend/lib/utils/url-mapper";
 

@@ -1,17 +1,15 @@
 import type { StructureBuilder, StructureResolver } from "sanity/structure";
 import { contextDocumentTypeName } from "@sanity/assist";
-import {
-  BookmarkIcon,
-  CogIcon,
-  DashboardIcon,
-  DocumentsIcon,
-  EarthGlobeIcon,
-  FolderIcon,
-  RedoIcon,
-  SchemaIcon,
-  StarIcon,
-  UserIcon,
-} from "@sanity/icons";
+import { BookmarkIcon } from "@sanity/icons/Bookmark";
+import { CogIcon } from "@sanity/icons/Cog";
+import { DashboardIcon } from "@sanity/icons/Dashboard";
+import { DocumentsIcon } from "@sanity/icons/Documents";
+import { EarthGlobeIcon } from "@sanity/icons/EarthGlobe";
+import { FolderIcon } from "@sanity/icons/Folder";
+import { RedoIcon } from "@sanity/icons/Redo";
+import { SchemaIcon } from "@sanity/icons/Schema";
+import { StarIcon } from "@sanity/icons/Star";
+import { UserIcon } from "@sanity/icons/User";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import { startCase } from "es-toolkit";
 import { defaultDocumentNode } from "@/lib/default-document-node";

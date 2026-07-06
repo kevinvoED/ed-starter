@@ -1,4 +1,4 @@
-import { DocumentIcon } from "@sanity/icons";
+import { DocumentIcon } from "@sanity/icons/Document";
 import { createPageType } from "@/schemas/pages/page-builder";
 
 export default createPageType({

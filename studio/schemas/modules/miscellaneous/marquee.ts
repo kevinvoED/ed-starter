@@ -1,10 +1,8 @@
-import {
-  DashboardIcon,
-  EarthGlobeIcon,
-  ImageIcon,
-  MasterDetailIcon,
-  TextIcon,
-} from "@sanity/icons";
+import { DashboardIcon } from "@sanity/icons/Dashboard";
+import { EarthGlobeIcon } from "@sanity/icons/EarthGlobe";
+import { ImageIcon } from "@sanity/icons/Image";
+import { MasterDetailIcon } from "@sanity/icons/MasterDetail";
+import { TextIcon } from "@sanity/icons/Text";
 import { upperFirst } from "es-toolkit";
 import { defineField, defineType } from "sanity";
 import { ModulePreview } from "@/components/module-preview";

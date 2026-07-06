@@ -1,7 +1,7 @@
 /** @see https://www.sanity.io/docs/studio/custom-studio-tool */
 
 import type { Tool } from "sanity";
-import { BookIcon } from "@sanity/icons";
+import { BookIcon } from "@sanity/icons/Book";
 import { Card, Grid } from "@sanity/ui";
 import Guide from "@/components/guide";
 

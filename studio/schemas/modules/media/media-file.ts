@@ -1,4 +1,5 @@
-import { ImageIcon, VideoIcon } from "@sanity/icons";
+import { ImageIcon } from "@sanity/icons/Image";
+import { VideoIcon } from "@sanity/icons/Video";
 import { defineField, defineType } from "sanity";
 import { ModulePreview } from "@/components/module-preview";
 import { createOptionCards } from "@/components/option-cards";

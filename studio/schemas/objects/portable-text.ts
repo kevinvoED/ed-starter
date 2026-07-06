@@ -1,4 +1,5 @@
-import { PlayIcon, ThListIcon } from "@sanity/icons";
+import { PlayIcon } from "@sanity/icons/Play";
+import { ThListIcon } from "@sanity/icons/ThList";
 import { defineArrayMember, defineType } from "sanity";
 import { YouTubePreview } from "@/components/youtube-preview";
 import {

@@ -1,5 +1,5 @@
 import { toPlainText } from "@portabletext/react";
-import { InlineIcon } from "@sanity/icons";
+import { InlineIcon } from "@sanity/icons/Inline";
 import { defineField, defineType } from "sanity";
 import { ModulePreview } from "@/components/module-preview";
 import { cards, description, links, title } from "@/schemas/common";

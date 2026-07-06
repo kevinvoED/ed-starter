@@ -1,4 +1,4 @@
-import { BookmarkIcon } from "@sanity/icons";
+import { BookmarkIcon } from "@sanity/icons/Bookmark";
 import { orderRankField } from "@sanity/orderable-document-list";
 import { defineField, defineType } from "sanity";
 import { slug, title } from "@/schemas/common";

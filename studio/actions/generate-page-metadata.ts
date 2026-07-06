@@ -1,7 +1,7 @@
 import type { SanityImageObject } from "@sanity/image-url";
 import type { DocumentActionComponent, PortableTextBlock } from "sanity";
 import { toPlainText } from "@portabletext/react";
-import { TextIcon } from "@sanity/icons";
+import { TextIcon } from "@sanity/icons/Text";
 import { useToast } from "@sanity/ui";
 import { useDocumentOperation } from "sanity";
 import { HERO_DOCUMENT_TYPES } from "@/lib/consts";

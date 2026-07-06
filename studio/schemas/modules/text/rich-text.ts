@@ -1,5 +1,5 @@
 import { toPlainText } from "@portabletext/react";
-import { TextIcon } from "@sanity/icons";
+import { TextIcon } from "@sanity/icons/Text";
 import { defineField, defineType } from "sanity";
 import { ModulePreview } from "@/components/module-preview";
 import { portableText } from "@/schemas/common";

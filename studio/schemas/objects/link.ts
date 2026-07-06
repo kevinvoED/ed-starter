@@ -1,4 +1,5 @@
-import { ArrowTopRightIcon, LinkIcon } from "@sanity/icons";
+import { ArrowTopRightIcon } from "@sanity/icons/ArrowTopRight";
+import { LinkIcon } from "@sanity/icons/Link";
 import { defineField, defineType } from "sanity";
 import { createOptionCards } from "@/components/option-cards";
 import { relationTypes } from "@/schemas/moduleTypes";
