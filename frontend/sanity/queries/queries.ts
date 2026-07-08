@@ -13,6 +13,7 @@ import {
   metaFragment,
   portableTextFragment,
   titleFragment,
+  urlQuery,
 } from "./fragments";
 import { FN_LOGO, GROQ_FUNCTIONS } from "./functions";
 import { CARD_EXAMPLE_QUERY } from "./modules/card/card-example";
@@ -59,6 +60,103 @@ export const ORGANIZATION_QUERY = defineQuery(`
       ...,
       ${logoFragment},
     }
+  }
+`);
+
+/*
+ * ====================================================
+ * ================= LLMS.TXT QUERIES =================
+ * ====================================================
+ */
+
+export const ORGANIZATION_LLMS_QUERY = defineQuery(`
+  ${GROQ_FUNCTIONS}
+
+  *[_type == "organization"][0]{
+    organization {
+      name,
+      "description": pt::text(description)
+    }
+  }
+`);
+
+export const LLMS_QUERY = defineQuery(`
+ ${GROQ_FUNCTIONS}
+  {
+    "pages": *[_type == "page" && !meta.noindex && defined(slug)] | order(slug.current) {
+      ${urlQuery},
+      "title": coalesce(meta.title, pt::text(title), slug.current),
+      "description": coalesce(meta.description, pt::text(description))
+    },
+    "blog": {
+      "index": *[_type == "blog-index"][0] {
+        ${urlQuery},
+        "title": coalesce(meta.title, pt::text(title), "Blog"),
+        "description": coalesce(meta.description, pt::text(description))
+      },
+      "posts": *[_type == "blog-post" && !meta.noindex && defined(slug)] | order(publishedDate desc) {
+        ${urlQuery},
+        "title": coalesce(meta.title, pt::text(title), slug.current),
+        "description": coalesce(meta.description, pt::text(description))
+      }
+    },
+    "caseStudies": {
+      "index": *[_type == "case-studies-index"][0] {
+        ${urlQuery},
+        "title": coalesce(meta.title, pt::text(title), "Case Studies"),
+        "description": coalesce(meta.description, pt::text(description))
+      },
+      "posts": *[_type == "case-study" && !meta.noindex && defined(slug)] | order(publishedDate desc) {
+        ${urlQuery},
+        "title": coalesce(meta.title, pt::text(title), slug.current),
+        "description": coalesce(meta.description, pt::text(description))
+      }
+    },
+    "platform": {
+      "index": *[_type == "platform-index"][0] {
+        ${urlQuery},
+        "title": coalesce(meta.title, pt::text(title), "Platform"),
+        "description": coalesce(meta.description, pt::text(description))
+      },
+      "children": *[_type == "platform-child" && !meta.noindex && defined(slug)] | order(slug.current) {
+        ${urlQuery},
+        "title": coalesce(meta.title, pt::text(title), slug.current),
+        "description": coalesce(meta.description, pt::text(description))
+      }
+    }
+  }
+`);
+
+export const LLMS_FULL_QUERY = defineQuery(`
+  *[_type in $viewableTypes && !meta.noindex && defined(slug)] | order(slug.current) {
+    ${urlQuery},
+    _type,
+    "title": coalesce(meta.title, pt::text(title), slug.current),
+    "description": coalesce(meta.description, pt::text(description)),
+    "publishedDate": select(defined(publishedDate) => publishedDate, null),
+    "content": select(
+      defined(content) => pt::text(content),
+      defined(modules) => array::join(
+        array::compact(
+          modules[] {
+            "text": select(
+              _type == "rich-text" => pt::text(content),
+              _type == "hero-primary" => array::join(
+                array::compact([pt::text(title), pt::text(description)]),
+                "\n"
+              ),
+              _type == "driver-text" => array::join(
+                array::compact([pt::text(title), pt::text(description)]),
+                "\n"
+              ),
+              null
+            )
+          }.text
+        ),
+        "\n\n"
+      ),
+      null
+    )
   }
 `);
 
