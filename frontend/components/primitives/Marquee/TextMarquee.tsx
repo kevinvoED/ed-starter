@@ -1,8 +1,9 @@
 "use client";
 
 import type { ModuleProps } from "@/sanity/lib/fetch";
+import { useGSAP } from "@gsap/react";
 import { toPlainText } from "@portabletext/react";
-import { useEffect, useRef } from "react";
+import { useId, useRef } from "react";
 import { gsap } from "gsap";
 import { cn } from "@/lib/utils/cn";
 import { horizontalLoop } from "@/lib/utils/horizontal-loop";
@@ -29,58 +30,59 @@ export const TextMarquee = ({
   direction = "right",
   gap,
 }: TextMarqueeProps) => {
-  if (!items || items.length === 0) return null;
-
   const containerRef = useRef<HTMLDivElement>(null);
-  const timelineRef = useRef<gsap.core.Timeline | null>(null);
-  const observerRef = useRef<Observer | null>(null);
+  const mountId = useId();
 
-  useEffect(() => {
-    if (!containerRef.current) return;
+  useGSAP(
+    () => {
+      if (!items?.length || !containerRef.current) return;
 
-    const scrollingText = gsap.utils.toArray<Element>(
-      containerRef.current.querySelectorAll(".marquee-item"),
-    );
+      const scrollingText = gsap.utils.toArray<HTMLElement>(
+        containerRef.current.querySelectorAll(".marquee-item"),
+      );
 
-    const tl = horizontalLoop(scrollingText as HTMLElement[], {
-      repeat: -1,
-      paddingRight: "0px",
-      reversed: direction === "right",
-    });
+      if (scrollingText.length === 0) return;
 
-    timelineRef.current = tl;
-
-    if (enableVelocity) {
-      observerRef.current = Observer.create({
-        onChangeY(self) {
-          let factor = 2;
-          if (self.deltaY > 0) {
-            factor *= -1;
-          }
-          gsap
-            .timeline({
-              defaults: {
-                ease: "none",
-              },
-            })
-            .to(tl, {
-              timeScale: factor * 2.5,
-              duration: 0.2,
-              overwrite: true,
-            })
-            .to(tl, { timeScale: factor / 2.5, duration: 1 }, "+=0");
-        },
+      const tl = horizontalLoop(scrollingText, {
+        repeat: -1,
+        paddingRight: "0px",
+        reversed: direction === "right",
       });
-    }
-    return () => {
-      if (timelineRef.current) {
-        timelineRef.current.kill();
+
+      let observer: Observer | undefined;
+
+      if (enableVelocity) {
+        observer = Observer.create({
+          onChangeY(self) {
+            let factor = 2;
+            if (self.deltaY > 0) {
+              factor *= -1;
+            }
+            gsap
+              .timeline({ defaults: { ease: "none" } })
+              .to(tl, {
+                timeScale: factor * 2.5,
+                duration: 0.2,
+                overwrite: true,
+              })
+              .to(tl, { timeScale: factor / 2.5, duration: 1 }, "+=0");
+          },
+        });
       }
-      if (observerRef.current) {
-        observerRef.current.kill();
-      }
-    };
-  }, [enableVelocity, direction]);
+
+      return () => {
+        observer?.kill();
+        tl.kill();
+        gsap.set(scrollingText, { clearProps: "all" });
+      };
+    },
+    {
+      scope: containerRef,
+      dependencies: [items, mountId, enableVelocity, direction],
+    },
+  );
+
+  if (!items || items.length === 0) return null;
 
   return (
     <div
@@ -88,16 +90,18 @@ export const TextMarquee = ({
       role="marquee"
       className={cn("flex items-center overflow-hidden", className)}
     >
-      {[...items, ...items, ...items].map((item, index) => (
-        <div key={`${item.title}-${index}`} className="marquee-item">
-          <div
-            className="max-w-fit whitespace-nowrap"
-            style={{ marginRight: `${gap}px` }}
-          >
-            {item.title && toPlainText(item.title)}
+      <div key={mountId} className="flex">
+        {[...items, ...items, ...items].map((item, index) => (
+          <div key={`${item.title}-${index}`} className="marquee-item">
+            <div
+              className="max-w-fit whitespace-nowrap"
+              style={{ marginRight: `${gap}px` }}
+            >
+              {item.title && toPlainText(item.title)}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
