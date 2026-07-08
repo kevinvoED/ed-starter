@@ -115,15 +115,17 @@ export const fetchSanityFooter = async ({
 export const fetchPageSlugData = async ({
   pageType,
   slug,
+  parentSlug = null,
   perspective,
   stega,
 }: {
   pageType: string;
   slug: string;
+  parentSlug?: string | null;
 } & DynamicFetchOptions): Promise<PAGE_QUERY_RESULT> => {
   const { data } = await sanityFetch({
     query: PAGE_SLUG_QUERY,
-    params: { pageType, slug },
+    params: { pageType, slug, parentSlug },
     perspective,
     stega,
   });
