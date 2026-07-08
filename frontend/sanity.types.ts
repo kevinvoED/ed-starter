@@ -1238,6 +1238,7 @@ export type Page = {
   _updatedAt: string;
   _rev: string;
   title: string;
+  parentPage?: PageReference;
   slug: Slug;
   modules?: Array<
     | ({

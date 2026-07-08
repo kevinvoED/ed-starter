@@ -8,6 +8,7 @@ type PageBuilderOptions = {
   title: string;
   icon?: React.ComponentType;
   type?: "document" | "object";
+  enableParentPage?: boolean;
 };
 
 /*
@@ -27,6 +28,7 @@ export function createPageType({
   title,
   icon = DocumentIcon,
   type = "document",
+  enableParentPage = false,
 }: PageBuilderOptions): SchemaTypeDefinition {
   return defineType({
     name,
@@ -53,6 +55,35 @@ export function createPageType({
         ...pageTitle,
         group: "content",
       }),
+      ...(enableParentPage
+        ? [
+            defineField({
+              name: "parentPage",
+              title: "Parent Page",
+              type: "reference" as const,
+              to: [{ type: name }],
+              options: {
+                filter: ({ document }) => {
+                  const rawId = document?._id as string | undefined;
+                  // New unsaved documents have no _id yet; we cannot exclude self, only enforce top-level parents.
+                  if (!rawId) {
+                    return { filter: "!defined(parentPage)" };
+                  }
+                  const publishedId = rawId.replace(/^drafts\./, "");
+                  return {
+                    filter:
+                      "!defined(parentPage) && _id != $publishedId && _id != $draftId",
+                    params: {
+                      publishedId,
+                      draftId: `drafts.${publishedId}`,
+                    },
+                  };
+                },
+              },
+              group: "content",
+            }),
+          ]
+        : []),
       defineField({ ...slug, group: "content" }),
       defineField({
         ...modules,
