@@ -11,4 +11,5 @@ import { createPageType } from "./page-builder";
 export default createPageType({
   name: "page",
   title: "Page",
+  enableParentPage: true,
 });

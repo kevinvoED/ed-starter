@@ -1,4 +1,4 @@
-import type { NextParams } from "@/lib/utils/types";
+import type { NextCatchAllParams } from "@/lib/utils/types";
 import { Suspense } from "react";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
@@ -17,19 +17,39 @@ import { generatePageMetadata } from "@/lib/site/metadata";
 
 const PAGE_TYPE = "page";
 
-export async function generateStaticParams() {
-  const pages = await fetchPageStaticParamsData({ pageType: PAGE_TYPE });
-  return pages.map((page) => ({ slug: page.slug?.current }));
+// Only top-level pages and one level of nested (parentPage) pages are supported.
+function parseSlugSegments(segments: string[]) {
+  const [slug, parentSlug] =
+    segments.length > 1
+      ? [segments[segments.length - 1], segments[segments.length - 2]]
+      : [segments[0], null];
+  return { slug, parentSlug };
 }
 
-export async function generateMetadata({ params }: { params: NextParams }) {
-  const [{ slug }, { perspective }] = await Promise.all([
+export async function generateStaticParams() {
+  const pages = await fetchPageStaticParamsData({ pageType: PAGE_TYPE });
+  return pages
+    .filter((page) => page.slug?.current)
+    .map((page) => ({
+      slug: page.parentSlug
+        ? [page.parentSlug, page.slug!.current]
+        : [page.slug!.current],
+    }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: NextCatchAllParams;
+}) {
+  const [{ slug: segments }, { perspective }] = await Promise.all([
     params,
     getDynamicFetchOptions(),
   ]);
+  const { slug, parentSlug } = parseSlugSegments(segments);
   const { data: page } = await sanityFetchMetadata({
     query: PAGE_SLUG_QUERY,
-    params: { pageType: PAGE_TYPE, slug },
+    params: { pageType: PAGE_TYPE, slug, parentSlug },
     perspective,
   });
 
@@ -38,7 +58,11 @@ export async function generateMetadata({ params }: { params: NextParams }) {
   return generatePageMetadata(page);
 }
 
-export default async function SlugPage({ params }: { params: NextParams }) {
+export default async function SlugPage({
+  params,
+}: {
+  params: NextCatchAllParams;
+}) {
   const { isEnabled: isDraftMode } = await draftMode();
 
   if (isDraftMode) {
@@ -55,7 +79,7 @@ export default async function SlugPage({ params }: { params: NextParams }) {
 
 async function DynamicSlugPage({
   params,
-}: Pick<{ params: NextParams }, "params">) {
+}: Pick<{ params: NextCatchAllParams }, "params">) {
   const [{ slug }, { perspective, stega }] = await Promise.all([
     params,
     getDynamicFetchOptions(),
@@ -64,14 +88,16 @@ async function DynamicSlugPage({
 }
 
 async function CachedSlugPage({
-  slug,
+  slug: segments,
   perspective,
   stega,
-}: { slug: string } & DynamicFetchOptions) {
+}: { slug: string[] } & DynamicFetchOptions) {
   "use cache";
+  const { slug, parentSlug } = parseSlugSegments(segments);
   const page = await fetchPageSlugData({
     pageType: PAGE_TYPE,
     slug,
+    parentSlug,
     perspective,
     stega,
   });

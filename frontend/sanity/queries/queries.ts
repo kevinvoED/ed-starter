@@ -179,7 +179,7 @@ export const PAGE_QUERY = defineQuery(`
 export const PAGE_SLUG_QUERY = defineQuery(`
   ${GROQ_FUNCTIONS}
 
-  *[_type == $pageType && slug.current == $slug][0]{
+  *[_type == $pageType && slug.current == $slug && parentPage->slug.current == $parentSlug][0]{
     _type,
     ${modulesFragment},
     ${metaFragment},
@@ -187,7 +187,7 @@ export const PAGE_SLUG_QUERY = defineQuery(`
 `);
 
 export const PAGES_SLUGS_QUERY = defineQuery(`
-  *[_type == $pageType && defined(slug)]{slug}
+  *[_type == $pageType && defined(slug)]{slug, "parentSlug": parentPage->slug.current}
 `);
 
 /*

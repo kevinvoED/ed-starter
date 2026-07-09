@@ -18,7 +18,7 @@ export async function generateMetadata() {
   const { perspective } = await getDynamicFetchOptions();
   const { data: page } = await sanityFetchMetadata({
     query: PAGE_SLUG_QUERY,
-    params: { pageType: PAGE_TYPE, slug: PAGE_SLUG },
+    params: { pageType: PAGE_TYPE, slug: PAGE_SLUG, parentSlug: null },
     perspective,
   });
 
