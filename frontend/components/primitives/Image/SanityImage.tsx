@@ -1,3 +1,11 @@
+/*
+ * Sanity Image Component
+ * Used to display images from Sanity CMS
+ * Handles both reference and expanded asset formats
+ * Automatically optimizes images with imageLoader from next-sanity/image
+ * @docs: https://www.sanity.io/docs/nextjs/next-sanity-image-component
+ */
+
 import type { HTMLAttributes } from "react";
 import type { ModuleProps } from "@/sanity/lib/fetch";
 import type { MetaImage } from "@/sanity.types";
@@ -63,13 +71,13 @@ export const SanityImage = ({
       alt={hasExpandedAsset(image) ? image?.alt || "" : ""}
       placeholder={placeholder}
       blurDataURL={blurDataURL}
-      className={cn("object-cover", className)}
       sizes={sizes}
       width={imageWidth}
       height={imageHeight}
       priority={priority}
       quality={priority ? 100 : 75}
       loading={priority ? "eager" : "lazy"}
+      className={cn("object-cover", className)}
     />
   );
 };
