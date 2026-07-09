@@ -14,6 +14,7 @@ export const urlQuery = `
     _type == "case-study" => $baseUrl + "/case-studies/" + slug.current,
     _type == "platform-index" => $baseUrl + "/platform",
     _type == "platform-child" => $baseUrl + "/platform/" + slug.current,
+    defined(parentPage->slug.current) => $baseUrl + "/" + parentPage->slug.current + "/" + slug.current,
     $baseUrl + "/" + slug.current
   )
 `;
@@ -38,6 +39,7 @@ export const metaFragment = `
       ^._type == "case-study" => "/case-studies/" + ^.slug.current,
       ^._type == "platform-index" => "/platform",
       ^._type == "platform-child" => "/platform/" + ^.slug.current,
+      defined(^.parentPage->slug.current) => "/" + ^.parentPage->slug.current + "/" + ^.slug.current,
       "/" + ^.slug.current
     ),
     "image": coalesce(

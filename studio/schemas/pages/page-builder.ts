@@ -8,6 +8,7 @@ type PageBuilderOptions = {
   title: string;
   icon?: React.ComponentType;
   type?: "document" | "object";
+  enableParentPage?: boolean;
 };
 
 /*
@@ -27,6 +28,7 @@ export function createPageType({
   title,
   icon = DocumentIcon,
   type = "document",
+  enableParentPage = false,
 }: PageBuilderOptions): SchemaTypeDefinition {
   return defineType({
     name,
@@ -53,6 +55,39 @@ export function createPageType({
         ...pageTitle,
         group: "content",
       }),
+      ...(enableParentPage
+        ? [
+            defineField({
+              name: "parentPage",
+              title: "Parent Page",
+              description:
+                "Select a parent page if this is a child page. A child page that already has a parent page cannot be selected as a parent page.",
+              type: "reference" as const,
+              to: [{ type: name }],
+              options: {
+                filter: ({ document }) => {
+                  const rawId = document?._id as string | undefined;
+
+                  if (!rawId) {
+                    return { filter: "!defined(parentPage)" };
+                  }
+
+                  const publishedId = rawId.replace(/^drafts\./, "");
+
+                  return {
+                    filter:
+                      "!defined(parentPage) && _id != $publishedId && _id != $draftId",
+                    params: {
+                      publishedId,
+                      draftId: `drafts.${publishedId}`,
+                    },
+                  };
+                },
+              },
+              group: "content",
+            }),
+          ]
+        : []),
       defineField({ ...slug, group: "content" }),
       defineField({
         ...modules,

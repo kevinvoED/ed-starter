@@ -20,12 +20,17 @@ export const VIEWABLE_TYPES = new Set<ViewableTypes>([
   "case-study",
 ]);
 
+const pageHref = (slug: Slug, parentSlug?: string) => {
+  if (slug.current === "index") return "";
+  return parentSlug ? `/${parentSlug}/${slug.current}` : `/${slug.current}`;
+};
+
 // recreate frontend/sanity/queries/shared/link.ts hrefQuery
-export const linkMapper = (type: string, slug: Slug) => {
+export const linkMapper = (type: string, slug: Slug, parentSlug?: string) => {
   return (
     /** Keep in sync with the VIEWABLE_TYPES and link queries */
     {
-      page: slug.current === "index" ? "" : `/${slug.current}`,
+      page: pageHref(slug, parentSlug),
       "platform-index": "/platform",
       "platform-child": `/platform/${slug.current}`,
       "blog-index": "/blog",

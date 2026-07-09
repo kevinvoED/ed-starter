@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: NextParams }) {
   ]);
   const { data: page } = await sanityFetchMetadata({
     query: PAGE_SLUG_QUERY,
-    params: { pageType: PAGE_TYPE, slug },
+    params: { pageType: PAGE_TYPE, slug, parentSlug: null },
     perspective,
   });
 

@@ -7830,6 +7830,14 @@
         },
         "optional": false
       },
+      "parentPage": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "page.reference"
+        },
+        "optional": true
+      },
       "slug": {
         "type": "objectAttribute",
         "value": {

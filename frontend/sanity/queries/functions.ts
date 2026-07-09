@@ -25,6 +25,7 @@ export const linksFields = `
     @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,
     @.internalLink->_type == "platform-index" => "/platform",
     @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,
+    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,
     "/" + @.internalLink->slug.current
   )
 `;
