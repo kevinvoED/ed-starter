@@ -5,9 +5,9 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { SanityImage } from "@/components/primitives/Image/SanityImage";
 import { useIsMobile } from "@/lib/hooks/use-is-mobile";
-import { cn } from "@/lib/utils/cn";
 import { horizontalLoop } from "@/lib/utils/horizontal-loop";
 import { LogoSoup, useLogoSoup } from "@sanity-labs/logo-soup/react";
+import { cn } from "cnfast";
 import { Observer } from "gsap/all";
 
 type ImageMarqueeProps = {

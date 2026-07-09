@@ -5,8 +5,8 @@ import { useGSAP } from "@gsap/react";
 import { toPlainText } from "@portabletext/react";
 import { useId, useRef } from "react";
 import { gsap } from "gsap";
-import { cn } from "@/lib/utils/cn";
 import { horizontalLoop } from "@/lib/utils/horizontal-loop";
+import { cn } from "cnfast";
 import { Observer } from "gsap/all";
 
 // @see https://codepen.io/GreenSock/pen/zYaxEKV

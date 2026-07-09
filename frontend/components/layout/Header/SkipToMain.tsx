@@ -1,5 +1,5 @@
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "cnfast";
 
 type SkipToMainProps = {
   className?: string;

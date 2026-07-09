@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "cnfast";
 
 const EyebrowVariants = cva(
   "group relative inline-flex max-w-fit flex-no-wrap items-center justify-center overflow-hidden rounded-full",

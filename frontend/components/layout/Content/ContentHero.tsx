@@ -1,6 +1,6 @@
 import type { ContentIndexVariant } from "@/lib/utils/types";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "cnfast";
 
 type ContentHeroProps = {
   title: ContentIndexVariant["title"];

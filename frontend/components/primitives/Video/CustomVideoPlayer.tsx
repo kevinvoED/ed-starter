@@ -8,7 +8,7 @@ import {
   MediaTimeRange,
   MediaVolumeRange,
 } from "media-chrome/react";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "cnfast";
 
 type CustomVideoPlayerProps = {
   slot?: "media" | string;

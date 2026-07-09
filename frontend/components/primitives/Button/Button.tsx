@@ -3,7 +3,7 @@
 import { type ButtonHTMLAttributes, forwardRef } from "react";
 import { sendGTMEvent } from "@next/third-parties/google";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "cnfast";
 
 export const ButtonVariants = cva(
   "group/button inline-flex select-none items-center justify-center font-inherit outline-0 transition-colors duration-300 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-debug-blue focus-visible:outline-offset-4 has-[>svg]:gap-1.5 [&_svg]:size-3",

@@ -8,7 +8,7 @@ import {
   type ModuleBlock,
   ModuleBuilder,
 } from "@/components/modules/ModuleBuilder";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "cnfast";
 
 type PageProps = {
   page:

@@ -12,7 +12,7 @@ import type { MetaImage } from "@/sanity.types";
 import Image from "next/image";
 import { imageLoader } from "next-sanity/image";
 import { urlFor } from "@/sanity/lib/image";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "cnfast";
 
 export type ResolvedImageType = NonNullable<ModuleProps<"media-file">["image"]>;
 

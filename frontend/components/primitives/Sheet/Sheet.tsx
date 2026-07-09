@@ -3,9 +3,9 @@
 import type * as React from "react";
 import { useLenis } from "lenis/react";
 import { XIcon } from "lucide-react";
-import { cn } from "@/lib/utils/cn";
 import { Button } from "@base-ui/react/button";
 import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
+import { cn } from "cnfast";
 
 /*
  * Based off of Base/UI's Dialog component

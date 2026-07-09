@@ -7,7 +7,7 @@ import { parseAsString, useQueryStates } from "nuqs";
 import { ContentPaginationScrollHandler } from "@/components/layout/Content/ContentPaginationScrollHandler";
 import { Icon } from "@/components/primitives/Icon/Icon";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "cnfast";
 
 type ContentPaginationProps = {
   pagination: ContentIndexVariant["pagination"];

@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { TextMask } from "@/components/animations/TextMask";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "cnfast";
 
 // ! DELETE AFTER PROJECT INITIALIZATION
 

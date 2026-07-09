@@ -8,7 +8,7 @@ import { PortableTextHeading } from "@/components/primitives/PortableText/Portab
 import { PortableTextImage } from "@/components/primitives/PortableText/PortableTextImage";
 import { PortableTextRichTable } from "@/components/primitives/PortableText/PortableTextRichTable";
 import { PortableTextYoutube } from "@/components/primitives/PortableText/PortableTextYoutube";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "cnfast";
 
 /*
  * PortableText component for rendering Sanity's Rich Text Editor content

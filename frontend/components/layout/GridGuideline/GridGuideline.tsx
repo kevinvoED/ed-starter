@@ -9,7 +9,7 @@
 
 import { useEffect, useState } from "react";
 import { useIsMobile } from "@/lib/hooks/use-is-mobile";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "cnfast";
 
 export const GridGuideline = () => {
   const [isVisible, setIsVisible] = useState(false);

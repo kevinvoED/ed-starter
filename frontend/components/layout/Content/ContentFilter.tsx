@@ -5,8 +5,8 @@ import { Separator } from "@base-ui/react";
 import { parseAsString, useQueryStates } from "nuqs";
 import { Icon } from "@/components/primitives/Icon/Icon";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
-import { cn } from "@/lib/utils/cn";
 import { Checkbox } from "@base-ui/react/checkbox";
+import { cn } from "cnfast";
 
 type ContentFilterProps = {
   data: ContentIndexVariant["filters"];

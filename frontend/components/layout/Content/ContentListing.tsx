@@ -5,7 +5,7 @@ import { Eyebrow } from "@/components/primitives/Eyebrow/Eyebrow";
 import { SanityImage } from "@/components/primitives/Image/SanityImage";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "cnfast";
 
 type ContentListingProps = {
   scrollTargetId: ContentIndexVariant["pagination"]["scrollTargetId"];

@@ -31,7 +31,6 @@ lib/
 ## Utils
 | Utility              | Purpose                                                        |
 | :------------------- | :--------------------------------------------------------------|
-| `cn`                 | Merges Tailwind classes  (clsx + twMerge)                      |
 | `date`               | Date formatting utilities                                      |
 | `filter`             | Filter helpers for content category/topic filtering            |
 | `pagination`         | Creates page URLs with query parameters for pagination         |

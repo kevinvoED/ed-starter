@@ -1,7 +1,7 @@
 "use client";
 
 import type * as React from "react";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "cnfast";
 
 /*
  * Table component for displaying tabular data with header, body, and footer

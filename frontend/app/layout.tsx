@@ -2,7 +2,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import { Lenis } from "@/components/layout/GSAP/Lenis";
 import { GSAPRuntime } from "@/components/layout/GSAP/Runtime";
 import { fontBody, fontHeading, fontMono } from "@/lib/styles/fonts";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "cnfast";
 import "./globals.css";
 import { GridGuideline } from "@/components/layout/GridGuideline/GridGuideline";
 import { ScrollToTopOnNavigate } from "@/components/layout/GSAP/ScrollToTopOnNavigate";

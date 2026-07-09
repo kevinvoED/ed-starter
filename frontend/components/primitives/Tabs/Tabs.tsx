@@ -1,7 +1,7 @@
 "use client";
 
-import { cn } from "@/lib/utils/cn";
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
+import { cn } from "cnfast";
 
 /*
  * Based off of Base/UI's Tabs component

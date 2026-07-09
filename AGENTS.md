@@ -239,11 +239,9 @@ Use configured path aliases from `tsconfig.json`:
 ```tsx
 // ✅ Preferred
 import { Button } from '@components/primitives/Button';
-import { cn } from '@lib/utils/cn';
 
 // ❌ Avoid
 import { Button } from '../../../../components/primitives/Button';
-import { cn} from '../../lib/utils/cn';
 ```
 
 ### Tailwind CSS
@@ -255,7 +253,7 @@ import { cn} from '../../lib/utils/cn';
 
 #### Custom Classes & Utilities
 ```tsx
-import cn from '@lib/utils/cn';
+import { cn } from "cnfast";
 
 <div className={cn('bg-black', isActive && 'text-white')}>
   Content

@@ -1,6 +1,6 @@
 import type * as React from "react";
 import { ChevronDownIcon } from "lucide-react";
-import { cn } from "@/lib/utils/cn";
+import { cn } from "cnfast";
 
 /*
  * Based off of shad/cn's NativeSelect component

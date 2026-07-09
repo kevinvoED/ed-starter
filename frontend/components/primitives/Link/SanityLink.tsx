@@ -6,8 +6,8 @@ import { sendGTMEvent } from "@next/third-parties/google";
 import Link from "next/link";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Icon } from "@/components/primitives/Icon/Icon";
-import { cn } from "@/lib/utils/cn";
 import { sanitizeForId } from "@/lib/utils/generic";
+import { cn } from "cnfast";
 import { kebabCase } from "es-toolkit/string";
 
 const primaryButtonStyles =
