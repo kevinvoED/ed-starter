@@ -98,12 +98,6 @@ const nextConfig = {
     return rewrites;
   },
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "cdn.sanity.io",
-      },
-    ],
     qualities: [75, 100],
   },
   turbopack: {
