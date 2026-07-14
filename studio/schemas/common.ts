@@ -443,7 +443,6 @@ export const icon = defineField({
   components: {
     input: CustomIconPicker,
   },
-  validation: (Rule) => Rule,
 });
 
 export const eyebrow = defineField({
