@@ -3845,6 +3845,19 @@
           },
           "optional": true
         },
+        "icon": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "Value"
+              }
+            ]
+          },
+          "optional": true
+        },
         "openInNewTab": {
           "type": "objectAttribute",
           "value": {

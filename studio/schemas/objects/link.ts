@@ -2,6 +2,7 @@ import { ArrowTopRightIcon } from "@sanity/icons/ArrowTopRight";
 import { LinkIcon } from "@sanity/icons/Link";
 import { defineField, defineType } from "sanity";
 import { createOptionCards } from "@/components/option-cards";
+import { icon } from "@/schemas/common";
 import { relationTypes } from "@/schemas/moduleTypes";
 
 const LINK_OPTIONS = [
@@ -81,6 +82,9 @@ export default defineType({
           }
           return true;
         }),
+    }),
+    defineField({
+      ...icon,
     }),
     defineField({
       name: "openInNewTab",

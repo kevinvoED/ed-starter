@@ -6,6 +6,7 @@ import { LinkIcon } from "@sanity/icons/Link";
 import { VideoIcon } from "@sanity/icons/Video";
 import { kebabCase } from "es-toolkit";
 import { defineArrayMember, defineField, type Rule } from "sanity";
+import { CustomIconPicker } from "@/components/custom-icon";
 import { createOptionCards } from "@/components/option-cards";
 import {
   moduleBlocks,
@@ -429,6 +430,21 @@ export const toggle = defineField({
  * Miscellaneous
  * ------------------------------------------------
  */
+
+export const icon = defineField({
+  name: "icon",
+  title: "Icon",
+  type: "string",
+  description:
+    "Optional. Select an icon to add as a suffix to this link label.",
+  options: {
+    list: [{ title: "Title", value: "Value" }],
+  },
+  components: {
+    input: CustomIconPicker,
+  },
+  validation: (Rule) => Rule,
+});
 
 export const eyebrow = defineField({
   name: "eyebrow",
