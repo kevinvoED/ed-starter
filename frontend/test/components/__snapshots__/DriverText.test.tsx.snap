@@ -43,7 +43,7 @@ exports[`DriverText > matches snapshot 1`] = `
         style="opacity: 0;"
       >
         <a
-          class="group/button inline-flex select-none items-center justify-center font-inherit outline-0 transition-colors duration-300 ease-in-out focus-visible:outline-2 focus-visible:outline-debug-blue focus-visible:outline-offset-4 has-[>svg]:gap-1.5 [&_svg]:size-3 rounded whitespace-nowrap ftype type-body-1450 to-type-body-1650 f-py-1/2 f-px-2/3 bg-debug-blue text-white hover:bg-debug-blue/90 w-fit"
+          class="group/button inline-flex select-none items-center justify-center font-inherit outline-0 transition-colors duration-300 ease-in-out focus-visible:outline-2 focus-visible:outline-debug-blue focus-visible:outline-offset-4 has-[>svg]:gap-1.5 [&_svg]:size-5 rounded whitespace-nowrap ftype type-body-1450 to-type-body-1650 f-py-1/2 f-px-2/3 bg-debug-blue text-white hover:bg-debug-blue/90 w-fit"
           href="https://example.com"
           id="cta-example-com-lnk1"
           rel="noopener noreferrer"
