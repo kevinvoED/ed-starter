@@ -17,15 +17,14 @@
         "name": "next"
       }
     ],
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@/components/*": ["components/*"],
-      "@/schemas/*": ["schemas/*"],
-      "@/plugins/*": ["plugins/*"],
-      "@/lib/*": ["lib/*"],
-      "@/presentation/*": ["presentation/*"],
-      "@/static/*": ["static/*"]
+      "@/components/*": ["./components/*"],
+      "@/schemas/*": ["./schemas/*"],
+      "@/plugins/*": ["./plugins/*"],
+      "@/lib/*": ["./lib/*"],
+      "@/presentation/*": ["./presentation/*"],
+      "@/static/*": ["./static/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],
