@@ -1,7 +1,9 @@
-// Note that when creating your pages, there are a few rules to follow:
-// 1. The homepage's slug in the CMS must be `index`
-// 2. Index or landing-type pages should be suffixed with `-index` (e.g. `blog-index`)
-// 3. For child-type pages, their route should end with a `/`
+/*
+ * Note that when creating your pages, there are a few rules to follow:
+ * 1. The homepage's slug in the CMS must be `index`
+ * 2. Index or landing-type pages should be suffixed with `-index` (e.g. `blog-index`)
+ * 3. For child-type pages, their route should end with a `/`
+ */
 export const RELATION_SCHEMA_TYPES = [
   { schemaType: "page", route: "/" },
   { schemaType: "blog-index", route: "/blog" },
