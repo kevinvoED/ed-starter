@@ -416,7 +416,6 @@ pnpm typegen            # Generate Sanity & GraphQL types
 - Memoize expensive computations with `useMemo`
 - Use `useCallback` for event handlers passed as props
 - Load async data server-side when possible
-- Use React.FC types for all components
 
 - Avoid: `any` types, mixing client/server logic, prop drilling, hardcoded env vars, `console.log` in production, `var` declarations
 
