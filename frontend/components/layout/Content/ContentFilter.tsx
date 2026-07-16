@@ -8,6 +8,8 @@ import { PortableText } from "@/components/primitives/PortableText/PortableText"
 import { Checkbox } from "@base-ui/react/checkbox";
 import { cn } from "cnfast";
 
+const DEFAULT_FILTER_LABEL = "All";
+
 type ContentFilterProps = {
   data: ContentIndexVariant["filters"];
   className?: string;
@@ -50,15 +52,19 @@ export const ContentFilterItem = ({
   queryKey,
   className,
 }: ContentFilterItemProps) => {
+  const [queryState, setQueryStates] = useQueryStates(
+    {
+      [queryKey]: parseAsString.withDefault(
+        data?.defaults.label ?? DEFAULT_FILTER_LABEL,
+      ),
+    },
+    { shallow: false },
+  );
+
   if (!data) return null;
 
   const { defaults } = data;
   const filterData = queryKey === "category" ? data.categories : data.topics;
-
-  const [queryState, setQueryStates] = useQueryStates(
-    { [queryKey]: parseAsString.withDefault(defaults.label) },
-    { shallow: false },
-  );
 
   const activeValue = queryState[queryKey];
 

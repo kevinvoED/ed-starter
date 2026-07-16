@@ -15,7 +15,7 @@ describe("Switch", () => {
 
   test("renders checked when defaultChecked is set", () => {
     const { getByRole } = render(
-      <SwitchRoot defaultChecked>
+      <SwitchRoot defaultChecked={true}>
         <SwitchThumb />
       </SwitchRoot>,
     );
@@ -51,7 +51,7 @@ describe("Switch", () => {
     const onCheckedChange = vi.fn();
 
     const { getByRole } = render(
-      <SwitchRoot disabled onCheckedChange={onCheckedChange}>
+      <SwitchRoot disabled={true} onCheckedChange={onCheckedChange}>
         <SwitchThumb />
       </SwitchRoot>,
     );
@@ -68,7 +68,11 @@ describe("Switch", () => {
     const onCheckedChange = vi.fn();
 
     const { getByRole } = render(
-      <SwitchRoot readOnly checked={false} onCheckedChange={onCheckedChange}>
+      <SwitchRoot
+        readOnly={true}
+        checked={false}
+        onCheckedChange={onCheckedChange}
+      >
         <SwitchThumb />
       </SwitchRoot>,
     );
@@ -79,7 +83,7 @@ describe("Switch", () => {
 
   test("applies required and data-required attribute", () => {
     const { getByRole } = render(
-      <SwitchRoot required>
+      <SwitchRoot required={true}>
         <SwitchThumb />
       </SwitchRoot>,
     );

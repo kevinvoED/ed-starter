@@ -62,7 +62,7 @@ async function CachedIndexPage({ perspective, stega }: DynamicFetchOptions) {
   if (!page) return notFound();
 
   return (
-    <Page page={page} disableJsonLd>
+    <Page page={page} disableJsonLd={true}>
       {organization && <OrganizationJSONLDScript organization={organization} />}
     </Page>
   );

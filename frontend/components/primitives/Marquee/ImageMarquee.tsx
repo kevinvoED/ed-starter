@@ -34,8 +34,6 @@ export const ImageMarquee = ({
   desktopBaseSize,
   gap,
 }: ImageMarqueeProps) => {
-  if (!items || items.length === 0) return null;
-
   const containerRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const observerRef = useRef<Observer | null>(null);
@@ -116,6 +114,8 @@ export const ImageMarquee = ({
       }
     };
   }, [normalizedLogos, direction, enableVelocity, gap]);
+
+  if (!items || items.length === 0) return null;
 
   if (imageType === "logo" && normalizedLogos && normalizedLogos.length >= 0)
     return (

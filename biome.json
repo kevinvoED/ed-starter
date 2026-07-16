@@ -1,41 +1,77 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.4.6/schema.json",
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",
     "useIgnoreFile": true
   },
-  "css": {
-    "parser": {
-      "tailwindDirectives": true
+  "plugins": [
+    "./.biome/no-anchor-element.grit",
+    "./.biome/no-native-next-link.grit",
+    "./.biome/no-arbitrary-colors.grit",
+    "./.biome/no-h-screen-class.grit",
+    "./.biome/no-react-fc.grit"
+  ],
+  "files": {
+    "ignoreUnknown": false,
+    "maxSize": 20971520,
+    "includes": [
+      "frontend/**",
+      "studio/**",
+      "*.ts",
+      "*.tsx",
+      "*.js",
+      "*.mjs",
+      "*.json",
+      "*.jsonc",
+      "*.css",
+      "!!**/node_modules",
+      "!!**/dist",
+      "!!**/build",
+      "!!**/.sanity",
+      "!!frontend/sanity.types.ts",
+      "!!studio/schema.json",
+      "!!studio/tsconfig.tsbuildinfo"
+    ]
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "suspicious": {
+        "noExplicitAny": "warn"
+      },
+      "style": {
+        "useConst": "error",
+        "useTemplate": "error"
+      },
+      "performance": {
+        "noNamespaceImport": "off"
+      },
+      "correctness": {
+        "noInvalidPositionAtImportRule": "off",
+        "useExhaustiveDependencies": "warn"
+      }
     }
   },
   "html": {
     "experimentalFullSupportEnabled": true,
     "formatter": {
-      "enabled": true,
-      "indentScriptAndStyle": false
+      "enabled": true
     }
   },
-  "plugins": [
-    "./.biome/no-anchor-element.grit",
-    "./.biome/no-native-next-link.grit",
-    "./.biome/no-arbitrary-colors.grit",
-    "./.biome/no-h-screen-class.grit"
-  ],
-  "files": {
-    "ignoreUnknown": false,
-    "includes": [
-      "frontend/**",
-      "studio/**",
-      "!**/node_modules",
-      "!**/dist",
-      "!**/build",
-      "!**/.sanity",
-      "!frontend/sanity.types.ts",
-      "!studio/schema.json",
-      "!studio/tsconfig.tsbuildinfo"
-    ]
+  "css": {
+    "parser": {
+      "cssModules": true,
+      "allowWrongLineComments": true,
+      "tailwindDirectives": true
+    },
+    "formatter": {
+      "enabled": true
+    },
+    "linter": {
+      "enabled": true
+    }
   },
   "formatter": {
     "enabled": true,
@@ -47,12 +83,6 @@
     "lineWidth": 80,
     "attributePosition": "auto",
     "bracketSpacing": true
-  },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true
-    }
   },
   "assist": {
     "actions": {
@@ -95,40 +125,42 @@
       "linter": {
         "rules": {
           "correctness": {
-            "noUndeclaredVariables": "off",
             "noUnusedVariables": "error",
             "noConstAssign": "off",
             "noGlobalObjectCalls": "off",
             "noInvalidConstructorSuper": "off",
+            "noSetterReturn": "off",
+            "noUndeclaredVariables": "off",
+            "noUnreachable": "off",
+            "noUnreachableSuper": "off",
+            "noInvalidBuiltinInstantiation": "off",
             "noUnusedImports": {
               "level": "warn",
               "fix": "none"
             },
-            "noSetterReturn": "off",
-            "noUnreachable": "off",
-            "noUnreachableSuper": "off",
-            "noInvalidBuiltinInstantiation": "off",
-            "useParseIntRadix": "off",
-            "useHookAtTopLevel": "off"
+            "useParseIntRadix": "off"
           },
           "style": {
             "noNonNullAssertion": "off",
+            "noNegationElse": "warn",
+            "noNestedTernary": "warn",
+            "noUselessElse": "warn",
+            "noYodaExpression": "warn",
+            "noSubstr": "warn",
+            "noUnusedTemplateLiteral": "warn",
+            "noEnum": "warn",
+            "noImplicitBoolean": "warn",
+            "noShoutyConstants": "warn",
             "useConst": "error",
-            "noNegationElse": "error",
-            "noNestedTernary": "error",
-            "noUselessElse": "error",
-            "noYodaExpression": "error",
-            "noSubstr": "error",
-            "noUnusedTemplateLiteral": "error",
+            "useCollapsedElseIf": "warn",
             "useConsistentArrayType": {
+              "level": "on",
               "options": {
                 "syntax": "shorthand"
               }
-            },
-            "useCollapsedElseIf": "error"
+            }
           },
           "suspicious": {
-            "noEmptyBlockStatements": "off",
             "noDuplicateClassMembers": "off",
             "noDuplicateObjectKeys": "off",
             "noDuplicateParameters": "off",

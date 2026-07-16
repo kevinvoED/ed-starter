@@ -18,9 +18,10 @@ export type JSONLDScriptProps = {
 
 // type ListAccordionProps = ModuleProps<"list-accordion">;
 
-export const JSONLDScript: React.FC<
-  JSONLDScriptProps & React.HTMLAttributes<HTMLScriptElement>
-> = ({ document, ...rest }) => {
+export const JSONLDScript = ({
+  document,
+  ...rest
+}: JSONLDScriptProps & React.HTMLAttributes<HTMLScriptElement>) => {
   const jsonLd = generateJsonldMetadata(
     document as Parameters<typeof generateJsonldMetadata>[0],
   );
@@ -34,11 +35,12 @@ export const JSONLDScript: React.FC<
   );
 };
 
-export const OrganizationJSONLDScript: React.FC<
-  {
-    organization: ORGANIZATION_QUERY_RESULT;
-  } & React.HTMLAttributes<HTMLScriptElement>
-> = ({ organization, ...rest }) => {
+export const OrganizationJSONLDScript = ({
+  organization,
+  ...rest
+}: {
+  organization: ORGANIZATION_QUERY_RESULT;
+} & React.HTMLAttributes<HTMLScriptElement>) => {
   const jsonLd = generateOrganizationSchema(organization);
 
   if (!jsonLd) return null;
@@ -52,20 +54,14 @@ export const OrganizationJSONLDScript: React.FC<
   );
 };
 
-// export const FaqJSONLDScript: React.FC<
+// export const FaqJSONLDScript = ({ items, ...rest }: { items: ListAccordionProps["items"] } & React.HTMLAttributes<HTMLScriptElement>) => {
 //   {
-//     items: ListAccordionProps["items"];
-//   } & React.HTMLAttributes<HTMLScriptElement>
-// > = ({ items, ...rest }) => {
 //   const jsonLd = generateFaqSchema(items);
-
 //   if (!jsonLd) return null;
-
 //   return (
 //     <script
-//       type="application/ld+json"
-//       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-//       {...rest}
-//     />
-//   );
-// };
+//     type="application/ld+json"
+//     dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+//     {...rest}
+//   />
+// );

@@ -7,10 +7,13 @@ import { type ErrorInfo, unstable_catchError } from "next/error";
 import { Button } from "@/components/primitives/Button/Button";
 import { pascalCase } from "es-toolkit/string";
 
-function ErrorFallback(
-  { module }: { module?: ModuleBlock },
-  { error, unstable_retry }: ErrorInfo,
-) {
+type ErrorFallbackProps = {
+  module?: ModuleBlock;
+  error: ErrorInfo["error"];
+  unstable_retry: ErrorInfo["unstable_retry"];
+};
+
+function ErrorFallback({ module, error, unstable_retry }: ErrorFallbackProps) {
   useEffect(() => {
     console.error({ module, error });
   }, [module, error]);

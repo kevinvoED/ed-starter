@@ -62,14 +62,14 @@ export const CustomIconPicker = (props: StringInputProps) => {
         {value && !readOnly && (
           <Tooltip
             content={
-              <Text muted size={1}>
+              <Text muted={true} size={1}>
                 Clear the selected icon
               </Text>
             }
-            animate
+            animate={true}
             fallbackPlacements={["right", "left"]}
             placement="top"
-            portal
+            portal={true}
           >
             <Button
               mode="ghost"

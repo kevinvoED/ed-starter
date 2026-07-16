@@ -70,7 +70,7 @@ export const GeneratePageMetadataAction: DocumentActionComponent = (props) => {
 
     try {
       // Get page's module list
-      const DOC_MODULES = document?.modules as Array<DocumentModuleType>;
+      const DOC_MODULES = document?.modules as DocumentModuleType[];
 
       // Get first instance of a Hero-related module
       const heroModule = DOC_MODULES?.find((module) =>

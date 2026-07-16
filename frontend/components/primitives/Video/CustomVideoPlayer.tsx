@@ -35,7 +35,7 @@ export const CustomVideoPlayer = ({
         poster={poster}
         preload="auto"
         muted={muted}
-        suppressHydrationWarning
+        suppressHydrationWarning={true}
         className="block"
       />
       <MediaControlBar

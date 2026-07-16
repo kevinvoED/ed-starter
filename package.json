@@ -1,32 +1,32 @@
 {
-	"name": "ED-Starter",
-	"version": "1.0.0",
-	"description": "ED-Starter: Next.js & Sanity",
-	"homepage": "https://enginedigital.com",
-	"private": true,
-	"packageManager": "pnpm@11.1.1+sha512.d1fdf5f73c617b64fa1a56a81c3c8dfe0e966e33a6010aa256b517ae77be21d93e05affc0de1a83b0e4f29d569f68b446ae8f068cd7247c0bb3df0fb4d7bdf9a",
-	"engines": {
-		"node": ">=22.13.0",
-		"pnpm": ">=11.1.1",
-		"npm": "Please use pnpm instead of npm."
-	},
-	"scripts": {
-		"preinstall": "npx only-allow pnpm",
-		"build": "cd frontend && pnpm run build",
-		"dev": "pnpm --parallel -r run dev",
-		"dev:next": "pnpm run dev --workspace=frontend",
-		"dev:studio": "pnpm run dev --workspace=studio",
-		"typegen": "cd studio && pnpm typegen",
-		"typecheck": "cd frontend && pnpm typecheck",
-		"format": "biome format --fix && biome check --fix",
-		"plop": "plop",
-		"setup-env": "cp -i \"$PWD/.env.example.local\" \"$PWD/.env.local\" && ln \"$PWD/.env.local\" \"$PWD/frontend/.env.local\" && ln \"$PWD/.env.local\" \"$PWD/studio/.env.local\"",
-		"test": "cd frontend && npx vitest --run",
-		"test:watch": "cd frontend && npx vitest --update",
-		"ci": "pnpm format && pnpm typegen && pnpm test && pnpm build"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "^2.4.6",
-		"plop": "^4.0.5"
-	}
+  "name": "ED-Starter",
+  "version": "1.0.0",
+  "description": "ED-Starter: Next.js & Sanity",
+  "homepage": "https://enginedigital.com",
+  "private": true,
+  "packageManager": "pnpm@11.1.1+sha512.d1fdf5f73c617b64fa1a56a81c3c8dfe0e966e33a6010aa256b517ae77be21d93e05affc0de1a83b0e4f29d569f68b446ae8f068cd7247c0bb3df0fb4d7bdf9a",
+  "engines": {
+    "node": ">=22.13.0",
+    "pnpm": ">=11.1.1",
+    "npm": "Please use pnpm instead of npm."
+  },
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "build": "cd frontend && pnpm run build",
+    "dev": "pnpm --parallel -r run dev",
+    "dev:next": "pnpm run dev --workspace=frontend",
+    "dev:studio": "pnpm run dev --workspace=studio",
+    "typegen": "cd studio && pnpm typegen",
+    "typecheck": "cd frontend && pnpm typecheck",
+    "format": "biome format --fix && biome check --fix",
+    "plop": "plop",
+    "setup-env": "cp -i \"$PWD/.env.example.local\" \"$PWD/.env.local\" && ln \"$PWD/.env.local\" \"$PWD/frontend/.env.local\" && ln \"$PWD/.env.local\" \"$PWD/studio/.env.local\"",
+    "test": "cd frontend && npx vitest --run",
+    "test:watch": "cd frontend && npx vitest --update",
+    "ci": "pnpm format && pnpm typegen && pnpm test && pnpm build"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.6",
+    "plop": "^4.0.5"
+  }
 }

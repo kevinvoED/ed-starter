@@ -1,9 +1,8 @@
-import type React from "react";
 import { Card, Text } from "@sanity/ui";
 import { defineType, useFormValue } from "sanity";
 import { formatDate } from "../../frontend/lib/utils/date";
 
-const CreatedAt: React.FC = () => {
+const CreatedAt = () => {
   const document = useFormValue([]) as { _createdAt?: string };
 
   // Get the creation date from the document

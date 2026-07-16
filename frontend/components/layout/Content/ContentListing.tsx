@@ -39,7 +39,7 @@ export const ContentListing = ({
               id="cta"
               href={post.href}
               variant="ghost"
-              card
+              card={true}
               width="fit"
               className="h-full"
             >
