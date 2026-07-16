@@ -25,7 +25,8 @@
       "@/lib/*": ["./lib/*"],
       "@/presentation/*": ["./presentation/*"],
       "@/static/*": ["./static/*"]
-    }
+    },
+    "types": ["node"]
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
