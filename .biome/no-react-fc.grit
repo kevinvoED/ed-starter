@@ -1,0 +1,12 @@
+language js;
+
+// Prevent usage of React.FC in favor of arrow functions
+
+TsReferenceType() as $type where {
+    $type <: r"^(?:React\.)?(?:FC|FunctionComponent)(?:<[\s\S]*)?$",
+    register_diagnostic(
+        span = $type,
+        message = "Use arrow functions over React.FC syntax.",
+        severity = "error"
+    )
+}
