@@ -1,0 +1,150 @@
+---
+description: Global ruleset for writing Sanity schemas, queries, and connecting them to frontend modules and components
+globs:
+alwaysApply: true
+---
+
+## Overview
+- You are an expert in Sanity CMS, Sanity Studio, and the entire plugin ecosystem
+- You are an expert in creating Sanity schemas and GROQ queries
+- Your schemas are always organized and GROQ queries are always performant and optimized
+
+## Common File Paths
+| Path | Description |
+| :--- | :--- |
+| `studio/sanity.config.ts` | Sanity Studio config, plugins, and structure |
+| `studio/schemas/schema.ts` | Registers all schema types for Studio |
+| `studio/schemas/moduleTypes.ts` | Defines module, relation, and group lists |
+| `studio/schemas/common.ts` | Shared reusable fields (title, image, links) |
+| `studio/schemas/documents/` | Singleton and standalone document schemas |
+| `studio/schemas/pages/` | Page-type schemas (blog, case studies, platform) |
+| `studio/schemas/modules/` | Page-builder module block schemas |
+| `studio/schemas/objects/` | Reusable object schemas (link, portable-text) |
+| `studio/schemas/previews/` | Insert-menu preview images for modules |
+| `studio/actions/` | Custom document actions |
+| `studio/lib/structure.ts` | Studio desk structure and sidebar grouping |
+| `studio/lib/default-document-node.ts` | Default document view configuration |
+| `frontend/sanity/queries/queries.ts` | Composes page-level and content-type queries |
+| `frontend/sanity/queries/fragments.ts` | Reusable GROQ query fragments |
+| `frontend/sanity/queries/functions.ts` | Reusable GROQ function snippets |
+| `frontend/sanity/queries/modules/` | Query fragments per module schema |
+| `frontend/sanity/queries/documents/` | Query fragments per document schema |
+| `frontend/sanity/lib/fetch.ts` | Typed data layer and `ModuleProps` type |
+| `frontend/sanity/lib/client.ts` | Sanity client instance configuration |
+| `frontend/sanity/lib/live.ts` | `sanityFetch`, live preview, cache setup |
+| `frontend/sanity/lib/image.ts` | Image URL builder helper |
+| `frontend/sanity.types.ts` | Auto-generated TypeGen output, never edit |
+| `frontend/components/modules/ModuleBuilder.tsx` | Maps schema types to React components |
+| `plopfile.cjs` | Scaffolds new module component, query, schema, test |
+
+## Schema Authoring
+- Always check `studio/schemas/common.ts` for existing reusable fields before defining new ones
+- Always write schemas to their own file and export a default matching the filename
+- Always add an `icon` from `@sanity/icons` or `lucide-react` to every `document` and `object` type
+- Always define a `preview` with contextual `select`/`prepare` for documents and objects
+- Always end `description` and validation `error()` copy with a period
+- Never write a `boolean` field; use a `string` field with `options.list` instead
+- Never write a single `reference` field; always use an `array` of references
+- Use `groups` with icons when a schema has more than a few fields
+- Use `fieldsets` with `options: { columns: 2 }` for visually related fields (e.g. start/end date)
+
+## New Module Checklist
+- Run `pnpm plop` and select `Add New Module` to scaffold component, query, schema, and test files
+- Register the schema in `studio/schemas/schema.ts`
+- Add the type to `moduleBlocks` (and `moduleGroups`) in `studio/schemas/moduleTypes.ts`
+- Add a preview image to `studio/schemas/previews/`
+- Add the query fragment to `modulesFragment` in `frontend/sanity/queries/queries.ts`
+- Map the component in `frontend/components/modules/ModuleBuilder.tsx`
+- Run `pnpm typegen` after any schema or query change
+
+## GROQ Queries
+- Always use `defineQuery` from `next-sanity`, imported per project convention
+- Always use relative imports inside `frontend/sanity/queries/` — absolute imports break TypeGen
+- Always compose page/module queries from fragments in `fragments.ts` and `functions.ts`
+- Always annotate manually composed or dynamic queries with `// @sanity-typegen-ignore`
+- Never interpolate dynamic values into a query string; always use `$params`
+
+## Naming Conventions
+- `studio/schemas/**` and `frontend/sanity/queries/**` files use `kebab-case`
+- Schema `name` values must be globally unique across the whole schema
+- Query constants use `SCREAMING_SNAKE_CASE` ending in `_QUERY`
+
+## GROQ Rules
+
+Whenever there is an image within a GROQ query, do not expand it unless explicitly instructed to do so.
+
+
+## GROQ Query Structure and Organization
+
+- Import `defineQuery` and `groq` from `next-sanity` at the top of query files
+- Export queries as constants using the `defineQuery` function
+- Organize queries by content type (blogs, pages, products, etc.)
+- Group related queries together
+
+## Fragment Reuse
+
+- Define common projection fragments at the top of the file
+- Use string interpolation to include fragments in queries
+- Ensure fragments are composable and focused on specific use cases
+
+## Query Parameters
+
+- Use `$` for parameters (e.g., `$slug`, `$locale`, `$id`)
+- Handle localization with consistent patterns (e.g., `${localeMatch}`)
+- Use `select()` for conditional logic within queries
+- Define default parameters using `coalesce()`
+
+## Response Types
+
+- Export TypeScript interfaces for query responses when needed
+- Use descriptive types that match the query structure
+- Follow the pattern: `export type GetAllMainPageTranslationsQueryResponse = string[];`
+
+## Best Practices
+
+- Use explicit filtering (`_type == "x"`) rather than implicit type checking
+- Prefer projection over returning entire documents
+- Use `order()` for explicit sorting rather than relying on document order
+- Check for defined fields (`defined(field)`) before accessing them
+- Use conditional projections for optional fields
+- Add pagination parameters (`[$start...$end]`) for list queries
+
+## Code Style
+
+- Use template literals for query strings
+- Indent nested query structures for readability
+- Keep related query parts together
+- Maintain consistent whitespace and indentation
+- Use comments to explain complex query logic
+
+## Basic Schema Structure
+
+For TypeScript files, always import the necessary Sanity types:
+
+```typescript
+import {defineField, defineType, defineArrayMember} from 'sanity'
+```
+
+Always use `defineField` on every field and `defineType` throughout the whole type. Only import `defineArrayMember` if needed:
+
+```typescript
+export default defineType({
+  name: "hero-primary",
+  title: "Hero Primary",
+  type: "object",
+  fields: [title, description, links, image],
+  components: { preview: ModulePreview },
+  preview: {
+    select: {
+      title: "title",
+    },
+    prepare({ title }) {
+      return {
+        title: toPlainText(title ?? []),
+        subtitle: "Hero Primary",
+        media: DashboardIcon,
+      };
+    },
+  },
+});
+```
