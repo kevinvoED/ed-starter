@@ -18,14 +18,13 @@
         "name": "next"
       }
     ],
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@/components/*": ["components/*"],
-      "@/lib/*": ["lib/*"],
-      "@/app/*": ["app/*"],
-      "@/public/*": ["public/*"],
-      "@/sanity/*": ["sanity/*"]
+      "@/components/*": ["./components/*"],
+      "@/lib/*": ["./lib/*"],
+      "@/app/*": ["./app/*"],
+      "@/public/*": ["./public/*"],
+      "@/sanity/*": ["./sanity/*"]
     },
     "esModuleInterop": true,
     "resolveJsonModule": true

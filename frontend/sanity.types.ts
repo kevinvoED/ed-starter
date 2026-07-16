@@ -609,6 +609,7 @@ export type Link = {
     | PlatformChildReference
     | PlatformIndexReference;
   href?: string;
+  icon?: "Value";
   openInNewTab?: boolean;
   anchorTag?: string;
 };
@@ -2385,6 +2386,7 @@ export type BANNER_QUERY_RESULT = Array<{
           | PlatformChildReference
           | PlatformIndexReference;
         href: string | "/" | "/blog" | "/case-studies" | "/platform" | null;
+        icon?: "Value";
         openInNewTab?: boolean;
         anchorTag?: string;
       }>
@@ -2619,6 +2621,7 @@ export type NAVBAR_QUERY_RESULT = Array<{
                       | "/case-studies"
                       | "/platform"
                       | null;
+                    icon?: "Value";
                     openInNewTab?: boolean;
                     anchorTag?: string;
                   }>
@@ -2709,6 +2712,7 @@ export type NAVBAR_QUERY_RESULT = Array<{
             | PlatformChildReference
             | PlatformIndexReference;
           href: string | "/" | "/blog" | "/case-studies" | "/platform" | null;
+          icon?: "Value";
           openInNewTab?: boolean;
           anchorTag?: string;
         }>;
@@ -2991,6 +2995,7 @@ export type PAGE_QUERY_RESULT = {
                 | PlatformIndexReference;
               href:
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
+              icon?: "Value";
               openInNewTab?: boolean;
               anchorTag?: string;
             }>
@@ -3109,6 +3114,7 @@ export type PAGE_QUERY_RESULT = {
                   | PlatformIndexReference;
                 href:
                   string | "/" | "/blog" | "/case-studies" | "/platform" | null;
+                icon?: "Value";
                 openInNewTab?: boolean;
                 anchorTag?: string;
               }>
@@ -3239,6 +3245,7 @@ export type PAGE_QUERY_RESULT = {
                 | PlatformIndexReference;
               href:
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
+              icon?: "Value";
               openInNewTab?: boolean;
               anchorTag?: string;
             }>
@@ -3349,6 +3356,7 @@ export type PAGE_QUERY_RESULT = {
                 | PlatformIndexReference;
               href:
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
+              icon?: "Value";
               openInNewTab?: boolean;
               anchorTag?: string;
             }>
@@ -3815,6 +3823,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -4065,6 +4074,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -4397,6 +4407,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -4647,6 +4658,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -5063,6 +5075,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -5313,6 +5326,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -5687,6 +5701,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -5937,6 +5952,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -6366,6 +6382,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -6489,6 +6506,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/case-studies"
                       | "/platform"
                       | null;
+                    icon?: "Value";
                     openInNewTab?: boolean;
                     anchorTag?: string;
                   }>
@@ -6634,6 +6652,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -6759,6 +6778,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -7191,6 +7211,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -7441,6 +7462,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -7870,6 +7892,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -7993,6 +8016,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/case-studies"
                       | "/platform"
                       | null;
+                    icon?: "Value";
                     openInNewTab?: boolean;
                     anchorTag?: string;
                   }>
@@ -8138,6 +8162,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -8263,6 +8288,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -8695,6 +8721,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -8945,6 +8972,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -9374,6 +9402,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -9497,6 +9526,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/case-studies"
                       | "/platform"
                       | null;
+                    icon?: "Value";
                     openInNewTab?: boolean;
                     anchorTag?: string;
                   }>
@@ -9642,6 +9672,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -9767,6 +9798,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -10199,6 +10231,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -10449,6 +10482,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -10878,6 +10912,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -11001,6 +11036,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/case-studies"
                       | "/platform"
                       | null;
+                    icon?: "Value";
                     openInNewTab?: boolean;
                     anchorTag?: string;
                   }>
@@ -11146,6 +11182,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -11271,6 +11308,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -11703,6 +11741,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -11953,6 +11992,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -12285,6 +12325,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -12535,6 +12576,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -12909,6 +12951,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -13159,6 +13202,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -13491,6 +13535,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -13741,6 +13786,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -14073,6 +14119,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -14323,6 +14370,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -14655,6 +14703,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -14905,6 +14954,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -15237,6 +15287,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -15487,6 +15538,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -15819,6 +15871,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -16069,6 +16122,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -16377,6 +16431,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -16500,6 +16555,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/case-studies"
                       | "/platform"
                       | null;
+                    icon?: "Value";
                     openInNewTab?: boolean;
                     anchorTag?: string;
                   }>
@@ -16645,6 +16701,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -16770,6 +16827,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -17202,6 +17260,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -17452,6 +17511,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -17760,6 +17820,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -17883,6 +17944,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/case-studies"
                       | "/platform"
                       | null;
+                    icon?: "Value";
                     openInNewTab?: boolean;
                     anchorTag?: string;
                   }>
@@ -18028,6 +18090,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -18153,6 +18216,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -18585,6 +18649,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -18835,6 +18900,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -19143,6 +19209,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -19266,6 +19333,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/case-studies"
                       | "/platform"
                       | null;
+                    icon?: "Value";
                     openInNewTab?: boolean;
                     anchorTag?: string;
                   }>
@@ -19411,6 +19479,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -19536,6 +19605,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -19968,6 +20038,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -20218,6 +20289,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -20550,6 +20622,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -20800,6 +20873,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -21132,6 +21206,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -21382,6 +21457,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -21734,6 +21810,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -21857,6 +21934,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                       | "/case-studies"
                       | "/platform"
                       | null;
+                    icon?: "Value";
                     openInNewTab?: boolean;
                     anchorTag?: string;
                   }>
@@ -22002,6 +22080,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -22127,6 +22206,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -22801,6 +22881,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -22924,6 +23005,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                       | "/case-studies"
                       | "/platform"
                       | null;
+                    icon?: "Value";
                     openInNewTab?: boolean;
                     anchorTag?: string;
                   }>
@@ -23069,6 +23151,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>
@@ -23194,6 +23277,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                     | "/case-studies"
                     | "/platform"
                     | null;
+                  icon?: "Value";
                   openInNewTab?: boolean;
                   anchorTag?: string;
                 }>

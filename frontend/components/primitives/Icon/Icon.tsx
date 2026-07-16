@@ -1,3 +1,4 @@
+import { icons, type LucideIcon, type LucideProps } from "lucide-react";
 import { ArrowRightIcon } from "@/components/primitives/Icon/ArrowRightIcon";
 import { CaretUpDownIcon } from "@/components/primitives/Icon/CaretUpDownIcon";
 import { CheckIcon } from "@/components/primitives/Icon/CheckIcon";
@@ -34,4 +35,20 @@ export const Icon = ({ variant, className, strokeWidth = 1 }: IconProps) => {
   const IconComponent = iconComponents[variant];
 
   return <IconComponent className={className} strokeWidth={strokeWidth} />;
+};
+
+/*
+ * Icon component for rendering user-selected icons from the Sanity Studio
+ * @see: /studio/components/custom-icon.tsx
+ */
+
+export const ButtonIcon = ({
+  iconName,
+  ...rest
+}: { iconName: keyof typeof icons | string } & LucideProps) => {
+  const IconComponent = (
+    iconName in icons ? icons[iconName as keyof typeof icons] : () => null
+  ) as LucideIcon;
+
+  return <IconComponent {...rest} />;
 };

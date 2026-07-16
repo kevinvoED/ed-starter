@@ -5,7 +5,7 @@ import { type AnchorHTMLAttributes, forwardRef } from "react";
 import { sendGTMEvent } from "@next/third-parties/google";
 import Link from "next/link";
 import { cva, type VariantProps } from "class-variance-authority";
-import { Icon } from "@/components/primitives/Icon/Icon";
+import { ButtonIcon, Icon } from "@/components/primitives/Icon/Icon";
 import { sanitizeForId } from "@/lib/utils/generic";
 import { cn } from "cnfast";
 import { kebabCase } from "es-toolkit/string";
@@ -14,7 +14,7 @@ const primaryButtonStyles =
   "rounded whitespace-nowrap ftype type-body-1450 to-type-body-1650 f-py-1/2 f-px-2/3";
 
 export const SanityLinkVariants = cva(
-  "group/button inline-flex select-none items-center justify-center font-inherit outline-0 transition-colors duration-300 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-debug-blue focus-visible:outline-offset-4 has-[>svg]:gap-1.5 [&_svg]:size-3",
+  "group/button inline-flex select-none items-center justify-center font-inherit outline-0 transition-colors duration-300 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-debug-blue focus-visible:outline-offset-4 has-[>svg]:gap-1.5 [&_svg]:size-5",
   {
     variants: {
       variant: {
@@ -144,6 +144,7 @@ export const SanityLink = forwardRef<HTMLAnchorElement, SanityLinkProps>(
           <SanityLinkIconContent
             openInNewTab={openInNewTab}
             hasArrow={hasArrow}
+            customIcon={link?.icon}
           />
         </Link>
       );
@@ -173,6 +174,7 @@ export const SanityLink = forwardRef<HTMLAnchorElement, SanityLinkProps>(
           <SanityLinkIconContent
             openInNewTab={openInNewTab}
             hasArrow={hasArrow}
+            customIcon={link?.icon}
           />
         </Link>
       );
@@ -192,9 +194,11 @@ export const SanityLink = forwardRef<HTMLAnchorElement, SanityLinkProps>(
           )}
         >
           {children}
+
           <SanityLinkIconContent
             openInNewTab={openInNewTab}
             hasArrow={hasArrow}
+            customIcon={link?.icon}
           />
         </a>
       );
@@ -222,6 +226,7 @@ export const SanityLink = forwardRef<HTMLAnchorElement, SanityLinkProps>(
         <SanityLinkIconContent
           openInNewTab={openInNewTab}
           hasArrow={hasArrow}
+          customIcon={link?.icon}
         />
       </Link>
     );
@@ -231,12 +236,15 @@ export const SanityLink = forwardRef<HTMLAnchorElement, SanityLinkProps>(
 const SanityLinkIconContent = ({
   openInNewTab,
   hasArrow,
+  customIcon,
 }: {
   openInNewTab: boolean;
   hasArrow: boolean;
+  customIcon?: ResolvedSanityLinkType["icon"];
 }) => {
   return (
     <>
+      {customIcon && <ButtonIcon iconName={customIcon} />}
       {hasArrow && (
         <Icon
           variant="arrow-right"
@@ -246,6 +254,7 @@ const SanityLinkIconContent = ({
           )}
         />
       )}
+
       {/* Add download case */}
     </>
   );
