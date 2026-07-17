@@ -42,6 +42,7 @@ alwaysApply: true
 - Always prefer types over interfaces
 - Always create an external TypeScript type for any given component instead of inline types
 - Always use maps over enums for TypeScript types
+- Never type anything with `any`.
 
 ### Using `ModuleProps` is a type-safe way of typing your components
 
