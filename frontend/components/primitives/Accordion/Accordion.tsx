@@ -1,6 +1,8 @@
 "use client";
 
 import { ChevronDownIcon, PlusIcon } from "lucide-react";
+import { createContext, use } from "react";
+import { cva } from "class-variance-authority";
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
 import { cn } from "cnfast";
 
@@ -19,70 +21,118 @@ import { cn } from "cnfast";
  *  <Accordion display="flex" defaultValue={[DATA?.[1].title]} multiple={true} className="col-span-full">
  *    {DATA.map((item) => (
  *      <AccordionItem key={item.title} value={item.title}>
- *        <AccordionTrigger display="flex" icon="plus">
+ *        <AccordionTrigger icon="plus">
  *          {item.title && <PortableText value={item.title} />}
  *        </AccordionTrigger>
  *        <AccordionContent>
- *          {item.content && <PortableText value={item.content} />
+ *          {item.content && <PortableText value={item.content} />}
  *        </AccordionContent>
  *      </AccordionItem>
  *    ))}
+ *  </Accordion>
+ *
+ * ---------------------
+ * Usage Example: Theme
+ * ---------------------
+ *  <Accordion theme="new-theme" ...>
+ *    ...
  *  </Accordion>
  *
  * ---------------------
  * Usage Example: Grid
  * ---------------------
- *  <Accordion display="grid" defaultValue={[DATA?.[1].title]} multiple={true} className="col-span-full">
- *    {DATA.map((item, index) => (
- *      <AccordionItem key={item.title} value={item.title}>
- *        <AccordionTrigger icon="chevron" className="gap-2">
- *          <div className="col-span-1">0{index + 1}</div>
- *          {item.title && <PortableText value={item.title} className="col-span-8 col-start-3"/>}
- *        </AccordionTrigger>
- *        <AccordionContent className="col-span-full col-start-3">
- *          {item.content && <PortableText value={item.content} />}
- *        </AccordionContent>
- *      </AccordionItem>
- *    ))}
+ *  <Accordion display="grid" className="col-span-full" ...>
+ *   ...
  *  </Accordion>
  *
  * ---------------------
  * Usage Example: Flex
  * ---------------------
- *  <Accordion display="flex" defaultValue={[DATA?.[1].title]}>
- *    {DATA.map((item, index) => (
- *      <AccordionItem key={item.title} value={item.title}>
- *        <AccordionTrigger icon="chevron" className="gap-2">
- *          {item.title && <PortableText value={item.title} />}
- *        </AccordionTrigger>
- *        <AccordionContent>
- *          {item.content && <PortableText value={item.content} />}
- *        </AccordionContent>
- *      </AccordionItem>
- *    ))}
+ *  <Accordion display="flex" ...>
+ *    ...
  *  </Accordion>
  */
+
+type AccordionTheme = "default" | "second-theme";
+
+const AccordionThemeContext = createContext<AccordionTheme>("default");
+
+const accordionItemVariants = cva("", {
+  variants: {
+    theme: {
+      default: "not-last:border-b",
+      "second-theme": "not-last:border-b",
+    },
+  },
+  defaultVariants: { theme: "default" },
+});
+
+const accordionTriggerVariants = cva(
+  "group/accordion-trigger group-data-[display=grid]/accordion:grid-custom relative flex-1 gap-2 border border-transparent outline-none transition-all focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-5 group-data-[display=flex]/accordion:flex group-data-[display=flex]/accordion:items-center group-data-[display=flex]/accordion:justify-between",
+  {
+    variants: {
+      theme: {
+        default: "py-2.5 text-left",
+        "second-theme": "py-4 text-left",
+      },
+    },
+    defaultVariants: { theme: "default" },
+  },
+);
+
+const accordionContentVariants = cva(
+  "group-data-[display=grid]/accordion:grid-custom overflow-hidden data-closed:animate-accordion-up data-open:animate-accordion-down group-data-[display=flex]/accordion:flex",
+  {
+    variants: {
+      theme: {
+        default: "text-sm",
+        "second-theme": "",
+      },
+    },
+    defaultVariants: { theme: "default" },
+  },
+);
+
+const accordionContentInnerVariants = cva(
+  "group-data-[display=grid]/accordion:col-span-full group-data-[display=grid]/accordion:col-start-3",
+  {
+    variants: {
+      theme: {
+        default: "pb-2.5",
+        "second-theme": "pb-4",
+      },
+    },
+    defaultVariants: { theme: "default" },
+  },
+);
 
 function Accordion({
   className,
   display,
+  theme = "default",
   ...props
-}: AccordionPrimitive.Root.Props & { display: "grid" | "flex" }) {
+}: AccordionPrimitive.Root.Props & {
+  display: "grid" | "flex";
+  theme?: AccordionTheme;
+}) {
   return (
-    <AccordionPrimitive.Root
-      data-slot="accordion"
-      data-display={display}
-      className={cn("group/accordion flex w-full flex-col", className)}
-      {...props}
-    />
+    <AccordionThemeContext value={theme}>
+      <AccordionPrimitive.Root
+        data-slot="accordion"
+        data-display={display}
+        className={cn("group/accordion flex w-full flex-col", className)}
+        {...props}
+      />
+    </AccordionThemeContext>
   );
 }
 
 function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
+  const theme = use(AccordionThemeContext);
   return (
     <AccordionPrimitive.Item
       data-slot="accordion-item"
-      className={cn("not-last:border-b", className)}
+      className={cn(accordionItemVariants({ theme }), className)}
       {...props}
     />
   );
@@ -96,15 +146,12 @@ function AccordionTrigger({
 }: AccordionPrimitive.Trigger.Props & {
   icon?: "chevron" | "plus";
 }) {
+  const theme = use(AccordionThemeContext);
   return (
     <AccordionPrimitive.Header className="flex w-full">
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
-        className={cn(
-          "group/accordion-trigger group-data-[display=grid]/accordion:grid-custom relative flex-1 gap-2 border border-transparent py-2.5 text-left outline-none transition-all focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-5 group-data-[display=flex]/accordion:flex group-data-[display=flex]/accordion:items-center group-data-[display=flex]/accordion:justify-between",
-
-          className,
-        )}
+        className={cn(accordionTriggerVariants({ theme }), className)}
         {...props}
       >
         {children}
@@ -131,18 +178,14 @@ function AccordionContent({
   children,
   ...props
 }: AccordionPrimitive.Panel.Props) {
+  const theme = use(AccordionThemeContext);
   return (
     <AccordionPrimitive.Panel
       data-slot="accordion-content"
-      className="group-data-[display=grid]/accordion:grid-custom overflow-hidden text-sm data-closed:animate-accordion-up data-open:animate-accordion-down group-data-[display=flex]/accordion:flex"
+      className={accordionContentVariants({ theme })}
       {...props}
     >
-      <div
-        className={cn(
-          "pb-2.5 group-data-[display=grid]/accordion:col-span-full group-data-[display=grid]/accordion:col-start-3",
-          className,
-        )}
-      >
+      <div className={cn(accordionContentInnerVariants({ theme }), className)}>
         {children}
       </div>
     </AccordionPrimitive.Panel>
