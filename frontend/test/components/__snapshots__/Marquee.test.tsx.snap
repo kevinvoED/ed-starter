@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Marquee > matches snapshot — image variant 1`] = `
+<DocumentFragment>
+  <div
+    class="grid-custom place-items-center overflow-hidden"
+  >
+    <div
+      data-items="0"
+      data-testid="image-marquee"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Marquee > matches snapshot — text variant 1`] = `
+<DocumentFragment>
+  <div
+    class="grid-custom place-items-center overflow-hidden"
+  >
+    <div
+      data-items="0"
+      data-testid="text-marquee"
+    />
+  </div>
+</DocumentFragment>
+`;

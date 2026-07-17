@@ -36,7 +36,21 @@ vi.mock("gsap/ScrollTrigger", () => ({
 vi.mock("@gsap/react", async () => {
   const { useEffect } = await import("react");
   return {
-    useGSAP: (cb: () => void, deps?: unknown[]) => useEffect(cb, deps ?? []),
+    useGSAP: (
+      cb: () => undefined | (() => void),
+      depsOrOptions?:
+        | unknown[]
+        | {
+            dependencies?: unknown[];
+            scope?: unknown;
+            revertOnUpdate?: boolean;
+          },
+    ) => {
+      const deps = Array.isArray(depsOrOptions)
+        ? depsOrOptions
+        : (depsOrOptions?.dependencies ?? []);
+      useEffect(cb, deps);
+    },
   };
 });
 

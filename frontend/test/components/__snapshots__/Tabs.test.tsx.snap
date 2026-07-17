@@ -1,0 +1,67 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Tabs > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    data-activation-direction="none"
+    data-orientation="horizontal"
+  >
+    <div
+      class="relative z-0 flex gap-1 p-custom py-2"
+      data-activation-direction="none"
+      data-orientation="horizontal"
+      role="tablist"
+    >
+      <button
+        aria-controls="base-ui-_r_1a_"
+        aria-disabled="false"
+        aria-selected="true"
+        class="flex select-none items-center justify-center whitespace-nowrap break-keep border-0 outline-none transition-colors before:inset-x-0 before:inset-y-1 before:rounded-sm before:outline-debug-blue before:-outline-offset-1 focus-visible:relative focus-visible:before:absolute focus-visible:before:outline-2 h-10 px-2 hover:text-alabaster data-active:text-black"
+        data-activation-direction="none"
+        data-active=""
+        data-composite-item-active=""
+        data-orientation="horizontal"
+        id="base-ui-_r_18_"
+        role="tab"
+        tabindex="0"
+        type="button"
+      >
+        Tab One
+      </button>
+      <button
+        aria-disabled="false"
+        aria-selected="false"
+        class="flex select-none items-center justify-center whitespace-nowrap break-keep border-0 outline-none transition-colors before:inset-x-0 before:inset-y-1 before:rounded-sm before:outline-debug-blue before:-outline-offset-1 focus-visible:relative focus-visible:before:absolute focus-visible:before:outline-2 h-10 px-2 hover:text-alabaster data-active:text-black"
+        data-activation-direction="none"
+        data-orientation="horizontal"
+        id="base-ui-_r_19_"
+        role="tab"
+        tabindex="-1"
+        type="button"
+      >
+        Tab Two
+      </button>
+      <span
+        class="absolute left-0 z-[-1] w-(--active-tab-width) translate-x-(--active-tab-left) transition-transform top-1/2 h-8 -translate-y-1/2 rounded-sm bg-debug-red"
+        data-activation-direction="none"
+        data-orientation="horizontal"
+        hidden=""
+        role="presentation"
+        style="--active-tab-left: 0px; --active-tab-right: 0px; --active-tab-top: 0px; --active-tab-bottom: 0px; --active-tab-width: 0px; --active-tab-height: 0px;"
+      />
+    </div>
+    <div
+      aria-labelledby="base-ui-_r_18_"
+      class="relative flex items-center justify-center outline-debug-blue -outline-offset-1 focus-visible:rounded-md focus-visible:outline-2 p-custom py-4"
+      data-activation-direction="none"
+      data-index="0"
+      data-orientation="horizontal"
+      id="base-ui-_r_1a_"
+      role="tabpanel"
+      tabindex="0"
+    >
+      Content One
+    </div>
+  </div>
+</DocumentFragment>
+`;

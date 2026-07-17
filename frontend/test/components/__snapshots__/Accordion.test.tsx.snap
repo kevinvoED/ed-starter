@@ -1,0 +1,257 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Accordion > matches snapshot — default theme 1`] = `
+<DocumentFragment>
+  <div
+    class="group/accordion flex w-full flex-col"
+    data-display="flex"
+    data-orientation="vertical"
+    data-slot="accordion"
+    dir="ltr"
+  >
+    <div
+      class="not-last:border-b"
+      data-index="0"
+      data-open=""
+      data-orientation="vertical"
+      data-slot="accordion-item"
+    >
+      <h3
+        class="flex w-full"
+        data-index="0"
+        data-open=""
+        data-orientation="vertical"
+      >
+        <button
+          aria-controls="base-ui-_r_18_"
+          aria-disabled="false"
+          aria-expanded="true"
+          class="group/accordion-trigger group-data-[display=grid]/accordion:grid-custom relative flex-1 gap-2 border border-transparent outline-none transition-all focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-5 group-data-[display=flex]/accordion:flex group-data-[display=flex]/accordion:items-center group-data-[display=flex]/accordion:justify-between py-2.5 text-left"
+          data-orientation="vertical"
+          data-panel-open=""
+          data-slot="accordion-trigger"
+          data-value="item-1"
+          id="base-ui-_r_19_"
+          tabindex="0"
+          type="button"
+        >
+          Trigger One
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-chevron-down pointer-events-none col-start-4 shrink-0 transition-transform duration-180 ease-in-out group-aria-expanded/accordion-trigger:rotate-180 lg:col-start-12"
+            data-slot="accordion-trigger-icon"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m6 9 6 6 6-6"
+            />
+          </svg>
+        </button>
+      </h3>
+      <div
+        aria-labelledby="base-ui-_r_19_"
+        class="group-data-[display=grid]/accordion:grid-custom overflow-hidden data-closed:animate-accordion-up data-open:animate-accordion-down group-data-[display=flex]/accordion:flex text-sm"
+        data-index="0"
+        data-open=""
+        data-orientation="vertical"
+        data-slot="accordion-content"
+        id="base-ui-_r_18_"
+        role="region"
+        style="--accordion-panel-height: auto; --accordion-panel-width: auto; animation-name: none;"
+      >
+        <div
+          class="group-data-[display=grid]/accordion:col-span-full group-data-[display=grid]/accordion:col-start-3 pb-2.5"
+        >
+          Content One
+        </div>
+      </div>
+    </div>
+    <div
+      class="not-last:border-b"
+      data-closed=""
+      data-hidden=""
+      data-index="1"
+      data-orientation="vertical"
+      data-slot="accordion-item"
+    >
+      <h3
+        class="flex w-full"
+        data-closed=""
+        data-hidden=""
+        data-index="1"
+        data-orientation="vertical"
+      >
+        <button
+          aria-disabled="false"
+          aria-expanded="false"
+          class="group/accordion-trigger group-data-[display=grid]/accordion:grid-custom relative flex-1 gap-2 border border-transparent outline-none transition-all focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-5 group-data-[display=flex]/accordion:flex group-data-[display=flex]/accordion:items-center group-data-[display=flex]/accordion:justify-between py-2.5 text-left"
+          data-hidden=""
+          data-index="1"
+          data-orientation="vertical"
+          data-slot="accordion-trigger"
+          data-value="item-1"
+          id="base-ui-_r_1c_"
+          tabindex="0"
+          type="button"
+        >
+          Trigger Two
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-chevron-down pointer-events-none col-start-4 shrink-0 transition-transform duration-180 ease-in-out group-aria-expanded/accordion-trigger:rotate-180 lg:col-start-12"
+            data-slot="accordion-trigger-icon"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m6 9 6 6 6-6"
+            />
+          </svg>
+        </button>
+      </h3>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Accordion > matches snapshot — second-theme 1`] = `
+<DocumentFragment>
+  <div
+    class="group/accordion flex w-full flex-col"
+    data-display="flex"
+    data-orientation="vertical"
+    data-slot="accordion"
+    dir="ltr"
+  >
+    <div
+      class="not-last:border-b"
+      data-index="0"
+      data-open=""
+      data-orientation="vertical"
+      data-slot="accordion-item"
+    >
+      <h3
+        class="flex w-full"
+        data-index="0"
+        data-open=""
+        data-orientation="vertical"
+      >
+        <button
+          aria-controls="base-ui-_r_1e_"
+          aria-disabled="false"
+          aria-expanded="true"
+          class="group/accordion-trigger group-data-[display=grid]/accordion:grid-custom relative flex-1 gap-2 border border-transparent outline-none transition-all focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-5 group-data-[display=flex]/accordion:flex group-data-[display=flex]/accordion:items-center group-data-[display=flex]/accordion:justify-between py-4 text-left"
+          data-orientation="vertical"
+          data-panel-open=""
+          data-slot="accordion-trigger"
+          data-value="item-1"
+          id="base-ui-_r_1f_"
+          tabindex="0"
+          type="button"
+        >
+          Trigger One
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-chevron-down pointer-events-none col-start-4 shrink-0 transition-transform duration-180 ease-in-out group-aria-expanded/accordion-trigger:rotate-180 lg:col-start-12"
+            data-slot="accordion-trigger-icon"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m6 9 6 6 6-6"
+            />
+          </svg>
+        </button>
+      </h3>
+      <div
+        aria-labelledby="base-ui-_r_1f_"
+        class="group-data-[display=grid]/accordion:grid-custom overflow-hidden data-closed:animate-accordion-up data-open:animate-accordion-down group-data-[display=flex]/accordion:flex"
+        data-index="0"
+        data-open=""
+        data-orientation="vertical"
+        data-slot="accordion-content"
+        id="base-ui-_r_1e_"
+        role="region"
+        style="--accordion-panel-height: auto; --accordion-panel-width: auto; animation-name: none;"
+      >
+        <div
+          class="group-data-[display=grid]/accordion:col-span-full group-data-[display=grid]/accordion:col-start-3 pb-4"
+        >
+          Content One
+        </div>
+      </div>
+    </div>
+    <div
+      class="not-last:border-b"
+      data-closed=""
+      data-hidden=""
+      data-index="1"
+      data-orientation="vertical"
+      data-slot="accordion-item"
+    >
+      <h3
+        class="flex w-full"
+        data-closed=""
+        data-hidden=""
+        data-index="1"
+        data-orientation="vertical"
+      >
+        <button
+          aria-disabled="false"
+          aria-expanded="false"
+          class="group/accordion-trigger group-data-[display=grid]/accordion:grid-custom relative flex-1 gap-2 border border-transparent outline-none transition-all focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-5 group-data-[display=flex]/accordion:flex group-data-[display=flex]/accordion:items-center group-data-[display=flex]/accordion:justify-between py-4 text-left"
+          data-hidden=""
+          data-index="1"
+          data-orientation="vertical"
+          data-slot="accordion-trigger"
+          data-value="item-1"
+          id="base-ui-_r_1i_"
+          tabindex="0"
+          type="button"
+        >
+          Trigger Two
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-chevron-down pointer-events-none col-start-4 shrink-0 transition-transform duration-180 ease-in-out group-aria-expanded/accordion-trigger:rotate-180 lg:col-start-12"
+            data-slot="accordion-trigger-icon"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m6 9 6 6 6-6"
+            />
+          </svg>
+        </button>
+      </h3>
+    </div>
+  </div>
+</DocumentFragment>
+`;

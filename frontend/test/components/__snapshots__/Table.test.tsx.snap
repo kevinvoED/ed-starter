@@ -1,0 +1,100 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Table > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="relative w-full overflow-x-auto"
+    data-slot="table-container"
+  >
+    <table
+      class="w-full caption-bottom"
+      data-slot="table"
+    >
+      <caption
+        class="mt-4"
+        data-slot="table-caption"
+      >
+        Invoice Summary
+      </caption>
+      <thead
+        class="[&_tr]:border-b"
+        data-slot="table-header"
+      >
+        <tr
+          class="border-b transition-colors hover:bg-white/10 data-[state=selected]:bg-white/10"
+          data-slot="table-row"
+        >
+          <th
+            class="whitespace-nowrap text-left align-middle has-[[role=checkbox]]:pr-0 p-2"
+            data-slot="table-head"
+          >
+            Invoice
+          </th>
+          <th
+            class="whitespace-nowrap text-left align-middle has-[[role=checkbox]]:pr-0 p-2"
+            data-slot="table-head"
+          >
+            Status
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        class="[&_tr:last-child]:border-0"
+        data-slot="table-body"
+      >
+        <tr
+          class="border-b transition-colors hover:bg-white/10 data-[state=selected]:bg-white/10"
+          data-slot="table-row"
+        >
+          <td
+            class="whitespace-nowrap align-middle has-[[role=checkbox]]:pr-0 p-2"
+            data-slot="table-cell"
+          >
+            INV001
+          </td>
+          <td
+            class="whitespace-nowrap align-middle has-[[role=checkbox]]:pr-0 p-2"
+            data-slot="table-cell"
+          >
+            Paid
+          </td>
+        </tr>
+        <tr
+          class="border-b transition-colors hover:bg-white/10 data-[state=selected]:bg-white/10"
+          data-slot="table-row"
+        >
+          <td
+            class="whitespace-nowrap align-middle has-[[role=checkbox]]:pr-0 p-2"
+            data-slot="table-cell"
+          >
+            INV002
+          </td>
+          <td
+            class="whitespace-nowrap align-middle has-[[role=checkbox]]:pr-0 p-2"
+            data-slot="table-cell"
+          >
+            Pending
+          </td>
+        </tr>
+      </tbody>
+      <tfoot
+        class="border-t [&>tr]:last:border-b-0"
+        data-slot="table-footer"
+      >
+        <tr
+          class="border-b transition-colors hover:bg-white/10 data-[state=selected]:bg-white/10"
+          data-slot="table-row"
+        >
+          <td
+            class="whitespace-nowrap align-middle has-[[role=checkbox]]:pr-0 p-2"
+            colspan="2"
+            data-slot="table-cell"
+          >
+            Total: 2 invoices
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</DocumentFragment>
+`;

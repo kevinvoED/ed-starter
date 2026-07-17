@@ -1,0 +1,75 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TextMarquee > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="flex items-center overflow-hidden"
+    role="marquee"
+  >
+    <div
+      class="flex"
+    >
+      <div
+        class="marquee-item"
+      >
+        <div
+          class="max-w-fit whitespace-nowrap"
+          style="margin-right: 20px;"
+        >
+          Item Text
+        </div>
+      </div>
+      <div
+        class="marquee-item"
+      >
+        <div
+          class="max-w-fit whitespace-nowrap"
+          style="margin-right: 20px;"
+        >
+          Item Text
+        </div>
+      </div>
+      <div
+        class="marquee-item"
+      >
+        <div
+          class="max-w-fit whitespace-nowrap"
+          style="margin-right: 20px;"
+        >
+          Item Text
+        </div>
+      </div>
+      <div
+        class="marquee-item"
+      >
+        <div
+          class="max-w-fit whitespace-nowrap"
+          style="margin-right: 20px;"
+        >
+          Item Text
+        </div>
+      </div>
+      <div
+        class="marquee-item"
+      >
+        <div
+          class="max-w-fit whitespace-nowrap"
+          style="margin-right: 20px;"
+        >
+          Item Text
+        </div>
+      </div>
+      <div
+        class="marquee-item"
+      >
+        <div
+          class="max-w-fit whitespace-nowrap"
+          style="margin-right: 20px;"
+        >
+          Item Text
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

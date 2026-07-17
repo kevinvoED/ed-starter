@@ -1,0 +1,50 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CustomVideoPlayer > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="block max-h-fit"
+    data-testid="media-controller"
+  >
+    <video
+      class="block"
+      muted=""
+      preload="auto"
+      slot="media"
+      src="https://example.com/video.mp4"
+    />
+    <div
+      data-testid="media-control-bar"
+      style="--media-control-bar-background: transparent; --media-control-background: transparent;"
+    >
+      <button
+        class="px-4"
+        data-testid="media-play-button"
+        type="button"
+      />
+      <div
+        data-testid="media-time-range"
+      />
+      <div
+        class="group relative flex items-center justify-center"
+      >
+        <div
+          class="pointer-events-none absolute bottom-full left-1/2 mb-2 h-20 w-5 -translate-x-1/2 opacity-0 transition-[opacity,transform] duration-200 group-hover:pointer-events-auto group-hover:opacity-100"
+        >
+          <div
+            class="absolute top-1/2 left-1/2 mb-2 w-20 -translate-x-1/2 -translate-y-1/2 -rotate-90"
+            data-testid="media-volume-range"
+            style="--media-control-background: transparent; --media-control-hover-background: transparent; --media-control-padding: 4px; --media-control-height: 20px; --media-range-track-background: rgb(255 255 255 / 0.25); --media-range-bar-color: oklch(0.9851 0 0); --media-range-thumb-background: oklch(0.9851 0 0); --media-range-thumb-width: 10px; --media-range-thumb-height: 10px; --media-range-thumb-border-radius: 50%; --media-range-track-height: 3px; --media-range-track-border-radius: 2px;"
+          />
+        </div>
+        <button
+          class="p-2"
+          data-testid="media-mute-button"
+          style="--media-control-background: transparent; --media-control-hover-background: transparent;"
+          type="button"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
