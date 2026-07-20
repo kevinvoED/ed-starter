@@ -2,6 +2,11 @@
 
 This file provides comprehensive guidance for AI agents, tools, and automated systems working with the Far Niente codebase.
 
+
+## Next.js: ALWAYS read docs before coding
+
+Before any Next.js work, find and read the relevant doc in `node_modules/next/dist/docs/`. Your training data is outdated — the docs are the source of truth.
+
 ## Sanity Project
 
 This is a Sanity-powered project. Use the Knowledge Router below to find Sanity guidance for your task. Available as a [Claude Code and Cursor plugin](https://github.com/sanity-io/agent-toolkit#option-3-install-plugin).
