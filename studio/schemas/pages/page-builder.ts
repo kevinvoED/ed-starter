@@ -1,7 +1,7 @@
 import { DocumentIcon } from "@sanity/icons/Document";
 import { orderRankField } from "@sanity/orderable-document-list";
 import { defineField, defineType, type SchemaTypeDefinition } from "sanity";
-import { meta, modules, pageTitle, slug } from "@/schemas/common";
+import { meta, modules, pageTitle, schemaGroups, slug } from "@/schemas/common";
 
 type PageBuilderOptions = {
   name: string;
@@ -35,21 +35,7 @@ export function createPageType({
     title,
     icon,
     type,
-    groups: [
-      {
-        name: "content",
-        title: "Content",
-        default: true,
-      },
-      {
-        name: "seo",
-        title: "SEO",
-      },
-      {
-        name: "settings",
-        title: "Settings",
-      },
-    ],
+    groups: schemaGroups,
     fields: [
       defineField({
         ...pageTitle,

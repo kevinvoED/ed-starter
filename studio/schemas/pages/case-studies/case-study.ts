@@ -10,6 +10,7 @@ import {
   modules,
   portableText,
   publishedDate,
+  schemaGroups,
   slug,
   title,
 } from "@/schemas/common";
@@ -20,21 +21,7 @@ export default defineType({
   title: "Case Study",
   type: "document",
   icon: DocumentIcon,
-  groups: [
-    {
-      name: "content",
-      title: "Content",
-      default: true,
-    },
-    {
-      name: "seo",
-      title: "SEO",
-    },
-    {
-      name: "settings",
-      title: "Settings",
-    },
-  ],
+  groups: schemaGroups,
   fields: [
     defineField({
       ...createdAt,

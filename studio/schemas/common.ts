@@ -431,6 +431,22 @@ export const toggle = defineField({
  * ------------------------------------------------
  */
 
+export const schemaGroups = [
+  {
+    name: "content",
+    title: "📄\u00A0\u00A0\u00A0Content",
+    default: true,
+  },
+  {
+    name: "seo",
+    title: "🔍\u00A0\u00A0\u00A0SEO",
+  },
+  {
+    name: "settings",
+    title: "⚙️\u00A0\u00A0\u00A0Settings",
+  },
+];
+
 export const icon = defineField({
   name: "icon",
   title: "Icon",

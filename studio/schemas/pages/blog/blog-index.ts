@@ -1,27 +1,20 @@
 import { DocumentIcon } from "@sanity/icons/Document";
 import { defineField, defineType } from "sanity";
-import { description, meta, modules, slug, title } from "@/schemas/common";
+import {
+  description,
+  meta,
+  modules,
+  schemaGroups,
+  slug,
+  title,
+} from "@/schemas/common";
 
 export default defineType({
   name: "blog-index",
   title: "Blog Index Page",
   type: "document",
   icon: DocumentIcon,
-  groups: [
-    {
-      name: "content",
-      title: "Content",
-      default: true,
-    },
-    {
-      name: "seo",
-      title: "SEO",
-    },
-    {
-      name: "settings",
-      title: "Settings",
-    },
-  ],
+  groups: schemaGroups,
   fields: [
     defineField({
       ...title,
