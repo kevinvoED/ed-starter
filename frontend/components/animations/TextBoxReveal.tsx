@@ -7,20 +7,20 @@ import { cn } from "cnfast";
 import { CustomEase, SplitText } from "gsap/all";
 
 /*
- * Text Reveal GSAP Animation
+ * TextBoxReveal GSAP Animation
  * @docs: https://gsap.com/docs/v3/Plugins/SplitText/
  *
  * ---------------------
  * Usage Example: Basic
  * ---------------------
- *  <TextReveal>
+ *  <TextBoxReveal>
  *    Placeholder Text
- *  </TextReveal>
+ *  </TextBoxReveal>
  *
  * ---------------------
  * Usage Example: Classic Options
  * ---------------------
- *  <TextReveal
+ *  <TextBoxReveal
  *    duration={1.5}
  *    stagger={0.12}
  *    delay={0}
@@ -29,10 +29,10 @@ import { CustomEase, SplitText } from "gsap/all";
  *    boxColor="bg-white"
  *  >
  *    Placeholder Text
- *  </TextReveal>
+ *  </TextBoxReveal>
  */
 
-type TextRevealProps = {
+type TextBoxRevealProps = {
   slot?: React.ElementType;
   duration?: number;
   delay?: number;
@@ -53,7 +53,7 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(CustomEase);
 }
 
-export const TextReveal = ({
+export const TextBoxReveal = ({
   slot = "div",
   duration = 0.75,
   delay = 0,
@@ -63,7 +63,7 @@ export const TextReveal = ({
   boxColor = "bg-neon",
   triggerOnce = true,
   children,
-}: TextRevealProps) => {
+}: TextBoxRevealProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const Component = slot;
   useGSAP(() => {
@@ -165,7 +165,7 @@ export const TextReveal = ({
       ref={containerRef}
       style={{ opacity: 0 }}
       className={cn(
-        "[&_.line-box]:pointer-events-none [&_.line-box]:absolute [&_.line-box]:inset-0 [&_.line-box]:z-20 [&_.line-wrapper:first-of-type]:mt-0 [&_.line-wrapper]:relative [&_.line-wrapper]:-mt-[0.1em] [&_.line-wrapper]:min-h-[1.1em] [&_.line-wrapper]:w-fit [&_.line-wrapper]:overflow-hidden [&_.line]:relative [&_.line]:z-10 [&_.line]:w-fit",
+        "[&_.line-box]:pointer-events-none [&_.line-box]:absolute [&_.line-box]:inset-0 [&_.line-box]:z-20 [&_.line-wrapper:first-of-type]:mt-0 [&_.line-wrapper]:relative [&_.line-wrapper]:mt-[-0.1em] [&_.line-wrapper]:min-h-[1.1em] [&_.line-wrapper]:w-fit [&_.line-wrapper]:overflow-hidden [&_.line]:relative [&_.line]:z-10 [&_.line]:w-fit",
         className,
       )}
     >
