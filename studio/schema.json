@@ -12695,6 +12695,13 @@
             "type": "number"
           },
           "optional": false
+        },
+        "width": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
         }
       }
     }
@@ -12724,7 +12731,7 @@
     }
   },
   {
-    "name": "richTableRow",
+    "name": "row",
     "type": "type",
     "value": {
       "type": "object",
@@ -12733,7 +12740,7 @@
           "type": "objectAttribute",
           "value": {
             "type": "string",
-            "value": "richTableRow"
+            "value": "row"
           }
         },
         "title": {
@@ -12797,7 +12804,7 @@
               },
               "rest": {
                 "type": "inline",
-                "name": "richTableRow"
+                "name": "row"
               }
             }
           },
@@ -12836,6 +12843,13 @@
           "type": "objectAttribute",
           "value": {
             "type": "boolean"
+          },
+          "optional": true
+        },
+        "rowTitleWidth": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
           },
           "optional": true
         }

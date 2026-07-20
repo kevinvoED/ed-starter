@@ -2044,6 +2044,7 @@ export type ColumnHeader = {
   _type: "columnHeader";
   title?: string;
   cellIndex: number;
+  width?: number;
 };
 
 export type RichTableCell = {
@@ -2051,8 +2052,8 @@ export type RichTableCell = {
   content?: Content;
 };
 
-export type RichTableRow = {
-  _type: "richTableRow";
+export type Row = {
+  _type: "row";
   title?: string;
   cells?: Array<
     {
@@ -2066,7 +2067,7 @@ export type RichTable = {
   rows: Array<
     {
       _key: string;
-    } & RichTableRow
+    } & Row
   >;
   columnHeaders?: Array<
     {
@@ -2075,6 +2076,7 @@ export type RichTable = {
   >;
   hasColumnTitles?: boolean;
   hasRowTitles?: boolean;
+  rowTitleWidth?: number;
 };
 
 export type HighlightColor = {
@@ -2257,7 +2259,7 @@ export type AllSanitySchemaTypes =
   | RichTableBlock
   | ColumnHeader
   | RichTableCell
-  | RichTableRow
+  | Row
   | RichTable
   | HighlightColor
   | TextColor
@@ -3560,7 +3562,7 @@ export type PAGE_QUERY_RESULT = {
               _type: "richTable";
               rows: Array<{
                 _key: string;
-                _type: "richTableRow";
+                _type: "row";
                 cells: Array<{
                   _key: string;
                   _type: "richTableCell";
@@ -3600,6 +3602,7 @@ export type PAGE_QUERY_RESULT = {
               }> | null;
               hasColumnTitles: boolean | null;
               hasRowTitles: boolean | null;
+              rowTitleWidth?: number;
               markDefs: null;
             }
           | {
@@ -6982,7 +6985,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   _type: "richTable";
                   rows: Array<{
                     _key: string;
-                    _type: "richTableRow";
+                    _type: "row";
                     cells: Array<{
                       _key: string;
                       _type: "richTableCell";
@@ -7022,6 +7025,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   }> | null;
                   hasColumnTitles: boolean | null;
                   hasRowTitles: boolean | null;
+                  rowTitleWidth?: number;
                   markDefs: null;
                 }
               | {
@@ -8492,7 +8496,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   _type: "richTable";
                   rows: Array<{
                     _key: string;
-                    _type: "richTableRow";
+                    _type: "row";
                     cells: Array<{
                       _key: string;
                       _type: "richTableCell";
@@ -8532,6 +8536,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   }> | null;
                   hasColumnTitles: boolean | null;
                   hasRowTitles: boolean | null;
+                  rowTitleWidth?: number;
                   markDefs: null;
                 }
               | {
@@ -10002,7 +10007,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   _type: "richTable";
                   rows: Array<{
                     _key: string;
-                    _type: "richTableRow";
+                    _type: "row";
                     cells: Array<{
                       _key: string;
                       _type: "richTableCell";
@@ -10042,6 +10047,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   }> | null;
                   hasColumnTitles: boolean | null;
                   hasRowTitles: boolean | null;
+                  rowTitleWidth?: number;
                   markDefs: null;
                 }
               | {
@@ -11512,7 +11518,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   _type: "richTable";
                   rows: Array<{
                     _key: string;
-                    _type: "richTableRow";
+                    _type: "row";
                     cells: Array<{
                       _key: string;
                       _type: "richTableCell";
@@ -11552,6 +11558,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   }> | null;
                   hasColumnTitles: boolean | null;
                   hasRowTitles: boolean | null;
+                  rowTitleWidth?: number;
                   markDefs: null;
                 }
               | {
@@ -17031,7 +17038,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   _type: "richTable";
                   rows: Array<{
                     _key: string;
-                    _type: "richTableRow";
+                    _type: "row";
                     cells: Array<{
                       _key: string;
                       _type: "richTableCell";
@@ -17071,6 +17078,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   }> | null;
                   hasColumnTitles: boolean | null;
                   hasRowTitles: boolean | null;
+                  rowTitleWidth?: number;
                   markDefs: null;
                 }
               | {
@@ -18420,7 +18428,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   _type: "richTable";
                   rows: Array<{
                     _key: string;
-                    _type: "richTableRow";
+                    _type: "row";
                     cells: Array<{
                       _key: string;
                       _type: "richTableCell";
@@ -18460,6 +18468,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   }> | null;
                   hasColumnTitles: boolean | null;
                   hasRowTitles: boolean | null;
+                  rowTitleWidth?: number;
                   markDefs: null;
                 }
               | {
@@ -19809,7 +19818,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   _type: "richTable";
                   rows: Array<{
                     _key: string;
-                    _type: "richTableRow";
+                    _type: "row";
                     cells: Array<{
                       _key: string;
                       _type: "richTableCell";
@@ -19849,6 +19858,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   }> | null;
                   hasColumnTitles: boolean | null;
                   hasRowTitles: boolean | null;
+                  rowTitleWidth?: number;
                   markDefs: null;
                 }
               | {
@@ -22410,7 +22420,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                   _type: "richTable";
                   rows: Array<{
                     _key: string;
-                    _type: "richTableRow";
+                    _type: "row";
                     cells: Array<{
                       _key: string;
                       _type: "richTableCell";
@@ -22450,6 +22460,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                   }> | null;
                   hasColumnTitles: boolean | null;
                   hasRowTitles: boolean | null;
+                  rowTitleWidth?: number;
                   markDefs: null;
                 }
               | {
@@ -22638,7 +22649,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             _type: "richTable";
             rows: Array<{
               _key: string;
-              _type: "richTableRow";
+              _type: "row";
               cells: Array<{
                 _key: string;
                 _type: "richTableCell";
@@ -22678,6 +22689,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             }> | null;
             hasColumnTitles: boolean | null;
             hasRowTitles: boolean | null;
+            rowTitleWidth?: number;
             markDefs: null;
           }
         | {
@@ -23481,7 +23493,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                   _type: "richTable";
                   rows: Array<{
                     _key: string;
-                    _type: "richTableRow";
+                    _type: "row";
                     cells: Array<{
                       _key: string;
                       _type: "richTableCell";
@@ -23521,6 +23533,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                   }> | null;
                   hasColumnTitles: boolean | null;
                   hasRowTitles: boolean | null;
+                  rowTitleWidth?: number;
                   markDefs: null;
                 }
               | {
@@ -23709,7 +23722,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             _type: "richTable";
             rows: Array<{
               _key: string;
-              _type: "richTableRow";
+              _type: "row";
               cells: Array<{
                 _key: string;
                 _type: "richTableCell";
@@ -23749,6 +23762,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             }> | null;
             hasColumnTitles: boolean | null;
             hasRowTitles: boolean | null;
+            rowTitleWidth?: number;
             markDefs: null;
           }
         | {
