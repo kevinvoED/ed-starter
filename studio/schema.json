@@ -6741,11 +6741,25 @@
                                 },
                                 "optional": false
                               },
-                              "link": {
+                              "links": {
                                 "type": "objectAttribute",
                                 "value": {
-                                  "type": "inline",
-                                  "name": "link"
+                                  "type": "array",
+                                  "of": {
+                                    "type": "object",
+                                    "attributes": {
+                                      "_key": {
+                                        "type": "objectAttribute",
+                                        "value": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "rest": {
+                                      "type": "inline",
+                                      "name": "link"
+                                    }
+                                  }
                                 },
                                 "optional": true
                               },
@@ -7051,51 +7065,6 @@
                                 }
                               }
                             }
-                          },
-                          {
-                            "type": "object",
-                            "attributes": {
-                              "resources": {
-                                "type": "objectAttribute",
-                                "value": {
-                                  "type": "array",
-                                  "of": {
-                                    "type": "object",
-                                    "attributes": {
-                                      "_key": {
-                                        "type": "objectAttribute",
-                                        "value": {
-                                          "type": "string"
-                                        }
-                                      }
-                                    },
-                                    "rest": {
-                                      "type": "inline",
-                                      "name": "blog-post.reference"
-                                    }
-                                  }
-                                },
-                                "optional": true
-                              },
-                              "_type": {
-                                "type": "objectAttribute",
-                                "value": {
-                                  "type": "string",
-                                  "value": "resources"
-                                }
-                              }
-                            },
-                            "rest": {
-                              "type": "object",
-                              "attributes": {
-                                "_key": {
-                                  "type": "objectAttribute",
-                                  "value": {
-                                    "type": "string"
-                                  }
-                                }
-                              }
-                            }
                           }
                         ]
                       }
@@ -7163,28 +7132,6 @@
                 }
               }
             ]
-          }
-        },
-        "optional": true
-      },
-      "ctalink": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "array",
-          "of": {
-            "type": "object",
-            "attributes": {
-              "_key": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "string"
-                }
-              }
-            },
-            "rest": {
-              "type": "inline",
-              "name": "link"
-            }
           }
         },
         "optional": true

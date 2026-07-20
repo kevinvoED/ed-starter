@@ -43,9 +43,9 @@ export default defineType({
       name: "label",
       title: "Button Label",
       description:
-        "The visible text displayed on the button. Max 15 characters.",
+        "The visible text displayed on the button. Max 20 characters.",
       type: "string",
-      validation: (Rule) => Rule.required().max(15),
+      validation: (Rule) => Rule.required().max(20),
     }),
     defineField({
       name: "internalLink",

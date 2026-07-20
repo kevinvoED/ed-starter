@@ -1,6 +1,5 @@
 import { toPlainText } from "@portabletext/react";
 import { BlockElementIcon } from "@sanity/icons/BlockElement";
-import { DocumentsIcon } from "@sanity/icons/Documents";
 import { LinkIcon } from "@sanity/icons/Link";
 import { MenuIcon } from "@sanity/icons/Menu";
 import { PanelRightIcon } from "@sanity/icons/PanelRight";
@@ -34,7 +33,7 @@ export default defineType({
           ],
           preview: {
             select: {
-              title: "link[0].label",
+              title: "links[0].label",
             },
             prepare({ title }) {
               return {
@@ -63,8 +62,7 @@ export default defineType({
                     title,
                     description,
                     {
-                      type: "link",
-                      name: "link",
+                      ...links,
                       description: "Optional. Shows button if provided.",
                     },
                   ],
@@ -78,33 +76,8 @@ export default defineType({
                     {
                       ...links,
                       description: "",
-                      validation: (Rule) => Rule.max(1),
                     },
                   ],
-                },
-                {
-                  name: "resources",
-                  type: "object",
-                  icon: DocumentsIcon,
-                  fields: [
-                    defineField({
-                      name: "resources",
-                      type: "array",
-                      of: [{ type: "reference", to: [{ type: "blog-post" }] }],
-                      validation: (Rule) => Rule.max(2),
-                    }),
-                  ],
-                  preview: {
-                    select: {
-                      title: "resources.0.title",
-                    },
-                    prepare({ title }) {
-                      return {
-                        title: "Resources",
-                        subtitle: toPlainText(title),
-                      };
-                    },
-                  },
                 },
               ],
             },
@@ -149,12 +122,6 @@ export default defineType({
           },
         },
       ],
-    }),
-    defineField({
-      name: "ctalink",
-      title: "Cta Links",
-      type: "array",
-      of: [{ type: "link", title: "Standalone CTA Link" }],
     }),
   ],
   preview: {

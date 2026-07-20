@@ -1,16 +1,16 @@
 import { defineQuery } from "next-sanity";
 import {
   descriptionFragment,
-  imageFragment,
   linksFragment,
   logoFragment,
+  titleFragment,
 } from "../fragments";
-import { GROQ_FUNCTIONS, linksFields } from "../functions";
+import { GROQ_FUNCTIONS } from "../functions";
 
 export const NAVBAR_QUERY = defineQuery(`
   ${GROQ_FUNCTIONS}
 
-  *[_type == "navbar"]{
+  *[_type == "navbar"][0]{
     _key,
     _type,
     ${logoFragment},
@@ -21,50 +21,26 @@ export const NAVBAR_QUERY = defineQuery(`
         ${linksFragment}
       },
       _type == "group" => {
-        title,
+        ${titleFragment},
         group[]{
           _type,
           _key,
           _type == "card" => {
-            title,
+            _key,
+            ${titleFragment},
             ${descriptionFragment},
             ${linksFragment}
           },
           _type == "link-group" => {
-            title,
+            _key,
+            ${titleFragment},
             ${linksFragment}
           },
-          _type == "resources" => {
-            resources[]->{
-              _id,
-              "_type": "resource",
-              title,
-              slug,
-              "href": select(
-                _type == "post" => "/blog/" + slug.current,
-                _type == "case-study" => "/case-studies/" + slug.current,
-                _type == "resource" => "/resources/" + slug.current,
-                _type == "event" => "/events/" + slug.current,
-                _type == "news-article" => "/news/" + slug.current,
-              ),
-              "buttonText": select(
-                _type == "post" => "Read Post",
-                _type == "case-study" => "Read Case Study",
-                _type == "resource" => "Learn More",
-                _type == "event" => "Learn More",
-                _type == "news-article" => "Read Article",
-              ),
-              ${imageFragment}
-            }
-          }
         }
       },
       _type == "divider" => {
         type,
       }
     },
-    ctaLinks[]{
-      ${linksFields}
-    }
   }
 `);
