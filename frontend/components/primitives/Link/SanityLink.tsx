@@ -134,6 +134,7 @@ export const SanityLink = forwardRef<HTMLAnchorElement, SanityLinkProps>(
           rel={openInNewTab ? "noopener noreferrer" : undefined}
           scroll={scroll}
           onClick={handleClick}
+          prefetch={false}
           ref={ref}
           className={cn(
             SanityLinkVariants({ variant, width, disabled, card, className }),
@@ -164,6 +165,7 @@ export const SanityLink = forwardRef<HTMLAnchorElement, SanityLinkProps>(
           rel={sanityOpenInNewTab ? "noopener noreferrer" : undefined}
           scroll={scroll}
           onClick={handleClick}
+          prefetch={false}
           ref={ref}
           className={cn(
             SanityLinkVariants({ variant, width, disabled, card, className }),
@@ -216,6 +218,7 @@ export const SanityLink = forwardRef<HTMLAnchorElement, SanityLinkProps>(
         rel={openInNewTab ? "noopener noreferrer" : undefined}
         scroll={scroll}
         onClick={handleClick}
+        prefetch={false}
         ref={ref}
         className={cn(
           SanityLinkVariants({ variant, width, disabled, card, className }),
