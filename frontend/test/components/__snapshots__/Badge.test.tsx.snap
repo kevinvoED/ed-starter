@@ -4,7 +4,7 @@ exports[`Badge > matches snapshot — default variant 1`] = `
 <DocumentFragment>
   <div
     aria-hidden="true"
-    class="group type-mono-1040 relative inline-flex max-w-fit flex-no-wrap items-center justify-center overflow-hidden whitespace-nowrap rounded-full bg-black text-white px-2 py-0.5"
+    class="group type-mono-1040 relative inline-flex max-w-fit flex-no-wrap items-center justify-center overflow-hidden whitespace-nowrap rounded-sm uppercase bg-debug-blue/80 text-white shadow-md ring ring-debug-blue px-2 py-0.5"
   >
     Default
   </div>
@@ -15,7 +15,7 @@ exports[`Badge > matches snapshot — error variant 1`] = `
 <DocumentFragment>
   <div
     aria-hidden="true"
-    class="group type-mono-1040 relative inline-flex max-w-fit flex-no-wrap items-center justify-center overflow-hidden whitespace-nowrap rounded-full bg-debug-red text-black px-2 py-0.5"
+    class="group type-mono-1040 relative inline-flex max-w-fit flex-no-wrap items-center justify-center overflow-hidden whitespace-nowrap rounded-sm uppercase bg-debug-red text-black px-2 py-0.5"
   >
     Error
   </div>
@@ -26,7 +26,7 @@ exports[`Badge > matches snapshot — success variant 1`] = `
 <DocumentFragment>
   <div
     aria-hidden="true"
-    class="group type-mono-1040 relative inline-flex max-w-fit flex-no-wrap items-center justify-center overflow-hidden whitespace-nowrap rounded-full bg-debug-blue text-black px-2 py-0.5"
+    class="group type-mono-1040 relative inline-flex max-w-fit flex-no-wrap items-center justify-center overflow-hidden whitespace-nowrap rounded-sm uppercase bg-debug-blue text-black px-2 py-0.5"
   >
     Success
   </div>

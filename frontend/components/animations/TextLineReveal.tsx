@@ -111,6 +111,7 @@ export const TextLineReveal = ({
           type: "lines",
           mask: "lines",
           linesClass: "line++",
+          autoSplit: true,
         });
 
         splitInstances.current.push(split);

@@ -63,9 +63,10 @@ export const DesktopNavbar = ({
       // Directionally aware animation; navbar slides away when scrolling down and vice-versa
       const showAnim = gsap
         .from(navRef.current, {
-          yPercent: -100,
+          yPercent: -120,
           paused: true,
-          duration: 0.2,
+          duration: 0.3,
+          ease: "expo.inOut",
         })
         .progress(1);
 
@@ -86,15 +87,17 @@ export const DesktopNavbar = ({
     <NavigationMenu.Root
       ref={navRef}
       className={cn(
-        "flex h-16 w-full min-w-max items-center justify-center gap-20 bg-debug-blue",
-        directionallyAware && "fixed top-0 left-0",
+        "flex h-12 w-fit items-center justify-between gap-20 rounded-md bg-debug-blue px-2",
+        directionallyAware ? "fixed inset-x-0 top-2 z-50 mx-auto" : "mx-auto",
       )}
     >
-      <SanityImage
-        image={data.logo}
-        sizes="40px"
-        className="size-10 rounded-md"
-      />
+      <SanityLink id="nav" href="/" variant="ghost">
+        <SanityImage
+          image={data.logo}
+          sizes="40px"
+          className="size-8 rounded-md"
+        />
+      </SanityLink>
 
       <NavigationMenu.List className="relative flex gap-5">
         {data?.mainLinks?.map((item) => {

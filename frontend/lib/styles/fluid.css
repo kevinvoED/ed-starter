@@ -178,6 +178,17 @@
   font-family: var(--font-heading);
 }
 
+@utility type-heading-8040 {
+  --font-size: var(--font-scale-80);
+  --line-height: calc(100 / var(--base-font-size));
+  --letter-spacing: calc(0 / var(--base-font-size));
+  font-size: calc(var(--font-size) * var(--to-rem));
+  line-height: calc(var(--line-height) * var(--to-rem));
+  letter-spacing: calc(var(--letter-spacing) * var(--to-rem));
+  font-weight: var(--font-weight-400);
+  font-family: var(--font-heading);
+}
+
 @utility type-heading-4840 {
   --font-size: var(--font-scale-48);
   --line-height: calc(54 / var(--base-font-size));
@@ -241,7 +252,7 @@
 
 @utility type-body-1450 {
   --font-size: var(--font-scale-14);
-  --line-height: calc(18 / var(--base-font-size));
+  --line-height: calc(4 / var(--base-font-size));
   --letter-spacing: calc(0 / var(--base-font-size));
   font-size: calc(var(--font-size) * var(--to-rem));
   line-height: calc(var(--line-height) * var(--to-rem));
@@ -252,7 +263,7 @@
 
 @utility type-body-1440 {
   --font-size: var(--font-scale-14);
-  --line-height: calc(18 / var(--base-font-size));
+  --line-height: calc(4 / var(--base-font-size));
   --letter-spacing: calc(0 / var(--base-font-size));
   font-size: calc(var(--font-size) * var(--to-rem));
   line-height: calc(var(--line-height) * var(--to-rem));
@@ -310,6 +321,12 @@
 @utility to-type-heading-9640 {
   --to-font-size: var(--font-scale-96);
   --to-line-height: calc(100 / var(--base-font-size));
+  --to-letter-spacing: calc(-1 / var(--base-font-size));
+}
+
+@utility to-type-heading-8040 {
+  --to-font-size: var(--font-scale-80);
+  --to-line-height: calc(80 / var(--base-font-size));
   --to-letter-spacing: calc(-1 / var(--base-font-size));
 }
 

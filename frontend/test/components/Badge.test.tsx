@@ -23,11 +23,6 @@ describe("Badge", () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test("applies default variant classes", () => {
-    const { container } = render(<Badge>Label</Badge>);
-    expect(container.firstChild).toHaveClass("rounded-full");
-  });
-
   test("applies custom className", () => {
     const { container } = render(<Badge className="custom-class">Label</Badge>);
     expect(container.firstChild).toHaveClass("custom-class");

@@ -2,11 +2,11 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cnfast";
 
 const BadgeVariants = cva(
-  "group type-mono-1040 relative inline-flex max-w-fit flex-no-wrap items-center justify-center overflow-hidden whitespace-nowrap rounded-full",
+  "group type-mono-1040 relative inline-flex max-w-fit flex-no-wrap items-center justify-center overflow-hidden whitespace-nowrap rounded-sm uppercase",
   {
     variants: {
       variant: {
-        default: "bg-black text-white",
+        default: "bg-debug-blue/80 text-white shadow-md ring ring-debug-blue",
         success: "bg-debug-blue text-black",
         error: "bg-debug-red text-black",
       },
