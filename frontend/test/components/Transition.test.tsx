@@ -9,9 +9,7 @@ describe("Transition", () => {
   });
 
   test("renders with a custom slot element", () => {
-    const { container } = render(
-      <Transition slot="section">Content</Transition>,
-    );
+    const { container } = render(<Transition as="section">Content</Transition>);
     expect(container.querySelector("section")).toBeInTheDocument();
   });
 
@@ -93,7 +91,6 @@ describe("Transition", () => {
       }),
     );
   });
-
   test("calls onComplete callback when provided", async () => {
     const { gsap } = await import("gsap");
     const onComplete = vi.fn();

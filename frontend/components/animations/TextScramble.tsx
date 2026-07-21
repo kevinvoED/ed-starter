@@ -1,14 +1,11 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
-import { gsap } from "gsap";
-import { ScrambleTextPlugin, ScrollTrigger } from "gsap/all";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.registerPlugin(ScrambleTextPlugin);
-}
+import { type ElementType, useRef } from "react";
+import gsap from "gsap";
+import ScrambleTextPlugin from "gsap/ScrambleTextPlugin";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SplitText from "gsap/SplitText";
 
 /*
  * Text Scramble GSAP Animation
@@ -22,92 +19,142 @@ if (typeof window !== "undefined") {
  *  </TextScramble>
  *
  * ---------------------
- * Usage Example: Classic Options
+ * Usage Example: Component is above the fold (typically Hero sections)
  * ---------------------
- *  <TextScramble
- *    duration={1.75}
- *    delay={0}
- *    stagger={0.05}
- *    ease="power4.inOut"
- *    triggerOnce={true}
- *    playOnHover={false}
- *    chars="upperCase"
- *  >
+ *  <TextScramble animateOnScroll={false}>
  *    Placeholder Text
  *  </TextScramble>
  */
 
+// Check if window is defined to avoid hydration errors
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(useGSAP, ScrambleTextPlugin, SplitText, ScrollTrigger);
+}
+
 type TextScrambleProps = {
-  slot?: React.ElementType;
-  children: React.ReactNode;
-  className?: string;
-  duration?: number;
+  as?: ElementType;
+  children?: React.ReactNode;
+  randomChars?: string;
   delay?: number;
   stagger?: number;
+  duration?: number;
+  speed?: number;
   ease?: string;
+  onComplete?: gsap.CallbackVars["onComplete"];
+  animateOnScroll?: boolean;
   triggerOnce?: boolean;
-  playOnHover?: boolean;
-  chars?: "upperCase" | "lowerCase" | "upperAndLowerCase";
+  invalidateOnRefresh?: boolean;
 };
 
 export const TextScramble = ({
-  slot = "div",
+  as = "div",
   children,
-  className,
-  duration = 1.75,
+  randomChars = "#@$%^&*()w+-=[]{}|;:,.<>?`~",
   delay = 0,
-  stagger = 0.05,
-  ease = "power4.inOut",
+  stagger = 0.01,
+  duration = 1,
+  speed = 1,
+  ease = "expo.out",
+  onComplete,
+  animateOnScroll = true,
   triggerOnce = true,
-  playOnHover = false,
-  chars = "upperCase",
+  invalidateOnRefresh = true,
 }: TextScrambleProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const Component = slot;
+  const Component = as;
+  const containerRef = useRef<HTMLParagraphElement>(null);
 
-  useGSAP(() => {
-    // Scramble text
-    const tween = gsap.to(containerRef.current, {
-      duration: duration,
-      delay: delay,
-      stagger: stagger,
-      ease: ease,
-      paused: true,
-      scrambleText: {
-        text: "{original}",
-        chars: chars,
-      },
-    });
+  useGSAP(
+    () => {
+      if (!containerRef.current) return;
 
-    // When it enters viewport, restart the scramble animation
-    const st = ScrollTrigger.create({
-      trigger: containerRef.current,
-      once: !!triggerOnce,
-      onEnter: () => tween.restart(),
-    });
+      const container = containerRef.current;
 
-    // If visible on page load, play the animation
-    if (st.isActive) {
-      tween.play();
-    }
-
-    const element = containerRef.current;
-
-    if (element && playOnHover) {
-      // Restart scramble animation when user hovers the element
-      element.addEventListener("mouseenter", () => tween.restart());
-    }
-
-    return () => {
-      st.kill();
-      if (element && playOnHover) {
-        element.removeEventListener("mouseenter", () => tween.restart());
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        gsap.set(container, { opacity: 1 });
+        onComplete?.();
+        return;
       }
-    };
-  }, [duration, delay, stagger, ease, triggerOnce]);
+
+      let split: InstanceType<typeof SplitText> | undefined;
+      let scrollTriggerInstance: ScrollTrigger | undefined;
+
+      const tl = gsap.timeline({
+        delay,
+        paused: animateOnScroll,
+        onComplete,
+      });
+
+      split = SplitText.create(container, {
+        type: "chars",
+        autoSplit: true,
+      });
+
+      tl.set(split.chars, { opacity: 0 });
+      tl.set(container, { opacity: 1 });
+
+      split.chars.forEach((char, index) => {
+        const originalText = char.textContent || "";
+        const randomChar =
+          randomChars[Math.floor(Math.random() * randomChars.length)];
+        const startTime = index * stagger;
+
+        tl.set(char, { textContent: randomChar, opacity: 1 }, startTime);
+
+        tl.to(
+          char,
+          {
+            scrambleText: {
+              text: originalText,
+              chars: randomChars,
+              speed: speed,
+            },
+            duration,
+            ease,
+          },
+          startTime,
+        );
+      });
+
+      if (animateOnScroll) {
+        scrollTriggerInstance = ScrollTrigger.create({
+          trigger: container,
+          start: "top bottom",
+          once: triggerOnce,
+          invalidateOnRefresh,
+          onEnter: () => tl.restart(),
+        });
+
+        if (scrollTriggerInstance.isActive) {
+          tl.restart();
+        }
+      }
+
+      return () => {
+        scrollTriggerInstance?.kill();
+        tl.kill();
+        split?.revert();
+        gsap.killTweensOf(container);
+      };
+    },
+    {
+      scope: containerRef,
+      dependencies: [
+        randomChars,
+        delay,
+        duration,
+        stagger,
+        ease,
+        speed,
+        onComplete,
+        animateOnScroll,
+        triggerOnce,
+        invalidateOnRefresh,
+      ],
+    },
+  );
 
   return (
-    <Component ref={containerRef} className={className}>
+    <Component ref={containerRef} className="opacity-0">
       {children}
     </Component>
   );

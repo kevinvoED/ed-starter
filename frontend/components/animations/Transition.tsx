@@ -21,6 +21,13 @@ if (typeof window !== "undefined") {
  *  </Transition>
  *
  * ---------------------
+ * Usage Example: Component is above the fold (typically Hero sections)
+ * ---------------------
+ *  <Transition animateOnScroll={false}>
+ *    Placeholder Text
+ *  </Transition>
+ *
+ * ---------------------
  * Usage Example: Classic Options
  * ---------------------
  *  <Transition
@@ -91,7 +98,7 @@ type AnimationType =
   | "slideRight";
 
 type TransitionProps = {
-  slot?: React.ElementType;
+  as?: React.ElementType;
   animation?: AnimationType;
   duration?: number;
   delay?: number;
@@ -100,20 +107,24 @@ type TransitionProps = {
   triggerOnce?: boolean;
   onComplete?: gsap.CallbackVars["onComplete"];
   children: React.ReactNode;
+  animateOnScroll?: boolean;
+  invalidateOnRefresh?: boolean;
 };
 
 export const Transition = ({
-  slot = "div",
+  as = "div",
   animation = "fadeInUp",
   duration = 0.5,
   delay = 0,
   ease = "power2.inOut",
   className = "",
   triggerOnce = true,
+  animateOnScroll = true,
+  invalidateOnRefresh = true,
   onComplete,
   children,
 }: TransitionProps) => {
-  const Component = slot;
+  const Component = as;
   const ref = useRef<HTMLDivElement>(null);
   const config = animationConfig[animation];
 
@@ -128,23 +139,38 @@ export const Transition = ({
       delay: delay,
       ease: ease,
       onComplete,
-      scrollTrigger: {
-        trigger: ref.current,
-        start: "top bottom",
-        toggleActions: triggerOnce
-          ? "play none none none"
-          : "play none none reverse",
-        immediateRender: false,
-        onRefresh: (self) => {
-          if (self.progress > 0 && self.progress < 1) {
-            self.animation?.play();
+      ...(animateOnScroll
+        ? {
+            scrollTrigger: {
+              trigger: ref.current,
+              start: "top bottom",
+              toggleActions: triggerOnce
+                ? "play none none none"
+                : "play none none reverse",
+              invalidateOnRefresh,
+              immediateRender: false,
+              onRefresh: (self) => {
+                if (self.progress > 0 && self.progress < 1) {
+                  self.animation?.play();
+                }
+              },
+            },
           }
-        },
-      },
+        : {}),
     });
 
-    ScrollTrigger.refresh();
-  }, [animation, duration, delay, triggerOnce]);
+    if (animateOnScroll) {
+      ScrollTrigger.refresh();
+    }
+  }, [
+    animation,
+    duration,
+    delay,
+    ease,
+    triggerOnce,
+    animateOnScroll,
+    invalidateOnRefresh,
+  ]);
 
   return (
     <Component

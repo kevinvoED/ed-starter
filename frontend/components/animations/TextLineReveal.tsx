@@ -18,6 +18,13 @@ import { SplitText } from "gsap/SplitText";
  *  </TextLineReveal>
  *
  * ---------------------
+ * Usage Example: Component is above the fold (typically Hero sections)
+ * ---------------------
+ *  <TextLineReveal animateOnScroll={false}>
+ *    Placeholder Text
+ *  </TextLineReveal>
+ *
+ * ---------------------
  * Usage Example: using Slots to change component tag
  * ---------------------
  *  <TextLineReveal as="h1">
@@ -90,7 +97,10 @@ export const TextLineReveal = ({
       if (!containerRef.current) return;
 
       // Skip animation for users who prefer reduced motion
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        gsap.set(containerRef.current, { opacity: 1 });
+        return;
+      }
 
       splitInstances.current = [];
 
@@ -127,6 +137,7 @@ export const TextLineReveal = ({
       });
 
       gsap.set(allLines, { y: y });
+      gsap.set(containerRef.current, { opacity: 1 });
 
       const animationProps: gsap.TweenVars = {
         x,
@@ -184,6 +195,7 @@ export const TextLineReveal = ({
     <Component
       ref={containerRef}
       data-anim-text-line-reveal={true}
+      style={{ opacity: 0 }}
       className={className}
     >
       {children}

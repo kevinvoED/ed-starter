@@ -7,7 +7,25 @@ import { cn } from "cnfast";
 import { CustomEase, SplitText } from "gsap/all";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-type TextRevealProps = {
+/*
+ * TextBoxReveal GSAP Animation
+ *
+ * ---------------------
+ * Usage Example: Basic
+ * ---------------------
+ *  <TextBoxReveal>
+ *    Placeholder Text
+ *  </TextBoxReveal>
+ *
+ * ---------------------
+ * Usage Example: Component is above the fold (typically Hero sections)
+ * ---------------------
+ *  <TextBoxReveal animateOnScroll={false}>
+ *    Placeholder Text
+ *  </TextBoxReveal>
+ */
+
+type TextBoxRevealProps = {
   className?: string;
   children: React.ReactNode;
   animateOnScroll?: boolean;
@@ -62,7 +80,7 @@ export const TextBoxReveal = ({
   triggerOnce = true,
   invalidateOnRefresh = true,
   boxColor = "bg-debug-blue",
-}: TextRevealProps) => {
+}: TextBoxRevealProps) => {
   const Component = as;
   const containerRef = useRef<HTMLDivElement | HTMLHeadingElement>(null);
   const splitInstances = useRef<InstanceType<typeof SplitText>[]>([]);
