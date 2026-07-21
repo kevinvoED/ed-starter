@@ -63,6 +63,7 @@ import { cn } from "cnfast";
 function Sheet({ onOpenChange, ...props }: SheetPrimitive.Root.Props) {
   const lenis = useLenis();
 
+  // Lock Lenis scroll when the sheet is opened or closed
   const handleOpenChange = (
     open: boolean,
     eventDetails: SheetPrimitive.Root.ChangeEventDetails,
