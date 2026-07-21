@@ -1,6 +1,22 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cnfast";
 
+/*
+ * Badge Component
+ *
+ * Configure default styling here.
+ * Remember that styles defined here must be generic as they will be applied to all Badge components.
+ * If your style is unique, you can override the styles by passing into `className` prop.
+ * Otherwise, you can conditionally render or apply styles in here by extending props.
+ *
+ * ---------------------
+ * Usage Example: Basic
+ * ---------------------
+ *  <Badge variant="default">
+ *    Placeholder Text
+ *  </Badge>
+ */
+
 const BadgeVariants = cva(
   "group type-mono-1040 relative inline-flex max-w-fit flex-no-wrap items-center justify-center overflow-hidden whitespace-nowrap rounded-sm uppercase",
   {
