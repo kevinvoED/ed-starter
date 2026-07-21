@@ -1,4 +1,5 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
+import { TextBoxReveal } from "@/components/animations/TextBoxReveal";
 import { TextLineReveal } from "@/components/animations/TextLineReveal";
 import { Transition } from "@/components/animations/Transition";
 import { Badge } from "@/components/primitives/Badge/Badge";
@@ -21,20 +22,20 @@ export const HeroPrimary = ({
           </Transition>
 
           <div className="f-gap-y-3/8 flex flex-col">
-            <TextLineReveal animateOnScroll={false} delay={0.3}>
+            <TextBoxReveal animateOnScroll={false} as="h1" delay={0.3}>
               <PortableText
                 value={title}
-                as="h1"
+                as="Fragment"
                 className="ftype type-heading-3240 to-type-heading-8040 text-balance!"
               />
-            </TextLineReveal>
-            <TextLineReveal animateOnScroll={false} delay={0.7} duration={1.2}>
+            </TextBoxReveal>
+            <TextLineReveal animateOnScroll={false} delay={2} duration={1.2}>
               <PortableText value={description} className="max-w-prose" />
             </TextLineReveal>
           </div>
         </div>
 
-        <Transition delay={1.65} className="flex flex-wrap gap-4">
+        <Transition delay={3} className="flex flex-wrap gap-4">
           {links.map((link) => (
             <SanityLink key={link._key} link={link} width="fit">
               {link.label}
