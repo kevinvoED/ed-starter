@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AspectRatio > matches snapshot — 1:1 ratio 1`] = `
+<DocumentFragment>
+  <div
+    class="relative aspect-(--ratio)"
+    data-slot="aspect-ratio"
+    style="--ratio: 1;"
+  >
+    <span>
+      1:1
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`AspectRatio > matches snapshot — 16:9 ratio 1`] = `
+<DocumentFragment>
+  <div
+    class="relative aspect-(--ratio)"
+    data-slot="aspect-ratio"
+    style="--ratio: 1.7777777777777777;"
+  >
+    <span>
+      16:9
+    </span>
+  </div>
+</DocumentFragment>
+`;
