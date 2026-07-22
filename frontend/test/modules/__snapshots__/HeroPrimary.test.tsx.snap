@@ -31,23 +31,9 @@ exports[`HeroPrimary > matches snapshot 1`] = `
             style="opacity: 0;"
           >
             <div
-              aria-label="Hero Title"
               class="ftype type-heading-3240 to-type-heading-8040 text-balance!"
             >
-              <div
-                class="line-wrapper ftype type-heading-3240 to-type-heading-8040 text-balance!"
-              >
-                <div
-                  aria-hidden="true"
-                  class="line"
-                  style="position: relative; display: block; text-align: left;"
-                >
-                  Hero Title
-                </div>
-                <div
-                  class="line-box bg-debug-blue"
-                />
-              </div>
+              Hero Title
             </div>
           </h1>
           <div
@@ -56,26 +42,13 @@ exports[`HeroPrimary > matches snapshot 1`] = `
             style="opacity: 0;"
           >
             <div
-              aria-label="Hero description."
               class="[&_p:last-of-type]:mb-0 max-w-prose"
             >
-              <div
-                aria-hidden="true"
-                class="line-mask line1-mask"
-                style="position: relative; display: block; text-align: left; overflow: clip;"
+              <p
+                class="ftype type-body-1440 to-type-body-1640 mb-4"
               >
-                <div
-                  aria-hidden="true"
-                  class="line line1"
-                  style="position: relative; display: block; text-align: left;"
-                >
-                  <p
-                    class="ftype type-body-1440 to-type-body-1640 mb-4"
-                  >
-                    Hero description.
-                  </p>
-                </div>
-              </div>
+                Hero description.
+              </p>
             </div>
           </div>
         </div>

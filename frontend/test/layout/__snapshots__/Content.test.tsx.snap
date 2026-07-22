@@ -1,0 +1,271 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ContentHero > matches snapshot 1`] = `
+<DocumentFragment>
+  <header
+    class="grid-custom col-span-full items-center gap-y-5 md:col-span-3 lg:col-span-full"
+  >
+    <div
+      class="ftype type-heading-4840 col-span-full to-type-heading-9640 lg:col-span-6"
+    >
+      <h1>
+        Blog Index
+      </h1>
+    </div>
+    <div
+      class="[&_p:last-of-type]:mb-0 col-span-full lg:col-span-5 lg:col-start-8"
+    >
+      <p
+        class="ftype type-body-1440 to-type-body-1640 mb-4"
+      >
+        Latest articles.
+      </p>
+    </div>
+  </header>
+</DocumentFragment>
+`;
+
+exports[`ContentPagination > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="col-span-full flex items-center gap-4 self-start pb-30"
+  >
+    <a
+      class="group/button inline-flex select-none items-center justify-center font-inherit outline-0 transition-colors duration-300 ease-in-out focus-visible:outline-2 focus-visible:outline-debug-blue focus-visible:outline-offset-4 has-[>svg]:gap-1.5 [&_svg]:size-5 type-mono-1240 w-fit"
+      href="/blog"
+      id="cta-blog"
+      tabindex="0"
+    >
+      <span
+        class="size-full"
+      >
+        <svg
+          class="rotate-180"
+          fill="none"
+          height="11"
+          stroke="currentColor"
+          stroke-width="1"
+          viewBox="0 0 11 11"
+          width="11"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>
+            Arrow Right
+          </title>
+          <g
+            clip-path="url(#clip0_3611_4127)"
+          >
+            <path
+              d="M1 5H10M10 5L6 0.5M10 5L6 9.5"
+              stroke="currentColor"
+            />
+          </g>
+          <defs>
+            <clippath
+              id="clip0_3611_4127"
+            >
+              <rect
+                fill="currentColor"
+                height="11"
+                width="11"
+              />
+            </clippath>
+          </defs>
+        </svg>
+      </span>
+    </a>
+    <a
+      class="group/button inline-flex select-none items-center justify-center font-inherit outline-0 transition-colors duration-300 ease-in-out focus-visible:outline-2 focus-visible:outline-debug-blue focus-visible:outline-offset-4 has-[>svg]:gap-1.5 [&_svg]:size-5 type-mono-1240 w-fit"
+      href="/blog"
+      id="cta-blog"
+      tabindex="0"
+    >
+      <span
+        class="size-full"
+      >
+        1
+      </span>
+    </a>
+    <a
+      class="group/button inline-flex select-none items-center justify-center font-inherit outline-0 transition-colors duration-300 ease-in-out focus-visible:outline-2 focus-visible:outline-debug-blue focus-visible:outline-offset-4 has-[>svg]:gap-1.5 [&_svg]:size-5 type-mono-1240 w-fit"
+      href="/blog?page=2"
+      id="cta-blog-page-2"
+      tabindex="0"
+    >
+      <span
+        class="size-full"
+      >
+        2
+      </span>
+    </a>
+    <a
+      class="group/button inline-flex select-none items-center justify-center font-inherit outline-0 transition-colors duration-300 ease-in-out focus-visible:outline-2 focus-visible:outline-debug-blue focus-visible:outline-offset-4 has-[>svg]:gap-1.5 [&_svg]:size-5 type-mono-1240 w-fit"
+      href="/blog?page=3"
+      id="cta-blog-page-3"
+      tabindex="0"
+    >
+      <span
+        class="size-full"
+      >
+        3
+      </span>
+    </a>
+    <div
+      class="flex items-center px-2"
+    >
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-ellipsis text-background"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="12"
+          cy="12"
+          r="1"
+        />
+        <circle
+          cx="19"
+          cy="12"
+          r="1"
+        />
+        <circle
+          cx="5"
+          cy="12"
+          r="1"
+        />
+      </svg>
+    </div>
+    <a
+      class="group/button inline-flex select-none items-center justify-center font-inherit outline-0 transition-colors duration-300 ease-in-out focus-visible:outline-2 focus-visible:outline-debug-blue focus-visible:outline-offset-4 has-[>svg]:gap-1.5 [&_svg]:size-5 type-mono-1240 w-fit"
+      href="/blog?page=10"
+      id="cta-blog-page-10"
+      tabindex="0"
+    >
+      <span
+        class="size-full"
+      >
+        10
+      </span>
+    </a>
+    <a
+      class="group/button inline-flex select-none items-center justify-center font-inherit outline-0 transition-colors duration-300 ease-in-out focus-visible:outline-2 focus-visible:outline-debug-blue focus-visible:outline-offset-4 has-[>svg]:gap-1.5 [&_svg]:size-5 type-mono-1240 w-fit"
+      href="/blog?page=3"
+      id="cta-blog-page-3"
+      tabindex="0"
+    >
+      <span
+        class="size-full"
+      >
+        <svg
+          fill="none"
+          height="11"
+          stroke="currentColor"
+          stroke-width="1"
+          viewBox="0 0 11 11"
+          width="11"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>
+            Arrow Right
+          </title>
+          <g
+            clip-path="url(#clip0_3611_4127)"
+          >
+            <path
+              d="M1 5H10M10 5L6 0.5M10 5L6 9.5"
+              stroke="currentColor"
+            />
+          </g>
+          <defs>
+            <clippath
+              id="clip0_3611_4127"
+            >
+              <rect
+                fill="currentColor"
+                height="11"
+                width="11"
+              />
+            </clippath>
+          </defs>
+        </svg>
+      </span>
+    </a>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ContentPost > matches snapshot 1`] = `
+<DocumentFragment>
+  <li
+    class="col-span-full rounded-lg md:col-span-2 lg:col-span-6 xl:col-span-4"
+  >
+    <div
+      class="h-full bg-white ring ring-black/5"
+      style="opacity: 0;"
+    >
+      <a
+        class="group/button inline-flex select-none items-center justify-center font-inherit outline-0 transition-colors duration-300 ease-in-out focus-visible:outline-2 focus-visible:outline-debug-blue focus-visible:outline-offset-4 has-[>svg]:gap-1.5 [&_svg]:size-5 type-mono-1240 w-fit whitespace-normal after:absolute after:inset-0 after:z-20 after:content-[""] h-full"
+        href="/blog/first-post"
+        id="cta-blog-first-post"
+        tabindex="0"
+      >
+        <span
+          class="size-full"
+        >
+          <div
+            class="flex h-full flex-col justify-between"
+          >
+            <div
+              class="h-60 overflow-hidden rounded-tl-lg rounded-tr-lg border-black/10 border-b"
+              data-sizes="(max-width: 768px) 100vw, 33vw"
+              data-src="https://example.com/post.jpg"
+              data-testid="sanity-image"
+            />
+            <div
+              class="flex flex-col gap-4 px-2.5 py-6"
+            >
+              <div
+                class="flex flex-wrap gap-1"
+              >
+                <div
+                  aria-hidden="true"
+                  class="group relative inline-flex flex-no-wrap items-center justify-center overflow-hidden type-mono-1040 max-w-fit rounded-full bg-black px-2 py-0.5 font-bold text-white"
+                >
+                  1/14/2024
+                </div>
+                <div
+                  aria-hidden="true"
+                  class="group relative inline-flex flex-no-wrap items-center justify-center overflow-hidden type-mono-1040 max-w-fit rounded-full bg-black px-2 py-0.5 font-bold text-white"
+                >
+                  Technology
+                </div>
+                <div
+                  aria-hidden="true"
+                  class="group relative inline-flex flex-no-wrap items-center justify-center overflow-hidden type-mono-1040 max-w-fit rounded-full bg-black px-2 py-0.5 font-bold text-white"
+                >
+                  Design
+                </div>
+              </div>
+              <div
+                class="type-body-1650"
+              >
+                <h3>
+                  First Post
+                </h3>
+              </div>
+            </div>
+          </div>
+        </span>
+      </a>
+    </div>
+  </li>
+</DocumentFragment>
+`;
