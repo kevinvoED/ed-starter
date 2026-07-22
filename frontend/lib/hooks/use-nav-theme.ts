@@ -1,33 +1,32 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { type RefObject, useCallback, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-export type NavTheme = "dark" | "light";
 
 /*
  * Hook that detects which section the navbar is overlapping
  * and returns the appropriate theme based on section's data-nav-theme attribute
  */
 
-export function useNavTheme(): NavTheme {
-  const [theme, setTheme] = useState<NavTheme>("dark");
+export type NavTheme = "default" | "dark";
+
+const FALLBACK_NAV_BOTTOM = 56;
+
+export function useNavTheme(navRef?: RefObject<HTMLElement | null>): NavTheme {
+  const [theme, setTheme] = useState<NavTheme>("default");
   const pathname = usePathname();
 
   const updateTheme = useCallback(() => {
-    // Get all sections with data-nav-theme attribute
     const sections = document.querySelectorAll<HTMLElement>("[data-nav-theme]");
     if (sections.length === 0) return;
 
-    // Get navbar height
-    const navBottom = 72;
+    const navBottom =
+      navRef?.current?.getBoundingClientRect().bottom ?? FALLBACK_NAV_BOTTOM;
 
-    // Find which section the navbar is currently overlapping
     for (const section of sections) {
       const rect = section.getBoundingClientRect();
 
-      // Check if section overlaps with nav area
       if (rect.top <= navBottom && rect.bottom > navBottom) {
         const sectionTheme = section.dataset.navTheme as NavTheme;
         if (sectionTheme) {
@@ -36,7 +35,7 @@ export function useNavTheme(): NavTheme {
         return;
       }
     }
-  }, []);
+  }, [navRef]);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: pathname must be in deps to recreate ScrollTrigger on navigation
   useEffect(() => {

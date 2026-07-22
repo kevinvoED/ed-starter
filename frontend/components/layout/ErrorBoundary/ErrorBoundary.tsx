@@ -1,3 +1,8 @@
+/**
+ * Per-module error boundary using Next.js unstable_catchError.
+ * Isolates render failures in the page builder so a single broken module
+ * displays a fallback UI without crashing the entire page.
+ */
 "use client";
 
 import type { ModuleBlock } from "@/components/modules/ModuleBuilder";
@@ -7,13 +12,20 @@ import { type ErrorInfo, unstable_catchError } from "next/error";
 import { Button } from "@/components/primitives/Button/Button";
 import { pascalCase } from "es-toolkit/string";
 
-type ErrorFallbackProps = {
+/** Props passed by consumers wrapping module content. */
+type ErrorBoundaryUserProps = {
   module?: ModuleBlock;
-  error: ErrorInfo["error"];
-  unstable_retry: ErrorInfo["unstable_retry"];
 };
 
-function ErrorFallback({ module, error, unstable_retry }: ErrorFallbackProps) {
+type ErrorFallbackContentProps = ErrorBoundaryUserProps &
+  Pick<ErrorInfo, "error" | "unstable_retry">;
+
+/** Renders the visible fallback UI and logs the error for debugging. */
+function ErrorFallbackContent({
+  module,
+  error,
+  unstable_retry,
+}: ErrorFallbackContentProps) {
   useEffect(() => {
     console.error({ module, error });
   }, [module, error]);
@@ -39,4 +51,22 @@ function ErrorFallback({ module, error, unstable_retry }: ErrorFallbackProps) {
   );
 }
 
+/**
+ * Fallback render function for unstable_catchError.
+ * Receives user props as the first argument and error context as the second.
+ */
+function ErrorFallback(
+  { module }: ErrorBoundaryUserProps,
+  { error, unstable_retry }: ErrorInfo,
+) {
+  return (
+    <ErrorFallbackContent
+      module={module}
+      error={error}
+      unstable_retry={unstable_retry}
+    />
+  );
+}
+
+/** HOC that wraps children and renders ErrorFallback when a child throws. */
 export const ErrorBoundary = unstable_catchError(ErrorFallback);

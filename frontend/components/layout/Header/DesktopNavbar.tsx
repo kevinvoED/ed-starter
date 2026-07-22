@@ -7,6 +7,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { SanityImage } from "@/components/primitives/Image/SanityImage";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
+import { type NavTheme, useNavTheme } from "@/lib/hooks/use-nav-theme";
 import { NavigationMenu } from "@base-ui/react/navigation-menu";
 import cn from "cnfast";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -18,11 +19,20 @@ if (typeof window !== "undefined") {
 
 type DesktopNavbarProps = {
   data: NAVBAR_QUERY_RESULT;
+  // Hides the navbar on scroll down and reveals it on scroll up
   directionallyAware?: boolean;
 };
 
-const triggerClassName =
-  "flex items-center justify-center gap-1 bg-transparent text-white no-underline select-none hover:bg-neutral-100 data-popup-open:bg-neutral-100 focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-neutral-950 type-mono-1240";
+// Classes that invert when overlapping a dark section.
+const getTriggerClassName = (theme: NavTheme) =>
+  cn(
+    "flex items-center justify-center gap-1 bg-transparent no-underline select-none type-mono-1240",
+    "transition-colors duration-300 ease-in-out",
+    "focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-neutral-950",
+    theme === "dark"
+      ? "text-black hover:bg-platinum data-popup-open:bg-platinum"
+      : "text-white hover:bg-white/10 data-popup-open:bg-white/10",
+  );
 
 function Link(props: NavigationMenu.Link.Props) {
   return (
@@ -54,6 +64,8 @@ export const DesktopNavbar = ({
   directionallyAware = true,
 }: DesktopNavbarProps) => {
   const navRef = useRef<HTMLElement>(null);
+  const theme = useNavTheme(navRef);
+  const triggerClassName = getTriggerClassName(theme);
 
   useGSAP(
     () => {
@@ -86,9 +98,10 @@ export const DesktopNavbar = ({
   return (
     <NavigationMenu.Root
       ref={navRef}
+      data-nav-theme={theme}
       className={cn(
-        "flex h-12 w-fit items-center justify-between gap-20 rounded-md bg-debug-blue px-2",
-        directionallyAware ? "fixed inset-x-0 top-2 z-50 mx-auto" : "mx-auto",
+        "fixed inset-x-0 top-2 z-50 mx-auto flex h-12 w-fit items-center justify-between gap-20 rounded-md px-2 transition-colors duration-300 ease-in-out",
+        theme === "dark" ? "bg-white text-black" : "bg-debug-blue text-white",
       )}
     >
       <SanityLink id="nav" href="/" variant="ghost">
