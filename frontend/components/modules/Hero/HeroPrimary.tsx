@@ -48,11 +48,11 @@ export const HeroPrimary = ({
         </Transition>
       </div>
 
-      <div className="relative h-[50dvh] w-full shrink-0 overflow-hidden md:col-span-6 md:h-full md:min-h-0">
+      <div className="relative w-full shrink-0 overflow-hidden rounded-lg p-5 md:col-span-6 md:max-h-screen md:min-h-0">
         <SanityImage
           image={image}
           sizes="(max-width: 768px) 100vw, 50vw"
-          className="size-full"
+          className="size-full rounded-3xl"
         />
       </div>
     </div>
