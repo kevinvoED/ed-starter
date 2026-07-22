@@ -1,6 +1,21 @@
 import { vi } from "vitest";
 import "@testing-library/jest-dom";
 
+const { splitTextMock, customEaseMock } = vi.hoisted(() => {
+  const splitTextMock = {
+    create: vi.fn(() => ({
+      lines: [] as Element[],
+      revert: vi.fn(),
+    })),
+  };
+
+  const customEaseMock = {
+    create: vi.fn(() => "customEase"),
+  };
+
+  return { splitTextMock, customEaseMock };
+});
+
 // Mock GSAP and ScrollTrigger globally. This is likely used in most modules hence mocked globally.
 vi.mock("gsap", () => {
   const chain = {
@@ -9,12 +24,16 @@ vi.mock("gsap", () => {
     fromTo: vi.fn().mockReturnThis(),
     set: vi.fn().mockReturnThis(),
     kill: vi.fn().mockReturnThis(),
+    scrollTrigger: { kill: vi.fn() },
   };
 
   const gsapMock = {
     ...chain,
     timeline: vi.fn(() => chain),
     registerPlugin: vi.fn(),
+    utils: {
+      toArray: vi.fn(() => []),
+    },
   };
 
   return {
@@ -30,6 +49,32 @@ vi.mock("gsap/ScrollTrigger", () => ({
     refresh: vi.fn(),
     kill: vi.fn(),
     getAll: vi.fn(),
+  },
+}));
+
+vi.mock("gsap/all", () => ({
+  CustomEase: customEaseMock,
+  SplitText: splitTextMock,
+  Observer: {
+    create: vi.fn(() => ({ kill: vi.fn() })),
+    kill: vi.fn(),
+  },
+  ScrollTrigger: {
+    create: vi.fn(),
+    refresh: vi.fn(),
+    kill: vi.fn(),
+    getAll: vi.fn(),
+  },
+}));
+
+vi.mock("gsap/SplitText", () => ({
+  SplitText: splitTextMock,
+  default: splitTextMock,
+}));
+
+vi.mock("gsap/ScrambleTextPlugin", () => ({
+  default: {
+    scrambleText: vi.fn(),
   },
 }));
 
