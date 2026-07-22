@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MediaFile > matches snapshot — image variant 1`] = `
+<DocumentFragment>
+  <figure
+    class="min-h-dvh"
+  >
+    <div
+      class="size-full"
+      data-priority="true"
+      data-sizes="100vw"
+      data-src="https://example.com/media.jpg"
+      data-testid="sanity-image"
+    />
+  </figure>
+</DocumentFragment>
+`;
+
+exports[`MediaFile > matches snapshot — video variant 1`] = `
+<DocumentFragment>
+  <div
+    data-poster=""
+    data-src="https://www.youtube.com/watch?v=abc123"
+    data-testid="custom-video-player"
+  />
+</DocumentFragment>
+`;

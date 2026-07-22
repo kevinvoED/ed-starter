@@ -1,0 +1,111 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HeroPrimary > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="md:grid-custom flex flex-col md:h-dvh md:overflow-hidden"
+  >
+    <div
+      class="f-py-32/60 f-gap-6/12 f-px-12/16 col-span-full flex flex-col p-custom md:col-span-6 md:justify-center"
+    >
+      <div
+        class="f-gap-y-2/4 flex flex-col"
+      >
+        <div
+          class=""
+          style="opacity: 0;"
+        >
+          <div
+            aria-hidden="true"
+            class="group type-mono-1040 relative inline-flex max-w-fit flex-no-wrap items-center justify-center overflow-hidden whitespace-nowrap rounded-sm uppercase bg-debug-blue/80 text-white shadow-md ring ring-debug-blue px-2 py-0.5"
+          >
+            ED Starter Kits
+          </div>
+        </div>
+        <div
+          class="f-gap-y-3/8 flex flex-col"
+        >
+          <h1
+            class="[&_.line-box]:pointer-events-none [&_.line-box]:absolute [&_.line-box]:inset-0 [&_.line-box]:z-20 [&_.line-wrapper:first-of-type]:mt-0 [&_.line-wrapper]:relative [&_.line-wrapper]:mt-[-0.1em] [&_.line-wrapper]:min-h-[1.1em] [&_.line-wrapper]:w-fit [&_.line-wrapper]:overflow-hidden [&_.line-wrapper]:pb-[0.15em] [&_.line]:relative [&_.line]:z-10 [&_.line]:w-fit"
+            data-anim-text-box-reveal="true"
+            style="opacity: 0;"
+          >
+            <div
+              aria-label="Hero Title"
+              class="ftype type-heading-3240 to-type-heading-8040 text-balance!"
+            >
+              <div
+                class="line-wrapper ftype type-heading-3240 to-type-heading-8040 text-balance!"
+              >
+                <div
+                  aria-hidden="true"
+                  class="line"
+                  style="position: relative; display: block; text-align: left;"
+                >
+                  Hero Title
+                </div>
+                <div
+                  class="line-box bg-debug-blue"
+                />
+              </div>
+            </div>
+          </h1>
+          <div
+            class=""
+            data-anim-text-line-reveal="true"
+            style="opacity: 0;"
+          >
+            <div
+              aria-label="Hero description."
+              class="[&_p:last-of-type]:mb-0 max-w-prose"
+            >
+              <div
+                aria-hidden="true"
+                class="line-mask line1-mask"
+                style="position: relative; display: block; text-align: left; overflow: clip;"
+              >
+                <div
+                  aria-hidden="true"
+                  class="line line1"
+                  style="position: relative; display: block; text-align: left;"
+                >
+                  <p
+                    class="ftype type-body-1440 to-type-body-1640 mb-4"
+                  >
+                    Hero description.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex flex-wrap gap-4"
+        style="opacity: 0;"
+      >
+        <a
+          class="group/button inline-flex select-none items-center justify-center font-inherit outline-0 transition-colors duration-300 ease-in-out focus-visible:outline-2 focus-visible:outline-debug-blue focus-visible:outline-offset-4 has-[>svg]:gap-1.5 [&_svg]:size-5 rounded whitespace-nowrap ftype type-body-1450 to-type-body-1650 f-py-1/2 f-px-2/3 bg-debug-blue text-white hover:bg-debug-blue/90 w-fit"
+          href="https://example.com"
+          id="cta-example-com-lnk1"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Get started
+        </a>
+      </div>
+    </div>
+    <div
+      class="relative w-full shrink-0 overflow-hidden rounded-lg p-5 md:col-span-6 md:max-h-screen md:min-h-0"
+    >
+      <div
+        class="size-full rounded-3xl"
+        data-priority="false"
+        data-sizes="(max-width: 768px) 100vw, 50vw"
+        data-src="https://example.com/hero.jpg"
+        data-testid="sanity-image"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
