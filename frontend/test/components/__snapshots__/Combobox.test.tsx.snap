@@ -1,0 +1,51 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Combobox > matches snapshot — default variant 1`] = `
+<DocumentFragment>
+  <div
+    class="flex min-w-56 items-center gap-1 outline-none transition-colors duration-100 focus-within:outline-2 focus-within:outline-black focus-within:-outline-offset-1 data-disabled:cursor-not-allowed data-disabled:opacity-50 border border-black bg-white data-popup-open:bg-black/5 h-8"
+    data-slot="combobox-input-group"
+    role="group"
+  >
+    <input
+      aria-autocomplete="list"
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      autocapitalize="none"
+      autocomplete="off"
+      autocorrect="off"
+      class="min-w-0 flex-1 bg-transparent outline-none placeholder:text-black/40 disabled:cursor-not-allowed text-black text-sm px-2 py-1"
+      data-slot="combobox-input"
+      id="base-ui-_r_4_"
+      placeholder="Choose a fruit"
+      role="combobox"
+      spellcheck="false"
+      type="text"
+      value="apple"
+    />
+    <button
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-label="Open fruit list"
+      class="inline-flex shrink-0 cursor-default select-none items-center justify-center outline-none transition-colors duration-100 disabled:cursor-not-allowed data-disabled:cursor-not-allowed data-disabled:opacity-50 text-black hover:not-data-disabled:bg-black/10 active:not-data-disabled:bg-black/10 size-7"
+      data-slot="combobox-trigger"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        data-slot="combobox-icon"
+      >
+        ▼
+      </span>
+    </button>
+  </div>
+  <input
+    aria-hidden="true"
+    id="base-ui-_r_4_-hidden-input"
+    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+    tabindex="-1"
+    value="apple"
+  />
+</DocumentFragment>
+`;
