@@ -26,7 +26,7 @@
     "ci": "pnpm format && pnpm typegen && pnpm test && pnpm build"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.6",
+    "@biomejs/biome": "^2.5.6",
     "plop": "^4.0.5"
   }
 }
