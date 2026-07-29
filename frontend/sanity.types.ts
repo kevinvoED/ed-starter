@@ -141,8 +141,8 @@ export type CardExample = {
       _type: "span";
       _key: string;
     }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-    listItem?: "bullet" | "number";
+    style?: "normal";
+    listItem?: never;
     markDefs?: Array<
       | {
           type: "internal" | "external";
@@ -219,8 +219,8 @@ export type CardExample = {
         _type: "span";
         _key: string;
       }>;
-      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-      listItem?: "bullet" | "number";
+      style?: "normal";
+      listItem?: never;
       markDefs?: Array<
         | {
             type: "internal" | "external";
@@ -304,8 +304,8 @@ export type DriverText = {
       _type: "span";
       _key: string;
     }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-    listItem?: "bullet" | "number";
+    style?: "normal";
+    listItem?: never;
     markDefs?: Array<
       | {
           type: "internal" | "external";
@@ -390,8 +390,8 @@ export type HeroPrimary = {
       _type: "span";
       _key: string;
     }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-    listItem?: "bullet" | "number";
+    style?: "normal";
+    listItem?: never;
     markDefs?: Array<
       | {
           type: "internal" | "external";
@@ -681,8 +681,8 @@ export type Banner = {
       _type: "span";
       _key: string;
     }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-    listItem?: "bullet" | "number";
+    style?: "normal";
+    listItem?: never;
     markDefs?: Array<
       | {
           type: "internal" | "external";
@@ -1030,8 +1030,8 @@ export type Navbar = {
                   _type: "span";
                   _key: string;
                 }>;
-                style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-                listItem?: "bullet" | "number";
+                style?: "normal";
+                listItem?: never;
                 markDefs?: Array<
                   | {
                       type: "internal" | "external";
@@ -1311,8 +1311,8 @@ export type BlogIndex = {
       _type: "span";
       _key: string;
     }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-    listItem?: "bullet" | "number";
+    style?: "normal";
+    listItem?: never;
     markDefs?: Array<
       | {
           type: "internal" | "external";
@@ -1458,8 +1458,8 @@ export type BlogPost = {
       _type: "span";
       _key: string;
     }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-    listItem?: "bullet" | "number";
+    style?: "normal";
+    listItem?: never;
     markDefs?: Array<
       | {
           type: "internal" | "external";
@@ -1577,8 +1577,8 @@ export type CaseStudiesIndex = {
       _type: "span";
       _key: string;
     }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-    listItem?: "bullet" | "number";
+    style?: "normal";
+    listItem?: never;
     markDefs?: Array<
       | {
           type: "internal" | "external";
@@ -1698,8 +1698,8 @@ export type CaseStudy = {
       _type: "span";
       _key: string;
     }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-    listItem?: "bullet" | "number";
+    style?: "normal";
+    listItem?: never;
     markDefs?: Array<
       | {
           type: "internal" | "external";
@@ -2328,8 +2328,8 @@ export type BANNER_QUERY_RESULT = Array<{
       _type: "span";
       _key: string;
     }>;
-    style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-    listItem?: "bullet" | "number";
+    style?: "normal";
+    listItem?: never;
     markDefs: Array<
       | {
           _key: string;
@@ -2529,8 +2529,8 @@ export type NAVBAR_QUERY_RESULT = {
                   _type: "span";
                   _key: string;
                 }>;
-                style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-                listItem?: "bullet" | "number";
+                style?: "normal";
+                listItem?: never;
                 markDefs: Array<
                   | {
                       _key: string;
@@ -2924,8 +2924,8 @@ export type PAGE_QUERY_RESULT = {
             _type: "span";
             _key: string;
           }>;
-          style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-          listItem?: "bullet" | "number";
+          style?: "normal";
+          listItem?: never;
           markDefs: Array<
             | {
                 _key: string;
@@ -3038,8 +3038,8 @@ export type PAGE_QUERY_RESULT = {
               _type: "span";
               _key: string;
             }>;
-            style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-            listItem?: "bullet" | "number";
+            style?: "normal";
+            listItem?: never;
             markDefs: Array<
               | {
                   _key: string;
@@ -3174,8 +3174,8 @@ export type PAGE_QUERY_RESULT = {
             _type: "span";
             _key: string;
           }>;
-          style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-          listItem?: "bullet" | "number";
+          style?: "normal";
+          listItem?: never;
           markDefs: Array<
             | {
                 _key: string;
@@ -3285,8 +3285,8 @@ export type PAGE_QUERY_RESULT = {
             _type: "span";
             _key: string;
           }>;
-          style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-          listItem?: "bullet" | "number";
+          style?: "normal";
+          listItem?: never;
           markDefs: Array<
             | {
                 _key: string;
@@ -3884,8 +3884,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -4135,8 +4135,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -4468,8 +4468,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -4719,8 +4719,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -4869,8 +4869,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
           _type: "span";
           _key: string;
         }>;
-        style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-        listItem?: "bullet" | "number";
+        style?: "normal";
+        listItem?: never;
         markDefs: Array<
           | {
               _key: string;
@@ -5136,8 +5136,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -5387,8 +5387,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -5762,8 +5762,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -6013,8 +6013,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -6163,8 +6163,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
           _type: "span";
           _key: string;
         }>;
-        style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-        listItem?: "bullet" | "number";
+        style?: "normal";
+        listItem?: never;
         markDefs: Array<
           | {
               _key: string;
@@ -6302,8 +6302,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -6426,8 +6426,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   _type: "span";
                   _key: string;
                 }>;
-                style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-                listItem?: "bullet" | "number";
+                style?: "normal";
+                listItem?: never;
                 markDefs: Array<
                   | {
                       _key: string;
@@ -6572,8 +6572,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -6698,8 +6698,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -7273,8 +7273,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -7524,8 +7524,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -7674,8 +7674,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
           _type: "span";
           _key: string;
         }>;
-        style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-        listItem?: "bullet" | "number";
+        style?: "normal";
+        listItem?: never;
         markDefs: Array<
           | {
               _key: string;
@@ -7813,8 +7813,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -7937,8 +7937,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   _type: "span";
                   _key: string;
                 }>;
-                style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-                listItem?: "bullet" | "number";
+                style?: "normal";
+                listItem?: never;
                 markDefs: Array<
                   | {
                       _key: string;
@@ -8083,8 +8083,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -8209,8 +8209,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -8784,8 +8784,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -9035,8 +9035,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -9185,8 +9185,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
           _type: "span";
           _key: string;
         }>;
-        style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-        listItem?: "bullet" | "number";
+        style?: "normal";
+        listItem?: never;
         markDefs: Array<
           | {
               _key: string;
@@ -9324,8 +9324,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -9448,8 +9448,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   _type: "span";
                   _key: string;
                 }>;
-                style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-                listItem?: "bullet" | "number";
+                style?: "normal";
+                listItem?: never;
                 markDefs: Array<
                   | {
                       _key: string;
@@ -9594,8 +9594,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -9720,8 +9720,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -10295,8 +10295,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -10546,8 +10546,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -10696,8 +10696,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
           _type: "span";
           _key: string;
         }>;
-        style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-        listItem?: "bullet" | "number";
+        style?: "normal";
+        listItem?: never;
         markDefs: Array<
           | {
               _key: string;
@@ -10835,8 +10835,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -10959,8 +10959,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   _type: "span";
                   _key: string;
                 }>;
-                style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-                listItem?: "bullet" | "number";
+                style?: "normal";
+                listItem?: never;
                 markDefs: Array<
                   | {
                       _key: string;
@@ -11105,8 +11105,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -11231,8 +11231,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -11806,8 +11806,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -12057,8 +12057,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -12390,8 +12390,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -12641,8 +12641,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -13016,8 +13016,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -13267,8 +13267,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -13600,8 +13600,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -13851,8 +13851,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -14184,8 +14184,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -14435,8 +14435,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -14768,8 +14768,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -15019,8 +15019,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -15352,8 +15352,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -15603,8 +15603,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -15936,8 +15936,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -16187,8 +16187,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -16355,8 +16355,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -16479,8 +16479,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   _type: "span";
                   _key: string;
                 }>;
-                style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-                listItem?: "bullet" | "number";
+                style?: "normal";
+                listItem?: never;
                 markDefs: Array<
                   | {
                       _key: string;
@@ -16625,8 +16625,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -16751,8 +16751,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -17326,8 +17326,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -17577,8 +17577,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -17745,8 +17745,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -17869,8 +17869,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   _type: "span";
                   _key: string;
                 }>;
-                style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-                listItem?: "bullet" | "number";
+                style?: "normal";
+                listItem?: never;
                 markDefs: Array<
                   | {
                       _key: string;
@@ -18015,8 +18015,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -18141,8 +18141,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -18716,8 +18716,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -18967,8 +18967,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -19135,8 +19135,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -19259,8 +19259,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                   _type: "span";
                   _key: string;
                 }>;
-                style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-                listItem?: "bullet" | "number";
+                style?: "normal";
+                listItem?: never;
                 markDefs: Array<
                   | {
                       _key: string;
@@ -19405,8 +19405,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -19531,8 +19531,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -20106,8 +20106,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -20357,8 +20357,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -20690,8 +20690,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -20941,8 +20941,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -21274,8 +21274,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -21525,8 +21525,8 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -21737,8 +21737,8 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -21861,8 +21861,8 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                   _type: "span";
                   _key: string;
                 }>;
-                style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-                listItem?: "bullet" | "number";
+                style?: "normal";
+                listItem?: never;
                 markDefs: Array<
                   | {
                       _key: string;
@@ -22007,8 +22007,8 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -22133,8 +22133,8 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -22529,8 +22529,8 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
           _type: "span";
           _key: string;
         }>;
-        style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-        listItem?: "bullet" | "number";
+        style?: "normal";
+        listItem?: never;
         markDefs: Array<
           | {
               _key: string;
@@ -22810,8 +22810,8 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -22934,8 +22934,8 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                   _type: "span";
                   _key: string;
                 }>;
-                style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-                listItem?: "bullet" | "number";
+                style?: "normal";
+                listItem?: never;
                 markDefs: Array<
                   | {
                       _key: string;
@@ -23080,8 +23080,8 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -23206,8 +23206,8 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
+              style?: "normal";
+              listItem?: never;
               markDefs: Array<
                 | {
                     _key: string;
@@ -23602,8 +23602,8 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
           _type: "span";
           _key: string;
         }>;
-        style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-        listItem?: "bullet" | "number";
+        style?: "normal";
+        listItem?: never;
         markDefs: Array<
           | {
               _key: string;

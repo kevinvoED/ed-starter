@@ -700,30 +700,6 @@
                       {
                         "type": "string",
                         "value": "normal"
-                      },
-                      {
-                        "type": "string",
-                        "value": "h1"
-                      },
-                      {
-                        "type": "string",
-                        "value": "h2"
-                      },
-                      {
-                        "type": "string",
-                        "value": "h3"
-                      },
-                      {
-                        "type": "string",
-                        "value": "h4"
-                      },
-                      {
-                        "type": "string",
-                        "value": "h5"
-                      },
-                      {
-                        "type": "string",
-                        "value": "h6"
                       }
                     ]
                   },
@@ -733,16 +709,7 @@
                   "type": "objectAttribute",
                   "value": {
                     "type": "union",
-                    "of": [
-                      {
-                        "type": "string",
-                        "value": "bullet"
-                      },
-                      {
-                        "type": "string",
-                        "value": "number"
-                      }
-                    ]
+                    "of": []
                   },
                   "optional": true
                 },
@@ -1238,30 +1205,6 @@
                               {
                                 "type": "string",
                                 "value": "normal"
-                              },
-                              {
-                                "type": "string",
-                                "value": "h1"
-                              },
-                              {
-                                "type": "string",
-                                "value": "h2"
-                              },
-                              {
-                                "type": "string",
-                                "value": "h3"
-                              },
-                              {
-                                "type": "string",
-                                "value": "h4"
-                              },
-                              {
-                                "type": "string",
-                                "value": "h5"
-                              },
-                              {
-                                "type": "string",
-                                "value": "h6"
                               }
                             ]
                           },
@@ -1271,16 +1214,7 @@
                           "type": "objectAttribute",
                           "value": {
                             "type": "union",
-                            "of": [
-                              {
-                                "type": "string",
-                                "value": "bullet"
-                              },
-                              {
-                                "type": "string",
-                                "value": "number"
-                              }
-                            ]
+                            "of": []
                           },
                           "optional": true
                         },
@@ -1816,30 +1750,6 @@
                       {
                         "type": "string",
                         "value": "normal"
-                      },
-                      {
-                        "type": "string",
-                        "value": "h1"
-                      },
-                      {
-                        "type": "string",
-                        "value": "h2"
-                      },
-                      {
-                        "type": "string",
-                        "value": "h3"
-                      },
-                      {
-                        "type": "string",
-                        "value": "h4"
-                      },
-                      {
-                        "type": "string",
-                        "value": "h5"
-                      },
-                      {
-                        "type": "string",
-                        "value": "h6"
                       }
                     ]
                   },
@@ -1849,16 +1759,7 @@
                   "type": "objectAttribute",
                   "value": {
                     "type": "union",
-                    "of": [
-                      {
-                        "type": "string",
-                        "value": "bullet"
-                      },
-                      {
-                        "type": "string",
-                        "value": "number"
-                      }
-                    ]
+                    "of": []
                   },
                   "optional": true
                 },
@@ -2387,30 +2288,6 @@
                       {
                         "type": "string",
                         "value": "normal"
-                      },
-                      {
-                        "type": "string",
-                        "value": "h1"
-                      },
-                      {
-                        "type": "string",
-                        "value": "h2"
-                      },
-                      {
-                        "type": "string",
-                        "value": "h3"
-                      },
-                      {
-                        "type": "string",
-                        "value": "h4"
-                      },
-                      {
-                        "type": "string",
-                        "value": "h5"
-                      },
-                      {
-                        "type": "string",
-                        "value": "h6"
                       }
                     ]
                   },
@@ -2420,16 +2297,7 @@
                   "type": "objectAttribute",
                   "value": {
                     "type": "union",
-                    "of": [
-                      {
-                        "type": "string",
-                        "value": "bullet"
-                      },
-                      {
-                        "type": "string",
-                        "value": "number"
-                      }
-                    ]
+                    "of": []
                   },
                   "optional": true
                 },
@@ -4303,30 +4171,6 @@
                     {
                       "type": "string",
                       "value": "normal"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h1"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h2"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h3"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h4"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h5"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h6"
                     }
                   ]
                 },
@@ -4336,16 +4180,7 @@
                 "type": "objectAttribute",
                 "value": {
                   "type": "union",
-                  "of": [
-                    {
-                      "type": "string",
-                      "value": "bullet"
-                    },
-                    {
-                      "type": "string",
-                      "value": "number"
-                    }
-                  ]
+                  "of": []
                 },
                 "optional": true
               },
@@ -6532,30 +6367,6 @@
                                             {
                                               "type": "string",
                                               "value": "normal"
-                                            },
-                                            {
-                                              "type": "string",
-                                              "value": "h1"
-                                            },
-                                            {
-                                              "type": "string",
-                                              "value": "h2"
-                                            },
-                                            {
-                                              "type": "string",
-                                              "value": "h3"
-                                            },
-                                            {
-                                              "type": "string",
-                                              "value": "h4"
-                                            },
-                                            {
-                                              "type": "string",
-                                              "value": "h5"
-                                            },
-                                            {
-                                              "type": "string",
-                                              "value": "h6"
                                             }
                                           ]
                                         },
@@ -6565,16 +6376,7 @@
                                         "type": "objectAttribute",
                                         "value": {
                                           "type": "union",
-                                          "of": [
-                                            {
-                                              "type": "string",
-                                              "value": "bullet"
-                                            },
-                                            {
-                                              "type": "string",
-                                              "value": "number"
-                                            }
-                                          ]
+                                          "of": []
                                         },
                                         "optional": true
                                       },
@@ -8298,30 +8100,6 @@
                     {
                       "type": "string",
                       "value": "normal"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h1"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h2"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h3"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h4"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h5"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h6"
                     }
                   ]
                 },
@@ -8331,16 +8109,7 @@
                 "type": "objectAttribute",
                 "value": {
                   "type": "union",
-                  "of": [
-                    {
-                      "type": "string",
-                      "value": "bullet"
-                    },
-                    {
-                      "type": "string",
-                      "value": "number"
-                    }
-                  ]
+                  "of": []
                 },
                 "optional": true
               },
@@ -9171,30 +8940,6 @@
                     {
                       "type": "string",
                       "value": "normal"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h1"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h2"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h3"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h4"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h5"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h6"
                     }
                   ]
                 },
@@ -9204,16 +8949,7 @@
                 "type": "objectAttribute",
                 "value": {
                   "type": "union",
-                  "of": [
-                    {
-                      "type": "string",
-                      "value": "bullet"
-                    },
-                    {
-                      "type": "string",
-                      "value": "number"
-                    }
-                  ]
+                  "of": []
                 },
                 "optional": true
               },
@@ -9942,30 +9678,6 @@
                     {
                       "type": "string",
                       "value": "normal"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h1"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h2"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h3"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h4"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h5"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h6"
                     }
                   ]
                 },
@@ -9975,16 +9687,7 @@
                 "type": "objectAttribute",
                 "value": {
                   "type": "union",
-                  "of": [
-                    {
-                      "type": "string",
-                      "value": "bullet"
-                    },
-                    {
-                      "type": "string",
-                      "value": "number"
-                    }
-                  ]
+                  "of": []
                 },
                 "optional": true
               },
@@ -10703,30 +10406,6 @@
                     {
                       "type": "string",
                       "value": "normal"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h1"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h2"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h3"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h4"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h5"
-                    },
-                    {
-                      "type": "string",
-                      "value": "h6"
                     }
                   ]
                 },
@@ -10736,16 +10415,7 @@
                 "type": "objectAttribute",
                 "value": {
                   "type": "union",
-                  "of": [
-                    {
-                      "type": "string",
-                      "value": "bullet"
-                    },
-                    {
-                      "type": "string",
-                      "value": "number"
-                    }
-                  ]
+                  "of": []
                 },
                 "optional": true
               },

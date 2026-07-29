@@ -204,27 +204,15 @@ export const title = portableTextPlain({
   oneLine: true,
 });
 
-export const titleLineBreak = portableTextPlain({
-  name: "title",
-  title: "Title",
-  description:
-    "Main title for this section or module. New line breaks are respected.",
-  validation: true,
-  enableHighlight: true,
-  enableLink: true,
-});
-
 export const description = portableTextPlain({
   name: "description",
   title: "Description",
   description:
     "Supplementary text that provides additional context or information.",
   validation: true,
-  enableList: true,
   enableLink: true,
   enableHighlight: true,
   enableDecorator: true,
-  enableTypeStyle: true,
 });
 
 /*
