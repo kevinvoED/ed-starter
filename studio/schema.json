@@ -553,6 +553,14 @@
                               },
                               "optional": true
                             },
+                            "anchorText": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "inline",
+                                "name": "slug"
+                              },
+                              "optional": true
+                            },
                             "_type": {
                               "type": "objectAttribute",
                               "value": {
@@ -788,6 +796,14 @@
                               "type": "objectAttribute",
                               "value": {
                                 "type": "boolean"
+                              },
+                              "optional": true
+                            },
+                            "anchorText": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "inline",
+                                "name": "slug"
                               },
                               "optional": true
                             },
@@ -1058,6 +1074,14 @@
                                       },
                                       "optional": true
                                     },
+                                    "anchorText": {
+                                      "type": "objectAttribute",
+                                      "value": {
+                                        "type": "inline",
+                                        "name": "slug"
+                                      },
+                                      "optional": true
+                                    },
                                     "_type": {
                                       "type": "objectAttribute",
                                       "value": {
@@ -1293,6 +1317,14 @@
                                       "type": "objectAttribute",
                                       "value": {
                                         "type": "boolean"
+                                      },
+                                      "optional": true
+                                    },
+                                    "anchorText": {
+                                      "type": "objectAttribute",
+                                      "value": {
+                                        "type": "inline",
+                                        "name": "slug"
                                       },
                                       "optional": true
                                     },
@@ -1603,6 +1635,14 @@
                               },
                               "optional": true
                             },
+                            "anchorText": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "inline",
+                                "name": "slug"
+                              },
+                              "optional": true
+                            },
                             "_type": {
                               "type": "objectAttribute",
                               "value": {
@@ -1838,6 +1878,14 @@
                               "type": "objectAttribute",
                               "value": {
                                 "type": "boolean"
+                              },
+                              "optional": true
+                            },
+                            "anchorText": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "inline",
+                                "name": "slug"
                               },
                               "optional": true
                             },
@@ -2141,6 +2189,14 @@
                               },
                               "optional": true
                             },
+                            "anchorText": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "inline",
+                                "name": "slug"
+                              },
+                              "optional": true
+                            },
                             "_type": {
                               "type": "objectAttribute",
                               "value": {
@@ -2376,6 +2432,14 @@
                               "type": "objectAttribute",
                               "value": {
                                 "type": "boolean"
+                              },
+                              "optional": true
+                            },
+                            "anchorText": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "inline",
+                                "name": "slug"
                               },
                               "optional": true
                             },
@@ -2934,6 +2998,14 @@
                                       },
                                       "optional": true
                                     },
+                                    "anchorText": {
+                                      "type": "objectAttribute",
+                                      "value": {
+                                        "type": "inline",
+                                        "name": "slug"
+                                      },
+                                      "optional": true
+                                    },
                                     "_type": {
                                       "type": "objectAttribute",
                                       "value": {
@@ -3178,11 +3250,28 @@
             ]
           },
           "optional": true
-        },
-        "anchorId": {
+        }
+      }
+    }
+  },
+  {
+    "name": "anchor",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
           "type": "objectAttribute",
           "value": {
-            "type": "string"
+            "type": "string",
+            "value": "anchor"
+          }
+        },
+        "anchorText": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "slug"
           },
           "optional": true
         }
@@ -3430,6 +3519,14 @@
                             "type": "objectAttribute",
                             "value": {
                               "type": "boolean"
+                            },
+                            "optional": true
+                          },
+                          "anchorText": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "inline",
+                              "name": "slug"
                             },
                             "optional": true
                           },
@@ -3733,10 +3830,11 @@
           },
           "optional": true
         },
-        "anchorTag": {
+        "anchorText": {
           "type": "objectAttribute",
           "value": {
-            "type": "string"
+            "type": "inline",
+            "name": "slug"
           },
           "optional": true
         }
@@ -4024,6 +4122,14 @@
                             },
                             "optional": true
                           },
+                          "anchorText": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "inline",
+                              "name": "slug"
+                            },
+                            "optional": true
+                          },
                           "_type": {
                             "type": "objectAttribute",
                             "value": {
@@ -4259,6 +4365,14 @@
                             "type": "objectAttribute",
                             "value": {
                               "type": "boolean"
+                            },
+                            "optional": true
+                          },
+                          "anchorText": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "inline",
+                              "name": "slug"
                             },
                             "optional": true
                           },
@@ -5051,6 +5165,14 @@
                                     },
                                     "optional": true
                                   },
+                                  "anchorText": {
+                                    "type": "objectAttribute",
+                                    "value": {
+                                      "type": "inline",
+                                      "name": "slug"
+                                    },
+                                    "optional": true
+                                  },
                                   "_type": {
                                     "type": "objectAttribute",
                                     "value": {
@@ -5322,6 +5444,14 @@
                                             "type": "objectAttribute",
                                             "value": {
                                               "type": "boolean"
+                                            },
+                                            "optional": true
+                                          },
+                                          "anchorText": {
+                                            "type": "objectAttribute",
+                                            "value": {
+                                              "type": "inline",
+                                              "name": "slug"
                                             },
                                             "optional": true
                                           },
@@ -5972,6 +6102,14 @@
                                         },
                                         "optional": true
                                       },
+                                      "anchorText": {
+                                        "type": "objectAttribute",
+                                        "value": {
+                                          "type": "inline",
+                                          "name": "slug"
+                                        },
+                                        "optional": true
+                                      },
                                       "_type": {
                                         "type": "objectAttribute",
                                         "value": {
@@ -6220,6 +6358,14 @@
                                                     },
                                                     "optional": true
                                                   },
+                                                  "anchorText": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "inline",
+                                                      "name": "slug"
+                                                    },
+                                                    "optional": true
+                                                  },
                                                   "_type": {
                                                     "type": "objectAttribute",
                                                     "value": {
@@ -6455,6 +6601,14 @@
                                                     "type": "objectAttribute",
                                                     "value": {
                                                       "type": "boolean"
+                                                    },
+                                                    "optional": true
+                                                  },
+                                                  "anchorText": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "inline",
+                                                      "name": "slug"
                                                     },
                                                     "optional": true
                                                   },
@@ -6738,6 +6892,14 @@
                                                     "type": "objectAttribute",
                                                     "value": {
                                                       "type": "boolean"
+                                                    },
+                                                    "optional": true
+                                                  },
+                                                  "anchorText": {
+                                                    "type": "objectAttribute",
+                                                    "value": {
+                                                      "type": "inline",
+                                                      "name": "slug"
                                                     },
                                                     "optional": true
                                                   },
@@ -7128,6 +7290,14 @@
                             },
                             "optional": true
                           },
+                          "anchorText": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "inline",
+                              "name": "slug"
+                            },
+                            "optional": true
+                          },
                           "_type": {
                             "type": "objectAttribute",
                             "value": {
@@ -7418,6 +7588,14 @@
                             },
                             "optional": true
                           },
+                          "anchorText": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "inline",
+                              "name": "slug"
+                            },
+                            "optional": true
+                          },
                           "_type": {
                             "type": "objectAttribute",
                             "value": {
@@ -7615,6 +7793,21 @@
           "of": {
             "type": "union",
             "of": [
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "anchor"
+                }
+              },
               {
                 "type": "object",
                 "attributes": {
@@ -7945,6 +8138,14 @@
                             },
                             "optional": true
                           },
+                          "anchorText": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "inline",
+                              "name": "slug"
+                            },
+                            "optional": true
+                          },
                           "_type": {
                             "type": "objectAttribute",
                             "value": {
@@ -8191,6 +8392,14 @@
                             },
                             "optional": true
                           },
+                          "anchorText": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "inline",
+                              "name": "slug"
+                            },
+                            "optional": true
+                          },
                           "_type": {
                             "type": "objectAttribute",
                             "value": {
@@ -8291,6 +8500,21 @@
           "of": {
             "type": "union",
             "of": [
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "anchor"
+                }
+              },
               {
                 "type": "object",
                 "attributes": {
@@ -8719,6 +8943,14 @@
                             },
                             "optional": true
                           },
+                          "anchorText": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "inline",
+                              "name": "slug"
+                            },
+                            "optional": true
+                          },
                           "_type": {
                             "type": "objectAttribute",
                             "value": {
@@ -9031,6 +9263,14 @@
                             },
                             "optional": true
                           },
+                          "anchorText": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "inline",
+                              "name": "slug"
+                            },
+                            "optional": true
+                          },
                           "_type": {
                             "type": "objectAttribute",
                             "value": {
@@ -9200,6 +9440,21 @@
           "of": {
             "type": "union",
             "of": [
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "anchor"
+                }
+              },
               {
                 "type": "object",
                 "attributes": {
@@ -9523,6 +9778,14 @@
                             },
                             "optional": true
                           },
+                          "anchorText": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "inline",
+                              "name": "slug"
+                            },
+                            "optional": true
+                          },
                           "_type": {
                             "type": "objectAttribute",
                             "value": {
@@ -9769,6 +10032,14 @@
                             },
                             "optional": true
                           },
+                          "anchorText": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "inline",
+                              "name": "slug"
+                            },
+                            "optional": true
+                          },
                           "_type": {
                             "type": "objectAttribute",
                             "value": {
@@ -9869,6 +10140,21 @@
           "of": {
             "type": "union",
             "of": [
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "anchor"
+                }
+              },
               {
                 "type": "object",
                 "attributes": {
@@ -10207,6 +10493,14 @@
                             },
                             "optional": true
                           },
+                          "anchorText": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "inline",
+                              "name": "slug"
+                            },
+                            "optional": true
+                          },
                           "_type": {
                             "type": "objectAttribute",
                             "value": {
@@ -10497,6 +10791,14 @@
                             },
                             "optional": true
                           },
+                          "anchorText": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "inline",
+                              "name": "slug"
+                            },
+                            "optional": true
+                          },
                           "_type": {
                             "type": "objectAttribute",
                             "value": {
@@ -10666,6 +10968,21 @@
           "of": {
             "type": "union",
             "of": [
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "anchor"
+                }
+              },
               {
                 "type": "object",
                 "attributes": {
@@ -11011,6 +11328,21 @@
                 },
                 "rest": {
                   "type": "inline",
+                  "name": "anchor"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
                   "name": "card-example"
                 }
               },
@@ -11198,6 +11530,21 @@
           "of": {
             "type": "union",
             "of": [
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "anchor"
+                }
+              },
               {
                 "type": "object",
                 "attributes": {

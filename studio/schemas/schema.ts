@@ -32,6 +32,7 @@ import cardExample from "@/schemas/modules/card/card-example";
 import driverText from "@/schemas/modules/driver/driver-text";
 import mediaFile from "@/schemas/modules/media/media-file";
 import globalModule from "@/schemas/modules/miscellaneous/global-module";
+import anchor from "@/schemas/modules/miscellaneous/anchor";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -60,6 +61,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     portableText,
     // Modules
     globalModule,
+    anchor,
     spacer,
     marquee,
     mediaFile,

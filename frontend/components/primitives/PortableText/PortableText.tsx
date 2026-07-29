@@ -1,3 +1,4 @@
+import type { ResolvedSanityLinkType } from "@/lib/utils/types";
 import {
   type PortableTextProps,
   PortableText as PortableTextRenderer,
@@ -158,12 +159,17 @@ const portableTextComponents = (
   },
   marks: {
     link: ({ value, children }) => {
+      const linkValue = value as ResolvedSanityLinkType | undefined;
+
+      if (!linkValue?.href) {
+        return <>{children}</>;
+      }
+
       return (
         <SanityLink
           variant="portableText"
-          href={value?.href || ""}
-          target={value.openInNewTab ? "_blank" : undefined}
-          rel={value.openInNewTab ? "noopener" : undefined}
+          link={linkValue}
+          openInNewTab={linkValue.openInNewTab ?? false}
           id="cta"
         >
           {children}

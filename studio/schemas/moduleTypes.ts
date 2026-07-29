@@ -30,6 +30,7 @@ export const moduleBlocks = sortBy(
     { type: "global-module" },
     { type: "rich-text" },
     { type: "spacer" },
+    { type: "anchor" },
     { type: "marquee" },
     { type: "media-file" },
     { type: "hero-primary" },
@@ -67,7 +68,7 @@ export const moduleGroups = sortBy(
     },
     {
       name: "miscellaneous",
-      of: ["marquee", "spacer", "global-module"],
+      of: ["marquee", "spacer", "anchor", "global-module"],
     },
     {
       name: "card",

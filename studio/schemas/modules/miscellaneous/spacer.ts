@@ -24,25 +24,6 @@ export default defineType({
         ],
       },
     }),
-    defineField({
-      name: "anchorId",
-      type: "string",
-      title: "Anchor ID",
-      description:
-        "An id that is added to the spacer so you can link to it via the URL hash.",
-      initialValue: "",
-      validation: (Rule) =>
-        Rule.regex(/^[^#]*$/, {
-          name: "no-hash",
-          invert: false,
-        })
-          .error("Anchor ID cannot contain a hash (#) character.")
-          .regex(/^[^ ]*$/, {
-            name: "no-spaces",
-            invert: false,
-          })
-          .error("Anchor ID cannot contain spaces."),
-    }),
   ],
   components: { preview: ModulePreview },
   preview: {

@@ -4,6 +4,7 @@ import type { ResolvedSanityLinkType } from "@/lib/utils/types";
 import { type AnchorHTMLAttributes, forwardRef } from "react";
 import { sendGTMEvent } from "@next/third-parties/google";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { cva, type VariantProps } from "class-variance-authority";
 import { ButtonIcon, Icon } from "@/components/primitives/Icon/Icon";
 import { sanitizeForId } from "@/lib/utils/generic";
@@ -72,6 +73,38 @@ interface SanityLinkWithHref extends BaseSanityLinkProps {
 
 type SanityLinkProps = SanityLinkWithLink | SanityLinkWithHref;
 
+const getLinkAnchorHash = (
+  link: Pick<ResolvedSanityLinkType, "anchorText">,
+): string | undefined => {
+  const anchorHash = link.anchorText?.current ?? undefined;
+  if (!anchorHash) return undefined;
+  return anchorHash;
+};
+
+const appendAnchorHash = (href: string, anchorHash?: string): string => {
+  if (!anchorHash) return href;
+  return `${href}#${anchorHash}`;
+};
+
+const DEFAULT_INTERNAL_HREF = "/";
+
+const getInternalLinkHref = (
+  link: Pick<ResolvedSanityLinkType, "href" | "anchorText">,
+  pathname: string,
+): string => {
+  const anchorHash = getLinkAnchorHash(link);
+
+  if (link.href) {
+    return appendAnchorHash(link.href, anchorHash);
+  }
+
+  if (anchorHash) {
+    return appendAnchorHash(pathname || DEFAULT_INTERNAL_HREF, anchorHash);
+  }
+
+  return DEFAULT_INTERNAL_HREF;
+};
+
 export const SanityLink = forwardRef<HTMLAnchorElement, SanityLinkProps>(
   (
     {
@@ -93,6 +126,7 @@ export const SanityLink = forwardRef<HTMLAnchorElement, SanityLinkProps>(
     },
     ref,
   ) => {
+    const pathname = usePathname();
     const sanityOpenInNewTab = link?.openInNewTab ?? false;
     const isNavEvent = id?.includes("nav");
     const isFooterEvent = id?.includes("footer");
@@ -153,12 +187,13 @@ export const SanityLink = forwardRef<HTMLAnchorElement, SanityLinkProps>(
 
     // Sanity-created button with the INTERNAL link type
     if (link?.type === "internal") {
-      if (!link?.href) return null;
+      const internalHref = getInternalLinkHref(link, pathname);
+
       return (
         <Link
           {...props}
           id={GTM_LINK_ID}
-          href={`${link.anchorTag ? `${link.href}#${link.anchorTag}` : link.href}`}
+          href={internalHref}
           tabIndex={disabled ? -1 : 0}
           aria-disabled={disabled}
           target={sanityOpenInNewTab ? "_blank" : undefined}

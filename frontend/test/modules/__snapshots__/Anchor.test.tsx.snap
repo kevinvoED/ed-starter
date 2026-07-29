@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Anchor > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="relative"
+  >
+    <div
+      class="absolute -top-25 left-0"
+      id="my-anchor"
+    />
+  </div>
+</DocumentFragment>
+`;

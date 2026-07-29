@@ -120,6 +120,7 @@ export type CardExample = {
             | PlatformIndexReference;
           href?: string;
           openInNewTab?: boolean;
+          anchorText?: Slug;
           _type: "link";
           _key: string;
         }
@@ -156,6 +157,7 @@ export type CardExample = {
             | PlatformIndexReference;
           href?: string;
           openInNewTab?: boolean;
+          anchorText?: Slug;
           _type: "link";
           _key: string;
         }
@@ -198,6 +200,7 @@ export type CardExample = {
               | PlatformIndexReference;
             href?: string;
             openInNewTab?: boolean;
+            anchorText?: Slug;
             _type: "link";
             _key: string;
           }
@@ -234,6 +237,7 @@ export type CardExample = {
               | PlatformIndexReference;
             href?: string;
             openInNewTab?: boolean;
+            anchorText?: Slug;
             _type: "link";
             _key: string;
           }
@@ -283,6 +287,7 @@ export type DriverText = {
             | PlatformIndexReference;
           href?: string;
           openInNewTab?: boolean;
+          anchorText?: Slug;
           _type: "link";
           _key: string;
         }
@@ -319,6 +324,7 @@ export type DriverText = {
             | PlatformIndexReference;
           href?: string;
           openInNewTab?: boolean;
+          anchorText?: Slug;
           _type: "link";
           _key: string;
         }
@@ -369,6 +375,7 @@ export type HeroPrimary = {
             | PlatformIndexReference;
           href?: string;
           openInNewTab?: boolean;
+          anchorText?: Slug;
           _type: "link";
           _key: string;
         }
@@ -405,6 +412,7 @@ export type HeroPrimary = {
             | PlatformIndexReference;
           href?: string;
           openInNewTab?: boolean;
+          anchorText?: Slug;
           _type: "link";
           _key: string;
         }
@@ -491,6 +499,7 @@ export type Marquee = {
               | PlatformIndexReference;
             href?: string;
             openInNewTab?: boolean;
+            anchorText?: Slug;
             _type: "link";
             _key: string;
           }
@@ -524,7 +533,11 @@ export type Marquee = {
 export type Spacer = {
   _type: "spacer";
   spacing?: "default" | "tiny" | "small" | "medium" | "large";
-  anchorId?: string;
+};
+
+export type Anchor = {
+  _type: "anchor";
+  anchorText?: Slug;
 };
 
 export type GlobalModuleLibraryReference = {
@@ -562,6 +575,7 @@ export type PortableText = Array<
               | PlatformIndexReference;
             href?: string;
             openInNewTab?: boolean;
+            anchorText?: Slug;
             _type: "link";
             _key: string;
           }
@@ -611,7 +625,7 @@ export type Link = {
   href?: string;
   icon?: "Value";
   openInNewTab?: boolean;
-  anchorTag?: string;
+  anchorText?: Slug;
 };
 
 export type GlobalModuleLibrary = {
@@ -660,6 +674,7 @@ export type Banner = {
             | PlatformIndexReference;
           href?: string;
           openInNewTab?: boolean;
+          anchorText?: Slug;
           _type: "link";
           _key: string;
         }
@@ -696,6 +711,7 @@ export type Banner = {
             | PlatformIndexReference;
           href?: string;
           openInNewTab?: boolean;
+          anchorText?: Slug;
           _type: "link";
           _key: string;
         }
@@ -820,6 +836,7 @@ export type Footer = {
               | PlatformIndexReference;
             href?: string;
             openInNewTab?: boolean;
+            anchorText?: Slug;
             _type: "link";
             _key: string;
           }
@@ -863,6 +880,7 @@ export type Footer = {
                 | PlatformIndexReference;
               href?: string;
               openInNewTab?: boolean;
+              anchorText?: Slug;
               _type: "link";
               _key: string;
             }
@@ -971,6 +989,7 @@ export type Navbar = {
                   | PlatformIndexReference;
                 href?: string;
                 openInNewTab?: boolean;
+                anchorText?: Slug;
                 _type: "link";
                 _key: string;
               }
@@ -1009,6 +1028,7 @@ export type Navbar = {
                         | PlatformIndexReference;
                       href?: string;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -1045,6 +1065,7 @@ export type Navbar = {
                         | PlatformIndexReference;
                       href?: string;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -1090,6 +1111,7 @@ export type Navbar = {
                         | PlatformIndexReference;
                       href?: string;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -1152,6 +1174,7 @@ export type BlogCategory = {
             | PlatformIndexReference;
           href?: string;
           openInNewTab?: boolean;
+          anchorText?: Slug;
           _type: "link";
           _key: string;
         }
@@ -1198,6 +1221,7 @@ export type ContentTopic = {
             | PlatformIndexReference;
           href?: string;
           openInNewTab?: boolean;
+          anchorText?: Slug;
           _type: "link";
           _key: string;
         }
@@ -1232,6 +1256,9 @@ export type Page = {
   parentPage?: PageReference;
   slug: Slug;
   modules?: Array<
+    | ({
+        _key: string;
+      } & Anchor)
     | ({
         _key: string;
       } & CardExample)
@@ -1289,6 +1316,7 @@ export type BlogIndex = {
             | PlatformIndexReference;
           href?: string;
           openInNewTab?: boolean;
+          anchorText?: Slug;
           _type: "link";
           _key: string;
         }
@@ -1326,6 +1354,7 @@ export type BlogIndex = {
             | PlatformIndexReference;
           href?: string;
           openInNewTab?: boolean;
+          anchorText?: Slug;
           _type: "link";
           _key: string;
         }
@@ -1342,6 +1371,9 @@ export type BlogIndex = {
   }>;
   featuredPost?: BlogPostReference;
   modules?: Array<
+    | ({
+        _key: string;
+      } & Anchor)
     | ({
         _key: string;
       } & CardExample)
@@ -1421,6 +1453,7 @@ export type BlogPost = {
             | PlatformIndexReference;
           href?: string;
           openInNewTab?: boolean;
+          anchorText?: Slug;
           _type: "link";
           _key: string;
         }
@@ -1473,6 +1506,7 @@ export type BlogPost = {
             | PlatformIndexReference;
           href?: string;
           openInNewTab?: boolean;
+          anchorText?: Slug;
           _type: "link";
           _key: string;
         }
@@ -1499,6 +1533,9 @@ export type BlogPost = {
   author?: AuthorReference;
   content?: PortableText;
   modules?: Array<
+    | ({
+        _key: string;
+      } & Anchor)
     | ({
         _key: string;
       } & CardExample)
@@ -1555,6 +1592,7 @@ export type CaseStudiesIndex = {
             | PlatformIndexReference;
           href?: string;
           openInNewTab?: boolean;
+          anchorText?: Slug;
           _type: "link";
           _key: string;
         }
@@ -1592,6 +1630,7 @@ export type CaseStudiesIndex = {
             | PlatformIndexReference;
           href?: string;
           openInNewTab?: boolean;
+          anchorText?: Slug;
           _type: "link";
           _key: string;
         }
@@ -1608,6 +1647,9 @@ export type CaseStudiesIndex = {
   }>;
   featuredPost?: CaseStudyReference;
   modules?: Array<
+    | ({
+        _key: string;
+      } & Anchor)
     | ({
         _key: string;
       } & CardExample)
@@ -1666,6 +1708,7 @@ export type CaseStudy = {
             | PlatformIndexReference;
           href?: string;
           openInNewTab?: boolean;
+          anchorText?: Slug;
           _type: "link";
           _key: string;
         }
@@ -1713,6 +1756,7 @@ export type CaseStudy = {
             | PlatformIndexReference;
           href?: string;
           openInNewTab?: boolean;
+          anchorText?: Slug;
           _type: "link";
           _key: string;
         }
@@ -1739,6 +1783,9 @@ export type CaseStudy = {
   author?: AuthorReference;
   content?: PortableText;
   modules?: Array<
+    | ({
+        _key: string;
+      } & Anchor)
     | ({
         _key: string;
       } & CardExample)
@@ -1803,6 +1850,9 @@ export type PlatformChild = {
   modules?: Array<
     | ({
         _key: string;
+      } & Anchor)
+    | ({
+        _key: string;
       } & CardExample)
     | ({
         _key: string;
@@ -1839,6 +1889,9 @@ export type PlatformIndex = {
   title: string;
   slug: Slug;
   modules?: Array<
+    | ({
+        _key: string;
+      } & Anchor)
     | ({
         _key: string;
       } & CardExample)
@@ -2214,6 +2267,7 @@ export type AllSanitySchemaTypes =
   | MediaFile
   | Marquee
   | Spacer
+  | Anchor
   | GlobalModuleLibraryReference
   | GlobalModule
   | PortableText
@@ -2307,6 +2361,7 @@ export type BANNER_QUERY_RESULT = Array<{
             | PlatformIndexReference;
           href: string | "/" | "/blog" | "/case-studies" | "/platform" | null;
           openInNewTab?: boolean;
+          anchorText?: Slug;
           _type: "link";
           _key: string;
         }
@@ -2349,6 +2404,7 @@ export type BANNER_QUERY_RESULT = Array<{
             | PlatformIndexReference;
           href: string | "/" | "/blog" | "/case-studies" | "/platform" | null;
           openInNewTab?: boolean;
+          anchorText?: Slug;
           _type: "link";
           _key: string;
         }
@@ -2380,7 +2436,7 @@ export type BANNER_QUERY_RESULT = Array<{
         href: string | "/" | "/blog" | "/case-studies" | "/platform" | null;
         icon?: "Value";
         openInNewTab?: boolean;
-        anchorTag?: string;
+        anchorText?: Slug;
       }>
     | Array<never>;
 }>;
@@ -2456,6 +2512,7 @@ export type NAVBAR_QUERY_RESULT = {
                 href:
                   string | "/" | "/blog" | "/case-studies" | "/platform" | null;
                 openInNewTab?: boolean;
+                anchorText?: Slug;
                 _type: "link";
                 _key: string;
               }
@@ -2508,6 +2565,7 @@ export type NAVBAR_QUERY_RESULT = {
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -2556,6 +2614,7 @@ export type NAVBAR_QUERY_RESULT = {
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -2593,7 +2652,7 @@ export type NAVBAR_QUERY_RESULT = {
                       | null;
                     icon?: "Value";
                     openInNewTab?: boolean;
-                    anchorTag?: string;
+                    anchorText?: Slug;
                   }>
                 | Array<never>;
             }
@@ -2634,6 +2693,7 @@ export type NAVBAR_QUERY_RESULT = {
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -2671,7 +2731,7 @@ export type NAVBAR_QUERY_RESULT = {
                       | null;
                     icon?: "Value";
                     openInNewTab?: boolean;
-                    anchorTag?: string;
+                    anchorText?: Slug;
                   }>
                 | Array<never>;
             }
@@ -2696,7 +2756,7 @@ export type NAVBAR_QUERY_RESULT = {
           href: string | "/" | "/blog" | "/case-studies" | "/platform" | null;
           icon?: "Value";
           openInNewTab?: boolean;
-          anchorTag?: string;
+          anchorText?: Slug;
         }>;
       }
   > | null;
@@ -2867,10 +2927,15 @@ export type LLMS_FULL_QUERY_RESULT = Array<
 
 // Source: ../frontend/sanity/queries/queries.ts
 // Variable: PAGE_QUERY
-// Query: fn fn::img($image) = $image {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::imgs($images) = $images[] {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::logo($logo) = $logo {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::links($links) = $links[] {      ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )  };    fn fn::ptPlain($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "links" => {        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };    fn fn::pt($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "links" => {        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    },      _type == "richTable" => {      ...,        _type,        _key,        hasColumnTitles,        hasRowTitles,        columnHeaders[]{          _key,          _type,          cellIndex,          title,        },        rows[]{          _key,          _type,          cells[]{            _key,            _type,            content[]{              ...,              markDefs[]{                ...,                _type == "link" => {                  _type,                  _key,                  href,                },              },            },          },        },      },  };  *[_type == "page" && slug.current == $slug][0]{    _type,      modules[]{      _type == "global-module" => moduleRef->module[0]{    _type,    "_key": ^._key,      _type == "card-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),    cards[]{      _key,        "title": fn::ptPlain(title),        "description": fn::ptPlain(description),        "links": coalesce(fn::links(links), []),        "image": fn::img(image),    }  },      _type == "driver-text" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),  },  },      _type == "spacer" => {    _type,    _key,    spacing,    anchorId  },      _type == "hero-primary" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),      "image": fn::img(image),  },      _type == "marquee" => {    _type,    _key,    variant,    enableVelocity,    imageType,    "items" : select(variant == "text" => items[]{      _key,        "title": fn::ptPlain(title),    }),      "images": fn::imgs(images)  },      _type == "rich-text" => {    _type,    _key,      "content": fn::pt(content),  },      _type == "driver-text" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),  },      _type == "media-file" => {    _type,    _key,    variant,      "image": fn::img(image),      video{      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  },    videoType,    videoYoutubeUrl,    "videoPoster": fn::img(videoPoster)  },    // Remove example modules      _type == "card-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),    cards[]{      _key,        "title": fn::ptPlain(title),        "description": fn::ptPlain(description),        "links": coalesce(fn::links(links), []),        "image": fn::img(image),    }  },  },        meta{    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "blog-index" => "/blog",      ^._type == "blog-post" => "/blog/" + ^.slug.current,      ^._type == "case-studies-index" => "/case-studies",      ^._type == "case-study" => "/case-studies/" + ^.slug.current,      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      defined(^.parentPage->slug.current) => "/" + ^.parentPage->slug.current + "/" + ^.slug.current,      "/" + ^.slug.current    ),    "image": coalesce(      image.asset->url + "?w=1200&h=630&fit=max",      ^.image.asset->url + "?w=1200&h=630&fit=max",      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  }  }
+// Query: fn fn::img($image) = $image {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::imgs($images) = $images[] {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::logo($logo) = $logo {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::links($links) = $links[] {      ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )  };    fn fn::ptPlain($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "links" => {        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };    fn fn::pt($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "links" => {        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    },      _type == "richTable" => {      ...,        _type,        _key,        hasColumnTitles,        hasRowTitles,        columnHeaders[]{          _key,          _type,          cellIndex,          title,        },        rows[]{          _key,          _type,          cells[]{            _key,            _type,            content[]{              ...,              markDefs[]{                ...,                _type == "link" => {                  _type,                  _key,                  href,                },              },            },          },        },      },  };  *[_type == "page" && slug.current == $slug][0]{    _type,      modules[]{      _type == "global-module" => moduleRef->module[0]{    _type,    "_key": ^._key,      _type == "card-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),    cards[]{      _key,        "title": fn::ptPlain(title),        "description": fn::ptPlain(description),        "links": coalesce(fn::links(links), []),        "image": fn::img(image),    }  },      _type == "driver-text" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),  },  },      _type == "spacer" => {    _type,    _key,    spacing,    anchorId  },      _type == "anchor" => {    _type,    _key,    anchorText  },      _type == "hero-primary" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),      "image": fn::img(image),  },      _type == "marquee" => {    _type,    _key,    variant,    enableVelocity,    imageType,    "items" : select(variant == "text" => items[]{      _key,        "title": fn::ptPlain(title),    }),      "images": fn::imgs(images)  },      _type == "rich-text" => {    _type,    _key,      "content": fn::pt(content),  },      _type == "driver-text" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),  },      _type == "media-file" => {    _type,    _key,    variant,      "image": fn::img(image),      video{      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  },    videoType,    videoYoutubeUrl,    "videoPoster": fn::img(videoPoster)  },    // Remove example modules      _type == "card-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),    cards[]{      _key,        "title": fn::ptPlain(title),        "description": fn::ptPlain(description),        "links": coalesce(fn::links(links), []),        "image": fn::img(image),    }  },  },        meta{    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "blog-index" => "/blog",      ^._type == "blog-post" => "/blog/" + ^.slug.current,      ^._type == "case-studies-index" => "/case-studies",      ^._type == "case-study" => "/case-studies/" + ^.slug.current,      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      defined(^.parentPage->slug.current) => "/" + ^.parentPage->slug.current + "/" + ^.slug.current,      "/" + ^.slug.current    ),    "image": coalesce(      image.asset->url + "?w=1200&h=630&fit=max",      ^.image.asset->url + "?w=1200&h=630&fit=max",      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  }  }
 export type PAGE_QUERY_RESULT = {
   _type: "page";
   modules: Array<
+    | {
+        _type: "anchor";
+        _key: string;
+        anchorText: Slug | null;
+      }
     | {
         _type: "card-example";
         _key: string;
@@ -2903,6 +2968,7 @@ export type PAGE_QUERY_RESULT = {
                 href:
                   string | "/" | "/blog" | "/case-studies" | "/platform" | null;
                 openInNewTab?: boolean;
+                anchorText?: Slug;
                 _type: "link";
                 _key: string;
               }
@@ -2946,6 +3012,7 @@ export type PAGE_QUERY_RESULT = {
                 href:
                   string | "/" | "/blog" | "/case-studies" | "/platform" | null;
                 openInNewTab?: boolean;
+                anchorText?: Slug;
                 _type: "link";
                 _key: string;
               }
@@ -2978,7 +3045,7 @@ export type PAGE_QUERY_RESULT = {
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               icon?: "Value";
               openInNewTab?: boolean;
-              anchorTag?: string;
+              anchorText?: Slug;
             }>
           | Array<never>;
         cards: Array<{
@@ -3017,6 +3084,7 @@ export type PAGE_QUERY_RESULT = {
                     | "/platform"
                     | null;
                   openInNewTab?: boolean;
+                  anchorText?: Slug;
                   _type: "link";
                   _key: string;
                 }
@@ -3065,6 +3133,7 @@ export type PAGE_QUERY_RESULT = {
                     | "/platform"
                     | null;
                   openInNewTab?: boolean;
+                  anchorText?: Slug;
                   _type: "link";
                   _key: string;
                 }
@@ -3097,7 +3166,7 @@ export type PAGE_QUERY_RESULT = {
                   string | "/" | "/blog" | "/case-studies" | "/platform" | null;
                 icon?: "Value";
                 openInNewTab?: boolean;
-                anchorTag?: string;
+                anchorText?: Slug;
               }>
             | Array<never>;
           image: {
@@ -3153,6 +3222,7 @@ export type PAGE_QUERY_RESULT = {
                 href:
                   string | "/" | "/blog" | "/case-studies" | "/platform" | null;
                 openInNewTab?: boolean;
+                anchorText?: Slug;
                 _type: "link";
                 _key: string;
               }
@@ -3196,6 +3266,7 @@ export type PAGE_QUERY_RESULT = {
                 href:
                   string | "/" | "/blog" | "/case-studies" | "/platform" | null;
                 openInNewTab?: boolean;
+                anchorText?: Slug;
                 _type: "link";
                 _key: string;
               }
@@ -3228,7 +3299,7 @@ export type PAGE_QUERY_RESULT = {
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               icon?: "Value";
               openInNewTab?: boolean;
-              anchorTag?: string;
+              anchorText?: Slug;
             }>
           | Array<never>;
       }
@@ -3264,6 +3335,7 @@ export type PAGE_QUERY_RESULT = {
                 href:
                   string | "/" | "/blog" | "/case-studies" | "/platform" | null;
                 openInNewTab?: boolean;
+                anchorText?: Slug;
                 _type: "link";
                 _key: string;
               }
@@ -3307,6 +3379,7 @@ export type PAGE_QUERY_RESULT = {
                 href:
                   string | "/" | "/blog" | "/case-studies" | "/platform" | null;
                 openInNewTab?: boolean;
+                anchorText?: Slug;
                 _type: "link";
                 _key: string;
               }
@@ -3339,7 +3412,7 @@ export type PAGE_QUERY_RESULT = {
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               icon?: "Value";
               openInNewTab?: boolean;
-              anchorTag?: string;
+              anchorText?: Slug;
             }>
           | Array<never>;
         image: {
@@ -3404,6 +3477,7 @@ export type PAGE_QUERY_RESULT = {
                     | "/platform"
                     | null;
                   openInNewTab?: boolean;
+                  anchorText?: Slug;
                   _type: "link";
                   _key: string;
                 }
@@ -3532,6 +3606,7 @@ export type PAGE_QUERY_RESULT = {
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -3617,7 +3692,7 @@ export type PAGE_QUERY_RESULT = {
         _type: "spacer";
         _key: string;
         spacing: "default" | "large" | "medium" | "small" | "tiny" | null;
-        anchorId: string | null;
+        anchorId: null;
       }
     | {}
   > | null;
@@ -3646,7 +3721,7 @@ export type PAGES_SLUGS_QUERY_RESULT = Array<
 
 // Source: ../frontend/sanity/queries/queries.ts
 // Variable: GET_CONTENT_TYPE_INDEX_QUERY
-// Query: fn fn::img($image) = $image {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::imgs($images) = $images[] {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::logo($logo) = $logo {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::links($links) = $links[] {      ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )  };    fn fn::ptPlain($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "links" => {        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };    fn fn::pt($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "links" => {        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    },      _type == "richTable" => {      ...,        _type,        _key,        hasColumnTitles,        hasRowTitles,        columnHeaders[]{          _key,          _type,          cellIndex,          title,        },        rows[]{          _key,          _type,          cells[]{            _key,            _type,            content[]{              ...,              markDefs[]{                ...,                _type == "link" => {                  _type,                  _key,                  href,                },              },            },          },        },      },  };  *[_type == $contentType][0]{    _type,    slug,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),        meta{    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "blog-index" => "/blog",      ^._type == "blog-post" => "/blog/" + ^.slug.current,      ^._type == "case-studies-index" => "/case-studies",      ^._type == "case-study" => "/case-studies/" + ^.slug.current,      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      defined(^.parentPage->slug.current) => "/" + ^.parentPage->slug.current + "/" + ^.slug.current,      "/" + ^.slug.current    ),    "image": coalesce(      image.asset->url + "?w=1200&h=630&fit=max",      ^.image.asset->url + "?w=1200&h=630&fit=max",      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },      modules[]{      _type == "global-module" => moduleRef->module[0]{    _type,    "_key": ^._key,      _type == "card-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),    cards[]{      _key,        "title": fn::ptPlain(title),        "description": fn::ptPlain(description),        "links": coalesce(fn::links(links), []),        "image": fn::img(image),    }  },      _type == "driver-text" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),  },  },      _type == "spacer" => {    _type,    _key,    spacing,    anchorId  },      _type == "hero-primary" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),      "image": fn::img(image),  },      _type == "marquee" => {    _type,    _key,    variant,    enableVelocity,    imageType,    "items" : select(variant == "text" => items[]{      _key,        "title": fn::ptPlain(title),    }),      "images": fn::imgs(images)  },      _type == "rich-text" => {    _type,    _key,      "content": fn::pt(content),  },      _type == "driver-text" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),  },      _type == "media-file" => {    _type,    _key,    variant,      "image": fn::img(image),      video{      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  },    videoType,    videoYoutubeUrl,    "videoPoster": fn::img(videoPoster)  },    // Remove example modules      _type == "card-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),    cards[]{      _key,        "title": fn::ptPlain(title),        "description": fn::ptPlain(description),        "links": coalesce(fn::links(links), []),        "image": fn::img(image),    }  },  },    "filters": {      "defaults": {        "label": "All", // Also used for as nuqs' default value for filtering        "count": count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  )]), // Total number of posts      },      "categories": {        "label": select(          $contentType == "blog-index" => "Field of Study",          $contentType == "case-studies-index" => "Research Area",          "Category" // Default fallback if specific content types don't have special labels        ),        "items": *[_type ==  select(          $contentType == "blog-index" => "blog-category") && count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && references(^._id)]) > 0] {            _id,            slug,              "title": fn::ptPlain(title),            "count": count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && references(^._id)])         }       },       "topics": {        "label": select(          $contentType == "case-studies-index" => "Industry",          "Topic" // Default fallback if specific content types don't have special labels        ),        "items": *[_type == "content-topic" &&        count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && references(^._id)]) > 0] {          _id,          slug,            "title": fn::ptPlain(title),          "count": count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && references(^._id)])        },       },    },    "pagination": {      "totalPages": (count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)]) / $limit),      "scrollTargetId": select(        _type == "case-studies-index" => "case-studies-posts-list",        _type == "blog-index" => "blog-posts-list",        "posts-list"      ),    },    "posts": *[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {      _id,      _type,      _createdAt,      publishedDate,      slug,        "links": coalesce(fn::links(links), []),        "title": fn::ptPlain(title),        "image": fn::img(image),        "description": fn::ptPlain(description),      "href": select(        _type == "case-study" => "/case-studies/" + slug.current,        _type == "blog-post" => "/blog/" + slug.current,      ),      category[]->{        _id,          "title": fn::ptPlain(title),      },      contentTopic[]->{        _id,          "title": fn::ptPlain(title),      },    }  }
+// Query: fn fn::img($image) = $image {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::imgs($images) = $images[] {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::logo($logo) = $logo {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::links($links) = $links[] {      ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )  };    fn fn::ptPlain($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "links" => {        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };    fn fn::pt($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "links" => {        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    },      _type == "richTable" => {      ...,        _type,        _key,        hasColumnTitles,        hasRowTitles,        columnHeaders[]{          _key,          _type,          cellIndex,          title,        },        rows[]{          _key,          _type,          cells[]{            _key,            _type,            content[]{              ...,              markDefs[]{                ...,                _type == "link" => {                  _type,                  _key,                  href,                },              },            },          },        },      },  };  *[_type == $contentType][0]{    _type,    slug,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),        meta{    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "blog-index" => "/blog",      ^._type == "blog-post" => "/blog/" + ^.slug.current,      ^._type == "case-studies-index" => "/case-studies",      ^._type == "case-study" => "/case-studies/" + ^.slug.current,      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      defined(^.parentPage->slug.current) => "/" + ^.parentPage->slug.current + "/" + ^.slug.current,      "/" + ^.slug.current    ),    "image": coalesce(      image.asset->url + "?w=1200&h=630&fit=max",      ^.image.asset->url + "?w=1200&h=630&fit=max",      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },      modules[]{      _type == "global-module" => moduleRef->module[0]{    _type,    "_key": ^._key,      _type == "card-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),    cards[]{      _key,        "title": fn::ptPlain(title),        "description": fn::ptPlain(description),        "links": coalesce(fn::links(links), []),        "image": fn::img(image),    }  },      _type == "driver-text" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),  },  },      _type == "spacer" => {    _type,    _key,    spacing,    anchorId  },      _type == "anchor" => {    _type,    _key,    anchorText  },      _type == "hero-primary" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),      "image": fn::img(image),  },      _type == "marquee" => {    _type,    _key,    variant,    enableVelocity,    imageType,    "items" : select(variant == "text" => items[]{      _key,        "title": fn::ptPlain(title),    }),      "images": fn::imgs(images)  },      _type == "rich-text" => {    _type,    _key,      "content": fn::pt(content),  },      _type == "driver-text" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),  },      _type == "media-file" => {    _type,    _key,    variant,      "image": fn::img(image),      video{      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  },    videoType,    videoYoutubeUrl,    "videoPoster": fn::img(videoPoster)  },    // Remove example modules      _type == "card-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),    cards[]{      _key,        "title": fn::ptPlain(title),        "description": fn::ptPlain(description),        "links": coalesce(fn::links(links), []),        "image": fn::img(image),    }  },  },    "filters": {      "defaults": {        "label": "All", // Also used for as nuqs' default value for filtering        "count": count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  )]), // Total number of posts      },      "categories": {        "label": select(          $contentType == "blog-index" => "Field of Study",          $contentType == "case-studies-index" => "Research Area",          "Category" // Default fallback if specific content types don't have special labels        ),        "items": *[_type ==  select(          $contentType == "blog-index" => "blog-category") && count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && references(^._id)]) > 0] {            _id,            slug,              "title": fn::ptPlain(title),            "count": count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && references(^._id)])         }       },       "topics": {        "label": select(          $contentType == "case-studies-index" => "Industry",          "Topic" // Default fallback if specific content types don't have special labels        ),        "items": *[_type == "content-topic" &&        count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && references(^._id)]) > 0] {          _id,          slug,            "title": fn::ptPlain(title),          "count": count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && references(^._id)])        },       },    },    "pagination": {      "totalPages": (count(*[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)]) / $limit),      "scrollTargetId": select(        _type == "case-studies-index" => "case-studies-posts-list",        _type == "blog-index" => "blog-posts-list",        "posts-list"      ),    },    "posts": *[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {      _id,      _type,      _createdAt,      publishedDate,      slug,        "links": coalesce(fn::links(links), []),        "title": fn::ptPlain(title),        "image": fn::img(image),        "description": fn::ptPlain(description),      "href": select(        _type == "case-study" => "/case-studies/" + slug.current,        _type == "blog-post" => "/blog/" + slug.current,      ),      category[]->{        _id,          "title": fn::ptPlain(title),      },      contentTopic[]->{        _id,          "title": fn::ptPlain(title),      },    }  }
 export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
   | {
       _type: "assist.instruction.context";
@@ -3699,6 +3774,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -3755,6 +3831,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -3807,7 +3884,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -3844,6 +3921,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -3911,6 +3989,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -3962,6 +4041,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -4013,6 +4093,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -4058,7 +4139,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -4095,6 +4176,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -4162,6 +4244,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -4214,6 +4297,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -4283,6 +4367,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -4339,6 +4424,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -4391,7 +4477,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -4428,6 +4514,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -4495,6 +4582,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -4546,6 +4634,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -4597,6 +4686,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -4642,7 +4732,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -4679,6 +4769,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -4746,6 +4837,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -4798,6 +4890,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -4848,6 +4941,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               href:
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
+              anchorText?: Slug;
               _type: "link";
               _key: string;
             }
@@ -4891,6 +4985,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               href:
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
+              anchorText?: Slug;
               _type: "link";
               _key: string;
             }
@@ -4951,6 +5046,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -5007,6 +5103,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -5059,7 +5156,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -5096,6 +5193,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -5163,6 +5261,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -5214,6 +5313,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -5265,6 +5365,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -5310,7 +5411,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -5347,6 +5448,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -5414,6 +5516,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -5466,6 +5569,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -5516,6 +5620,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               href:
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
+              anchorText?: Slug;
               _type: "link";
               _key: string;
             }
@@ -5577,6 +5682,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -5633,6 +5739,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -5685,7 +5792,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -5722,6 +5829,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -5789,6 +5897,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -5840,6 +5949,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -5891,6 +6001,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -5936,7 +6047,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -5973,6 +6084,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -6040,6 +6152,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -6092,6 +6205,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -6142,6 +6256,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               href:
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
+              anchorText?: Slug;
               _type: "link";
               _key: string;
             }
@@ -6185,6 +6300,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               href:
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
+              anchorText?: Slug;
               _type: "link";
               _key: string;
             }
@@ -6229,6 +6345,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | PlatformIndexReference;
                     href?: string;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -6244,6 +6361,11 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         image: string | null;
       } | null;
       modules: Array<
+        | {
+            _type: "anchor";
+            _key: string;
+            anchorText: Slug | null;
+          }
         | {
             _type: "card-example";
             _key: string;
@@ -6281,6 +6403,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -6329,6 +6452,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -6366,7 +6490,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             cards: Array<{
@@ -6405,6 +6529,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -6453,6 +6578,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -6490,7 +6616,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | null;
                     icon?: "Value";
                     openInNewTab?: boolean;
-                    anchorTag?: string;
+                    anchorText?: Slug;
                   }>
                 | Array<never>;
               image: {
@@ -6551,6 +6677,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -6599,6 +6726,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -6636,7 +6764,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
           }
@@ -6677,6 +6805,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -6725,6 +6854,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -6762,7 +6892,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             image: {
@@ -6827,6 +6957,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -6955,6 +7086,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                           | "/platform"
                           | null;
                         openInNewTab?: boolean;
+                        anchorText?: Slug;
                         _type: "link";
                         _key: string;
                       }
@@ -7040,7 +7172,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _type: "spacer";
             _key: string;
             spacing: "default" | "large" | "medium" | "small" | "tiny" | null;
-            anchorId: string | null;
+            anchorId: null;
           }
         | {}
       > | null;
@@ -7088,6 +7220,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -7144,6 +7277,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -7196,7 +7330,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -7233,6 +7367,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -7300,6 +7435,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -7351,6 +7487,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -7402,6 +7539,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -7447,7 +7585,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -7484,6 +7622,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -7551,6 +7690,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -7603,6 +7743,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -7653,6 +7794,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               href:
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
+              anchorText?: Slug;
               _type: "link";
               _key: string;
             }
@@ -7696,6 +7838,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               href:
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
+              anchorText?: Slug;
               _type: "link";
               _key: string;
             }
@@ -7740,6 +7883,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | PlatformIndexReference;
                     href?: string;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -7755,6 +7899,11 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         image: string | null;
       } | null;
       modules: Array<
+        | {
+            _type: "anchor";
+            _key: string;
+            anchorText: Slug | null;
+          }
         | {
             _type: "card-example";
             _key: string;
@@ -7792,6 +7941,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -7840,6 +7990,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -7877,7 +8028,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             cards: Array<{
@@ -7916,6 +8067,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -7964,6 +8116,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -8001,7 +8154,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | null;
                     icon?: "Value";
                     openInNewTab?: boolean;
-                    anchorTag?: string;
+                    anchorText?: Slug;
                   }>
                 | Array<never>;
               image: {
@@ -8062,6 +8215,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -8110,6 +8264,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -8147,7 +8302,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
           }
@@ -8188,6 +8343,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -8236,6 +8392,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -8273,7 +8430,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             image: {
@@ -8338,6 +8495,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -8466,6 +8624,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                           | "/platform"
                           | null;
                         openInNewTab?: boolean;
+                        anchorText?: Slug;
                         _type: "link";
                         _key: string;
                       }
@@ -8551,7 +8710,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _type: "spacer";
             _key: string;
             spacing: "default" | "large" | "medium" | "small" | "tiny" | null;
-            anchorId: string | null;
+            anchorId: null;
           }
         | {}
       > | null;
@@ -8599,6 +8758,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -8655,6 +8815,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -8707,7 +8868,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -8744,6 +8905,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -8811,6 +8973,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -8862,6 +9025,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -8913,6 +9077,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -8958,7 +9123,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -8995,6 +9160,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -9062,6 +9228,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -9114,6 +9281,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -9164,6 +9332,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               href:
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
+              anchorText?: Slug;
               _type: "link";
               _key: string;
             }
@@ -9207,6 +9376,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               href:
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
+              anchorText?: Slug;
               _type: "link";
               _key: string;
             }
@@ -9251,6 +9421,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | PlatformIndexReference;
                     href?: string;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -9266,6 +9437,11 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         image: string | null;
       } | null;
       modules: Array<
+        | {
+            _type: "anchor";
+            _key: string;
+            anchorText: Slug | null;
+          }
         | {
             _type: "card-example";
             _key: string;
@@ -9303,6 +9479,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -9351,6 +9528,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -9388,7 +9566,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             cards: Array<{
@@ -9427,6 +9605,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -9475,6 +9654,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -9512,7 +9692,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | null;
                     icon?: "Value";
                     openInNewTab?: boolean;
-                    anchorTag?: string;
+                    anchorText?: Slug;
                   }>
                 | Array<never>;
               image: {
@@ -9573,6 +9753,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -9621,6 +9802,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -9658,7 +9840,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
           }
@@ -9699,6 +9881,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -9747,6 +9930,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -9784,7 +9968,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             image: {
@@ -9849,6 +10033,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -9977,6 +10162,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                           | "/platform"
                           | null;
                         openInNewTab?: boolean;
+                        anchorText?: Slug;
                         _type: "link";
                         _key: string;
                       }
@@ -10062,7 +10248,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _type: "spacer";
             _key: string;
             spacing: "default" | "large" | "medium" | "small" | "tiny" | null;
-            anchorId: string | null;
+            anchorId: null;
           }
         | {}
       > | null;
@@ -10110,6 +10296,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -10166,6 +10353,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -10218,7 +10406,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -10255,6 +10443,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -10322,6 +10511,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -10373,6 +10563,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -10424,6 +10615,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -10469,7 +10661,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -10506,6 +10698,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -10573,6 +10766,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -10625,6 +10819,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -10675,6 +10870,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               href:
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
+              anchorText?: Slug;
               _type: "link";
               _key: string;
             }
@@ -10718,6 +10914,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               href:
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
+              anchorText?: Slug;
               _type: "link";
               _key: string;
             }
@@ -10762,6 +10959,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | PlatformIndexReference;
                     href?: string;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -10777,6 +10975,11 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
         image: string | null;
       } | null;
       modules: Array<
+        | {
+            _type: "anchor";
+            _key: string;
+            anchorText: Slug | null;
+          }
         | {
             _type: "card-example";
             _key: string;
@@ -10814,6 +11017,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -10862,6 +11066,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -10899,7 +11104,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             cards: Array<{
@@ -10938,6 +11143,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -10986,6 +11192,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -11023,7 +11230,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | null;
                     icon?: "Value";
                     openInNewTab?: boolean;
-                    anchorTag?: string;
+                    anchorText?: Slug;
                   }>
                 | Array<never>;
               image: {
@@ -11084,6 +11291,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -11132,6 +11340,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -11169,7 +11378,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
           }
@@ -11210,6 +11419,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -11258,6 +11468,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -11295,7 +11506,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             image: {
@@ -11360,6 +11571,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -11488,6 +11700,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                           | "/platform"
                           | null;
                         openInNewTab?: boolean;
+                        anchorText?: Slug;
                         _type: "link";
                         _key: string;
                       }
@@ -11573,7 +11786,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _type: "spacer";
             _key: string;
             spacing: "default" | "large" | "medium" | "small" | "tiny" | null;
-            anchorId: string | null;
+            anchorId: null;
           }
         | {}
       > | null;
@@ -11621,6 +11834,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -11677,6 +11891,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -11729,7 +11944,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -11766,6 +11981,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -11833,6 +12049,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -11884,6 +12101,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -11935,6 +12153,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -11980,7 +12199,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -12017,6 +12236,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -12084,6 +12304,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -12136,6 +12357,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -12205,6 +12427,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -12261,6 +12484,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -12313,7 +12537,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -12350,6 +12574,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -12417,6 +12642,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -12468,6 +12694,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -12519,6 +12746,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -12564,7 +12792,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -12601,6 +12829,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -12668,6 +12897,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -12720,6 +12950,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -12770,6 +13001,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
               href:
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
+              anchorText?: Slug;
               _type: "link";
               _key: string;
             }
@@ -12831,6 +13063,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -12887,6 +13120,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -12939,7 +13173,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -12976,6 +13210,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -13043,6 +13278,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -13094,6 +13330,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -13145,6 +13382,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -13190,7 +13428,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -13227,6 +13465,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -13294,6 +13533,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -13346,6 +13586,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -13415,6 +13656,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -13471,6 +13713,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -13523,7 +13766,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -13560,6 +13803,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -13627,6 +13871,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -13678,6 +13923,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -13729,6 +13975,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -13774,7 +14021,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -13811,6 +14058,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -13878,6 +14126,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -13930,6 +14179,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -13999,6 +14249,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -14055,6 +14306,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -14107,7 +14359,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -14144,6 +14396,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -14211,6 +14464,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -14262,6 +14516,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -14313,6 +14568,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -14358,7 +14614,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -14395,6 +14651,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -14462,6 +14719,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -14514,6 +14772,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -14583,6 +14842,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -14639,6 +14899,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -14691,7 +14952,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -14728,6 +14989,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -14795,6 +15057,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -14846,6 +15109,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -14897,6 +15161,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -14942,7 +15207,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -14979,6 +15244,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -15046,6 +15312,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -15098,6 +15365,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -15167,6 +15435,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -15223,6 +15492,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -15275,7 +15545,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -15312,6 +15582,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -15379,6 +15650,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -15430,6 +15702,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -15481,6 +15754,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -15526,7 +15800,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -15563,6 +15837,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -15630,6 +15905,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -15682,6 +15958,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -15751,6 +16028,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -15807,6 +16085,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -15859,7 +16138,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -15896,6 +16175,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -15963,6 +16243,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -16014,6 +16295,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -16065,6 +16347,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -16110,7 +16393,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -16147,6 +16430,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -16214,6 +16498,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -16266,6 +16551,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -16298,6 +16584,11 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
       } | null;
       modules: Array<
         | {
+            _type: "anchor";
+            _key: string;
+            anchorText: Slug | null;
+          }
+        | {
             _type: "card-example";
             _key: string;
             title: Array<{
@@ -16334,6 +16625,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -16382,6 +16674,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -16419,7 +16712,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             cards: Array<{
@@ -16458,6 +16751,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -16506,6 +16800,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -16543,7 +16838,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | null;
                     icon?: "Value";
                     openInNewTab?: boolean;
-                    anchorTag?: string;
+                    anchorText?: Slug;
                   }>
                 | Array<never>;
               image: {
@@ -16604,6 +16899,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -16652,6 +16948,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -16689,7 +16986,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
           }
@@ -16730,6 +17027,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -16778,6 +17076,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -16815,7 +17114,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             image: {
@@ -16880,6 +17179,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -17008,6 +17308,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                           | "/platform"
                           | null;
                         openInNewTab?: boolean;
+                        anchorText?: Slug;
                         _type: "link";
                         _key: string;
                       }
@@ -17093,7 +17394,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _type: "spacer";
             _key: string;
             spacing: "default" | "large" | "medium" | "small" | "tiny" | null;
-            anchorId: string | null;
+            anchorId: null;
           }
         | {}
       > | null;
@@ -17141,6 +17442,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -17197,6 +17499,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -17249,7 +17552,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -17286,6 +17589,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -17353,6 +17657,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -17404,6 +17709,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -17455,6 +17761,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -17500,7 +17807,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -17537,6 +17844,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -17604,6 +17912,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -17656,6 +17965,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -17688,6 +17998,11 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
       } | null;
       modules: Array<
         | {
+            _type: "anchor";
+            _key: string;
+            anchorText: Slug | null;
+          }
+        | {
             _type: "card-example";
             _key: string;
             title: Array<{
@@ -17724,6 +18039,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -17772,6 +18088,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -17809,7 +18126,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             cards: Array<{
@@ -17848,6 +18165,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -17896,6 +18214,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -17933,7 +18252,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | null;
                     icon?: "Value";
                     openInNewTab?: boolean;
-                    anchorTag?: string;
+                    anchorText?: Slug;
                   }>
                 | Array<never>;
               image: {
@@ -17994,6 +18313,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -18042,6 +18362,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -18079,7 +18400,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
           }
@@ -18120,6 +18441,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -18168,6 +18490,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -18205,7 +18528,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             image: {
@@ -18270,6 +18593,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -18398,6 +18722,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                           | "/platform"
                           | null;
                         openInNewTab?: boolean;
+                        anchorText?: Slug;
                         _type: "link";
                         _key: string;
                       }
@@ -18483,7 +18808,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _type: "spacer";
             _key: string;
             spacing: "default" | "large" | "medium" | "small" | "tiny" | null;
-            anchorId: string | null;
+            anchorId: null;
           }
         | {}
       > | null;
@@ -18531,6 +18856,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -18587,6 +18913,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -18639,7 +18966,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -18676,6 +19003,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -18743,6 +19071,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -18794,6 +19123,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -18845,6 +19175,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -18890,7 +19221,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -18927,6 +19258,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -18994,6 +19326,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -19046,6 +19379,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -19078,6 +19412,11 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
       } | null;
       modules: Array<
         | {
+            _type: "anchor";
+            _key: string;
+            anchorText: Slug | null;
+          }
+        | {
             _type: "card-example";
             _key: string;
             title: Array<{
@@ -19114,6 +19453,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -19162,6 +19502,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -19199,7 +19540,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             cards: Array<{
@@ -19238,6 +19579,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -19286,6 +19628,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -19323,7 +19666,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | null;
                     icon?: "Value";
                     openInNewTab?: boolean;
-                    anchorTag?: string;
+                    anchorText?: Slug;
                   }>
                 | Array<never>;
               image: {
@@ -19384,6 +19727,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -19432,6 +19776,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -19469,7 +19814,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
           }
@@ -19510,6 +19855,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -19558,6 +19904,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -19595,7 +19942,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             image: {
@@ -19660,6 +20007,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -19788,6 +20136,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                           | "/platform"
                           | null;
                         openInNewTab?: boolean;
+                        anchorText?: Slug;
                         _type: "link";
                         _key: string;
                       }
@@ -19873,7 +20222,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
             _type: "spacer";
             _key: string;
             spacing: "default" | "large" | "medium" | "small" | "tiny" | null;
-            anchorId: string | null;
+            anchorId: null;
           }
         | {}
       > | null;
@@ -19921,6 +20270,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -19977,6 +20327,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -20029,7 +20380,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -20066,6 +20417,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -20133,6 +20485,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -20184,6 +20537,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -20235,6 +20589,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -20280,7 +20635,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -20317,6 +20672,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -20384,6 +20740,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -20436,6 +20793,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -20505,6 +20863,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -20561,6 +20920,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -20613,7 +20973,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -20650,6 +21010,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -20717,6 +21078,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -20768,6 +21130,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -20819,6 +21182,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -20864,7 +21228,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -20901,6 +21265,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -20968,6 +21333,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -21020,6 +21386,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -21089,6 +21456,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -21145,6 +21513,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -21197,7 +21566,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -21234,6 +21603,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -21301,6 +21671,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -21352,6 +21723,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -21403,6 +21775,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -21448,7 +21821,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             title: Array<{
@@ -21485,6 +21858,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -21552,6 +21926,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -21604,6 +21979,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -21626,7 +22002,7 @@ export type GET_CONTENT_TYPE_INDEX_QUERY_RESULT =
 
 // Source: ../frontend/sanity/queries/queries.ts
 // Variable: GET_CONTENT_TYPE_SLUG_QUERY
-// Query: fn fn::img($image) = $image {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::imgs($images) = $images[] {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::logo($logo) = $logo {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::links($links) = $links[] {      ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )  };    fn fn::ptPlain($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "links" => {        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };    fn fn::pt($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "links" => {        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    },      _type == "richTable" => {      ...,        _type,        _key,        hasColumnTitles,        hasRowTitles,        columnHeaders[]{          _key,          _type,          cellIndex,          title,        },        rows[]{          _key,          _type,          cells[]{            _key,            _type,            content[]{              ...,              markDefs[]{                ...,                _type == "link" => {                  _type,                  _key,                  href,                },              },            },          },        },      },  };  *[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && slug.current == $slug][0]{    _id,    _createdAt,    _type,    slug,    publishedDate,        meta{    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "blog-index" => "/blog",      ^._type == "blog-post" => "/blog/" + ^.slug.current,      ^._type == "case-studies-index" => "/case-studies",      ^._type == "case-study" => "/case-studies/" + ^.slug.current,      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      defined(^.parentPage->slug.current) => "/" + ^.parentPage->slug.current + "/" + ^.slug.current,      "/" + ^.slug.current    ),    "image": coalesce(      image.asset->url + "?w=1200&h=630&fit=max",      ^.image.asset->url + "?w=1200&h=630&fit=max",      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },      modules[]{      _type == "global-module" => moduleRef->module[0]{    _type,    "_key": ^._key,      _type == "card-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),    cards[]{      _key,        "title": fn::ptPlain(title),        "description": fn::ptPlain(description),        "links": coalesce(fn::links(links), []),        "image": fn::img(image),    }  },      _type == "driver-text" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),  },  },      _type == "spacer" => {    _type,    _key,    spacing,    anchorId  },      _type == "hero-primary" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),      "image": fn::img(image),  },      _type == "marquee" => {    _type,    _key,    variant,    enableVelocity,    imageType,    "items" : select(variant == "text" => items[]{      _key,        "title": fn::ptPlain(title),    }),      "images": fn::imgs(images)  },      _type == "rich-text" => {    _type,    _key,      "content": fn::pt(content),  },      _type == "driver-text" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),  },      _type == "media-file" => {    _type,    _key,    variant,      "image": fn::img(image),      video{      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  },    videoType,    videoYoutubeUrl,    "videoPoster": fn::img(videoPoster)  },    // Remove example modules      _type == "card-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),    cards[]{      _key,        "title": fn::ptPlain(title),        "description": fn::ptPlain(description),        "links": coalesce(fn::links(links), []),        "image": fn::img(image),    }  },  },      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "image": fn::img(image),      "content": fn::pt(content),    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180),  }
+// Query: fn fn::img($image) = $image {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::imgs($images) = $images[] {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::logo($logo) = $logo {      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  };    fn fn::links($links) = $links[] {      ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )  };    fn fn::ptPlain($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "links" => {        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    }  };    fn fn::pt($content) = $content[] {    ...,    markDefs[]{      ...,      _type == "link" => {          ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )      }    },    _type == "links" => {        ...,  _key,  "href": select(    type == "external" => href,    @.internalLink->slug.current == "index" => "/",    @.internalLink->_type == "blog-index" => "/blog",    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,    @.internalLink->_type == "case-studies-index" => "/case-studies",    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,    @.internalLink->_type == "platform-index" => "/platform",    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,    "/" + @.internalLink->slug.current  )    },      _type == "richTable" => {      ...,        _type,        _key,        hasColumnTitles,        hasRowTitles,        columnHeaders[]{          _key,          _type,          cellIndex,          title,        },        rows[]{          _key,          _type,          cells[]{            _key,            _type,            content[]{              ...,              markDefs[]{                ...,                _type == "link" => {                  _type,                  _key,                  href,                },              },            },          },        },      },  };  *[_type ==   select(    $contentType == "blog-index" => "blog-post",    $contentType == "case-studies-index" => "case-study"  ) && slug.current == $slug][0]{    _id,    _createdAt,    _type,    slug,    publishedDate,        meta{    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),    description,    noindex,    "relativeUrl": select(      ^.slug.current == "index" => "/",      ^._type == "blog-index" => "/blog",      ^._type == "blog-post" => "/blog/" + ^.slug.current,      ^._type == "case-studies-index" => "/case-studies",      ^._type == "case-study" => "/case-studies/" + ^.slug.current,      ^._type == "platform-index" => "/platform",      ^._type == "platform-child" => "/platform/" + ^.slug.current,      defined(^.parentPage->slug.current) => "/" + ^.parentPage->slug.current + "/" + ^.slug.current,      "/" + ^.slug.current    ),    "image": coalesce(      image.asset->url + "?w=1200&h=630&fit=max",      ^.image.asset->url + "?w=1200&h=630&fit=max",      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"    )  },      modules[]{      _type == "global-module" => moduleRef->module[0]{    _type,    "_key": ^._key,      _type == "card-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),    cards[]{      _key,        "title": fn::ptPlain(title),        "description": fn::ptPlain(description),        "links": coalesce(fn::links(links), []),        "image": fn::img(image),    }  },      _type == "driver-text" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),  },  },      _type == "spacer" => {    _type,    _key,    spacing,    anchorId  },      _type == "anchor" => {    _type,    _key,    anchorText  },      _type == "hero-primary" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),      "image": fn::img(image),  },      _type == "marquee" => {    _type,    _key,    variant,    enableVelocity,    imageType,    "items" : select(variant == "text" => items[]{      _key,        "title": fn::ptPlain(title),    }),      "images": fn::imgs(images)  },      _type == "rich-text" => {    _type,    _key,      "content": fn::pt(content),  },      _type == "driver-text" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),  },      _type == "media-file" => {    _type,    _key,    variant,      "image": fn::img(image),      video{      ...,  asset->{    _id,    url,    metadata {      lqip,      dimensions {        width,        height      }    }  }  },    videoType,    videoYoutubeUrl,    "videoPoster": fn::img(videoPoster)  },    // Remove example modules      _type == "card-example" => {    _type,    _key,      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "links": coalesce(fn::links(links), []),    cards[]{      _key,        "title": fn::ptPlain(title),        "description": fn::ptPlain(description),        "links": coalesce(fn::links(links), []),        "image": fn::img(image),    }  },  },      "title": fn::ptPlain(title),      "description": fn::ptPlain(description),      "image": fn::img(image),      "content": fn::pt(content),    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180),  }
 export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
   | {
       _id: string;
@@ -21664,6 +22040,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                       | PlatformIndexReference;
                     href?: string;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -21679,6 +22056,11 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
         image: string | null;
       } | null;
       modules: Array<
+        | {
+            _type: "anchor";
+            _key: string;
+            anchorText: Slug | null;
+          }
         | {
             _type: "card-example";
             _key: string;
@@ -21716,6 +22098,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -21764,6 +22147,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -21801,7 +22185,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             cards: Array<{
@@ -21840,6 +22224,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -21888,6 +22273,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -21925,7 +22311,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                       | null;
                     icon?: "Value";
                     openInNewTab?: boolean;
-                    anchorTag?: string;
+                    anchorText?: Slug;
                   }>
                 | Array<never>;
               image: {
@@ -21986,6 +22372,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -22034,6 +22421,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -22071,7 +22459,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
           }
@@ -22112,6 +22500,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -22160,6 +22549,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -22197,7 +22587,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             image: {
@@ -22262,6 +22652,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -22390,6 +22781,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                           | "/platform"
                           | null;
                         openInNewTab?: boolean;
+                        anchorText?: Slug;
                         _type: "link";
                         _key: string;
                       }
@@ -22475,7 +22867,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             _type: "spacer";
             _key: string;
             spacing: "default" | "large" | "medium" | "small" | "tiny" | null;
-            anchorId: string | null;
+            anchorId: null;
           }
         | {}
       > | null;
@@ -22508,6 +22900,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               href:
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
+              anchorText?: Slug;
               _type: "link";
               _key: string;
             }
@@ -22551,6 +22944,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               href:
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
+              anchorText?: Slug;
               _type: "link";
               _key: string;
             }
@@ -22619,6 +23013,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                     | "/platform"
                     | null;
                   openInNewTab?: boolean;
+                  anchorText?: Slug;
                   _type: "link";
                   _key: string;
                 }
@@ -22737,6 +23132,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                       | PlatformIndexReference;
                     href?: string;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -22752,6 +23148,11 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
         image: string | null;
       } | null;
       modules: Array<
+        | {
+            _type: "anchor";
+            _key: string;
+            anchorText: Slug | null;
+          }
         | {
             _type: "card-example";
             _key: string;
@@ -22789,6 +23190,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -22837,6 +23239,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -22874,7 +23277,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             cards: Array<{
@@ -22913,6 +23316,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -22961,6 +23365,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -22998,7 +23403,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                       | null;
                     icon?: "Value";
                     openInNewTab?: boolean;
-                    anchorTag?: string;
+                    anchorText?: Slug;
                   }>
                 | Array<never>;
               image: {
@@ -23059,6 +23464,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -23107,6 +23513,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -23144,7 +23551,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
           }
@@ -23185,6 +23592,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -23233,6 +23641,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                       | "/platform"
                       | null;
                     openInNewTab?: boolean;
+                    anchorText?: Slug;
                     _type: "link";
                     _key: string;
                   }
@@ -23270,7 +23679,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                     | null;
                   icon?: "Value";
                   openInNewTab?: boolean;
-                  anchorTag?: string;
+                  anchorText?: Slug;
                 }>
               | Array<never>;
             image: {
@@ -23335,6 +23744,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                         | "/platform"
                         | null;
                       openInNewTab?: boolean;
+                      anchorText?: Slug;
                       _type: "link";
                       _key: string;
                     }
@@ -23463,6 +23873,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                           | "/platform"
                           | null;
                         openInNewTab?: boolean;
+                        anchorText?: Slug;
                         _type: "link";
                         _key: string;
                       }
@@ -23548,7 +23959,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
             _type: "spacer";
             _key: string;
             spacing: "default" | "large" | "medium" | "small" | "tiny" | null;
-            anchorId: string | null;
+            anchorId: null;
           }
         | {}
       > | null;
@@ -23581,6 +23992,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               href:
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
+              anchorText?: Slug;
               _type: "link";
               _key: string;
             }
@@ -23624,6 +24036,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
               href:
                 string | "/" | "/blog" | "/case-studies" | "/platform" | null;
               openInNewTab?: boolean;
+              anchorText?: Slug;
               _type: "link";
               _key: string;
             }
@@ -23692,6 +24105,7 @@ export type GET_CONTENT_TYPE_SLUG_QUERY_RESULT =
                     | "/platform"
                     | null;
                   openInNewTab?: boolean;
+                  anchorText?: Slug;
                   _type: "link";
                   _key: string;
                 }
@@ -23794,10 +24208,10 @@ declare module "@sanity/client" {
     '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::links($links) = $links[] {\n    \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "links" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "links" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    },\n      _type == "richTable" => {\n      ...,\n        _type,\n        _key,\n        hasColumnTitles,\n        hasRowTitles,\n        columnHeaders[]{\n          _key,\n          _type,\n          cellIndex,\n          title,\n        },\n        rows[]{\n          _key,\n          _type,\n          cells[]{\n            _key,\n            _type,\n            content[]{\n              ...,\n              markDefs[]{\n                ...,\n                _type == "link" => {\n                  _type,\n                  _key,\n                  href,\n                },\n              },\n            },\n          },\n        },\n      },\n  };\n\n\n\n  *[_type == "organization"][0]{\n    organization {\n      name,\n      "description": pt::text(description)\n    }\n  }\n': ORGANIZATION_LLMS_QUERY_RESULT;
     '\n \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::links($links) = $links[] {\n    \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "links" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "links" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    },\n      _type == "richTable" => {\n      ...,\n        _type,\n        _key,\n        hasColumnTitles,\n        hasRowTitles,\n        columnHeaders[]{\n          _key,\n          _type,\n          cellIndex,\n          title,\n        },\n        rows[]{\n          _key,\n          _type,\n          cells[]{\n            _key,\n            _type,\n            content[]{\n              ...,\n              markDefs[]{\n                ...,\n                _type == "link" => {\n                  _type,\n                  _key,\n                  href,\n                },\n              },\n            },\n          },\n        },\n      },\n  };\n\n\n  {\n    "pages": *[_type == "page" && !meta.noindex && defined(slug)] | order(slug.current) {\n      \n  "url": select(\n    slug.current == "index" => $baseUrl + "/",\n    _type == "blog-index" => $baseUrl + "/blog",\n    _type == "blog-post" => $baseUrl + "/blog/" + slug.current,\n    _type == "case-studies-index" => $baseUrl + "/case-studies",\n    _type == "case-study" => $baseUrl + "/case-studies/" + slug.current,\n    _type == "platform-index" => $baseUrl + "/platform",\n    _type == "platform-child" => $baseUrl + "/platform/" + slug.current,\n    defined(parentPage->slug.current) => $baseUrl + "/" + parentPage->slug.current + "/" + slug.current,\n    $baseUrl + "/" + slug.current\n  )\n,\n      "title": coalesce(meta.title, pt::text(title), slug.current),\n      "description": coalesce(meta.description, pt::text(description))\n    },\n    "blog": {\n      "index": *[_type == "blog-index"][0] {\n        \n  "url": select(\n    slug.current == "index" => $baseUrl + "/",\n    _type == "blog-index" => $baseUrl + "/blog",\n    _type == "blog-post" => $baseUrl + "/blog/" + slug.current,\n    _type == "case-studies-index" => $baseUrl + "/case-studies",\n    _type == "case-study" => $baseUrl + "/case-studies/" + slug.current,\n    _type == "platform-index" => $baseUrl + "/platform",\n    _type == "platform-child" => $baseUrl + "/platform/" + slug.current,\n    defined(parentPage->slug.current) => $baseUrl + "/" + parentPage->slug.current + "/" + slug.current,\n    $baseUrl + "/" + slug.current\n  )\n,\n        "title": coalesce(meta.title, pt::text(title), "Blog"),\n        "description": coalesce(meta.description, pt::text(description))\n      },\n      "posts": *[_type == "blog-post" && !meta.noindex && defined(slug)] | order(publishedDate desc) {\n        \n  "url": select(\n    slug.current == "index" => $baseUrl + "/",\n    _type == "blog-index" => $baseUrl + "/blog",\n    _type == "blog-post" => $baseUrl + "/blog/" + slug.current,\n    _type == "case-studies-index" => $baseUrl + "/case-studies",\n    _type == "case-study" => $baseUrl + "/case-studies/" + slug.current,\n    _type == "platform-index" => $baseUrl + "/platform",\n    _type == "platform-child" => $baseUrl + "/platform/" + slug.current,\n    defined(parentPage->slug.current) => $baseUrl + "/" + parentPage->slug.current + "/" + slug.current,\n    $baseUrl + "/" + slug.current\n  )\n,\n        "title": coalesce(meta.title, pt::text(title), slug.current),\n        "description": coalesce(meta.description, pt::text(description))\n      }\n    },\n    "caseStudies": {\n      "index": *[_type == "case-studies-index"][0] {\n        \n  "url": select(\n    slug.current == "index" => $baseUrl + "/",\n    _type == "blog-index" => $baseUrl + "/blog",\n    _type == "blog-post" => $baseUrl + "/blog/" + slug.current,\n    _type == "case-studies-index" => $baseUrl + "/case-studies",\n    _type == "case-study" => $baseUrl + "/case-studies/" + slug.current,\n    _type == "platform-index" => $baseUrl + "/platform",\n    _type == "platform-child" => $baseUrl + "/platform/" + slug.current,\n    defined(parentPage->slug.current) => $baseUrl + "/" + parentPage->slug.current + "/" + slug.current,\n    $baseUrl + "/" + slug.current\n  )\n,\n        "title": coalesce(meta.title, pt::text(title), "Case Studies"),\n        "description": coalesce(meta.description, pt::text(description))\n      },\n      "posts": *[_type == "case-study" && !meta.noindex && defined(slug)] | order(publishedDate desc) {\n        \n  "url": select(\n    slug.current == "index" => $baseUrl + "/",\n    _type == "blog-index" => $baseUrl + "/blog",\n    _type == "blog-post" => $baseUrl + "/blog/" + slug.current,\n    _type == "case-studies-index" => $baseUrl + "/case-studies",\n    _type == "case-study" => $baseUrl + "/case-studies/" + slug.current,\n    _type == "platform-index" => $baseUrl + "/platform",\n    _type == "platform-child" => $baseUrl + "/platform/" + slug.current,\n    defined(parentPage->slug.current) => $baseUrl + "/" + parentPage->slug.current + "/" + slug.current,\n    $baseUrl + "/" + slug.current\n  )\n,\n        "title": coalesce(meta.title, pt::text(title), slug.current),\n        "description": coalesce(meta.description, pt::text(description))\n      }\n    },\n    "platform": {\n      "index": *[_type == "platform-index"][0] {\n        \n  "url": select(\n    slug.current == "index" => $baseUrl + "/",\n    _type == "blog-index" => $baseUrl + "/blog",\n    _type == "blog-post" => $baseUrl + "/blog/" + slug.current,\n    _type == "case-studies-index" => $baseUrl + "/case-studies",\n    _type == "case-study" => $baseUrl + "/case-studies/" + slug.current,\n    _type == "platform-index" => $baseUrl + "/platform",\n    _type == "platform-child" => $baseUrl + "/platform/" + slug.current,\n    defined(parentPage->slug.current) => $baseUrl + "/" + parentPage->slug.current + "/" + slug.current,\n    $baseUrl + "/" + slug.current\n  )\n,\n        "title": coalesce(meta.title, pt::text(title), "Platform"),\n        "description": coalesce(meta.description, pt::text(description))\n      },\n      "children": *[_type == "platform-child" && !meta.noindex && defined(slug)] | order(slug.current) {\n        \n  "url": select(\n    slug.current == "index" => $baseUrl + "/",\n    _type == "blog-index" => $baseUrl + "/blog",\n    _type == "blog-post" => $baseUrl + "/blog/" + slug.current,\n    _type == "case-studies-index" => $baseUrl + "/case-studies",\n    _type == "case-study" => $baseUrl + "/case-studies/" + slug.current,\n    _type == "platform-index" => $baseUrl + "/platform",\n    _type == "platform-child" => $baseUrl + "/platform/" + slug.current,\n    defined(parentPage->slug.current) => $baseUrl + "/" + parentPage->slug.current + "/" + slug.current,\n    $baseUrl + "/" + slug.current\n  )\n,\n        "title": coalesce(meta.title, pt::text(title), slug.current),\n        "description": coalesce(meta.description, pt::text(description))\n      }\n    }\n  }\n': LLMS_QUERY_RESULT;
     '\n  *[_type in $viewableTypes && !meta.noindex && defined(slug)] | order(slug.current) {\n    \n  "url": select(\n    slug.current == "index" => $baseUrl + "/",\n    _type == "blog-index" => $baseUrl + "/blog",\n    _type == "blog-post" => $baseUrl + "/blog/" + slug.current,\n    _type == "case-studies-index" => $baseUrl + "/case-studies",\n    _type == "case-study" => $baseUrl + "/case-studies/" + slug.current,\n    _type == "platform-index" => $baseUrl + "/platform",\n    _type == "platform-child" => $baseUrl + "/platform/" + slug.current,\n    defined(parentPage->slug.current) => $baseUrl + "/" + parentPage->slug.current + "/" + slug.current,\n    $baseUrl + "/" + slug.current\n  )\n,\n    _type,\n    "title": coalesce(meta.title, pt::text(title), slug.current),\n    "description": coalesce(meta.description, pt::text(description)),\n    "publishedDate": select(defined(publishedDate) => publishedDate, null),\n    "content": select(\n      defined(content) => pt::text(content),\n      defined(modules) => array::join(\n        array::compact(\n          modules[] {\n            "text": select(\n              _type == "rich-text" => pt::text(content),\n              _type == "hero-primary" => array::join(\n                array::compact([pt::text(title), pt::text(description)]),\n                "\n"\n              ),\n              _type == "driver-text" => array::join(\n                array::compact([pt::text(title), pt::text(description)]),\n                "\n"\n              ),\n              null\n            )\n          }.text\n        ),\n        "\n\n"\n      ),\n      null\n    )\n  }\n': LLMS_FULL_QUERY_RESULT;
-    '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::links($links) = $links[] {\n    \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "links" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "links" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    },\n      _type == "richTable" => {\n      ...,\n        _type,\n        _key,\n        hasColumnTitles,\n        hasRowTitles,\n        columnHeaders[]{\n          _key,\n          _type,\n          cellIndex,\n          title,\n        },\n        rows[]{\n          _key,\n          _type,\n          cells[]{\n            _key,\n            _type,\n            content[]{\n              ...,\n              markDefs[]{\n                ...,\n                _type == "link" => {\n                  _type,\n                  _key,\n                  href,\n                },\n              },\n            },\n          },\n        },\n      },\n  };\n\n\n\n  *[_type == "page" && slug.current == $slug][0]{\n    _type,\n    \n  modules[]{\n    \n  _type == "global-module" => moduleRef->module[0]{\n    _type,\n    "_key": ^._key,\n    \n  _type == "card-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n    cards[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n      \n  "description": fn::ptPlain(description)\n,\n      \n  "links": coalesce(fn::links(links), [])\n,\n      \n  "image": fn::img(image)\n,\n    }\n  }\n,\n    \n  _type == "driver-text" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n  }\n,\n  }\n,\n    \n  _type == "spacer" => {\n    _type,\n    _key,\n    spacing,\n    anchorId\n  }\n,\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "marquee" => {\n    _type,\n    _key,\n    variant,\n    enableVelocity,\n    imageType,\n    "items" : select(variant == "text" => items[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n    }),\n    \n  "images": fn::imgs(images)\n\n  }\n,\n    \n  _type == "rich-text" => {\n    _type,\n    _key,\n    \n  "content": fn::pt(content)\n,\n  }\n,\n    \n  _type == "driver-text" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n  }\n,\n    \n  _type == "media-file" => {\n    _type,\n    _key,\n    variant,\n    \n  "image": fn::img(image)\n,\n    \n  video{\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  }\n,\n    videoType,\n    videoYoutubeUrl,\n    "videoPoster": fn::img(videoPoster)\n  }\n,\n    // Remove example modules\n    \n  _type == "card-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n    cards[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n      \n  "description": fn::ptPlain(description)\n,\n      \n  "links": coalesce(fn::links(links), [])\n,\n      \n  "image": fn::img(image)\n,\n    }\n  }\n,\n  }\n,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "blog-index" => "/blog",\n      ^._type == "blog-post" => "/blog/" + ^.slug.current,\n      ^._type == "case-studies-index" => "/case-studies",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      defined(^.parentPage->slug.current) => "/" + ^.parentPage->slug.current + "/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n\n  }\n': PAGE_QUERY_RESULT;
+    '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::links($links) = $links[] {\n    \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "links" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "links" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    },\n      _type == "richTable" => {\n      ...,\n        _type,\n        _key,\n        hasColumnTitles,\n        hasRowTitles,\n        columnHeaders[]{\n          _key,\n          _type,\n          cellIndex,\n          title,\n        },\n        rows[]{\n          _key,\n          _type,\n          cells[]{\n            _key,\n            _type,\n            content[]{\n              ...,\n              markDefs[]{\n                ...,\n                _type == "link" => {\n                  _type,\n                  _key,\n                  href,\n                },\n              },\n            },\n          },\n        },\n      },\n  };\n\n\n\n  *[_type == "page" && slug.current == $slug][0]{\n    _type,\n    \n  modules[]{\n    \n  _type == "global-module" => moduleRef->module[0]{\n    _type,\n    "_key": ^._key,\n    \n  _type == "card-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n    cards[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n      \n  "description": fn::ptPlain(description)\n,\n      \n  "links": coalesce(fn::links(links), [])\n,\n      \n  "image": fn::img(image)\n,\n    }\n  }\n,\n    \n  _type == "driver-text" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n  }\n,\n  }\n,\n    \n  _type == "spacer" => {\n    _type,\n    _key,\n    spacing,\n    anchorId\n  }\n,\n    \n  _type == "anchor" => {\n    _type,\n    _key,\n    anchorText\n  }\n,\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "marquee" => {\n    _type,\n    _key,\n    variant,\n    enableVelocity,\n    imageType,\n    "items" : select(variant == "text" => items[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n    }),\n    \n  "images": fn::imgs(images)\n\n  }\n,\n    \n  _type == "rich-text" => {\n    _type,\n    _key,\n    \n  "content": fn::pt(content)\n,\n  }\n,\n    \n  _type == "driver-text" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n  }\n,\n    \n  _type == "media-file" => {\n    _type,\n    _key,\n    variant,\n    \n  "image": fn::img(image)\n,\n    \n  video{\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  }\n,\n    videoType,\n    videoYoutubeUrl,\n    "videoPoster": fn::img(videoPoster)\n  }\n,\n    // Remove example modules\n    \n  _type == "card-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n    cards[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n      \n  "description": fn::ptPlain(description)\n,\n      \n  "links": coalesce(fn::links(links), [])\n,\n      \n  "image": fn::img(image)\n,\n    }\n  }\n,\n  }\n,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "blog-index" => "/blog",\n      ^._type == "blog-post" => "/blog/" + ^.slug.current,\n      ^._type == "case-studies-index" => "/case-studies",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      defined(^.parentPage->slug.current) => "/" + ^.parentPage->slug.current + "/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n\n  }\n': PAGE_QUERY_RESULT;
     '\n  *[_type == $pageType && defined(slug)]{slug, "parentSlug": parentPage->slug.current}\n': PAGES_SLUGS_QUERY_RESULT;
-    '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::links($links) = $links[] {\n    \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "links" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "links" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    },\n      _type == "richTable" => {\n      ...,\n        _type,\n        _key,\n        hasColumnTitles,\n        hasRowTitles,\n        columnHeaders[]{\n          _key,\n          _type,\n          cellIndex,\n          title,\n        },\n        rows[]{\n          _key,\n          _type,\n          cells[]{\n            _key,\n            _type,\n            content[]{\n              ...,\n              markDefs[]{\n                ...,\n                _type == "link" => {\n                  _type,\n                  _key,\n                  href,\n                },\n              },\n            },\n          },\n        },\n      },\n  };\n\n\n\n  *[_type == $contentType][0]{\n    _type,\n    slug,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "blog-index" => "/blog",\n      ^._type == "blog-post" => "/blog/" + ^.slug.current,\n      ^._type == "case-studies-index" => "/case-studies",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      defined(^.parentPage->slug.current) => "/" + ^.parentPage->slug.current + "/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    \n  modules[]{\n    \n  _type == "global-module" => moduleRef->module[0]{\n    _type,\n    "_key": ^._key,\n    \n  _type == "card-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n    cards[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n      \n  "description": fn::ptPlain(description)\n,\n      \n  "links": coalesce(fn::links(links), [])\n,\n      \n  "image": fn::img(image)\n,\n    }\n  }\n,\n    \n  _type == "driver-text" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n  }\n,\n  }\n,\n    \n  _type == "spacer" => {\n    _type,\n    _key,\n    spacing,\n    anchorId\n  }\n,\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "marquee" => {\n    _type,\n    _key,\n    variant,\n    enableVelocity,\n    imageType,\n    "items" : select(variant == "text" => items[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n    }),\n    \n  "images": fn::imgs(images)\n\n  }\n,\n    \n  _type == "rich-text" => {\n    _type,\n    _key,\n    \n  "content": fn::pt(content)\n,\n  }\n,\n    \n  _type == "driver-text" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n  }\n,\n    \n  _type == "media-file" => {\n    _type,\n    _key,\n    variant,\n    \n  "image": fn::img(image)\n,\n    \n  video{\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  }\n,\n    videoType,\n    videoYoutubeUrl,\n    "videoPoster": fn::img(videoPoster)\n  }\n,\n    // Remove example modules\n    \n  _type == "card-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n    cards[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n      \n  "description": fn::ptPlain(description)\n,\n      \n  "links": coalesce(fn::links(links), [])\n,\n      \n  "image": fn::img(image)\n,\n    }\n  }\n,\n  }\n,\n    "filters": {\n      "defaults": {\n        "label": "All", // Also used for as nuqs\' default value for filtering\n        "count": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n]), // Total number of posts\n      },\n      "categories": {\n        "label": select(\n          $contentType == "blog-index" => "Field of Study",\n          $contentType == "case-studies-index" => "Research Area",\n          "Category" // Default fallback if specific content types don\'t have special labels\n        ),\n        "items": *[_type ==  select(\n          $contentType == "blog-index" => "blog-category") && count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)]) > 0] {\n            _id,\n            slug,\n            \n  "title": fn::ptPlain(title)\n,\n            "count": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)])\n         }\n       },\n       "topics": {\n        "label": select(\n          $contentType == "case-studies-index" => "Industry",\n          "Topic" // Default fallback if specific content types don\'t have special labels\n        ),\n        "items": *[_type == "content-topic" &&\n        count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)]) > 0] {\n          _id,\n          slug,\n          \n  "title": fn::ptPlain(title)\n,\n          "count": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)])\n        },\n       },\n    },\n    "pagination": {\n      "totalPages": (count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)]) / $limit),\n      "scrollTargetId": select(\n        _type == "case-studies-index" => "case-studies-posts-list",\n        _type == "blog-index" => "blog-posts-list",\n        "posts-list"\n      ),\n    },\n    "posts": *[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {\n      _id,\n      _type,\n      _createdAt,\n      publishedDate,\n      slug,\n      \n  "links": coalesce(fn::links(links), [])\n,\n      \n  "title": fn::ptPlain(title)\n,\n      \n  "image": fn::img(image)\n,\n      \n  "description": fn::ptPlain(description)\n,\n      "href": select(\n        _type == "case-study" => "/case-studies/" + slug.current,\n        _type == "blog-post" => "/blog/" + slug.current,\n      ),\n      category[]->{\n        _id,\n        \n  "title": fn::ptPlain(title)\n,\n      },\n      contentTopic[]->{\n        _id,\n        \n  "title": fn::ptPlain(title)\n,\n      },\n    }\n  }\n': GET_CONTENT_TYPE_INDEX_QUERY_RESULT;
-    '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::links($links) = $links[] {\n    \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "links" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "links" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    },\n      _type == "richTable" => {\n      ...,\n        _type,\n        _key,\n        hasColumnTitles,\n        hasRowTitles,\n        columnHeaders[]{\n          _key,\n          _type,\n          cellIndex,\n          title,\n        },\n        rows[]{\n          _key,\n          _type,\n          cells[]{\n            _key,\n            _type,\n            content[]{\n              ...,\n              markDefs[]{\n                ...,\n                _type == "link" => {\n                  _type,\n                  _key,\n                  href,\n                },\n              },\n            },\n          },\n        },\n      },\n  };\n\n\n\n  *[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && slug.current == $slug][0]{\n    _id,\n    _createdAt,\n    _type,\n    slug,\n    publishedDate,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "blog-index" => "/blog",\n      ^._type == "blog-post" => "/blog/" + ^.slug.current,\n      ^._type == "case-studies-index" => "/case-studies",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      defined(^.parentPage->slug.current) => "/" + ^.parentPage->slug.current + "/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    \n  modules[]{\n    \n  _type == "global-module" => moduleRef->module[0]{\n    _type,\n    "_key": ^._key,\n    \n  _type == "card-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n    cards[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n      \n  "description": fn::ptPlain(description)\n,\n      \n  "links": coalesce(fn::links(links), [])\n,\n      \n  "image": fn::img(image)\n,\n    }\n  }\n,\n    \n  _type == "driver-text" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n  }\n,\n  }\n,\n    \n  _type == "spacer" => {\n    _type,\n    _key,\n    spacing,\n    anchorId\n  }\n,\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "marquee" => {\n    _type,\n    _key,\n    variant,\n    enableVelocity,\n    imageType,\n    "items" : select(variant == "text" => items[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n    }),\n    \n  "images": fn::imgs(images)\n\n  }\n,\n    \n  _type == "rich-text" => {\n    _type,\n    _key,\n    \n  "content": fn::pt(content)\n,\n  }\n,\n    \n  _type == "driver-text" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n  }\n,\n    \n  _type == "media-file" => {\n    _type,\n    _key,\n    variant,\n    \n  "image": fn::img(image)\n,\n    \n  video{\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  }\n,\n    videoType,\n    videoYoutubeUrl,\n    "videoPoster": fn::img(videoPoster)\n  }\n,\n    // Remove example modules\n    \n  _type == "card-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n    cards[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n      \n  "description": fn::ptPlain(description)\n,\n      \n  "links": coalesce(fn::links(links), [])\n,\n      \n  "image": fn::img(image)\n,\n    }\n  }\n,\n  }\n,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "image": fn::img(image)\n,\n    \n  "content": fn::pt(content)\n,\n    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180),\n  }\n': GET_CONTENT_TYPE_SLUG_QUERY_RESULT;
+    '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::links($links) = $links[] {\n    \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "links" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "links" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    },\n      _type == "richTable" => {\n      ...,\n        _type,\n        _key,\n        hasColumnTitles,\n        hasRowTitles,\n        columnHeaders[]{\n          _key,\n          _type,\n          cellIndex,\n          title,\n        },\n        rows[]{\n          _key,\n          _type,\n          cells[]{\n            _key,\n            _type,\n            content[]{\n              ...,\n              markDefs[]{\n                ...,\n                _type == "link" => {\n                  _type,\n                  _key,\n                  href,\n                },\n              },\n            },\n          },\n        },\n      },\n  };\n\n\n\n  *[_type == $contentType][0]{\n    _type,\n    slug,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "blog-index" => "/blog",\n      ^._type == "blog-post" => "/blog/" + ^.slug.current,\n      ^._type == "case-studies-index" => "/case-studies",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      defined(^.parentPage->slug.current) => "/" + ^.parentPage->slug.current + "/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    \n  modules[]{\n    \n  _type == "global-module" => moduleRef->module[0]{\n    _type,\n    "_key": ^._key,\n    \n  _type == "card-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n    cards[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n      \n  "description": fn::ptPlain(description)\n,\n      \n  "links": coalesce(fn::links(links), [])\n,\n      \n  "image": fn::img(image)\n,\n    }\n  }\n,\n    \n  _type == "driver-text" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n  }\n,\n  }\n,\n    \n  _type == "spacer" => {\n    _type,\n    _key,\n    spacing,\n    anchorId\n  }\n,\n    \n  _type == "anchor" => {\n    _type,\n    _key,\n    anchorText\n  }\n,\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "marquee" => {\n    _type,\n    _key,\n    variant,\n    enableVelocity,\n    imageType,\n    "items" : select(variant == "text" => items[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n    }),\n    \n  "images": fn::imgs(images)\n\n  }\n,\n    \n  _type == "rich-text" => {\n    _type,\n    _key,\n    \n  "content": fn::pt(content)\n,\n  }\n,\n    \n  _type == "driver-text" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n  }\n,\n    \n  _type == "media-file" => {\n    _type,\n    _key,\n    variant,\n    \n  "image": fn::img(image)\n,\n    \n  video{\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  }\n,\n    videoType,\n    videoYoutubeUrl,\n    "videoPoster": fn::img(videoPoster)\n  }\n,\n    // Remove example modules\n    \n  _type == "card-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n    cards[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n      \n  "description": fn::ptPlain(description)\n,\n      \n  "links": coalesce(fn::links(links), [])\n,\n      \n  "image": fn::img(image)\n,\n    }\n  }\n,\n  }\n,\n    "filters": {\n      "defaults": {\n        "label": "All", // Also used for as nuqs\' default value for filtering\n        "count": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n]), // Total number of posts\n      },\n      "categories": {\n        "label": select(\n          $contentType == "blog-index" => "Field of Study",\n          $contentType == "case-studies-index" => "Research Area",\n          "Category" // Default fallback if specific content types don\'t have special labels\n        ),\n        "items": *[_type ==  select(\n          $contentType == "blog-index" => "blog-category") && count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)]) > 0] {\n            _id,\n            slug,\n            \n  "title": fn::ptPlain(title)\n,\n            "count": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)])\n         }\n       },\n       "topics": {\n        "label": select(\n          $contentType == "case-studies-index" => "Industry",\n          "Topic" // Default fallback if specific content types don\'t have special labels\n        ),\n        "items": *[_type == "content-topic" &&\n        count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)]) > 0] {\n          _id,\n          slug,\n          \n  "title": fn::ptPlain(title)\n,\n          "count": count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && references(^._id)])\n        },\n       },\n    },\n    "pagination": {\n      "totalPages": (count(*[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)]) / $limit),\n      "scrollTargetId": select(\n        _type == "case-studies-index" => "case-studies-posts-list",\n        _type == "blog-index" => "blog-posts-list",\n        "posts-list"\n      ),\n    },\n    "posts": *[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && ($topic == null || $topic in contentTopic[]->slug.current) && ($category == null || $category in category[]->slug.current)] | order(publishedDate desc, _createdAt desc) [$offset..$end] {\n      _id,\n      _type,\n      _createdAt,\n      publishedDate,\n      slug,\n      \n  "links": coalesce(fn::links(links), [])\n,\n      \n  "title": fn::ptPlain(title)\n,\n      \n  "image": fn::img(image)\n,\n      \n  "description": fn::ptPlain(description)\n,\n      "href": select(\n        _type == "case-study" => "/case-studies/" + slug.current,\n        _type == "blog-post" => "/blog/" + slug.current,\n      ),\n      category[]->{\n        _id,\n        \n  "title": fn::ptPlain(title)\n,\n      },\n      contentTopic[]->{\n        _id,\n        \n  "title": fn::ptPlain(title)\n,\n      },\n    }\n  }\n': GET_CONTENT_TYPE_INDEX_QUERY_RESULT;
+    '\n  \n  \n  fn fn::img($image) = $image {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::imgs($images) = $images[] {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::logo($logo) = $logo {\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  };\n\n  \n  fn fn::links($links) = $links[] {\n    \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n  };\n\n  \n  fn fn::ptPlain($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "links" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    }\n  };\n\n  \n  fn fn::pt($content) = $content[] {\n    ...,\n    markDefs[]{\n      ...,\n      _type == "link" => {\n        \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n      }\n    },\n    _type == "links" => {\n      \n  ...,\n  _key,\n  "href": select(\n    type == "external" => href,\n    @.internalLink->slug.current == "index" => "/",\n    @.internalLink->_type == "blog-index" => "/blog",\n    @.internalLink->_type == "blog-post" => "/blog/" + @.internalLink->slug.current,\n    @.internalLink->_type == "case-studies-index" => "/case-studies",\n    @.internalLink->_type == "case-study" => "/case-studies/" + @.internalLink->slug.current,\n    @.internalLink->_type == "platform-index" => "/platform",\n    @.internalLink->_type == "platform-child" => "/platform/" + @.internalLink->slug.current,\n    defined(@.internalLink->parentPage->slug.current) => "/" + @.internalLink->parentPage->slug.current + "/" + @.internalLink->slug.current,\n    "/" + @.internalLink->slug.current\n  )\n\n    },\n      _type == "richTable" => {\n      ...,\n        _type,\n        _key,\n        hasColumnTitles,\n        hasRowTitles,\n        columnHeaders[]{\n          _key,\n          _type,\n          cellIndex,\n          title,\n        },\n        rows[]{\n          _key,\n          _type,\n          cells[]{\n            _key,\n            _type,\n            content[]{\n              ...,\n              markDefs[]{\n                ...,\n                _type == "link" => {\n                  _type,\n                  _key,\n                  href,\n                },\n              },\n            },\n          },\n        },\n      },\n  };\n\n\n\n  *[_type == \n  select(\n    $contentType == "blog-index" => "blog-post",\n    $contentType == "case-studies-index" => "case-study"\n  )\n && slug.current == $slug][0]{\n    _id,\n    _createdAt,\n    _type,\n    slug,\n    publishedDate,\n    \n    meta{\n    "title": coalesce(title, select(^.title[0]._type == "module" => pt::text(^.title), ^.title)),\n    description,\n    noindex,\n    "relativeUrl": select(\n      ^.slug.current == "index" => "/",\n      ^._type == "blog-index" => "/blog",\n      ^._type == "blog-post" => "/blog/" + ^.slug.current,\n      ^._type == "case-studies-index" => "/case-studies",\n      ^._type == "case-study" => "/case-studies/" + ^.slug.current,\n      ^._type == "platform-index" => "/platform",\n      ^._type == "platform-child" => "/platform/" + ^.slug.current,\n      defined(^.parentPage->slug.current) => "/" + ^.parentPage->slug.current + "/" + ^.slug.current,\n      "/" + ^.slug.current\n    ),\n    "image": coalesce(\n      image.asset->url + "?w=1200&h=630&fit=max",\n      ^.image.asset->url + "?w=1200&h=630&fit=max",\n      select(^.modules[0]._type match "hero*" => ^.modules[0].image.asset->url + "?w=1200&h=630&fit=max", null),\n      *[_type == "organization"][0].organization.image.asset->url + "?w=1200&h=630&fit=max"\n    )\n  }\n,\n    \n  modules[]{\n    \n  _type == "global-module" => moduleRef->module[0]{\n    _type,\n    "_key": ^._key,\n    \n  _type == "card-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n    cards[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n      \n  "description": fn::ptPlain(description)\n,\n      \n  "links": coalesce(fn::links(links), [])\n,\n      \n  "image": fn::img(image)\n,\n    }\n  }\n,\n    \n  _type == "driver-text" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n  }\n,\n  }\n,\n    \n  _type == "spacer" => {\n    _type,\n    _key,\n    spacing,\n    anchorId\n  }\n,\n    \n  _type == "anchor" => {\n    _type,\n    _key,\n    anchorText\n  }\n,\n    \n  _type == "hero-primary" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n    \n  "image": fn::img(image)\n,\n  }\n,\n    \n  _type == "marquee" => {\n    _type,\n    _key,\n    variant,\n    enableVelocity,\n    imageType,\n    "items" : select(variant == "text" => items[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n    }),\n    \n  "images": fn::imgs(images)\n\n  }\n,\n    \n  _type == "rich-text" => {\n    _type,\n    _key,\n    \n  "content": fn::pt(content)\n,\n  }\n,\n    \n  _type == "driver-text" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n  }\n,\n    \n  _type == "media-file" => {\n    _type,\n    _key,\n    variant,\n    \n  "image": fn::img(image)\n,\n    \n  video{\n    \n  ...,\n  asset->{\n    _id,\n    url,\n    metadata {\n      lqip,\n      dimensions {\n        width,\n        height\n      }\n    }\n  }\n\n  }\n,\n    videoType,\n    videoYoutubeUrl,\n    "videoPoster": fn::img(videoPoster)\n  }\n,\n    // Remove example modules\n    \n  _type == "card-example" => {\n    _type,\n    _key,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "links": coalesce(fn::links(links), [])\n,\n    cards[]{\n      _key,\n      \n  "title": fn::ptPlain(title)\n,\n      \n  "description": fn::ptPlain(description)\n,\n      \n  "links": coalesce(fn::links(links), [])\n,\n      \n  "image": fn::img(image)\n,\n    }\n  }\n,\n  }\n,\n    \n  "title": fn::ptPlain(title)\n,\n    \n  "description": fn::ptPlain(description)\n,\n    \n  "image": fn::img(image)\n,\n    \n  "content": fn::pt(content)\n,\n    "estimatedReadingTime": round(length(pt::text(content)) / 5 / 180),\n  }\n': GET_CONTENT_TYPE_SLUG_QUERY_RESULT;
     "\n  *[_type == $contentType && defined(slug)]{slug}\n": GET_CONTENT_TYPE_SLUGS_STATIC_PARAMS_QUERY_RESULT;
   }
 }

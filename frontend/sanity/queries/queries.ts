@@ -21,6 +21,7 @@ import { DRIVER_TEXT_QUERY } from "./modules/driver/driver-text";
 import { HERO_PRIMARY_QUERY } from "./modules/hero/hero-primary";
 import { MARQUEE_QUERY } from "./modules/marquee/marquee";
 import { MEDIA_FILE_QUERY } from "./modules/media/media-file";
+import { ANCHOR_QUERY } from "./modules/miscellaneous/anchor";
 import { GLOBAL_MODULE_QUERY } from "./modules/miscellaneous/global-module";
 import { SPACER_QUERY } from "./modules/miscellaneous/spacer";
 import { RICH_TEXT_QUERY } from "./modules/text/rich-text";
@@ -36,6 +37,7 @@ export const modulesFragment = defineQuery(`
   modules[]{
     ${GLOBAL_MODULE_QUERY},
     ${SPACER_QUERY},
+    ${ANCHOR_QUERY},
     ${HERO_PRIMARY_QUERY},
     ${MARQUEE_QUERY},
     ${RICH_TEXT_QUERY},

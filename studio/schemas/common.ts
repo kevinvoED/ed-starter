@@ -71,6 +71,25 @@ const LINK_OPTIONS = [
   },
 ];
 
+const anchorTextFields = {
+  name: "anchorText",
+  title: "Anchor ID",
+  type: "slug",
+  description: "Optional. Enter the anchor ID of the section to scroll to.",
+  options: {
+    slugify: (input: string) =>
+      kebabCase(typeof input === "string" ? input : toPlainText(input)),
+    maxLength: 96,
+  },
+  validation: (Rule: Rule) =>
+    Rule.custom((value: { current?: string } | null) => {
+      if (value?.current?.includes("#") || value?.current?.includes(" ")) {
+        return "Do not include the # symbol or spaces in the Anchor ID.";
+      }
+      return true;
+    }),
+};
+
 export const ptAnnotationLinkFields = [
   {
     name: "link",
@@ -119,6 +138,11 @@ export const ptAnnotationLinkFields = [
         initialValue: false,
         hidden: ({ parent }: { parent: { type?: string | undefined } }) =>
           !["external", "internal"].includes(parent?.type ?? ""),
+      },
+      {
+        ...anchorTextFields,
+        hidden: ({ parent }: { parent: { type?: string } }) =>
+          parent?.type !== "internal",
       },
     ],
   },
@@ -247,6 +271,8 @@ export const slugReadOnly = defineField({
   group: "settings",
   validation: (Rule) => Rule.required(),
 });
+
+export const anchorText = defineField(anchorTextFields);
 
 /*
  * -----------------------------------------------

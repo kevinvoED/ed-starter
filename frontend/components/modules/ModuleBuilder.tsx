@@ -7,6 +7,7 @@ import { DriverText } from "@/components/modules/Driver/DriverText";
 import { HeroPrimary } from "@/components/modules/Hero/HeroPrimary";
 import { Marquee } from "@/components/modules/Marquee/Marquee";
 import { MediaFile } from "@/components/modules/Media/MediaFile";
+import { Anchor } from "@/components/modules/Miscellaneous/Anchor";
 import { Spacer } from "@/components/modules/Miscellaneous/Spacer";
 import { RichText } from "@/components/modules/Text/RichText";
 
@@ -38,6 +39,7 @@ const moduleMap: {
   [K in ModuleBlock["_type"]]: ModuleEntry<K>;
 } = {
   spacer: { component: Spacer },
+  anchor: { component: Anchor },
   marquee: { component: Marquee },
   "hero-primary": { component: HeroPrimary },
   "rich-text": { component: RichText },

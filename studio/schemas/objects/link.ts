@@ -2,7 +2,7 @@ import { ArrowTopRightIcon } from "@sanity/icons/ArrowTopRight";
 import { LinkIcon } from "@sanity/icons/Link";
 import { defineField, defineType } from "sanity";
 import { createOptionCards } from "@/components/option-cards";
-import { icon } from "@/schemas/common";
+import { anchorText, icon } from "@/schemas/common";
 import { relationTypes } from "@/schemas/moduleTypes";
 
 const LINK_OPTIONS = [
@@ -55,14 +55,6 @@ export default defineType({
       type: "reference",
       to: relationTypes,
       hidden: ({ parent }) => parent?.type !== "internal",
-      validation: (Rule) =>
-        Rule.custom((value, context) => {
-          const parent = context.parent as { type?: string };
-          if (parent?.type === "internal" && !value) {
-            return "Internal link reference is required when using internal link type";
-          }
-          return true;
-        }),
     }),
     defineField({
       name: "href",
@@ -95,18 +87,7 @@ export default defineType({
       hidden: ({ parent }) => !["external", "internal"].includes(parent?.type),
     }),
     defineField({
-      name: "anchorTag",
-      type: "string",
-      title: "Anchor Target ID",
-      description: "Optional. Enter the ID of the section to scroll to.",
-      hidden: ({ parent }) => parent?.type !== "internal",
-      validation: (Rule) =>
-        Rule.custom((value) => {
-          if (value?.startsWith("#")) {
-            return "Do not include the # symbol in the Anchor Target ID.";
-          }
-          return true;
-        }),
+      ...anchorText,
     }),
   ],
 });
