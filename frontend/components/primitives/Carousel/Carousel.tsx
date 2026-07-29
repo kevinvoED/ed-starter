@@ -278,12 +278,12 @@ function CarouselNext({
 }
 
 export {
-  type CarouselApi,
   Carousel,
+  type CarouselApi,
   CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
-  CarouselCounter,
   CarouselControls,
+  CarouselCounter,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 };

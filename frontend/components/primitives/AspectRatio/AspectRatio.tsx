@@ -38,4 +38,5 @@ function AspectRatio({
     />
   );
 }
+
 export { AspectRatio };

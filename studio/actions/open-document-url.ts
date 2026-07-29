@@ -13,7 +13,7 @@ export const OpenDocumentUrlAction: DocumentActionComponent = (props) => {
   const toast = useToast();
 
   const onHandle = async () => {
-    if (!published || !published.slug || !(published.slug as Slug).current) {
+    if (!published?.slug || !(published.slug as Slug).current) {
       toast.push({
         status: "error",
         title: "Cannot open URL",
@@ -58,8 +58,7 @@ export const OpenDocumentUrlAction: DocumentActionComponent = (props) => {
   };
 
   // Disable if not published or if URL is missing
-  const isDisabled =
-    !published || !published.slug || !(published.slug as Slug).current;
+  const isDisabled = !published?.slug || !(published.slug as Slug).current;
 
   return {
     label: "View On Website",

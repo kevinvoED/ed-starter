@@ -261,14 +261,14 @@ function DialogDescription({
 }
 
 export {
-  DialogRoot,
-  DialogTrigger,
   DialogClose,
-  DialogPortal,
-  DialogOverlay,
   DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
   DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogOverlay,
+  DialogPortal,
+  DialogRoot,
+  DialogTitle,
+  DialogTrigger,
 };

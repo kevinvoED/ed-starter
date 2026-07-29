@@ -103,4 +103,4 @@ function TabsIndicator({
   );
 }
 
-export { Tabs, TabsList, TabsTrigger, TabsContent, TabsIndicator };
+export { Tabs, TabsContent, TabsIndicator, TabsList, TabsTrigger };

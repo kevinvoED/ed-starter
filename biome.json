@@ -37,7 +37,7 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
+      "preset": "recommended",
       "suspicious": {
         "noExplicitAny": "warn"
       },
@@ -259,6 +259,16 @@
           },
           "correctness": {
             "noUnknownFunction": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["frontend/public/**/*.svg"],
+      "linter": {
+        "rules": {
+          "a11y": {
+            "noSvgWithoutTitle": "off"
           }
         }
       }

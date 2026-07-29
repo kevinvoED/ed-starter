@@ -423,14 +423,14 @@ function ComboboxItem({
 }
 
 export {
-  ComboboxRoot,
-  ComboboxLabel,
-  ComboboxInputGroup,
-  ComboboxInput,
-  ComboboxTrigger,
-  ComboboxIcon,
   ComboboxContent,
-  ComboboxList,
   ComboboxEmpty,
+  ComboboxIcon,
+  ComboboxInput,
+  ComboboxInputGroup,
   ComboboxItem,
+  ComboboxLabel,
+  ComboboxList,
+  ComboboxRoot,
+  ComboboxTrigger,
 };

@@ -216,10 +216,10 @@ export default function MultiSelectExample() {
 
 export {
   Select,
+  SelectContent,
+  SelectIcon,
+  SelectItem,
   SelectLabel,
   SelectTrigger,
   SelectValue,
-  SelectIcon,
-  SelectContent,
-  SelectItem,
 };
