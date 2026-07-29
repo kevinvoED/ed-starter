@@ -103,6 +103,9 @@ const nextConfig = {
   turbopack: {
     root: path.join(__dirname, ".."),
   },
+  experimental: {
+    useTypeScriptCli: true,
+  },
 };
 
 export default nextConfig;
