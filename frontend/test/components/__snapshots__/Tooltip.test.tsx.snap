@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Tooltip > matches snapshot — default variant 1`] = `
+<DocumentFragment>
+  <button
+    aria-label="More information"
+    data-base-ui-tooltip-trigger=""
+    data-slot="tooltip-trigger"
+    id="base-ui-_r_3_"
+    type="button"
+  >
+    ?
+  </button>
+</DocumentFragment>
+`;
