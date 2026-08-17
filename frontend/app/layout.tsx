@@ -7,6 +7,7 @@ import "./globals.css";
 import { GridGuideline } from "@/components/layout/GridGuideline/GridGuideline";
 import { ScrollToTopOnNavigate } from "@/components/layout/GSAP/ScrollToTopOnNavigate";
 import { ScrollRestoration } from "@/components/layout/ScrollRestoration/ScrollRestoration";
+import { Analytics } from "@vercel/analytics/next";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 const isProduction = process.env.NEXT_PUBLIC_SITE_ENV === "production";
@@ -36,6 +37,7 @@ export default function RootLayout({
               {children}
               {!isProduction && <GridGuideline />}
               {!isProduction && <ScrollRestoration />}
+              {isProduction && <Analytics />}
               <GSAPRuntime />
             </Lenis>
           </NuqsAdapter>
