@@ -2,7 +2,6 @@ import type { ComponentProps } from "react";
 import type { NavTheme } from "@/lib/hooks/use-nav-theme";
 import type { PAGE_QUERY_RESULT } from "@/sanity.types";
 import { ErrorBoundary } from "@/components/layout/ErrorBoundary/ErrorBoundary";
-import { CardExample } from "@/components/modules/Card/CardExample";
 import { DriverText } from "@/components/modules/Driver/DriverText";
 import { HeroPrimary } from "@/components/modules/Hero/HeroPrimary";
 import { Marquee } from "@/components/modules/Marquee/Marquee";
@@ -43,7 +42,6 @@ const moduleMap: {
   marquee: { component: Marquee },
   "hero-primary": { component: HeroPrimary },
   "rich-text": { component: RichText },
-  "card-example": { component: CardExample, navTheme: "dark" },
   "driver-text": { component: DriverText, navTheme: "dark" },
   "media-file": { component: MediaFile, navTheme: "dark" },
 };

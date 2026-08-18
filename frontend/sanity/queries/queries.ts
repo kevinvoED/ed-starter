@@ -16,7 +16,6 @@ import {
   urlQuery,
 } from "./fragments";
 import { FN_LOGO, GROQ_FUNCTIONS } from "./functions";
-import { CARD_EXAMPLE_QUERY } from "./modules/card/card-example";
 import { DRIVER_TEXT_QUERY } from "./modules/driver/driver-text";
 import { HERO_PRIMARY_QUERY } from "./modules/hero/hero-primary";
 import { MARQUEE_QUERY } from "./modules/marquee/marquee";
@@ -43,8 +42,6 @@ export const modulesFragment = defineQuery(`
     ${RICH_TEXT_QUERY},
     ${DRIVER_TEXT_QUERY},
     ${MEDIA_FILE_QUERY},
-    // Remove example modules
-    ${CARD_EXAMPLE_QUERY},
   }
 `);
 

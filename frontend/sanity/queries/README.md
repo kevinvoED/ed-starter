@@ -101,7 +101,6 @@ export const MODULE_NAME_QUERY = defineQuery(`
 
 **Examples**:
 - `modules/hero/hero-primary.ts` - Hero module query
-- `modules/card/card-example.ts` - Card module query
 - `modules/text/rich-text.ts` - Rich text module query
 - `modules/miscellaneous/global-module.ts` - Global module reference query
 
