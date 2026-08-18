@@ -104,7 +104,7 @@ export const MY_MODULE_QUERY = defineQuery(`
 
 - **Path**: `frontend/test/components/<PascalName>.test.tsx`
 - Import `ModuleProps` from `@/sanity/lib/fetch` and use `ModuleProps<"<module-type>">` for the props fixture — no hand-written interfaces.
-- Build a minimal but realistic `props` constant that covers required fields. Use inline portable-text block shapes for title/description (see `CardExample.test.tsx` for reference shape).
+- Build a minimal but realistic `props` constant that covers required fields. Use inline portable-text block shapes for title/description (see `DriverText.test.tsx` for reference shape).
 - Use `vitest` (`describe`, `test`, `expect`) and `@testing-library/react` (`render`).
 - Include at least:
   1. A render test for the primary text content.
@@ -158,4 +158,4 @@ Use `color-mix(in oklch, var(--color-gunmetal) 10%, transparent)` for subtle bor
 - Schema: `studio/schemas/modules/hero/hero-primary.ts`
 - Query: `frontend/sanity/queries/modules/hero/hero-primary.ts`
 - Component: `frontend/components/modules/Hero/HeroPrimary.tsx`
-- Test: `frontend/test/components/CardExample.test.tsx`
+- Test: `frontend/test/components/DriverText.test.tsx`

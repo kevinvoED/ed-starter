@@ -35,8 +35,6 @@ export const moduleBlocks = sortBy(
     { type: "media-file" },
     { type: "hero-primary" },
     { type: "driver-text" },
-    // Delete or edit example modules once you populate your project
-    { type: "card-example" },
   ],
   ["type"],
 );
@@ -45,14 +43,7 @@ export const moduleBlocks = sortBy(
  * List of module schemas that can be referenced inside global-module.ts and global-module-library.ts
  * If you add a new schema here, then update frontend/sanity/queries/modules/miscellaneous/global-module.ts
  */
-export const globalModuleBlocks = sortBy(
-  [
-    // Delete or edit example modules once you populate your project
-    { type: "card-example" },
-    { type: "driver-text" },
-  ],
-  ["type"],
-);
+export const globalModuleBlocks = sortBy([{ type: "driver-text" }], ["type"]);
 
 /*
  * In Sanity Studio, you can group modules together when adding a new module to any page.
@@ -69,10 +60,6 @@ export const moduleGroups = sortBy(
     {
       name: "miscellaneous",
       of: ["marquee", "spacer", "anchor", "global-module"],
-    },
-    {
-      name: "card",
-      of: ["card-example"],
     },
     {
       name: "driver",

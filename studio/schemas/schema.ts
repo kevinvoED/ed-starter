@@ -28,7 +28,6 @@ import spacer from "@/schemas/modules/miscellaneous/spacer";
 import heroPrimary from "@/schemas/modules/hero/hero-primary";
 import richText from "@/schemas/modules/text/rich-text";
 import marquee from "@/schemas/modules/miscellaneous/marquee";
-import cardExample from "@/schemas/modules/card/card-example";
 import driverText from "@/schemas/modules/driver/driver-text";
 import mediaFile from "@/schemas/modules/media/media-file";
 import globalModule from "@/schemas/modules/miscellaneous/global-module";
@@ -68,7 +67,5 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     heroPrimary,
     richText,
     driverText,
-    // Remove example modules
-    cardExample,
   ],
 };
