@@ -1,0 +1,54 @@
+---
+name: OpenCode Review
+
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  auto-review:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+      - name: Run OpenCode
+        uses: dceoy/opencode-action@v0
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          model: ${{ vars.OPENROUTER_MODEL || 'openrouter/deepseek/deepseek-v4-flash-0731' }}
+          use-github-token: true
+          prompt: /review-pr
+
+  comment-review:
+    if: |
+      (github.event_name == 'issue_comment' || github.event_name == 'pull_request_review_comment') &&
+      (contains(github.event.comment.body, '/oc') || contains(github.event.comment.body, '/opencode'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+      - name: Run OpenCode
+        uses: dceoy/opencode-action@v0
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          model: ${{ vars.OPENROUTER_MODEL || 'openrouter/deepseek/deepseek-v4-flash-0731' }}
+          use-github-token: true
