@@ -1,5 +1,5 @@
-/**
- * Per-module error boundary using Next.js unstable_catchError.
+/*
+ * Per-module error boundary using Next.js catchError.
  * Isolates render failures in the page builder so a single broken module
  * displays a fallback UI without crashing the entire page.
  */
@@ -7,24 +7,23 @@
 
 import type { ModuleBlock } from "@/components/modules/ModuleBuilder";
 import { useEffect } from "react";
-import { type ErrorInfo, unstable_catchError } from "next/error";
+import { catchError, type ErrorInfo } from "next/error";
 import { pascalCase } from "es-toolkit/string";
 import { RefreshCwIcon } from "lucide-react";
 import { Button } from "@/components/primitives/Button/Button";
 
-/** Props passed by consumers wrapping module content. */
 type ErrorBoundaryUserProps = {
   module?: ModuleBlock;
 };
 
 type ErrorFallbackContentProps = ErrorBoundaryUserProps &
-  Pick<ErrorInfo, "error" | "unstable_retry">;
+  Pick<ErrorInfo, "error" | "retry">;
 
-/** Renders the visible fallback UI and logs the error for debugging. */
+// Renders the visible fallback UI and logs the error for debugging.
 function ErrorFallbackContent({
   module,
   error,
-  unstable_retry,
+  retry,
 }: ErrorFallbackContentProps) {
   useEffect(() => {
     console.error({ module, error });
@@ -43,7 +42,7 @@ function ErrorFallbackContent({
         {error instanceof Error ? error.message : "An unknown error occurred"}
       </p>
 
-      <Button variant="errorBoundary" onClick={unstable_retry}>
+      <Button variant="errorBoundary" onClick={retry}>
         <RefreshCwIcon />
         Try again
       </Button>
@@ -51,22 +50,16 @@ function ErrorFallbackContent({
   );
 }
 
-/**
- * Fallback render function for unstable_catchError.
+/*
+ * Fallback render function for catchError.
  * Receives user props as the first argument and error context as the second.
  */
 function ErrorFallback(
   { module }: ErrorBoundaryUserProps,
-  { error, unstable_retry }: ErrorInfo,
+  { error, retry }: ErrorInfo,
 ) {
-  return (
-    <ErrorFallbackContent
-      module={module}
-      error={error}
-      unstable_retry={unstable_retry}
-    />
-  );
+  return <ErrorFallbackContent module={module} error={error} retry={retry} />;
 }
 
-/** HOC that wraps children and renders ErrorFallback when a child throws. */
-export const ErrorBoundary = unstable_catchError(ErrorFallback);
+// HOC that wraps children and renders ErrorFallback when a child throw
+export const ErrorBoundary = catchError(ErrorFallback);

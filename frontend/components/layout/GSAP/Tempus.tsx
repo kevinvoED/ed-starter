@@ -21,7 +21,7 @@ if (typeof window !== "undefined") {
 }
 
 export function GSAPTempus() {
-  useTempus((time) => {
+  useTempus(({ time }) => {
     gsap.updateRoot(time / 1000);
   });
 

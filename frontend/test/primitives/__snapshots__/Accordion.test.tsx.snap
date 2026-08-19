@@ -7,7 +7,6 @@ exports[`Accordion > matches snapshot — default theme 1`] = `
     data-display="flex"
     data-orientation="vertical"
     data-slot="accordion"
-    dir="ltr"
   >
     <div
       class="not-last:border-b"
@@ -135,7 +134,6 @@ exports[`Accordion > matches snapshot — second-theme 1`] = `
     data-display="flex"
     data-orientation="vertical"
     data-slot="accordion"
-    dir="ltr"
   >
     <div
       class="not-last:border-b"

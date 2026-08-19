@@ -17,29 +17,25 @@ export const HeroPrimary = ({
     <div className="md:grid-custom flex flex-col md:h-dvh md:overflow-hidden">
       <div className="f-py-32/60 f-gap-6/12 f-px-12/16 col-span-full flex flex-col p-custom md:col-span-6 md:justify-center">
         <div className="f-gap-y-2/4 flex flex-col">
-          <Transition animateOnScroll={false}>
+          <Transition>
             <Badge>ED Starter Kits</Badge>
           </Transition>
 
           <div className="f-gap-y-3/8 flex flex-col">
-            <TextBoxReveal animateOnScroll={false} as="h1" delay={0.3}>
+            <TextBoxReveal as="h1" delay={0.3}>
               <PortableText
                 value={title}
                 as="Fragment"
                 className="ftype type-heading-3240 to-type-heading-8040 text-balance!"
               />
             </TextBoxReveal>
-            <TextLineReveal animateOnScroll={false} delay={2} duration={1.2}>
+            <TextLineReveal delay={2} duration={1.2}>
               <PortableText value={description} className="max-w-prose" />
             </TextLineReveal>
           </div>
         </div>
 
-        <Transition
-          animateOnScroll={false}
-          delay={3}
-          className="flex flex-wrap gap-4"
-        >
+        <Transition delay={3} className="flex flex-wrap gap-4">
           {links.map((link) => (
             <SanityLink key={link._key} link={link} width="fit">
               {link.label}

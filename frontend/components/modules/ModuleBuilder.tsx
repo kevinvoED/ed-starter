@@ -65,7 +65,10 @@ export const ModuleBuilder = ({ modules }: ModuleBuilderProps) => {
           );
 
           return (
-            <div className="bg-debug-red p-2 text-white">
+            <div
+              key={module._key + moduleType}
+              className="bg-debug-red p-2 text-white"
+            >
               <h2 className="mb-2 font-bold text-xl">
                 Something went wrong rendering a block
               </h2>

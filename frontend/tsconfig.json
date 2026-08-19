@@ -39,7 +39,8 @@
     "next.config.mjs",
     ".next/dev/types/**/*.ts",
     "lib/styles/typography.mjs",
-    "lib/styles/spacing.mjs"
+    "lib/styles/spacing.mjs",
+    "vitest.config.mts"
   ],
   "exclude": ["node_modules"],
   "types": ["vitest/globals", "@testing-library/jest-dom"]

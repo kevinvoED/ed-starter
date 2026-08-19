@@ -20,7 +20,6 @@ exports[`Combobox > matches snapshot — default variant 1`] = `
       placeholder="Choose a fruit"
       role="combobox"
       spellcheck="false"
-      type="text"
       value="apple"
     />
     <button
