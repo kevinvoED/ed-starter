@@ -1,6 +1,6 @@
-import { toPlainText } from "@portabletext/react";
 import { DashboardIcon } from "@sanity/icons/Dashboard";
 import { defineType } from "sanity";
+import { toPlainText } from "@portabletext/react";
 import { ModulePreview } from "@/components/module-preview";
 import { description, image, links, title } from "@/schemas/common";
 

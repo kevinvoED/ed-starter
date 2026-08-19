@@ -1,6 +1,9 @@
 import { Suspense } from "react";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
+import { OrganizationJSONLDScript } from "@/components/layout/JsonLD/Jsonld";
+import { Page } from "@/components/layout/Page/Page";
+import { generatePageMetadata } from "@/lib/site/metadata";
 import { fetchPageSlugData, fetchSanityOrganization } from "@/sanity/lib/fetch";
 import {
   type DynamicFetchOptions,
@@ -8,9 +11,6 @@ import {
   sanityFetchMetadata,
 } from "@/sanity/lib/live";
 import { PAGE_SLUG_QUERY } from "@/sanity/queries/queries";
-import { OrganizationJSONLDScript } from "@/components/layout/JsonLD/Jsonld";
-import { Page } from "@/components/layout/Page/Page";
-import { generatePageMetadata } from "@/lib/site/metadata";
 
 const PAGE_TYPE = "page";
 const PAGE_SLUG = "index";

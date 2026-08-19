@@ -1,6 +1,6 @@
 import type { DynamicFetchOptions } from "@/sanity/lib/live";
-import { fetchSanityBanner } from "@/sanity/lib/fetch";
 import { BannerPrimitive } from "@/components/primitives/Banner/BannerPrimitive";
+import { fetchSanityBanner } from "@/sanity/lib/fetch";
 
 export const Banner = async ({ perspective, stega }: DynamicFetchOptions) => {
   "use cache";

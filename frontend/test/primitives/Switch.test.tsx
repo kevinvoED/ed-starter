@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
-import { SwitchRoot, SwitchThumb } from "@/components/primitives/Switch/Switch";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, test, vi } from "vitest";
+import { SwitchRoot, SwitchThumb } from "@/components/primitives/Switch/Switch";
 
 describe("Switch", () => {
   test("renders unchecked by default", () => {

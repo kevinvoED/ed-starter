@@ -2,13 +2,14 @@
  * This configuration file lets you run `$ sanity [command]` in this folder
  * Go to https://www.sanity.io/docs/cli to learn more.
  **/
+
+import { resolve } from "node:path";
 import { defineCliConfig } from "sanity/cli";
 import {
   SANITY_STUDIO_DATASET,
   SANITY_STUDIO_HOSTNAME,
   SANITY_STUDIO_PROJECT_ID,
 } from "./lib/env";
-import { resolve } from "node:path";
 
 export default defineCliConfig({
   api: { projectId: SANITY_STUDIO_PROJECT_ID, dataset: SANITY_STUDIO_DATASET },

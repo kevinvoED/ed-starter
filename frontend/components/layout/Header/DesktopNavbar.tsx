@@ -1,16 +1,16 @@
 "use client";
 
 import type { NAVBAR_QUERY_RESULT } from "@/sanity.types";
+import { useRef } from "react";
+import { NavigationMenu } from "@base-ui/react/navigation-menu";
 import { useGSAP } from "@gsap/react";
 import { toPlainText } from "@portabletext/react";
-import { useRef } from "react";
+import cn from "cnfast";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SanityImage } from "@/components/primitives/Image/SanityImage";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { type NavTheme, useNavTheme } from "@/lib/hooks/use-nav-theme";
-import { NavigationMenu } from "@base-ui/react/navigation-menu";
-import cn from "cnfast";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Check if window is defined to avoid hydration errors
 if (typeof window !== "undefined") {

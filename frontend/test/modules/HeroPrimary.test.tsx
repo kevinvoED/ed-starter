@@ -1,7 +1,7 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
 import { render } from "@testing-library/react";
-import { HeroPrimary } from "@/components/modules/Hero/HeroPrimary";
 import { describe, expect, test, vi } from "vitest";
+import { HeroPrimary } from "@/components/modules/Hero/HeroPrimary";
 
 vi.mock("@/components/primitives/Image/SanityImage", () => ({
   SanityImage: ({

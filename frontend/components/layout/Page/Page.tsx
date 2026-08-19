@@ -3,12 +3,12 @@ import type {
   GET_CONTENT_TYPE_SLUG_QUERY_RESULT,
   PAGE_QUERY_RESULT,
 } from "@/sanity.types";
+import { cn } from "cnfast";
 import { JSONLDScript } from "@/components/layout/JsonLD/Jsonld";
 import {
   type ModuleBlock,
   ModuleBuilder,
 } from "@/components/modules/ModuleBuilder";
-import { cn } from "cnfast";
 
 type PageProps = {
   page:

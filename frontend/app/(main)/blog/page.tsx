@@ -1,6 +1,12 @@
 import type { ContentType } from "@/lib/utils/types";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
+import { ContentFilter } from "@/components/layout/Content/ContentFilter";
+import { ContentHero } from "@/components/layout/Content/ContentHero";
+import { ContentListing } from "@/components/layout/Content/ContentListing";
+import { ContentPagination } from "@/components/layout/Content/ContentPagination";
+import { Page } from "@/components/layout/Page/Page";
+import { generatePageMetadata } from "@/lib/site/metadata";
 import { fetchContentTypeIndexPageData } from "@/sanity/lib/fetch";
 import {
   type DynamicFetchOptions,
@@ -8,12 +14,6 @@ import {
   sanityFetchMetadata,
 } from "@/sanity/lib/live";
 import { GET_CONTENT_TYPE_INDEX_QUERY } from "@/sanity/queries/queries";
-import { ContentFilter } from "@/components/layout/Content/ContentFilter";
-import { ContentHero } from "@/components/layout/Content/ContentHero";
-import { ContentListing } from "@/components/layout/Content/ContentListing";
-import { ContentPagination } from "@/components/layout/Content/ContentPagination";
-import { Page } from "@/components/layout/Page/Page";
-import { generatePageMetadata } from "@/lib/site/metadata";
 
 const CONTENT_TYPE: ContentType = "blog-index";
 

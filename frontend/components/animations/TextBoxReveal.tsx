@@ -1,9 +1,9 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
 import { type ElementType, useRef } from "react";
-import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 import { cn } from "cnfast";
+import { gsap } from "gsap";
 import { CustomEase, SplitText } from "gsap/all";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 

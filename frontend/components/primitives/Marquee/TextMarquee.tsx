@@ -1,13 +1,13 @@
 "use client";
 
 import type { ModuleProps } from "@/sanity/lib/fetch";
+import { useId, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { toPlainText } from "@portabletext/react";
-import { useId, useRef } from "react";
-import { gsap } from "gsap";
-import { horizontalLoop } from "@/lib/utils/horizontal-loop";
 import { cn } from "cnfast";
+import { gsap } from "gsap";
 import { Observer } from "gsap/all";
+import { horizontalLoop } from "@/lib/utils/horizontal-loop";
 
 // @see https://codepen.io/GreenSock/pen/zYaxEKV
 

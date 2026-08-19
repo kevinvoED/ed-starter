@@ -1,8 +1,8 @@
+import { cn } from "cnfast";
 import {
   type ResolvedImageType,
   SanityImage,
 } from "@/components/primitives/Image/SanityImage";
-import { cn } from "cnfast";
 
 export const PortableTextImage = (props: ResolvedImageType) => {
   return (

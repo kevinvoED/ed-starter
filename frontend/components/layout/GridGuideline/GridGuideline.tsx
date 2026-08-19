@@ -8,8 +8,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useIsMobile } from "@/lib/hooks/use-is-mobile";
 import { cn } from "cnfast";
+import { useIsMobile } from "@/lib/hooks/use-is-mobile";
 
 export const GridGuideline = () => {
   const [isVisible, setIsVisible] = useState(false);

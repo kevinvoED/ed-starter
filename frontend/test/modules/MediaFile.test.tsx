@@ -1,7 +1,7 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
 import { render } from "@testing-library/react";
-import { MediaFile } from "@/components/modules/Media/MediaFile";
 import { describe, expect, test, vi } from "vitest";
+import { MediaFile } from "@/components/modules/Media/MediaFile";
 
 vi.mock("@/components/primitives/Video/CustomVideoPlayer", () => ({
   CustomVideoPlayer: ({

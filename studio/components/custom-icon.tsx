@@ -1,4 +1,3 @@
-import { icons } from "lucide-react";
 import { useMemo, useState } from "react";
 import {
   Button,
@@ -11,6 +10,7 @@ import {
 } from "@sanity/ui";
 import { type StringInputProps, set, unset } from "sanity";
 import { words } from "es-toolkit/string";
+import { icons } from "lucide-react";
 
 export const CustomIconPicker = (props: StringInputProps) => {
   const { value, onChange, readOnly } = props;

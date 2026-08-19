@@ -1,7 +1,7 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
 import { render } from "@testing-library/react";
-import { Spacer } from "@/components/modules/Miscellaneous/Spacer";
 import { describe, expect, test } from "vitest";
+import { Spacer } from "@/components/modules/Miscellaneous/Spacer";
 
 const baseProps: ModuleProps<"spacer"> = {
   _type: "spacer",

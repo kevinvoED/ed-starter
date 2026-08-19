@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
-import { Badge } from "@/components/primitives/Badge/Badge";
 import { describe, expect, test } from "vitest";
+import { Badge } from "@/components/primitives/Badge/Badge";
 
 describe("Badge", () => {
   test("renders children", () => {

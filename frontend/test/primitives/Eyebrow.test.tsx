@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
-import { Eyebrow } from "@/components/primitives/Eyebrow/Eyebrow";
 import { describe, expect, test } from "vitest";
+import { Eyebrow } from "@/components/primitives/Eyebrow/Eyebrow";
 
 describe("Eyebrow", () => {
   test("renders children", () => {

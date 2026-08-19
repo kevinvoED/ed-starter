@@ -1,7 +1,7 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
 import { render } from "@testing-library/react";
-import { RichText } from "@/components/modules/Text/RichText";
 import { describe, expect, test } from "vitest";
+import { RichText } from "@/components/modules/Text/RichText";
 
 const CONTENT_BLOCK: NonNullable<ModuleProps<"rich-text">["content"]> = [
   {

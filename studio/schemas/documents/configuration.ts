@@ -1,5 +1,5 @@
-import { ArrowRight, CogIcon, RefreshCwIcon } from "lucide-react";
 import { defineField, defineType } from "sanity";
+import { ArrowRight, CogIcon, RefreshCwIcon } from "lucide-react";
 import { createOptionCards } from "@/components/option-cards";
 
 const REDIRECT_TYPE_OPTIONS = [

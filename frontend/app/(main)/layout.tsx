@@ -1,11 +1,11 @@
 import { Suspense } from "react";
 import { draftMode } from "next/headers";
-import { getDynamicFetchOptions, SanityLive } from "@/sanity/lib/live";
 import { DraftModeOverlay } from "@/components/layout/DraftMode/DraftModeOverlay";
 import { Footer } from "@/components/layout/Footer/Footer";
 import { Header } from "@/components/layout/Header/Header";
 import { SkipToMain } from "@/components/layout/Header/SkipToMain";
 import { Banner } from "@/components/primitives/Banner/Banner";
+import { getDynamicFetchOptions, SanityLive } from "@/sanity/lib/live";
 
 export default async function MainLayout({
   children,

@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
-import { CustomVideoPlayer } from "@/components/primitives/Video/CustomVideoPlayer";
 import { describe, expect, test, vi } from "vitest";
+import { CustomVideoPlayer } from "@/components/primitives/Video/CustomVideoPlayer";
 
 vi.mock("media-chrome/react", () => ({
   MediaController: ({

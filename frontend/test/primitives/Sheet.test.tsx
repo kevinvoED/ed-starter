@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { describe, expect, test, vi } from "vitest";
 import {
   Sheet,
   SheetDescription,
@@ -7,7 +8,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/primitives/Sheet/Sheet";
-import { describe, expect, test, vi } from "vitest";
 
 vi.mock("lenis/react", () => ({
   useLenis: vi.fn(() => null),

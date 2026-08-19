@@ -2,6 +2,8 @@ import type { NextParams } from "@/lib/utils/types";
 import { Suspense } from "react";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
+import { Page } from "@/components/layout/Page/Page";
+import { generatePageMetadata } from "@/lib/site/metadata";
 import {
   fetchPageSlugData,
   fetchPageStaticParamsData,
@@ -12,8 +14,6 @@ import {
   sanityFetchMetadata,
 } from "@/sanity/lib/live";
 import { PAGE_SLUG_QUERY } from "@/sanity/queries/queries";
-import { Page } from "@/components/layout/Page/Page";
-import { generatePageMetadata } from "@/lib/site/metadata";
 
 const PAGE_TYPE = "platform-child";
 

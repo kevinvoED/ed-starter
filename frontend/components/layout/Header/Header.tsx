@@ -1,6 +1,6 @@
 import type { DynamicFetchOptions } from "@/sanity/lib/live";
-import { fetchSanityNavbar } from "@/sanity/lib/fetch";
 import { DesktopNavbar } from "@/components/layout/Header/DesktopNavbar";
+import { fetchSanityNavbar } from "@/sanity/lib/fetch";
 
 export const Header = async ({ perspective, stega }: DynamicFetchOptions) => {
   "use cache";

@@ -1,7 +1,7 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
 import { render } from "@testing-library/react";
-import { Marquee } from "@/components/modules/Marquee/Marquee";
 import { describe, expect, test, vi } from "vitest";
+import { Marquee } from "@/components/modules/Marquee/Marquee";
 
 vi.mock("@/components/primitives/Marquee/TextMarquee", () => ({
   TextMarquee: ({ items }: { items: unknown[] }) => (

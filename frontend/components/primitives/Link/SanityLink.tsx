@@ -6,10 +6,10 @@ import { sendGTMEvent } from "@next/third-parties/google";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cva, type VariantProps } from "class-variance-authority";
-import { ButtonIcon, Icon } from "@/components/primitives/Icon/Icon";
-import { sanitizeForId } from "@/lib/utils/generic";
 import { cn } from "cnfast";
 import { kebabCase } from "es-toolkit/string";
+import { ButtonIcon, Icon } from "@/components/primitives/Icon/Icon";
+import { sanitizeForId } from "@/lib/utils/generic";
 
 const primaryButtonStyles =
   "rounded whitespace-nowrap ftype type-body-1450 to-type-body-1650 f-py-1/2 f-px-2/3";

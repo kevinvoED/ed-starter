@@ -1,5 +1,7 @@
-import { render, screen, waitFor } from "@testing-library/react";
 import { useState } from "react";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { describe, expect, test, vi } from "vitest";
 import {
   TooltipArrow,
   TooltipPopup,
@@ -9,8 +11,6 @@ import {
   TooltipRoot,
   TooltipTrigger,
 } from "@/components/primitives/Tooltip/Tooltip";
-import userEvent from "@testing-library/user-event";
-import { describe, expect, test, vi } from "vitest";
 
 const TOOLTIP_CONTENT = "Helpful hint for sighted users.";
 

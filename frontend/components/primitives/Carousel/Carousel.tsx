@@ -1,12 +1,12 @@
 "use client";
 
+import * as React from "react";
+import { cn } from "cnfast";
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import * as React from "react";
 import { Button } from "@/components/primitives/Button/Button";
-import { cn } from "cnfast";
 
 /*
  * Embla Carousel

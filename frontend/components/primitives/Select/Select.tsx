@@ -1,8 +1,8 @@
 "use client";
 
-import { Icon } from "@/components/primitives/Icon/Icon";
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 import { cn } from "cnfast";
+import { Icon } from "@/components/primitives/Icon/Icon";
 
 /*
  * Based off of Base UI's Select component

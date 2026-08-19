@@ -1,7 +1,7 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
 import { render } from "@testing-library/react";
-import { DriverText } from "@/components/modules/Driver/DriverText";
 import { describe, expect, test } from "vitest";
+import { DriverText } from "@/components/modules/Driver/DriverText";
 
 const TITLE_BLOCK: ModuleProps<"driver-text">["title"] = [
   {

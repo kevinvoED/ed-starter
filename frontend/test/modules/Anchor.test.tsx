@@ -1,7 +1,7 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
 import { render } from "@testing-library/react";
-import { Anchor } from "@/components/modules/Miscellaneous/Anchor";
 import { describe, expect, test } from "vitest";
+import { Anchor } from "@/components/modules/Miscellaneous/Anchor";
 
 const baseProps: ModuleProps<"anchor"> = {
   _type: "anchor",

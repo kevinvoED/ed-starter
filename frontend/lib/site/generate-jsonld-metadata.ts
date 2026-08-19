@@ -1,8 +1,8 @@
 import type { JSONLDScriptProps } from "@/components/layout/JsonLD/Jsonld";
 import type { ORGANIZATION_QUERY_RESULT } from "@/sanity.types";
 import type { ViewableTypes } from "../utils/url-mapper";
-import { generatePageMetadata } from "./metadata";
 import { get } from "es-toolkit/compat";
+import { generatePageMetadata } from "./metadata";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 

@@ -90,29 +90,19 @@
         "organizeImports": {
           "level": "on",
           "options": {
+            "sortBareImports": true,
             "groups": [
-              { "type": true, "source": ["**"] },
-              ["react", "react*", "*react", "*/react"],
+              { "type": true },
+              [":NODE:"],
+              ["react", "react/**", "react-*", "react-*/**"],
               ["@next", "@next/**", "next", "next/**", "next-*", "next-*/**"],
-              [
-                "@/sanity/**",
-                "@sanity/**",
-                "sanity",
-                "sanity/**",
-                "sanity-plugin-media",
-                "sanity-plugin-iframe-pane",
-                "sanity-plugin-dashboard-widget-vercel",
-                "class-variance-authority",
-                "clean-react-props",
-                "@gsap/**",
-                "gsap",
-                "lodash-es",
-                "es-toolkit",
-                "nuqs"
-              ],
-              ["!@/styles/**", ":ALIAS:", "@/**"],
-              ["@/components/**", "@components/**", "radix-ui/**"],
-              ["@utility/**", "./**", "./globals.css", "lucide-react"]
+              ["next-sanity", "next-sanity/**"],
+              ["sanity", "sanity/**", "sanity-*", "sanity-*/**", "@sanity/**"],
+              [":PACKAGE:"],
+              ["!@/components/**", ":ALIAS:"],
+              ["@/components/**"],
+              [":PATH:", "!:STYLE:"],
+              { "kind": "bare" }
             ]
           }
         }

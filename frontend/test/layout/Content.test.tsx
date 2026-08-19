@@ -1,7 +1,9 @@
 import type { ContentIndexVariant } from "@/lib/utils/types";
-import { render } from "@testing-library/react";
 import { useSearchParams } from "next/navigation";
+import { render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { useQueryStates } from "nuqs";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import {
   ContentFilter,
   ContentFilterItem,
@@ -11,8 +13,6 @@ import { ContentListing } from "@/components/layout/Content/ContentListing";
 import { ContentPagination } from "@/components/layout/Content/ContentPagination";
 import { ContentPaginationScrollHandler } from "@/components/layout/Content/ContentPaginationScrollHandler";
 import { ContentPost } from "@/components/layout/Content/ContentPost";
-import userEvent from "@testing-library/user-event";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 vi.mock("@/components/primitives/Image/SanityImage", () => ({
   SanityImage: ({

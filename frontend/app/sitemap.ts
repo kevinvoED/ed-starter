@@ -2,9 +2,9 @@
 
 import type { MetadataRoute } from "next";
 import { groq } from "next-sanity";
+import { VIEWABLE_TYPES } from "@/lib/utils/url-mapper";
 import { getDynamicFetchOptions, sanityFetchMetadata } from "@/sanity/lib/live";
 import { urlQuery } from "@/sanity/queries/fragments";
-import { VIEWABLE_TYPES } from "@/lib/utils/url-mapper";
 
 /** A single query that can fetch all the documents that have a viewable url/page  */
 const SITEMAP_QUERY = groq`

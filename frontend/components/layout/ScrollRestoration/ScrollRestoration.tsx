@@ -1,7 +1,7 @@
 "use client";
 
-import { useLenis } from "lenis/react";
 import { useEffect } from "react";
+import { useLenis } from "lenis/react";
 
 /*
  * ScrollRestoration Component

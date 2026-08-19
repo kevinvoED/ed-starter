@@ -1,4 +1,6 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { describe, expect, test } from "vitest";
 import {
   Tabs,
   TabsContent,
@@ -6,8 +8,6 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/primitives/Tabs/Tabs";
-import userEvent from "@testing-library/user-event";
-import { describe, expect, test } from "vitest";
 
 const renderTabs = () =>
   render(

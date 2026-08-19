@@ -1,7 +1,7 @@
 import { EarthGlobeIcon } from "@sanity/icons/EarthGlobe";
 import { orderRankField } from "@sanity/orderable-document-list";
-import { startCase } from "es-toolkit";
 import { defineArrayMember, defineField, defineType } from "sanity";
+import { startCase } from "es-toolkit";
 import { globalModuleBlocks } from "@/schemas/moduleTypes";
 
 export default defineType({

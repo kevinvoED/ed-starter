@@ -1,15 +1,15 @@
 import type { ResolvedSanityLinkType } from "@/lib/utils/types";
+import { type ElementType, Fragment } from "react";
 import {
   type PortableTextProps,
   PortableText as PortableTextRenderer,
 } from "@portabletext/react";
-import { type ElementType, Fragment } from "react";
+import { cn } from "cnfast";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { PortableTextHeading } from "@/components/primitives/PortableText/PortableTextHeading";
 import { PortableTextImage } from "@/components/primitives/PortableText/PortableTextImage";
 import { PortableTextRichTable } from "@/components/primitives/PortableText/PortableTextRichTable";
 import { PortableTextYoutube } from "@/components/primitives/PortableText/PortableTextYoutube";
-import { cn } from "cnfast";
 
 /*
  * PortableText component for rendering Sanity's Rich Text Editor content

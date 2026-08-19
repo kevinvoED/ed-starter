@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
-import { AspectRatio } from "@/components/primitives/AspectRatio/AspectRatio";
 import { describe, expect, test } from "vitest";
+import { AspectRatio } from "@/components/primitives/AspectRatio/AspectRatio";
 
 describe("AspectRatio", () => {
   test("renders children", () => {

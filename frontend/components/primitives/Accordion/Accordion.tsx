@@ -1,10 +1,10 @@
 "use client";
 
-import { ChevronDownIcon, PlusIcon } from "lucide-react";
 import { createContext, use } from "react";
-import { cva } from "class-variance-authority";
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
+import { cva } from "class-variance-authority";
 import { cn } from "cnfast";
+import { ChevronDownIcon, PlusIcon } from "lucide-react";
 
 /*
  * Based off of Base/UI's Accordion component

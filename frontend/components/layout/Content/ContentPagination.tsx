@@ -1,13 +1,13 @@
 "use client";
 
 import type { ContentIndexVariant } from "@/lib/utils/types";
-import { Ellipsis } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { cn } from "cnfast";
+import { Ellipsis } from "lucide-react";
 import { parseAsString, useQueryStates } from "nuqs";
 import { ContentPaginationScrollHandler } from "@/components/layout/Content/ContentPaginationScrollHandler";
 import { Icon } from "@/components/primitives/Icon/Icon";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
-import { cn } from "cnfast";
 
 type ContentPaginationProps = {
   pagination: ContentIndexVariant["pagination"];

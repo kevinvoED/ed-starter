@@ -1,8 +1,8 @@
 "use client";
 
-import { useLenis } from "lenis/react";
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
+import { useLenis } from "lenis/react";
 
 /**
  * Resets Lenis scroll to top on client-side route changes.

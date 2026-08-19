@@ -1,7 +1,7 @@
 import type { DynamicFetchOptions } from "@/sanity/lib/live";
-import { fetchSanityFooter } from "@/sanity/lib/fetch";
 import { DesktopFooter } from "@/components/layout/Footer/DesktopFooter";
 import { MobileFooter } from "@/components/layout/Footer/MobileFooter";
+import { fetchSanityFooter } from "@/sanity/lib/fetch";
 
 export const Footer = async ({ perspective, stega }: DynamicFetchOptions) => {
   "use cache";

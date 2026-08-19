@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "cnfast";
 import {
   MediaControlBar,
   MediaController,
@@ -8,7 +9,6 @@ import {
   MediaTimeRange,
   MediaVolumeRange,
 } from "media-chrome/react";
-import { cn } from "cnfast";
 
 type CustomVideoPlayerProps = {
   slot?: "media" | string;

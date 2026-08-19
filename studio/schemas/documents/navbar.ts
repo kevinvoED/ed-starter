@@ -1,9 +1,9 @@
-import { toPlainText } from "@portabletext/react";
 import { BlockElementIcon } from "@sanity/icons/BlockElement";
 import { LinkIcon } from "@sanity/icons/Link";
 import { MenuIcon } from "@sanity/icons/Menu";
 import { PanelRightIcon } from "@sanity/icons/PanelRight";
 import { defineField, defineType } from "sanity";
+import { toPlainText } from "@portabletext/react";
 import { description, links, logo, title } from "@/schemas/common";
 
 export default defineType({

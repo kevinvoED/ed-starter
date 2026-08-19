@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { describe, expect, test } from "vitest";
 import {
   Table,
   TableBody,
@@ -9,7 +10,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/primitives/Table/Table";
-import { describe, expect, test } from "vitest";
 
 const renderFullTable = () =>
   render(

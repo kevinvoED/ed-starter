@@ -1,6 +1,6 @@
 import { EarthGlobeIcon } from "@sanity/icons/EarthGlobe";
-import { startCase } from "es-toolkit";
 import { defineField, defineType } from "sanity";
+import { startCase } from "es-toolkit";
 import { ModulePreview } from "@/components/module-preview";
 
 export default defineType({

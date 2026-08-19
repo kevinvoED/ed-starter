@@ -6,11 +6,11 @@
 "use client";
 
 import type { ModuleBlock } from "@/components/modules/ModuleBuilder";
-import { RefreshCwIcon } from "lucide-react";
 import { useEffect } from "react";
 import { type ErrorInfo, unstable_catchError } from "next/error";
-import { Button } from "@/components/primitives/Button/Button";
 import { pascalCase } from "es-toolkit/string";
+import { RefreshCwIcon } from "lucide-react";
+import { Button } from "@/components/primitives/Button/Button";
 
 /** Props passed by consumers wrapping module content. */
 type ErrorBoundaryUserProps = {

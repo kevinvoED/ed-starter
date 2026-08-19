@@ -4,9 +4,9 @@
  * @see: https://www.pixelmojo.io/blogs/llms-txt-static-vs-dynamic-implementation-guide
  */
 
+import { VIEWABLE_TYPES } from "@/lib/utils/url-mapper";
 import { getDynamicFetchOptions, sanityFetchMetadata } from "@/sanity/lib/live";
 import { LLMS_QUERY, ORGANIZATION_LLMS_QUERY } from "@/sanity/queries/queries";
-import { VIEWABLE_TYPES } from "@/lib/utils/url-mapper";
 
 type EntryItem = {
   title: string;

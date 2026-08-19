@@ -7,6 +7,8 @@ import { defineConfig } from "sanity";
 import { presentationTool } from "sanity/presentation";
 import { structureTool } from "sanity/structure";
 import { media } from "sanity-plugin-media";
+import { richTablePlugin } from "sanity-plugin-rich-table";
+import { simplerColorInput } from "sanity-plugin-simpler-color-input";
 import { GeneratePageMetadataAction } from "@/actions/generate-page-metadata";
 import { simplerColorInputOptions } from "@/lib/color-input";
 import {
@@ -24,13 +26,11 @@ import { guideTool } from "@/lib/guide-tool";
 import { presentationOptions } from "@/lib/presentation";
 import { structure } from "@/lib/structure";
 import { schema } from "@/schemas/schema";
-import { OpenDocumentUrlAction } from "./actions/open-document-url";
-import { richTablePlugin } from "sanity-plugin-rich-table";
-import { simplerColorInput } from "sanity-plugin-simpler-color-input";
 import {
   VIEWABLE_TYPES,
   type ViewableTypes,
 } from "../frontend/lib/utils/url-mapper";
+import { OpenDocumentUrlAction } from "./actions/open-document-url";
 
 export default defineConfig({
   title: `ED Starter (${SANITY_STUDIO_DATASET})`,

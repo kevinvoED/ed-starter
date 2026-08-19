@@ -1,5 +1,5 @@
-import { vi } from "vitest";
 import "@testing-library/jest-dom";
+import { vi } from "vitest";
 
 const { splitTextMock, customEaseMock } = vi.hoisted(() => {
   const splitTextMock = {

@@ -2,13 +2,13 @@
 
 import type { ModuleProps } from "@/sanity/lib/fetch";
 import { useEffect, useRef } from "react";
+import { LogoSoup, useLogoSoup } from "@sanity-labs/logo-soup/react";
+import { cn } from "cnfast";
 import { gsap } from "gsap";
+import { Observer } from "gsap/all";
 import { SanityImage } from "@/components/primitives/Image/SanityImage";
 import { useIsMobile } from "@/lib/hooks/use-is-mobile";
 import { horizontalLoop } from "@/lib/utils/horizontal-loop";
-import { LogoSoup, useLogoSoup } from "@sanity-labs/logo-soup/react";
-import { cn } from "cnfast";
-import { Observer } from "gsap/all";
 
 type ImageMarqueeProps = {
   items: ModuleProps<"marquee">["images"];

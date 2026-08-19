@@ -1,6 +1,8 @@
 import { Suspense } from "react";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
+import { Page } from "@/components/layout/Page/Page";
+import { generatePageMetadata } from "@/lib/site/metadata";
 import { fetchPageSlugData } from "@/sanity/lib/fetch";
 import {
   type DynamicFetchOptions,
@@ -8,8 +10,6 @@ import {
   sanityFetchMetadata,
 } from "@/sanity/lib/live";
 import { PAGE_SLUG_QUERY } from "@/sanity/queries/queries";
-import { Page } from "@/components/layout/Page/Page";
-import { generatePageMetadata } from "@/lib/site/metadata";
 
 const PAGE_TYPE = "platform-index";
 const PAGE_SLUG = "platform";

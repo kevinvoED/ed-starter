@@ -1,9 +1,9 @@
 "use client";
 
-import { cva, type VariantProps } from "class-variance-authority";
-import { Icon } from "@/components/primitives/Icon/Icon";
 import { Combobox as ComboboxPrimitive } from "@base-ui/react/combobox";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cnfast";
+import { Icon } from "@/components/primitives/Icon/Icon";
 
 /*
  * Based off of Base UI's Combobox component

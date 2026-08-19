@@ -1,7 +1,7 @@
 import type { PreviewProps } from "sanity";
-import { SquarePlay } from "lucide-react";
 import { lazy, Suspense } from "react";
 import { Flex, Text } from "@sanity/ui";
+import { SquarePlay } from "lucide-react";
 
 // Lazy load ReactPlayer to avoid ESM/CommonJS conflicts
 const ReactPlayer = lazy(() => import("react-player"));

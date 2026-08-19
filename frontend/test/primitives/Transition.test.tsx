@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
-import { Transition } from "@/components/animations/Transition";
 import { describe, expect, test, vi } from "vitest";
+import { Transition } from "@/components/animations/Transition";
 
 describe("Transition", () => {
   test("renders children", () => {

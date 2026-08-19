@@ -1,12 +1,12 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { describe, expect, test } from "vitest";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/primitives/Accordion/Accordion";
-import userEvent from "@testing-library/user-event";
-import { describe, expect, test } from "vitest";
 
 const renderAccordion = (theme?: "default" | "second-theme") =>
   render(

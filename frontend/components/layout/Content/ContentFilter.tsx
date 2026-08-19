@@ -2,11 +2,11 @@
 
 import type { ContentIndexVariant } from "@/lib/utils/types";
 import { Separator } from "@base-ui/react";
+import { Checkbox } from "@base-ui/react/checkbox";
+import { cn } from "cnfast";
 import { parseAsString, useQueryStates } from "nuqs";
 import { Icon } from "@/components/primitives/Icon/Icon";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
-import { Checkbox } from "@base-ui/react/checkbox";
-import { cn } from "cnfast";
 
 const DEFAULT_FILTER_LABEL = "All";
 

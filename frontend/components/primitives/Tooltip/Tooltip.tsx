@@ -1,7 +1,7 @@
 "use client";
 
-import { cva, type VariantProps } from "class-variance-authority";
 import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cnfast";
 
 /*

@@ -1,6 +1,6 @@
 import type { ContentIndexVariant } from "@/lib/utils/types";
-import { ContentPost } from "./ContentPost";
 import { cn } from "cnfast";
+import { ContentPost } from "./ContentPost";
 
 type ContentListingProps = {
   scrollTargetId: ContentIndexVariant["pagination"]["scrollTargetId"];

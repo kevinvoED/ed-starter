@@ -1,11 +1,11 @@
 "use client";
 
 import type * as React from "react";
-import { useLenis } from "lenis/react";
-import { XIcon } from "lucide-react";
 import { Button } from "@base-ui/react/button";
 import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 import { cn } from "cnfast";
+import { useLenis } from "lenis/react";
+import { XIcon } from "lucide-react";
 
 /*
  * Based off of Base/UI's Dialog component

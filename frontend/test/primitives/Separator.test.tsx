@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
-import { Separator } from "@/components/primitives/Separator/Separator";
 import { describe, expect, test } from "vitest";
+import { Separator } from "@/components/primitives/Separator/Separator";
 
 describe("Separator", () => {
   test("renders with horizontal orientation by default", () => {

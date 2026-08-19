@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { describe, expect, test, vi } from "vitest";
 import {
   DialogClose,
   DialogContent,
@@ -9,7 +10,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/primitives/Dialog/Dialog";
-import { describe, expect, test, vi } from "vitest";
 
 vi.mock("lenis/react", () => ({
   useLenis: vi.fn(() => null),

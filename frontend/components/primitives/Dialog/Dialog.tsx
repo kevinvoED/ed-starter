@@ -1,12 +1,12 @@
 "use client";
 
 import type * as React from "react";
-import { useLenis } from "lenis/react";
-import { XIcon } from "lucide-react";
-import { cva, type VariantProps } from "class-variance-authority";
 import { Button } from "@base-ui/react/button";
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cnfast";
+import { useLenis } from "lenis/react";
+import { XIcon } from "lucide-react";
 
 /*
  * Based off of Base UI's Dialog component

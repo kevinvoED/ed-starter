@@ -10,8 +10,8 @@
  * Documentation: https://github.com/darkroomengineering/satus/tree/main/components/gsap
  */
 
-import { useTempus } from "tempus/react";
 import gsap from "gsap";
+import { useTempus } from "tempus/react";
 
 if (typeof window !== "undefined") {
   gsap.defaults({ ease: "none" });

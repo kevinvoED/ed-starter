@@ -1,6 +1,6 @@
 import { ImageRemoveIcon } from "@sanity/icons/ImageRemove";
-import { upperFirst } from "es-toolkit";
 import { defineField, defineType } from "sanity";
+import { upperFirst } from "es-toolkit";
 import { ModulePreview } from "@/components/module-preview";
 
 export default defineType({

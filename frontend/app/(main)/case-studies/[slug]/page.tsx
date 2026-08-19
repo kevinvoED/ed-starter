@@ -2,6 +2,9 @@ import type { ContentType, NextParams } from "@/lib/utils/types";
 import { Suspense } from "react";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
+import { Page } from "@/components/layout/Page/Page";
+import { PortableText } from "@/components/primitives/PortableText/PortableText";
+import { generatePageMetadata } from "@/lib/site/metadata";
 import {
   fetchContentTypeSlugPageData,
   fetchContentTypeSlugStaticParamsData,
@@ -12,9 +15,6 @@ import {
   sanityFetchMetadata,
 } from "@/sanity/lib/live";
 import { GET_CONTENT_TYPE_SLUG_QUERY } from "@/sanity/queries/queries";
-import { Page } from "@/components/layout/Page/Page";
-import { PortableText } from "@/components/primitives/PortableText/PortableText";
-import { generatePageMetadata } from "@/lib/site/metadata";
 
 const CONTENT_TYPE: ContentType = "case-studies-index";
 

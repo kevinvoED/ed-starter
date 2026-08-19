@@ -1,8 +1,8 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
-import { render } from "@testing-library/react";
 import Image from "next/image";
-import { ImageMarquee } from "@/components/primitives/Marquee/ImageMarquee";
+import { render } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
+import { ImageMarquee } from "@/components/primitives/Marquee/ImageMarquee";
 
 vi.mock("gsap/all", () => ({
   Observer: {
