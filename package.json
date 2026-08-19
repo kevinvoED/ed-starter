@@ -4,10 +4,10 @@
   "description": "ED-Starter: Next.js & Sanity",
   "homepage": "https://enginedigital.com",
   "private": true,
-  "packageManager": "pnpm@11.1.1+sha512.d1fdf5f73c617b64fa1a56a81c3c8dfe0e966e33a6010aa256b517ae77be21d93e05affc0de1a83b0e4f29d569f68b446ae8f068cd7247c0bb3df0fb4d7bdf9a",
+  "packageManager": "pnpm@11.22.0",
   "engines": {
-    "node": ">=22.13.0",
-    "pnpm": ">=11.1.1",
+    "node": ">=24.19.0",
+    "pnpm": ">=11.22.0",
     "npm": "Please use pnpm instead of npm."
   },
   "scripts": {
@@ -26,7 +26,7 @@
     "ci": "pnpm format && pnpm typegen && pnpm test && pnpm build"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.6",
+    "@biomejs/biome": "^2.5.9",
     "plop": "^4.0.5"
   }
 }
