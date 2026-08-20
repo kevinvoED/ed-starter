@@ -1,7 +1,7 @@
 import type { ResolvedImageType } from "@/components/primitives/Image/SanityImage";
 import type { ResolvedSanityLinkType } from "@/lib/utils/types";
 import type { PortableText as PortableTextValue } from "@/sanity.types";
-import { type ElementType, Fragment } from "react";
+import { type ComponentProps, type ElementType, Fragment } from "react";
 import {
   type InferComponents,
   PortableText as PortableTextRenderer,
@@ -54,7 +54,7 @@ import { PortableTextYoutube } from "@/components/primitives/PortableText/Portab
 
 type PortableTextComponentProps = {
   className?: string;
-  value: PortableTextValue | undefined;
+  value: ComponentProps<typeof PortableTextRenderer>["value"] | undefined;
   style?: "article" | "module";
   as?: ElementType | "Fragment";
 };
