@@ -9,6 +9,7 @@ import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { PortableTextHeading } from "@/components/primitives/PortableText/PortableTextHeading";
 import { PortableTextImage } from "@/components/primitives/PortableText/PortableTextImage";
 import { PortableTextRichTable } from "@/components/primitives/PortableText/PortableTextRichTable";
+import { PortableTextTable } from "@/components/primitives/PortableText/PortableTextTable";
 import { PortableTextYoutube } from "@/components/primitives/PortableText/PortableTextYoutube";
 
 /*
@@ -89,6 +90,9 @@ const portableTextComponents = (
     },
     richTable: ({ value }) => {
       return <PortableTextRichTable {...value} />;
+    },
+    table: ({ value }) => {
+      return <PortableTextTable {...value} />;
     },
   },
   block: {

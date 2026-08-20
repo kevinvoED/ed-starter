@@ -75,6 +75,20 @@ export default defineConfig({
     media(),
     assist(),
   ],
+  form: {
+    components: {
+      portableText: {
+        plugins: (props) =>
+          props.renderDefault({
+            ...props,
+            plugins: {
+              ...props.plugins,
+              table: { enabled: true },
+            },
+          }),
+      },
+    },
+  },
   releases: {
     enabled: false,
   },

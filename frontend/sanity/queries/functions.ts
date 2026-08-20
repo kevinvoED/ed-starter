@@ -98,6 +98,28 @@ export const FN_PT = `
           },
         },
       },
+      _type == "table" => {
+        _type,
+        _key,
+        headerRows,
+        rows[]{
+          _key,
+          _type,
+          cells[]{
+            _key,
+            _type,
+            value[]{
+              ...,
+              markDefs[]{
+                ...,
+                _type == "link" => {
+                  ${linksFields}
+                }
+              }
+            }
+          }
+        }
+      },
   };
 `;
 

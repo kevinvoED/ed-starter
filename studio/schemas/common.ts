@@ -159,6 +159,46 @@ export const ptAnnotationHighlightFields = [
   },
 ];
 
+// @docs: https://www.sanity.io/docs/studio/portable-text-editor-configuration#tblh2
+export const table = defineField({
+  title: "Rich Table",
+  name: "table",
+  type: "object",
+  description: "Generate a table with column headers and rows items.",
+  fields: [
+    defineField({ type: "number", name: "headerRows" }),
+    defineField({
+      type: "array",
+      name: "rows",
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "row",
+          fields: [
+            defineField({
+              type: "array",
+              name: "cells",
+              of: [
+                defineArrayMember({
+                  type: "object",
+                  name: "cell",
+                  fields: [
+                    defineField({
+                      type: "array",
+                      name: "value",
+                      of: [defineArrayMember({ type: "block" })],
+                    }),
+                  ],
+                }),
+              ],
+            }),
+          ],
+        }),
+      ],
+    }),
+  ],
+});
+
 /*
  * -----------------------------------------------
  * ModuleBuilder-related fields

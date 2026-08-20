@@ -9,6 +9,7 @@ import {
   ptDecoratorFields,
   ptListFields,
   ptStyleHeadingFields,
+  table,
 } from "@/schemas/common";
 
 /*
@@ -73,6 +74,9 @@ export default defineType({
       title: "Rich Table Block",
       type: "richTableBlock",
       icon: ThListIcon,
+    }),
+    defineArrayMember({
+      ...table,
     }),
   ],
 });
