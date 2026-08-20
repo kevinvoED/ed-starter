@@ -9,7 +9,7 @@ export default defineConfig({
     include: ["**/*.{test,spec}.{ts,tsx}"],
     exclude: ["node_modules", ".next"],
     alias: {
-      "@": path.resolve(__dirname, "."),
+      "@": path.resolve(import.meta.dirname, "."),
     },
     env: {
       NEXT_PUBLIC_SANITY_DATASET: "test",
@@ -22,7 +22,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "."),
+      "@": path.resolve(import.meta.dirname, "."),
     },
   },
 });
