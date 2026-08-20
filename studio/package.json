@@ -42,7 +42,6 @@
     "sanity-plugin-dashboard-widget-vercel": "^4.0.26",
     "sanity-plugin-iframe-pane": "^5.0.33",
     "sanity-plugin-media": "^6.1.4",
-    "sanity-plugin-rich-table": "^2.2.3",
     "sanity-plugin-simpler-color-input": "^4.0.0",
     "styled-components": "^6.5.3",
     "tailwind-merge": "^3.6.0"

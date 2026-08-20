@@ -66,60 +66,28 @@ export const FN_PT = `
     _type == "links" => {
       ${linksFields}
     },
-      _type == "richTable" => {
-      ...,
-        _type,
+    _type == "table" => {
+      _type,
+      _key,
+      headerRows,
+      rows[]{
         _key,
-        hasColumnTitles,
-        hasRowTitles,
-        columnHeaders[]{
-          _key,
-          _type,
-          cellIndex,
-          title,
-        },
-        rows[]{
-          _key,
-          _type,
-          cells[]{
-            _key,
-            _type,
-            content[]{
-              ...,
-              markDefs[]{
-                ...,
-                _type == "link" => {
-                  _type,
-                  _key,
-                  href,
-                },
-              },
-            },
-          },
-        },
-      },
-      _type == "table" => {
         _type,
-        _key,
-        headerRows,
-        rows[]{
+        cells[]{
           _key,
           _type,
-          cells[]{
-            _key,
-            _type,
-            value[]{
+          value[]{
+            ...,
+            markDefs[]{
               ...,
-              markDefs[]{
-                ...,
-                _type == "link" => {
-                  ${linksFields}
-                }
+              _type == "link" => {
+                ${linksFields}
               }
             }
           }
         }
-      },
+      }
+    },
   };
 `;
 

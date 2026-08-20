@@ -1,14 +1,15 @@
+import type { ResolvedImageType } from "@/components/primitives/Image/SanityImage";
 import type { ResolvedSanityLinkType } from "@/lib/utils/types";
+import type { PortableText as PortableTextValue } from "@/sanity.types";
 import { type ElementType, Fragment } from "react";
 import {
-  type PortableTextProps,
+  type InferComponents,
   PortableText as PortableTextRenderer,
 } from "@portabletext/react";
 import { cn } from "cnfast";
 import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { PortableTextHeading } from "@/components/primitives/PortableText/PortableTextHeading";
 import { PortableTextImage } from "@/components/primitives/PortableText/PortableTextImage";
-import { PortableTextRichTable } from "@/components/primitives/PortableText/PortableTextRichTable";
 import { PortableTextTable } from "@/components/primitives/PortableText/PortableTextTable";
 import { PortableTextYoutube } from "@/components/primitives/PortableText/PortableTextYoutube";
 
@@ -53,7 +54,7 @@ import { PortableTextYoutube } from "@/components/primitives/PortableText/Portab
 
 type PortableTextComponentProps = {
   className?: string;
-  value: PortableTextProps["value"];
+  value: PortableTextValue | undefined;
   style?: "article" | "module";
   as?: ElementType | "Fragment";
 };
@@ -76,23 +77,24 @@ export const PortableText = ({
 const portableTextComponents = (
   style: "module" | "article" = "module",
   as?: ElementType | "Fragment",
-): PortableTextProps["components"] => ({
+): InferComponents<PortableTextValue> => ({
   /*
    * Special custom components that users can inject directly into their PortableText field
    * Create a new custom component and then add it to the `types` object
    */
   types: {
     image: ({ value }) => {
-      return <PortableTextImage {...value} />;
+      return <PortableTextImage {...(value as unknown as ResolvedImageType)} />;
     },
     youtube: ({ value }) => {
       return <PortableTextYoutube {...value} />;
     },
-    richTable: ({ value }) => {
-      return <PortableTextRichTable {...value} />;
-    },
     table: ({ value }) => {
-      return <PortableTextTable {...value} />;
+      return (
+        <PortableTextTable
+          {...(value as Parameters<typeof PortableTextTable>[0])}
+        />
+      );
     },
   },
   block: {
@@ -182,11 +184,11 @@ const portableTextComponents = (
     },
     textColor: ({ children, value }) => (
       // @see: https://github.com/cositehq/sanity-plugin-simpler-color-input
-      <span style={{ color: value.value }}>{children}</span>
+      <span style={{ color: value?.value }}>{children}</span>
     ),
     highlightColor: ({ children, value }) => (
       // @see: https://github.com/cositehq/sanity-plugin-simpler-color-input
-      <span style={{ background: value.value }}>{children}</span>
+      <span style={{ background: value?.value }}>{children}</span>
     ),
   },
   list: {

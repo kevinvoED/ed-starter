@@ -7,7 +7,6 @@ import { defineConfig } from "sanity";
 import { presentationTool } from "sanity/presentation";
 import { structureTool } from "sanity/structure";
 import { media } from "sanity-plugin-media";
-import { richTablePlugin } from "sanity-plugin-rich-table";
 import { simplerColorInput } from "sanity-plugin-simpler-color-input";
 import { GeneratePageMetadataAction } from "@/actions/generate-page-metadata";
 import { simplerColorInputOptions } from "@/lib/color-input";
@@ -71,7 +70,6 @@ export default defineConfig({
     presentationTool(presentationOptions),
     dashboardTool(deploymentOptions),
     simplerColorInput(simplerColorInputOptions),
-    richTablePlugin({}),
     media(),
     assist(),
   ],

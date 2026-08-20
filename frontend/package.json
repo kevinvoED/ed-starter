@@ -40,7 +40,6 @@
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "react-error-boundary": "^6.1.3",
-    "sanity-plugin-rich-table": "^2.2.3",
     "tempus": "1.0.0"
   },
   "devDependencies": {

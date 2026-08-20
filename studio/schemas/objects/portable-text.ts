@@ -1,5 +1,4 @@
 import { PlayIcon } from "@sanity/icons/Play";
-import { ThListIcon } from "@sanity/icons/ThList";
 import { defineArrayMember, defineType } from "sanity";
 import { YouTubePreview } from "@/components/youtube-preview";
 import {
@@ -68,12 +67,6 @@ export default defineType({
       components: {
         preview: YouTubePreview,
       },
-    }),
-    defineArrayMember({
-      name: "richTable",
-      title: "Rich Table Block",
-      type: "richTableBlock",
-      icon: ThListIcon,
     }),
     defineArrayMember({
       ...table,
