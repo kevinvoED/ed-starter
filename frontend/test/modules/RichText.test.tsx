@@ -27,12 +27,6 @@ describe("RichText", () => {
     expect(container.firstChild).toBeNull();
   });
 
-  test("renders content inside article", () => {
-    const { getByText, container } = render(<RichText {...baseProps} />);
-    expect(container.querySelector("article")).toHaveClass("max-w-200");
-    expect(getByText("Rich text paragraph.")).toBeInTheDocument();
-  });
-
   test("matches snapshot", () => {
     const { asFragment } = render(<RichText {...baseProps} />);
     expect(asFragment()).toMatchSnapshot();

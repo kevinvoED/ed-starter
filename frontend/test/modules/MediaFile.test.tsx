@@ -63,9 +63,8 @@ const baseProps: ModuleProps<"media-file"> = {
 
 describe("MediaFile", () => {
   test("renders image variant inside figure with SanityImage", () => {
-    const { container, getByTestId } = render(<MediaFile {...baseProps} />);
+    const { getByTestId } = render(<MediaFile {...baseProps} />);
     const sanityImage = getByTestId("sanity-image");
-    expect(container.querySelector("figure")).toHaveClass("min-h-dvh");
     expect(sanityImage).toBeInTheDocument();
     expect(sanityImage).toHaveAttribute(
       "data-src",

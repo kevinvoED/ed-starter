@@ -20,7 +20,7 @@ export const MediaFile = ({
   }
 
   return (
-    <figure className="min-h-dvh">
+    <figure className="md:min-h-dvh">
       <SanityImage
         image={image}
         sizes="100vw"

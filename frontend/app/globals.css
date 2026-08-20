@@ -19,6 +19,40 @@
   --animate-accordion-up: accordionSlideUp 0.18s ease-in-out;
   --animate-accordion-down: accordionSlideDown 0.18s ease-in-out;
 
+  --animate-blob-float: blobFloat 12s ease-in-out infinite;
+  --animate-blob-drift: blobDrift 15s ease-in-out infinite;
+
+  @keyframes blobFloat {
+    0%,
+    100% {
+      transform: translate(0%, 0%) scale(1);
+    }
+    25% {
+      transform: translate(18%, 22%) scale(1.12);
+    }
+    50% {
+      transform: translate(8%, 40%) scale(0.92);
+    }
+    75% {
+      transform: translate(-12%, 18%) scale(1.06);
+    }
+  }
+  @keyframes blobDrift {
+    0%,
+    100% {
+      transform: translate(0%, 0%) scale(1);
+    }
+    25% {
+      transform: translate(-18%, -22%) scale(0.9);
+    }
+    50% {
+      transform: translate(-8%, -38%) scale(1.08);
+    }
+    75% {
+      transform: translate(12%, -14%) scale(0.96);
+    }
+  }
+
   @keyframes accordionSlideUp {
     from {
       height: var(--accordion-panel-height);
@@ -41,6 +75,32 @@
 /* ------------------------------------------------------------ */
 /* -------------------- Utility Classes ---------------------- */
 /* ------------------------------------------------------------ */
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 20px;
+
+  @media (width >= 40rem) {
+    /* 640px */
+    max-width: 40rem;
+  }
+  @media (width >= 48rem) {
+    /* 768px */
+    max-width: 48rem;
+  }
+  @media (width >= 64rem) {
+    /* 1024px */
+    max-width: 64rem;
+  }
+  @media (width >= 80rem) {
+    /* 1280px */
+    max-width: 75rem;
+  }
+  @media (width >= 96rem) {
+    /* 1536px */
+    max-width: 87rem;
+  }
+}
 
 @utility p-custom {
   @apply px-5 md:px-6;

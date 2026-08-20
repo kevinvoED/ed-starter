@@ -5,7 +5,7 @@ export const RichText = ({ content }: ModuleProps<"rich-text">) => {
   if (!content) return null;
 
   return (
-    <article className="f-py-10/20 mx-auto max-w-200">
+    <article className="container">
       {content && <PortableText value={content} style="article" />}
     </article>
   );

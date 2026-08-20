@@ -3,7 +3,7 @@
 exports[`MediaFile > matches snapshot — image variant 1`] = `
 <DocumentFragment>
   <figure
-    class="min-h-dvh"
+    class="md:min-h-dvh"
   >
     <div
       class="size-full"

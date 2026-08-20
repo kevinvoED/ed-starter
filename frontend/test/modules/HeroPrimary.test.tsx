@@ -74,11 +74,6 @@ const baseProps: ModuleProps<"hero-primary"> = {
 };
 
 describe("HeroPrimary", () => {
-  test("renders badge", () => {
-    const { getByText } = render(<HeroPrimary {...baseProps} />);
-    expect(getByText("ED Starter Kits")).toBeInTheDocument();
-  });
-
   test("renders title", () => {
     const { getByText } = render(<HeroPrimary {...baseProps} />);
     expect(getByText("Hero Title")).toBeInTheDocument();
@@ -89,27 +84,6 @@ describe("HeroPrimary", () => {
     expect(getByText("Hero description.")).toBeInTheDocument();
   });
 
-  test("renders CTA link when provided", () => {
-    const { getByRole } = render(<HeroPrimary {...baseProps} />);
-    const link = getByRole("link", { name: /Get started/i });
-    expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute("href", "https://example.com");
-  });
-
-  test("renders SanityImage with hero image", () => {
-    const { getByTestId } = render(<HeroPrimary {...baseProps} />);
-    const sanityImage = getByTestId("sanity-image");
-    expect(sanityImage).toBeInTheDocument();
-    expect(sanityImage).toHaveAttribute(
-      "data-src",
-      "https://example.com/hero.jpg",
-    );
-    expect(sanityImage).toHaveAttribute(
-      "data-sizes",
-      "(max-width: 768px) 100vw, 50vw",
-    );
-    expect(sanityImage).toHaveClass("size-full", "rounded-3xl");
-  });
   test("matches snapshot", () => {
     const { asFragment } = render(<HeroPrimary {...baseProps} />);
     expect(asFragment()).toMatchSnapshot();

@@ -1,7 +1,7 @@
 "use client";
 
 import type { NAVBAR_QUERY_RESULT } from "@/sanity.types";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { NavigationMenu } from "@base-ui/react/navigation-menu";
 import { useGSAP } from "@gsap/react";
 import { toPlainText } from "@portabletext/react";
@@ -67,8 +67,17 @@ export const DesktopNavbar = ({
   const theme = useNavTheme(navRef);
   const triggerClassName = getTriggerClassName(theme);
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
   useGSAP(
     () => {
+      // Add or remove frosted effect on scroll
+      ScrollTrigger.create({
+        start: "top+=1 top",
+        onEnter: () => setIsScrolled(true),
+        onLeaveBack: () => setIsScrolled(false),
+      });
+
       // Early return if neither navRef or directionallyAware is set to false
       if (!navRef.current || !directionallyAware) return;
 
@@ -100,8 +109,14 @@ export const DesktopNavbar = ({
       ref={navRef}
       data-nav-theme={theme}
       className={cn(
-        "fixed inset-x-0 top-2 z-50 mx-auto flex h-12 w-fit items-center justify-between gap-20 rounded-md px-2 transition-colors duration-300 ease-in-out",
-        theme === "dark" ? "bg-white text-black" : "bg-debug-blue text-white",
+        "fixed inset-x-0 top-2 z-100 mx-auto flex h-12 w-fit items-center justify-between gap-20 rounded-md px-2 transition-colors duration-300 ease-in-out",
+        isScrolled && "backdrop-blur-md",
+        theme === "dark"
+          ? cn("text-black", isScrolled ? "bg-white/70" : "bg-white")
+          : cn(
+              "text-white",
+              isScrolled ? "bg-debug-blue/50" : "bg-debug-blue/70",
+            ),
       )}
     >
       <SanityLink id="nav" href="/" variant="ghost">
@@ -141,7 +156,7 @@ export const DesktopNavbar = ({
 
                 <NavigationMenu.Content
                   className={cn(
-                    "h-full w-[calc(100vw-40px)] p-2 min-[500px]:w-max min-[500px]:max-w-100",
+                    "h-full w-[calc(100vw-40px)] p-4 min-[500px]:w-max min-[500px]:max-w-100",
                     "transition-[opacity,transform,translate] duration-(--duration) ease-(--easing) data-ending-style:data-[activation-direction=left]:translate-x-[50%] data-ending-style:data-[activation-direction=right]:translate-x-[-50%] data-starting-style:data-[activation-direction=left]:translate-x-[-50%] data-starting-style:data-[activation-direction=right]:translate-x-[50%] data-ending-style:opacity-0 data-starting-style:opacity-0",
                   )}
                 >
@@ -179,7 +194,7 @@ export const DesktopNavbar = ({
 
       <NavigationMenu.Portal>
         <NavigationMenu.Positioner
-          sideOffset={10}
+          sideOffset={20}
           collisionPadding={{ top: 5, bottom: 5, left: 20, right: 20 }}
           collisionAvoidance={{ side: "none" }}
           className={cn(
@@ -194,7 +209,7 @@ export const DesktopNavbar = ({
           <NavigationMenu.Popup
             className={cn(
               "relative h-(--popup-height) w-(--popup-width) origin-(--transform-origin)",
-              "border border-neutral-950 bg-white text-black shadow-[0.25rem_0.25rem_0] shadow-black/12 outline-none",
+              "rounded-md border border-neutral-950 bg-white text-black shadow-[0.25rem_0.25rem_0] shadow-black/12 outline-none",
               "transition-[opacity,transform,width,height,scale] duration-(--duration) ease-(--easing) data-ending-style:scale-90 data-starting-style:scale-90 data-ending-style:opacity-0 data-starting-style:opacity-0 data-ending-style:duration-150 data-ending-style:ease-[ease]",
             )}
           >

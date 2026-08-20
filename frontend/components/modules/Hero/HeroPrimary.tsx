@@ -1,58 +1,79 @@
 import type { ModuleProps } from "@/sanity/lib/fetch";
 import { TextBoxReveal } from "@/components/animations/TextBoxReveal";
 import { TextLineReveal } from "@/components/animations/TextLineReveal";
-import { Transition } from "@/components/animations/Transition";
-import { Badge } from "@/components/primitives/Badge/Badge";
-import { SanityImage } from "@/components/primitives/Image/SanityImage";
-import { SanityLink } from "@/components/primitives/Link/SanityLink";
 import { PortableText } from "@/components/primitives/PortableText/PortableText";
+
+const Blob = ({
+  background,
+  animationDelay,
+  className,
+}: {
+  background: string;
+  animationDelay: string;
+  className: string;
+}) => {
+  return (
+    <div
+      className={className}
+      style={{
+        background: background,
+        filter: "blur(80px)",
+        animationDelay: animationDelay,
+      }}
+    />
+  );
+};
 
 export const HeroPrimary = ({
   title,
-  links,
-  image,
   description,
 }: ModuleProps<"hero-primary">) => {
   return (
-    <div className="md:grid-custom flex flex-col md:h-dvh md:overflow-hidden">
-      <div className="f-py-32/60 f-gap-6/12 f-px-12/16 col-span-full flex flex-col p-custom md:col-span-6 md:justify-center">
-        <div className="f-gap-y-2/4 flex flex-col">
-          <Transition animateOnScroll={false}>
-            <Badge>ED Starter Kits</Badge>
-          </Transition>
-
-          <div className="f-gap-y-3/8 flex flex-col">
-            <TextBoxReveal animateOnScroll={false} as="h1" delay={0.3}>
-              <PortableText
-                value={title}
-                as="Fragment"
-                className="ftype type-heading-3240 to-type-heading-8040 text-balance!"
-              />
-            </TextBoxReveal>
-            <TextLineReveal animateOnScroll={false} delay={2} duration={1.2}>
-              <PortableText value={description} className="max-w-prose" />
-            </TextLineReveal>
-          </div>
-        </div>
-
-        <Transition
+    <div className="grid-custom f-px-12/16 grid-rows-[auto_1fr] gap-10 overflow-x-clip pb-10 md:gap-20">
+      <div className="f-pt-24/55 z-50 col-span-full flex max-h-fit flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-0">
+        <TextBoxReveal
           animateOnScroll={false}
-          delay={3}
-          className="flex flex-wrap gap-4"
+          as="h1"
+          delay={0.3}
+          className="max-w-200"
         >
-          {links.map((link) => (
-            <SanityLink key={link._key} link={link} width="fit">
-              {link.label}
-            </SanityLink>
-          ))}
-        </Transition>
+          <PortableText
+            value={title}
+            as="Fragment"
+            className="ftype type-heading-3230 to-type-heading-4830 md:text-balance"
+          />
+        </TextBoxReveal>
+        <TextLineReveal animateOnScroll={false} delay={2} duration={1.2}>
+          <PortableText
+            value={description}
+            className="max-w-prose text-charcoal"
+          />
+        </TextLineReveal>
       </div>
 
-      <div className="relative w-full shrink-0 overflow-hidden rounded-lg p-5 md:col-span-6 md:max-h-screen md:min-h-0">
-        <SanityImage
-          image={image}
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className="size-full rounded-3xl"
+      <div className="relative col-span-full h-75 overflow-hidden rounded-3xl bg-debug-blue/45 md:h-100">
+        <Blob
+          animationDelay="-7s"
+          background="radial-gradient(circle, #F8E8DB 0%, transparent 65%)"
+          className="absolute -bottom-2/5 left-1/2 h-3/4 w-3/4 -translate-x-1/2 animate-blob-float rounded-full"
+        />
+
+        <Blob
+          animationDelay="-2s"
+          background="radial-gradient(circle, #FFD487 0%, transparent 45%)"
+          className="absolute -right-1/10 -bottom-2/4 h-3/4 w-3/4 animate-blob-float rounded-full"
+        />
+
+        <Blob
+          animationDelay="-6s"
+          background="radial-gradient(circle, #C4DEE8 0%, transparent 100%)"
+          className="absolute -right-1/4 -bottom-1/4 h-3/4 w-3/4 animate-blob-float rounded-full"
+        />
+
+        <Blob
+          animationDelay="-1s"
+          background="radial-gradient(circle, #F8E8DB 0%, transparent 40%)"
+          className="absolute -right-1/4 -bottom-1/4 h-3/4 w-3/4 animate-blob-float rounded-full"
         />
       </div>
     </div>
