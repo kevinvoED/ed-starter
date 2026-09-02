@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Popover > matches snapshot — default variant 1`] = `
+<DocumentFragment>
+  <button
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="inline-flex cursor-pointer items-center gap-2 outline-none transition-colors duration-150 focus-visible:ring-3 focus-visible:ring-ring/50 data-disabled:pointer-events-none data-disabled:opacity-50 data-popup-open:opacity-80 border border-black px-3 py-1.5 text-black hover:bg-black/10 active:bg-black/10 text-sm"
+    data-base-ui-click-trigger=""
+    data-slot="popover-trigger"
+    id="base-ui-_r_3_"
+    tabindex="0"
+    type="button"
+  >
+    Open popover
+  </button>
+</DocumentFragment>
+`;
