@@ -6,7 +6,7 @@ export const Banner = async ({ perspective, stega }: DynamicFetchOptions) => {
   "use cache";
   const data = await fetchSanityBanner({ perspective, stega });
 
-  if (!data || data[0]._key === null) return null;
+  if (!data?.length) return null;
 
   return <BannerPrimitive bannerData={data} />;
 };
