@@ -510,7 +510,7 @@ export type Banner = {
   _updatedAt: string;
   _rev: string;
   banners?: Array<{
-    state?: "default" | "positive" | "alert";
+    state: "default" | "positive" | "alert";
     description: Array<{
       children?: Array<{
         marks?: Array<string>;
@@ -2086,7 +2086,7 @@ export type BANNER_QUERY_RESULT = Array<{
   banners: Array<{
     _type: "banner";
     _key: string;
-    state: "alert" | "default" | "positive" | null;
+    state: "alert" | "default" | "positive";
     description: Array<{
       children?: Array<{
         marks?: Array<string>;

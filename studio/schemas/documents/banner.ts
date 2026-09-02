@@ -15,6 +15,8 @@ export default defineType({
       name: "banners",
       title: "Banners",
       type: "array",
+      description:
+        "Add multiple banners to be displayed at the top of every page. Max 3 banners.",
       of: [
         defineField({
           name: "banner",
@@ -25,11 +27,14 @@ export default defineType({
               name: "state",
               title: "State",
               type: "string",
+              description:
+                "The state of the banner. This will determine the background color of the banner.",
               options: {
                 list: ["default", "positive", "alert"],
                 layout: "radio",
               },
               initialValue: "default",
+              validation: (Rule) => Rule.required(),
             }),
             defineField({
               ...description,
@@ -43,7 +48,7 @@ export default defineType({
             prepare({ title, state }) {
               return {
                 title: title ? toPlainText(title) : "No title",
-                subtitle: `Banner: ${capitalize(state)}`,
+                subtitle: `${capitalize(state)}`,
                 media: InfoOutlineIcon,
               };
             },
