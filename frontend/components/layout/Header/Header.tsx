@@ -10,8 +10,8 @@ export const Header = async ({ perspective, stega }: DynamicFetchOptions) => {
   if (!data) return null;
 
   return (
-    <header className="">
-      <DesktopNavbar data={data} directionallyAware={false} />
+    <header>
+      <DesktopNavbar data={data} directionallyAware={true} />
       {/* <MobileNavbar /> */}
     </header>
   );
